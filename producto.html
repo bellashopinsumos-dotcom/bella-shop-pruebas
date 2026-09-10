@@ -52,12 +52,13 @@
       font-size: 14px;
     }
 
+
     /* CONTENIDO */
 
     .contenedor {
-      max-width: 1100px;
+      max-width: 1380px;
       margin: auto;
-      padding: 35px 20px 60px;
+      padding: 35px 28px 60px;
     }
 
     .ruta {
@@ -66,27 +67,50 @@
       margin-bottom: 25px;
     }
 
+
+    /* FICHA DEL PRODUCTO */
+
     .producto-ficha {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
+
+      /*
+        AHORA LA FOTO TIENE MÁS ESPACIO
+      */
+
+      grid-template-columns:
+        minmax(0, 1.18fr)
+        minmax(430px, 0.82fr);
+
+      gap: 50px;
+
       align-items: start;
     }
+
 
     /* IMAGEN */
 
     .imagen-principal {
+      width: 100%;
+
       background: white;
+
       border-radius: 22px;
+
       overflow: hidden;
+
       border: 1px solid #f0d7df;
-      box-shadow: 0 8px 25px rgba(90, 45, 60, 0.08);
+
+      box-shadow:
+        0 8px 25px
+        rgba(90, 45, 60, 0.08);
     }
 
     .imagen-principal img {
       width: 100%;
+      height: auto;
       display: block;
     }
+
 
     /* INFORMACIÓN */
 
@@ -127,6 +151,7 @@
       margin: 25px 0;
     }
 
+
     /* REFERENCIAS */
 
     .titulo-referencias {
@@ -143,14 +168,21 @@
 
     .referencia {
       background: white;
+
       border: 1px solid #efd7df;
+
       border-radius: 16px;
+
       padding: 15px;
+
       margin-bottom: 12px;
 
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 15px;
     }
 
@@ -168,11 +200,17 @@
     .cantidad button {
       width: 34px;
       height: 34px;
+
       border-radius: 50%;
+
       border: 1px solid #e65385;
+
       background: white;
+
       color: #e65385;
+
       font-size: 20px;
+
       cursor: pointer;
     }
 
@@ -187,40 +225,56 @@
       font-size: 16px;
     }
 
+
     /* RESUMEN */
 
     .resumen {
       margin-top: 25px;
+
       padding: 20px;
+
       border-radius: 18px;
+
       background: #fff0f5;
     }
 
     .resumen-linea {
       display: flex;
+
       justify-content: space-between;
+
       margin-bottom: 8px;
+
       font-size: 15px;
     }
 
     .total {
       font-size: 23px;
+
       font-weight: bold;
+
       color: #e65385;
+
       margin-top: 10px;
     }
 
     .boton-agregar {
       width: 100%;
+
       margin-top: 18px;
+
       border: none;
+
       border-radius: 16px;
+
       padding: 15px;
 
       background: #e65385;
+
       color: white;
 
       font-size: 15px;
+
       font-weight: bold;
 
       cursor: pointer;
@@ -235,9 +289,41 @@
       cursor: not-allowed;
     }
 
+
+    /* TABLET */
+
+    @media (max-width: 1050px) {
+
+      .contenedor {
+        max-width: 950px;
+      }
+
+      .producto-ficha {
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(380px, 0.9fr);
+
+        gap: 35px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+    }
+
+
     /* CELULAR */
 
     @media (max-width: 800px) {
+
+      header {
+        padding: 14px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
 
       .contenedor {
         padding: 22px 14px 45px;
@@ -246,6 +332,10 @@
       .producto-ficha {
         grid-template-columns: 1fr;
         gap: 25px;
+      }
+
+      .imagen-principal {
+        width: 100%;
       }
 
       h1 {
@@ -266,13 +356,16 @@
 
 </head>
 
+
 <body>
+
 
   <header>
 
     <div class="logo">
       BELLA SHOP
     </div>
+
 
     <a
       href="index.html"
@@ -284,14 +377,23 @@
   </header>
 
 
+
   <main class="contenedor">
 
-    <div class="ruta" id="ruta">
+
+    <div
+      class="ruta"
+      id="ruta"
+    >
       Inicio / Producto
     </div>
 
 
+
     <section class="producto-ficha">
+
+
+      <!-- FOTO -->
 
       <div class="imagen-principal">
 
@@ -304,52 +406,92 @@
       </div>
 
 
+
+      <!-- INFORMACIÓN -->
+
       <div class="info">
+
 
         <div
           class="categoria"
           id="categoria-producto"
         ></div>
 
-        <h1 id="nombre-producto"></h1>
+
+        <h1
+          id="nombre-producto"
+        ></h1>
+
 
         <div
           class="precio"
           id="precio-producto"
         ></div>
 
+
         <div class="precio-unidad">
           Precio por unidad
         </div>
 
 
+
         <hr class="separador">
+
 
 
         <h2 class="titulo-referencias">
           Escoge tus referencias
         </h2>
 
+
         <p class="texto-ayuda">
-          Puedes seleccionar más de una referencia y elegir
-          la cantidad que necesitas de cada una.
+
+          Puedes seleccionar más de una referencia
+          y elegir la cantidad que necesitas de cada una.
+
         </p>
 
 
-        <div id="lista-referencias"></div>
+
+        <div
+          id="lista-referencias"
+        ></div>
+
 
 
         <div class="resumen">
 
+
           <div class="resumen-linea">
-            <span>Unidades seleccionadas</span>
-            <strong id="total-unidades">0</strong>
+
+            <span>
+              Unidades seleccionadas
+            </span>
+
+            <strong
+              id="total-unidades"
+            >
+              0
+            </strong>
+
           </div>
 
+
+
           <div class="resumen-linea total">
-            <span>Total</span>
-            <span id="total-precio">$0</span>
+
+            <span>
+              Total
+            </span>
+
+            <span
+              id="total-precio"
+            >
+              $0
+            </span>
+
           </div>
+
 
 
           <button
@@ -360,41 +502,68 @@
             🛍️ AGREGAR SELECCIÓN AL PEDIDO
           </button>
 
+
         </div>
+
 
       </div>
 
+
     </section>
 
+
   </main>
+
 
 
   <script src="productos.js"></script>
 
 
+
   <script>
 
+
     /*
-      AQUÍ GUARDAMOS LAS CANTIDADES.
-      IMPORTANTE: DEBE ESTAR ANTES DE CARGAR EL PRODUCTO.
+      AQUÍ GUARDAMOS
+      LAS CANTIDADES
     */
 
     const cantidades = {};
 
 
+
+    /*
+      BUSCAMOS EL ID DEL PRODUCTO
+      EN LA DIRECCIÓN DE LA PÁGINA
+    */
+
     const parametros =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
 
 
     const idProducto =
       parametros.get("id");
 
 
+
+    /*
+      BUSCAMOS EL PRODUCTO
+      EN productos.js
+    */
+
     const producto =
       productos.find(
-        item => item.id === idProducto
+        item =>
+          item.id === idProducto
       );
 
+
+
+    /*
+      FORMATO DE PRECIO
+    */
 
     function formatoPrecio(numero) {
 
@@ -410,21 +579,45 @@
     }
 
 
+
+    /*
+      CREAR ID PARA CADA REFERENCIA
+    */
+
     function crearId(texto) {
 
       return texto
+
         .toLowerCase()
+
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9]/g, "-");
+
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+
+        .replace(
+          /[^a-z0-9]/g,
+          "-"
+        );
 
     }
 
 
+
+    /*
+      CARGAR INFORMACIÓN
+      DEL PRODUCTO
+    */
+
     function cargarProducto(producto) {
 
+
       document.title =
-        producto.nombre + " | Bella Shop";
+        producto.nombre +
+        " | Bella Shop";
+
 
 
       document.getElementById(
@@ -433,10 +626,14 @@
         producto.nombre;
 
 
+
       document.getElementById(
         "precio-producto"
       ).textContent =
-        formatoPrecio(producto.precio);
+        formatoPrecio(
+          producto.precio
+        );
+
 
 
       document.getElementById(
@@ -445,6 +642,7 @@
         producto.categoria +
         " · " +
         producto.subcategoria;
+
 
 
       document.getElementById(
@@ -457,6 +655,11 @@
         " / " +
         producto.marca;
 
+
+
+      /*
+        IMAGEN
+      */
 
       const imagen =
         document.getElementById(
@@ -472,6 +675,11 @@
         producto.nombre;
 
 
+
+      /*
+        REFERENCIAS
+      */
+
       const lista =
         document.getElementById(
           "lista-referencias"
@@ -481,27 +689,46 @@
       lista.innerHTML = "";
 
 
+
+      /*
+        SI EL PRODUCTO
+        NO TIENE REFERENCIAS
+      */
+
       if (
         !producto.referencias ||
         producto.referencias.length === 0
       ) {
 
+
         lista.innerHTML = `
+
           <p style="
             padding:15px;
             background:#fff0f5;
             border-radius:12px;
           ">
-            Este producto no tiene referencias configuradas.
+
+            Este producto no tiene
+            referencias configuradas.
+
           </p>
+
         `;
+
 
         return;
 
       }
 
 
+
+      /*
+        CREAR CADA REFERENCIA
+      */
+
       producto.referencias.forEach(
+
         function(referencia) {
 
 
@@ -509,7 +736,9 @@
 
 
           const fila =
-            document.createElement("div");
+            document.createElement(
+              "div"
+            );
 
 
           fila.className =
@@ -517,17 +746,27 @@
 
 
           const id =
-            crearId(referencia);
+            crearId(
+              referencia
+            );
+
 
 
           fila.innerHTML = `
 
-            <div class="nombre-referencia">
+
+            <div
+              class="nombre-referencia"
+            >
+
               ${referencia}
+
             </div>
 
 
+
             <div class="cantidad">
+
 
               <button
                 type="button"
@@ -538,12 +777,14 @@
               </button>
 
 
+
               <span
                 class="numero"
                 id="cantidad-${id}"
               >
                 0
               </span>
+
 
 
               <button
@@ -554,15 +795,22 @@
                 +
               </button>
 
+
             </div>
+
 
           `;
 
 
-          lista.appendChild(fila);
+
+          lista.appendChild(
+            fila
+          );
 
         }
+
       );
+
 
 
       /*
@@ -570,60 +818,94 @@
       */
 
       document
-        .querySelectorAll(".cantidad button")
-        .forEach(function(boton) {
+        .querySelectorAll(
+          ".cantidad button"
+        )
+        .forEach(
 
-          boton.addEventListener(
-            "click",
-            function() {
-
-              const referencia =
-                boton.dataset.referencia;
+          function(boton) {
 
 
-              const cambio =
-                Number(
-                  boton.dataset.cambio
+            boton.addEventListener(
+
+              "click",
+
+              function() {
+
+
+                const referencia =
+                  boton.dataset
+                    .referencia;
+
+
+
+                const cambio =
+                  Number(
+                    boton.dataset
+                      .cambio
+                  );
+
+
+
+                cambiarCantidad(
+                  referencia,
+                  cambio
                 );
 
 
-              cambiarCantidad(
-                referencia,
-                cambio
-              );
+              }
 
-            }
-          );
+            );
 
-        });
+
+          }
+
+        );
 
     }
 
+
+
+    /*
+      CAMBIAR CANTIDAD
+    */
 
     function cambiarCantidad(
       referencia,
       cambio
     ) {
 
+
       let nuevaCantidad =
-        cantidades[referencia] + cambio;
+        cantidades[referencia]
+        +
+        cambio;
 
 
-      if (nuevaCantidad < 0) {
+
+      if (
+        nuevaCantidad < 0
+      ) {
 
         nuevaCantidad = 0;
 
       }
 
 
+
       cantidades[referencia] =
         nuevaCantidad;
 
 
+
       document.getElementById(
-        "cantidad-" + crearId(referencia)
+
+        "cantidad-" +
+        crearId(referencia)
+
       ).textContent =
         nuevaCantidad;
+
 
 
       actualizarResumen();
@@ -631,24 +913,37 @@
     }
 
 
+
+    /*
+      ACTUALIZAR TOTAL
+    */
+
     function actualizarResumen() {
 
+
       let unidades = 0;
+
 
 
       Object.values(
         cantidades
       ).forEach(
+
         function(cantidad) {
 
-          unidades += cantidad;
+          unidades +=
+            cantidad;
 
         }
+
       );
 
 
+
       const total =
-        unidades * producto.precio;
+        unidades *
+        producto.precio;
+
 
 
       document.getElementById(
@@ -657,10 +952,14 @@
         unidades;
 
 
+
       document.getElementById(
         "total-precio"
       ).textContent =
-        formatoPrecio(total);
+        formatoPrecio(
+          total
+        );
+
 
 
       document.getElementById(
@@ -671,43 +970,59 @@
     }
 
 
+
     /*
-      COMPROBAR QUE EL PRODUCTO EXISTA
+      COMPROBAR
+      QUE EL PRODUCTO EXISTA
     */
 
     if (!producto) {
 
+
       document.body.innerHTML = `
+
         <div style="
           text-align:center;
           padding:80px 20px;
           font-family:Arial;
         ">
 
+
           <h2>
             Producto no encontrado
           </h2>
 
+
           <br>
+
 
           <a href="index.html">
             Volver al catálogo
           </a>
 
+
         </div>
+
       `;
+
 
     }
 
     else {
 
-      cargarProducto(producto);
+
+      cargarProducto(
+        producto
+      );
+
 
     }
 
 
+
     /*
-      BOTÓN AGREGAR AL PEDIDO
+      BOTÓN AGREGAR
+      AL PEDIDO
     */
 
     const botonAgregar =
@@ -716,35 +1031,55 @@
       );
 
 
+
     if (botonAgregar) {
 
+
       botonAgregar.addEventListener(
+
         "click",
+
         function() {
+
 
 
           const seleccion = [];
 
 
+
           Object.entries(
             cantidades
           ).forEach(
+
             function(
-              [referencia, cantidad]
+              [
+                referencia,
+                cantidad
+              ]
             ) {
 
-              if (cantidad > 0) {
+
+              if (
+                cantidad > 0
+              ) {
+
 
                 seleccion.push(
+
                   referencia +
                   " x" +
                   cantidad
+
                 );
+
 
               }
 
+
             }
+
           );
+
 
 
           if (
@@ -756,27 +1091,37 @@
           }
 
 
+
           const detalle =
-            seleccion.join(", ");
+            seleccion.join(
+              ", "
+            );
+
 
 
           const totalUnidades =
             Object.values(
               cantidades
             ).reduce(
+
               function(
                 acumulado,
                 cantidad
               ) {
+
 
                 return (
                   acumulado +
                   cantidad
                 );
 
+
               },
+
               0
+
             );
+
 
 
           const nombrePedido =
@@ -785,29 +1130,45 @@
             detalle;
 
 
+
           const url =
+
             "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
+
             "?modo=producto" +
+
             "&nombre=" +
+
             encodeURIComponent(
               nombrePedido
             ) +
+
             "&precio=" +
+
             producto.precio +
+
             "&cantidad=" +
+
             totalUnidades +
+
             "&tipo=individual";
+
 
 
           window.location.href =
             url;
 
+
         }
+
       );
+
 
     }
 
+
   </script>
+
 
 </body>
 
