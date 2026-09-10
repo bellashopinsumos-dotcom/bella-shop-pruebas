@@ -2,313 +2,518 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Bella Shop | Prueba</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Bella Shop</title>
 
   <style>
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #fff9fc;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffafa;
       color: #333;
     }
 
-    /* CABECERA */
+    /* ==============================
+       ENCABEZADO
+    ============================== */
+
     header {
       background: white;
-      padding: 18px 6%;
+      padding: 18px 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
-      border-bottom: 1px solid #f4dce8;
+      gap: 20px;
+      border-bottom: 1px solid #f4dce5;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: bold;
-      color: #e58eb4;
+      color: #e85c8c;
+      white-space: nowrap;
     }
 
-    .buscador {
+    .buscador-contenedor {
       flex: 1;
-      max-width: 520px;
+      max-width: 550px;
+      position: relative;
     }
 
-    .buscador input {
+    #buscador {
       width: 100%;
-      padding: 14px 20px;
-      border: 2px solid #ef9bc0;
+      padding: 13px 45px 13px 18px;
       border-radius: 30px;
+      border: 1px solid #efb9ca;
       outline: none;
       font-size: 15px;
+      background: #fffafd;
     }
 
-    .acciones {
-      display: flex;
-      gap: 18px;
-      align-items: center;
+    #buscador:focus {
+      border-color: #e85c8c;
+      box-shadow: 0 0 0 3px rgba(232, 92, 140, 0.12);
     }
 
-    .acciones a {
+    .icono-buscar {
+      position: absolute;
+      right: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+    }
+
+    .mi-pedido {
+      background: #e85c8c;
+      color: white;
       text-decoration: none;
-      color: #333;
+      padding: 12px 18px;
+      border-radius: 25px;
       font-weight: bold;
+      font-size: 14px;
+      white-space: nowrap;
     }
 
-    /* MENÚ */
+    .mi-pedido:hover {
+      background: #d94e7e;
+    }
+
+    /* ==============================
+       MENÚ
+    ============================== */
+
     nav {
-      background: #f5b7d0;
-      padding: 14px 5%;
+      background: #f9d6e1;
+      padding: 12px 4%;
       display: flex;
       justify-content: center;
-      gap: 35px;
+      gap: 27px;
       flex-wrap: wrap;
     }
 
     nav a {
-      color: white;
       text-decoration: none;
+      color: #703346;
       font-weight: bold;
       font-size: 14px;
     }
 
-    /* PORTADA */
+    nav a:hover {
+      color: #e85c8c;
+    }
+
+    /* ==============================
+       PORTADA
+    ============================== */
+
     .hero {
-      min-height: 420px;
-      padding: 70px 8%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      min-height: 360px;
       background:
         linear-gradient(
-          135deg,
-          #fff5fa,
-          #fce2ed
+          90deg,
+          rgba(255, 232, 239, 0.96),
+          rgba(255, 246, 249, 0.9)
         );
+
+      display: flex;
+      align-items: center;
+      padding: 50px 8%;
     }
 
     .hero-contenido {
-      max-width: 750px;
+      max-width: 650px;
+    }
+
+    .hero-etiqueta {
+      display: inline-block;
+      background: white;
+      color: #e85c8c;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: 55px;
-      color: #d77fa6;
-      margin-bottom: 15px;
+      font-size: 52px;
+      color: #dc527f;
+      margin-bottom: 14px;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 18px;
+      color: #684752;
       line-height: 1.6;
-      color: #666;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    .boton {
+    .boton-principal {
       display: inline-block;
-      padding: 14px 28px;
-      background: #e88db5;
+      background: #e85c8c;
       color: white;
       text-decoration: none;
-      border-radius: 30px;
+      padding: 14px 25px;
+      border-radius: 28px;
       font-weight: bold;
-      transition: 0.25s;
     }
 
-    .boton:hover {
-      transform: translateY(-3px);
-      background: #d979a3;
+    .boton-principal:hover {
+      background: #d94e7e;
     }
 
-    /* CATEGORÍAS */
-    .categorias {
-      padding: 60px 6%;
+    /* ==============================
+       CATEGORÍAS
+    ============================== */
+
+    .seccion {
+      padding: 55px 6%;
+    }
+
+    .titulo-seccion {
       text-align: center;
-    }
-
-    .categorias h2 {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
-
-    .categorias > p {
-      color: #777;
       margin-bottom: 35px;
     }
 
-    .grid-categorias {
-      max-width: 1100px;
-      margin: auto;
+    .titulo-seccion h2 {
+      font-size: 30px;
+      color: #5c3743;
+      margin-bottom: 9px;
+    }
+
+    .titulo-seccion p {
+      color: #80646d;
+      line-height: 1.5;
+    }
+
+    .categorias {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 18px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     .categoria {
-      min-height: 190px;
+      min-height: 130px;
+      border-radius: 18px;
       background: white;
-      border-radius: 20px;
-      border: 1px solid #f1d7e3;
-      padding: 30px 15px;
+      border: 1px solid #f2d6df;
+      box-shadow: 0 5px 18px rgba(96, 44, 62, 0.07);
+
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+
       text-decoration: none;
-      color: #333;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      color: #63394a;
+
       transition: 0.25s;
     }
 
     .categoria:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+      box-shadow: 0 9px 25px rgba(96, 44, 62, 0.12);
     }
 
-    .categoria .icono {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
-
-    .categoria h3 {
-      color: #d77fa6;
-      margin-bottom: 8px;
-    }
-
-    .categoria span {
-      font-size: 13px;
-      color: #888;
-    }
-
-    /* CONTACTO */
-    .contacto {
-      margin: 20px 6% 60px;
-      padding: 45px 20px;
-      background: #fbe3ee;
-      border-radius: 25px;
-      text-align: center;
-    }
-
-    .contacto h2 {
+    .categoria-icono {
+      font-size: 30px;
       margin-bottom: 10px;
     }
 
+    .categoria span {
+      font-weight: bold;
+    }
+
+    /* ==============================
+       PRODUCTOS
+    ============================== */
+
+    #productos {
+      background: #fff;
+    }
+
+    .productos-grid {
+      max-width: 1100px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .producto {
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid #efdce3;
+      box-shadow: 0 7px 22px rgba(88, 48, 61, 0.08);
+      transition: 0.25s;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(88, 48, 61, 0.13);
+    }
+
+    .producto-imagen {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #fcebf1;
+    }
+
+    .producto-info {
+      padding: 20px;
+    }
+
+    .producto-categoria {
+      display: inline-block;
+      color: #df5d89;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .producto h3 {
+      font-size: 19px;
+      color: #533541;
+      margin-bottom: 9px;
+      line-height: 1.35;
+    }
+
+    .precio {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e05282;
+      margin-bottom: 18px;
+    }
+
+    .botones-producto {
+      display: flex;
+      gap: 10px;
+    }
+
+    .boton-producto {
+      flex: 1;
+      border: none;
+      cursor: pointer;
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .agregar {
+      background: #e85c8c;
+      color: white;
+    }
+
+    .agregar:hover {
+      background: #d94e7e;
+    }
+
+    /* ==============================
+       BUSCADOR - SIN RESULTADOS
+    ============================== */
+
+    #sin-resultados {
+      max-width: 700px;
+      margin: 25px auto 0;
+      text-align: center;
+      background: #fff2f6;
+      border-radius: 14px;
+      padding: 25px;
+      color: #76505d;
+      display: none;
+    }
+
+    /* ==============================
+       CONTACTO
+    ============================== */
+
+    .contacto {
+      background: #fde6ed;
+      text-align: center;
+      padding: 55px 6%;
+    }
+
+    .contacto h2 {
+      font-size: 30px;
+      color: #563640;
+      margin-bottom: 12px;
+    }
+
     .contacto p {
-      color: #666;
+      color: #775762;
       margin-bottom: 25px;
     }
 
+    .whatsapp-contacto {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 14px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 22px;
+    }
+
     .redes {
-      margin-top: 20px;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .redes a {
-      color: #d77fa6;
       text-decoration: none;
+      color: #7c4256;
+      background: white;
+      border: 1px solid #efc7d4;
+      padding: 10px 17px;
+      border-radius: 25px;
       font-weight: bold;
+      font-size: 14px;
     }
 
-    /* WHATSAPP FLOTANTE */
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 27px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.18);
-      z-index: 999;
-    }
+    /* ==============================
+       FOOTER
+    ============================== */
 
     footer {
-      background: white;
+      background: #4f303a;
+      color: white;
       text-align: center;
       padding: 25px;
-      color: #888;
       font-size: 13px;
     }
 
-    /* CELULAR */
+    /* ==============================
+       WHATSAPP FLOTANTE
+    ============================== */
+
+    .whatsapp-flotante {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+      z-index: 2000;
+    }
+
+    /* ==============================
+       CELULAR
+    ============================== */
+
     @media (max-width: 800px) {
 
       header {
-        flex-direction: column;
-        padding: 18px;
+        flex-wrap: wrap;
+        padding: 15px;
       }
 
-      .buscador {
-        width: 100%;
+      .logo {
+        font-size: 22px;
       }
 
-      .acciones {
-        width: 100%;
-        justify-content: center;
+      .mi-pedido {
+        padding: 10px 14px;
+      }
+
+      .buscador-contenedor {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
       }
 
       nav {
         gap: 18px;
-        padding: 13px;
+        padding: 12px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+
+      nav a {
+        white-space: nowrap;
       }
 
       .hero {
-        min-height: 350px;
-        padding: 55px 25px;
+        min-height: 310px;
+        padding: 45px 22px;
       }
 
       .hero h1 {
-        font-size: 38px;
+        font-size: 40px;
       }
 
       .hero p {
-        font-size: 17px;
+        font-size: 16px;
       }
 
-      .grid-categorias {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .categoria {
-        min-height: 160px;
-      }
-    }
-
-    @media (max-width: 480px) {
-
-      .grid-categorias {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+      .seccion {
+        padding: 45px 16px;
       }
 
       .categorias {
-        padding: 45px 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
 
       .categoria {
-        padding: 20px 10px;
+        min-height: 110px;
       }
+
+      .productos-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .producto-info {
+        padding: 17px;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
+
+  <!-- ENCABEZADO -->
 
   <header>
 
@@ -316,44 +521,70 @@
       BELLA SHOP
     </div>
 
-    <div class="buscador">
+    <div class="buscador-contenedor">
+
       <input
         type="text"
+        id="buscador"
         placeholder="Buscar productos..."
+        autocomplete="off"
       >
+
+      <span class="icono-buscar">⌕</span>
+
     </div>
 
-    <div class="acciones">
-      <a href="#">Inicio</a>
-      <a href="#">Catálogo</a>
-      <a href="#">🛍 Mi pedido</a>
-    </div>
+    <a
+      class="mi-pedido"
+      href="https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/?modo=carrito"
+    >
+      🛍️ MI PEDIDO
+    </a>
 
   </header>
 
 
+  <!-- MENÚ -->
+
   <nav>
-    <a href="#">UÑAS</a>
-    <a href="#">PESTAÑAS</a>
-    <a href="#">NAIL ART</a>
-    <a href="#">ELÉCTRICOS</a>
-    <a href="#">SPA</a>
-    <a href="#">OFERTAS</a>
+
+    <a href="#inicio">INICIO</a>
+    <a href="#categorias">UÑAS</a>
+    <a href="#productos">NAIL ART</a>
+    <a href="#categorias">PESTAÑAS</a>
+    <a href="#categorias">ELÉCTRICOS</a>
+    <a href="#categorias">SPA</a>
+    <a href="#productos">OFERTAS</a>
+
   </nav>
 
 
-  <section class="hero">
+  <!-- PORTADA -->
+
+  <section
+    class="hero"
+    id="inicio"
+  >
 
     <div class="hero-contenido">
 
-      <h1>Bella Shop</h1>
+      <div class="hero-etiqueta">
+        INSUMOS DE BELLEZA
+      </div>
+
+      <h1>
+        Bella Shop
+      </h1>
 
       <p>
-        Encuentra todo lo que necesitas para tus servicios
-        de belleza en un solo lugar.
+        Todo para tus uñas, pestañas y belleza en un solo lugar.
+        Explora nuestras categorías y encuentra tus productos favoritos.
       </p>
 
-      <a class="boton" href="#">
+      <a
+        href="#productos"
+        class="boton-principal"
+      >
         EXPLORAR CATÁLOGO
       </a>
 
@@ -362,103 +593,326 @@
   </section>
 
 
-  <section class="categorias">
+  <!-- CATEGORÍAS -->
 
-    <h2>¿Qué estás buscando?</h2>
+  <section
+    class="seccion"
+    id="categorias"
+  >
 
-    <p>
-      Explora nuestras principales categorías
-    </p>
+    <div class="titulo-seccion">
 
-    <div class="grid-categorias">
+      <h2>
+        Explora nuestras categorías
+      </h2>
 
-      <a class="categoria" href="#">
-        <div class="icono">♡</div>
-        <h3>Uñas</h3>
-        <span>Ver productos →</span>
+      <p>
+        Encuentra fácilmente lo que necesitas.
+      </p>
+
+    </div>
+
+
+    <div class="categorias">
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">♡</div>
+        <span>Uñas</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">✦</div>
-        <h3>Pestañas</h3>
-        <span>Ver productos →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">✦</div>
+        <span>Pestañas</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">✧</div>
-        <h3>Nail Art</h3>
-        <span>Ver productos →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">✧</div>
+        <span>Nail Art</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">⚡</div>
-        <h3>Eléctricos</h3>
-        <span>Ver productos →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">⚡</div>
+        <span>Eléctricos</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">♡</div>
-        <h3>SPA</h3>
-        <span>Ver productos →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">◇</div>
+        <span>SPA</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">✦</div>
-        <h3>Novedades</h3>
-        <span>Descubrir →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">★</div>
+        <span>Novedades</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">%</div>
-        <h3>Ofertas</h3>
-        <span>Ver ofertas →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">%</div>
+        <span>Ofertas</span>
       </a>
 
-      <a class="categoria" href="#">
-        <div class="icono">＋</div>
-        <h3>Ver todo</h3>
-        <span>Catálogo completo →</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+        <div class="categoria-icono">☰</div>
+        <span>Ver todo</span>
       </a>
 
     </div>
 
   </section>
 
+
+  <!-- PRODUCTOS -->
+
+  <section
+    class="seccion"
+    id="productos"
+  >
+
+    <div class="titulo-seccion">
+
+      <h2>
+        Productos
+      </h2>
+
+      <p>
+        Esta es nuestra primera prueba del catálogo interactivo.
+      </p>
+
+    </div>
+
+
+    <div
+      class="productos-grid"
+      id="lista-productos"
+    >
+
+      <!-- PRODUCTO QUEENIGTH -->
+
+      <article
+        class="producto"
+        data-nombre="gel de saturacion queenigth queenight rose gold champagne gold gold silver nail art"
+      >
+
+        <img
+          src="gel-saturacion-queenigth.png"
+          alt="Gel de Saturación Queenigth"
+          class="producto-imagen"
+        >
+
+        <div class="producto-info">
+
+          <span class="producto-categoria">
+            NAIL ART · GEL DE SATURACIÓN
+          </span>
+
+          <h3>
+            Gel de Saturación Queenigth
+          </h3>
+
+          <div class="precio">
+            $15.000
+          </div>
+
+
+          <div class="botones-producto">
+
+            <a
+              class="boton-producto agregar"
+              href="https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/?modo=producto&nombre=Gel%20de%20Saturacion%20Queenigth&precio=15000&tipo=carta"
+            >
+              🛍️ AGREGAR AL PEDIDO
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <div id="sin-resultados">
+
+      <h3>
+        No encontramos productos
+      </h3>
+
+      <p>
+        Intenta buscar por producto, marca o categoría.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACTO -->
 
   <section class="contacto">
 
-    <h2>¿Necesitas ayuda?</h2>
+    <h2>
+      ¿Necesitas ayuda?
+    </h2>
 
     <p>
-      Escríbenos y te ayudamos con tu pedido,
-      referencias y disponibilidad.
+      Escríbenos y te ayudamos con tu pedido.
     </p>
 
-    <a class="boton" href="#">
-      HABLAR POR WHATSAPP
+    <a
+      href="#"
+      class="whatsapp-contacto"
+    >
+      WhatsApp
     </a>
 
+
     <div class="redes">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
+
+      <a href="#">
+        Instagram
+      </a>
+
+      <a href="#">
+        Facebook
+      </a>
+
+      <a href="#">
+        TikTok
+      </a>
+
     </div>
 
   </section>
 
 
+  <!-- FOOTER -->
+
   <footer>
+
     Bella Shop · Popayán, Cauca
+
   </footer>
 
 
+  <!-- WHATSAPP FLOTANTE -->
+
   <a
-    class="whatsapp"
     href="#"
+    class="whatsapp-flotante"
     aria-label="WhatsApp"
   >
     ☎
   </a>
+
+
+  <!-- JAVASCRIPT DEL BUSCADOR -->
+
+  <script>
+
+    const buscador =
+      document.getElementById("buscador");
+
+    const productos =
+      document.querySelectorAll(".producto");
+
+    const sinResultados =
+      document.getElementById("sin-resultados");
+
+
+    buscador.addEventListener(
+      "input",
+      function () {
+
+        const texto =
+          buscador.value
+          .toLowerCase()
+          .trim();
+
+
+        let encontrados = 0;
+
+
+        productos.forEach(
+          function (producto) {
+
+            const palabras =
+              producto
+              .getAttribute("data-nombre")
+              .toLowerCase();
+
+
+            if (
+              palabras.includes(texto)
+            ) {
+
+              producto.style.display = "block";
+
+              encontrados++;
+
+            }
+
+            else {
+
+              producto.style.display = "none";
+
+            }
+
+          }
+        );
+
+
+        if (
+          encontrados === 0
+        ) {
+
+          sinResultados.style.display =
+            "block";
+
+        }
+
+        else {
+
+          sinResultados.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+  </script>
+
 
 </body>
 </html>
