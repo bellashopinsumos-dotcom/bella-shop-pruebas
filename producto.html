@@ -1,1261 +1,778 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Esmaltes | Bella Shop</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Producto | Bella Shop</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #fffdfd;
-      color: #34292d;
-      overflow-x: hidden;
+      background: #fffafa;
+      color: #3f3136;
     }
-
-
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-
-
-    /* ========================================
-       CABECERA
-    ======================================== */
 
     header {
-      background: rgba(255, 253, 253, 0.97);
-      padding: 11px 5%;
+      background: white;
+      padding: 16px 5%;
+      border-bottom: 1px solid #f1d6df;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid #f2dce4;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      align-items: center;
+      gap: 15px;
     }
-
 
     .logo {
-      display: flex;
-      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #e65385;
+    }
+
+    .volver {
       text-decoration: none;
-      flex-shrink: 0;
+      color: #e65385;
+      font-weight: bold;
+      font-size: 14px;
     }
 
-
-    .logo img {
-      display: block;
-      width: 205px;
-      height: 72px;
-      object-fit: contain;
-      object-position: left center;
+    .contenedor {
+      max-width: 1380px;
+      margin: auto;
+      padding: 35px 28px 60px;
     }
 
-
-    .acciones-header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
+    .ruta {
+      font-size: 13px;
+      color: #8a6a75;
+      margin-bottom: 25px;
     }
 
-
-    .boton-header {
-      min-height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-
-      padding: 11px 17px;
-      border-radius: 40px;
-
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-
-      transition:
-        transform 0.2s,
-        background 0.2s,
-        border-color 0.2s;
+    .producto-ficha {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(430px, 0.82fr);
+      gap: 50px;
+      align-items: start;
     }
 
-
-    .boton-volver {
+    .imagen-principal {
+      width: 100%;
       background: white;
-      color: #d94a79;
-      border: 1px solid #efc7d4;
-    }
-
-
-    .boton-volver:hover {
-      background: #fff4f7;
-      border-color: #e7adbf;
-      transform: translateY(-2px);
-    }
-
-
-    .boton-pedido {
-      background: #e65385;
-      color: white;
-      border: 1px solid #e65385;
-
-      box-shadow:
-        0 6px 18px rgba(230, 83, 133, 0.18);
-    }
-
-
-    .boton-pedido:hover {
-      background: #d94a79;
-      border-color: #d94a79;
-      transform: translateY(-2px);
-    }
-
-
-    .icono-header {
-      width: 17px;
-      height: 17px;
-      display: block;
-      flex-shrink: 0;
-    }
-
-
-
-    /* ========================================
-       PORTADA
-    ======================================== */
-
-    .hero {
-      position: relative;
+      border-radius: 22px;
       overflow: hidden;
-      min-height: 310px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 60px 25px;
-
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(245, 174, 198, 0.18),
-          transparent 25%
-        ),
-
-        radial-gradient(
-          circle at 90% 75%,
-          rgba(230, 83, 133, 0.09),
-          transparent 25%
-        ),
-
-        linear-gradient(
-          135deg,
-          #fff6f8 0%,
-          #fffdfd 50%,
-          #fdeef3 100%
-        );
+      border: 1px solid #f0d7df;
+      box-shadow: 0 8px 25px rgba(90,45,60,.08);
     }
 
-
-    .cara-hero {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      object-fit: contain;
-      right: 4%;
-      top: 50%;
-
-      transform:
-        translateY(-50%)
-        rotate(5deg);
-
-      opacity: 0.07;
-
-      pointer-events: none;
-      user-select: none;
+    .imagen-principal img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-
-    .hero-contenido {
-      position: relative;
-      z-index: 3;
-      max-width: 700px;
+    .info {
+      padding-top: 5px;
     }
 
-
-    .etiqueta {
-      display: inline-block;
-      padding: 8px 18px;
-      border: 1px solid #efcbd7;
-      background: rgba(255,255,255,0.8);
-      color: #d74e7b;
-      border-radius: 40px;
-      font-size: 11px;
-      letter-spacing: 1.2px;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .categoria {
+      color: #e65385;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
-
 
     h1 {
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 50px;
-      font-weight: 500;
-      color: #33272b;
-      margin-bottom: 15px;
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-
-    .hero p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #765d65;
-      max-width: 620px;
-      margin: auto;
-    }
-
-
-
-    /* ========================================
-       SUBCATEGORÍAS
-    ======================================== */
-
-    .seccion {
-      position: relative;
-      overflow: hidden;
-      padding: 65px 6% 80px;
-    }
-
-
-    .cara-seccion {
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      object-fit: contain;
-      left: -70px;
-      bottom: -45px;
-      opacity: 0.035;
-      transform: rotate(-8deg);
-
-      pointer-events: none;
-      user-select: none;
-    }
-
-
-    .titulo {
-      text-align: center;
-      margin-bottom: 38px;
-      position: relative;
-      z-index: 2;
-    }
-
-
-    .titulo h2 {
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 33px;
-      font-weight: 500;
-      margin-bottom: 10px;
-      color: #382b30;
-    }
-
-
-    .titulo p {
-      color: #887079;
-      font-size: 15px;
-    }
-
-
-    .opciones {
-      position: relative;
-      z-index: 3;
-
-      max-width: 900px;
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-
-
-    .opcion {
-      position: relative;
-      overflow: hidden;
-
-      min-height: 240px;
-
-      background: white;
-
-      border: 1px solid #f0dce3;
-
-      border-radius: 24px;
-
-      text-decoration: none;
-      color: #4d3740;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 30px;
-
-      box-shadow:
-        0 8px 25px rgba(83, 48, 58, 0.07);
-
-      transition:
-        transform 0.25s,
-        box-shadow 0.25s,
-        border-color 0.25s;
-    }
-
-
-    .opcion::before {
-      content: "";
-      position: absolute;
-
-      width: 120px;
-      height: 120px;
-
-      border-radius: 50%;
-
-      background: #fff2f6;
-
-      top: -48px;
-      right: -35px;
-
-      transition: transform 0.3s;
-    }
-
-
-    .opcion:hover {
-      transform: translateY(-6px);
-
-      border-color: #e9bdcc;
-
-      box-shadow:
-        0 15px 34px rgba(83, 48, 58, 0.12);
-    }
-
-
-    .opcion:hover::before {
-      transform: scale(1.15);
-    }
-
-
-    .icono-categoria {
-      position: relative;
-      z-index: 2;
-
-      width: 72px;
-      height: 72px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: #fff1f5;
-
+    .precio {
+      font-size: 30px;
+      font-weight: bold;
       color: #e65385;
-
-      margin-bottom: 20px;
-
-      box-shadow:
-        inset 0 0 0 1px rgba(230,83,133,.07);
+      margin-bottom: 7px;
     }
 
-
-    .icono-categoria svg {
-      width: 38px;
-      height: 38px;
-      display: block;
-    }
-
-
-    .opcion h3 {
-      position: relative;
-      z-index: 2;
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 26px;
-      font-weight: 500;
-
-      margin-bottom: 10px;
-
-      color: #3a2c31;
-    }
-
-
-    .opcion p {
-      position: relative;
-      z-index: 2;
-
-      font-size: 14px;
-      line-height: 1.6;
-      color: #806870;
-
-      max-width: 310px;
-      margin-bottom: 18px;
-    }
-
-
-    .ver {
-      position: relative;
-      z-index: 2;
-
-      color: #e65385;
-
-      font-size: 12px;
-      font-weight: 700;
-
-      letter-spacing: 0.5px;
-    }
-
-
-
-    /* ========================================
-       AYUDA Y REDES SOCIALES
-    ======================================== */
-
-    .contacto {
-      position: relative;
-      overflow: hidden;
-      padding: 70px 6% 65px;
-      text-align: center;
-
-      background:
-        radial-gradient(
-          circle at 10% 20%,
-          rgba(230,83,133,.08),
-          transparent 24%
-        ),
-        linear-gradient(
-          135deg,
-          #fdeaf0,
-          #fff7f9 55%,
-          #fffdfd
-        );
-
-      border-top: 1px solid #f2dce4;
-    }
-
-
-    .cara-contacto {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      object-fit: contain;
-      left: 4%;
-      top: 50%;
-      transform: translateY(-50%) rotate(-6deg);
-      opacity: 0.05;
-
-      pointer-events: none;
-      user-select: none;
-    }
-
-
-    .contacto-contenido {
-      position: relative;
-      z-index: 3;
-      max-width: 760px;
-      margin: auto;
-    }
-
-
-    .contacto h2 {
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 35px;
-      font-weight: 500;
-      color: #382c30;
-      margin-bottom: 13px;
-    }
-
-
-    .contacto-texto {
-      max-width: 650px;
-      margin: 0 auto 25px;
-      color: #765d65;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-
-    .boton-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-
-      background: #25D366;
-      color: white;
-
-      padding: 13px 22px;
-      border-radius: 40px;
-
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-
+    .precio-unidad {
+      color: #80646d;
       margin-bottom: 25px;
-
-      box-shadow:
-        0 8px 22px rgba(37, 211, 102, 0.18);
-
-      transition:
-        transform 0.2s,
-        filter 0.2s;
+      font-size: 14px;
     }
 
-
-    .boton-whatsapp:hover {
-      transform: translateY(-2px);
-      filter: brightness(.97);
+    .separador {
+      border: none;
+      border-top: 1px solid #ecdde2;
+      margin: 25px 0;
     }
 
-
-    .boton-whatsapp svg {
-      width: 20px;
-      height: 20px;
-      display: block;
+    .titulo-referencias {
+      font-size: 19px;
+      margin-bottom: 7px;
     }
 
-
-    .redes {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 26px;
+    .texto-ayuda {
+      color: #80646d;
+      font-size: 14px;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
 
-
-    .red-social {
-      width: 46px;
-      height: 46px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+    .referencia {
       background: white;
-      color: #d94d7a;
-
-      border: 1px solid #efc6d3;
-
-      text-decoration: none;
-
-      box-shadow:
-        0 5px 16px rgba(83,48,58,.06);
-
-      transition:
-        transform .2s,
-        border-color .2s,
-        background .2s;
-    }
-
-
-    .red-social:hover {
-      transform: translateY(-3px);
-      background: #fff4f7;
-      border-color: #e7adbf;
-    }
-
-
-    .red-social svg {
-      width: 21px;
-      height: 21px;
-      display: block;
-    }
-
-
-    .ubicacion {
-      display: inline-flex;
-      text-decoration: none;
+      border: 1px solid #efd7df;
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-
-      color: #765d65;
-      font-size: 13px;
-      font-weight: 700;
-
-      padding: 9px 15px;
-      border-radius: 30px;
-
-      background: rgba(255,255,255,.72);
-      border: 1px solid #f0d7df;
+      gap: 15px;
     }
 
+    .nombre-referencia {
+      font-weight: bold;
+      font-size: 15px;
+    }
 
-    .ubicacion svg {
-      width: 17px;
-      height: 17px;
+    .cantidad {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cantidad button {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid #e65385;
+      background: white;
       color: #e65385;
+      font-size: 20px;
+      cursor: pointer;
     }
 
+    .cantidad button:hover {
+      background: #fff0f5;
+    }
 
-
-    /* ========================================
-       PIE DE PÁGINA
-    ======================================== */
-
-    footer {
-      background: #35272c;
-      color: #f9eaf0;
+    .numero {
+      min-width: 24px;
       text-align: center;
-      padding: 28px 20px 25px;
+      font-weight: bold;
+      font-size: 16px;
     }
 
-
-    .footer-logo {
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 18px;
-      margin-bottom: 5px;
+    .resumen {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #fff0f5;
     }
 
-
-    .footer-subtexto {
-      font-size: 11px;
-      color: #ddcbd1;
-      letter-spacing: .4px;
+    .resumen-linea {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 15px;
     }
 
+    .total {
+      font-size: 23px;
+      font-weight: bold;
+      color: #e65385;
+      margin-top: 10px;
+    }
 
+    .boton-agregar {
+      width: 100%;
+      margin-top: 18px;
+      border: none;
+      border-radius: 16px;
+      padding: 15px;
+      background: #e65385;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-    /* ========================================
-       CELULAR
-    ======================================== */
+    .boton-agregar:hover {
+      background: #d84a79;
+    }
 
-    @media (max-width: 800px) {
+    .boton-agregar:disabled {
+      background: #efb6ca;
+      cursor: not-allowed;
+    }
 
-      header {
-        padding: 9px 12px 11px;
-        gap: 10px;
-        flex-wrap: wrap;
+    @media (max-width: 1050px) {
+      .contenedor {
+        max-width: 950px;
       }
 
-
-      .logo {
-        flex: 1;
-        min-width: 0;
+      .producto-ficha {
+        grid-template-columns: minmax(0,1fr) minmax(380px,.9fr);
+        gap: 35px;
       }
-
-
-      .logo img {
-        width: 150px;
-        height: 58px;
-      }
-
-
-      .acciones-header {
-        gap: 7px;
-      }
-
-
-      .boton-header {
-        min-height: 38px;
-        font-size: 10px;
-        padding: 9px 11px;
-        gap: 6px;
-      }
-
-
-      .icono-header {
-        width: 15px;
-        height: 15px;
-      }
-
-
-      .hero {
-        min-height: 285px;
-        padding: 50px 20px;
-      }
-
-
-      .cara-hero {
-        width: 250px;
-        height: 250px;
-        right: -80px;
-        opacity: 0.055;
-      }
-
 
       h1 {
-        font-size: 40px;
-      }
-
-
-      .hero p {
-        font-size: 15px;
-      }
-
-
-      .seccion {
-        padding: 50px 15px 60px;
-      }
-
-
-      .titulo h2 {
-        font-size: 29px;
-      }
-
-
-      .opciones {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        gap: 18px;
-      }
-
-
-      .opcion {
-        min-height: 205px;
-        border-radius: 20px;
-      }
-
-
-      .opcion h3 {
-        font-size: 24px;
-      }
-
-
-      .cara-seccion {
-        width: 180px;
-        height: 180px;
-      }
-
-
-      .contacto {
-        padding: 55px 18px 50px;
-      }
-
-
-      .contacto h2 {
         font-size: 30px;
       }
-
-
-      .cara-contacto {
-        width: 190px;
-        height: 190px;
-        left: -60px;
-        opacity: 0.04;
-      }
-
     }
 
-
-
-    @media (max-width: 440px) {
-
+    @media (max-width: 800px) {
       header {
-        align-items: center;
+        padding: 14px;
       }
 
-
-      .logo img {
-        width: 135px;
-        height: 54px;
+      .logo {
+        font-size: 21px;
       }
 
-
-      .boton-header {
-        font-size: 0;
-        width: 40px;
-        height: 40px;
-        padding: 0;
+      .contenedor {
+        padding: 22px 14px 45px;
       }
 
-
-      .boton-header .icono-header {
-        width: 18px;
-        height: 18px;
+      .producto-ficha {
+        grid-template-columns: 1fr;
+        gap: 25px;
       }
 
+      .imagen-principal {
+        width: 100%;
+      }
 
       h1 {
-        font-size: 36px;
+        font-size: 28px;
       }
 
-
-      .opcion {
-        padding: 25px 18px;
+      .precio {
+        font-size: 27px;
       }
 
+      .referencia {
+        padding: 13px;
+      }
     }
-
   </style>
-
 </head>
-
-
 
 <body>
 
-
-  <!-- ======================================
-       CABECERA
-  ======================================= -->
-
   <header>
-
-    <a
-      href="index.html"
-      class="logo"
-      aria-label="Bella Shop"
-    >
-
-      <img
-        src="imagenes/Logo Bellashop png.png"
-        alt="Bella Shop - Tienda de Belleza"
-      >
-
-    </a>
-
-
-    <div class="acciones-header">
-
-      <a
-        href="index.html"
-        class="boton-header boton-volver"
-        aria-label="Volver al inicio"
-      >
-
-        <svg
-          class="icono-header"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-
-        <span>VOLVER AL INICIO</span>
-
-      </a>
-
-
-      <a
-        href="https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/?modo=carrito"
-        class="boton-header boton-pedido"
-        aria-label="Mi pedido"
-      >
-
-        <svg
-          class="icono-header"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="9" cy="20" r="1"/>
-          <circle cx="19" cy="20" r="1"/>
-          <path d="M3 4h2l2.3 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/>
-        </svg>
-
-        <span>MI PEDIDO</span>
-
-      </a>
-
-    </div>
-
+    <div class="logo">BELLA SHOP</div>
+    <a href="index.html" class="volver">← Volver al catálogo</a>
   </header>
 
+  <main class="contenedor">
 
-
-  <!-- ======================================
-       PORTADA
-  ======================================= -->
-
-  <section class="hero">
-
-    <img
-      src="imagenes/Cara logo bellashop.png"
-      alt=""
-      class="cara-hero"
-    >
-
-
-    <div class="hero-contenido">
-
-      <span class="etiqueta">
-        BELLA SHOP
-      </span>
-
-
-      <h1>
-        Esmaltes
-      </h1>
-
-
-      <p>
-        Encuentra el tipo de esmalte que necesitas
-        y explora nuestras opciones disponibles.
-      </p>
-
+    <div class="ruta" id="ruta">
+      Inicio / Producto
     </div>
 
-  </section>
+    <section class="producto-ficha">
 
+      <div class="imagen-principal">
+        <img id="imagen-producto" src="" alt="">
+      </div>
 
+      <div class="info">
 
-  <!-- ======================================
-       SUBCATEGORÍAS
-  ======================================= -->
+        <div class="categoria" id="categoria-producto"></div>
 
-  <section class="seccion">
+        <h1 id="nombre-producto"></h1>
 
-    <img
-      src="imagenes/Cara logo bellashop.png"
-      alt=""
-      class="cara-seccion"
-    >
+        <div class="precio" id="precio-producto"></div>
 
-
-    <div class="titulo">
-
-      <h2>
-        Elige una categoría
-      </h2>
-
-
-      <p>
-        Selecciona el tipo de esmalte que deseas ver.
-      </p>
-
-    </div>
-
-
-
-    <div class="opciones">
-
-
-      <a
-        href="#"
-        class="opcion"
-      >
-
-        <div class="icono-categoria">
-
-          <svg
-            viewBox="0 0 64 64"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M25 8h14v12H25z"/>
-            <path d="M21 20h22v8H21z"/>
-            <rect x="17" y="28" width="30" height="28" rx="6"/>
-            <path d="M24 36h16"/>
-            <path d="M27 44h10"/>
-          </svg>
-
+        <div class="precio-unidad">
+          Precio por unidad
         </div>
 
+        <hr class="separador">
 
-        <h3>
-          Esmalte Semipermanente
-        </h3>
+        <h2 class="titulo-referencias">
+          Escoge tus referencias
+        </h2>
 
-
-        <p>
-          Descubre nuestras marcas,
-          colores y colecciones de
-          esmaltes semipermanentes.
+        <p class="texto-ayuda">
+          Puedes seleccionar más de una referencia y elegir la cantidad
+          que necesitas de cada una.
         </p>
 
+        <div id="lista-referencias"></div>
 
-        <span class="ver">
-          VER PRODUCTOS →
-        </span>
+        <div class="resumen">
 
-      </a>
+          <div class="resumen-linea">
+            <span>Unidades seleccionadas</span>
+            <strong id="total-unidades">0</strong>
+          </div>
 
+          <div class="resumen-linea total">
+            <span>Total</span>
+            <span id="total-precio">$0</span>
+          </div>
 
-
-      <a
-        href="#"
-        class="opcion"
-      >
-
-        <div class="icono-categoria">
-
-          <svg
-            viewBox="0 0 64 64"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
+          <button
+            class="boton-agregar"
+            id="boton-agregar"
+            disabled
           >
-            <path d="M27 7h10v15H27z"/>
-            <path d="M23 22h18l4 8v22a5 5 0 0 1-5 5H24a5 5 0 0 1-5-5V30z"/>
-            <path d="M24 35c5-3 11-3 16 0"/>
-            <path d="M24 43c5 3 11 3 16 0"/>
-          </svg>
+            🛍️ AGREGAR SELECCIÓN AL PEDIDO
+          </button>
 
         </div>
-
-
-        <h3>
-          Esmalte Tradicional
-        </h3>
-
-
-        <p>
-          Encuentra esmaltes tradicionales,
-          bases, brillos y diferentes
-          opciones para tus diseños.
-        </p>
-
-
-        <span class="ver">
-          VER PRODUCTOS →
-        </span>
-
-      </a>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ======================================
-       AYUDA Y REDES
-  ======================================= -->
-
-  <section class="contacto">
-
-    <img
-      src="imagenes/Cara logo bellashop.png"
-      alt=""
-      class="cara-contacto"
-    >
-
-
-    <div class="contacto-contenido">
-
-      <h2>
-        ¿Necesitas una ayudita? 💕
-      </h2>
-
-
-      <p class="contacto-texto">
-        Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
-        y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
-      </p>
-
-
-      <a
-        href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop%21%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
-        class="boton-whatsapp"
-        aria-label="WhatsApp Bella Shop"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 18.2-5.1 9.9 9.9 0 0 1-9.8 9.8Zm5.4-7.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.9-1.7-2.2-.2-.3 0-.4.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5H7c-.3 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6.1 5.3.9.4 1.5.6 2 .7.9.3 1.7.2 2.3.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/>
-        </svg>
-
-        ESCRÍBENOS POR WHATSAPP
-
-      </a>
-
-
-
-      <div class="redes">
-
-        <a
-          href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
-          class="red-social"
-          aria-label="Instagram Bella Shop"
-          title="Instagram"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-
-        </a>
-
-
-        <a
-          href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
-          class="red-social"
-          aria-label="Facebook Bella Shop"
-          title="Facebook"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
-          </svg>
-
-        </a>
-
-
-        <a
-          href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
-          class="red-social"
-          aria-label="TikTok Bella Shop"
-          title="TikTok"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
-          </svg>
-
-        </a>
 
       </div>
 
+    </section>
+
+  </main>
 
 
-      <a
-        href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D"
-        class="ubicacion"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Ver ubicación de Bella Shop en Google Maps"
-      >
+  <script src="productos.js"></script>
 
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
+  <script>
+
+    const cantidades = {};
+
+    const parametros =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const idProducto =
+      parametros.get("id");
+
+    const producto =
+      productos.find(
+        item => item.id === idProducto
+      );
+
+
+    function formatoPrecio(numero) {
+
+      return new Intl.NumberFormat(
+        "es-CO",
+        {
+          style: "currency",
+          currency: "COP",
+          maximumFractionDigits: 0
+        }
+      ).format(numero);
+
+    }
+
+
+    function crearId(texto) {
+
+      return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9]/g,"-");
+
+    }
+
+
+    function cargarProducto(producto) {
+
+      document.title =
+        producto.nombre +
+        " | Bella Shop";
+
+
+      document
+        .getElementById("nombre-producto")
+        .textContent =
+        producto.nombre;
+
+
+      document
+        .getElementById("precio-producto")
+        .textContent =
+        formatoPrecio(
+          producto.precio
+        );
+
+
+      document
+        .getElementById("categoria-producto")
+        .textContent =
+        producto.categoria +
+        " · " +
+        producto.subcategoria;
+
+
+      document
+        .getElementById("ruta")
+        .textContent =
+        "Inicio / " +
+        producto.categoria +
+        " / " +
+        producto.subcategoria +
+        " / " +
+        producto.marca;
+
+
+      const imagen =
+        document.getElementById(
+          "imagen-producto"
+        );
+
+
+      imagen.src =
+        producto.imagen;
+
+
+      imagen.alt =
+        producto.nombre;
+
+
+      const lista =
+        document.getElementById(
+          "lista-referencias"
+        );
+
+
+      lista.innerHTML = "";
+
+
+      if (
+        !producto.referencias ||
+        producto.referencias.length === 0
+      ) {
+
+        lista.innerHTML = `
+          <p
+            style="
+              padding:15px;
+              background:#fff0f5;
+              border-radius:12px;
+            "
+          >
+            Este producto no tiene referencias configuradas.
+          </p>
+        `;
+
+        return;
+
+      }
+
+
+      producto.referencias.forEach(
+        function(referencia) {
+
+          cantidades[referencia] = 0;
+
+          const fila =
+            document.createElement(
+              "div"
+            );
+
+          fila.className =
+            "referencia";
+
+
+          const id =
+            crearId(
+              referencia
+            );
+
+
+          fila.innerHTML = `
+
+            <div class="nombre-referencia">
+              ${referencia}
+            </div>
+
+            <div class="cantidad">
+
+              <button
+                type="button"
+                data-referencia="${referencia}"
+                data-cambio="-1"
+              >
+                −
+              </button>
+
+              <span
+                class="numero"
+                id="cantidad-${id}"
+              >
+                0
+              </span>
+
+              <button
+                type="button"
+                data-referencia="${referencia}"
+                data-cambio="1"
+              >
+                +
+              </button>
+
+            </div>
+
+          `;
+
+
+          lista.appendChild(
+            fila
+          );
+
+        }
+      );
+
+
+      document
+        .querySelectorAll(
+          ".cantidad button"
+        )
+        .forEach(
+          function(boton) {
+
+            boton.addEventListener(
+              "click",
+              function() {
+
+                const referencia =
+                  boton.dataset.referencia;
+
+                const cambio =
+                  Number(
+                    boton.dataset.cambio
+                  );
+
+                cambiarCantidad(
+                  referencia,
+                  cambio
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    function cambiarCantidad(
+      referencia,
+      cambio
+    ) {
+
+      let nuevaCantidad =
+        cantidades[referencia] +
+        cambio;
+
+
+      if (nuevaCantidad < 0) {
+        nuevaCantidad = 0;
+      }
+
+
+      cantidades[referencia] =
+        nuevaCantidad;
+
+
+      document
+        .getElementById(
+          "cantidad-" +
+          crearId(referencia)
+        )
+        .textContent =
+        nuevaCantidad;
+
+
+      actualizarResumen();
+
+    }
+
+
+    function actualizarResumen() {
+
+      let unidades = 0;
+
+
+      Object
+        .values(cantidades)
+        .forEach(
+          function(cantidad) {
+
+            unidades +=
+              cantidad;
+
+          }
+        );
+
+
+      const total =
+        unidades *
+        producto.precio;
+
+
+      document
+        .getElementById(
+          "total-unidades"
+        )
+        .textContent =
+        unidades;
+
+
+      document
+        .getElementById(
+          "total-precio"
+        )
+        .textContent =
+        formatoPrecio(total);
+
+
+      document
+        .getElementById(
+          "boton-agregar"
+        )
+        .disabled =
+        unidades === 0;
+
+    }
+
+
+    if (!producto) {
+
+      document.body.innerHTML = `
+        <div
+          style="
+            text-align:center;
+            padding:80px 20px;
+            font-family:Arial;
+          "
         >
-          <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
-          <circle cx="12" cy="10" r="2.5"/>
-        </svg>
 
-        Bella Shop · Popayán, Cauca
+          <h2>
+            Producto no encontrado
+          </h2>
 
-      </a>
+          <br>
 
-    </div>
+          <a href="index.html">
+            Volver al catálogo
+          </a>
 
-  </section>
+        </div>
+      `;
+
+    } else {
+
+      cargarProducto(
+        producto
+      );
+
+    }
 
 
+    const botonAgregar =
+      document.getElementById(
+        "boton-agregar"
+      );
 
-  <!-- ======================================
-       PIE DE PÁGINA
-  ======================================= -->
 
-  <footer>
+    if (botonAgregar) {
 
-    <div class="footer-logo">
-      Bella Shop
-    </div>
+      botonAgregar.addEventListener(
+        "click",
+        function() {
 
-    <div class="footer-subtexto">
-      Tienda de Belleza · Popayán, Cauca
-    </div>
+          const seleccion = [];
 
-  </footer>
 
+          Object
+            .entries(cantidades)
+            .forEach(
+              function(
+                [referencia,cantidad]
+              ) {
+
+                if (cantidad > 0) {
+
+                  seleccion.push(
+                    referencia +
+                    " x" +
+                    cantidad
+                  );
+
+                }
+
+              }
+            );
+
+
+          if (
+            seleccion.length === 0
+          ) {
+            return;
+          }
+
+
+          const detalle =
+            seleccion.join(", ");
+
+
+          const totalUnidades =
+            Object
+              .values(cantidades)
+              .reduce(
+                function(
+                  acumulado,
+                  cantidad
+                ) {
+
+                  return (
+                    acumulado +
+                    cantidad
+                  );
+
+                },
+                0
+              );
+
+
+          const nombrePedido =
+            producto.nombre +
+            " - " +
+            detalle;
+
+
+          const url =
+            "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
+            "?modo=producto" +
+            "&nombre=" +
+            encodeURIComponent(
+              nombrePedido
+            ) +
+            "&precio=" +
+            producto.precio +
+            "&cantidad=" +
+            totalUnidades +
+            "&tipo=individual";
+
+
+          window.location.href =
+            url;
+
+        }
+      );
+
+    }
+
+  </script>
 
 </body>
-
 </html>
