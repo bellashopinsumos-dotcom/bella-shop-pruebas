@@ -1,543 +1,1853 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Bella Shop</title>
 
+
   <style>
+
+    /* ========================================
+       CONFIGURACIÓN GENERAL
+    ======================================== */
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fffafa;
-      color: #45343a;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #fffdfd;
+
+      color: #34292d;
     }
 
-    /* CABECERA */
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+
+    /* ========================================
+       CABECERA
+    ======================================== */
 
     header {
-      background: white;
-      padding: 17px 5%;
+
+      background:
+        rgba(
+          255,
+          253,
+          253,
+          0.96
+        );
+
+      padding:
+        12px
+        5%;
+
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid #f2dce4;
+
+      justify-content:
+        space-between;
+
+      gap: 28px;
+
+      border-bottom:
+        1px solid #f2dce4;
+
       position: sticky;
+
       top: 0;
+
       z-index: 1000;
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
+
     }
+
+
+
+    /* LOGO REAL */
 
     .logo {
-      font-size: 25px;
-      font-weight: 800;
-      color: #e65385;
-      white-space: nowrap;
+
+      display: flex;
+
+      align-items: center;
+
+      flex-shrink: 0;
+
+      text-decoration: none;
+
     }
+
+
+    .logo img {
+
+      display: block;
+
+      width: 210px;
+
+      max-width: 100%;
+
+      height: 74px;
+
+      object-fit: contain;
+
+      object-position: left center;
+
+    }
+
+
+
+    /* ========================================
+       BUSCADOR
+    ======================================== */
 
     .buscador-contenedor {
+
       flex: 1;
-      max-width: 570px;
+
+      max-width: 580px;
+
       position: relative;
+
     }
+
 
     #buscador {
+
       width: 100%;
-      padding: 13px 45px 13px 18px;
-      border: 1px solid #edbdcc;
-      border-radius: 30px;
+
+      padding:
+        14px
+        48px
+        14px
+        20px;
+
+      border:
+        1px solid #eccbd6;
+
+      border-radius:
+        40px;
+
       outline: none;
-      font-size: 15px;
-      background: #fffafd;
+
+      font-size: 14px;
+
+      background: white;
+
+      color: #443238;
+
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
     }
+
+
+    #buscador::placeholder {
+
+      color: #aa9099;
+
+    }
+
 
     #buscador:focus {
+
       border-color: #e65385;
-      box-shadow: 0 0 0 3px rgba(230, 83, 133, 0.10);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(
+          230,
+          83,
+          133,
+          0.09
+        );
+
     }
+
 
     .lupa {
+
       position: absolute;
-      right: 17px;
+
+      right: 18px;
+
       top: 50%;
-      transform: translateY(-50%);
+
+      transform:
+        translateY(-50%);
+
+      color: #d75380;
+
+      font-size: 20px;
+
+      pointer-events: none;
+
     }
+
+
+
+    /* ========================================
+       BOTÓN MI PEDIDO
+    ======================================== */
 
     .pedido {
+
       background: #e65385;
+
       color: white;
+
       text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: bold;
+
+      padding:
+        13px
+        20px;
+
+      border-radius:
+        40px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
       white-space: nowrap;
+
+      box-shadow:
+        0 6px 18px
+        rgba(
+          230,
+          83,
+          133,
+          0.18
+        );
+
+      transition:
+        transform 0.2s,
+        background 0.2s;
+
     }
 
-    /* MENÚ */
+
+    .pedido:hover {
+
+      background: #d94a79;
+
+      transform:
+        translateY(-2px);
+
+    }
+
+
+
+    /* ========================================
+       MENÚ
+    ======================================== */
 
     nav {
-      background: #f8d6e1;
-      padding: 12px 4%;
+
+      background: #fff2f6;
+
+      padding:
+        13px
+        4%;
+
       display: flex;
+
       justify-content: center;
-      gap: 27px;
+
+      align-items: center;
+
+      gap: 34px;
+
       flex-wrap: wrap;
+
+      border-bottom:
+        1px solid #f7e0e8;
+
     }
+
 
     nav a {
+
+      position: relative;
+
       text-decoration: none;
-      color: #71384b;
-      font-size: 14px;
-      font-weight: bold;
+
+      color: #5d3c47;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      letter-spacing:
+        0.2px;
+
+      padding:
+        4px 0;
+
+      transition:
+        color 0.2s;
+
     }
+
+
+    nav a::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: -5px;
+
+      width: 0;
+
+      height: 2px;
+
+      background: #e65385;
+
+      transform:
+        translateX(-50%);
+
+      transition:
+        width 0.2s;
+
+    }
+
 
     nav a:hover {
+
       color: #e65385;
+
     }
 
-    /* PORTADA */
+
+    nav a:hover::after {
+
+      width: 100%;
+
+    }
+
+
+
+    /* ========================================
+       PORTADA / HERO
+    ======================================== */
 
     .hero {
-      min-height: 350px;
+
+      min-height: 430px;
+
+      position: relative;
+
+      overflow: hidden;
+
       display: flex;
+
       align-items: center;
-      padding: 50px 8%;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding:
+        70px
+        7%;
+
       background:
+
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(
+            245,
+            174,
+            198,
+            0.20
+          ),
+          transparent 24%
+        ),
+
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(
+            230,
+            83,
+            133,
+            0.10
+          ),
+          transparent 24%
+        ),
+
         linear-gradient(
-          110deg,
-          #ffe3ec,
-          #fff7fa
+          135deg,
+          #fff6f8 0%,
+          #fffdfd 50%,
+          #fdeef3 100%
         );
+
     }
+
+
+
+    /* DECORACIÓN MUY SUAVE */
+
+    .hero::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 280px;
+
+      height: 280px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.48
+        );
+
+      top: -120px;
+
+      right: -75px;
+
+    }
+
+
+    .hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+
+      height: 220px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(
+          230,
+          83,
+          133,
+          0.11
+        );
+
+      bottom: -100px;
+
+      left: -60px;
+
+    }
+
+
 
     .hero-contenido {
-      max-width: 650px;
+
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 780px;
+
+      margin: auto;
+
     }
+
+
 
     .etiqueta {
+
       display: inline-block;
-      padding: 8px 15px;
-      background: white;
-      color: #e65385;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 17px;
+
+      padding:
+        8px
+        18px;
+
+      border:
+        1px solid #efcbd7;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.78
+        );
+
+      color: #d74e7b;
+
+      border-radius:
+        40px;
+
+      font-size: 11px;
+
+      letter-spacing:
+        1.3px;
+
+      font-weight: 700;
+
+      margin-bottom: 22px;
+
     }
+
+
 
     .hero h1 {
-      font-size: 52px;
-      color: #dc527f;
-      margin-bottom: 13px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 60px;
+
+      line-height: 1.05;
+
+      font-weight: 500;
+
+      color: #302528;
+
+      margin-bottom: 20px;
+
+      letter-spacing:
+        -1.5px;
+
     }
+
+
+    .hero h1 span {
+
+      color: #e65385;
+
+      font-style: italic;
+
+    }
+
+
 
     .hero p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #70515c;
-      margin-bottom: 25px;
+
+      max-width: 680px;
+
+      margin:
+        0 auto 30px;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      color: #765d65;
+
     }
+
+
 
     .boton-principal {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 30px;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      min-width: 205px;
+
+      padding:
+        15px
+        26px;
+
+      border-radius:
+        40px;
+
       background: #e65385;
+
       color: white;
+
       text-decoration: none;
-      font-weight: bold;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      letter-spacing:
+        0.4px;
+
+      box-shadow:
+        0 8px 24px
+        rgba(
+          230,
+          83,
+          133,
+          0.22
+        );
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+
     }
 
-    /* SECCIONES */
+
+    .boton-principal:hover {
+
+      transform:
+        translateY(-3px);
+
+      background: #d94a79;
+
+      box-shadow:
+        0 11px 28px
+        rgba(
+          230,
+          83,
+          133,
+          0.26
+        );
+
+    }
+
+
+
+    /* ========================================
+       SECCIONES
+    ======================================== */
 
     .seccion {
-      padding: 55px 6%;
+
+      padding:
+        65px
+        6%;
+
     }
+
+
 
     .titulo {
+
       text-align: center;
-      margin-bottom: 35px;
+
+      margin-bottom: 40px;
+
     }
+
 
     .titulo h2 {
-      font-size: 30px;
-      margin-bottom: 8px;
-      color: #593843;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 34px;
+
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+      color: #382b30;
+
     }
+
 
     .titulo p {
-      color: #80636c;
+
+      color: #887079;
+
+      font-size: 15px;
+
     }
 
-    /* CATEGORÍAS */
+
+
+    /* ========================================
+       CATEGORÍAS
+    ======================================== */
+
+    #categorias {
+
+      background: #fffdfd;
+
+    }
+
 
     .categorias {
-      max-width: 1100px;
+
+      max-width: 1150px;
+
       margin: auto;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
+
+      grid-template-columns:
+        repeat(
+          4,
+          1fr
+        );
+
+      gap: 18px;
+
     }
+
 
     .categoria {
-      min-height: 125px;
+
+      position: relative;
+
+      min-height: 140px;
+
       background: white;
-      border: 1px solid #f1d8e0;
-      border-radius: 18px;
+
+      border:
+        1px solid #f0dce3;
+
+      border-radius:
+        20px;
+
       text-decoration: none;
-      color: #643c4a;
+
+      color: #543b44;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       justify-content: center;
 
-      box-shadow: 0 5px 18px rgba(80, 40, 55, 0.06);
-      transition: 0.2s;
+      overflow: hidden;
+
+      box-shadow:
+        0 5px 20px
+        rgba(
+          83,
+          48,
+          58,
+          0.045
+        );
+
+      transition:
+        transform 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+
     }
+
+
+    .categoria::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 65px;
+
+      height: 65px;
+
+      border-radius: 50%;
+
+      background: #fff3f7;
+
+      top: -24px;
+
+      right: -20px;
+
+      transition:
+        transform 0.25s;
+
+    }
+
 
     .categoria:hover {
-      transform: translateY(-4px);
+
+      transform:
+        translateY(-5px);
+
+      border-color: #eabccc;
+
+      box-shadow:
+        0 12px 30px
+        rgba(
+          90,
+          47,
+          62,
+          0.09
+        );
+
     }
+
+
+    .categoria:hover::before {
+
+      transform:
+        scale(1.2);
+
+    }
+
 
     .categoria .icono {
-      font-size: 27px;
-      margin-bottom: 9px;
+
+      position: relative;
+
+      z-index: 2;
+
+      font-size: 29px;
+
+      margin-bottom: 11px;
+
       color: #e65385;
+
     }
+
 
     .categoria span {
-      font-weight: bold;
+
+      position: relative;
+
+      z-index: 2;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
     }
 
-    /* PRODUCTOS */
+
+
+    /* ========================================
+       PRODUCTOS
+    ======================================== */
 
     #productos {
-      background: white;
+
+      background: #fff8fa;
+
     }
+
 
     .productos-grid {
-      max-width: 1100px;
+
+      max-width: 1150px;
+
       margin: auto;
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(
+          3,
+          1fr
+        );
+
       gap: 25px;
+
     }
+
+
 
     .producto {
+
       background: white;
-      border: 1px solid #efdce3;
-      border-radius: 20px;
+
+      border:
+        1px solid #eedce2;
+
+      border-radius:
+        20px;
+
       overflow: hidden;
-      box-shadow: 0 7px 22px rgba(88, 48, 61, 0.08);
-      transition: 0.2s;
+
+      box-shadow:
+        0 7px 24px
+        rgba(
+          88,
+          48,
+          61,
+          0.07
+        );
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+
     }
+
 
     .producto:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 28px rgba(88, 48, 61, 0.13);
+
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 14px 32px
+        rgba(
+          88,
+          48,
+          61,
+          0.12
+        );
+
     }
+
+
 
     .producto-enlace {
+
       display: block;
+
       text-decoration: none;
+
       color: inherit;
+
     }
+
+
 
     .producto img {
+
       display: block;
+
       width: 100%;
-      aspect-ratio: 16 / 9;
+
+      aspect-ratio:
+        16 / 9;
+
       object-fit: cover;
+
       background: #fceaf0;
+
     }
+
+
 
     .producto-info {
-      padding: 20px;
+
+      padding: 21px;
+
     }
+
+
 
     .categoria-producto {
-      color: #e65385;
-      font-size: 12px;
-      font-weight: bold;
+
+      color: #d94d7a;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing:
+        0.4px;
+
       text-transform: uppercase;
+
       display: block;
-      margin-bottom: 8px;
+
+      margin-bottom: 9px;
+
     }
+
+
 
     .producto h3 {
-      font-size: 19px;
-      line-height: 1.35;
+
+      font-size: 18px;
+
+      line-height: 1.4;
+
       margin-bottom: 9px;
+
+      color: #382c30;
+
     }
+
+
 
     .marca {
-      color: #876b74;
+
+      color: #8b717a;
+
       font-size: 13px;
-      margin-bottom: 12px;
+
+      margin-bottom: 13px;
+
     }
+
+
 
     .precio {
+
       font-size: 23px;
+
       color: #e65385;
-      font-weight: bold;
-      margin-bottom: 17px;
+
+      font-weight: 700;
+
+      margin-bottom: 18px;
+
     }
+
+
 
     .ver-producto {
+
       display: block;
+
       width: 100%;
+
       text-align: center;
+
       background: #e65385;
+
       color: white;
+
       padding: 13px;
+
       border-radius: 13px;
+
       text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing:
+        0.3px;
+
+      transition:
+        background 0.2s,
+        transform 0.2s;
+
     }
+
 
     .ver-producto:hover {
+
       background: #d84979;
+
+      transform:
+        translateY(-1px);
+
     }
 
-    /* SIN RESULTADOS */
+
+
+    /* ========================================
+       SIN RESULTADOS
+    ======================================== */
 
     #sin-resultados {
+
       display: none;
+
       max-width: 650px;
-      margin: 30px auto 0;
-      background: #fff1f6;
-      padding: 25px;
-      border-radius: 15px;
+
+      margin:
+        30px auto 0;
+
+      background: white;
+
+      border:
+        1px solid #f0d8e0;
+
+      padding: 28px;
+
+      border-radius: 18px;
+
       text-align: center;
+
       color: #75515e;
+
     }
+
 
     #sin-resultados h3 {
-      margin-bottom: 7px;
+
+      margin-bottom: 8px;
+
     }
 
-    /* CONTACTO */
+
+
+    /* ========================================
+       CONTACTO
+    ======================================== */
 
     .contacto {
-      background: #fde5ed;
-      padding: 55px 6%;
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fdeaf0,
+          #fff5f8
+        );
+
+      padding:
+        70px
+        6%;
+
       text-align: center;
+
     }
+
 
     .contacto h2 {
-      font-size: 29px;
-      margin-bottom: 10px;
+
+      position: relative;
+
+      z-index: 2;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 34px;
+
+      font-weight: 500;
+
+      margin-bottom: 12px;
+
+      color: #382c30;
+
     }
+
 
     .contacto p {
+
+      position: relative;
+
+      z-index: 2;
+
       color: #755963;
-      margin-bottom: 22px;
+
+      margin-bottom: 24px;
+
     }
+
+
 
     .whatsapp {
+
+      position: relative;
+
+      z-index: 2;
+
       display: inline-block;
+
       background: #25D366;
+
       color: white;
-      padding: 14px 24px;
-      border-radius: 30px;
+
+      padding:
+        14px
+        25px;
+
+      border-radius:
+        40px;
+
       text-decoration: none;
-      font-weight: bold;
-      margin-bottom: 20px;
+
+      font-weight: 700;
+
+      margin-bottom: 22px;
+
+      transition:
+        transform 0.2s;
+
     }
+
+
+    .whatsapp:hover {
+
+      transform:
+        translateY(-2px);
+
+    }
+
+
 
     .redes {
+
+      position: relative;
+
+      z-index: 2;
+
       display: flex;
+
       justify-content: center;
+
       gap: 10px;
+
       flex-wrap: wrap;
+
     }
+
 
     .redes a {
-      background: white;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.82
+        );
+
       color: #704355;
-      padding: 10px 16px;
-      border-radius: 25px;
-      border: 1px solid #efc6d3;
+
+      padding:
+        10px
+        17px;
+
+      border-radius:
+        30px;
+
+      border:
+        1px solid #efc6d3;
+
       text-decoration: none;
-      font-weight: bold;
-      font-size: 13px;
+
+      font-weight: 700;
+
+      font-size: 12px;
+
     }
+
+
+
+    /* ========================================
+       PIE DE PÁGINA
+    ======================================== */
 
     footer {
-      background: #50313b;
-      color: white;
+
+      background: #35272c;
+
+      color: #f9eaf0;
+
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+
+      padding:
+        27px
+        20px;
+
+      font-size: 12px;
+
+      letter-spacing:
+        0.4px;
+
     }
 
-    /* WHATSAPP FLOTANTE */
+
+
+    /* ========================================
+       WHATSAPP FLOTANTE
+    ======================================== */
 
     .whatsapp-flotante {
+
       position: fixed;
+
       right: 20px;
+
       bottom: 20px;
+
       width: 58px;
+
       height: 58px;
+
       border-radius: 50%;
+
       background: #25D366;
+
       color: white;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       text-decoration: none;
+
       font-size: 25px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.20);
+
+      box-shadow:
+        0 7px 22px
+        rgba(
+          0,
+          0,
+          0,
+          0.18
+        );
+
       z-index: 2000;
+
+      transition:
+        transform 0.2s;
+
     }
 
-    /* CELULAR */
 
-    @media (max-width: 800px) {
+    .whatsapp-flotante:hover {
+
+      transform:
+        scale(1.06);
+
+    }
+
+
+
+    /* ========================================
+       TABLET
+    ======================================== */
+
+    @media
+    (
+      max-width: 1000px
+    ) {
 
       header {
-        flex-wrap: wrap;
-        padding: 14px;
-      }
 
-      .logo {
-        font-size: 21px;
-      }
-
-      .pedido {
-        padding: 10px 13px;
-      }
-
-      .buscador-contenedor {
-        order: 3;
-        flex-basis: 100%;
-        max-width: none;
-      }
-
-      nav {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
         gap: 18px;
+
       }
 
-      nav a {
-        white-space: nowrap;
+
+      .logo img {
+
+        width: 175px;
+
+        height: 65px;
+
       }
 
-      .hero {
-        min-height: 300px;
-        padding: 40px 20px;
-      }
-
-      .hero h1 {
-        font-size: 39px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .seccion {
-        padding: 43px 15px;
-      }
 
       .categorias {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+
+        grid-template-columns:
+          repeat(
+            4,
+            1fr
+          );
+
       }
 
-      .categoria {
-        min-height: 105px;
-      }
 
       .productos-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+
       }
+
+
+      .hero h1 {
+
+        font-size: 52px;
+
+      }
+
     }
+
+
+
+    /* ========================================
+       CELULAR
+    ======================================== */
+
+    @media
+    (
+      max-width: 800px
+    ) {
+
+      header {
+
+        padding:
+          10px
+          14px
+          13px;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+      }
+
+
+      .logo {
+
+        flex: 1;
+
+        min-width: 0;
+
+      }
+
+
+      .logo img {
+
+        width: 155px;
+
+        height: 60px;
+
+        object-position:
+          left center;
+
+      }
+
+
+      .pedido {
+
+        padding:
+          10px
+          13px;
+
+        font-size: 11px;
+
+      }
+
+
+      .buscador-contenedor {
+
+        order: 3;
+
+        flex-basis: 100%;
+
+        max-width: none;
+
+      }
+
+
+      #buscador {
+
+        padding:
+          12px
+          43px
+          12px
+          17px;
+
+        font-size: 13px;
+
+      }
+
+
+      nav {
+
+        justify-content:
+          flex-start;
+
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+
+        gap: 23px;
+
+        padding:
+          12px
+          17px;
+
+        scrollbar-width: none;
+
+      }
+
+
+      nav::-webkit-scrollbar {
+
+        display: none;
+
+      }
+
+
+      nav a {
+
+        white-space: nowrap;
+
+        font-size: 12px;
+
+      }
+
+
+      .hero {
+
+        min-height: 390px;
+
+        padding:
+          58px
+          22px;
+
+      }
+
+
+      .hero h1 {
+
+        font-size: 43px;
+
+        letter-spacing:
+          -1px;
+
+      }
+
+
+      .hero p {
+
+        font-size: 15px;
+
+        line-height: 1.65;
+
+      }
+
+
+      .etiqueta {
+
+        font-size: 10px;
+
+      }
+
+
+      .boton-principal {
+
+        padding:
+          14px
+          22px;
+
+        min-width: 190px;
+
+      }
+
+
+      .seccion {
+
+        padding:
+          50px
+          15px;
+
+      }
+
+
+      .titulo {
+
+        margin-bottom: 30px;
+
+      }
+
+
+      .titulo h2 {
+
+        font-size: 29px;
+
+      }
+
+
+      .categorias {
+
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
+
+        gap: 12px;
+
+      }
+
+
+      .categoria {
+
+        min-height: 112px;
+
+        border-radius: 16px;
+
+      }
+
+
+      .categoria .icono {
+
+        font-size: 25px;
+
+      }
+
+
+      .productos-grid {
+
+        grid-template-columns: 1fr;
+
+        max-width: 520px;
+
+        gap: 20px;
+
+      }
+
+
+      .contacto {
+
+        padding:
+          55px
+          20px;
+
+      }
+
+
+      .contacto h2 {
+
+        font-size: 29px;
+
+      }
+
+
+      .whatsapp-flotante {
+
+        width: 54px;
+
+        height: 54px;
+
+        right: 15px;
+
+        bottom: 15px;
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       CELULARES MUY PEQUEÑOS
+    ======================================== */
+
+    @media
+    (
+      max-width: 390px
+    ) {
+
+      .logo img {
+
+        width: 135px;
+
+        height: 54px;
+
+      }
+
+
+      .pedido {
+
+        font-size: 10px;
+
+        padding:
+          9px
+          11px;
+
+      }
+
+
+      .hero h1 {
+
+        font-size: 38px;
+
+      }
+
+
+      .categorias {
+
+        gap: 9px;
+
+      }
+
+
+      .categoria span {
+
+        font-size: 13px;
+
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 
 <body>
 
-  <!-- CABECERA -->
+
+  <!-- ======================================
+       CABECERA
+  ======================================= -->
 
   <header>
 
-    <div class="logo">
-      BELLA SHOP
-    </div>
+    <a
+      href="#inicio"
+      class="logo"
+      aria-label="Bella Shop"
+    >
+
+      <img
+        src="imagenes/Logo Bellashop png.png"
+        alt="Bella Shop - Tienda de Belleza"
+      >
+
+    </a>
+
+
 
     <div class="buscador-contenedor">
+
       <input
         id="buscador"
         type="text"
         placeholder="Buscar productos, marcas o categorías..."
         autocomplete="off"
       >
-      <span class="lupa">⌕</span>
+
+      <span class="lupa">
+        ⌕
+      </span>
+
     </div>
+
+
 
     <a
       class="pedido"
       href="https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/?modo=carrito"
     >
+
       🛍️ MI PEDIDO
+
     </a>
 
   </header>
 
 
-  <!-- MENÚ -->
+
+  <!-- ======================================
+       MENÚ
+  ======================================= -->
 
   <nav>
-    <a href="#inicio">INICIO</a>
-    <a href="#categorias">UÑAS</a>
-    <a href="#productos">NAIL ART</a>
-    <a href="#categorias">PESTAÑAS</a>
-    <a href="#categorias">ELÉCTRICOS</a>
-    <a href="#categorias">SPA</a>
-    <a href="#productos">OFERTAS</a>
+
+    <a href="#inicio">
+      INICIO
+    </a>
+
+    <a href="#categorias">
+      UÑAS
+    </a>
+
+    <a href="#productos">
+      NAIL ART
+    </a>
+
+    <a href="#categorias">
+      PESTAÑAS
+    </a>
+
+    <a href="#categorias">
+      ELÉCTRICOS
+    </a>
+
+    <a href="#categorias">
+      SPA
+    </a>
+
+    <a href="#productos">
+      OFERTAS
+    </a>
+
   </nav>
 
 
-  <!-- PORTADA -->
 
-  <section class="hero" id="inicio">
+  <!-- ======================================
+       PORTADA
+  ======================================= -->
+
+  <section
+    class="hero"
+    id="inicio"
+  >
 
     <div class="hero-contenido">
 
       <span class="etiqueta">
+
         INSUMOS DE BELLEZA
+
       </span>
 
-      <h1>Bella Shop</h1>
+
+      <h1>
+
+        Todo para crear
+        <span>belleza</span>
+
+      </h1>
+
 
       <p>
-        Encuentra tus productos favoritos para uñas,
-        pestañas y belleza de una forma fácil y rápida.
+
+        Productos para uñas, pestañas y belleza
+        seleccionados para acompañar tu trabajo
+        cada día.
+
       </p>
+
 
       <a
         href="#productos"
         class="boton-principal"
       >
+
         EXPLORAR CATÁLOGO
+
       </a>
 
     </div>
@@ -545,299 +1855,622 @@
   </section>
 
 
-  <!-- CATEGORÍAS -->
 
-  <section class="seccion" id="categorias">
+  <!-- ======================================
+       CATEGORÍAS
+  ======================================= -->
+
+  <section
+    class="seccion"
+    id="categorias"
+  >
 
     <div class="titulo">
-      <h2>Explora nuestras categorías</h2>
-      <p>Encuentra fácilmente lo que necesitas.</p>
+
+      <h2>
+        Explora nuestras categorías
+      </h2>
+
+      <p>
+        Encuentra fácilmente lo que necesitas.
+      </p>
+
     </div>
+
+
 
     <div class="categorias">
 
-      <a href="#productos" class="categoria">
-        <div class="icono">♡</div>
-        <span>Uñas</span>
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ♡
+        </div>
+
+        <span>
+          Uñas
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">✦</div>
-        <span>Pestañas</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ✦
+        </div>
+
+        <span>
+          Pestañas
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">✧</div>
-        <span>Nail Art</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ✧
+        </div>
+
+        <span>
+          Nail Art
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">⚡</div>
-        <span>Eléctricos</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ⚡
+        </div>
+
+        <span>
+          Eléctricos
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">◇</div>
-        <span>SPA</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ◇
+        </div>
+
+        <span>
+          SPA
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">★</div>
-        <span>Novedades</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ★
+        </div>
+
+        <span>
+          Novedades
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">%</div>
-        <span>Ofertas</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          %
+        </div>
+
+        <span>
+          Ofertas
+        </span>
+
       </a>
 
-      <a href="#productos" class="categoria">
-        <div class="icono">☰</div>
-        <span>Ver todo</span>
+
+
+      <a
+        href="#productos"
+        class="categoria"
+      >
+
+        <div class="icono">
+          ☰
+        </div>
+
+        <span>
+          Ver todo
+        </span>
+
       </a>
+
 
     </div>
 
   </section>
 
 
-  <!-- PRODUCTOS -->
 
-  <section class="seccion" id="productos">
+  <!-- ======================================
+       PRODUCTOS
+  ======================================= -->
+
+  <section
+    class="seccion"
+    id="productos"
+  >
 
     <div class="titulo">
-      <h2>Nuestros productos</h2>
+
+      <h2>
+        Nuestros productos
+      </h2>
+
       <p>
         Busca por nombre, marca o categoría.
       </p>
+
     </div>
+
+
+
+    <!--
+      AQUÍ JAVASCRIPT CREA
+      AUTOMÁTICAMENTE LOS PRODUCTOS
+    -->
 
     <div
       class="productos-grid"
       id="lista-productos"
-    ></div>
+    >
+    </div>
+
 
 
     <div id="sin-resultados">
-      <h3>No encontramos productos</h3>
+
+      <h3>
+        No encontramos productos
+      </h3>
+
       <p>
-        Intenta buscar por producto, marca o categoría.
+        Intenta buscar por producto,
+        marca o categoría.
       </p>
+
     </div>
 
   </section>
 
 
-  <!-- CONTACTO -->
+
+  <!-- ======================================
+       CONTACTO
+  ======================================= -->
 
   <section class="contacto">
 
-    <h2>¿Necesitas ayuda?</h2>
+    <h2>
+      ¿Necesitas ayuda?
+    </h2>
 
     <p>
       Escríbenos y te ayudamos con tu pedido.
     </p>
 
-    <a href="#" class="whatsapp">
+
+    <a
+      href="#"
+      class="whatsapp"
+    >
+
       WhatsApp
+
     </a>
 
+
+
     <div class="redes">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">TikTok</a>
+
+      <a href="#">
+        Instagram
+      </a>
+
+      <a href="#">
+        Facebook
+      </a>
+
+      <a href="#">
+        TikTok
+      </a>
+
     </div>
 
   </section>
 
 
+
+  <!-- ======================================
+       PIE DE PÁGINA
+  ======================================= -->
+
   <footer>
+
     Bella Shop · Popayán, Cauca
+
   </footer>
 
+
+
+  <!-- ======================================
+       WHATSAPP FLOTANTE
+  ======================================= -->
 
   <a
     href="#"
     class="whatsapp-flotante"
     aria-label="WhatsApp"
   >
+
     ☎
+
   </a>
 
 
-  <!-- LISTA DE PRODUCTOS -->
+
+  <!-- ======================================
+       LISTA DE PRODUCTOS
+  ======================================= -->
 
   <script src="productos.js"></script>
 
 
-  <!-- CREAR TARJETAS + BUSCADOR -->
+
+  <!-- ======================================
+       CREAR TARJETAS + BUSCADOR
+  ======================================= -->
 
   <script>
 
+
     const listaProductos =
-      document.getElementById("lista-productos");
+      document.getElementById(
+        "lista-productos"
+      );
+
 
     const buscador =
-      document.getElementById("buscador");
+      document.getElementById(
+        "buscador"
+      );
+
 
     const sinResultados =
-      document.getElementById("sin-resultados");
+      document.getElementById(
+        "sin-resultados"
+      );
 
+
+
+    /* ======================================
+       FORMATO DEL PRECIO
+    ======================================= */
 
     function formatoPrecio(numero) {
 
       return new Intl.NumberFormat(
         "es-CO",
         {
-          style: "currency",
-          currency: "COP",
-          maximumFractionDigits: 0
+
+          style:
+            "currency",
+
+          currency:
+            "COP",
+
+          maximumFractionDigits:
+            0
+
         }
+
       ).format(numero);
 
     }
 
 
+
+    /* ======================================
+       MOSTRAR PRODUCTOS
+    ======================================= */
+
     function mostrarProductos(lista) {
 
-      listaProductos.innerHTML = "";
+
+      listaProductos.innerHTML =
+        "";
 
 
-      if (lista.length === 0) {
+      if (
+        lista.length === 0
+      ) {
 
-        sinResultados.style.display = "block";
+        sinResultados.style.display =
+          "block";
 
         return;
 
       }
 
 
-      sinResultados.style.display = "none";
+      sinResultados.style.display =
+        "none";
 
 
-      lista.forEach(function(producto) {
 
-        const enlaceProducto =
-          "producto.html?id=" +
-          encodeURIComponent(producto.id);
+      lista.forEach(
+        function(producto) {
 
 
-        const tarjeta =
-          document.createElement("article");
+          const enlaceProducto =
+
+            "producto.html?id=" +
+
+            encodeURIComponent(
+              producto.id
+            );
 
 
-        tarjeta.className = "producto";
+
+          const tarjeta =
+            document.createElement(
+              "article"
+            );
 
 
-        tarjeta.innerHTML = `
-
-          <a
-            href="${enlaceProducto}"
-            class="producto-enlace"
-          >
-
-            <img
-              src="${producto.imagen}"
-              alt="${producto.nombre}"
-            >
-
-          </a>
+          tarjeta.className =
+            "producto";
 
 
-          <div class="producto-info">
 
-            <span class="categoria-producto">
-              ${producto.categoria} · ${producto.subcategoria}
-            </span>
+          tarjeta.innerHTML = `
 
 
             <a
+
               href="${enlaceProducto}"
+
               class="producto-enlace"
+
             >
 
-              <h3>
-                ${producto.nombre}
-              </h3>
+
+              <img
+
+                src="${producto.imagen}"
+
+                alt="${producto.nombre}"
+
+              >
+
 
             </a>
 
 
-            <div class="marca">
-              Marca: ${producto.marca}
+
+            <div class="producto-info">
+
+
+              <span
+                class="categoria-producto"
+              >
+
+                ${producto.categoria}
+                ·
+                ${producto.subcategoria}
+
+              </span>
+
+
+
+              <a
+
+                href="${enlaceProducto}"
+
+                class="producto-enlace"
+
+              >
+
+
+                <h3>
+
+                  ${producto.nombre}
+
+                </h3>
+
+
+              </a>
+
+
+
+              <div class="marca">
+
+                Marca:
+                ${producto.marca}
+
+              </div>
+
+
+
+              <div class="precio">
+
+                ${formatoPrecio(
+                  producto.precio
+                )}
+
+              </div>
+
+
+
+              <a
+
+                href="${enlaceProducto}"
+
+                class="ver-producto"
+
+              >
+
+                VER PRODUCTO
+
+              </a>
+
+
             </div>
 
 
-            <div class="precio">
-              ${formatoPrecio(producto.precio)}
-            </div>
+          `;
 
 
-            <a
-              href="${enlaceProducto}"
-              class="ver-producto"
-            >
-              VER PRODUCTO
-            </a>
 
-          </div>
-
-        `;
+          listaProductos.appendChild(
+            tarjeta
+          );
 
 
-        listaProductos.appendChild(tarjeta);
+        }
+      );
 
-      });
 
     }
 
 
-    /* MOSTRAR TODOS LOS PRODUCTOS */
 
-    mostrarProductos(productos);
+    /* ======================================
+       MOSTRAR TODOS LOS PRODUCTOS
+    ======================================= */
+
+    mostrarProductos(
+      productos
+    );
 
 
-    /* BUSCADOR */
+
+    /* ======================================
+       BUSCADOR
+    ======================================= */
 
     buscador.addEventListener(
+
       "input",
+
       function() {
 
+
         const texto =
+
           buscador.value
+
           .toLowerCase()
+
           .trim();
 
 
+
         const encontrados =
-          productos.filter(function(producto) {
 
-            const referencias =
-              Array.isArray(producto.referencias)
-                ? producto.referencias.join(" ")
-                : "";
+          productos.filter(
+
+            function(producto) {
 
 
-            const contenido = `
-              ${producto.nombre}
-              ${producto.marca}
-              ${producto.categoria}
-              ${producto.subcategoria}
-              ${referencias}
-            `.toLowerCase();
+              const referencias =
+
+                Array.isArray(
+                  producto.referencias
+                )
+
+                  ?
+
+                  producto.referencias
+                    .join(" ")
+
+                  :
+
+                  "";
 
 
-            return contenido.includes(texto);
 
-          });
+              const contenido = `
+
+                ${producto.nombre}
+
+                ${producto.marca}
+
+                ${producto.categoria}
+
+                ${producto.subcategoria}
+
+                ${referencias}
+
+              `.toLowerCase();
 
 
-        mostrarProductos(encontrados);
+
+              return contenido.includes(
+                texto
+              );
+
+
+            }
+
+          );
+
+
+
+        mostrarProductos(
+          encontrados
+        );
+
 
       }
+
     );
+
 
   </script>
 
+
 </body>
+
 </html>
