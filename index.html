@@ -132,6 +132,93 @@
     }
 
 
+    .resultados-busqueda {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      max-height: 360px;
+      overflow-y: auto;
+      background: rgba(255,255,255,.98);
+      border: 1px solid #efd5de;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(80, 44, 57, .14);
+      padding: 8px;
+    }
+
+
+    .resultados-busqueda.activo {
+      display: block;
+    }
+
+
+    .resultado-busqueda {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #4f3a42;
+      transition: background .18s;
+    }
+
+
+    .resultado-busqueda:hover,
+    .resultado-busqueda:focus {
+      background: #fff1f5;
+      outline: none;
+    }
+
+
+    .resultado-icono {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff0f5;
+      color: #e65385;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+
+    .resultado-texto {
+      min-width: 0;
+      flex: 1;
+    }
+
+
+    .resultado-nombre {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #49353c;
+      line-height: 1.25;
+    }
+
+
+    .resultado-tipo {
+      display: block;
+      margin-top: 3px;
+      font-size: 11px;
+      color: #9a7884;
+    }
+
+
+    .sin-sugerencias {
+      padding: 13px 14px;
+      color: #8a6b75;
+      font-size: 12px;
+      text-align: center;
+    }
+
+
 
     /* ========================================
        MI PEDIDO
@@ -1253,6 +1340,12 @@
         ⌕
       </span>
 
+      <div
+        id="resultados-busqueda"
+        class="resultados-busqueda"
+        aria-label="Resultados de búsqueda"
+      ></div>
+
     </div>
 
 
@@ -1934,81 +2027,354 @@
 
 
 
-    buscador.addEventListener(
-
-      "input",
-
-      function() {
-
-
-        const texto =
-
-          buscador.value
-
-          .toLowerCase()
-
-          .trim();
+    const panelBusqueda =
+      document.getElementById(
+        "resultados-busqueda"
+      );
 
 
+    const destinosBusqueda = [
+      {
+        nombre: "Esmaltes",
+        tipo: "Categoría",
+        url: "esmaltes.html",
+        palabras: [
+          "esmalte",
+          "esmaltes",
+          "unas",
+          "uñas"
+        ]
+      },
 
-        const encontrados =
+      {
+        nombre: "Esmalte Semipermanente",
+        tipo: "Subcategoría",
+        url: "esmaltes.html",
+        palabras: [
+          "semipermanente",
+          "semipermanentes",
+          "esmalte semipermanente"
+        ]
+      },
 
-          productos.filter(
-
-            function(producto) {
-
-
-              const referencias =
-
-                Array.isArray(
-                  producto.referencias
-                )
-
-                  ?
-
-                  producto.referencias
-                    .join(" ")
-
-                  :
-
-                  "";
-
-
-
-              const contenido = `
-
-                ${producto.nombre}
-
-                ${producto.marca}
-
-                ${producto.categoria}
-
-                ${producto.subcategoria}
-
-                ${referencias}
-
-              `.toLowerCase();
+      {
+        nombre: "Esmalte Tradicional",
+        tipo: "Subcategoría",
+        url: "esmaltes.html",
+        palabras: [
+          "tradicional",
+          "tradicionales",
+          "esmalte tradicional"
+        ]
+      }
+    ];
 
 
+    function normalizarTexto(texto) {
 
-              return contenido.includes(
-                texto
-              );
+      return String(texto || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+
+    }
 
 
-            }
+    function obtenerTextoProducto(producto) {
 
+      const referencias =
+        Array.isArray(producto.referencias)
+          ? producto.referencias.join(" ")
+          : "";
+
+
+      return normalizarTexto(`
+        ${producto.nombre}
+        ${producto.marca}
+        ${producto.categoria}
+        ${producto.subcategoria}
+        ${referencias}
+      `);
+
+    }
+
+
+    function buscarDestinos(texto) {
+
+      return destinosBusqueda.filter(
+        function(destino) {
+
+          const contenido =
+            normalizarTexto(
+              destino.nombre +
+              " " +
+              destino.tipo +
+              " " +
+              destino.palabras.join(" ")
+            );
+
+
+          return contenido.includes(texto);
+
+        }
+      );
+
+    }
+
+
+    function buscarProductos(texto) {
+
+      return productos.filter(
+        function(producto) {
+
+          return obtenerTextoProducto(producto)
+            .includes(texto);
+
+        }
+      );
+
+    }
+
+
+    function dibujarSugerencias(
+      destinos,
+      productosEncontrados
+    ) {
+
+      panelBusqueda.innerHTML = "";
+
+
+      destinos.forEach(
+        function(destino) {
+
+          const enlace =
+            document.createElement("a");
+
+          enlace.href =
+            destino.url;
+
+          enlace.className =
+            "resultado-busqueda";
+
+          enlace.innerHTML = `
+            <span class="resultado-icono">⌕</span>
+
+            <span class="resultado-texto">
+              <span class="resultado-nombre">
+                ${destino.nombre}
+              </span>
+
+              <span class="resultado-tipo">
+                ${destino.tipo}
+              </span>
+            </span>
+          `;
+
+          panelBusqueda.appendChild(
+            enlace
           );
 
+        }
+      );
 
 
-        mostrarProductos(
-          encontrados
+      productosEncontrados
+        .slice(0, 6)
+        .forEach(
+          function(producto) {
+
+            const enlace =
+              document.createElement("a");
+
+            enlace.href =
+              "producto.html?id=" +
+              encodeURIComponent(
+                producto.id
+              );
+
+            enlace.className =
+              "resultado-busqueda";
+
+            enlace.innerHTML = `
+              <span class="resultado-icono">♡</span>
+
+              <span class="resultado-texto">
+                <span class="resultado-nombre">
+                  ${producto.nombre}
+                </span>
+
+                <span class="resultado-tipo">
+                  ${producto.marca}
+                  ·
+                  ${producto.subcategoria}
+                </span>
+              </span>
+            `;
+
+            panelBusqueda.appendChild(
+              enlace
+            );
+
+          }
         );
 
 
+      if (
+        destinos.length === 0 &&
+        productosEncontrados.length === 0
+      ) {
+
+        panelBusqueda.innerHTML = `
+          <div class="sin-sugerencias">
+            No encontramos coincidencias por ahora.
+          </div>
+        `;
+
       }
 
+
+      panelBusqueda.classList.add(
+        "activo"
+      );
+
+    }
+
+
+    function ejecutarBusqueda() {
+
+      const texto =
+        normalizarTexto(
+          buscador.value
+        );
+
+
+      if (!texto) {
+
+        panelBusqueda.classList.remove(
+          "activo"
+        );
+
+        panelBusqueda.innerHTML = "";
+
+        mostrarProductos(
+          productos
+        );
+
+        return;
+
+      }
+
+
+      const destinos =
+        buscarDestinos(texto);
+
+
+      const productosEncontrados =
+        buscarProductos(texto);
+
+
+      mostrarProductos(
+        productosEncontrados
+      );
+
+
+      dibujarSugerencias(
+        destinos,
+        productosEncontrados
+      );
+
+    }
+
+
+    buscador.addEventListener(
+      "input",
+      ejecutarBusqueda
+    );
+
+
+    buscador.addEventListener(
+      "focus",
+      function() {
+
+        if (
+          normalizarTexto(
+            buscador.value
+          )
+        ) {
+
+          ejecutarBusqueda();
+
+        }
+
+      }
+    );
+
+
+    buscador.addEventListener(
+      "keydown",
+      function(evento) {
+
+        if (evento.key === "Escape") {
+
+          panelBusqueda.classList.remove(
+            "activo"
+          );
+
+          buscador.blur();
+
+          return;
+
+        }
+
+
+        if (evento.key === "Enter") {
+
+          const primerResultado =
+            panelBusqueda.querySelector(
+              ".resultado-busqueda"
+            );
+
+
+          if (primerResultado) {
+
+            evento.preventDefault();
+
+            window.location.href =
+              primerResultado.href;
+
+          }
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      function(evento) {
+
+        const contenedor =
+          document.querySelector(
+            ".buscador-contenedor"
+          );
+
+
+        if (
+          contenedor &&
+          !contenedor.contains(
+            evento.target
+          )
+        ) {
+
+          panelBusqueda.classList.remove(
+            "activo"
+          );
+
+        }
+
+      }
     );
 
 
