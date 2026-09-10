@@ -235,17 +235,6 @@
       cursor: not-allowed;
     }
 
-    .mensaje {
-      display: none;
-      margin-top: 15px;
-      background: white;
-      border: 1px solid #efcad6;
-      padding: 14px;
-      border-radius: 13px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
     /* CELULAR */
 
     @media (max-width: 800px) {
@@ -371,12 +360,6 @@
             🛍️ AGREGAR SELECCIÓN AL PEDIDO
           </button>
 
-
-          <div
-            class="mensaje"
-            id="mensaje"
-          ></div>
-
         </div>
 
       </div>
@@ -391,8 +374,17 @@
 
   <script>
 
+    /*
+      AQUÍ GUARDAMOS LAS CANTIDADES.
+      IMPORTANTE: DEBE ESTAR ANTES DE CARGAR EL PRODUCTO.
+    */
+
+    const cantidades = {};
+
+
     const parametros =
       new URLSearchParams(window.location.search);
+
 
     const idProducto =
       parametros.get("id");
@@ -402,33 +394,6 @@
       productos.find(
         item => item.id === idProducto
       );
-
-
-    if (!producto) {
-
-      document.body.innerHTML = `
-        <div style="
-          text-align:center;
-          padding:80px 20px;
-          font-family:Arial;
-        ">
-          <h2>Producto no encontrado</h2>
-
-          <br>
-
-          <a href="index.html">
-            Volver al catálogo
-          </a>
-        </div>
-      `;
-
-    }
-
-    else {
-
-      cargarProducto(producto);
-
-    }
 
 
     function formatoPrecio(numero) {
@@ -445,7 +410,15 @@
     }
 
 
-    const cantidades = {};
+    function crearId(texto) {
+
+      return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "-");
+
+    }
 
 
     function cargarProducto(producto) {
@@ -490,8 +463,13 @@
           "imagen-producto"
         );
 
-      imagen.src = producto.imagen;
-      imagen.alt = producto.nombre;
+
+      imagen.src =
+        producto.imagen;
+
+
+      imagen.alt =
+        producto.nombre;
 
 
       const lista =
@@ -500,8 +478,32 @@
         );
 
 
+      lista.innerHTML = "";
+
+
+      if (
+        !producto.referencias ||
+        producto.referencias.length === 0
+      ) {
+
+        lista.innerHTML = `
+          <p style="
+            padding:15px;
+            background:#fff0f5;
+            border-radius:12px;
+          ">
+            Este producto no tiene referencias configuradas.
+          </p>
+        `;
+
+        return;
+
+      }
+
+
       producto.referencias.forEach(
         function(referencia) {
+
 
           cantidades[referencia] = 0;
 
@@ -514,6 +516,10 @@
             "referencia";
 
 
+          const id =
+            crearId(referencia);
+
+
           fila.innerHTML = `
 
             <div class="nombre-referencia">
@@ -524,7 +530,9 @@
             <div class="cantidad">
 
               <button
-                onclick="cambiarCantidad('${referencia}', -1)"
+                type="button"
+                data-referencia="${referencia}"
+                data-cambio="-1"
               >
                 −
               </button>
@@ -532,14 +540,16 @@
 
               <span
                 class="numero"
-                id="cantidad-${crearId(referencia)}"
+                id="cantidad-${id}"
               >
                 0
               </span>
 
 
               <button
-                onclick="cambiarCantidad('${referencia}', 1)"
+                type="button"
+                data-referencia="${referencia}"
+                data-cambio="1"
               >
                 +
               </button>
@@ -554,14 +564,38 @@
         }
       );
 
-    }
+
+      /*
+        ACTIVAR BOTONES + Y -
+      */
+
+      document
+        .querySelectorAll(".cantidad button")
+        .forEach(function(boton) {
+
+          boton.addEventListener(
+            "click",
+            function() {
+
+              const referencia =
+                boton.dataset.referencia;
 
 
-    function crearId(texto) {
+              const cambio =
+                Number(
+                  boton.dataset.cambio
+                );
 
-      return texto
-        .toLowerCase()
-        .replaceAll(" ", "-");
+
+              cambiarCantidad(
+                referencia,
+                cambio
+              );
+
+            }
+          );
+
+        });
 
     }
 
@@ -605,8 +639,10 @@
       Object.values(
         cantidades
       ).forEach(
-        cantidad => {
+        function(cantidad) {
+
           unidades += cantidad;
+
         }
       );
 
@@ -635,76 +671,141 @@
     }
 
 
-    document.getElementById(
-      "boton-agregar"
-    ).addEventListener(
-      "click",
-      function() {
+    /*
+      COMPROBAR QUE EL PRODUCTO EXISTA
+    */
 
-        const seleccion = [];
+    if (!producto) {
+
+      document.body.innerHTML = `
+        <div style="
+          text-align:center;
+          padding:80px 20px;
+          font-family:Arial;
+        ">
+
+          <h2>
+            Producto no encontrado
+          </h2>
+
+          <br>
+
+          <a href="index.html">
+            Volver al catálogo
+          </a>
+
+        </div>
+      `;
+
+    }
+
+    else {
+
+      cargarProducto(producto);
+
+    }
 
 
-        Object.entries(
-          cantidades
-        ).forEach(
-          function([referencia, cantidad]) {
+    /*
+      BOTÓN AGREGAR AL PEDIDO
+    */
 
-            if (cantidad > 0) {
+    const botonAgregar =
+      document.getElementById(
+        "boton-agregar"
+      );
 
-              seleccion.push(
-                referencia +
-                " x" +
-                cantidad
-              );
+
+    if (botonAgregar) {
+
+      botonAgregar.addEventListener(
+        "click",
+        function() {
+
+
+          const seleccion = [];
+
+
+          Object.entries(
+            cantidades
+          ).forEach(
+            function(
+              [referencia, cantidad]
+            ) {
+
+              if (cantidad > 0) {
+
+                seleccion.push(
+                  referencia +
+                  " x" +
+                  cantidad
+                );
+
+              }
 
             }
+          );
+
+
+          if (
+            seleccion.length === 0
+          ) {
+
+            return;
 
           }
-        );
 
 
-        if (seleccion.length === 0) {
-
-          return;
-
-        }
+          const detalle =
+            seleccion.join(", ");
 
 
-        const detalle =
-          seleccion.join(", ");
+          const totalUnidades =
+            Object.values(
+              cantidades
+            ).reduce(
+              function(
+                acumulado,
+                cantidad
+              ) {
 
+                return (
+                  acumulado +
+                  cantidad
+                );
 
-        const totalUnidades =
-          Object.values(cantidades)
-            .reduce(
-              (acumulado, cantidad) =>
-                acumulado + cantidad,
+              },
               0
             );
 
 
-        const nombrePedido =
-          producto.nombre +
-          " - " +
-          detalle;
+          const nombrePedido =
+            producto.nombre +
+            " - " +
+            detalle;
 
 
-        const url =
-          "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
-          "?modo=producto" +
-          "&nombre=" +
-          encodeURIComponent(nombrePedido) +
-          "&precio=" +
-          producto.precio +
-          "&cantidad=" +
-          totalUnidades +
-          "&tipo=individual";
+          const url =
+            "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
+            "?modo=producto" +
+            "&nombre=" +
+            encodeURIComponent(
+              nombrePedido
+            ) +
+            "&precio=" +
+            producto.precio +
+            "&cantidad=" +
+            totalUnidades +
+            "&tipo=individual";
 
 
-        window.location.href = url;
+          window.location.href =
+            url;
 
-      }
-    );
+        }
+      );
+
+    }
 
   </script>
 
