@@ -5,6 +5,6 @@ const productos = [
     categoria: "Nail Art",
     subcategoria: "Gel de Saturación",
     marca: "Queenigth",
-    imagen: "imagenes/queenigth.png"
+    imagen: "imagenes/Captura de pantalla 2026-09-10 144809.png"
   }
 ];
