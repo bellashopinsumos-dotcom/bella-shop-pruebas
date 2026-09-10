@@ -249,6 +249,12 @@
       box-shadow: 0 10px 28px rgba(88, 48, 61, 0.13);
     }
 
+    .producto-enlace {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .producto img {
       display: block;
       width: 100%;
@@ -289,7 +295,7 @@
       margin-bottom: 17px;
     }
 
-    .agregar {
+    .ver-producto {
       display: block;
       width: 100%;
       text-align: center;
@@ -302,7 +308,7 @@
       font-weight: bold;
     }
 
-    .agregar:hover {
+    .ver-producto:hover {
       background: #d84979;
     }
 
@@ -606,8 +612,6 @@
       </p>
     </div>
 
-    <!-- AQUÍ JAVASCRIPT CREARÁ LOS PRODUCTOS -->
-
     <div
       class="productos-grid"
       id="lista-productos"
@@ -661,16 +665,12 @@
   </a>
 
 
-  <!--
-    ESTE ARCHIVO CONTIENE NUESTRA LISTA DE PRODUCTOS
-  -->
+  <!-- LISTA DE PRODUCTOS -->
 
   <script src="productos.js"></script>
 
 
-  <!--
-    ESTE CÓDIGO CREA LAS TARJETAS AUTOMÁTICAMENTE
-  -->
+  <!-- CREAR TARJETAS + BUSCADOR -->
 
   <script>
 
@@ -717,15 +717,9 @@
 
       lista.forEach(function(producto) {
 
-        const nombreURL =
-          encodeURIComponent(producto.nombre);
-
-        const enlaceCarrito =
-          "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
-          "?modo=producto" +
-          "&nombre=" + nombreURL +
-          "&precio=" + producto.precio +
-          "&tipo=carta";
+        const enlaceProducto =
+          "producto.html?id=" +
+          encodeURIComponent(producto.id);
 
 
         const tarjeta =
@@ -737,10 +731,18 @@
 
         tarjeta.innerHTML = `
 
-          <img
-            src="${producto.imagen}"
-            alt="${producto.nombre}"
+          <a
+            href="${enlaceProducto}"
+            class="producto-enlace"
           >
+
+            <img
+              src="${producto.imagen}"
+              alt="${producto.nombre}"
+            >
+
+          </a>
+
 
           <div class="producto-info">
 
@@ -748,23 +750,34 @@
               ${producto.categoria} · ${producto.subcategoria}
             </span>
 
-            <h3>
-              ${producto.nombre}
-            </h3>
+
+            <a
+              href="${enlaceProducto}"
+              class="producto-enlace"
+            >
+
+              <h3>
+                ${producto.nombre}
+              </h3>
+
+            </a>
+
 
             <div class="marca">
               Marca: ${producto.marca}
             </div>
 
+
             <div class="precio">
               ${formatoPrecio(producto.precio)}
             </div>
 
+
             <a
-              href="${enlaceCarrito}"
-              class="agregar"
+              href="${enlaceProducto}"
+              class="ver-producto"
             >
-              🛍️ AGREGAR AL PEDIDO
+              VER PRODUCTO
             </a>
 
           </div>
@@ -779,7 +792,7 @@
     }
 
 
-    /* MOSTRAR TODOS AL ENTRAR */
+    /* MOSTRAR TODOS LOS PRODUCTOS */
 
     mostrarProductos(productos);
 
@@ -799,11 +812,18 @@
         const encontrados =
           productos.filter(function(producto) {
 
+            const referencias =
+              Array.isArray(producto.referencias)
+                ? producto.referencias.join(" ")
+                : "";
+
+
             const contenido = `
               ${producto.nombre}
               ${producto.marca}
               ${producto.categoria}
               ${producto.subcategoria}
+              ${referencias}
             `.toLowerCase();
 
 
