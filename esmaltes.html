@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Esmaltes | Bella Shop</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffdfd;
+      color: #34292d;
+      overflow-x: hidden;
+    }
+
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+
+    /* ========================================
+       CABECERA
+    ======================================== */
+
+    header {
+      background: rgba(255, 253, 253, 0.97);
+      padding: 12px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      border-bottom: 1px solid #f2dce4;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+
+    .logo img {
+      display: block;
+      width: 210px;
+      height: 74px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+
+    .volver {
+      background: #e65385;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 700;
+
+      box-shadow:
+        0 6px 18px rgba(230, 83, 133, 0.18);
+
+      transition:
+        transform 0.2s,
+        background 0.2s;
+    }
+
+
+    .volver:hover {
+      background: #d94a79;
+      transform: translateY(-2px);
+    }
+
+
+
+    /* ========================================
+       PORTADA
+    ======================================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 60px 25px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(245, 174, 198, 0.18),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 75%,
+          rgba(230, 83, 133, 0.09),
+          transparent 25%
+        ),
+
+        linear-gradient(
+          135deg,
+          #fff6f8 0%,
+          #fffdfd 50%,
+          #fdeef3 100%
+        );
+    }
+
+
+    .cara-hero {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      right: 4%;
+      top: 50%;
+
+      transform:
+        translateY(-50%)
+        rotate(5deg);
+
+      opacity: 0.07;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+    }
+
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #efcbd7;
+      background: rgba(255,255,255,0.8);
+      color: #d74e7b;
+      border-radius: 40px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+
+    h1 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 50px;
+      font-weight: 500;
+      color: #33272b;
+      margin-bottom: 15px;
+    }
+
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #765d65;
+      max-width: 620px;
+      margin: auto;
+    }
+
+
+
+    /* ========================================
+       SUBCATEGORÍAS
+    ======================================== */
+
+    .seccion {
+      position: relative;
+      overflow: hidden;
+      padding: 65px 6% 80px;
+    }
+
+
+    .cara-seccion {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      left: -70px;
+      bottom: -45px;
+      opacity: 0.035;
+      transform: rotate(-8deg);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .titulo {
+      text-align: center;
+      margin-bottom: 38px;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .titulo h2 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 33px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #382b30;
+    }
+
+
+    .titulo p {
+      color: #887079;
+      font-size: 15px;
+    }
+
+
+    .opciones {
+      position: relative;
+      z-index: 3;
+
+      max-width: 900px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+
+    .opcion {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 230px;
+
+      background: white;
+
+      border: 1px solid #f0dce3;
+
+      border-radius: 24px;
+
+      text-decoration: none;
+      color: #4d3740;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      box-shadow:
+        0 8px 25px rgba(83, 48, 58, 0.07);
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        border-color 0.25s;
+    }
+
+
+    .opcion::before {
+      content: "";
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+
+      background: #fff2f6;
+
+      top: -48px;
+      right: -35px;
+
+      transition: transform 0.3s;
+    }
+
+
+    .opcion:hover {
+      transform: translateY(-6px);
+
+      border-color: #e9bdcc;
+
+      box-shadow:
+        0 15px 34px rgba(83, 48, 58, 0.12);
+    }
+
+
+    .opcion:hover::before {
+      transform: scale(1.15);
+    }
+
+
+    .icono {
+      position: relative;
+      z-index: 2;
+
+      width: 65px;
+      height: 65px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #fff1f5;
+
+      color: #e65385;
+
+      font-size: 30px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .opcion h3 {
+      position: relative;
+      z-index: 2;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 26px;
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+      color: #3a2c31;
+    }
+
+
+    .opcion p {
+      position: relative;
+      z-index: 2;
+
+      font-size: 14px;
+      line-height: 1.6;
+      color: #806870;
+
+      max-width: 310px;
+      margin-bottom: 18px;
+    }
+
+
+    .ver {
+      position: relative;
+      z-index: 2;
+
+      color: #e65385;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+    }
+
+
+
+    /* ========================================
+       PIE DE PÁGINA
+    ======================================== */
+
+    footer {
+      background: #35272c;
+      color: #f9eaf0;
+      text-align: center;
+      padding: 27px 20px;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+    }
+
+
+
+    /* ========================================
+       CELULAR
+    ======================================== */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 10px 14px;
+      }
+
+
+      .logo img {
+        width: 155px;
+        height: 60px;
+      }
+
+
+      .volver {
+        font-size: 11px;
+        padding: 10px 13px;
+      }
+
+
+      .hero {
+        min-height: 275px;
+        padding: 50px 20px;
+      }
+
+
+      .cara-hero {
+        width: 250px;
+        height: 250px;
+        right: -80px;
+        opacity: 0.055;
+      }
+
+
+      h1 {
+        font-size: 40px;
+      }
+
+
+      .hero p {
+        font-size: 15px;
+      }
+
+
+      .seccion {
+        padding: 50px 15px 60px;
+      }
+
+
+      .titulo h2 {
+        font-size: 29px;
+      }
+
+
+      .opciones {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 18px;
+      }
+
+
+      .opcion {
+        min-height: 190px;
+        border-radius: 20px;
+      }
+
+
+      .opcion h3 {
+        font-size: 24px;
+      }
+
+
+      .cara-seccion {
+        width: 180px;
+        height: 180px;
+      }
+
+    }
+
+
+
+    @media (max-width: 390px) {
+
+      .logo img {
+        width: 135px;
+        height: 54px;
+      }
+
+
+      h1 {
+        font-size: 36px;
+      }
+
+
+      .opcion {
+        padding: 25px 18px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- ======================================
+       CABECERA
+  ======================================= -->
+
+  <header>
+
+    <a
+      href="index.html"
+      class="logo"
+      aria-label="Bella Shop"
+    >
+
+      <img
+        src="imagenes/Logo Bellashop png.png"
+        alt="Bella Shop - Tienda de Belleza"
+      >
+
+    </a>
+
+
+    <a
+      href="index.html"
+      class="volver"
+    >
+      ← VOLVER AL INICIO
+    </a>
+
+  </header>
+
+
+
+  <!-- ======================================
+       PORTADA
+  ======================================= -->
+
+  <section class="hero">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-hero"
+    >
+
+
+    <div class="hero-contenido">
+
+      <span class="etiqueta">
+        BELLA SHOP
+      </span>
+
+
+      <h1>
+        Esmaltes
+      </h1>
+
+
+      <p>
+        Encuentra el tipo de esmalte que necesitas
+        y explora nuestras opciones disponibles.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       SUBCATEGORÍAS
+  ======================================= -->
+
+  <section class="seccion">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-seccion"
+    >
+
+
+    <div class="titulo">
+
+      <h2>
+        Elige una categoría
+      </h2>
+
+
+      <p>
+        Selecciona el tipo de esmalte que deseas ver.
+      </p>
+
+    </div>
+
+
+
+    <div class="opciones">
+
+
+      <a
+        href="#"
+        class="opcion"
+      >
+
+        <div class="icono">
+          ✧
+        </div>
+
+
+        <h3>
+          Esmalte Semipermanente
+        </h3>
+
+
+        <p>
+          Descubre nuestras marcas,
+          colores y colecciones de
+          esmaltes semipermanentes.
+        </p>
+
+
+        <span class="ver">
+          VER PRODUCTOS →
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="#"
+        class="opcion"
+      >
+
+        <div class="icono">
+          ♡
+        </div>
+
+
+        <h3>
+          Esmalte Tradicional
+        </h3>
+
+
+        <p>
+          Encuentra esmaltes tradicionales,
+          bases, brillos y diferentes
+          opciones para tus diseños.
+        </p>
+
+
+        <span class="ver">
+          VER PRODUCTOS →
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       PIE DE PÁGINA
+  ======================================= -->
+
+  <footer>
+    Bella Shop · Popayán, Cauca
+  </footer>
+
+
+</body>
+
+</html>
