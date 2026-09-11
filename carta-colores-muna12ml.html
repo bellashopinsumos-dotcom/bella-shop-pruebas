@@ -1092,7 +1092,8 @@
     .resumen-pedido {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 14px 20px;
       padding-top: 16px;
       margin-top: 4px;
       border-top: 1px solid #f0dce3;
@@ -1411,6 +1412,7 @@
         <div class="resumen-pedido">
           <span>Referencias: <strong id="totalReferencias">0</strong></span>
           <span>Unidades: <strong id="totalUnidades">0</strong></span>
+          <span>Subtotal: <strong id="subtotalPedido">$0</strong></span>
         </div>
 
 
@@ -1605,7 +1607,14 @@
     const mensajeError = document.getElementById("mensajeError");
     const totalReferencias = document.getElementById("totalReferencias");
     const totalUnidades = document.getElementById("totalUnidades");
+    const subtotalPedido = document.getElementById("subtotalPedido");
     const btnPedido = document.getElementById("agregarPedido");
+
+    const PRECIO_UNITARIO = 12500;
+
+    function formatoPesos(valor) {
+      return "$" + valor.toLocaleString("es-CO");
+    }
 
     function normalizarReferencia(valor) {
       return valor.trim().replace(/^0+/, "") || "0";
@@ -1716,6 +1725,7 @@
         .reduce((suma, cantidad) => suma + cantidad, 0);
 
       totalUnidades.textContent = unidades;
+      subtotalPedido.textContent = formatoPesos(unidades * PRECIO_UNITARIO);
     }
 
     btnAgregar.addEventListener("click", agregarReferencia);
@@ -1746,7 +1756,7 @@
         return;
       }
 
-      const precioUnitario = 12500;
+      const precioUnitario = PRECIO_UNITARIO;
 
       const detalle = [...referenciasSeleccionadas.entries()]
         .map(([ref, cantidad]) => `Ref ${ref} x${cantidad}`)
