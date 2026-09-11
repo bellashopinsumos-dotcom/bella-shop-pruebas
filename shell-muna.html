@@ -1,0 +1,2489 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Shell Muna 15 ml | Bella Shop</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffdfd;
+      color: #34292d;
+      overflow-x: hidden;
+    }
+
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+
+    /* ========================================
+       CABECERA
+    ======================================== */
+
+    header {
+      background: rgba(255, 253, 253, 0.97);
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #f2dce4;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+
+    .logo img {
+      display: block;
+      width: 205px;
+      height: 72px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+
+    .acciones-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+
+    .boton-header {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 11px 17px;
+      border-radius: 40px;
+
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s;
+    }
+
+
+    .boton-volver {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+
+    .boton-volver:hover {
+      background: #fff4f7;
+      border-color: #e7adbf;
+      transform: translateY(-2px);
+    }
+
+
+    .boton-inicio {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+
+    .boton-inicio:hover {
+      background: #fff4f7;
+      border-color: #e7adbf;
+      transform: translateY(-2px);
+    }
+
+
+    .boton-pedido {
+      background: #e65385;
+      color: white;
+      border: 1px solid #e65385;
+
+      box-shadow:
+        0 6px 18px rgba(230, 83, 133, 0.18);
+    }
+
+
+    .boton-pedido:hover {
+      background: #d94a79;
+      border-color: #d94a79;
+      transform: translateY(-2px);
+    }
+
+
+    .icono-header {
+      width: 17px;
+      height: 17px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+
+
+    /* ========================================
+       PORTADA
+    ======================================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 60px 25px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(245, 174, 198, 0.18),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 75%,
+          rgba(230, 83, 133, 0.09),
+          transparent 25%
+        ),
+
+        linear-gradient(
+          135deg,
+          #fff6f8 0%,
+          #fffdfd 50%,
+          #fdeef3 100%
+        );
+    }
+
+
+    .cara-hero {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      right: 4%;
+      top: 50%;
+
+      transform:
+        translateY(-50%)
+        rotate(5deg);
+
+      opacity: 0.07;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+    }
+
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #efcbd7;
+      background: rgba(255,255,255,0.8);
+      color: #d74e7b;
+      border-radius: 40px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+
+    h1 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 50px;
+      font-weight: 500;
+      color: #33272b;
+      margin-bottom: 15px;
+    }
+
+
+    .logo-muna-hero {
+      display: block;
+      width: min(290px, 75vw);
+      height: 105px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+    }
+
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #765d65;
+      max-width: 620px;
+      margin: auto;
+    }
+
+
+
+    /* ========================================
+       SUBCATEGORÍAS
+    ======================================== */
+
+    .seccion {
+      position: relative;
+      overflow: hidden;
+      padding: 65px 6% 80px;
+    }
+
+
+    .cara-seccion {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      left: -70px;
+      bottom: -45px;
+      opacity: 0.035;
+      transform: rotate(-8deg);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .titulo {
+      text-align: center;
+      margin-bottom: 38px;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .titulo h2 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 33px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #382b30;
+    }
+
+
+    .titulo p {
+      color: #887079;
+      font-size: 15px;
+    }
+
+
+    .opciones {
+      position: relative;
+      z-index: 3;
+
+      max-width: 980px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+
+    .opcion {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 220px;
+
+      background: white;
+
+      border: 1px solid #f0dce3;
+
+      border-radius: 24px;
+
+      text-decoration: none;
+      color: #4d3740;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      box-shadow:
+        0 8px 25px rgba(83, 48, 58, 0.07);
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        border-color 0.25s;
+    }
+
+
+    .opcion::before {
+      content: "";
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+
+      background: #fff2f6;
+
+      top: -48px;
+      right: -35px;
+
+      transition: transform 0.3s;
+    }
+
+
+    .opcion:hover {
+      transform: translateY(-6px);
+
+      border-color: #e9bdcc;
+
+      box-shadow:
+        0 15px 34px rgba(83, 48, 58, 0.12);
+    }
+
+
+    .opcion:hover::before {
+      transform: scale(1.15);
+    }
+
+
+    .icono-categoria {
+      position: relative;
+      z-index: 2;
+
+      width: 72px;
+      height: 72px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #fff1f5;
+
+      color: #e65385;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(230,83,133,.07);
+    }
+
+
+    .icono-categoria svg {
+      width: 38px;
+      height: 38px;
+      display: block;
+    }
+
+
+    .opcion h3 {
+      position: relative;
+      z-index: 2;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 26px;
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+      color: #3a2c31;
+    }
+
+
+    .opcion p {
+      position: relative;
+      z-index: 2;
+
+      font-size: 14px;
+      line-height: 1.6;
+      color: #806870;
+
+      max-width: 310px;
+      margin-bottom: 18px;
+    }
+
+
+    .ver {
+      position: relative;
+      z-index: 2;
+
+      color: #e65385;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+    }
+
+
+
+    /* ========================================
+       AYUDA Y REDES SOCIALES
+    ======================================== */
+
+    .contacto {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 6% 65px;
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(230,83,133,.08),
+          transparent 24%
+        ),
+        linear-gradient(
+          135deg,
+          #fdeaf0,
+          #fff7f9 55%,
+          #fffdfd
+        );
+
+      border-top: 1px solid #f2dce4;
+    }
+
+
+    .cara-contacto {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      left: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg);
+      opacity: 0.05;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .contacto-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+      margin: auto;
+    }
+
+
+    .contacto h2 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 35px;
+      font-weight: 500;
+      color: #382c30;
+      margin-bottom: 13px;
+    }
+
+
+    .contacto-texto {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #765d65;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: #25D366;
+      color: white;
+
+      padding: 13px 22px;
+      border-radius: 40px;
+
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+
+      margin-bottom: 25px;
+
+      box-shadow:
+        0 8px 22px rgba(37, 211, 102, 0.18);
+
+      transition:
+        transform 0.2s,
+        filter 0.2s;
+    }
+
+
+    .boton-whatsapp:hover {
+      transform: translateY(-2px);
+      filter: brightness(.97);
+    }
+
+
+    .boton-whatsapp svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+
+    .redes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+
+    .red-social {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: white;
+      color: #d94d7a;
+
+      border: 1px solid #efc6d3;
+
+      text-decoration: none;
+
+      box-shadow:
+        0 5px 16px rgba(83,48,58,.06);
+
+      transition:
+        transform .2s,
+        border-color .2s,
+        background .2s;
+    }
+
+
+    .red-social:hover {
+      transform: translateY(-3px);
+      background: #fff4f7;
+      border-color: #e7adbf;
+    }
+
+
+    .red-social svg {
+      width: 21px;
+      height: 21px;
+      display: block;
+    }
+
+
+    .ubicacion {
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      color: #765d65;
+      font-size: 13px;
+      font-weight: 700;
+
+      padding: 9px 15px;
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.72);
+      border: 1px solid #f0d7df;
+    }
+
+
+    .ubicacion svg {
+      width: 17px;
+      height: 17px;
+      color: #e65385;
+    }
+
+
+
+    /* ========================================
+       PIE DE PÁGINA
+    ======================================== */
+
+    footer {
+      background: #35272c;
+      color: #f9eaf0;
+      text-align: center;
+      padding: 28px 20px 25px;
+    }
+
+
+    .footer-logo {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+
+    .footer-subtexto {
+      font-size: 11px;
+      color: #ddcbd1;
+      letter-spacing: .4px;
+    }
+
+
+
+    /* ========================================
+       CELULAR
+    ======================================== */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 9px 12px 11px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+
+      .logo {
+        flex: 1;
+        min-width: 0;
+      }
+
+
+      .logo img {
+        width: 150px;
+        height: 58px;
+      }
+
+
+      .acciones-header {
+        gap: 7px;
+      }
+
+
+      .boton-header {
+        min-height: 38px;
+        font-size: 10px;
+        padding: 9px 11px;
+        gap: 6px;
+      }
+
+
+      .icono-header {
+        width: 15px;
+        height: 15px;
+      }
+
+
+      .hero {
+        min-height: 285px;
+        padding: 50px 20px;
+      }
+
+
+      .cara-hero {
+        width: 250px;
+        height: 250px;
+        right: -80px;
+        opacity: 0.055;
+      }
+
+
+      h1 {
+        font-size: 40px;
+      }
+
+
+      .logo-muna-hero {
+        width: min(245px, 72vw);
+        height: 90px;
+      }
+
+
+      .hero p {
+        font-size: 15px;
+      }
+
+
+      .seccion {
+        padding: 50px 15px 60px;
+      }
+
+
+      .titulo h2 {
+        font-size: 29px;
+      }
+
+
+      .opciones {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 18px;
+      }
+
+
+      .opcion {
+        min-height: 205px;
+        border-radius: 20px;
+      }
+
+
+      .opcion h3 {
+        font-size: 24px;
+      }
+
+
+      .cara-seccion {
+        width: 180px;
+        height: 180px;
+      }
+
+
+      .contacto {
+        padding: 55px 18px 50px;
+      }
+
+
+      .contacto h2 {
+        font-size: 30px;
+      }
+
+
+      .cara-contacto {
+        width: 190px;
+        height: 190px;
+        left: -60px;
+        opacity: 0.04;
+      }
+
+    }
+
+
+
+    @media (max-width: 440px) {
+
+      header {
+        align-items: center;
+      }
+
+
+      .logo img {
+        width: 135px;
+        height: 54px;
+      }
+
+
+      .boton-header {
+        font-size: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+
+
+      .boton-header .icono-header {
+        width: 18px;
+        height: 18px;
+      }
+
+
+      h1 {
+        font-size: 36px;
+      }
+
+
+      .opcion {
+        padding: 25px 18px;
+      }
+
+    }
+
+  
+    .logo-marca {
+      width: 150px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+  
+    /* ========================================
+       PÁGINA CARTA DE COLORES
+    ======================================== */
+
+    .producto-carta {
+      position: relative;
+      padding: 60px 5% 70px;
+      overflow: hidden;
+    }
+
+    .producto-contenedor {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .carta-visual,
+    .selector-referencias {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid #f0d8e1;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(96, 42, 61, 0.08);
+    }
+
+    .carta-visual {
+      padding: 18px;
+    }
+
+    .carta-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .selector-referencias {
+      padding: 28px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .producto-marca {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #fff0f5;
+      color: #d94a79;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .selector-referencias h1 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      margin-bottom: 12px;
+      color: #382b30;
+    }
+
+    .descripcion-producto {
+      color: #735e66;
+      line-height: 1.65;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .como-comprar {
+      background: #fff7fa;
+      border: 1px solid #f4d8e2;
+      border-radius: 17px;
+      padding: 16px;
+      margin-bottom: 22px;
+    }
+
+    .como-comprar strong {
+      display: block;
+      color: #d94a79;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .como-comprar p {
+      color: #6f5961;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .form-referencia {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .campo-ref {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #e8cbd5;
+      border-radius: 14px;
+      padding: 0 15px;
+      font: inherit;
+      color: #3d3035;
+      outline: none;
+      background: #fff;
+    }
+
+    .campo-ref:focus {
+      border-color: #df7194;
+      box-shadow: 0 0 0 3px rgba(223,113,148,0.10);
+    }
+
+    .btn-agregar-ref {
+      min-height: 48px;
+      border: 0;
+      border-radius: 14px;
+      padding: 0 18px;
+      background: #de5b86;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-agregar-ref:hover {
+      background: #cf4b77;
+    }
+
+    .mensaje-error {
+      min-height: 20px;
+      margin-bottom: 8px;
+      color: #b73c62;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .lista-referencias {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .lista-vacia {
+      padding: 18px 12px;
+      border: 1px dashed #e8cbd5;
+      border-radius: 14px;
+      text-align: center;
+      color: #9a8089;
+      font-size: 13px;
+    }
+
+    .ref-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px 12px 14px;
+      border: 1px solid #f0d9e1;
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .ref-nombre {
+      font-size: 14px;
+      font-weight: 800;
+      color: #49373e;
+    }
+
+    .cantidad-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      border-radius: 999px;
+      background: #fff4f7;
+    }
+
+    .cantidad-control button {
+      width: 31px;
+      height: 31px;
+      border: 0;
+      border-radius: 50%;
+      background: white;
+      color: #d94a79;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(80,40,55,0.08);
+    }
+
+    .cantidad-control span {
+      min-width: 22px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .btn-eliminar {
+      border: 0;
+      background: transparent;
+      color: #ad7b8b;
+      font-size: 19px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .resumen-pedido {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+      padding-top: 16px;
+      margin-top: 4px;
+      border-top: 1px solid #f0dce3;
+      font-size: 14px;
+      color: #6d5960;
+    }
+
+    .resumen-pedido strong {
+      color: #3f3036;
+    }
+
+    .btn-pedido-final {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 16px;
+      background: #de5b86;
+      color: white;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(210,70,115,0.20);
+    }
+
+    .btn-pedido-final:hover {
+      background: #ce4c77;
+      transform: translateY(-1px);
+    }
+
+    .nota-disponibilidad {
+      margin-top: 12px;
+      color: #8d737c;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .producto-carta {
+        padding: 38px 4% 55px;
+      }
+
+      .producto-contenedor {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .selector-referencias {
+        position: static;
+        padding: 22px 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .form-referencia {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-agregar-ref {
+        width: 100%;
+      }
+
+      .ref-item {
+        grid-template-columns: 1fr auto;
+      }
+
+      .ref-nombre {
+        grid-column: 1 / -1;
+      }
+    }
+
+  
+    .toast-carrito {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 18px);
+      width: min(92%, 390px);
+      background: #3b3035;
+      color: #fff;
+      padding: 13px 16px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s ease;
+      z-index: 9999;
+    }
+
+    .toast-carrito.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+
+
+    /* ========================================
+       PÁGINA SHELL MUNA 15 ML
+    ======================================== */
+
+    .satin {
+      position: relative;
+      overflow: hidden;
+      padding: 58px 5% 75px;
+      background: #fffdfd;
+    }
+
+    .shell-contenido {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .shell-encabezado {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .shell-encabezado h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 500;
+      color: #382b30;
+      margin-bottom: 9px;
+    }
+
+    .shell-encabezado p {
+      color: #806870;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .producto-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.97);
+      border: 1px solid #f0d8e1;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(96, 42, 61, 0.08);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+      border-color: #e9bdcc;
+      box-shadow: 0 17px 38px rgba(96, 42, 61, 0.12);
+    }
+
+    .producto-imagen-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #fff7fa;
+      border-bottom: 1px solid #f5e3e9;
+    }
+
+    .producto-imagen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .producto-card.agotado .producto-imagen {
+      opacity: .72;
+      filter: grayscale(.12);
+    }
+
+    .estado-producto {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      z-index: 2;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .estado-disponible {
+      background: #edf8f1;
+      color: #458463;
+      border: 1px solid #d4eadc;
+    }
+
+    .estado-agotado {
+      background: #fff0f3;
+      color: #be4868;
+      border: 1px solid #f1ccd7;
+    }
+
+    .producto-info {
+      padding: 19px;
+    }
+
+    .producto-tipo {
+      color: #a17d89;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .producto-ref {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 500;
+      color: #3c2d32;
+      margin-bottom: 7px;
+    }
+
+    .producto-precio {
+      color: #d94a79;
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .producto-total {
+      color: #5f4851;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .producto-total strong {
+      color: #d94a79;
+      font-size: 15px;
+    }
+
+    .producto-acciones {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .cantidad-producto {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #edced8;
+      border-radius: 14px;
+      background: #fff7fa;
+      overflow: hidden;
+      min-height: 46px;
+    }
+
+    .cantidad-producto button {
+      width: 36px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      color: #d94a79;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .cantidad-producto button:hover {
+      background: #ffedf3;
+    }
+
+    .cantidad-producto input {
+      width: 38px;
+      border: 0;
+      outline: 0;
+      text-align: center;
+      background: transparent;
+      color: #47363c;
+      font-size: 14px;
+      font-weight: 900;
+      -moz-appearance: textfield;
+    }
+
+    .cantidad-producto input::-webkit-outer-spin-button,
+    .cantidad-producto input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .btn-agregar-producto {
+      min-height: 46px;
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 13px;
+      background: #de5b86;
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(210,70,115,.16);
+      transition: background .2s, transform .2s;
+    }
+
+    .btn-agregar-producto:hover {
+      background: #ce4c77;
+      transform: translateY(-1px);
+    }
+
+    .agotado-bloque {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 14px;
+      background: #fff1f4;
+      color: #bc4968;
+      border: 1px solid #f0cfda;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nota-shell {
+      margin: 28px auto 0;
+      max-width: 660px;
+      text-align: center;
+      color: #8d737c;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 850px) {
+      .productos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .satin {
+        padding: 44px 14px 60px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell-encabezado h2 {
+        font-size: 29px;
+      }
+
+      .productos-grid {
+        gap: 12px;
+      }
+
+      .producto-info {
+        padding: 12px;
+      }
+
+      .producto-ref {
+        font-size: 21px;
+      }
+
+      .producto-precio {
+        font-size: 18px;
+        margin-bottom: 13px;
+      }
+
+      .producto-acciones {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .cantidad-producto {
+        width: 100%;
+      }
+
+      .cantidad-producto button {
+        flex: 1;
+      }
+
+      .cantidad-producto input {
+        width: 46px;
+      }
+
+      .btn-agregar-producto,
+      .agotado-bloque {
+        font-size: 10px;
+        min-height: 43px;
+      }
+
+      .estado-producto {
+        top: 9px;
+        right: 9px;
+        padding: 6px 8px;
+        font-size: 9px;
+      }
+
+      .producto-imagen-wrap {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <!-- ======================================
+       CABECERA
+  ======================================= -->
+
+  <header>
+
+    <a
+      href="index.html"
+      class="logo"
+      aria-label="Bella Shop"
+    >
+
+      <img
+        src="imagenes/Logo Bellashop png.png"
+        alt="Bella Shop - Tienda de Belleza"
+      >
+
+    </a>
+
+
+    <div class="acciones-header">
+
+      <a
+        href="muna12ml.html"
+        class="boton-header boton-volver"
+        aria-label="Volver a Semipermanente"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+
+        <span>VOLVER</span>
+
+      </a>
+
+
+      <a
+        href="index.html"
+        class="boton-header boton-inicio"
+        aria-label="Ir al inicio"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5.5 10.5V20h13v-9.5"/>
+          <path d="M9.5 20v-6h5v6"/>
+        </svg>
+
+        <span>INICIO</span>
+
+      </a>
+
+
+      <a
+        id="linkMiPedido" href="carrito.html"
+        class="boton-header boton-pedido"
+        aria-label="Mi pedido"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.3 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/>
+        </svg>
+
+        <span>MI PEDIDO</span>
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ======================================
+       PORTADA
+  ======================================= -->
+
+  <section class="hero">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-hero"
+    >
+
+    <div class="hero-contenido">
+
+      <span class="etiqueta">
+        MUNA · 12 ML
+      </span>
+
+      <img
+        src="imagenes/logo muna.png"
+        alt="Logo Muna"
+        class="logo-muna-hero"
+      >
+
+      <h1>Shell</h1>
+
+      <p>
+        ¡Llegaste a nuestros Shell Muna! 💕✨
+        Escoge tus tonos favoritos y agrégalos a tu pedido. 💅💗
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="satin">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-seccion"
+    >
+
+    <div class="shell-contenido">
+
+      <div class="shell-encabezado">
+        <h2>Escoge tu tono</h2>
+        <p>Todos los tonos Shell Muna 15 ml tienen un precio de <strong>$16.500 c/u</strong>.</p>
+      </div>
+
+      <div class="productos-grid">
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-02.png"
+            alt="Shell Muna 15 ml REF 02"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 02</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-02">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-02', -1)">−</button>
+              <input id="cantidad-02" type="number" min="1" value="1" aria-label="Cantidad REF 02">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-02', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '02', 16500, 'cantidad-02')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-03.png"
+            alt="Shell Muna 15 ml REF 03"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 03</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-03">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-03', -1)">−</button>
+              <input id="cantidad-03" type="number" min="1" value="1" aria-label="Cantidad REF 03">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-03', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '03', 16500, 'cantidad-03')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-04.png"
+            alt="Shell Muna 15 ml REF 04"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 04</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-04">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-04', -1)">−</button>
+              <input id="cantidad-04" type="number" min="1" value="1" aria-label="Cantidad REF 04">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-04', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '04', 16500, 'cantidad-04')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-06.png"
+            alt="Shell Muna 15 ml REF 06"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 06</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-06">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-06', -1)">−</button>
+              <input id="cantidad-06" type="number" min="1" value="1" aria-label="Cantidad REF 06">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-06', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '06', 16500, 'cantidad-06')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-08.png"
+            alt="Shell Muna 15 ml REF 08"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 08</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-08">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-08', -1)">−</button>
+              <input id="cantidad-08" type="number" min="1" value="1" aria-label="Cantidad REF 08">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-08', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '08', 16500, 'cantidad-08')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-12.png"
+            alt="Shell Muna 15 ml REF 12"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 12</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-12">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-12', -1)">−</button>
+              <input id="cantidad-12" type="number" min="1" value="1" aria-label="Cantidad REF 12">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-12', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '12', 16500, 'cantidad-12')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-13.png"
+            alt="Shell Muna 15 ml REF 13"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 13</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-13">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-13', -1)">−</button>
+              <input id="cantidad-13" type="number" min="1" value="1" aria-label="Cantidad REF 13">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-13', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '13', 16500, 'cantidad-13')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-15.png"
+            alt="Shell Muna 15 ml REF 15"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 15</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-15">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-15', -1)">−</button>
+              <input id="cantidad-15" type="number" min="1" value="1" aria-label="Cantidad REF 15">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-15', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '15', 16500, 'cantidad-15')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-18.png"
+            alt="Shell Muna 15 ml REF 18"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 18</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-18">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-18', -1)">−</button>
+              <input id="cantidad-18" type="number" min="1" value="1" aria-label="Cantidad REF 18">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-18', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '18', 16500, 'cantidad-18')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-26.png"
+            alt="Shell Muna 15 ml REF 26"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 26</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-26">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-26', -1)">−</button>
+              <input id="cantidad-26" type="number" min="1" value="1" aria-label="Cantidad REF 26">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-26', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '26', 16500, 'cantidad-26')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-27.png"
+            alt="Shell Muna 15 ml REF 27"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 27</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-27">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-27', -1)">−</button>
+              <input id="cantidad-27" type="number" min="1" value="1" aria-label="Cantidad REF 27">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-27', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '27', 16500, 'cantidad-27')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-32.png"
+            alt="Shell Muna 15 ml REF 32"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 32</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-32">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-32', -1)">−</button>
+              <input id="cantidad-32" type="number" min="1" value="1" aria-label="Cantidad REF 32">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-32', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '32', 16500, 'cantidad-32')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-35.png"
+            alt="Shell Muna 15 ml REF 35"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 35</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-35">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-35', -1)">−</button>
+              <input id="cantidad-35" type="number" min="1" value="1" aria-label="Cantidad REF 35">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-35', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '35', 16500, 'cantidad-35')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-imagen-wrap">
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
+          <img
+            src="imagenes/muna-shell-36.png"
+            alt="Shell Muna 15 ml REF 36"
+            class="producto-imagen"
+          >
+        </div>
+
+        <div class="producto-info">
+          <div class="producto-tipo">Muna · Shell 15 ml</div>
+          <h3 class="producto-ref">REF 36</h3>
+
+          <div class="producto-precio">$16.500 c/u</div>
+          <div class="producto-total" id="total-36">
+            Total: <strong>$16.500</strong>
+          </div>
+
+          <div class="producto-acciones">
+            <div class="cantidad-producto">
+              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-36', -1)">−</button>
+              <input id="cantidad-36" type="number" min="1" value="1" aria-label="Cantidad REF 36">
+              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-36', 1)">+</button>
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              onclick="agregarProducto('Shell Muna 15 ml', '36', 16500, 'cantidad-36')"
+            >
+              AGREGAR AL PEDIDO
+            </button>
+          </div>
+        </div>
+      </article>
+
+      </div>
+
+      <p class="nota-shell">
+        Te confirmamos la disponibilidad según la referencia escogida.
+      </p>
+
+    </div>
+
+  </section>
+
+<section class="contacto">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-contacto"
+    >
+
+
+    <div class="contacto-contenido">
+
+      <h2>
+        ¿Necesitas una ayudita? 💕
+      </h2>
+
+
+      <p class="contacto-texto">
+        Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+        y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+      </p>
+
+
+      <a
+        href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop%21%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+        class="boton-whatsapp"
+        aria-label="WhatsApp Bella Shop"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 18.2-5.1 9.9 9.9 0 0 1-9.8 9.8Zm5.4-7.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.9-1.7-2.2-.2-.3 0-.4.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5H7c-.3 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6.1 5.3.9.4 1.5.6 2 .7.9.3 1.7.2 2.3.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/>
+        </svg>
+
+        ESCRÍBENOS POR WHATSAPP
+
+      </a>
+
+
+
+      <div class="redes">
+
+        <a
+          href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+          class="red-social"
+          aria-label="Instagram Bella Shop"
+          title="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+          class="red-social"
+          aria-label="Facebook Bella Shop"
+          title="Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
+          </svg>
+
+        </a>
+
+
+        <a
+          href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+          class="red-social"
+          aria-label="TikTok Bella Shop"
+          title="TikTok"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
+          </svg>
+
+        </a>
+
+      </div>
+
+
+
+      <a
+        href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D"
+        class="ubicacion"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver ubicación de Bella Shop en Google Maps"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+          <circle cx="12" cy="10" r="2.5"/>
+        </svg>
+
+        Bella Shop · Popayán, Cauca
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       PIE DE PÁGINA
+  ======================================= -->
+
+  <footer>
+
+    <div class="footer-logo">
+      Bella Shop
+    </div>
+
+    <div class="footer-subtexto">
+      Tienda de Belleza · Popayán, Cauca
+    </div>
+
+  </footer>
+
+
+
+  <div id="toastCarrito" class="toast-carrito">✓ Producto agregado a tu pedido 💗</div>
+
+<script>
+    const CLAVE_CARRITO = "bellaShopCarrito";
+    let temporizadorToast;
+
+    function actualizarLinkMiPedido() {
+      const link = document.getElementById("linkMiPedido");
+      if (link) link.href = "carrito.html";
+    }
+
+    function formatoPesos(valor) {
+      return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function actualizarTotal(idInput) {
+      const input = document.getElementById(idInput);
+      if (!input) return;
+
+      let cantidad = parseInt(input.value, 10);
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      const tarjeta = input.closest(".producto-card");
+      if (!tarjeta) return;
+
+      const total = tarjeta.querySelector(".producto-total strong");
+      if (!total) return;
+
+      total.textContent = formatoPesos(cantidad * 16500);
+    }
+
+    function cambiarCantidad(idInput, cambio) {
+      const input = document.getElementById(idInput);
+      if (!input) return;
+
+      let cantidad = parseInt(input.value, 10);
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      cantidad += cambio;
+      if (cantidad < 1) cantidad = 1;
+
+      input.value = cantidad;
+      actualizarTotal(idInput);
+    }
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return Array.isArray(guardado) ? guardado : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById("toastCarrito");
+      if (!toast) return;
+
+      toast.textContent = mensaje;
+      toast.classList.add("visible");
+
+      clearTimeout(temporizadorToast);
+      temporizadorToast = setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2200);
+    }
+
+    function agregarProducto(nombre, referencia, precio, idCantidad) {
+      const input = document.getElementById(idCantidad);
+      if (!input) return;
+
+      let cantidad = parseInt(input.value, 10);
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      const carrito = leerCarrito();
+      const claveProducto = nombre + " - Ref. " + referencia;
+
+      const existente = carrito.find(
+        producto => producto.clave === claveProducto
+      );
+
+      if (existente) {
+        existente.cantidad += cantidad;
+      } else {
+        carrito.push({
+          clave: claveProducto,
+          nombre: nombre,
+          referencia: String(referencia),
+          precio: precio,
+          cantidad: cantidad
+        });
+      }
+
+      localStorage.setItem(
+        CLAVE_CARRITO,
+        JSON.stringify(carrito)
+      );
+
+      actualizarLinkMiPedido();
+      mostrarToast("✓ REF " + referencia + " agregada a tu pedido 💗");
+      input.value = 1;
+      actualizarTotal(idCantidad);
+    }
+
+    document.querySelectorAll(".cantidad-producto input").forEach(input => {
+      input.addEventListener("input", function () {
+        let cantidad = parseInt(this.value, 10);
+
+        if (!Number.isInteger(cantidad) || cantidad < 1) {
+          cantidad = 1;
+        }
+
+        actualizarTotal(this.id);
+      });
+
+      input.addEventListener("change", function () {
+        let cantidad = parseInt(this.value, 10);
+
+        if (!Number.isInteger(cantidad) || cantidad < 1) {
+          this.value = 1;
+        }
+
+        actualizarTotal(this.id);
+      });
+
+      actualizarTotal(input.id);
+    });
+
+    actualizarLinkMiPedido();
+  </script>
+
+</body>
+
+</html>
