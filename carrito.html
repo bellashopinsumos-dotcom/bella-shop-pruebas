@@ -1,1 +1,1569 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Bella Shop - Mi pedido</title>
+
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rosa: #e85f91;
+      --rosa-fuerte: #d94a79;
+      --rosa-suave: #fff0f5;
+      --rosa-claro: #fff8fb;
+      --borde: #f1d8e1;
+      --texto: #3b3035;
+      --texto-suave: #7e6871;
+      --blanco: #ffffff;
+      --sombra: 0 14px 36px rgba(103, 52, 71, 0.08);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(232,95,145,0.08), transparent 30%),
+        linear-gradient(180deg, #fffafb 0%, #fff6f9 100%);
+      color: var(--texto);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .contenedor {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 26px 0 50px;
+    }
+
+    .tarjeta-principal {
+      background: transparent;
+    }
+
+    .cabecera-bella {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--borde);
+      border-radius: 26px;
+      padding: 18px 22px 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--sombra);
+      text-align: center;
+    }
+
+    .cabecera-bella::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -35px;
+      top: -28px;
+      background: url("imagenes/Cara logo bellashop.png") center/contain no-repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .marca-superior {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--rosa-suave);
+      color: var(--rosa-fuerte);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .titulo {
+      text-align: center;
+      color: var(--texto);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+
+    .titulo span {
+      color: var(--rosa-fuerte);
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: var(--texto-suave);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 620px;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .carrito-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel-lista,
+    .panel-resumen {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--borde);
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+    }
+
+    .panel-lista {
+      padding: 20px;
+    }
+
+    .panel-resumen {
+      padding: 20px;
+      position: sticky;
+      top: 18px;
+    }
+
+    .encabezado-lista {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f2e1e7;
+    }
+
+    .encabezado-lista h2,
+    .panel-resumen h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--texto);
+    }
+
+    .contador-items {
+      background: var(--rosa-suave);
+      color: var(--rosa-fuerte);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .carrito-vacio {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--borde);
+      border-radius: 24px;
+      text-align: center;
+      padding: 42px 20px;
+      box-shadow: var(--sombra);
+    }
+
+    .carrito-vacio .icono {
+      font-size: 46px;
+      margin-bottom: 12px;
+    }
+
+    .carrito-vacio h3 {
+      margin: 0 0 7px;
+      color: var(--rosa-fuerte);
+      font-size: 22px;
+    }
+
+    .carrito-vacio p {
+      margin: 0 auto 18px;
+      color: var(--texto-suave);
+      font-size: 14px;
+      line-height: 1.55;
+      max-width: 430px;
+    }
+
+    .btn-volver-catalogo {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--rosa);
+      color: white;
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: 999px;
+    }
+
+    .item-carrito {
+      background: #fffafc;
+      border: 1px solid #f1dce4;
+      border-radius: 19px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .item-superior {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .nombre-item {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin: 0;
+      color: var(--texto);
+    }
+
+    .ref-item {
+      display: inline-block;
+      margin-top: 7px;
+      background: #fff0f5;
+      color: #a64868;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .precio-unitario-box {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .precio-unitario-box small {
+      display: block;
+      color: var(--texto-suave);
+      margin-bottom: 3px;
+      font-size: 11px;
+    }
+
+    .precio-item {
+      color: var(--rosa-fuerte);
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .linea-item {
+      height: 1px;
+      background: #f1e1e7;
+      margin: 12px 0;
+    }
+
+    .item-inferior {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cantidad-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff0f5;
+      padding: 5px;
+      border-radius: 999px;
+    }
+
+    .btn-cantidad {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 0;
+      background: white;
+      color: var(--rosa-fuerte);
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(86,45,60,0.08);
+    }
+
+    .numero-cantidad {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--texto);
+    }
+
+    .acciones-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .subtotal-item {
+      font-size: 14px;
+      color: var(--texto-suave);
+    }
+
+    .subtotal-item strong {
+      color: var(--texto);
+      font-size: 15px;
+    }
+
+    .btn-eliminar {
+      border: 0;
+      background: transparent;
+      color: #b46d85;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .fila-resumen {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+      color: var(--texto-suave);
+      font-size: 14px;
+    }
+
+    .fila-resumen strong {
+      color: var(--texto);
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding-top: 15px;
+      margin-top: 12px;
+      border-top: 1px solid #f0dfe5;
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--texto);
+    }
+
+    .total span:last-child {
+      color: var(--rosa-fuerte);
+    }
+
+    .nota {
+      margin-top: 12px;
+      color: var(--texto-suave);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .btn-finalizar,
+    .btn-vaciar {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .btn-finalizar {
+      background: var(--rosa);
+      color: white;
+      margin-top: 16px;
+      box-shadow: 0 10px 22px rgba(220,82,130,0.18);
+    }
+
+    .btn-finalizar:hover {
+      background: var(--rosa-fuerte);
+    }
+
+    .btn-vaciar {
+      background: var(--rosa-suave);
+      color: #a64868;
+      margin-top: 10px;
+    }
+
+    .seguir-comprando-link {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: var(--rosa-fuerte);
+      font-weight: 800;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    /* Vista producto antigua: se conserva por compatibilidad, pero ya no es la principal */
+    .producto-box {
+      background: white;
+      border: 1px solid var(--borde);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--sombra);
+    }
+
+    .producto-box h3 {
+      margin: 0 0 6px;
+    }
+
+    .precio {
+      color: var(--rosa-fuerte);
+      font-weight: 900;
+    }
+
+    .referencia-box {
+      margin-top: 14px;
+    }
+
+    .referencia-box label {
+      display: block;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .ayuda-referencia {
+      margin-top: 7px;
+      color: var(--texto-suave);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #efcad7;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus {
+      border-color: var(--rosa);
+    }
+
+    .btn-principal,
+    .btn-seguir,
+    .btn-ver-pedido {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 13px;
+      font-weight: 800;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .btn-principal,
+    .btn-ver-pedido {
+      background: var(--rosa);
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+    }
+
+    .btn-seguir {
+      background: var(--rosa-suave);
+      color: #a64868;
+    }
+
+    .mensaje-producto {
+      text-align: center;
+      color: var(--rosa-fuerte);
+      font-weight: 800;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .acciones-despues {
+      margin-top: 14px;
+    }
+
+    .zona-whatsapp {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .contenedor {
+        width: min(100% - 18px, 680px);
+        padding-top: 14px;
+      }
+
+      .carrito-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-resumen {
+        position: static;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .cabecera-bella {
+        padding: 20px 16px;
+        border-radius: 20px;
+      }
+
+      .panel-lista,
+      .panel-resumen,
+      .carrito-vacio {
+        border-radius: 20px;
+      }
+
+      .item-superior {
+        flex-direction: column;
+      }
+
+      .precio-unitario-box {
+        text-align: left;
+      }
+
+      .item-inferior {
+        align-items: flex-start;
+      }
+
+      .acciones-item {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+
+</head>
+
+
+
+<body>
+
+  <div class="contenedor">
+
+    <div class="tarjeta-principal">
+
+      <div class="cabecera-bella">
+        <span class="marca-superior">BELLA SHOP · TU PEDIDO</span>
+        <h1 class="titulo">Mi <span>pedido</span> 💕</h1>
+        <div class="subtitulo">
+          Revisa tus productos, ajusta cantidades y confirma que todo esté como lo quieres.
+        </div>
+      </div>
+
+
+      <!-- ===================== -->
+      <!-- VISTA PRODUCTO ANTIGUA -->
+      <!-- ===================== -->
+
+      <div id="vistaProducto" class="oculto">
+
+        <div class="producto-box">
+
+          <h3 id="nombreProducto"></h3>
+
+          <div class="precio" id="precioProducto"></div>
+
+          <div id="zonaReferencia" class="referencia-box oculto">
+
+            <label for="referencia">
+              Referencia(s) del producto
+            </label>
+
+            <input
+              id="referencia"
+              type="text"
+              placeholder="Ejemplo: 1, 2, 3"
+              autocomplete="off"
+            >
+
+            <div class="ayuda-referencia">
+              Si deseas varios tonos, separa cada referencia con una coma.
+              Cada referencia corresponde a una unidad.
+            </div>
+
+          </div>
+
+          <button
+            class="btn-seguir"
+            onclick="seguirComprando()">
+            ← Regresar
+          </button>
+
+          <button
+            id="botonAgregar"
+            class="btn-principal"
+            onclick="agregarProductoActual()">
+            🛍️ Agregar al pedido
+          </button>
+
+          <div id="mensajeProducto" class="mensaje-producto"></div>
+
+          <div
+            id="accionesDespuesAgregar"
+            class="acciones-despues oculto">
+
+            <button
+              class="btn-seguir"
+              onclick="seguirComprando()">
+              ← Seguir comprando
+            </button>
+
+            <a
+              class="btn-ver-pedido"
+              href="?modo=carrito">
+              🛍️ Ver mi pedido
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================== -->
+      <!-- VISTA CARRITO -->
+      <!-- ===================== -->
+
+      <div id="vistaCarrito">
+
+        <div id="estadoVacio" class="carrito-vacio oculto">
+
+          <div class="icono">🛍️</div>
+
+          <h3>Tu pedido está vacío</h3>
+
+          <p>
+            Todavía no has agregado productos. Vuelve al catálogo y encuentra tus favoritos. 💗
+          </p>
+
+          <a
+            class="btn-volver-catalogo"
+            href="index.html">
+            EXPLORAR CATÁLOGO
+          </a>
+
+        </div>
+
+
+        <div id="contenidoCarrito" class="oculto">
+
+          <div class="carrito-layout">
+
+            <section class="panel-lista">
+
+              <div class="encabezado-lista">
+                <h2>Productos seleccionados</h2>
+                <span class="contador-items" id="contadorItems">0 productos</span>
+              </div>
+
+              <div id="listaCarrito"></div>
+
+            </section>
+
+
+            <aside class="panel-resumen">
+
+              <h2>Resumen del pedido</h2>
+
+              <div style="height:14px"></div>
+
+              <div class="fila-resumen">
+                <span>Referencias / productos</span>
+                <strong id="resumenProductos">0</strong>
+              </div>
+
+              <div class="fila-resumen">
+                <span>Unidades</span>
+                <strong id="resumenUnidades">0</strong>
+              </div>
+
+              <div class="total">
+                <span>Total estimado</span>
+                <span>$<span id="total">0</span></span>
+              </div>
+
+              <div class="nota">
+                Te confirmamos la disponibilidad según la referencia escogida.
+                El valor final será confirmado por Bella Shop antes de realizar la compra.
+              </div>
+
+              <button
+                class="btn-finalizar"
+                onclick="prepararWhatsapp()">
+                💗 FINALIZAR PEDIDO
+              </button>
+
+              <button
+                class="btn-vaciar"
+                onclick="vaciarCarrito()">
+                Vaciar pedido
+              </button>
+
+              <a
+                class="seguir-comprando-link"
+                href="index.html">
+                ← Seguir comprando
+              </a>
+
+              <div id="zonaWhatsapp" class="zona-whatsapp oculto">
+
+                <a
+                  id="enlaceWhatsapp"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Enviar pedido por WhatsApp
+                </a>
+
+              </div>
+
+            </aside>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+
+  /*
+  ==============================
+  LEER DATOS DE LA URL
+  ==============================
+  */
+
+  const parametros =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const modo =
+    parametros.get("modo") ||
+    "carrito";
+
+
+  const nombre =
+    parametros.get("nombre") ||
+    "";
+
+
+  const precio =
+    Number(
+      parametros.get("precio")
+    ) || 0;
+
+
+  const tipo =
+    parametros.get("tipo") ||
+    "individual";
+
+    try {
+
+      const pedidoImportado =
+        JSON.parse(pedidoUrl);
+
+      if (Array.isArray(pedidoImportado)) {
+
+        localStorage.setItem(
+          "bellaShopCarrito",
+          JSON.stringify(pedidoImportado)
+        );
+
+        return pedidoImportado;
+      }
+
+    } catch (error) {
+
+      console.error(
+        "No se pudo leer el pedido enviado desde el catálogo.",
+        error
+      );
+
+    }
+
+    return null;
+  }
+
+
+
+  /*
+  ==============================
+  CARRITO
+  ==============================
+  */
+
+  function obtenerCarrito() {
+
+    try {
+
+      return JSON.parse(
+        localStorage.getItem("bellaShopCarrito")
+      ) || [];
+
+    } catch (error) {
+
+      return [];
+
+    }
+
+  }
+
+
+  function guardarCarrito(carrito) {
+
+    localStorage.setItem(
+
+      "bellaShopCarrito",
+
+      JSON.stringify(
+        carrito
+      )
+
+    );
+
+  }
+
+
+
+  /*
+  ==============================
+  INICIAR
+  ==============================
+  */
+
+  function iniciar() {
+
+    if (modo === "producto") {
+
+      document
+        .getElementById("vistaCarrito")
+        .classList
+        .add("oculto");
+
+
+      document
+        .getElementById(
+          "vistaProducto"
+        )
+        .classList
+        .remove("oculto");
+
+
+      document
+        .getElementById(
+          "nombreProducto"
+        )
+        .innerText =
+        nombre ||
+        "Producto Bella Shop";
+
+
+      document
+        .getElementById(
+          "precioProducto"
+        )
+        .innerText =
+
+        "$" +
+
+        precio.toLocaleString(
+          "es-CO"
+        );
+
+
+      if (tipo === "carta") {
+
+        document
+          .getElementById(
+            "zonaReferencia"
+          )
+          .classList
+          .remove("oculto");
+
+      }
+
+
+    } else {
+
+
+      document
+        .getElementById(
+          "vistaCarrito"
+        )
+        .classList
+        .remove("oculto");
+
+
+      mostrarCarrito();
+
+    }
+
+  }
+
+
+
+  /*
+  ==============================
+  AGREGAR PRODUCTO
+  ==============================
+  */
+
+  function agregarProductoActual() {
+
+    const carrito =
+      obtenerCarrito();
+
+
+    /*
+    ==============================
+    PRODUCTOS TIPO CARTA
+    ==============================
+    */
+
+    if (tipo === "carta") {
+
+
+      const textoReferencias =
+
+        document
+          .getElementById(
+            "referencia"
+          )
+          .value
+          .trim();
+
+
+      if (!textoReferencias) {
+
+
+        document
+          .getElementById(
+            "mensajeProducto"
+          )
+          .innerText =
+
+          "💗 Escribe primero la referencia del tono.";
+
+
+        return;
+
+      }
+
+
+      const referencias =
+
+        textoReferencias
+          .split(",")
+          .map(
+            referencia =>
+              referencia.trim()
+          )
+          .filter(
+            referencia =>
+              referencia !== ""
+          );
+
+
+      if (referencias.length === 0) {
+
+
+        document
+          .getElementById(
+            "mensajeProducto"
+          )
+          .innerText =
+
+          "💗 Escribe una referencia válida.";
+
+
+        return;
+
+      }
+
+
+      referencias.forEach(
+
+        referencia => {
+
+
+          const claveProducto =
+
+            nombre +
+            " - Ref. " +
+            referencia;
+
+
+          const existente =
+
+            carrito.find(
+
+              producto =>
+
+                producto.clave ===
+                claveProducto
+
+            );
+
+
+          if (existente) {
+
+
+            existente.cantidad++;
+
+
+          } else {
+
+
+            carrito.push({
+
+              clave:
+                claveProducto,
+
+              nombre:
+                nombre,
+
+              referencia:
+                referencia,
+
+              precio:
+                precio,
+
+              cantidad:
+                1
+
+            });
+
+          }
+
+        }
+
+      );
+
+
+      guardarCarrito(
+        carrito
+      );
+
+
+      document
+        .getElementById(
+          "mensajeProducto"
+        )
+        .innerText =
+
+        referencias.length === 1
+
+        ? "✓ Producto agregado al pedido 💗"
+
+        : "✓ " +
+          referencias.length +
+          " productos agregados al pedido 💗";
+
+
+      document
+        .getElementById(
+          "accionesDespuesAgregar"
+        )
+        .classList
+        .remove("oculto");
+
+
+      document
+        .getElementById(
+          "referencia"
+        )
+        .value = "";
+
+
+      return;
+
+    }
+
+
+    /*
+    ==============================
+    PRODUCTOS INDIVIDUALES
+    ==============================
+    */
+
+
+    const claveProducto =
+      nombre;
+
+
+    const existente =
+
+      carrito.find(
+
+        producto =>
+
+          producto.clave ===
+          claveProducto
+
+      );
+
+
+    if (existente) {
+
+
+      existente.cantidad++;
+
+
+    } else {
+
+
+      carrito.push({
+
+        clave:
+          claveProducto,
+
+        nombre:
+          nombre,
+
+        referencia:
+          "",
+
+        precio:
+          precio,
+
+        cantidad:
+          1
+
+      });
+
+    }
+
+
+    guardarCarrito(
+      carrito
+    );
+
+
+    document
+      .getElementById(
+        "mensajeProducto"
+      )
+      .innerText =
+
+      "✓ Producto agregado al pedido 💗";
+
+
+    document
+      .getElementById(
+        "accionesDespuesAgregar"
+      )
+      .classList
+      .remove("oculto");
+
+  }
+
+
+
+  /*
+  ==============================
+  SEGUIR COMPRANDO
+  ==============================
+  */
+
+  function seguirComprando() {
+
+    if (
+      window.history.length > 1
+    ) {
+
+      window.history.back();
+
+    } else {
+
+      window.location.href =
+        "https://sites.google.com/";
+
+    }
+
+  }
+
+
+
+  /*
+  ==============================
+  MOSTRAR CARRITO
+  ==============================
+  */
+
+  function mostrarCarrito() {
+
+    const carrito = obtenerCarrito();
+
+    const estadoVacio =
+      document.getElementById("estadoVacio");
+
+    const contenido =
+      document.getElementById("contenidoCarrito");
+
+    const lista =
+      document.getElementById("listaCarrito");
+
+    const totalElemento =
+      document.getElementById("total");
+
+    const contadorItems =
+      document.getElementById("contadorItems");
+
+    const resumenProductos =
+      document.getElementById("resumenProductos");
+
+    const resumenUnidades =
+      document.getElementById("resumenUnidades");
+
+    document
+      .getElementById("zonaWhatsapp")
+      .classList
+      .add("oculto");
+
+    if (carrito.length === 0) {
+
+      estadoVacio
+        .classList
+        .remove("oculto");
+
+      contenido
+        .classList
+        .add("oculto");
+
+      return;
+    }
+
+    estadoVacio
+      .classList
+      .add("oculto");
+
+    contenido
+      .classList
+      .remove("oculto");
+
+    let html = "";
+    let total = 0;
+    let unidadesTotales = 0;
+
+    carrito.forEach((producto, index) => {
+
+      const subtotal =
+        producto.precio * producto.cantidad;
+
+      total += subtotal;
+      unidadesTotales += producto.cantidad;
+
+      const referenciaHtml =
+        producto.referencia
+        ? `
+          <div class="ref-item">
+            Ref. ${producto.referencia}
+          </div>
+        `
+        : "";
+
+      html += `
+        <div class="item-carrito">
+
+          <div class="item-superior">
+
+            <div>
+              <div class="nombre-item">
+                ${producto.nombre}
+              </div>
+
+              ${referenciaHtml}
+            </div>
+
+            <div class="precio-unitario-box">
+              <small>Precio unitario</small>
+              <div class="precio-item">
+                $${producto.precio.toLocaleString("es-CO")}
+              </div>
+            </div>
+
+          </div>
+
+          <div class="linea-item"></div>
+
+          <div class="item-inferior">
+
+            <div class="cantidad-control">
+
+              <button
+                class="btn-cantidad"
+                onclick="cambiarCantidad(${index}, -1)">
+                −
+              </button>
+
+              <span class="numero-cantidad">
+                ${producto.cantidad}
+              </span>
+
+              <button
+                class="btn-cantidad"
+                onclick="cambiarCantidad(${index}, 1)">
+                +
+              </button>
+
+            </div>
+
+            <div class="acciones-item">
+
+              <div class="subtotal-item">
+                Subtotal:
+                <strong>
+                  $${subtotal.toLocaleString("es-CO")}
+                </strong>
+              </div>
+
+              <button
+                class="btn-eliminar"
+                onclick="eliminarProducto(${index})">
+                Eliminar
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    });
+
+    lista.innerHTML = html;
+
+    totalElemento.innerText =
+      total.toLocaleString("es-CO");
+
+    if (contadorItems) {
+      contadorItems.innerText =
+        carrito.length === 1
+        ? "1 producto"
+        : carrito.length + " productos";
+    }
+
+    if (resumenProductos) {
+      resumenProductos.innerText = carrito.length;
+    }
+
+    if (resumenUnidades) {
+      resumenUnidades.innerText = unidadesTotales;
+    }
+  }
+
+
+
+  /*
+  ==============================
+  CAMBIAR CANTIDAD
+  ==============================
+  */
+
+  function cambiarCantidad(
+    index,
+    cambio
+  ) {
+
+
+    const carrito =
+      obtenerCarrito();
+
+
+    carrito[index].cantidad +=
+      cambio;
+
+
+    if (
+      carrito[index].cantidad <= 0
+    ) {
+
+
+      carrito.splice(
+        index,
+        1
+      );
+
+    }
+
+
+    guardarCarrito(
+      carrito
+    );
+
+
+    mostrarCarrito();
+
+  }
+
+
+
+  /*
+  ==============================
+  ELIMINAR PRODUCTO
+  ==============================
+  */
+
+  function eliminarProducto(
+    index
+  ) {
+
+
+    const carrito =
+      obtenerCarrito();
+
+
+    carrito.splice(
+      index,
+      1
+    );
+
+
+    guardarCarrito(
+      carrito
+    );
+
+
+    mostrarCarrito();
+
+  }
+
+
+
+  /*
+  ==============================
+  VACIAR PEDIDO
+  ==============================
+  */
+
+  function vaciarCarrito() {
+
+
+    const confirmar =
+
+      confirm(
+        "¿Deseas vaciar todo tu pedido?"
+      );
+
+
+    if (!confirmar) {
+
+      return;
+
+    }
+
+
+    localStorage.removeItem(
+      "bellaShopCarrito"
+    );
+
+
+    mostrarCarrito();
+
+  }
+
+
+
+  /*
+  ==============================
+  WHATSAPP
+  ==============================
+  */
+
+  function prepararWhatsapp() {
+
+    const carrito = obtenerCarrito();
+
+    if (carrito.length === 0) {
+      return;
+    }
+
+    let mensaje =
+      "Hola Bella Shop 💕✨
+
+" +
+      "Quiero realizar el siguiente pedido:
+
+";
+
+    let total = 0;
+
+    carrito.forEach(producto => {
+
+      const subtotal =
+        producto.precio * producto.cantidad;
+
+      total += subtotal;
+
+      mensaje +=
+        "• " + producto.nombre + "
+";
+
+      if (producto.referencia) {
+        mensaje +=
+          "  Referencia: " +
+          producto.referencia +
+          "
+";
+      }
+
+      mensaje +=
+        "  Cantidad: " +
+        producto.cantidad +
+        "
+" +
+        "  Precio unitario: $" +
+        producto.precio.toLocaleString("es-CO") +
+        "
+" +
+        "  Subtotal: $" +
+        subtotal.toLocaleString("es-CO") +
+        "
+
+";
+    });
+
+    mensaje +=
+      "🛍️ TOTAL ESTIMADO: $" +
+      total.toLocaleString("es-CO") +
+      "
+
+" +
+      "Quedo pendiente de confirmar disponibilidad y valor final. 💗";
+
+    const numero =
+      "573122002698";
+
+    const url =
+      "https://api.whatsapp.com/send?phone=" +
+      numero +
+      "&text=" +
+      encodeURIComponent(mensaje);
+
+    window.open(
+      url,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+
+
+  iniciar();
+
+</script>
+
+</body>
+
+</html>
