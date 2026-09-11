@@ -1275,7 +1275,7 @@
 
 
       <a
-        id="linkMiPedido" href="https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/?modo=carrito"
+        id="linkMiPedido" href="carrito.html"
         class="boton-header boton-pedido"
         aria-label="Mi pedido"
       >
@@ -1642,18 +1642,11 @@
 
     const PRECIO_UNITARIO = 12500;
 
-    function actualizarLinkMiPedido(carrito) {
+    function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
       if (!link) return;
 
-      const pedidoCodificado = encodeURIComponent(
-        JSON.stringify(carrito || [])
-      );
-
-      link.href =
-        "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
-        "?modo=carrito&pedido=" +
-        pedidoCodificado;
+      link.href = "carrito.html";
     }
 
 
@@ -1833,7 +1826,7 @@
         JSON.stringify(carrito)
       );
 
-      actualizarLinkMiPedido(carrito);
+      actualizarLinkMiPedido();
 
       const toast = document.getElementById("toastCarrito");
       toast.classList.add("visible");
@@ -1849,9 +1842,9 @@
     try {
       const carritoGuardado =
         JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
-      actualizarLinkMiPedido(carritoGuardado);
+      actualizarLinkMiPedido();
     } catch (error) {
-      actualizarLinkMiPedido([]);
+      actualizarLinkMiPedido();
     }
 
     renderizarReferencias();
