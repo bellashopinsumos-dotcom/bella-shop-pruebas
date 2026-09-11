@@ -795,6 +795,41 @@
       }
     }
 
+  
+    .ayuda-carrito {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #f0dfe5;
+      text-align: center;
+    }
+
+    .ayuda-carrito-titulo {
+      color: #d94a79;
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .ayuda-carrito p {
+      margin: 0 0 12px;
+      color: #7e6871;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .btn-ayuda-whatsapp {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      background: #fff0f5;
+      border: 1px solid #f1d6e0;
+      color: #b24d72;
+      padding: 11px 12px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
   </style>
 
 </head>
@@ -1001,6 +1036,22 @@
                 href="index.html">
                 ← Seguir comprando
               </a>
+
+
+              <div class="ayuda-carrito">
+                <div class="ayuda-carrito-titulo">¿Necesitas una ayudita? 💕</div>
+                <p>
+                  Estamos aquí para ti ✨ Si tienes alguna duda con tu pedido,
+                  escríbenos y con mucho gusto te ayudamos. 💗
+                </p>
+                <a
+                  class="btn-ayuda-whatsapp"
+                  href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop%21%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  💬 HABLAR CON BELLA SHOP
+                </a>
+              </div>
 
               <div id="zonaWhatsapp" class="zona-whatsapp oculto">
 
@@ -1770,8 +1821,9 @@
     }
 
     let mensaje =
-      "Hola Bella Shop 💕✨\n\n" +
-      "Quiero realizar el siguiente pedido:\n\n";
+      "¡Holaaa, Bella Shop! 💕✨\n\n" +
+      "Estuve viendo el catálogo y encontré varias cositas que me encantaron 🥰. " +
+      "Quisiera realizar este pedido:\n\n";
 
     let total = 0;
 
@@ -1783,23 +1835,23 @@
       total += subtotal;
 
       mensaje +=
-        "• " + producto.nombre + "\n";
+        "🩷 " + producto.nombre + "\n";
 
       if (producto.referencia) {
         mensaje +=
-          "  Referencia: " +
+          "Referencia: " +
           producto.referencia +
           "\n";
       }
 
       mensaje +=
-        "  Cantidad: " +
+        "Cantidad: " +
         producto.cantidad +
         "\n" +
-        "  Precio unitario: $" +
+        "Precio unitario: $" +
         producto.precio.toLocaleString("es-CO") +
         "\n" +
-        "  Subtotal: $" +
+        "Subtotal: $" +
         subtotal.toLocaleString("es-CO") +
         "\n\n";
     });
@@ -1808,7 +1860,8 @@
       "🛍️ TOTAL ESTIMADO: $" +
       total.toLocaleString("es-CO") +
       "\n\n" +
-      "Quedo pendiente de confirmar disponibilidad y valor final. 💗";
+      "💕 IMPORTANTE: Entiendo que el envío de este pedido es una solicitud y que Bella Shop me confirmará la disponibilidad de cada producto y referencia escogida antes de finalizar la compra.\n\n" +
+      "Quedo pendiente de su confirmación. ¡Muchas gracias! ✨💗";
 
     const numero = "573122002698";
 
