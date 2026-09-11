@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Muna 12 ml | Bella Shop</title>
+  <title>Carta de Colores Muna 12 ml | Bella Shop</title>
 
 
   <style>
@@ -880,6 +880,291 @@
       margin: 0 auto 18px;
     }
 
+  
+    /* ========================================
+       PÁGINA CARTA DE COLORES
+    ======================================== */
+
+    .producto-carta {
+      position: relative;
+      padding: 60px 5% 70px;
+      overflow: hidden;
+    }
+
+    .producto-contenedor {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .carta-visual,
+    .selector-referencias {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid #f0d8e1;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(96, 42, 61, 0.08);
+    }
+
+    .carta-visual {
+      padding: 18px;
+    }
+
+    .carta-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .selector-referencias {
+      padding: 28px;
+      position: sticky;
+      top: 105px;
+    }
+
+    .producto-marca {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #fff0f5;
+      color: #d94a79;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .selector-referencias h1 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.08;
+      margin-bottom: 12px;
+      color: #382b30;
+    }
+
+    .descripcion-producto {
+      color: #735e66;
+      line-height: 1.65;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .como-comprar {
+      background: #fff7fa;
+      border: 1px solid #f4d8e2;
+      border-radius: 17px;
+      padding: 16px;
+      margin-bottom: 22px;
+    }
+
+    .como-comprar strong {
+      display: block;
+      color: #d94a79;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .como-comprar p {
+      color: #6f5961;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .form-referencia {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .campo-ref {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #e8cbd5;
+      border-radius: 14px;
+      padding: 0 15px;
+      font: inherit;
+      color: #3d3035;
+      outline: none;
+      background: #fff;
+    }
+
+    .campo-ref:focus {
+      border-color: #df7194;
+      box-shadow: 0 0 0 3px rgba(223,113,148,0.10);
+    }
+
+    .btn-agregar-ref {
+      min-height: 48px;
+      border: 0;
+      border-radius: 14px;
+      padding: 0 18px;
+      background: #de5b86;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-agregar-ref:hover {
+      background: #cf4b77;
+    }
+
+    .mensaje-error {
+      min-height: 20px;
+      margin-bottom: 8px;
+      color: #b73c62;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .lista-referencias {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .lista-vacia {
+      padding: 18px 12px;
+      border: 1px dashed #e8cbd5;
+      border-radius: 14px;
+      text-align: center;
+      color: #9a8089;
+      font-size: 13px;
+    }
+
+    .ref-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px 12px 14px;
+      border: 1px solid #f0d9e1;
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .ref-nombre {
+      font-size: 14px;
+      font-weight: 800;
+      color: #49373e;
+    }
+
+    .cantidad-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      border-radius: 999px;
+      background: #fff4f7;
+    }
+
+    .cantidad-control button {
+      width: 31px;
+      height: 31px;
+      border: 0;
+      border-radius: 50%;
+      background: white;
+      color: #d94a79;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(80,40,55,0.08);
+    }
+
+    .cantidad-control span {
+      min-width: 22px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .btn-eliminar {
+      border: 0;
+      background: transparent;
+      color: #ad7b8b;
+      font-size: 19px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .resumen-pedido {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 16px;
+      margin-top: 4px;
+      border-top: 1px solid #f0dce3;
+      font-size: 14px;
+      color: #6d5960;
+    }
+
+    .resumen-pedido strong {
+      color: #3f3036;
+    }
+
+    .btn-pedido-final {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 16px;
+      background: #de5b86;
+      color: white;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(210,70,115,0.20);
+    }
+
+    .btn-pedido-final:hover {
+      background: #ce4c77;
+      transform: translateY(-1px);
+    }
+
+    .nota-disponibilidad {
+      margin-top: 12px;
+      color: #8d737c;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      .producto-carta {
+        padding: 38px 4% 55px;
+      }
+
+      .producto-contenedor {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .selector-referencias {
+        position: static;
+        padding: 22px 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .form-referencia {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-agregar-ref {
+        width: 100%;
+      }
+
+      .ref-item {
+        grid-template-columns: 1fr auto;
+      }
+
+      .ref-nombre {
+        grid-column: 1 / -1;
+      }
+    }
+
   </style>
 
 </head>
@@ -912,7 +1197,7 @@
     <div class="acciones-header">
 
       <a
-        href="muna.html"
+        href="muna12ml.html"
         class="boton-header boton-volver"
         aria-label="Volver a Semipermanente"
       >
@@ -1004,13 +1289,11 @@
       class="cara-hero"
     >
 
-
     <div class="hero-contenido">
 
       <span class="etiqueta">
-        BELLA SHOP
+        MUNA · 12 ML
       </span>
-
 
       <img
         src="imagenes/logo muna.png"
@@ -1018,11 +1301,10 @@
         class="logo-muna-hero"
       >
 
-
       <p>
-        ¡Aquí empieza el mundo de Muna 12 ml! 💕✨
-        Elige el tipo de esmalte que quieres explorar y descubre todos los tonos
-        disponibles en cada colección. 💅💗
+        ¡Llegó el momento de escoger tus favoritos! 💕💅
+        Mira nuestra carta de colores Muna 12 ml, encuentra los tonos que más te enamoren
+        y agrega todas las referencias que quieras a tu pedido. ✨💗
       </p>
 
     </div>
@@ -1030,12 +1312,11 @@
   </section>
 
 
-
   <!-- ======================================
-       SUBCATEGORÍAS
+       PRODUCTO
   ======================================= -->
 
-  <section class="seccion">
+  <section class="producto-carta">
 
     <img
       src="imagenes/Cara logo bellashop.png"
@@ -1043,101 +1324,117 @@
       class="cara-seccion"
     >
 
+    <div class="producto-contenedor">
 
-    <div class="titulo">
-
-      <h2>
-        Elige el tipo de esmalte
-      </h2>
-
-
-      <p>
-        Selecciona la colección que quieres explorar para ver sus tonos.
-      </p>
-
-    </div>
+      <div class="carta-visual">
+        <img
+          src="imagenes/carta-colores-muna-12ml.png"
+          alt="Carta de colores Muna 12 ml"
+        >
+      </div>
 
 
+      <div class="selector-referencias">
 
-    <div class="opciones">
+        <span class="producto-marca">
+          MUNA · SEMIPERMANENTE
+        </span>
 
-      <a href="#" class="opcion">
-        <h3>Carta de Colores Muna</h3>
-        <p>Explora la carta general de colores Muna 12 ml.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        <h1>
+          Carta de Colores Muna 12 ml
+        </h1>
 
-      <a href="#" class="opcion">
-        <h3>Fluorescente</h3>
-        <p>Tonos intensos y vibrantes para diseños llenos de color.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        <p style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">
+          $12.500 c/u
+        </p>
 
-      <a href="#" class="opcion">
-        <h3>Jelly Gel</h3>
-        <p>Tonos traslúcidos con acabado suave y efecto gelatina.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        <p class="descripcion-producto">
+          Mira la carta, identifica el número de la referencia que deseas
+          y agrégala a tu selección. Puedes escoger varias referencias
+          y una cantidad diferente para cada una.
+        </p>
 
-      <a href="#" class="opcion">
-        <h3>Macarrón</h3>
-        <p>Colores suaves y delicados inspirados en tonos pastel.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
 
-      <a href="#" class="opcion">
-        <h3>Satin Nail</h3>
-        <p>Tonos con acabado satinado y brillo elegante.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        <div class="como-comprar">
 
-      <a href="#" class="opcion">
-        <h3>Shell</h3>
-        <p>Tonos con efectos especiales y acabado llamativo.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+          <strong>¿Cómo comprar?</strong>
 
-      <a href="#" class="opcion">
-        <h3>Ojo de Gato</h3>
-        <p>Colores magnéticos con efecto ojo de gato.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+          <p>
+            1. Revisa la carta de colores.<br>
+            2. Escribe el número de la referencia.<br>
+            3. Agrégala y selecciona cuántas unidades necesitas.<br>
+            4. Repite el proceso si quieres más colores.
+          </p>
 
-      <a href="#" class="opcion">
-        <h3>Bases Traslúcidas</h3>
-        <p>Bases con tonos suaves y traslúcidos para acabados naturales.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        </div>
 
-      <a href="#" class="opcion">
-        <h3>Saturados</h3>
-        <p>Colores intensos y pigmentados para diseños destacados.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
 
-      <a href="#" class="opcion">
-        <h3>Reflectivos</h3>
-        <p>Tonos con efecto reflectivo y brillo especial bajo la luz.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+        <div class="form-referencia">
 
-      <a href="#" class="opcion">
-        <h3>Craquelados</h3>
-        <p>Tonos con efecto craquelado para diseños diferentes.</p>
-        <span class="ver">VER TONOS →</span>
-      </a>
+          <input
+            id="referenciaInput"
+            class="campo-ref"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            placeholder="Ej: 15"
+            aria-label="Referencia del esmalte"
+          >
+
+          <button
+            id="agregarReferencia"
+            class="btn-agregar-ref"
+            type="button"
+          >
+            AGREGAR
+          </button>
+
+        </div>
+
+        <div
+          id="mensajeError"
+          class="mensaje-error"
+          aria-live="polite"
+        ></div>
+
+
+        <div
+          id="listaReferencias"
+          class="lista-referencias"
+        >
+          <div class="lista-vacia">
+            Todavía no has agregado referencias.
+          </div>
+        </div>
+
+
+        <div class="resumen-pedido">
+          <span>Referencias: <strong id="totalReferencias">0</strong></span>
+          <span>Unidades: <strong id="totalUnidades">0</strong></span>
+        </div>
+
+
+        <button
+          id="agregarPedido"
+          class="btn-pedido-final"
+          type="button"
+        >
+          🛍️ AGREGAR AL PEDIDO
+        </button>
+
+
+        <p class="nota-disponibilidad">
+          Te confirmamos la disponibilidad según la referencia escogida.
+        </p>
+
+      </div>
 
     </div>
 
   </section>
 
 
-
-  <!-- ======================================
-       AYUDA Y REDES
-  ======================================= -->
-
-  <section class="contacto">
+<section class="contacto">
 
     <img
       src="imagenes/Cara logo bellashop.png"
@@ -1297,6 +1594,183 @@
 
   </footer>
 
+
+
+  <script>
+    const referenciasSeleccionadas = new Map();
+
+    const input = document.getElementById("referenciaInput");
+    const btnAgregar = document.getElementById("agregarReferencia");
+    const lista = document.getElementById("listaReferencias");
+    const mensajeError = document.getElementById("mensajeError");
+    const totalReferencias = document.getElementById("totalReferencias");
+    const totalUnidades = document.getElementById("totalUnidades");
+    const btnPedido = document.getElementById("agregarPedido");
+
+    function normalizarReferencia(valor) {
+      return valor.trim().replace(/^0+/, "") || "0";
+    }
+
+    function referenciaValida(ref) {
+      const numero = Number(ref);
+      return Number.isInteger(numero) && numero >= 1 && numero <= 66;
+    }
+
+    function agregarReferencia() {
+      const ref = normalizarReferencia(input.value);
+
+      mensajeError.textContent = "";
+
+      if (!referenciaValida(ref)) {
+        mensajeError.textContent = "Escribe una referencia válida entre 1 y 66.";
+        input.focus();
+        return;
+      }
+
+      if (referenciasSeleccionadas.has(ref)) {
+        referenciasSeleccionadas.set(
+          ref,
+          referenciasSeleccionadas.get(ref) + 1
+        );
+      } else {
+        referenciasSeleccionadas.set(ref, 1);
+      }
+
+      input.value = "";
+      input.focus();
+      renderizarReferencias();
+    }
+
+    function cambiarCantidad(ref, cambio) {
+      if (!referenciasSeleccionadas.has(ref)) return;
+
+      const nuevaCantidad = referenciasSeleccionadas.get(ref) + cambio;
+
+      if (nuevaCantidad <= 0) {
+        referenciasSeleccionadas.delete(ref);
+      } else {
+        referenciasSeleccionadas.set(ref, nuevaCantidad);
+      }
+
+      renderizarReferencias();
+    }
+
+    function eliminarReferencia(ref) {
+      referenciasSeleccionadas.delete(ref);
+      renderizarReferencias();
+    }
+
+    function renderizarReferencias() {
+      lista.innerHTML = "";
+
+      if (referenciasSeleccionadas.size === 0) {
+        lista.innerHTML = `
+          <div class="lista-vacia">
+            Todavía no has agregado referencias.
+          </div>
+        `;
+      } else {
+        [...referenciasSeleccionadas.entries()]
+          .sort((a, b) => Number(a[0]) - Number(b[0]))
+          .forEach(([ref, cantidad]) => {
+            const item = document.createElement("div");
+            item.className = "ref-item";
+
+            item.innerHTML = `
+              <div class="ref-nombre">Referencia ${ref}</div>
+
+              <div class="cantidad-control">
+                <button
+                  type="button"
+                  aria-label="Restar una unidad"
+                  data-accion="restar"
+                  data-ref="${ref}"
+                >−</button>
+
+                <span>${cantidad}</span>
+
+                <button
+                  type="button"
+                  aria-label="Agregar una unidad"
+                  data-accion="sumar"
+                  data-ref="${ref}"
+                >+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-eliminar"
+                aria-label="Eliminar referencia ${ref}"
+                data-accion="eliminar"
+                data-ref="${ref}"
+              >×</button>
+            `;
+
+            lista.appendChild(item);
+          });
+      }
+
+      totalReferencias.textContent = referenciasSeleccionadas.size;
+
+      const unidades = [...referenciasSeleccionadas.values()]
+        .reduce((suma, cantidad) => suma + cantidad, 0);
+
+      totalUnidades.textContent = unidades;
+    }
+
+    btnAgregar.addEventListener("click", agregarReferencia);
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        agregarReferencia();
+      }
+    });
+
+    lista.addEventListener("click", (event) => {
+      const boton = event.target.closest("button[data-accion]");
+      if (!boton) return;
+
+      const ref = boton.dataset.ref;
+      const accion = boton.dataset.accion;
+
+      if (accion === "sumar") cambiarCantidad(ref, 1);
+      if (accion === "restar") cambiarCantidad(ref, -1);
+      if (accion === "eliminar") eliminarReferencia(ref);
+    });
+
+    btnPedido.addEventListener("click", () => {
+      if (referenciasSeleccionadas.size === 0) {
+        mensajeError.textContent = "Agrega al menos una referencia antes de continuar.";
+        input.focus();
+        return;
+      }
+
+      const precioUnitario = 12500;
+
+      const detalle = [...referenciasSeleccionadas.entries()]
+        .map(([ref, cantidad]) => `Ref ${ref} x${cantidad}`)
+        .join(", ");
+
+      const totalUnidadesPedido = [...referenciasSeleccionadas.values()]
+        .reduce((suma, cantidad) => suma + cantidad, 0);
+
+      const nombrePedido =
+        "Carta de Colores Muna 12 ml - " + detalle;
+
+      const url =
+        "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
+        "?modo=producto" +
+        "&nombre=" + encodeURIComponent(nombrePedido) +
+        "&precio=" + precioUnitario +
+        "&cantidad=" + totalUnidadesPedido +
+        "&tipo=individual";
+
+      window.location.href = url;
+    });
+
+    renderizarReferencias();
+  </script>
 
 </body>
 
