@@ -535,6 +535,266 @@
         justify-content: space-between;
       }
     }
+  
+    .logo-bellashop-carrito {
+      display: block;
+      width: min(240px, 70%);
+      max-height: 90px;
+      object-fit: contain;
+      margin: 0 auto 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cabecera-bella {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.98), rgba(255,245,249,0.98));
+      border: 1px solid #f3d6e1;
+      border-radius: 28px;
+      padding: 22px 24px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 14px 36px rgba(103, 52, 71, 0.08);
+      text-align: center;
+    }
+
+    .cabecera-bella::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(232,95,145,0.08), transparent 24%),
+        radial-gradient(circle at 88% 22%, rgba(232,95,145,0.07), transparent 22%);
+      pointer-events: none;
+    }
+
+    .cabecera-bella::after {
+      display: none;
+    }
+
+    .carita-decorativa {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.08;
+    }
+
+    .carita-decorativa img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .carita-uno {
+      width: 125px;
+      height: 125px;
+      left: -28px;
+      bottom: -30px;
+      transform: rotate(-8deg);
+    }
+
+    .carita-dos {
+      width: 110px;
+      height: 110px;
+      right: -20px;
+      top: -18px;
+      transform: rotate(8deg);
+    }
+
+    .marca-superior,
+    .titulo,
+    .subtitulo {
+      position: relative;
+      z-index: 2;
+    }
+
+    .marca-superior {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: #fff0f5;
+      color: #d94a79;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
+    }
+
+    .titulo {
+      text-align: center;
+      color: #3b3035;
+      font-size: clamp(27px, 4vw, 40px);
+      line-height: 1.1;
+      margin: 0 0 9px;
+      font-weight: 900;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #7e6871;
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 auto;
+      max-width: 650px;
+    }
+
+    .panel-lista,
+    .panel-resumen {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.99), rgba(255,250,252,.99));
+      border: 1px solid #f1d8e1;
+    }
+
+    .panel-lista {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-lista::after {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 95px;
+      right: -30px;
+      bottom: -30px;
+      background: url("imagenes/Cara logo bellashop.png") center/contain no-repeat;
+      opacity: .035;
+      pointer-events: none;
+    }
+
+    .panel-resumen {
+      overflow: hidden;
+    }
+
+    .panel-resumen::before {
+      content: "BELLA SHOP";
+      display: block;
+      width: max-content;
+      margin-bottom: 8px;
+      color: #d94a79;
+      background: #fff0f5;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .9px;
+    }
+
+    .encabezado-lista h2,
+    .panel-resumen h2 {
+      color: #3b3035;
+    }
+
+    .item-carrito {
+      background:
+        linear-gradient(145deg, #fffdfd 0%, #fff7fa 100%);
+      border: 1px solid #f1dce4;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .item-carrito:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(103,52,71,.06);
+    }
+
+    .ref-item {
+      border: 1px solid #f1d2de;
+      background: #fff4f8;
+    }
+
+    .btn-finalizar {
+      background:
+        linear-gradient(135deg, #ea6a98 0%, #dc4f81 100%);
+      box-shadow: 0 10px 24px rgba(220,82,130,.2);
+    }
+
+    .btn-vaciar {
+      border: 1px solid #f3d6e1;
+    }
+
+    .nota {
+      background: #fff7fa;
+      border: 1px solid #f1dce4;
+      border-radius: 14px;
+      padding: 11px 12px;
+    }
+
+    .carrito-vacio {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.99), rgba(255,246,250,.99));
+    }
+
+    .carrito-vacio::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -32px;
+      bottom: -32px;
+      background: url("imagenes/Cara logo bellashop.png") center/contain no-repeat;
+      opacity: .05;
+      pointer-events: none;
+    }
+
+    @media (max-width: 520px) {
+      .logo-bellashop-carrito {
+        width: min(220px, 78%);
+      }
+
+      .cabecera-bella {
+        padding: 18px 15px 20px;
+      }
+
+      .carita-uno {
+        width: 95px;
+        height: 95px;
+      }
+
+      .carita-dos {
+        width: 85px;
+        height: 85px;
+      }
+    }
+
+  
+    .barra-regreso {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .btn-regresar-carrito {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid #f1d6e0;
+      background: rgba(255,255,255,.88);
+      color: #b24d72;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(103,52,71,.05);
+    }
+
+    .btn-regresar-carrito:hover {
+      background: #fff0f5;
+    }
+
+    @media (max-width: 520px) {
+      .btn-regresar-carrito {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+    }
+
   </style>
 
 </head>
@@ -547,12 +807,43 @@
 
     <div class="tarjeta-principal">
 
+      
       <div class="cabecera-bella">
-        <span class="marca-superior">BELLA SHOP · TU PEDIDO</span>
-        <h1 class="titulo">Mi <span>pedido</span> 💕</h1>
-        <div class="subtitulo">
-          Revisa tus productos, ajusta cantidades y confirma que todo esté como lo quieres.
+
+        <div class="barra-regreso">
+          <button
+            type="button"
+            class="btn-regresar-carrito"
+            onclick="regresarAlCatalogo()">
+            ← Regresar
+          </button>
         </div>
+
+        <img
+          src="imagenes/Logo Bellashop png.png"
+          alt="Bella Shop"
+          class="logo-bellashop-carrito"
+        >
+
+        <div class="carita-decorativa carita-uno">
+          <img src="imagenes/Cara logo bellashop.png" alt="">
+        </div>
+
+        <div class="carita-decorativa carita-dos">
+          <img src="imagenes/Cara logo bellashop.png" alt="">
+        </div>
+
+        <span class="marca-superior">BELLA SHOP · TU PEDIDO</span>
+
+        <h1 class="titulo">
+          Tus favoritos están aquí 💕
+        </h1>
+
+        <div class="subtitulo">
+          Revisa tu pedido con calma, ajusta las cantidades que necesites
+          y cuando todo esté perfecto, envíanoslo por WhatsApp. ✨💗
+        </div>
+
       </div>
 
 
@@ -639,7 +930,7 @@
           <h3>Tu pedido está vacío</h3>
 
           <p>
-            Todavía no has agregado productos. Vuelve al catálogo y encuentra tus favoritos. 💗
+            Aún no has agregado tus favoritos. 💕 Explora el catálogo, encuentra esos productos que te encantan y agrégalos a tu pedido. ✨
           </p>
 
           <a
@@ -689,8 +980,8 @@
               </div>
 
               <div class="nota">
-                Te confirmamos la disponibilidad según la referencia escogida.
-                El valor final será confirmado por Bella Shop antes de realizar la compra.
+                Te confirmamos la disponibilidad según la referencia escogida. 💗
+                Antes de finalizar la compra, Bella Shop confirmará contigo disponibilidad y valor final.
               </div>
 
               <button
@@ -737,6 +1028,17 @@
 
 <script>
 
+  function regresarAlCatalogo() {
+
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "index.html";
+    }
+
+  }
+
+
   /*
   ==============================
   LEER DATOS DE LA URL
@@ -769,32 +1071,9 @@
     parametros.get("tipo") ||
     "individual";
 
-    try {
 
-      const pedidoImportado =
-        JSON.parse(pedidoUrl);
 
-      if (Array.isArray(pedidoImportado)) {
 
-        localStorage.setItem(
-          "bellaShopCarrito",
-          JSON.stringify(pedidoImportado)
-        );
-
-        return pedidoImportado;
-      }
-
-    } catch (error) {
-
-      console.error(
-        "No se pudo leer el pedido enviado desde el catálogo.",
-        error
-      );
-
-    }
-
-    return null;
-  }
 
 
 
@@ -1491,12 +1770,8 @@
     }
 
     let mensaje =
-      "Hola Bella Shop 💕✨
-
-" +
-      "Quiero realizar el siguiente pedido:
-
-";
+      "Hola Bella Shop 💕✨\n\n" +
+      "Quiero realizar el siguiente pedido:\n\n";
 
     let total = 0;
 
@@ -1508,43 +1783,34 @@
       total += subtotal;
 
       mensaje +=
-        "• " + producto.nombre + "
-";
+        "• " + producto.nombre + "\n";
 
       if (producto.referencia) {
         mensaje +=
           "  Referencia: " +
           producto.referencia +
-          "
-";
+          "\n";
       }
 
       mensaje +=
         "  Cantidad: " +
         producto.cantidad +
-        "
-" +
+        "\n" +
         "  Precio unitario: $" +
         producto.precio.toLocaleString("es-CO") +
-        "
-" +
+        "\n" +
         "  Subtotal: $" +
         subtotal.toLocaleString("es-CO") +
-        "
-
-";
+        "\n\n";
     });
 
     mensaje +=
       "🛍️ TOTAL ESTIMADO: $" +
       total.toLocaleString("es-CO") +
-      "
-
-" +
+      "\n\n" +
       "Quedo pendiente de confirmar disponibilidad y valor final. 💗";
 
-    const numero =
-      "573122002698";
+    const numero = "573122002698";
 
     const url =
       "https://api.whatsapp.com/send?phone=" +
