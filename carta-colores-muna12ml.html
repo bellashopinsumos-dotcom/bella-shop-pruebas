@@ -1166,6 +1166,33 @@
       }
     }
 
+  
+    .toast-carrito {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 18px);
+      width: min(92%, 390px);
+      background: #3b3035;
+      color: #fff;
+      padding: 13px 16px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s ease;
+      z-index: 9999;
+    }
+
+    .toast-carrito.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
   </style>
 
 </head>
@@ -1598,7 +1625,9 @@
 
 
 
-  <script>
+  <div id="toastCarrito" class="toast-carrito">✓ Producto agregado a tu pedido 💗</div>
+
+<script>
     const referenciasSeleccionadas = new Map();
 
     const input = document.getElementById("referenciaInput");
@@ -1751,32 +1780,52 @@
 
     btnPedido.addEventListener("click", () => {
       if (referenciasSeleccionadas.size === 0) {
-        mensajeError.textContent = "Agrega al menos una referencia antes de continuar.";
-        input.focus();
+        mostrarMensaje("Agrega al menos una referencia antes de continuar.");
         return;
       }
 
-      const precioUnitario = PRECIO_UNITARIO;
+      let carrito = [];
 
-      const detalle = [...referenciasSeleccionadas.entries()]
-        .map(([ref, cantidad]) => `Ref ${ref} x${cantidad}`)
-        .join(", ");
+      try {
+        carrito = JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
+      } catch (error) {
+        carrito = [];
+      }
 
-      const totalUnidadesPedido = [...referenciasSeleccionadas.values()]
-        .reduce((suma, cantidad) => suma + cantidad, 0);
+      referenciasSeleccionadas.forEach((cantidad, ref) => {
+        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + ref;
 
-      const nombrePedido =
-        "Carta de Colores Muna 12 ml - " + detalle;
+        const existente = carrito.find(
+          producto => producto.clave === claveProducto
+        );
 
-      const url =
-        "https://bellashopinsumos-dotcom.github.io/bella-shop-carrito/" +
-        "?modo=producto" +
-        "&nombre=" + encodeURIComponent(nombrePedido) +
-        "&precio=" + precioUnitario +
-        "&cantidad=" + totalUnidadesPedido +
-        "&tipo=individual";
+        if (existente) {
+          existente.cantidad += cantidad;
+        } else {
+          carrito.push({
+            clave: claveProducto,
+            nombre: "Carta de Colores Muna 12 ml",
+            referencia: String(ref),
+            precio: PRECIO_UNITARIO,
+            cantidad: cantidad
+          });
+        }
+      });
 
-      window.location.href = url;
+      localStorage.setItem(
+        "bellaShopCarrito",
+        JSON.stringify(carrito)
+      );
+
+      const toast = document.getElementById("toastCarrito");
+      toast.classList.add("visible");
+
+      setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2200);
+
+      referenciasSeleccionadas.clear();
+      renderizarReferencias();
     });
 
     renderizarReferencias();
