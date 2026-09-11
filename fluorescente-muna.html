@@ -1256,25 +1256,22 @@
 
     .producto-imagen-wrap {
       position: relative;
-      aspect-ratio: 1 / 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      background: linear-gradient(145deg, #fff9fb, #fffdfd);
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #fff7fa;
       border-bottom: 1px solid #f5e3e9;
     }
 
     .producto-imagen {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
     }
 
     .producto-card.agotado .producto-imagen {
-      opacity: .52;
-      filter: grayscale(.18);
+      opacity: .72;
+      filter: grayscale(.12);
     }
 
     .estado-producto {
@@ -1326,7 +1323,19 @@
       color: #d94a79;
       font-size: 21px;
       font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .producto-total {
+      color: #5f4851;
+      font-size: 13px;
+      font-weight: 800;
       margin-bottom: 17px;
+    }
+
+    .producto-total strong {
+      color: #d94a79;
+      font-size: 15px;
     }
 
     .producto-acciones {
@@ -1438,8 +1447,12 @@
         font-size: 29px;
       }
 
+      .productos-grid {
+        gap: 12px;
+      }
+
       .producto-info {
-        padding: 13px;
+        padding: 12px;
       }
 
       .producto-ref {
@@ -1482,7 +1495,7 @@
       }
 
       .producto-imagen-wrap {
-        padding: 9px;
+        aspect-ratio: 4 / 3;
       }
     }
 
@@ -1625,8 +1638,8 @@
       <h1>Fluorescente</h1>
 
       <p>
-        Elige tu tono fluorescente favorito y agrégalo a tu pedido. 💕✨
-        Cada referencia tiene su disponibilidad indicada para que puedas comprar fácilmente.
+        ¡Llegaste a nuestros Fluorescentes Muna! 💕✨
+        Escoge tus tonos favoritos y agrégalos a tu pedido. 💅💗
       </p>
 
     </div>
@@ -1663,7 +1676,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF 166</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-166">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-166', -1)">−</button>
@@ -1695,7 +1711,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF L02</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-l02">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-l02', -1)">−</button>
@@ -1745,7 +1764,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF L07</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-l07">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-l07', -1)">−</button>
@@ -1777,7 +1799,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF L11</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-l11">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-l11', -1)">−</button>
@@ -1809,7 +1834,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF L16</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-l16">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-l16', -1)">−</button>
@@ -1841,7 +1869,10 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Fluorescente 12 ml</div>
           <h3 class="producto-ref">REF 175</h3>
-          <div class="producto-precio">$12.500</div>
+          <div class="producto-precio">$12.500 c/u</div>
+          <div class="producto-total" id="total-175">
+            Total: <strong>$12.500</strong>
+          </div>
           <div class="producto-acciones">
             <div class="cantidad-producto">
               <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-175', -1)">−</button>
@@ -2043,6 +2074,26 @@
       if (link) link.href = "carrito.html";
     }
 
+    function formatoPesos(valor) {
+      return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function actualizarTotal(idInput) {
+      const input = document.getElementById(idInput);
+      if (!input) return;
+
+      let cantidad = parseInt(input.value, 10);
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      const tarjeta = input.closest(".producto-card");
+      if (!tarjeta) return;
+
+      const total = tarjeta.querySelector(".producto-total strong");
+      if (!total) return;
+
+      total.textContent = formatoPesos(cantidad * 12500);
+    }
+
     function cambiarCantidad(idInput, cambio) {
       const input = document.getElementById(idInput);
       if (!input) return;
@@ -2054,6 +2105,7 @@
       if (cantidad < 1) cantidad = 1;
 
       input.value = cantidad;
+      actualizarTotal(idInput);
     }
 
     function leerCarrito() {
@@ -2112,15 +2164,31 @@
       actualizarLinkMiPedido();
       mostrarToast("✓ REF " + referencia + " agregada a tu pedido 💗");
       input.value = 1;
+      actualizarTotal(idCantidad);
     }
 
     document.querySelectorAll(".cantidad-producto input").forEach(input => {
+      input.addEventListener("input", function () {
+        let cantidad = parseInt(this.value, 10);
+
+        if (!Number.isInteger(cantidad) || cantidad < 1) {
+          cantidad = 1;
+        }
+
+        actualizarTotal(this.id);
+      });
+
       input.addEventListener("change", function () {
         let cantidad = parseInt(this.value, 10);
+
         if (!Number.isInteger(cantidad) || cantidad < 1) {
           this.value = 1;
         }
+
+        actualizarTotal(this.id);
       });
+
+      actualizarTotal(input.id);
     });
 
     actualizarLinkMiPedido();
