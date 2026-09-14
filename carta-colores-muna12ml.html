@@ -1193,6 +1193,41 @@
       transform: translate(-50%, 0);
     }
 
+  
+    /* ========================================
+       INVENTARIO CENTRAL
+    ======================================== */
+    .estado-inventario {
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+      border: 1px solid #f0d8e1;
+      background: #fff7fa;
+      color: #765d65;
+    }
+    .estado-inventario.cargando { color: #8a6e77; }
+    .estado-inventario.ok {
+      color: #247a49;
+      background: #f4fff8;
+      border-color: #cfead9;
+    }
+    .estado-inventario.error {
+      color: #b33f5e;
+      background: #fff4f6;
+      border-color: #f0c9d4;
+    }
+    .stock-ref {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .stock-ref.disponible { color: #25854f; }
+
   </style>
 
 </head>
@@ -1397,6 +1432,11 @@
         </div>
 
 
+
+        <div id="estadoInventario" class="estado-inventario cargando" aria-live="polite">
+          Consultando inventario actualizado...
+        </div>
+
         <div class="form-referencia">
 
           <input
@@ -1453,7 +1493,7 @@
 
 
         <p class="nota-disponibilidad">
-          Te confirmamos la disponibilidad según la referencia escogida.
+          La disponibilidad se consulta automáticamente desde el inventario central de Bella Shop.
         </p>
 
       </div>
@@ -1629,6 +1669,8 @@
 
 <script>
     const referenciasSeleccionadas = new Map();
+    let inventarioProductos = {};
+    let inventarioListo = false;
 
     const input = document.getElementById("referenciaInput");
     const btnAgregar = document.getElementById("agregarReferencia");
@@ -1638,17 +1680,14 @@
     const totalUnidades = document.getElementById("totalUnidades");
     const subtotalPedido = document.getElementById("subtotalPedido");
     const btnPedido = document.getElementById("agregarPedido");
-
+    const estadoInventario = document.getElementById("estadoInventario");
 
     const PRECIO_UNITARIO = 12500;
 
     function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
-      if (!link) return;
-
-      link.href = "carrito.html";
+      if (link) link.href = "carrito.html";
     }
-
 
     function formatoPesos(valor) {
       return "$" + valor.toLocaleString("es-CO");
@@ -1663,10 +1702,76 @@
       return Number.isInteger(numero) && numero >= 1 && numero <= 66;
     }
 
-    function agregarReferencia() {
-      const ref = normalizarReferencia(input.value);
+    function codigoOdoo(ref) {
+      return "MUNA2874-" + String(Number(ref)).padStart(2, "0");
+    }
 
+    function stockDisponible(ref) {
+      const producto = inventarioProductos[codigoOdoo(ref)];
+      if (!producto) return 0;
+      const cantidad = Number(producto.disponible || 0);
+      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
+    }
+
+    function cantidadEnCarrito(ref) {
+      try {
+        const carrito = JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
+        const clave = "Carta de Colores Muna 12 ml - Ref. " + normalizarReferencia(ref);
+        const producto = carrito.find(item => item.clave === clave);
+        return producto ? Number(producto.cantidad || 0) : 0;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    async function cargarInventario() {
+      estadoInventario.className = "estado-inventario cargando";
+      estadoInventario.textContent = "Consultando inventario actualizado...";
+      btnAgregar.disabled = true;
+      btnPedido.disabled = true;
+
+      try {
+        const respuesta = await fetch("inventario.json?actualizacion=" + Date.now(), {
+          cache: "no-store"
+        });
+
+        if (!respuesta.ok) throw new Error("No se pudo abrir inventario.json");
+
+        const datos = await respuesta.json();
+        if (!datos || !datos.productos || typeof datos.productos !== "object") {
+          throw new Error("Formato de inventario no válido");
+        }
+
+        inventarioProductos = datos.productos;
+        inventarioListo = true;
+
+        estadoInventario.className = "estado-inventario ok";
+        estadoInventario.textContent = "✓ Inventario actualizado y conectado";
+        btnAgregar.disabled = false;
+        btnPedido.disabled = false;
+      } catch (error) {
+        console.error("Error cargando inventario:", error);
+        inventarioListo = false;
+        inventarioProductos = {};
+
+        estadoInventario.className = "estado-inventario error";
+        estadoInventario.textContent =
+          "No pudimos consultar el inventario en este momento. Intenta recargar la página.";
+
+        btnAgregar.disabled = true;
+        btnPedido.disabled = true;
+      }
+    }
+
+    function agregarReferencia() {
       mensajeError.textContent = "";
+
+      if (!inventarioListo) {
+        mensajeError.textContent = "Espera un momento mientras cargamos el inventario.";
+        return;
+      }
+
+      const ref = normalizarReferencia(input.value);
 
       if (!referenciaValida(ref)) {
         mensajeError.textContent = "Escribe una referencia válida entre 1 y 66.";
@@ -1674,15 +1779,37 @@
         return;
       }
 
-      if (referenciasSeleccionadas.has(ref)) {
-        referenciasSeleccionadas.set(
-          ref,
-          referenciasSeleccionadas.get(ref) + 1
-        );
-      } else {
-        referenciasSeleccionadas.set(ref, 1);
+      const stock = stockDisponible(ref);
+
+      if (stock <= 0) {
+        mensajeError.textContent =
+          "REF " + String(Number(ref)).padStart(2, "0") + " está AGOTADA actualmente.";
+        input.select();
+        return;
       }
 
+      const seleccionada = referenciasSeleccionadas.get(ref) || 0;
+      const yaEnCarrito = cantidadEnCarrito(ref);
+      const disponibleParaAgregar = stock - yaEnCarrito;
+
+      if (disponibleParaAgregar <= 0) {
+        mensajeError.textContent =
+          "Ya tienes en tu pedido todas las unidades disponibles de la REF " +
+          String(Number(ref)).padStart(2, "0") + ".";
+        input.select();
+        return;
+      }
+
+      if (seleccionada >= disponibleParaAgregar) {
+        mensajeError.textContent =
+          "Solo quedan " + stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s") +
+          " de la REF " + String(Number(ref)).padStart(2, "0") + ".";
+        input.select();
+        return;
+      }
+
+      referenciasSeleccionadas.set(ref, seleccionada + 1);
       input.value = "";
       input.focus();
       renderizarReferencias();
@@ -1691,19 +1818,35 @@
     function cambiarCantidad(ref, cambio) {
       if (!referenciasSeleccionadas.has(ref)) return;
 
-      const nuevaCantidad = referenciasSeleccionadas.get(ref) + cambio;
+      const actual = referenciasSeleccionadas.get(ref);
+      const nuevaCantidad = actual + cambio;
 
       if (nuevaCantidad <= 0) {
         referenciasSeleccionadas.delete(ref);
-      } else {
-        referenciasSeleccionadas.set(ref, nuevaCantidad);
+        mensajeError.textContent = "";
+        renderizarReferencias();
+        return;
       }
 
+      const stock = stockDisponible(ref);
+      const yaEnCarrito = cantidadEnCarrito(ref);
+
+      if (nuevaCantidad + yaEnCarrito > stock) {
+        mensajeError.textContent =
+          "Solo hay " + stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s") +
+          " de la REF " + String(Number(ref)).padStart(2, "0") + ".";
+        return;
+      }
+
+      mensajeError.textContent = "";
+      referenciasSeleccionadas.set(ref, nuevaCantidad);
       renderizarReferencias();
     }
 
     function eliminarReferencia(ref) {
       referenciasSeleccionadas.delete(ref);
+      mensajeError.textContent = "";
       renderizarReferencias();
     }
 
@@ -1720,37 +1863,29 @@
         [...referenciasSeleccionadas.entries()]
           .sort((a, b) => Number(a[0]) - Number(b[0]))
           .forEach(([ref, cantidad]) => {
+            const stock = stockDisponible(ref);
             const item = document.createElement("div");
             item.className = "ref-item";
 
             item.innerHTML = `
-              <div class="ref-nombre">Referencia ${ref}</div>
-
-              <div class="cantidad-control">
-                <button
-                  type="button"
-                  aria-label="Restar una unidad"
-                  data-accion="restar"
-                  data-ref="${ref}"
-                >−</button>
-
-                <span>${cantidad}</span>
-
-                <button
-                  type="button"
-                  aria-label="Agregar una unidad"
-                  data-accion="sumar"
-                  data-ref="${ref}"
-                >+</button>
+              <div class="ref-nombre">
+                Referencia ${String(Number(ref)).padStart(2, "0")}
+                <div class="stock-ref disponible">
+                  🟢 ${stock} disponible${stock === 1 ? "" : "s"}
+                </div>
               </div>
 
-              <button
-                type="button"
-                class="btn-eliminar"
+              <div class="cantidad-control">
+                <button type="button" aria-label="Restar una unidad"
+                  data-accion="restar" data-ref="${ref}">−</button>
+                <span>${cantidad}</span>
+                <button type="button" aria-label="Agregar una unidad"
+                  data-accion="sumar" data-ref="${ref}">+</button>
+              </div>
+
+              <button type="button" class="btn-eliminar"
                 aria-label="Eliminar referencia ${ref}"
-                data-accion="eliminar"
-                data-ref="${ref}"
-              >×</button>
+                data-accion="eliminar" data-ref="${ref}">×</button>
             `;
 
             lista.appendChild(item);
@@ -1788,25 +1923,40 @@
     });
 
     btnPedido.addEventListener("click", () => {
+      if (!inventarioListo) {
+        mensajeError.textContent = "No se pudo verificar el inventario.";
+        return;
+      }
+
       if (referenciasSeleccionadas.size === 0) {
-        mostrarMensaje("Agrega al menos una referencia antes de continuar.");
+        mensajeError.textContent = "Agrega al menos una referencia antes de continuar.";
         return;
       }
 
       let carrito = [];
-
       try {
         carrito = JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
       } catch (error) {
         carrito = [];
       }
 
+      for (const [ref, cantidad] of referenciasSeleccionadas.entries()) {
+        const stock = stockDisponible(ref);
+        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + ref;
+        const existente = carrito.find(producto => producto.clave === claveProducto);
+        const cantidadActual = existente ? Number(existente.cantidad || 0) : 0;
+
+        if (stock <= 0 || cantidadActual + cantidad > stock) {
+          mensajeError.textContent =
+            "Revisa la REF " + String(Number(ref)).padStart(2, "0") +
+            ": la cantidad supera el inventario disponible.";
+          return;
+        }
+      }
+
       referenciasSeleccionadas.forEach((cantidad, ref) => {
         const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + ref;
-
-        const existente = carrito.find(
-          producto => producto.clave === claveProducto
-        );
+        const existente = carrito.find(producto => producto.clave === claveProducto);
 
         if (existente) {
           existente.cantidad += cantidad;
@@ -1814,40 +1964,28 @@
           carrito.push({
             clave: claveProducto,
             nombre: "Carta de Colores Muna 12 ml",
-            referencia: String(ref),
+            referencia: String(Number(ref)).padStart(2, "0"),
             precio: PRECIO_UNITARIO,
             cantidad: cantidad
           });
         }
       });
 
-      localStorage.setItem(
-        "bellaShopCarrito",
-        JSON.stringify(carrito)
-      );
-
+      localStorage.setItem("bellaShopCarrito", JSON.stringify(carrito));
       actualizarLinkMiPedido();
 
       const toast = document.getElementById("toastCarrito");
       toast.classList.add("visible");
-
-      setTimeout(() => {
-        toast.classList.remove("visible");
-      }, 2200);
+      setTimeout(() => toast.classList.remove("visible"), 2200);
 
       referenciasSeleccionadas.clear();
+      mensajeError.textContent = "";
       renderizarReferencias();
     });
 
-    try {
-      const carritoGuardado =
-        JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
-      actualizarLinkMiPedido();
-    } catch (error) {
-      actualizarLinkMiPedido();
-    }
-
+    actualizarLinkMiPedido();
     renderizarReferencias();
+    cargarInventario();
   </script>
 
 </body>
