@@ -16731,6 +16731,97 @@
       "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 921-16 MUNA",
       "disponible": 3,
       "a_la_mano": 3
+    },
+    "922-01": {
+      "codigo": "922-01",
+      "codigo_original_odoo": "922-01",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-01 MUNA MACARRON",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "922-07": {
+      "codigo": "922-07",
+      "codigo_original_odoo": "922-07",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-07 MUNA MACARRON",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "922-09": {
+      "codigo": "922-09",
+      "codigo_original_odoo": "922-09",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-09 MUNA MACARRON",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "922-12": {
+      "codigo": "922-12",
+      "codigo_original_odoo": "922-12",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-12 MUNA MACARRON",
+      "disponible": 19,
+      "a_la_mano": 19
+    },
+    "922-17": {
+      "codigo": "922-17",
+      "codigo_original_odoo": "922-17",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-17 MUNA MACARRON",
+      "disponible": 13,
+      "a_la_mano": 13
+    },
+    "922-18": {
+      "codigo": "922-18",
+      "codigo_original_odoo": "922-18",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-18 MUNA MACARRON",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "922-24": {
+      "codigo": "922-24",
+      "codigo_original_odoo": "922-24",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 922-24 MUNA MACARRON",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "929-51": {
+      "codigo": "929-51",
+      "codigo_original_odoo": "929-51",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-51 MUNA SATIN",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "929-52": {
+      "codigo": "929-52",
+      "codigo_original_odoo": "929-52",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-52 MUNA SATIN",
+      "disponible": 6,
+      "a_la_mano": 6
+    },
+    "929-53": {
+      "codigo": "929-53",
+      "codigo_original_odoo": "929-53",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-53 MUNA SATIN",
+      "disponible": 2,
+      "a_la_mano": 2
+    },
+    "929-56": {
+      "codigo": "929-56",
+      "codigo_original_odoo": "929-56",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-56 MUNA SATIN",
+      "disponible": 11,
+      "a_la_mano": 11
+    },
+    "929-57": {
+      "codigo": "929-57",
+      "codigo_original_odoo": "929-57",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-57 MUNA SATIN",
+      "disponible": 6,
+      "a_la_mano": 6
+    },
+    "929-60": {
+      "codigo": "929-60",
+      "codigo_original_odoo": "929-60",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-60 MUNA SATIN",
+      "disponible": 3,
+      "a_la_mano": 3
     }
   }
 }
