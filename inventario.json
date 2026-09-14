@@ -16703,6 +16703,34 @@
       "nombre": "LAMPARA UV PIEDRAS 268W",
       "disponible": 1,
       "a_la_mano": 1
+    },
+    "921-L02": {
+      "codigo": "921-L02",
+      "codigo_original_odoo": "921-L02",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 921-L02 MUNA",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "921-07": {
+      "codigo": "921-07",
+      "codigo_original_odoo": "921-07",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 921-07 MUNA",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "921-11": {
+      "codigo": "921-11",
+      "codigo_original_odoo": "921-11",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 921-11 MUNA",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "921-16": {
+      "codigo": "921-16",
+      "codigo_original_odoo": "921-16",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 921-16 MUNA",
+      "disponible": 3,
+      "a_la_mano": 3
     }
   }
 }
