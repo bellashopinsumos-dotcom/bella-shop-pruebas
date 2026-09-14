@@ -1746,7 +1746,8 @@
         inventarioListo = true;
 
         estadoInventario.className = "estado-inventario ok";
-        estadoInventario.textContent = "✓ Inventario actualizado y conectado";
+        estadoInventario.textContent = "";
+        estadoInventario.style.display = "none";
         btnAgregar.disabled = false;
         btnPedido.disabled = false;
       } catch (error) {
@@ -1754,6 +1755,7 @@
         inventarioListo = false;
         inventarioProductos = {};
 
+        estadoInventario.style.display = "block";
         estadoInventario.className = "estado-inventario error";
         estadoInventario.textContent =
           "No pudimos consultar el inventario en este momento. Intenta recargar la página.";
