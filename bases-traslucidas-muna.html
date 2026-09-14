@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bases Traslúcidas Muna 12 ml | Bella Shop</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffdfd;
+      color: #34292d;
+      overflow-x: hidden;
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    header {
+      background: rgba(255, 253, 253, 0.97);
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #f2dce4;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      display: block;
+      width: 205px;
+      height: 72px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .acciones-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .boton-header {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 17px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .boton-volver,
+    .boton-inicio {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+    .boton-volver:hover,
+    .boton-inicio:hover {
+      background: #fff4f7;
+      border-color: #e7adbf;
+      transform: translateY(-2px);
+    }
+
+    .boton-pedido {
+      background: #e65385;
+      color: white;
+      border: 1px solid #e65385;
+      box-shadow: 0 6px 18px rgba(230, 83, 133, 0.18);
+    }
+
+    .boton-pedido:hover {
+      background: #d94a79;
+      border-color: #d94a79;
+      transform: translateY(-2px);
+    }
+
+    .icono-header {
+      width: 17px;
+      height: 17px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 25px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(245, 174, 198, 0.18), transparent 25%),
+        radial-gradient(circle at 90% 75%, rgba(230, 83, 133, 0.09), transparent 25%),
+        linear-gradient(135deg, #fff6f8 0%, #fffdfd 50%, #fdeef3 100%);
+    }
+
+    .cara-hero {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(5deg);
+      opacity: 0.07;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #efcbd7;
+      background: rgba(255,255,255,0.8);
+      color: #d74e7b;
+      border-radius: 40px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .logo-muna-hero {
+      display: block;
+      width: min(290px, 75vw);
+      height: 105px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 50px;
+      font-weight: 500;
+      color: #33272b;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #765d65;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .productos {
+      position: relative;
+      overflow: hidden;
+      padding: 58px 5% 75px;
+      background: #fffdfd;
+    }
+
+    .cara-seccion {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      left: -70px;
+      bottom: -45px;
+      opacity: 0.035;
+      transform: rotate(-8deg);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .productos-contenido {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .productos-encabezado {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .productos-encabezado h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 500;
+      color: #382b30;
+      margin-bottom: 9px;
+    }
+
+    .productos-encabezado p {
+      color: #806870;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .productos-grid {
+      width: min(390px, 100%);
+      margin: 0 auto;
+    }
+
+    .producto-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.97);
+      border: 1px solid #f0d8e1;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(96, 42, 61, 0.08);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+      border-color: #e9bdcc;
+      box-shadow: 0 17px 38px rgba(96, 42, 61, 0.12);
+    }
+
+    .producto-imagen-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #fff7fa;
+      border-bottom: 1px solid #f5e3e9;
+    }
+
+    .producto-imagen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .producto-card.agotado .producto-imagen {
+      opacity: .72;
+      filter: grayscale(.12);
+    }
+
+    .estado-producto {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      z-index: 2;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .estado-disponible {
+      background: #edf8f1;
+      color: #458463;
+      border: 1px solid #d4eadc;
+    }
+
+    .estado-agotado {
+      background: #fff0f3;
+      color: #be4868;
+      border: 1px solid #f1ccd7;
+    }
+
+    .producto-info {
+      padding: 19px;
+    }
+
+    .producto-tipo {
+      color: #a17d89;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .producto-ref {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 500;
+      color: #3c2d32;
+      margin-bottom: 7px;
+    }
+
+    .producto-precio {
+      color: #d94a79;
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .stock-producto {
+      min-height: 18px;
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2b8252;
+    }
+
+    .producto-card.agotado .stock-producto {
+      color: #b84260;
+    }
+
+    .producto-total {
+      color: #5f4851;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .producto-total strong {
+      color: #d94a79;
+      font-size: 15px;
+    }
+
+    .producto-acciones {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .cantidad-producto {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #edced8;
+      border-radius: 14px;
+      background: #fff7fa;
+      overflow: hidden;
+      min-height: 46px;
+    }
+
+    .cantidad-producto button {
+      width: 36px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      color: #d94a79;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .cantidad-producto input {
+      width: 38px;
+      border: 0;
+      outline: 0;
+      text-align: center;
+      background: transparent;
+      color: #47363c;
+      font-size: 14px;
+      font-weight: 900;
+      -moz-appearance: textfield;
+    }
+
+    .cantidad-producto input::-webkit-outer-spin-button,
+    .cantidad-producto input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .btn-agregar-producto {
+      min-height: 46px;
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 13px;
+      background: #de5b86;
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(210,70,115,.16);
+    }
+
+    .btn-agregar-producto:disabled,
+    .cantidad-producto button:disabled,
+    .cantidad-producto input:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
+    .agotado-bloque {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 14px;
+      background: #fff1f4;
+      color: #bc4968;
+      border: 1px solid #f0cfda;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nota {
+      margin: 28px auto 0;
+      max-width: 660px;
+      text-align: center;
+      color: #8d737c;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .contacto {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 6% 65px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(230,83,133,.08), transparent 24%),
+        linear-gradient(135deg, #fdeaf0, #fff7f9 55%, #fffdfd);
+      border-top: 1px solid #f2dce4;
+    }
+
+    .cara-contacto {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      left: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg);
+      opacity: 0.05;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .contacto-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .contacto h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      font-weight: 500;
+      color: #382c30;
+      margin-bottom: 13px;
+    }
+
+    .contacto-texto {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #765d65;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: #25D366;
+      color: white;
+      padding: 13px 22px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .ubicacion {
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #765d65;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 15px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid #f0d7df;
+    }
+
+    footer {
+      background: #35272c;
+      color: #f9eaf0;
+      text-align: center;
+      padding: 28px 20px 25px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .footer-subtexto {
+      font-size: 11px;
+      color: #ddcbd1;
+      letter-spacing: .4px;
+    }
+
+    .toast-carrito {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 18px);
+      width: min(92%, 390px);
+      background: #3b3035;
+      color: #fff;
+      padding: 13px 16px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s ease;
+      z-index: 9999;
+    }
+
+    .toast-carrito.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 800px) {
+      header {
+        padding: 9px 12px 11px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .logo img {
+        width: 150px;
+        height: 58px;
+      }
+
+      .acciones-header {
+        gap: 7px;
+      }
+
+      .boton-header {
+        min-height: 38px;
+        font-size: 10px;
+        padding: 9px 11px;
+        gap: 6px;
+      }
+
+      .hero {
+        min-height: 285px;
+        padding: 50px 20px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .logo-muna-hero {
+        width: min(245px, 72vw);
+        height: 90px;
+      }
+
+      .productos {
+        padding: 44px 14px 60px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .logo img {
+        width: 135px;
+        height: 54px;
+      }
+
+      .boton-header {
+        font-size: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+
+      .icono-header {
+        width: 18px;
+        height: 18px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .producto-info {
+        padding: 14px;
+      }
+
+      .producto-acciones {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html" class="logo" aria-label="Bella Shop">
+      <img src="imagenes/Logo Bellashop png.png" alt="Bella Shop - Tienda de Belleza">
+    </a>
+
+    <div class="acciones-header">
+      <a href="muna12ml.html" class="boton-header boton-volver" aria-label="Volver">
+        <svg class="icono-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        <span>VOLVER</span>
+      </a>
+
+      <a href="index.html" class="boton-header boton-inicio" aria-label="Ir al inicio">
+        <svg class="icono-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5.5 10.5V20h13v-9.5"/>
+          <path d="M9.5 20v-6h5v6"/>
+        </svg>
+        <span>INICIO</span>
+      </a>
+
+      <a id="linkMiPedido" href="carrito.html" class="boton-header boton-pedido" aria-label="Mi pedido">
+        <svg class="icono-header" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.3 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/>
+        </svg>
+        <span>MI PEDIDO</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="imagenes/Cara logo bellashop.png" alt="" class="cara-hero">
+
+    <div class="hero-contenido">
+      <span class="etiqueta">MUNA · 12 ML</span>
+
+      <img src="imagenes/logo muna.png" alt="Logo Muna" class="logo-muna-hero">
+
+      <h1>Bases Traslúcidas</h1>
+
+      <p>
+        Dale un efecto magnético y brillante a tus diseños con Bases Traslúcidas Muna. ✨
+      </p>
+    </div>
+  </section>
+
+  <section class="productos">
+    <img src="imagenes/Cara logo bellashop.png" alt="" class="cara-seccion">
+
+    <div class="productos-contenido">
+      <div class="productos-encabezado">
+        <h2>Bases Traslúcidas Muna</h2>
+        <p>Referencia 218 · 12 ml · <strong>$12.500 c/u</strong></p>
+      </div>
+
+      <div class="productos-grid">
+        <article class="producto-card" data-ref="218" data-codigo-odoo="MUNA930-218">
+          <div class="producto-imagen-wrap">
+            <span class="estado-producto estado-disponible">DISPONIBLE</span>
+
+            <img
+              src="imagenes/base-traslucida-muna-ref-218.png"
+              alt="Bases Traslúcidas Muna 12 ml REF 218"
+              class="producto-imagen"
+            >
+          </div>
+
+          <div class="producto-info">
+            <div class="producto-tipo">Muna · Bases Traslúcidas 12 ml</div>
+            <h3 class="producto-ref">REF 218</h3>
+
+            <div class="producto-precio">$12.500 c/u</div>
+            <div class="stock-producto"></div>
+
+            <div class="contenido-disponible">
+              <div class="producto-total">
+                Total: <strong>$12.500</strong>
+              </div>
+
+              <div class="producto-acciones">
+                <div class="cantidad-producto">
+                  <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad(-1)">−</button>
+
+                  <input
+                    id="cantidad-218"
+                    type="number"
+                    min="1"
+                    value="1"
+                    aria-label="Cantidad REF 218"
+                  >
+
+                  <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad(1)">+</button>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-agregar-producto"
+                  onclick="agregarProducto()"
+                >
+                  AGREGAR AL PEDIDO
+                </button>
+              </div>
+            </div>
+
+            <div class="agotado-bloque contenido-agotado" style="display:none;">
+              TEMPORALMENTE NO DISPONIBLE
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="nota">
+        La disponibilidad se consulta automáticamente desde el inventario de Bella Shop.
+      </p>
+    </div>
+  </section>
+
+  <section class="contacto">
+    <img src="imagenes/Cara logo bellashop.png" alt="" class="cara-contacto">
+
+    <div class="contacto-contenido">
+      <h2>¿Necesitas una ayudita? 💕</h2>
+
+      <p class="contacto-texto">
+        Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+        y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+      </p>
+
+      <a
+        href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop%21%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+        class="boton-whatsapp"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ESCRÍBENOS POR WHATSAPP
+      </a>
+
+      <br>
+
+      <a
+        class="ubicacion"
+        href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 Bella Shop · Popayán, Cauca
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Bella Shop</div>
+    <div class="footer-subtexto">Tienda de Belleza · Popayán, Cauca</div>
+  </footer>
+
+  <div class="toast-carrito" id="toastCarrito"></div>
+
+  <script>
+    const CLAVE_CARRITO = "bellaShopCarrito";
+    const CODIGO_ODOO = "MUNA930-218";
+    const PRECIO = 12500;
+
+    let inventarioProductos = {};
+    let inventarioListo = false;
+    let temporizadorToast;
+
+    function formatoPesos(valor) {
+      return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return Array.isArray(guardado) ? guardado : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function obtenerStock() {
+      const producto = inventarioProductos[CODIGO_ODOO];
+      if (!producto) return 0;
+
+      const stock = Number(producto.disponible || 0);
+      return Number.isFinite(stock) ? Math.max(0, stock) : 0;
+    }
+
+    function actualizarTarjeta() {
+      const tarjeta = document.querySelector(".producto-card");
+      const estado = tarjeta.querySelector(".estado-producto");
+      const stockTexto = tarjeta.querySelector(".stock-producto");
+      const disponible = tarjeta.querySelector(".contenido-disponible");
+      const noDisponible = tarjeta.querySelector(".contenido-agotado");
+      const input = document.getElementById("cantidad-218");
+
+      const stock = obtenerStock();
+
+      if (stock > 0) {
+        tarjeta.classList.remove("agotado");
+
+        estado.textContent = "DISPONIBLE";
+        estado.classList.remove("estado-agotado");
+        estado.classList.add("estado-disponible");
+
+        stockTexto.textContent =
+          stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s");
+
+        disponible.style.display = "";
+        noDisponible.style.display = "none";
+
+        input.disabled = false;
+        input.max = stock;
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = false);
+
+      } else {
+        tarjeta.classList.add("agotado");
+
+        estado.textContent = "NO DISPONIBLE";
+        estado.classList.remove("estado-disponible");
+        estado.classList.add("estado-agotado");
+
+        stockTexto.textContent = "Temporalmente no disponible";
+        disponible.style.display = "none";
+        noDisponible.style.display = "";
+
+        input.disabled = true;
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = true);
+      }
+    }
+
+    async function cargarInventario() {
+      try {
+        const respuesta = await fetch(
+          "inventario.json?actualizacion=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar inventario.json");
+        }
+
+        const datos = await respuesta.json();
+
+        if (!datos || !datos.productos) {
+          throw new Error("Formato de inventario inválido");
+        }
+
+        inventarioProductos = datos.productos;
+        inventarioListo = true;
+        actualizarTarjeta();
+
+      } catch (error) {
+        console.error(error);
+        inventarioListo = false;
+
+        const tarjeta = document.querySelector(".producto-card");
+        tarjeta.classList.add("agotado");
+
+        tarjeta.querySelector(".estado-producto").textContent = "NO DISPONIBLE";
+        tarjeta.querySelector(".estado-producto").classList.remove("estado-disponible");
+        tarjeta.querySelector(".estado-producto").classList.add("estado-agotado");
+
+        tarjeta.querySelector(".stock-producto").textContent =
+          "No se pudo verificar el inventario";
+
+        tarjeta.querySelector(".contenido-disponible").style.display = "none";
+        tarjeta.querySelector(".contenido-agotado").style.display = "";
+        tarjeta.querySelector(".contenido-agotado").textContent =
+          "INVENTARIO NO DISPONIBLE";
+      }
+    }
+
+    function actualizarTotal() {
+      const input = document.getElementById("cantidad-218");
+      let cantidad = parseInt(input.value, 10);
+
+      if (!Number.isInteger(cantidad) || cantidad < 1) {
+        cantidad = 1;
+      }
+
+      const stock = obtenerStock();
+
+      if (stock > 0 && cantidad > stock) {
+        cantidad = stock;
+      }
+
+      input.value = cantidad;
+
+      document.querySelector(".producto-total strong").textContent =
+        formatoPesos(cantidad * PRECIO);
+    }
+
+    function cambiarCantidad(cambio) {
+      const input = document.getElementById("cantidad-218");
+      if (!input || input.disabled) return;
+
+      let cantidad = parseInt(input.value, 10);
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      cantidad += cambio;
+
+      if (cantidad < 1) cantidad = 1;
+
+      const stock = obtenerStock();
+      if (stock > 0 && cantidad > stock) cantidad = stock;
+
+      input.value = cantidad;
+      actualizarTotal();
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById("toastCarrito");
+
+      toast.textContent = mensaje;
+      toast.classList.add("visible");
+
+      clearTimeout(temporizadorToast);
+
+      temporizadorToast = setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2200);
+    }
+
+    function agregarProducto() {
+      if (!inventarioListo) {
+        mostrarToast("No pudimos verificar el inventario. Intenta de nuevo.");
+        return;
+      }
+
+      const stock = obtenerStock();
+
+      if (stock <= 0) {
+        mostrarToast("REF 218 está temporalmente no disponible.");
+        return;
+      }
+
+      const input = document.getElementById("cantidad-218");
+      let cantidad = parseInt(input.value, 10);
+
+      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
+
+      const carrito = leerCarrito();
+      const claveProducto = "Bases Traslúcidas Muna 12 ml - Ref. 01";
+
+      const existente = carrito.find(
+        producto => producto.clave === claveProducto
+      );
+
+      const cantidadActual = existente
+        ? Number(existente.cantidad || 0)
+        : 0;
+
+      if (cantidadActual + cantidad > stock) {
+        const restantes = Math.max(0, stock - cantidadActual);
+
+        if (restantes === 0) {
+          mostrarToast("Ya tienes todas las unidades disponibles de REF 218 en tu pedido.");
+        } else {
+          mostrarToast(
+            "Solo puedes agregar " + restantes +
+            " unidad" + (restantes === 1 ? "" : "es") +
+            " más de REF 218."
+          );
+        }
+
+        return;
+      }
+
+      if (existente) {
+        existente.cantidad += cantidad;
+      } else {
+        carrito.push({
+          clave: claveProducto,
+          nombre: "Bases Traslúcidas Muna 12 ml",
+          referencia: "218",
+          precio: PRECIO,
+          cantidad: cantidad
+        });
+      }
+
+      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+
+      mostrarToast("✓ REF 218 agregada a tu pedido 💗");
+
+      input.value = 1;
+      actualizarTotal();
+    }
+
+    document.getElementById("cantidad-218").addEventListener("input", actualizarTotal);
+    document.getElementById("cantidad-218").addEventListener("change", actualizarTotal);
+
+    cargarInventario();
+  </script>
+
+</body>
+</html>
