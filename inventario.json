@@ -16822,6 +16822,90 @@
       "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 929-60 MUNA SATIN",
       "disponible": 3,
       "a_la_mano": 3
+    },
+    "923-03": {
+      "codigo": "923-03",
+      "codigo_original_odoo": "923-03",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-03 MUNA SHELL",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "923-08": {
+      "codigo": "923-08",
+      "codigo_original_odoo": "923-08",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-08 MUNA SHELL",
+      "disponible": 11,
+      "a_la_mano": 11
+    },
+    "923-12": {
+      "codigo": "923-12",
+      "codigo_original_odoo": "923-12",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-12 MUNA SHELL",
+      "disponible": 12,
+      "a_la_mano": 12
+    },
+    "923-13": {
+      "codigo": "923-13",
+      "codigo_original_odoo": "923-13",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-13 MUNA SHELL",
+      "disponible": 6,
+      "a_la_mano": 6
+    },
+    "923-15": {
+      "codigo": "923-15",
+      "codigo_original_odoo": "923-15",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-15 MUNA SHELL",
+      "disponible": 2,
+      "a_la_mano": 2
+    },
+    "923-18": {
+      "codigo": "923-18",
+      "codigo_original_odoo": "923-18",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-18 MUNA SHELL",
+      "disponible": 2,
+      "a_la_mano": 2
+    },
+    "923-26": {
+      "codigo": "923-26",
+      "codigo_original_odoo": "923-26",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-26 MUNA SHELL",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "923-27": {
+      "codigo": "923-27",
+      "codigo_original_odoo": "923-27",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-27 MUNA SHELL",
+      "disponible": 3,
+      "a_la_mano": 3
+    },
+    "923-32": {
+      "codigo": "923-32",
+      "codigo_original_odoo": "923-32",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-32 MUNA SHELL",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "923-35": {
+      "codigo": "923-35",
+      "codigo_original_odoo": "923-35",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-35 MUNA SHELL",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "923-36": {
+      "codigo": "923-36",
+      "codigo_original_odoo": "923-36",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-36 MUNA SHELL",
+      "disponible": 6,
+      "a_la_mano": 6
+    },
+    "923-09": {
+      "codigo": "923-09",
+      "codigo_original_odoo": "923-09",
+      "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-09 MUNA SHELL",
+      "disponible": 4,
+      "a_la_mano": 4
     }
   }
 }
