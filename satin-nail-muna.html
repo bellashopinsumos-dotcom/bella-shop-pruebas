@@ -1499,6 +1499,26 @@
       }
     }
 
+  
+    .stock-producto {
+      min-height: 18px;
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2b8252;
+    }
+
+    .producto-card.agotado .stock-producto {
+      color: #b84260;
+    }
+
+    .btn-agregar-producto:disabled,
+    .cantidad-producto button:disabled,
+    .cantidad-producto input:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
   </style>
 
 </head>
@@ -1663,7 +1683,7 @@
 
       <div class="productos-grid">
 
-      <article class="producto-card">
+      <article class="producto-card" data-ref="51" data-codigo-odoo="929-51">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1676,31 +1696,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 51</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-51">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-51', -1)">−</button>
-              <input id="cantidad-51" type="number" min="1" value="1" aria-label="Cantidad REF 51">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-51', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-51">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '51', 16500, 'cantidad-51')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-51', -1)">−</button>
+
+                <input
+                  id="cantidad-51"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 51"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-51', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '51', 16500, 'cantidad-51')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="52" data-codigo-odoo="929-52">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1713,31 +1751,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 52</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-52">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-52', -1)">−</button>
-              <input id="cantidad-52" type="number" min="1" value="1" aria-label="Cantidad REF 52">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-52', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-52">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '52', 16500, 'cantidad-52')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-52', -1)">−</button>
+
+                <input
+                  id="cantidad-52"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 52"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-52', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '52', 16500, 'cantidad-52')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="53" data-codigo-odoo="929-53">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1750,31 +1806,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 53</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-53">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-53', -1)">−</button>
-              <input id="cantidad-53" type="number" min="1" value="1" aria-label="Cantidad REF 53">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-53', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-53">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '53', 16500, 'cantidad-53')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-53', -1)">−</button>
+
+                <input
+                  id="cantidad-53"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 53"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-53', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '53', 16500, 'cantidad-53')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="56" data-codigo-odoo="929-56">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1787,31 +1861,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 56</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-56">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-56', -1)">−</button>
-              <input id="cantidad-56" type="number" min="1" value="1" aria-label="Cantidad REF 56">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-56', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-56">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '56', 16500, 'cantidad-56')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-56', -1)">−</button>
+
+                <input
+                  id="cantidad-56"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 56"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-56', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '56', 16500, 'cantidad-56')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="57" data-codigo-odoo="929-57">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1824,31 +1916,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 57</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-57">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-57', -1)">−</button>
-              <input id="cantidad-57" type="number" min="1" value="1" aria-label="Cantidad REF 57">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-57', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-57">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '57', 16500, 'cantidad-57')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-57', -1)">−</button>
+
+                <input
+                  id="cantidad-57"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 57"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-57', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '57', 16500, 'cantidad-57')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="60" data-codigo-odoo="929-60">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1861,26 +1971,43 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Satin Nail 15 ml</div>
           <h3 class="producto-ref">REF 60</h3>
-
           <div class="producto-precio">$16.500 c/u</div>
-          <div class="producto-total" id="total-60">
-            Total: <strong>$16.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-60', -1)">−</button>
-              <input id="cantidad-60" type="number" min="1" value="1" aria-label="Cantidad REF 60">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-60', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-60">
+              Total: <strong>$16.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Satin Nail Muna 15 ml', '60', 16500, 'cantidad-60')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-60', -1)">−</button>
+
+                <input
+                  id="cantidad-60"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 60"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-60', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Satin Nail Muna 15 ml', '60', 16500, 'cantidad-60')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
@@ -1888,7 +2015,7 @@
       </div>
 
       <p class="nota-satin">
-        Te confirmamos la disponibilidad según la referencia escogida.
+        La disponibilidad se consulta automáticamente desde el inventario de Bella Shop.
       </p>
 
     </div>
@@ -2061,7 +2188,11 @@
 
 <script>
     const CLAVE_CARRITO = "bellaShopCarrito";
+    const PRECIO_SATIN = 16500;
+
     let temporizadorToast;
+    let inventarioProductos = {};
+    let inventarioListo = false;
 
     function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
@@ -2070,6 +2201,138 @@
 
     function formatoPesos(valor) {
       return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return Array.isArray(guardado) ? guardado : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function stockDeTarjeta(tarjeta) {
+      if (!tarjeta) return 0;
+
+      const codigo = tarjeta.dataset.codigoOdoo;
+      const producto = inventarioProductos[codigo];
+
+      if (!producto) return 0;
+
+      const cantidad = Number(producto.disponible || 0);
+      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
+    }
+
+    function actualizarTarjetaInventario(tarjeta) {
+      const stock = stockDeTarjeta(tarjeta);
+
+      const estado = tarjeta.querySelector(".estado-producto");
+      const stockTexto = tarjeta.querySelector(".stock-producto");
+      const disponible = tarjeta.querySelector(".contenido-disponible");
+      const noDisponible = tarjeta.querySelector(".contenido-agotado");
+      const input = tarjeta.querySelector(".cantidad-producto input");
+
+      if (stock > 0) {
+        tarjeta.classList.remove("agotado");
+
+        estado.textContent = "DISPONIBLE";
+        estado.classList.remove("estado-agotado");
+        estado.classList.add("estado-disponible");
+
+        stockTexto.textContent =
+          stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s");
+
+        disponible.style.display = "";
+        noDisponible.style.display = "none";
+
+        if (input) {
+          input.disabled = false;
+          input.max = stock;
+          if (Number(input.value) > stock) input.value = stock;
+          if (Number(input.value) < 1) input.value = 1;
+        }
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = false);
+
+      } else {
+        tarjeta.classList.add("agotado");
+
+        estado.textContent = "NO DISPONIBLE";
+        estado.classList.remove("estado-disponible");
+        estado.classList.add("estado-agotado");
+
+        stockTexto.textContent = "Temporalmente no disponible";
+        disponible.style.display = "none";
+        noDisponible.style.display = "";
+
+        if (input) input.disabled = true;
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = true);
+      }
+    }
+
+    async function cargarInventario() {
+      try {
+        const respuesta = await fetch(
+          "inventario.json?actualizacion=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar inventario.json");
+        }
+
+        const datos = await respuesta.json();
+
+        if (!datos || !datos.productos || typeof datos.productos !== "object") {
+          throw new Error("Formato de inventario inválido");
+        }
+
+        inventarioProductos = datos.productos;
+        inventarioListo = true;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(actualizarTarjetaInventario);
+
+      } catch (error) {
+        console.error("Error al cargar inventario:", error);
+        inventarioListo = false;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(tarjeta => {
+          tarjeta.classList.add("agotado");
+
+          const estado = tarjeta.querySelector(".estado-producto");
+          const stockTexto = tarjeta.querySelector(".stock-producto");
+          const disponible = tarjeta.querySelector(".contenido-disponible");
+          const noDisponible = tarjeta.querySelector(".contenido-agotado");
+
+          if (estado) {
+            estado.textContent = "NO DISPONIBLE";
+            estado.classList.remove("estado-disponible");
+            estado.classList.add("estado-agotado");
+          }
+
+          if (stockTexto) {
+            stockTexto.textContent = "No se pudo verificar el inventario";
+          }
+
+          if (disponible) disponible.style.display = "none";
+
+          if (noDisponible) {
+            noDisponible.style.display = "";
+            noDisponible.textContent = "INVENTARIO NO DISPONIBLE";
+          }
+        });
+      }
     }
 
     function actualizarTotal(idInput) {
@@ -2082,33 +2345,37 @@
       const tarjeta = input.closest(".producto-card");
       if (!tarjeta) return;
 
-      const total = tarjeta.querySelector(".producto-total strong");
-      if (!total) return;
+      const stock = stockDeTarjeta(tarjeta);
 
-      total.textContent = formatoPesos(cantidad * 16500);
+      if (stock > 0 && cantidad > stock) {
+        cantidad = stock;
+      }
+
+      input.value = cantidad;
+
+      const total = tarjeta.querySelector(".producto-total strong");
+      if (total) {
+        total.textContent = formatoPesos(cantidad * PRECIO_SATIN);
+      }
     }
 
     function cambiarCantidad(idInput, cambio) {
       const input = document.getElementById(idInput);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       cantidad += cambio;
+
       if (cantidad < 1) cantidad = 1;
+      if (stock > 0 && cantidad > stock) cantidad = stock;
 
       input.value = cantidad;
       actualizarTotal(idInput);
-    }
-
-    function leerCarrito() {
-      try {
-        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
-        return Array.isArray(guardado) ? guardado : [];
-      } catch (error) {
-        return [];
-      }
     }
 
     function mostrarToast(mensaje) {
@@ -2119,14 +2386,28 @@
       toast.classList.add("visible");
 
       clearTimeout(temporizadorToast);
+
       temporizadorToast = setTimeout(() => {
         toast.classList.remove("visible");
       }, 2200);
     }
 
     function agregarProducto(nombre, referencia, precio, idCantidad) {
+      if (!inventarioListo) {
+        mostrarToast("No pudimos verificar el inventario. Intenta de nuevo.");
+        return;
+      }
+
       const input = document.getElementById(idCantidad);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
+
+      if (stock <= 0) {
+        mostrarToast("REF " + referencia + " está temporalmente no disponible.");
+        return;
+      }
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
@@ -2137,6 +2418,29 @@
       const existente = carrito.find(
         producto => producto.clave === claveProducto
       );
+
+      const cantidadActual = existente
+        ? Number(existente.cantidad || 0)
+        : 0;
+
+      if (cantidadActual + cantidad > stock) {
+        const restantes = Math.max(0, stock - cantidadActual);
+
+        if (restantes === 0) {
+          mostrarToast(
+            "Ya tienes todas las unidades disponibles de REF " +
+            referencia + " en tu pedido."
+          );
+        } else {
+          mostrarToast(
+            "Solo puedes agregar " + restantes +
+            " unidad" + (restantes === 1 ? "" : "es") +
+            " más de REF " + referencia + "."
+          );
+        }
+
+        return;
+      }
 
       if (existente) {
         existente.cantidad += cantidad;
@@ -2157,28 +2461,17 @@
 
       actualizarLinkMiPedido();
       mostrarToast("✓ REF " + referencia + " agregada a tu pedido 💗");
+
       input.value = 1;
       actualizarTotal(idCantidad);
     }
 
     document.querySelectorAll(".cantidad-producto input").forEach(input => {
       input.addEventListener("input", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          cantidad = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
       input.addEventListener("change", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          this.value = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
@@ -2186,6 +2479,7 @@
     });
 
     actualizarLinkMiPedido();
+    cargarInventario();
   </script>
 
 </body>
