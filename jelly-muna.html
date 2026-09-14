@@ -1499,6 +1499,22 @@
       }
     }
 
+  
+    .stock-producto {
+      min-height: 18px;
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2b8252;
+    }
+    .producto-card.agotado .stock-producto { color: #b84260; }
+    .btn-agregar-producto:disabled,
+    .cantidad-producto button:disabled,
+    .cantidad-producto input:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
   </style>
 
 </head>
@@ -1663,218 +1679,265 @@
 
       <div class="productos-grid">
 
-      <article class="producto-card">
+      <article class="producto-card" data-ref="UVA" data-codigo-odoo="MUNA932-UVA">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-uva.png"
-            alt="Jelly Gel Muna 12 ml REF UVA"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-uva.png"
+               alt="Jelly Gel Muna 12 ml REF UVA"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF UVA</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-uva">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-uva', -1)">−</button>
-              <input id="cantidad-uva" type="number" min="1" value="1" aria-label="Cantidad REF UVA">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-uva', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-uva">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'UVA', 13500, 'cantidad-uva')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-uva', -1)">−</button>
+                <input id="cantidad-uva" type="number" min="1" value="1"
+                       aria-label="Cantidad REF UVA">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-uva', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'UVA', 13500, 'cantidad-uva')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="CEREZA" data-codigo-odoo="MUNA932-CEREZA">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-cereza.png"
-            alt="Jelly Gel Muna 12 ml REF CEREZA"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-cereza.png"
+               alt="Jelly Gel Muna 12 ml REF CEREZA"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF CEREZA</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-cereza">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-cereza', -1)">−</button>
-              <input id="cantidad-cereza" type="number" min="1" value="1" aria-label="Cantidad REF CEREZA">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-cereza', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-cereza">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'CEREZA', 13500, 'cantidad-cereza')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-cereza', -1)">−</button>
+                <input id="cantidad-cereza" type="number" min="1" value="1"
+                       aria-label="Cantidad REF CEREZA">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-cereza', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'CEREZA', 13500, 'cantidad-cereza')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="FRESA" data-codigo-odoo="MUNA932-FRESA">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-fresa.png"
-            alt="Jelly Gel Muna 12 ml REF FRESA"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-fresa.png"
+               alt="Jelly Gel Muna 12 ml REF FRESA"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF FRESA</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-fresa">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-fresa', -1)">−</button>
-              <input id="cantidad-fresa" type="number" min="1" value="1" aria-label="Cantidad REF FRESA">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-fresa', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-fresa">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'FRESA', 13500, 'cantidad-fresa')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-fresa', -1)">−</button>
+                <input id="cantidad-fresa" type="number" min="1" value="1"
+                       aria-label="Cantidad REF FRESA">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-fresa', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'FRESA', 13500, 'cantidad-fresa')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="SANDÍA" data-codigo-odoo="MUNA932-SANDIA">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-sandia.png"
-            alt="Jelly Gel Muna 12 ml REF SANDÍA"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-sandia.png"
+               alt="Jelly Gel Muna 12 ml REF SANDÍA"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF SANDÍA</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-sandia">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-sandia', -1)">−</button>
-              <input id="cantidad-sandia" type="number" min="1" value="1" aria-label="Cantidad REF SANDÍA">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-sandia', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-sandia">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'SANDÍA', 13500, 'cantidad-sandia')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-sandia', -1)">−</button>
+                <input id="cantidad-sandia" type="number" min="1" value="1"
+                       aria-label="Cantidad REF SANDÍA">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-sandia', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'SANDÍA', 13500, 'cantidad-sandia')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="MANGO" data-codigo-odoo="MUNA932-MANGO">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-mango.png"
-            alt="Jelly Gel Muna 12 ml REF MANGO"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-mango.png"
+               alt="Jelly Gel Muna 12 ml REF MANGO"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF MANGO</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-mango">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-mango', -1)">−</button>
-              <input id="cantidad-mango" type="number" min="1" value="1" aria-label="Cantidad REF MANGO">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-mango', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-mango">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'MANGO', 13500, 'cantidad-mango')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-mango', -1)">−</button>
+                <input id="cantidad-mango" type="number" min="1" value="1"
+                       aria-label="Cantidad REF MANGO">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-mango', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'MANGO', 13500, 'cantidad-mango')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="MORA" data-codigo-odoo="MUNA932-MORA">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
-          <img
-            src="imagenes/muna-jelly-mora.png"
-            alt="Jelly Gel Muna 12 ml REF MORA"
-            class="producto-imagen"
-          >
+          <img src="imagenes/muna-jelly-mora.png"
+               alt="Jelly Gel Muna 12 ml REF MORA"
+               class="producto-imagen">
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Jelly Gel 12 ml</div>
           <h3 class="producto-ref">REF MORA</h3>
           <div class="producto-precio">$13.500 c/u</div>
-          <div class="producto-total" id="total-mora">
-            Total: <strong>$13.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-mora', -1)">−</button>
-              <input id="cantidad-mora" type="number" min="1" value="1" aria-label="Cantidad REF MORA">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-mora', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-mora">
+              Total: <strong>$13.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Jelly Gel Muna 12 ml', 'MORA', 13500, 'cantidad-mora')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-mora', -1)">−</button>
+                <input id="cantidad-mora" type="number" min="1" value="1"
+                       aria-label="Cantidad REF MORA">
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-mora', 1)">+</button>
+              </div>
+
+              <button type="button"
+                      class="btn-agregar-producto"
+                      onclick="agregarProducto('Jelly Gel Muna 12 ml', 'MORA', 13500, 'cantidad-mora')">
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
@@ -1882,7 +1945,7 @@
       </div>
 
       <p class="nota-jelly">
-        Te confirmamos la disponibilidad según la referencia escogida.
+        La disponibilidad se consulta automáticamente desde el inventario de Bella Shop.
       </p>
 
     </div>
@@ -2055,7 +2118,11 @@
 
 <script>
     const CLAVE_CARRITO = "bellaShopCarrito";
+    const PRECIO_JELLY = 13500;
+
     let temporizadorToast;
+    let inventarioProductos = {};
+    let inventarioListo = false;
 
     function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
@@ -2064,6 +2131,128 @@
 
     function formatoPesos(valor) {
       return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return Array.isArray(guardado) ? guardado : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function stockDeTarjeta(tarjeta) {
+      if (!tarjeta) return 0;
+      const codigo = tarjeta.dataset.codigoOdoo;
+      const producto = inventarioProductos[codigo];
+      if (!producto) return 0;
+
+      const cantidad = Number(producto.disponible || 0);
+      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
+    }
+
+    function actualizarTarjetaInventario(tarjeta) {
+      const stock = stockDeTarjeta(tarjeta);
+      const estado = tarjeta.querySelector(".estado-producto");
+      const stockTexto = tarjeta.querySelector(".stock-producto");
+      const disponible = tarjeta.querySelector(".contenido-disponible");
+      const noDisponible = tarjeta.querySelector(".contenido-agotado");
+      const input = tarjeta.querySelector(".cantidad-producto input");
+
+      if (stock > 0) {
+        tarjeta.classList.remove("agotado");
+        estado.textContent = "DISPONIBLE";
+        estado.classList.remove("estado-agotado");
+        estado.classList.add("estado-disponible");
+
+        stockTexto.textContent =
+          stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s");
+
+        disponible.style.display = "";
+        noDisponible.style.display = "none";
+
+        if (input) {
+          input.disabled = false;
+          input.max = stock;
+          if (Number(input.value) > stock) input.value = stock;
+          if (Number(input.value) < 1) input.value = 1;
+        }
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = false);
+
+      } else {
+        tarjeta.classList.add("agotado");
+        estado.textContent = "NO DISPONIBLE";
+        estado.classList.remove("estado-disponible");
+        estado.classList.add("estado-agotado");
+
+        stockTexto.textContent = "Temporalmente no disponible";
+        disponible.style.display = "none";
+        noDisponible.style.display = "";
+
+        if (input) input.disabled = true;
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = true);
+      }
+    }
+
+    async function cargarInventario() {
+      try {
+        const respuesta = await fetch(
+          "inventario.json?actualizacion=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!respuesta.ok) throw new Error("No se pudo cargar inventario.json");
+
+        const datos = await respuesta.json();
+
+        if (!datos || !datos.productos || typeof datos.productos !== "object") {
+          throw new Error("Formato de inventario inválido");
+        }
+
+        inventarioProductos = datos.productos;
+        inventarioListo = true;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(actualizarTarjetaInventario);
+
+      } catch (error) {
+        console.error("Error al cargar inventario:", error);
+        inventarioListo = false;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(tarjeta => {
+          tarjeta.classList.add("agotado");
+
+          const estado = tarjeta.querySelector(".estado-producto");
+          const stockTexto = tarjeta.querySelector(".stock-producto");
+          const disponible = tarjeta.querySelector(".contenido-disponible");
+          const noDisponible = tarjeta.querySelector(".contenido-agotado");
+
+          if (estado) {
+            estado.textContent = "NO DISPONIBLE";
+            estado.classList.remove("estado-disponible");
+            estado.classList.add("estado-agotado");
+          }
+
+          if (stockTexto) stockTexto.textContent = "No se pudo verificar el inventario";
+          if (disponible) disponible.style.display = "none";
+
+          if (noDisponible) {
+            noDisponible.style.display = "";
+            noDisponible.textContent = "INVENTARIO NO DISPONIBLE";
+          }
+        });
+      }
     }
 
     function actualizarTotal(idInput) {
@@ -2076,33 +2265,31 @@
       const tarjeta = input.closest(".producto-card");
       if (!tarjeta) return;
 
-      const total = tarjeta.querySelector(".producto-total strong");
-      if (!total) return;
+      const stock = stockDeTarjeta(tarjeta);
+      if (stock > 0 && cantidad > stock) cantidad = stock;
 
-      total.textContent = formatoPesos(cantidad * 13500);
+      input.value = cantidad;
+
+      const total = tarjeta.querySelector(".producto-total strong");
+      if (total) total.textContent = formatoPesos(cantidad * PRECIO_JELLY);
     }
 
     function cambiarCantidad(idInput, cambio) {
       const input = document.getElementById(idInput);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       cantidad += cambio;
       if (cantidad < 1) cantidad = 1;
+      if (stock > 0 && cantidad > stock) cantidad = stock;
 
       input.value = cantidad;
       actualizarTotal(idInput);
-    }
-
-    function leerCarrito() {
-      try {
-        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
-        return Array.isArray(guardado) ? guardado : [];
-      } catch (error) {
-        return [];
-      }
     }
 
     function mostrarToast(mensaje) {
@@ -2119,18 +2306,47 @@
     }
 
     function agregarProducto(nombre, referencia, precio, idCantidad) {
+      if (!inventarioListo) {
+        mostrarToast("No pudimos verificar el inventario. Intenta de nuevo.");
+        return;
+      }
+
       const input = document.getElementById(idCantidad);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
+
+      if (stock <= 0) {
+        mostrarToast("REF " + referencia + " está temporalmente no disponible.");
+        return;
+      }
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       const carrito = leerCarrito();
       const claveProducto = nombre + " - Ref. " + referencia;
+      const existente = carrito.find(producto => producto.clave === claveProducto);
+      const cantidadActual = existente ? Number(existente.cantidad || 0) : 0;
 
-      const existente = carrito.find(
-        producto => producto.clave === claveProducto
-      );
+      if (cantidadActual + cantidad > stock) {
+        const restantes = Math.max(0, stock - cantidadActual);
+
+        if (restantes === 0) {
+          mostrarToast(
+            "Ya tienes todas las unidades disponibles de REF " +
+            referencia + " en tu pedido."
+          );
+        } else {
+          mostrarToast(
+            "Solo puedes agregar " + restantes +
+            " unidad" + (restantes === 1 ? "" : "es") +
+            " más de REF " + referencia + "."
+          );
+        }
+        return;
+      }
 
       if (existente) {
         existente.cantidad += cantidad;
@@ -2144,35 +2360,21 @@
         });
       }
 
-      localStorage.setItem(
-        CLAVE_CARRITO,
-        JSON.stringify(carrito)
-      );
+      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
 
       actualizarLinkMiPedido();
       mostrarToast("✓ REF " + referencia + " agregada a tu pedido 💗");
+
       input.value = 1;
       actualizarTotal(idCantidad);
     }
 
     document.querySelectorAll(".cantidad-producto input").forEach(input => {
       input.addEventListener("input", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          cantidad = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
       input.addEventListener("change", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          this.value = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
@@ -2180,6 +2382,7 @@
     });
 
     actualizarLinkMiPedido();
+    cargarInventario();
   </script>
 
 </body>
