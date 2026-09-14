@@ -1499,6 +1499,26 @@
       }
     }
 
+  
+    .stock-producto {
+      min-height: 18px;
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2b8252;
+    }
+
+    .producto-card.agotado .stock-producto {
+      color: #b84260;
+    }
+
+    .btn-agregar-producto:disabled,
+    .cantidad-producto button:disabled,
+    .cantidad-producto input:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
   </style>
 
 </head>
@@ -1663,7 +1683,7 @@
 
       <div class="productos-grid">
 
-      <article class="producto-card">
+      <article class="producto-card" data-ref="01" data-codigo-odoo="922-01">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1676,31 +1696,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 01</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-01">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-01', -1)">−</button>
-              <input id="cantidad-01" type="number" min="1" value="1" aria-label="Cantidad REF 01">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-01', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-01">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '01', 12500, 'cantidad-01')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-01', -1)">−</button>
+
+                <input
+                  id="cantidad-01"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 01"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-01', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '01', 12500, 'cantidad-01')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="07" data-codigo-odoo="922-07">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1713,58 +1751,104 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 07</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-07">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-07', -1)">−</button>
-              <input id="cantidad-07" type="number" min="1" value="1" aria-label="Cantidad REF 07">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-07', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-07">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '07', 12500, 'cantidad-07')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-07', -1)">−</button>
+
+                <input
+                  id="cantidad-07"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 07"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-07', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '07', 12500, 'cantidad-07')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card producto-agotado">
+
+      <article class="producto-card" data-ref="09" data-codigo-odoo="922-09">
         <div class="producto-imagen-wrap">
-          <span class="estado-producto estado-agotado">AGOTADO</span>
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
             src="imagenes/muna-macarron-09.png"
             alt="Macarrón Muna 15 ml REF 09"
-            class="producto-imagen imagen-agotada"
+            class="producto-imagen"
           >
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 09</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total">
-            No disponible actualmente
+          <div class="stock-producto"></div>
+
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-09">
+              Total: <strong>$12.500</strong>
+            </div>
+
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-09', -1)">−</button>
+
+                <input
+                  id="cantidad-09"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 09"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-09', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '09', 12500, 'cantidad-09')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
           </div>
 
-          <div class="producto-acciones">
-            <button type="button" class="btn-agregar-producto" disabled>
-              AGOTADO
-            </button>
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="12" data-codigo-odoo="922-12">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1777,31 +1861,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 12</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-12">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-12', -1)">−</button>
-              <input id="cantidad-12" type="number" min="1" value="1" aria-label="Cantidad REF 12">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-12', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-12">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '12', 12500, 'cantidad-12')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-12', -1)">−</button>
+
+                <input
+                  id="cantidad-12"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 12"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-12', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '12', 12500, 'cantidad-12')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="15" data-codigo-odoo="922-15">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1814,58 +1916,104 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 15</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-15">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-15', -1)">−</button>
-              <input id="cantidad-15" type="number" min="1" value="1" aria-label="Cantidad REF 15">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-15', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-15">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '15', 12500, 'cantidad-15')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-15', -1)">−</button>
+
+                <input
+                  id="cantidad-15"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 15"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-15', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '15', 12500, 'cantidad-15')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card producto-agotado">
+
+      <article class="producto-card" data-ref="16" data-codigo-odoo="922-16">
         <div class="producto-imagen-wrap">
-          <span class="estado-producto estado-agotado">AGOTADO</span>
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
             src="imagenes/muna-macarron-16.png"
             alt="Macarrón Muna 15 ml REF 16"
-            class="producto-imagen imagen-agotada"
+            class="producto-imagen"
           >
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 16</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total">
-            No disponible actualmente
+          <div class="stock-producto"></div>
+
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-16">
+              Total: <strong>$12.500</strong>
+            </div>
+
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-16', -1)">−</button>
+
+                <input
+                  id="cantidad-16"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 16"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-16', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '16', 12500, 'cantidad-16')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
           </div>
 
-          <div class="producto-acciones">
-            <button type="button" class="btn-agregar-producto" disabled>
-              AGOTADO
-            </button>
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="17" data-codigo-odoo="922-17">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1878,31 +2026,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 17</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-17">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-17', -1)">−</button>
-              <input id="cantidad-17" type="number" min="1" value="1" aria-label="Cantidad REF 17">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-17', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-17">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '17', 12500, 'cantidad-17')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-17', -1)">−</button>
+
+                <input
+                  id="cantidad-17"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 17"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-17', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '17', 12500, 'cantidad-17')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="18" data-codigo-odoo="922-18">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1915,31 +2081,49 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 18</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-18">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-18', -1)">−</button>
-              <input id="cantidad-18" type="number" min="1" value="1" aria-label="Cantidad REF 18">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-18', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-18">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '18', 12500, 'cantidad-18')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-18', -1)">−</button>
+
+                <input
+                  id="cantidad-18"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 18"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-18', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '18', 12500, 'cantidad-18')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card">
+
+      <article class="producto-card" data-ref="22" data-codigo-odoo="922-22">
         <div class="producto-imagen-wrap">
           <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
@@ -1952,53 +2136,98 @@
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 22</h3>
-
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total" id="total-22">
-            Total: <strong>$12.500</strong>
-          </div>
+          <div class="stock-producto"></div>
 
-          <div class="producto-acciones">
-            <div class="cantidad-producto">
-              <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad('cantidad-22', -1)">−</button>
-              <input id="cantidad-22" type="number" min="1" value="1" aria-label="Cantidad REF 22">
-              <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad('cantidad-22', 1)">+</button>
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-22">
+              Total: <strong>$12.500</strong>
             </div>
 
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              onclick="agregarProducto('Macarrón Muna 15 ml', '22', 12500, 'cantidad-22')"
-            >
-              AGREGAR AL PEDIDO
-            </button>
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-22', -1)">−</button>
+
+                <input
+                  id="cantidad-22"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 22"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-22', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '22', 12500, 'cantidad-22')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
+          </div>
+
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
 
-      <article class="producto-card producto-agotado">
+
+      <article class="producto-card" data-ref="24" data-codigo-odoo="922-24">
         <div class="producto-imagen-wrap">
-          <span class="estado-producto estado-agotado">AGOTADO</span>
+          <span class="estado-producto estado-disponible">DISPONIBLE</span>
           <img
             src="imagenes/muna-macarron-24.png"
             alt="Macarrón Muna 15 ml REF 24"
-            class="producto-imagen imagen-agotada"
+            class="producto-imagen"
           >
         </div>
 
         <div class="producto-info">
           <div class="producto-tipo">Muna · Macarrón 15 ml</div>
           <h3 class="producto-ref">REF 24</h3>
-          
           <div class="producto-precio">$12.500 c/u</div>
-          <div class="producto-total">
-            No disponible actualmente
+          <div class="stock-producto"></div>
+
+          <div class="contenido-disponible">
+            <div class="producto-total" id="total-24">
+              Total: <strong>$12.500</strong>
+            </div>
+
+            <div class="producto-acciones">
+              <div class="cantidad-producto">
+                <button type="button" aria-label="Restar cantidad"
+                        onclick="cambiarCantidad('cantidad-24', -1)">−</button>
+
+                <input
+                  id="cantidad-24"
+                  type="number"
+                  min="1"
+                  value="1"
+                  aria-label="Cantidad REF 24"
+                >
+
+                <button type="button" aria-label="Sumar cantidad"
+                        onclick="cambiarCantidad('cantidad-24', 1)">+</button>
+              </div>
+
+              <button
+                type="button"
+                class="btn-agregar-producto"
+                onclick="agregarProducto('Macarrón Muna 15 ml', '24', 12500, 'cantidad-24')"
+              >
+                AGREGAR AL PEDIDO
+              </button>
+            </div>
           </div>
 
-          <div class="producto-acciones">
-            <button type="button" class="btn-agregar-producto" disabled>
-              AGOTADO
-            </button>
+          <div class="agotado-bloque contenido-agotado" style="display:none;">
+            TEMPORALMENTE NO DISPONIBLE
           </div>
         </div>
       </article>
@@ -2006,7 +2235,7 @@
       </div>
 
       <p class="nota-macarron">
-        Te confirmamos la disponibilidad según la referencia escogida.
+        La disponibilidad se consulta automáticamente desde el inventario de Bella Shop.
       </p>
 
     </div>
@@ -2179,7 +2408,11 @@
 
 <script>
     const CLAVE_CARRITO = "bellaShopCarrito";
+    const PRECIO_MACARRON = 12500;
+
     let temporizadorToast;
+    let inventarioProductos = {};
+    let inventarioListo = false;
 
     function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
@@ -2188,6 +2421,140 @@
 
     function formatoPesos(valor) {
       return "$" + valor.toLocaleString("es-CO");
+    }
+
+    function leerCarrito() {
+      try {
+        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
+        return Array.isArray(guardado) ? guardado : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function stockDeTarjeta(tarjeta) {
+      if (!tarjeta) return 0;
+
+      const codigo = tarjeta.dataset.codigoOdoo;
+      const producto = inventarioProductos[codigo];
+
+      if (!producto) return 0;
+
+      const cantidad = Number(producto.disponible || 0);
+      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
+    }
+
+    function actualizarTarjetaInventario(tarjeta) {
+      const stock = stockDeTarjeta(tarjeta);
+
+      const estado = tarjeta.querySelector(".estado-producto");
+      const stockTexto = tarjeta.querySelector(".stock-producto");
+      const disponible = tarjeta.querySelector(".contenido-disponible");
+      const noDisponible = tarjeta.querySelector(".contenido-agotado");
+      const input = tarjeta.querySelector(".cantidad-producto input");
+
+      if (stock > 0) {
+        tarjeta.classList.remove("agotado", "producto-agotado");
+
+        estado.textContent = "DISPONIBLE";
+        estado.classList.remove("estado-agotado");
+        estado.classList.add("estado-disponible");
+
+        stockTexto.textContent =
+          stock + " unidad" + (stock === 1 ? "" : "es") +
+          " disponible" + (stock === 1 ? "" : "s");
+
+        disponible.style.display = "";
+        noDisponible.style.display = "none";
+
+        if (input) {
+          input.disabled = false;
+          input.max = stock;
+
+          if (Number(input.value) > stock) input.value = stock;
+          if (Number(input.value) < 1) input.value = 1;
+        }
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = false);
+
+      } else {
+        tarjeta.classList.add("agotado");
+
+        estado.textContent = "NO DISPONIBLE";
+        estado.classList.remove("estado-disponible");
+        estado.classList.add("estado-agotado");
+
+        stockTexto.textContent = "Temporalmente no disponible";
+
+        disponible.style.display = "none";
+        noDisponible.style.display = "";
+
+        if (input) input.disabled = true;
+
+        tarjeta.querySelectorAll(
+          ".cantidad-producto button, .btn-agregar-producto"
+        ).forEach(boton => boton.disabled = true);
+      }
+    }
+
+    async function cargarInventario() {
+      try {
+        const respuesta = await fetch(
+          "inventario.json?actualizacion=" + Date.now(),
+          { cache: "no-store" }
+        );
+
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cargar inventario.json");
+        }
+
+        const datos = await respuesta.json();
+
+        if (!datos || !datos.productos || typeof datos.productos !== "object") {
+          throw new Error("Formato de inventario inválido");
+        }
+
+        inventarioProductos = datos.productos;
+        inventarioListo = true;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(actualizarTarjetaInventario);
+
+      } catch (error) {
+        console.error("Error al cargar inventario:", error);
+        inventarioListo = false;
+
+        document.querySelectorAll(
+          ".producto-card[data-codigo-odoo]"
+        ).forEach(tarjeta => {
+          tarjeta.classList.add("agotado");
+
+          const estado = tarjeta.querySelector(".estado-producto");
+          const stockTexto = tarjeta.querySelector(".stock-producto");
+          const disponible = tarjeta.querySelector(".contenido-disponible");
+          const noDisponible = tarjeta.querySelector(".contenido-agotado");
+
+          if (estado) {
+            estado.textContent = "NO DISPONIBLE";
+            estado.classList.remove("estado-disponible");
+            estado.classList.add("estado-agotado");
+          }
+
+          if (stockTexto) {
+            stockTexto.textContent = "No se pudo verificar el inventario";
+          }
+
+          if (disponible) disponible.style.display = "none";
+
+          if (noDisponible) {
+            noDisponible.style.display = "";
+            noDisponible.textContent = "INVENTARIO NO DISPONIBLE";
+          }
+        });
+      }
     }
 
     function actualizarTotal(idInput) {
@@ -2200,33 +2567,37 @@
       const tarjeta = input.closest(".producto-card");
       if (!tarjeta) return;
 
-      const total = tarjeta.querySelector(".producto-total strong");
-      if (!total) return;
+      const stock = stockDeTarjeta(tarjeta);
 
-      total.textContent = formatoPesos(cantidad * 12500);
+      if (stock > 0 && cantidad > stock) {
+        cantidad = stock;
+      }
+
+      input.value = cantidad;
+
+      const total = tarjeta.querySelector(".producto-total strong");
+      if (total) {
+        total.textContent = formatoPesos(cantidad * PRECIO_MACARRON);
+      }
     }
 
     function cambiarCantidad(idInput, cambio) {
       const input = document.getElementById(idInput);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       cantidad += cambio;
+
       if (cantidad < 1) cantidad = 1;
+      if (stock > 0 && cantidad > stock) cantidad = stock;
 
       input.value = cantidad;
       actualizarTotal(idInput);
-    }
-
-    function leerCarrito() {
-      try {
-        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
-        return Array.isArray(guardado) ? guardado : [];
-      } catch (error) {
-        return [];
-      }
     }
 
     function mostrarToast(mensaje) {
@@ -2237,14 +2608,28 @@
       toast.classList.add("visible");
 
       clearTimeout(temporizadorToast);
+
       temporizadorToast = setTimeout(() => {
         toast.classList.remove("visible");
       }, 2200);
     }
 
     function agregarProducto(nombre, referencia, precio, idCantidad) {
+      if (!inventarioListo) {
+        mostrarToast("No pudimos verificar el inventario. Intenta de nuevo.");
+        return;
+      }
+
       const input = document.getElementById(idCantidad);
-      if (!input) return;
+      if (!input || input.disabled) return;
+
+      const tarjeta = input.closest(".producto-card");
+      const stock = stockDeTarjeta(tarjeta);
+
+      if (stock <= 0) {
+        mostrarToast("REF " + referencia + " está temporalmente no disponible.");
+        return;
+      }
 
       let cantidad = parseInt(input.value, 10);
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
@@ -2255,6 +2640,29 @@
       const existente = carrito.find(
         producto => producto.clave === claveProducto
       );
+
+      const cantidadActual = existente
+        ? Number(existente.cantidad || 0)
+        : 0;
+
+      if (cantidadActual + cantidad > stock) {
+        const restantes = Math.max(0, stock - cantidadActual);
+
+        if (restantes === 0) {
+          mostrarToast(
+            "Ya tienes todas las unidades disponibles de REF " +
+            referencia + " en tu pedido."
+          );
+        } else {
+          mostrarToast(
+            "Solo puedes agregar " + restantes +
+            " unidad" + (restantes === 1 ? "" : "es") +
+            " más de REF " + referencia + "."
+          );
+        }
+
+        return;
+      }
 
       if (existente) {
         existente.cantidad += cantidad;
@@ -2275,28 +2683,17 @@
 
       actualizarLinkMiPedido();
       mostrarToast("✓ REF " + referencia + " agregada a tu pedido 💗");
+
       input.value = 1;
       actualizarTotal(idCantidad);
     }
 
     document.querySelectorAll(".cantidad-producto input").forEach(input => {
       input.addEventListener("input", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          cantidad = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
       input.addEventListener("change", function () {
-        let cantidad = parseInt(this.value, 10);
-
-        if (!Number.isInteger(cantidad) || cantidad < 1) {
-          this.value = 1;
-        }
-
         actualizarTotal(this.id);
       });
 
@@ -2304,6 +2701,7 @@
     });
 
     actualizarLinkMiPedido();
+    cargarInventario();
   </script>
 
 </body>
