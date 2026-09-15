@@ -1823,12 +1823,7 @@
 
     function agregarReferencia() {
       mensajeError.textContent = "";
-      if (ref === "08") {
-        mensajeError.textContent = "💗 La REF. 08 corresponde al mismo tono/producto que la REF. 04.";
-        mensajeError.style.color = "#a64d79";
-      } else {
-        mensajeError.style.color = "";
-      }
+      mensajeError.style.color = "";
 
       if (!inventarioListo) {
         mensajeError.textContent = "Espera un momento mientras cargamos el inventario.";
@@ -1836,6 +1831,11 @@
       }
 
       const ref = normalizarReferencia(input.value);
+
+      if (ref === "08") {
+        mensajeError.textContent = "💗 La REF. 08 corresponde al mismo tono/producto que la REF. 04.";
+        mensajeError.style.color = "#a64d79";
+      }
 
       if (!referenciaValida(ref)) {
         mensajeError.textContent = "Esa referencia no aparece en la carta Muna BB 7 ml.";
