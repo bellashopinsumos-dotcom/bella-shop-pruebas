@@ -16906,6 +16906,104 @@
       "nombre": "ESMALTE SEMIPERMANENTE 15 ML REF 923-09 MUNA SHELL",
       "disponible": 4,
       "a_la_mano": 4
+    },
+    "CANM8-JARDIN-DEL-CAFE": {
+      "codigo": "CANM8-JARDIN-DEL-CAFE",
+      "codigo_original_odoo": "CANM8-JARDIN-DEL-CAFE",
+      "nombre": "ESMALTE SEMIPERMANENTE JARDIN DEL CAFE 8 ML CANM",
+      "disponible": 2,
+      "a_la_mano": 2
+    },
+    "CANM8-TE-DE-MORAS": {
+      "codigo": "CANM8-TE-DE-MORAS",
+      "codigo_original_odoo": "CANM8-TE-DE-MORAS",
+      "nombre": "ESMALTE SEMIPERMANENTE TE DE MORAS 8 ML CANM",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "CANM8-DULCE-DE-ALGODON": {
+      "codigo": "CANM8-DULCE-DE-ALGODON",
+      "codigo_original_odoo": "CANM8-DULCE-DE-ALGODON",
+      "nombre": "ESMALTE SEMIPERMANENTE DULCE DE ALGODON 8 ML CANM",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "CANM8-CANELA": {
+      "codigo": "CANM8-CANELA",
+      "codigo_original_odoo": "CANM8-CANELA",
+      "nombre": "ESMALTE SEMIPERMANENTE CANELA 8 ML CANM",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "CANM8-LUZ-DE-ORO": {
+      "codigo": "CANM8-LUZ-DE-ORO",
+      "codigo_original_odoo": "CANM8-LUZ-DE-ORO",
+      "nombre": "ESMALTE SEMIPERMANENTE LUZ DE ORO 8 ML CANM",
+      "disponible": 3,
+      "a_la_mano": 3
+    },
+    "CANM8-HILOS-DE-PLATA": {
+      "codigo": "CANM8-HILOS-DE-PLATA",
+      "codigo_original_odoo": "CANM8-HILOS-DE-PLATA",
+      "nombre": "ESMALTE SEMIPERMANENTE HILOS DE PLATA 8 ML CANM",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "CANM8-VIOLETA-DE-LA-MODA": {
+      "codigo": "CANM8-VIOLETA-DE-LA-MODA",
+      "codigo_original_odoo": "CANM8-VIOLETA-DE-LA-MODA",
+      "nombre": "ESMALTE SEMIPERMANENTE VIOLETA DE LA MODA 8 ML CANM",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "CANM8-HIELO-ARTICO": {
+      "codigo": "CANM8-HIELO-ARTICO",
+      "codigo_original_odoo": "CANM8-HIELO-ARTICO",
+      "nombre": "ESMALTE SEMIPERMANENTE HIELO ARTICO 8 ML CANM",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "CANM8-CRISTAL-MARINERO": {
+      "codigo": "CANM8-CRISTAL-MARINERO",
+      "codigo_original_odoo": "CANM8-CRISTAL-MARINERO",
+      "nombre": "ESMALTE SEMIPERMANENTE CRISTAL MARINERO 8 ML CANM",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "CANM8-CROMO-SUTIL": {
+      "codigo": "CANM8-CROMO-SUTIL",
+      "codigo_original_odoo": "CANM8-CROMO-SUTIL",
+      "nombre": "ESMALTE SEMIPERMANENTE CROMO SUTIL 8 ML CANM",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "CANM8-PETALO-DE-MARGARITA": {
+      "codigo": "CANM8-PETALO-DE-MARGARITA",
+      "codigo_original_odoo": "CANM8-PETALO-DE-MARGARITA",
+      "nombre": "ESMALTE SEMIPERMANENTE PETALO DE MARGARITA 8 ML CANM",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "CANM8-COCO-DEL-PACIFICO": {
+      "codigo": "CANM8-COCO-DEL-PACIFICO",
+      "codigo_original_odoo": "CANM8-COCO-DEL-PACIFICO",
+      "nombre": "ESMALTE SEMIPERMANENTE COCO DEL PACIFICO 8 ML CANM",
+      "disponible": 6,
+      "a_la_mano": 6
+    },
+    "CANM8-NOCHE-DE-FIESTA": {
+      "codigo": "CANM8-NOCHE-DE-FIESTA",
+      "codigo_original_odoo": "CANM8-NOCHE-DE-FIESTA",
+      "nombre": "ESMALTE SEMIPERMANENTE NOCHE DE FIESTA 8 ML CANM",
+      "disponible": 12,
+      "a_la_mano": 12
+    },
+    "CANM15-BLANCO": {
+      "codigo": "CANM15-BLANCO",
+      "codigo_original_odoo": "CANM15-BLANCO",
+      "nombre": "ESMALTE SEMIPERMANENTE BLANCO 15 ML CANM",
+      "disponible": 5,
+      "a_la_mano": 5
     }
   }
 }
