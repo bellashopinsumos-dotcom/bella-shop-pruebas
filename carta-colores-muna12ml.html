@@ -1708,6 +1708,9 @@
        // ÚNICAMENTE la REF. 01 usa este código especial en inventario.
        if (numero === "01") return "2874-01";
 
+       // Las REF. 23 y 24 son la misma referencia y comparten el inventario de la 24.
+       if (numero === "23" || numero === "24") return "MUNA2874-24";
+
        // Las demás referencias conservan exactamente su código anterior.
        return "MUNA2874-" + numero;
     }
