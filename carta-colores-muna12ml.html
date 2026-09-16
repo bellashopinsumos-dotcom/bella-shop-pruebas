@@ -1781,6 +1781,10 @@
 
       const ref = normalizarReferencia(input.value);
 
+      if (ref === "23" || ref === "24") {
+        mensajeError.textContent = "💗 Las REF. 23 y 24 corresponden a la misma referencia.";
+      }
+
       if (!referenciaValida(ref)) {
         mensajeError.textContent = "Escribe una referencia válida entre 1 y 66.";
         input.focus();
