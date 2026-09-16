@@ -1,20 +1,850 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
 <title>Chic's Fashion | Bella Shop</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#fffdfd;color:#34292d}header{background:#fffdfdf7;padding:11px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #f2dce4;position:sticky;top:0;z-index:10}.logo img{width:205px;height:72px;object-fit:contain}.acciones{display:flex;gap:9px;flex-wrap:wrap}.btn{padding:11px 16px;border-radius:40px;text-decoration:none;font-size:12px;font-weight:700;border:1px solid #efc7d4;color:#d94a79;background:#fff}.pedido{background:#e65385;color:#fff;border-color:#e65385}.hero{position:relative;overflow:hidden;text-align:center;padding:58px 20px;background:linear-gradient(135deg,#fff6f8,#fffdfd 50%,#fdeef3)}.cara{position:absolute;width:300px;right:3%;top:50%;transform:translateY(-50%) rotate(5deg);opacity:.06;pointer-events:none}.hero-contenido{position:relative;z-index:2}.tag{display:inline-block;padding:8px 18px;border:1px solid #efcbd7;border-radius:40px;color:#d74e7b;font-size:11px;font-weight:700;margin-bottom:16px}.marca{display:block;width:min(300px,75vw);height:115px;object-fit:contain;margin:0 auto 14px}.hero h1{font:500 46px Georgia,serif;margin-bottom:12px}.hero p{color:#765d65;line-height:1.7}.seccion{padding:65px 6% 80px}.titulo{text-align:center;margin-bottom:36px}.titulo h2{font:500 33px Georgia,serif;margin-bottom:10px}.titulo p{color:#887079}.opciones{max-width:980px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.opcion{min-height:220px;border:1px solid #f0dce3;border-radius:24px;background:#fff;text-decoration:none;color:#3a2c31;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;box-shadow:0 8px 25px #53303a12;transition:.25s}.opcion:hover{transform:translateY(-5px);border-color:#e9bdcc}.icono{width:72px;height:72px;border-radius:50%;background:#fff1f5;color:#e65385;display:flex;align-items:center;justify-content:center;font-size:31px;margin-bottom:20px}.opcion h3{font:500 25px Georgia,serif;margin-bottom:10px}.opcion p{color:#806870;font-size:14px;line-height:1.6;margin-bottom:16px}.ver{color:#e65385;font-size:12px;font-weight:700}.contacto{text-align:center;padding:65px 6%;background:linear-gradient(135deg,#fdeaf0,#fff7f9 55%,#fffdfd);border-top:1px solid #f2dce4}.contacto h2{font:500 34px Georgia,serif;margin-bottom:12px}.contacto p{max-width:650px;margin:0 auto 22px;color:#765d65;line-height:1.7}.wa{display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:13px 22px;border-radius:40px;font-weight:700;font-size:13px}.ubicacion{display:block;margin-top:22px;color:#765d65;text-decoration:none;font-size:13px;font-weight:700}footer{background:#35272c;color:#f9eaf0;text-align:center;padding:27px 20px}footer small{color:#ddcbd1}@media(max-width:800px){header{padding:9px 12px}.logo img{width:145px;height:58px}.btn{padding:9px 11px;font-size:10px}.opciones{grid-template-columns:1fr}.hero h1{font-size:38px}.seccion{padding:50px 7% 65px}}@media(max-width:480px){header{align-items:flex-start}.acciones{justify-content:flex-end}.logo img{width:118px;height:50px}.hero{padding:48px 16px}.marca{height:95px}}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fffdfd;
+  color:#34292d;
+}
+
+
+/* =========================
+   CABECERA
+========================= */
+
+header{
+  background:#fffdfdf7;
+  padding:11px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border-bottom:1px solid #f2dce4;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo img{
+  width:205px;
+  height:72px;
+  object-fit:contain;
+}
+
+.acciones{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:11px 16px;
+  border-radius:40px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  border:1px solid #efc7d4;
+  color:#d94a79;
+  background:#fff;
+}
+
+.pedido{
+  background:#e65385;
+  color:#fff;
+  border-color:#e65385;
+}
+
+
+/* =========================
+   PORTADA
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:58px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff6f8,
+      #fffdfd 50%,
+      #fdeef3
+    );
+}
+
+.cara{
+  position:absolute;
+  width:300px;
+  right:3%;
+  top:50%;
+  transform:translateY(-50%) rotate(5deg);
+  opacity:.06;
+  pointer-events:none;
+}
+
+.hero-contenido{
+  position:relative;
+  z-index:2;
+}
+
+.tag{
+  display:inline-block;
+  padding:8px 18px;
+  border:1px solid #efcbd7;
+  border-radius:40px;
+  color:#d74e7b;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.marca{
+  display:block;
+  width:min(300px,75vw);
+  height:115px;
+  object-fit:contain;
+  margin:0 auto 14px;
+}
+
+.hero h1{
+  font:500 46px Georgia,serif;
+  margin-bottom:12px;
+}
+
+.hero p{
+  color:#765d65;
+  line-height:1.7;
+}
+
+
+/* =========================
+   CATEGORÍAS
+========================= */
+
+.seccion{
+  padding:65px 6% 80px;
+}
+
+.titulo{
+  text-align:center;
+  margin-bottom:36px;
+}
+
+.titulo h2{
+  font:500 33px Georgia,serif;
+  margin-bottom:10px;
+}
+
+.titulo p{
+  color:#887079;
+}
+
+.opciones{
+  max-width:980px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.opcion{
+  min-height:220px;
+  border:1px solid #f0dce3;
+  border-radius:24px;
+  background:#fff;
+  text-decoration:none;
+  color:#3a2c31;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+  padding:30px;
+
+  box-shadow:
+    0 8px 25px #53303a12;
+
+  transition:.25s;
+}
+
+.opcion:hover{
+  transform:translateY(-5px);
+  border-color:#e9bdcc;
+}
+
+.icono{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:#fff1f5;
+  color:#e65385;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:31px;
+  margin-bottom:20px;
+}
+
+.opcion h3{
+  font:500 25px Georgia,serif;
+  margin-bottom:10px;
+}
+
+.opcion p{
+  color:#806870;
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:16px;
+}
+
+.ver{
+  color:#e65385;
+  font-size:12px;
+  font-weight:700;
+}
+
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:65px 6%;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(230,83,133,.08),
+      transparent 24%
+    ),
+    linear-gradient(
+      135deg,
+      #fdeaf0,
+      #fff7f9 55%,
+      #fffdfd
+    );
+
+  border-top:1px solid #f2dce4;
+}
+
+.cara-contacto{
+  position:absolute;
+  width:250px;
+  height:250px;
+  object-fit:contain;
+  left:4%;
+  top:50%;
+  transform:translateY(-50%) rotate(-6deg);
+  opacity:.05;
+  pointer-events:none;
+}
+
+.contacto-contenido{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+  margin:auto;
+}
+
+.contacto h2{
+  font:500 34px Georgia,serif;
+  margin-bottom:12px;
+}
+
+.contacto p{
+  max-width:650px;
+  margin:0 auto 22px;
+  color:#765d65;
+  line-height:1.7;
+}
+
+
+/* WHATSAPP */
+
+.wa{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  background:#25D366;
+  color:#fff;
+
+  text-decoration:none;
+  padding:13px 22px;
+  border-radius:40px;
+
+  font-weight:700;
+  font-size:13px;
+
+  box-shadow:
+    0 8px 22px rgba(37,211,102,.18);
+
+  transition:.2s;
+}
+
+.wa:hover{
+  transform:translateY(-2px);
+}
+
+.wa svg{
+  width:20px;
+  height:20px;
+}
+
+
+/* =========================
+   REDES SOCIALES
+========================= */
+
+.redes{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+
+  margin-top:24px;
+  margin-bottom:22px;
+}
+
+.red-social{
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:white;
+  color:#d94d7a;
+
+  border:1px solid #efc6d3;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 5px 16px rgba(83,48,58,.06);
+
+  transition:.2s;
+}
+
+.red-social:hover{
+  transform:translateY(-3px);
+  background:#fff4f7;
+  border-color:#e7adbf;
+}
+
+.red-social svg{
+  width:21px;
+  height:21px;
+  display:block;
+}
+
+
+/* =========================
+   UBICACIÓN
+========================= */
+
+.ubicacion{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-top:2px;
+
+  color:#765d65;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:9px 15px;
+
+  background:rgba(255,255,255,.72);
+  border:1px solid #f0d7df;
+  border-radius:30px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#35272c;
+  color:#f9eaf0;
+  text-align:center;
+  padding:27px 20px;
+}
+
+footer small{
+  color:#ddcbd1;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:800px){
+
+  header{
+    padding:9px 12px;
+  }
+
+  .logo img{
+    width:145px;
+    height:58px;
+  }
+
+  .btn{
+    padding:9px 11px;
+    font-size:10px;
+  }
+
+  .opciones{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .seccion{
+    padding:50px 7% 65px;
+  }
+
+  .cara-contacto{
+    width:190px;
+    height:190px;
+    left:-60px;
+    opacity:.04;
+  }
+
+}
+
+
+@media(max-width:480px){
+
+  header{
+    align-items:flex-start;
+  }
+
+  .acciones{
+    justify-content:flex-end;
+  }
+
+  .logo img{
+    width:118px;
+    height:50px;
+  }
+
+  .hero{
+    padding:48px 16px;
+  }
+
+  .marca{
+    height:95px;
+  }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
-<header><a class="logo" href="index.html"><img src="imagenes/Logo Bellashop png.png" alt="Bella Shop"></a><div class="acciones"><a class="btn" href="semipermanente.html">← VOLVER</a><a class="btn" href="index.html">⌂ INICIO</a><a class="btn pedido" href="carrito.html">🛍 MI PEDIDO</a></div></header>
-<section class="hero"><img class="cara" src="imagenes/Cara logo bellashop.png" alt=""><div class="hero-contenido"><span class="tag">ESMALTE SEMIPERMANENTE</span><img class="marca" src="imagenes/logo chics.png" alt="Chic's Fashion"><h1>Chic's Fashion</h1><p>Elige la categoría que deseas explorar y encuentra tus tonos favoritos. ♡</p></div></section>
-<section class="seccion"><div class="titulo"><h2>¿Qué estás buscando?</h2><p>Escoge una categoría para continuar.</p></div><div class="opciones">
-<a class="opcion" href="carta-colores-chics-fashion.html"><div class="icono">🎨</div><h3>Carta de Colores</h3><p>Explora la carta de colores Chic's Fashion y escoge tus referencias favoritas.</p><span class="ver">VER CARTA →</span></a>
-<a class="opcion" href="bases-traslucidas-chics-fashion.html"><div class="icono">♡</div><h3>Bases Traslúcidas</h3><p>Descubre las bases traslúcidas Chic's Fashion disponibles.</p><span class="ver">VER BASES →</span></a>
-<a class="opcion" href="ojo-de-gato-chics-fashion.html"><div class="icono">✦</div><h3>Ojo de Gato</h3><p>Encuentra los efectos Ojo de Gato Chic's Fashion para tus diseños.</p><span class="ver">VER OJO DE GATO →</span></a>
-</div></section>
-<section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p><a class="wa" href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97">ESCRÍBENOS POR WHATSAPP</a><a class="ubicacion" href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/">📍 Bella Shop · Popayán, Cauca</a></section>
-<footer><div>Bella Shop</div><small>Tienda de Belleza · Popayán</small></footer>
-</body></html>
+
+
+<!-- =========================
+     CABECERA
+========================= -->
+
+<header>
+
+  <a
+    class="logo"
+    href="index.html"
+  >
+
+    <img
+      src="imagenes/Logo Bellashop png.png"
+      alt="Bella Shop"
+    >
+
+  </a>
+
+
+  <div class="acciones">
+
+    <a
+      class="btn"
+      href="semipermanente.html"
+    >
+      ← VOLVER
+    </a>
+
+    <a
+      class="btn"
+      href="index.html"
+    >
+      ⌂ INICIO
+    </a>
+
+    <a
+      class="btn pedido"
+      href="carrito.html"
+    >
+      🛍 MI PEDIDO
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     PORTADA
+========================= -->
+
+<section class="hero">
+
+  <img
+    class="cara"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="hero-contenido">
+
+    <span class="tag">
+      ESMALTE SEMIPERMANENTE
+    </span>
+
+    <img
+      class="marca"
+      src="imagenes/logo chics.png"
+      alt="Chic's Fashion"
+    >
+
+    <h1>
+      Chic's Fashion
+    </h1>
+
+    <p>
+      Elige la categoría que deseas explorar y encuentra tus tonos favoritos. ♡
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CATEGORÍAS
+========================= -->
+
+<section class="seccion">
+
+  <div class="titulo">
+
+    <h2>
+      ¿Qué estás buscando?
+    </h2>
+
+    <p>
+      Escoge una categoría para continuar.
+    </p>
+
+  </div>
+
+
+  <div class="opciones">
+
+    <a
+      class="opcion"
+      href="carta-colores-chics-fashion.html"
+    >
+
+      <div class="icono">
+        🎨
+      </div>
+
+      <h3>
+        Carta de Colores
+      </h3>
+
+      <p>
+        Explora la carta de colores Chic's Fashion y escoge tus referencias favoritas.
+      </p>
+
+      <span class="ver">
+        VER CARTA →
+      </span>
+
+    </a>
+
+
+    <a
+      class="opcion"
+      href="bases-traslucidas-chics-fashion.html"
+    >
+
+      <div class="icono">
+        ♡
+      </div>
+
+      <h3>
+        Bases Traslúcidas
+      </h3>
+
+      <p>
+        Descubre las bases traslúcidas Chic's Fashion disponibles.
+      </p>
+
+      <span class="ver">
+        VER BASES →
+      </span>
+
+    </a>
+
+
+    <a
+      class="opcion"
+      href="ojo-de-gato-chics-fashion.html"
+    >
+
+      <div class="icono">
+        ✦
+      </div>
+
+      <h3>
+        Ojo de Gato
+      </h3>
+
+      <p>
+        Encuentra los efectos Ojo de Gato Chic's Fashion para tus diseños.
+      </p>
+
+      <span class="ver">
+        VER OJO DE GATO →
+      </span>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     AYUDA Y REDES
+========================= -->
+
+<section class="contacto">
+
+  <img
+    class="cara-contacto"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+
+  <div class="contacto-contenido">
+
+    <h2>
+      ¿Necesitas una ayudita? 💕
+    </h2>
+
+    <p>
+      Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+      y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+    </p>
+
+
+    <!-- WHATSAPP -->
+
+    <a
+      class="wa"
+      href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 18.2-5.1 9.9 9.9 0 0 1-9.8 9.8Z"/>
+      </svg>
+
+      ESCRÍBENOS POR WHATSAPP
+
+    </a>
+
+
+    <!-- REDES SOCIALES -->
+
+    <div class="redes">
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+        class="red-social"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram Bella Shop"
+        title="Instagram"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+          />
+
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+          />
+
+          <circle
+            cx="17.5"
+            cy="6.5"
+            r="1"
+            fill="currentColor"
+            stroke="none"
+          />
+
+        </svg>
+
+      </a>
+
+
+      <!-- FACEBOOK -->
+
+      <a
+        href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+        class="red-social"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook Bella Shop"
+        title="Facebook"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+
+          <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
+
+        </svg>
+
+      </a>
+
+
+      <!-- TIKTOK -->
+
+      <a
+        href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+        class="red-social"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok Bella Shop"
+        title="TikTok"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+
+          <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
+
+        </svg>
+
+      </a>
+
+    </div>
+
+
+    <!-- UBICACIÓN -->
+
+    <a
+      class="ubicacion"
+      href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      📍 Bella Shop · Popayán, Cauca
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PIE DE PÁGINA
+========================= -->
+
+<footer>
+
+  <div>
+    Bella Shop
+  </div>
+
+  <small>
+    Tienda de Belleza · Popayán, Cauca
+  </small>
+
+</footer>
+
+
+</body>
+</html>
