@@ -1703,7 +1703,13 @@
     }
 
     function codigoOdoo(ref) {
-      return "2874-" + String(Number(ref)).padStart(2, "0");
+       const numero = String(Number(ref)).padStart(2, "0");
+
+       // ÚNICAMENTE la REF. 01 usa este código especial en inventario.
+       if (numero === "01") return "2874-01";
+
+       // Las demás referencias conservan exactamente su código anterior.
+       return "MUNA2874-" + numero;
     }
 
     function stockDisponible(ref) {
