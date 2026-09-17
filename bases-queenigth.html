@@ -1254,175 +1254,88 @@ function buscarProducto(
   tipo
 ){
 
-  const numero =
-    numeroReferencia(ref);
+  const numero = numeroReferencia(ref);
+  const candidatos = Object.values(productos || {});
 
-  const candidatos =
-    Object.values(
-      productos || {}
-    );
+  return candidatos.find(producto => {
 
-  return candidatos.find(
-    producto => {
+    const nombre = normalizarTexto(producto.nombre);
 
-      const nombre =
-        normalizarTexto(
-          producto.nombre
-        );
+    const esNewCollection =
+      nombre.includes("NEW COLLECTION") ||
+      nombre.includes("NEW COLLETION");
 
-      /*
-        TIENE QUE PERTENECER
-        A ICE GEL
-      */
+    /* NEW COLLECTION:
+       acepta nombres como:
+       NEW COLLECTION 01
+       NEW COLLECTION 05
+       NEW COLLECTION 16
+       NEW COLLECTION ICE 004
+       NEW COLLECTION ICE 20
+       NEW COLLECTION ICE 22
+    */
+    if(tipo === "new"){
 
-      if(
-        !nombre.includes(
-          "ICE GEL"
-        )
-      ){
-
+      if(!esNewCollection){
         return false;
-
       }
 
-      /*
-        ODOO PUEDE TENER
-        COLLECTION O COLLETION
-      */
-
-      const esNewCollection =
-        nombre.includes(
-          "NEW COLLECTION"
-        ) ||
-        nombre.includes(
-          "NEW COLLETION"
-        );
-
-      /*
-        NEW SOLO BUSCA NEW
-      */
-
-      if(
-        tipo === "new" &&
-        !esNewCollection
-      ){
-
-        return false;
-
-      }
-
-      /*
-        ICE NORMAL NO PUEDE
-        TOMAR PRODUCTOS NEW
-      */
-
-      if(
-        tipo === "ice" &&
-        esNewCollection
-      ){
-
-        return false;
-
-      }
-
-      /*
-        FORMATO:
-        REF 001
-        REF #001
-      */
-
-      let coincidencia =
-        nombre.match(
-          /\bREF\s*(?:#\s*)?0*(\d+)\b/
-        );
+      let coincidencia = nombre.match(
+        /\bNEW COLL(?:ECTION|ETION)(?: ICE)?\s*#?\s*0*(\d+)\b/
+      );
 
       if(coincidencia){
-
-        const refInventario =
-          String(
-            Number(
-              coincidencia[1]
-            )
-          );
-
-        if(
-          refInventario ===
-          numero
-        ){
-
-          return true;
-
-        }
-
+        return String(Number(coincidencia[1])) === numero;
       }
 
-      /*
-        FORMATO:
-        ICE GEL #07
-        ICE GEL 07
-      */
-
-      coincidencia =
-        nombre.match(
-          /\bICE GEL\s*#?\s*0*(\d+)\b/
-        );
+      coincidencia = nombre.match(
+        /\bREF\s*(?:#\s*)?0*(\d+)\b/
+      );
 
       if(coincidencia){
-
-        const refInventario =
-          String(
-            Number(
-              coincidencia[1]
-            )
-          );
-
-        if(
-          refInventario ===
-          numero
-        ){
-
-          return true;
-
-        }
-
-      }
-
-      /*
-        RESPALDO:
-        #07
-        #001
-      */
-
-      coincidencia =
-        nombre.match(
-          /#\s*0*(\d+)\b/
-        );
-
-      if(coincidencia){
-
-        const refInventario =
-          String(
-            Number(
-              coincidencia[1]
-            )
-          );
-
-        if(
-          refInventario ===
-          numero
-        ){
-
-          return true;
-
-        }
-
+        return String(Number(coincidencia[1])) === numero;
       }
 
       return false;
-
     }
-  );
 
+    /* ICE GEL NORMAL:
+       no debe tomar productos NEW COLLECTION.
+    */
+    if(esNewCollection){
+      return false;
+    }
+
+    if(!nombre.includes("ICE GEL")){
+      return false;
+    }
+
+    let coincidencia = nombre.match(
+      /\bICE GEL\s*#?\s*0*(\d+)\b/
+    );
+
+    if(coincidencia){
+      return String(Number(coincidencia[1])) === numero;
+    }
+
+    coincidencia = nombre.match(
+      /\bREF\s*(?:#\s*)?0*(\d+)\b/
+    );
+
+    if(coincidencia){
+      return String(Number(coincidencia[1])) === numero;
+    }
+
+    coincidencia = nombre.match(
+      /#\s*0*(\d+)\b/
+    );
+
+    if(coincidencia){
+      return String(Number(coincidencia[1])) === numero;
+    }
+
+    return false;
+  });
 }
 
 /* =========================
