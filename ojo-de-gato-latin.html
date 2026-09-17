@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ojo de Gato Latin Nails | Bella Shop</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fffdfd;
+  color:#34292d;
+}
+
+/* =========================
+   CABECERA
+========================= */
+
+header{
+  background:#fffdfdf7;
+  padding:11px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border-bottom:1px solid #f2dce4;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo img{
+  width:205px;
+  height:72px;
+  object-fit:contain;
+}
+
+.acciones{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:11px 16px;
+  border-radius:40px;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  border:1px solid #efc7d4;
+  color:#d94a79;
+  background:#fff;
+}
+
+.pedido{
+  background:#e65385;
+  color:#fff;
+  border-color:#e65385;
+}
+
+/* =========================
+   PORTADA
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:55px 20px;
+  background:
+    linear-gradient(
+      135deg,
+      #fff6f8,
+      #fffdfd 50%,
+      #fdeef3
+    );
+}
+
+.cara{
+  position:absolute;
+  width:300px;
+  right:3%;
+  top:50%;
+  transform:translateY(-50%) rotate(5deg);
+  opacity:.055;
+  pointer-events:none;
+}
+
+.hero-contenido{
+  position:relative;
+  z-index:2;
+}
+
+.tag{
+  display:inline-block;
+  padding:8px 18px;
+  border:1px solid #efcbd7;
+  border-radius:40px;
+  color:#d74e7b;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+.marca{
+  display:block;
+  width:min(270px,70vw);
+  height:105px;
+  object-fit:contain;
+  margin:0 auto 12px;
+}
+
+.hero h1{
+  font:500 43px Georgia,serif;
+  margin-bottom:12px;
+}
+
+.hero p{
+  max-width:690px;
+  margin:auto;
+  color:#765d65;
+  line-height:1.7;
+}
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.productos-seccion{
+  position:relative;
+  overflow:hidden;
+  padding:60px 5% 80px;
+}
+
+.cara-productos{
+  position:absolute;
+  width:310px;
+  left:-70px;
+  top:160px;
+  opacity:.035;
+  pointer-events:none;
+}
+
+.titulo-productos{
+  text-align:center;
+  margin-bottom:38px;
+  position:relative;
+  z-index:2;
+}
+
+.titulo-productos h2{
+  font:500 33px Georgia,serif;
+  margin-bottom:10px;
+}
+
+.titulo-productos p{
+  color:#806a72;
+  line-height:1.6;
+}
+
+.grid{
+  position:relative;
+  z-index:2;
+  max-width:1180px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+.producto{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #f0dce3;
+  border-radius:23px;
+  padding:13px 13px 20px;
+  box-shadow:0 8px 25px rgba(83,48,58,.07);
+}
+
+.imagen-contenedor{
+  position:relative;
+  width:100%;
+  aspect-ratio:4 / 3;
+  border-radius:17px;
+  overflow:hidden;
+  background:#fff7f9;
+}
+
+.imagen-contenedor img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#fff;
+  color:#d94a79;
+  border:1px solid #efc7d4;
+  border-radius:30px;
+  padding:7px 10px;
+  font-size:10px;
+  font-weight:800;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.producto.no-disponible .imagen-contenedor img{
+  opacity:.42;
+  filter:grayscale(.15);
+}
+
+.producto.no-disponible .badge{
+  background:#fff2f5;
+  color:#c94b70;
+}
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+.info{
+  padding:17px 5px 0;
+}
+
+.tipo{
+  color:#d94a79;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.8px;
+  margin-bottom:7px;
+}
+
+.info h3{
+  font:500 22px Georgia,serif;
+  margin-bottom:7px;
+  line-height:1.2;
+}
+
+.ref{
+  color:#806a72;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:13px;
+}
+
+.precio{
+  font-size:22px;
+  font-weight:800;
+  color:#382a2f;
+  margin-bottom:5px;
+}
+
+.unidad{
+  color:#917b83;
+  font-size:11px;
+  margin-bottom:14px;
+}
+
+.stock{
+  min-height:17px;
+  font-size:11px;
+  font-weight:700;
+  color:#7c6870;
+  margin-bottom:10px;
+}
+
+/* =========================
+   CANTIDAD
+========================= */
+
+.cantidad-titulo{
+  font-size:10px;
+  font-weight:800;
+  color:#806a72;
+  margin-bottom:7px;
+}
+
+.cantidad{
+  display:flex;
+  align-items:center;
+  width:100%;
+  margin-bottom:12px;
+  border:1px solid #edcbd6;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.cantidad button{
+  width:48px;
+  height:44px;
+  border:0;
+  background:#fff2f6;
+  color:#d94a79;
+  font-size:23px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.cantidad input{
+  flex:1;
+  min-width:0;
+  height:44px;
+  border:0;
+  outline:none;
+  text-align:center;
+  font-size:16px;
+  font-weight:800;
+  color:#3b2c31;
+  background:#fff;
+}
+
+.cantidad button:disabled,
+.cantidad input:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+/* =========================
+   TOTAL
+========================= */
+
+.total{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fff7f9;
+  border-radius:12px;
+  padding:10px 12px;
+  margin-bottom:12px;
+  font-size:12px;
+}
+
+.total strong{
+  color:#d94a79;
+  font-size:16px;
+}
+
+/* =========================
+   AGREGAR
+========================= */
+
+.agregar{
+  width:100%;
+  border:0;
+  border-radius:40px;
+  background:#e65385;
+  color:#fff;
+  padding:13px 14px;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.agregar:hover{
+  background:#dc4678;
+}
+
+.agregar:disabled{
+  background:#e6cdd5;
+  color:#997e87;
+  cursor:not-allowed;
+}
+
+/* =========================
+   NO DISPONIBLE
+========================= */
+
+.no-disponible-bloque{
+  display:none;
+  text-align:center;
+  background:#fff0f4;
+  color:#c64b71;
+  border:1px solid #f1c8d5;
+  border-radius:13px;
+  padding:12px 8px;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.producto.no-disponible .no-disponible-bloque{
+  display:block;
+}
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:65px 6%;
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(230,83,133,.08),
+      transparent 24%
+    ),
+    linear-gradient(
+      135deg,
+      #fdeaf0,
+      #fff7f9 55%,
+      #fffdfd
+    );
+  border-top:1px solid #f2dce4;
+}
+
+.cara-contacto{
+  position:absolute;
+  width:250px;
+  height:250px;
+  object-fit:contain;
+  left:4%;
+  top:50%;
+  transform:translateY(-50%) rotate(-6deg);
+  opacity:.05;
+  pointer-events:none;
+}
+
+.contacto-contenido{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+  margin:auto;
+}
+
+.contacto h2{
+  font:500 34px Georgia,serif;
+  margin-bottom:12px;
+}
+
+.contacto p{
+  max-width:650px;
+  margin:0 auto 22px;
+  color:#765d65;
+  line-height:1.7;
+}
+
+.wa{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 22px;
+  border-radius:40px;
+  font-weight:700;
+  font-size:13px;
+}
+
+/* =========================
+   REDES
+========================= */
+
+.redes{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+  margin-bottom:22px;
+}
+
+.red-social{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:white;
+  color:#d94d7a;
+  border:1px solid #efc6d3;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:700;
+}
+
+.ubicacion{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#765d65;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  padding:9px 15px;
+  background:rgba(255,255,255,.72);
+  border:1px solid #f0d7df;
+  border-radius:30px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,30px);
+  background:#35272c;
+  color:#fff;
+  padding:13px 20px;
+  border-radius:40px;
+  font-size:12px;
+  font-weight:700;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+}
+
+.toast.mostrar{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#35272c;
+  color:#f9eaf0;
+  text-align:center;
+  padding:27px 20px;
+}
+
+footer small{
+  color:#ddcbd1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  header{
+    padding:9px 12px;
+  }
+
+  .logo img{
+    width:145px;
+    height:58px;
+  }
+
+  .btn{
+    padding:9px 11px;
+    font-size:10px;
+  }
+
+  .hero h1{
+    font-size:37px;
+  }
+}
+
+@media(max-width:440px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    align-items:flex-start;
+  }
+
+  .acciones{
+    justify-content:flex-end;
+  }
+
+  .logo img{
+    width:118px;
+    height:50px;
+  }
+
+  .hero{
+    padding:45px 15px;
+  }
+
+  .marca{
+    height:90px;
+  }
+
+  .productos-seccion{
+    padding:48px 7% 65px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     CABECERA
+========================= -->
+
+<header>
+
+  <a class="logo" href="index.html">
+
+    <img
+      src="imagenes/Logo Bellashop png.png"
+      alt="Bella Shop"
+    >
+
+  </a>
+
+  <div class="acciones">
+
+    <a
+      class="btn"
+      href="latin.html"
+    >
+      ← VOLVER
+    </a>
+
+    <a
+      class="btn"
+      href="index.html"
+    >
+      ⌂ INICIO
+    </a>
+
+    <a
+      class="btn pedido"
+      href="carrito.html"
+    >
+      🛍 MI PEDIDO
+    </a>
+
+  </div>
+
+</header>
+
+<!-- =========================
+     PORTADA
+========================= -->
+
+<section class="hero">
+
+  <img
+    class="cara"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="hero-contenido">
+
+    <span class="tag">
+      Ojo de Gato Latin Nails
+    </span>
+
+    <img
+      class="marca"
+      src="imagenes/logo latin.png"
+      alt="Latin Nails"
+    >
+
+    <h1>
+      Ojo de Gato Latin Nails
+    </h1>
+
+    <p>
+      Descubre nuestras Ojo de Gato Latin Nails 💕 Elige tu referencia favorita y agrégala fácilmente a tu pedido. ✨
+    </p>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     PRODUCTOS
+========================= -->
+
+<section class="productos-seccion">
+
+  <img
+    class="cara-productos"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div
+    class="grid"
+    id="gridProductos"
+  ></div>
+
+</section>
+
+<!-- =========================
+     CONTACTO
+========================= -->
+
+<section class="contacto">
+
+  <img
+    class="cara-contacto"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="contacto-contenido">
+
+    <h2>
+      ¿Necesitas una ayudita? 💕
+    </h2>
+
+    <p>
+      Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+      y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+    </p>
+
+    <a
+      class="wa"
+      href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ESCRÍBENOS POR WHATSAPP
+    </a>
+
+    <div class="redes">
+
+        <a
+          href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+          class="red-social"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+          class="red-social"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
+          </svg>
+        </a>
+
+
+        <a
+          href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+          class="red-social"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
+          </svg>
+        </a>
+
+      </div>
+
+      <a
+      class="ubicacion"
+      href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      📍 Bella Shop · Popayán, Cauca
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div>
+    Bella Shop
+  </div>
+
+  <small>
+    Tienda de Belleza · Popayán, Cauca
+  </small>
+
+</footer>
+
+<div
+  class="toast"
+  id="toast"
+>
+  Producto agregado 💕
+</div>
+
+<script>
+
+/* =========================
+   PRODUCTOS LATIN NAILS
+========================= */
+
+const productosPagina = [
+  { ref:"005", ml:8, precio:20000, imagen:"imagenes/ojo-gato-latin-005.png" }
+];
+
+function dinero(valor){
+  return "$" + Number(valor).toLocaleString("es-CO");
+}
+
+function normalizarTexto(valor){
+  return String(valor || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .toUpperCase()
+    .replace(/[’'´`]/g,"")
+    .replace(/[^A-Z0-9]+/g," ")
+    .trim();
+}
+
+function crearTarjetas(){
+  const grid = document.getElementById("gridProductos");
+
+  productosPagina.forEach(item => {
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "producto";
+    tarjeta.dataset.ref = item.ref;
+    tarjeta.dataset.ml = String(item.ml);
+    tarjeta.dataset.precio = String(item.precio);
+    tarjeta.dataset.stock = "0";
+    tarjeta.dataset.encontrado = "false";
+
+    tarjeta.innerHTML = `
+      <div class="imagen-contenedor">
+        <img
+          src="${item.imagen}"
+          alt="Ojo de Gato Latin Nails REF ${item.ref}"
+          loading="lazy"
+        >
+        <span class="badge">CONSULTANDO...</span>
+      </div>
+
+      <div class="info">
+        <div class="tipo">OJO DE GATO · LATIN NAILS</div>
+
+        <h3>Ojo de Gato Latin Nails</h3>
+
+        <div class="ref">
+          REF. ${item.ref} · ${item.ml} ML
+        </div>
+
+        <div class="precio">${dinero(item.precio)}</div>
+        <div class="unidad">Precio por unidad</div>
+
+        <div class="stock"></div>
+
+        <div class="no-disponible-bloque">
+          TEMPORALMENTE NO DISPONIBLE
+        </div>
+
+        <div class="cantidad-titulo">CANTIDAD</div>
+
+        <div class="cantidad">
+          <button type="button" class="menos" disabled>−</button>
+          <input type="number" class="cantidad-input" value="1" min="1" disabled>
+          <button type="button" class="mas" disabled>+</button>
+        </div>
+
+        <div class="total">
+          <span>Total</span>
+          <strong>${dinero(item.precio)}</strong>
+        </div>
+
+        <button type="button" class="agregar" disabled>
+          AGREGAR AL PEDIDO
+        </button>
+      </div>
+    `;
+
+    grid.appendChild(tarjeta);
+    prepararControles(tarjeta, item);
+  });
+}
+
+function prepararControles(tarjeta, item){
+  const menos = tarjeta.querySelector(".menos");
+  const mas = tarjeta.querySelector(".mas");
+  const input = tarjeta.querySelector(".cantidad-input");
+  const total = tarjeta.querySelector(".total strong");
+  const agregar = tarjeta.querySelector(".agregar");
+
+  function actualizarTotal(){
+    let cantidad = parseInt(input.value) || 1;
+    const stock = Number(tarjeta.dataset.stock) || 0;
+
+    cantidad = Math.max(1, cantidad);
+    if(stock > 0) cantidad = Math.min(cantidad, stock);
+
+    input.value = cantidad;
+    total.textContent = dinero(cantidad * item.precio);
+  }
+
+  menos.addEventListener("click", () => {
+    let cantidad = parseInt(input.value) || 1;
+    if(cantidad > 1) input.value = cantidad - 1;
+    actualizarTotal();
+  });
+
+  mas.addEventListener("click", () => {
+    const stock = Number(tarjeta.dataset.stock) || 0;
+    let cantidad = parseInt(input.value) || 1;
+    if(cantidad < stock) input.value = cantidad + 1;
+    actualizarTotal();
+  });
+
+  input.addEventListener("input", actualizarTotal);
+  input.addEventListener("change", actualizarTotal);
+
+  agregar.addEventListener("click", () => agregarAlPedido(tarjeta, item));
+}
+
+/* =========================
+   BUSCAR EN INVENTARIO
+========================= */
+
+function coincideReferencia(nombreNormalizado, ref){
+  const r = normalizarTexto(ref);
+  const tokens = nombreNormalizado.split(/\s+/);
+
+  if(tokens.includes(r)) return true;
+
+  const escapada = r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp("\\bREF\\s*#?\\s*" + escapada + "\\b").test(nombreNormalizado);
+}
+
+function buscarProducto(productos, item){
+  const candidatos = Object.entries(productos || {});
+
+  const coincidencias = candidatos.filter(([codigo, producto]) => {
+    const nombre = normalizarTexto(producto.nombre);
+    const compacto = nombre.replace(/\s+/g,"");
+
+    const esLatin = nombre.includes("LATIN");
+    const esOjoDeGato =
+      nombre.includes("ESMALTE OJO DE GATO");
+
+    const esMedida = compacto.includes(String(item.ml) + "ML");
+    const esRef = coincideReferencia(nombre, item.ref);
+
+    return esLatin && esOjoDeGato && esMedida && esRef;
+  });
+
+  if(!coincidencias.length) return null;
+
+  const [codigo, producto] = coincidencias[0];
+  return { ...producto, __codigoInventario: codigo };
+}
+
+function obtenerStock(producto){
+  return Math.max(
+    0,
+    Math.floor(
+      Number(
+        producto?.disponible ??
+        producto?.a_la_mano ??
+        producto?.stock ??
+        0
+      ) || 0
+    )
+  );
+}
+
+/* =========================
+   INVENTARIO CENTRAL
+========================= */
+
+async function cargarInventario(){
+  try{
+    const respuesta = await fetch(
+      "inventario.json?actualizacion=" + Date.now(),
+      { cache:"no-store" }
+    );
+
+    if(!respuesta.ok){
+      throw new Error("No fue posible cargar inventario.");
+    }
+
+    const datos = await respuesta.json();
+    const productos = datos.productos || {};
+
+    document.querySelectorAll(".producto").forEach(tarjeta => {
+      const ref = tarjeta.dataset.ref;
+      const item = productosPagina.find(p => p.ref === ref);
+      const producto = buscarProducto(productos, item);
+      actualizarTarjeta(tarjeta, producto);
+    });
+
+  }catch(error){
+    console.error(error);
+
+    document.querySelectorAll(".producto").forEach(tarjeta => {
+      tarjeta.dataset.stock = "0";
+      tarjeta.dataset.encontrado = "false";
+      tarjeta.classList.add("no-disponible");
+
+      tarjeta.querySelector(".badge").textContent = "NO DISPONIBLE";
+      tarjeta.querySelector(".stock").textContent = "";
+      tarjeta.querySelector(".no-disponible-bloque").textContent =
+        "NO PUDIMOS CONSULTAR LA DISPONIBILIDAD";
+
+      tarjeta.querySelector(".menos").disabled = true;
+      tarjeta.querySelector(".mas").disabled = true;
+      tarjeta.querySelector(".cantidad-input").disabled = true;
+      tarjeta.querySelector(".agregar").disabled = true;
+    });
+  }
+}
+
+function actualizarTarjeta(tarjeta, producto){
+  const badge = tarjeta.querySelector(".badge");
+  const stockTexto = tarjeta.querySelector(".stock");
+  const bloque = tarjeta.querySelector(".no-disponible-bloque");
+  const menos = tarjeta.querySelector(".menos");
+  const mas = tarjeta.querySelector(".mas");
+  const input = tarjeta.querySelector(".cantidad-input");
+  const agregar = tarjeta.querySelector(".agregar");
+
+  if(!producto){
+    tarjeta.dataset.stock = "0";
+    tarjeta.dataset.encontrado = "false";
+    tarjeta.classList.add("no-disponible");
+
+    badge.textContent = "CÓDIGO NO ENCONTRADO";
+    stockTexto.textContent = "";
+    bloque.textContent = "CÓDIGO NO ENCONTRADO";
+
+    menos.disabled = true;
+    mas.disabled = true;
+    input.disabled = true;
+    agregar.disabled = true;
+    return;
+  }
+
+  tarjeta.dataset.encontrado = "true";
+  tarjeta.dataset.codigo =
+    producto.codigo ||
+    producto.codigo_original_odoo ||
+    producto.__codigoInventario ||
+    "";
+
+  const stock = obtenerStock(producto);
+  tarjeta.dataset.stock = String(stock);
+
+  if(stock <= 0){
+    tarjeta.classList.add("no-disponible");
+    badge.textContent = "NO DISPONIBLE";
+    stockTexto.textContent = "";
+    bloque.textContent = "TEMPORALMENTE NO DISPONIBLE";
+
+    menos.disabled = true;
+    mas.disabled = true;
+    input.disabled = true;
+    agregar.disabled = true;
+    return;
+  }
+
+  tarjeta.classList.remove("no-disponible");
+  badge.textContent = "DISPONIBLE";
+  stockTexto.textContent = "Disponibles: " + stock;
+  bloque.textContent = "TEMPORALMENTE NO DISPONIBLE";
+
+  input.max = String(stock);
+  input.value = "1";
+  menos.disabled = false;
+  mas.disabled = false;
+  input.disabled = false;
+  agregar.disabled = false;
+}
+
+/* =========================
+   CARRITO
+========================= */
+
+function obtenerCarrito(){
+  try{
+    const guardado = localStorage.getItem("bellaShopCarrito");
+    if(!guardado) return [];
+
+    const carrito = JSON.parse(guardado);
+    return Array.isArray(carrito) ? carrito : [];
+  }catch(error){
+    return [];
+  }
+}
+
+function agregarAlPedido(tarjeta, item){
+  const stock = Number(tarjeta.dataset.stock) || 0;
+  const encontrado = tarjeta.dataset.encontrado === "true";
+  const input = tarjeta.querySelector(".cantidad-input");
+
+  if(!encontrado){
+    mostrarToast("Código no encontrado en inventario.");
+    return;
+  }
+
+  if(stock <= 0){
+    mostrarToast("Producto temporalmente no disponible.");
+    return;
+  }
+
+  let cantidad = parseInt(input.value) || 1;
+  cantidad = Math.max(1, Math.min(cantidad, stock));
+
+  const carrito = obtenerCarrito();
+  const clave = "latin-ojo-de-gato-" + item.ref.toLowerCase();
+
+  const existente = carrito.find(producto => producto.clave === clave);
+  const cantidadActual = existente ? Number(existente.cantidad) || 0 : 0;
+  const disponibleParaAgregar = stock - cantidadActual;
+
+  if(disponibleParaAgregar <= 0){
+    mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
+    return;
+  }
+
+  cantidad = Math.min(cantidad, disponibleParaAgregar);
+
+  if(existente){
+    existente.cantidad = cantidadActual + cantidad;
+  }else{
+    carrito.push({
+      clave: clave,
+      codigo: tarjeta.dataset.codigo || "",
+      nombre:
+        "Ojo de Gato Latin Nails REF. " +
+        item.ref + " " + item.ml + "ML",
+      referencia: item.ref,
+      precio: item.precio,
+      cantidad: cantidad,
+      imagen: item.imagen,
+      tipo: "individual"
+    });
+  }
+
+  localStorage.setItem("bellaShopCarrito", JSON.stringify(carrito));
+
+  input.value = "1";
+  tarjeta.querySelector(".total strong").textContent = dinero(item.precio);
+
+  mostrarToast(
+    "Ojo de Gato Latin Nails REF. " +
+    item.ref + " agregado a tu pedido 💕"
+  );
+}
+
+/* =========================
+   TOAST
+========================= */
+
+let temporizadorToast;
+
+function mostrarToast(mensaje){
+  const toast = document.getElementById("toast");
+  toast.textContent = mensaje;
+  toast.classList.add("mostrar");
+
+  clearTimeout(temporizadorToast);
+
+  temporizadorToast = setTimeout(() => {
+    toast.classList.remove("mostrar");
+  }, 2200);
+}
+
+/* =========================
+   INICIAR
+========================= */
+
+crearTarjetas();
+cargarInventario();
+
+</script>
+
+</body>
+</html>
