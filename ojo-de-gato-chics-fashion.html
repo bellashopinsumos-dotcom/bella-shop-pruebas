@@ -7,638 +7,663 @@
   <title>Ojo de Gato Chic's Fashion | Bella Shop</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
-    html {
-      scroll-behavior: smooth;
+    :root{
+      --rosa:#e78da8;
+      --rosa-oscuro:#cf6f8d;
+      --rosa-claro:#fff4f7;
+      --rosa-muy-claro:#fffafb;
+      --borde:#f1cbd6;
+      --texto:#332b2e;
+      --gris:#746b6e;
+      --blanco:#ffffff;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fffdfd;
-      color: #34292d;
-      overflow-x: hidden;
-    }
-
-    a {
-      -webkit-tap-highlight-color: transparent;
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#fffafb;
+      color:var(--texto);
+      line-height:1.5;
     }
 
     /* =========================
-       HEADER
-    ========================== */
+       ENCABEZADO
+    ========================= */
 
-    header {
-      background: rgba(255, 253, 253, 0.97);
-      padding: 11px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid #f2dce4;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,250,251,.97);
+      border-bottom:1px solid var(--borde);
+      box-shadow:0 3px 15px rgba(120,70,85,.06);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex-shrink: 0;
+    .header-inner{
+      max-width:1200px;
+      margin:auto;
+      min-height:76px;
+      padding:10px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .logo img {
-      display: block;
-      width: 205px;
-      height: 72px;
-      object-fit: contain;
-      object-position: left center;
+    .logo-principal{
+      width:155px;
+      max-height:58px;
+      object-fit:contain;
     }
 
-    .acciones-header {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .boton-header {
-      min-height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 11px 17px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-      transition: .2s;
+    .nav a{
+      text-decoration:none;
+      color:var(--texto);
+      font-size:13px;
+      font-weight:700;
+      padding:9px 12px;
+      border-radius:999px;
+      transition:.2s;
+      display:flex;
+      align-items:center;
+      gap:6px;
     }
 
-    .boton-volver,
-    .boton-inicio {
-      background: white;
-      color: #d94a79;
-      border: 1px solid #efc7d4;
+    .nav a:hover{
+      background:#fdebf0;
     }
 
-    .boton-pedido {
-      background: #e65385;
-      color: white;
-      border: 1px solid #e65385;
-      box-shadow: 0 6px 18px rgba(230,83,133,.18);
+    .nav .pedido{
+      background:var(--rosa);
+      color:white;
     }
 
-    .boton-header:hover {
-      transform: translateY(-2px);
+    .nav .pedido:hover{
+      background:var(--rosa-oscuro);
     }
 
-    .icono-header {
-      width: 17px;
-      height: 17px;
-      display: block;
-      flex-shrink: 0;
+    .icono-nav{
+      width:16px;
+      height:16px;
+      display:block;
     }
 
     /* =========================
        HERO
-    ========================== */
+    ========================= */
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 310px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 25px;
-
+    .hero{
+      position:relative;
+      overflow:hidden;
       background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(245,174,198,.18),
-          transparent 25%
-        ),
-        radial-gradient(
-          circle at 90% 75%,
-          rgba(230,83,133,.09),
-          transparent 25%
-        ),
         linear-gradient(
           135deg,
-          #fff6f8 0%,
-          #fffdfd 50%,
-          #fdeef3 100%
+          #fffafb 0%,
+          #fff2f6 50%,
+          #fff9fa 100%
         );
+      border-bottom:1px solid var(--borde);
     }
 
-    .cara-hero {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      object-fit: contain;
-      right: 4%;
-      top: 50%;
-      transform: translateY(-50%) rotate(5deg);
-      opacity: .07;
-      pointer-events: none;
+    .hero-inner{
+      max-width:1100px;
+      margin:auto;
+      min-height:300px;
+      padding:50px 25px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      z-index:2;
     }
 
-    .hero-contenido {
-      position: relative;
-      z-index: 3;
-      max-width: 700px;
+    .hero-content{
+      max-width:720px;
     }
 
-    .etiqueta {
-      display: inline-block;
-      padding: 8px 18px;
-      border: 1px solid #efcbd7;
-      background: rgba(255,255,255,.8);
-      color: #d74e7b;
-      border-radius: 40px;
-      font-size: 11px;
-      letter-spacing: 1.2px;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .logo-marca{
+      width:150px;
+      max-height:90px;
+      object-fit:contain;
+      margin-bottom:12px;
     }
 
-    .logo-marca-hero {
-      display: block;
-      width: min(290px,75vw);
-      height: 105px;
-      object-fit: contain;
-      margin: 0 auto 18px;
+    .etiqueta{
+      display:inline-block;
+      background:#fce6ed;
+      color:#b95f7c;
+      border:1px solid #f4c8d5;
+      border-radius:999px;
+      padding:7px 15px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.5px;
+      margin-bottom:14px;
     }
 
-    h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 50px;
-      font-weight: 500;
-      color: #33272b;
-      margin-bottom: 15px;
+    .hero h1{
+      font-size:38px;
+      line-height:1.15;
+      margin-bottom:13px;
+      color:#382d31;
     }
 
-    .hero p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #765d65;
-      max-width: 620px;
-      margin: auto;
+    .hero p{
+      max-width:620px;
+      margin:auto;
+      color:#716569;
+      font-size:16px;
+    }
+
+    .cara-marca{
+      position:absolute;
+      width:220px;
+      opacity:.055;
+      pointer-events:none;
+      user-select:none;
+    }
+
+    .cara-hero{
+      right:4%;
+      top:50%;
+      transform:translateY(-50%);
     }
 
     /* =========================
        PRODUCTOS
-    ========================== */
+    ========================= */
 
-    .productos {
-      position: relative;
-      overflow: hidden;
-      padding: 55px 5% 75px;
-      background: #fffdfd;
+    .productos{
+      position:relative;
+      overflow:hidden;
+      padding:55px 20px 65px;
+      background:#fff;
     }
 
-    .cara-seccion {
-      position: absolute;
-      width: 240px;
-      left: -70px;
-      bottom: -45px;
-      opacity: .035;
-      transform: rotate(-8deg);
-      pointer-events: none;
+    .productos-inner{
+      max-width:1000px;
+      margin:auto;
+      position:relative;
+      z-index:2;
     }
 
-    .productos-contenido {
-      position: relative;
-      z-index: 2;
-      width: min(850px,100%);
-      margin: auto;
+    .titulo-seccion{
+      text-align:center;
+      margin-bottom:34px;
     }
 
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(2,minmax(0,1fr));
-      gap: 22px;
+    .titulo-seccion h2{
+      font-size:28px;
+      margin-bottom:8px;
     }
 
-    /* =========================
-       TARJETAS
-    ========================== */
-
-    .producto-card {
-      position: relative;
-      overflow: hidden;
-      background: rgba(255,255,255,.97);
-      border: 1px solid #f0d8e1;
-      border-radius: 24px;
-      box-shadow: 0 12px 30px rgba(96,42,61,.08);
-      transition: .22s;
+    .titulo-seccion p{
+      color:var(--gris);
+      font-size:15px;
     }
 
-    .producto-card:hover {
-      transform: translateY(-5px);
-      border-color: #e9bdcc;
-      box-shadow: 0 17px 38px rgba(96,42,61,.12);
+    .cara-productos{
+      left:-70px;
+      top:100px;
+      width:260px;
     }
 
-    .producto-imagen-wrap {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #fff7fa;
-      border-bottom: 1px solid #f5e3e9;
+    .grid-productos{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:24px;
+      max-width:760px;
+      margin:auto;
     }
 
-    .producto-imagen {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .producto-card{
+      border:1px solid var(--borde);
+      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(120,70,85,.08);
+      transition:.2s ease;
+      position:relative;
     }
 
-    .producto-card.agotado .producto-imagen {
-      opacity: .72;
-      filter: grayscale(.12);
+    .producto-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 12px 28px rgba(120,70,85,.12);
     }
 
-    .estado-producto {
-      position: absolute;
-      top: 13px;
-      right: 13px;
-      z-index: 2;
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .5px;
+    .imagen-wrap{
+      position:relative;
+      aspect-ratio:4 / 3;
+      overflow:hidden;
+      background:#fff5f7;
     }
 
-    .estado-disponible {
-      background: #edf8f1;
-      color: #458463;
-      border: 1px solid #d4eadc;
+    .imagen-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:.25s;
     }
 
-    .estado-agotado {
-      background: #fff0f3;
-      color: #be4868;
-      border: 1px solid #f1ccd7;
+    .producto-card.no-disponible .imagen-wrap img{
+      opacity:.58;
+      filter:saturate(.75);
     }
 
-    .producto-info {
-      padding: 21px;
+    .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      z-index:3;
+      background:white;
+      border:1px solid #ead5db;
+      color:#a2546c;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.4px;
+      box-shadow:0 4px 12px rgba(0,0,0,.06);
     }
 
-    .producto-tipo {
-      color: #a17d89;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .7px;
-      text-transform: uppercase;
-      margin-bottom: 7px;
+    .badge.no{
+      background:#fff0f3;
+      color:#a74861;
+      border-color:#efbcc9;
     }
 
-    .producto-ref {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 27px;
-      color: #3c2d32;
-      margin-bottom: 8px;
+    .info{
+      padding:18px;
     }
 
-    .producto-precio {
-      color: #d94a79;
-      font-size: 22px;
-      font-weight: 900;
-      margin-bottom: 8px;
+    .tipo{
+      color:#bd6680;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.7px;
+      text-transform:uppercase;
+      margin-bottom:4px;
     }
 
-    .stock-producto {
-      min-height: 18px;
-      margin-bottom: 18px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #2b8252;
+    .nombre{
+      font-size:18px;
+      font-weight:800;
+      margin-bottom:4px;
     }
 
-    /* =========================
-       CANTIDAD MÁS VISIBLE
-    ========================== */
-
-    .cantidad-titulo {
-      font-size: 12px;
-      color: #6c555d;
-      font-weight: 800;
-      margin-bottom: 8px;
+    .referencia{
+      color:#776b6f;
+      font-size:13px;
+      margin-bottom:10px;
     }
 
-    .cantidad-producto {
-      width: 100%;
-      min-height: 52px;
-      display: grid;
-      grid-template-columns: 55px 1fr 55px;
-      align-items: center;
-      background: #fff7fa;
-      border: 1px solid #eac4d1;
-      border-radius: 15px;
-      overflow: hidden;
-      margin-bottom: 14px;
+    .precio{
+      font-size:20px;
+      font-weight:800;
+      color:#ca6684;
+      margin-bottom:4px;
     }
 
-    .cantidad-producto button {
-      height: 52px;
-      border: 0;
-      background: #fdebf1;
-      color: #d94a79;
-      font-size: 25px;
-      font-weight: 900;
-      cursor: pointer;
+    .precio small{
+      font-size:11px;
+      font-weight:600;
+      color:#887b7f;
     }
 
-    .cantidad-producto button:active {
-      background: #f8dce6;
+    .stock{
+      min-height:20px;
+      font-size:12px;
+      color:#6d6366;
+      margin-bottom:12px;
     }
 
-    .cantidad-producto input {
-      width: 100%;
-      height: 52px;
-      border: 0;
-      outline: 0;
-      text-align: center;
-      background: white;
-      color: #3f3035;
-      font-size: 18px;
-      font-weight: 900;
-      -moz-appearance: textfield;
+    .total-box{
+      background:#fff5f7;
+      border:1px solid #f3d7df;
+      border-radius:12px;
+      padding:10px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
     }
 
-    .cantidad-producto input::-webkit-outer-spin-button,
-    .cantidad-producto input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    .total-box span:first-child{
+      font-size:12px;
+      color:#75696d;
+      font-weight:700;
     }
 
-    .producto-total {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      margin-bottom: 13px;
-      background: #fff8fa;
-      border-radius: 13px;
-      color: #5f4851;
-      font-size: 13px;
-      font-weight: 800;
+    .total{
+      font-size:17px;
+      color:#c95f7e;
+      font-weight:800;
     }
 
-    .producto-total strong {
-      color: #d94a79;
-      font-size: 18px;
+    .controles{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
     }
 
-    .btn-agregar-producto {
-      width: 100%;
-      min-height: 49px;
-      border: 0;
-      border-radius: 14px;
-      padding: 11px 15px;
-      background: #de5b86;
-      color: white;
-      font-size: 12px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(210,70,115,.16);
+    .cantidad{
+      flex:1;
+      display:grid;
+      grid-template-columns:38px 1fr 38px;
+      border:1px solid #edccd5;
+      border-radius:11px;
+      overflow:hidden;
+      height:42px;
     }
 
-    .btn-agregar-producto:hover {
-      background: #d64d7b;
+    .cantidad button{
+      border:0;
+      background:#fff5f7;
+      color:#b85b77;
+      font-size:19px;
+      font-weight:700;
+      cursor:pointer;
     }
 
-    .agotado-bloque {
-      min-height: 49px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 14px;
-      background: #fff1f4;
-      color: #bc4968;
-      border: 1px solid #f0cfda;
-      font-size: 12px;
-      font-weight: 900;
+    .cantidad button:hover{
+      background:#fce8ee;
+    }
+
+    .cantidad input{
+      border:0;
+      outline:0;
+      text-align:center;
+      width:100%;
+      font-weight:700;
+      color:#443a3d;
+      background:white;
+    }
+
+    .agregar{
+      width:100%;
+      min-height:44px;
+      border:0;
+      border-radius:11px;
+      background:var(--rosa);
+      color:white;
+      font-weight:800;
+      font-size:12px;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .agregar:hover{
+      background:var(--rosa-oscuro);
+    }
+
+    .agregar:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
+    .agotado-bloque{
+      display:none;
+      background:#fff0f4;
+      border:1px solid #efc0cd;
+      color:#a54b65;
+      border-radius:11px;
+      text-align:center;
+      padding:12px 8px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+
+    .producto-card.no-disponible .total-box,
+    .producto-card.no-disponible .controles,
+    .producto-card.no-disponible .agregar{
+      display:none;
+    }
+
+    .producto-card.no-disponible .agotado-bloque{
+      display:block;
     }
 
     /* =========================
        CONTACTO
-    ========================== */
+    ========================= */
 
-    .contacto {
-      position: relative;
-      overflow: hidden;
-      padding: 70px 6% 65px;
-      text-align: center;
-      background:
-        radial-gradient(
-          circle at 10% 20%,
-          rgba(230,83,133,.08),
-          transparent 24%
-        ),
-        linear-gradient(
-          135deg,
-          #fdeaf0,
-          #fff7f9 55%,
-          #fffdfd
-        );
-      border-top: 1px solid #f2dce4;
+    .contacto{
+      position:relative;
+      overflow:hidden;
+      background:#fff5f7;
+      border-top:1px solid var(--borde);
+      padding:60px 20px;
+      text-align:center;
     }
 
-    .cara-contacto {
-      position: absolute;
-      width: 250px;
-      left: 4%;
-      top: 50%;
-      transform: translateY(-50%) rotate(-6deg);
-      opacity: .05;
-      pointer-events: none;
+    .contacto-inner{
+      max-width:700px;
+      margin:auto;
+      position:relative;
+      z-index:2;
     }
 
-    .contacto-contenido {
-      position: relative;
-      z-index: 3;
-      max-width: 760px;
-      margin: auto;
+    .contacto h2{
+      font-size:28px;
+      margin-bottom:10px;
     }
 
-    .contacto h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 35px;
-      font-weight: 500;
-      color: #382c30;
-      margin-bottom: 13px;
+    .contacto p{
+      color:#74686c;
+      max-width:590px;
+      margin:0 auto 20px;
     }
 
-    .contacto-texto {
-      max-width: 650px;
-      margin: 0 auto 25px;
-      color: #765d65;
-      line-height: 1.7;
-      font-size: 15px;
+    .whatsapp{
+      display:inline-block;
+      background:#e48ba5;
+      color:white;
+      text-decoration:none;
+      padding:13px 22px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:22px;
     }
 
-    .boton-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #25D366;
-      color: white;
-      padding: 13px 22px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 25px;
+    .whatsapp:hover{
+      background:#cf708d;
     }
 
-    .redes {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 0 0 20px;
+    .sociales{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
     }
 
-    .red-social {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      color: #d94d7a;
-      border: 1px solid #efc6d3;
-      text-decoration: none;
+    .sociales a{
+      text-decoration:none;
+      color:#a4546d;
+      background:white;
+      border:1px solid #efccd6;
+      padding:8px 13px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
     }
 
-    .red-social svg {
-      width: 21px;
-      height: 21px;
+    .ubicacion{
+      display:inline-block;
+      text-decoration:none;
+      color:#6f6266;
+      font-size:13px;
     }
 
-    .ubicacion {
-      display: inline-flex;
-      text-decoration: none;
-      color: #765d65;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 9px 15px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid #f0d7df;
+    .cara-contacto{
+      right:-55px;
+      bottom:-40px;
+      width:240px;
     }
 
-    footer {
-      background: #35272c;
-      color: #f9eaf0;
-      text-align: center;
-      padding: 28px 20px 25px;
+    footer{
+      text-align:center;
+      background:#fff;
+      border-top:1px solid #f0d9df;
+      padding:20px;
+      color:#887b7f;
+      font-size:12px;
     }
 
-    .footer-logo {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 18px;
-      margin-bottom: 5px;
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:25px;
+      transform:translate(-50%, 25px);
+      z-index:9999;
+      background:#3f3438;
+      color:white;
+      border-radius:999px;
+      padding:11px 18px;
+      font-size:12px;
+      font-weight:700;
+      opacity:0;
+      visibility:hidden;
+      transition:.25s;
+      box-shadow:0 8px 25px rgba(0,0,0,.18);
+      text-align:center;
+      max-width:90%;
     }
 
-    .footer-subtexto {
-      font-size: 11px;
-      color: #ddcbd1;
-    }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translate(-50%,18px);
-      width: min(92%,390px);
-      background: #3b3035;
-      color: white;
-      padding: 13px 16px;
-      border-radius: 16px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      opacity: 0;
-      visibility: hidden;
-      transition: .25s;
-      z-index: 9999;
-    }
-
-    .toast.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translate(-50%,0);
+    .toast.activo{
+      opacity:1;
+      visibility:visible;
+      transform:translate(-50%, 0);
     }
 
     /* =========================
        RESPONSIVE
-    ========================== */
+    ========================= */
 
-    @media (max-width: 650px) {
-      header {
-        padding: 9px 12px;
+    @media(max-width:760px){
+
+      .header-inner{
+        padding:8px 12px;
+        gap:8px;
       }
 
-      .logo img {
-        width: 135px;
-        height: 55px;
+      .logo-principal{
+        width:110px;
       }
 
-      .boton-header {
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        font-size: 0;
+      .nav{
+        gap:3px;
       }
 
-      .icono-header {
-        width: 18px;
-        height: 18px;
+      .nav a{
+        font-size:10px;
+        padding:7px 7px;
       }
 
-      .hero {
-        padding: 48px 16px;
+      .hero-inner{
+        min-height:250px;
+        padding:40px 18px;
       }
 
-      h1 {
-        font-size: 37px;
+      .hero h1{
+        font-size:29px;
       }
 
-      .productos {
-        padding: 40px 4% 60px;
+      .logo-marca{
+        width:125px;
       }
 
-      .producto-info {
-        padding: 16px;
+      .grid-productos{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:12px;
+      }
+
+      .productos{
+        padding:40px 12px 50px;
+      }
+
+      .info{
+        padding:12px;
+      }
+
+      .nombre{
+        font-size:15px;
+      }
+
+      .precio{
+        font-size:17px;
+      }
+
+      .cantidad{
+        grid-template-columns:32px 1fr 32px;
+        height:39px;
+      }
+
+      .agregar{
+        font-size:10px;
+      }
+
+      .cara-marca{
+        opacity:.035;
       }
     }
 
-    @media (max-width: 440px) {
-      .productos-grid {
-        grid-template-columns: 1fr;
+    @media(max-width:440px){
+
+      .header-inner{
+        flex-direction:column;
+        padding:7px 10px 9px;
       }
 
-      .logo img {
-        width: 112px;
+      .logo-principal{
+        width:120px;
+      }
+
+      .nav{
+        width:100%;
+        justify-content:center;
+      }
+
+      .nav a{
+        font-size:10px;
+        padding:6px 8px;
+      }
+
+      .grid-productos{
+        grid-template-columns:1fr;
+        max-width:330px;
+      }
+
+      .hero h1{
+        font-size:26px;
+      }
+
+      .titulo-seccion h2,
+      .contacto h2{
+        font-size:24px;
       }
     }
   </style>
@@ -647,191 +672,149 @@
 <body>
 
 <header>
+  <div class="header-inner">
 
-  <a class="logo" href="index.html">
-    <img
-      src="imagenes/Logo Bellashop png.png"
-      alt="Bella Shop"
-    >
-  </a>
-
-  <div class="acciones-header">
-
-    <a
-      class="boton-header boton-volver"
-      href="chics-fashion.html"
-    >
-      <svg
-        class="icono-header"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
+    <a href="index.html">
+      <img
+        src="imagenes/Logo Bellashop png.png"
+        alt="Bella Shop"
+        class="logo-principal"
       >
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-      VOLVER
     </a>
 
-    <a
-      class="boton-header boton-inicio"
-      href="index.html"
-    >
-      <svg
-        class="icono-header"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path d="M3 11l9-8 9 8"/>
-        <path d="M5 10v10h14V10"/>
-      </svg>
-      INICIO
-    </a>
+    <nav class="nav">
 
-    <a
-      class="boton-header boton-pedido"
-      href="carrito.html"
-    >
-      <svg
-        class="icono-header"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <circle cx="9" cy="20" r="1"/>
-        <circle cx="18" cy="20" r="1"/>
-        <path d="M3 4h2l2.4 11h10.8l2-8H6"/>
-      </svg>
-      MI PEDIDO
-    </a>
+      <a href="chics-fashion.html">
+        <svg class="icono-nav" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        VOLVER
+      </a>
 
+      <a href="index.html">
+        INICIO
+      </a>
+
+      <a href="carrito.html" class="pedido">
+        🛍️ MI PEDIDO
+      </a>
+
+    </nav>
   </div>
-
 </header>
 
-<!-- PORTADA -->
+
+<!-- HERO -->
 
 <section class="hero">
 
   <img
-    class="cara-hero"
     src="imagenes/Cara logo bellashop.png"
+    class="cara-marca cara-hero"
     alt=""
   >
 
-  <div class="hero-contenido">
+  <div class="hero-inner">
+    <div class="hero-content">
 
-    <span class="etiqueta">
-      CHIC'S FASHION · SEMIPERMANENTE
-    </span>
+      <img
+        src="imagenes/logo chics.png"
+        alt="Chic's Fashion"
+        class="logo-marca"
+      >
 
-    <img
-      class="logo-marca-hero"
-      src="imagenes/logo chics.png"
-      alt="Chic's Fashion"
-    >
+      <br>
 
-    <h1>Ojo de Gato</h1>
+      <span class="etiqueta">
+        ESMALTES SEMIPERMANENTES
+      </span>
 
-    <p>
-      Dale un efecto especial y luminoso a tus diseños con los
-      Ojo de Gato Chic's Fashion. ✨
-    </p>
+      <h1>Ojo de Gato Chic's Fashion</h1>
 
+      <p>
+        Elige tu referencia favorita y crea diseños con ese
+        hermoso efecto magnético que cambia con la luz. ✨
+      </p>
+
+    </div>
   </div>
-
 </section>
+
 
 <!-- PRODUCTOS -->
 
 <section class="productos">
 
   <img
-    class="cara-seccion"
     src="imagenes/Cara logo bellashop.png"
+    class="cara-marca cara-productos"
     alt=""
   >
 
-  <div class="productos-contenido">
+  <div class="productos-inner">
 
-    <div
-      id="productosGrid"
-      class="productos-grid"
-    ></div>
+    <div class="titulo-seccion">
+      <h2>Elige tu referencia ♡</h2>
+      <p>
+        Consulta la disponibilidad y agrega la cantidad que deseas a tu pedido.
+      </p>
+    </div>
+
+    <div class="grid-productos" id="gridProductos"></div>
 
   </div>
-
 </section>
+
 
 <!-- CONTACTO -->
 
 <section class="contacto">
 
   <img
-    class="cara-contacto"
     src="imagenes/Cara logo bellashop.png"
+    class="cara-marca cara-contacto"
     alt=""
   >
 
-  <div class="contacto-contenido">
+  <div class="contacto-inner">
 
     <h2>¿Necesitas una ayudita? 💕</h2>
 
-    <p class="contacto-texto">
+    <p>
       Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
       y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
     </p>
 
     <a
-      class="boton-whatsapp"
+      class="whatsapp"
       target="_blank"
-      rel="noopener"
       href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
     >
       ESCRÍBENOS POR WHATSAPP
     </a>
 
-    <div class="redes">
+    <div class="sociales">
 
       <a
-        class="red-social"
-        target="_blank"
-        rel="noopener"
-        aria-label="Instagram"
-        href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="18" height="18" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
-
-      <a
-        class="red-social"
-        target="_blank"
-        rel="noopener"
-        aria-label="Facebook"
         href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+        target="_blank"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
-        </svg>
+        Facebook
       </a>
 
       <a
-        class="red-social"
+        href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
         target="_blank"
-        rel="noopener"
-        aria-label="TikTok"
-        href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
-        </svg>
+        Instagram
+      </a>
+
+      <a
+        href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+        target="_blank"
+      >
+        TikTok
       </a>
 
     </div>
@@ -839,53 +822,82 @@
     <a
       class="ubicacion"
       target="_blank"
-      rel="noopener"
-      href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/"
+      href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9"
     >
       📍 Bella Shop · Popayán, Cauca
     </a>
 
   </div>
-
 </section>
 
+
 <footer>
-  <div class="footer-logo">Bella Shop</div>
-  <div class="footer-subtexto">
-    Tienda de Belleza · Popayán, Cauca
-  </div>
+  © Bella Shop · Tienda de Belleza · Popayán
 </footer>
 
-<div id="toast" class="toast"></div>
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
+  /* ================================
+     CONFIGURACIÓN
+  ================================= */
+
   const PRECIO = 23000;
+
   const CLAVE_CARRITO = "bellaShopCarrito";
 
-  let inventarioProductos = {};
-  let inventarioListo = false;
+  let inventario = {};
 
-  const productos = [
+
+  /*
+    IMPORTANTE:
+
+    Estas son las dos referencias
+    de OJO DE GATO Chic's Fashion.
+
+    No se deben confundir con los
+    esmaltes normales de la carta.
+  */
+
+  const productosPagina = [
+
     {
       ref: "90",
+      refOdoo: "090",
+      codigoOdoo: "255",
+      clave: "chics-fashion-ojo-de-gato-90",
+      nombre: "Ojo de Gato Chic's Fashion",
       imagen: "imagenes/ojo-de-gato-chics-fashion-ref-90.png"
     },
+
     {
       ref: "110",
+      refOdoo: "110",
+      codigoOdoo: "7709098985109",
+      clave: "chics-fashion-ojo-de-gato-110",
+      nombre: "Ojo de Gato Chic's Fashion",
       imagen: "imagenes/ojo-de-gato-chics-fashion-ref-110.png"
     }
+
   ];
 
-  function dinero(valor) {
-    return new Intl.NumberFormat("es-CO", {
-      style: "currency",
-      currency: "COP",
-      maximumFractionDigits: 0
-    }).format(valor);
+
+  /* ================================
+     UTILIDADES
+  ================================= */
+
+  function dinero(valor){
+
+    return "$" + Number(valor).toLocaleString("es-CO");
+
   }
 
-  function normalizarTexto(valor) {
+
+  function normalizarTexto(valor){
+
     return String(valor || "")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -893,485 +905,771 @@
       .replace(/[’'´`]/g, "")
       .replace(/[^A-Z0-9]+/g, " ")
       .trim();
+
   }
 
-  /* BUSCAR ÚNICAMENTE OJO DE GATO CHIC'S */
 
-  function encontrarProducto(ref) {
+  function obtenerCarrito(){
 
-    const referencia = Number(ref);
+    try{
 
-    for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+      const datos =
+        JSON.parse(localStorage.getItem(CLAVE_CARRITO));
 
-      if (!producto) continue;
+      return Array.isArray(datos) ? datos : [];
 
-      const nombre = normalizarTexto(producto.nombre);
+    }catch(error){
 
-      const esChics =
-        nombre.includes("CHICS FASHION") ||
-        nombre.includes("CHIC S FASHION");
-
-      if (!esChics) continue;
-
-      if (!nombre.includes("ESMALTE SEMIPERMANENTE")) continue;
-
-      if (!nombre.includes("OJO DE GATO")) continue;
-
-      const coincidencia =
-        nombre.match(/\bREF(?:ERENCIA)?\s*0*(\d{1,3})\b/);
-
-      if (
-        coincidencia &&
-        Number(coincidencia[1]) === referencia
-      ) {
-        return {
-          codigo,
-          ...producto
-        };
-      }
-    }
-
-    return null;
-  }
-
-  function stockDisponible(ref) {
-
-    const producto = encontrarProducto(ref);
-
-    if (!producto) return 0;
-
-    return Math.max(
-      0,
-      Number(producto.disponible) || 0
-    );
-  }
-
-  function mostrarToast(mensaje) {
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = mensaje;
-    toast.classList.add("visible");
-
-    clearTimeout(window._toastBella);
-
-    window._toastBella = setTimeout(() => {
-      toast.classList.remove("visible");
-    }, 2300);
-  }
-
-  function obtenerCarrito() {
-
-    try {
-      const carrito = JSON.parse(
-        localStorage.getItem(CLAVE_CARRITO) || "[]"
-      );
-
-      return Array.isArray(carrito) ? carrito : [];
-
-    } catch (error) {
       return [];
+
     }
+
   }
 
-  function crearTarjeta(producto) {
 
-    const stock = stockDisponible(producto.ref);
-    const disponible = inventarioListo && stock > 0;
-
-    const card = document.createElement("article");
-
-    card.className =
-      "producto-card" +
-      (disponible ? "" : " agotado");
-
-    card.dataset.ref = producto.ref;
-
-    card.innerHTML = `
-
-      <div class="producto-imagen-wrap">
-
-        <img
-          class="producto-imagen"
-          src="${producto.imagen}"
-          alt="Ojo de Gato Chic's Fashion REF ${producto.ref}"
-        >
-
-        <span class="estado-producto ${
-          disponible
-            ? "estado-disponible"
-            : "estado-agotado"
-        }">
-          ${
-            disponible
-              ? "DISPONIBLE"
-              : "NO DISPONIBLE"
-          }
-        </span>
-
-      </div>
-
-      <div class="producto-info">
-
-        <div class="producto-tipo">
-          OJO DE GATO · CHIC'S FASHION
-        </div>
-
-        <div class="producto-ref">
-          REF. ${producto.ref}
-        </div>
-
-        <div class="producto-precio">
-          ${dinero(PRECIO)}
-        </div>
-
-        <div class="stock-producto">
-          ${
-            disponible
-              ? "Disponible: " + stock
-              : ""
-          }
-        </div>
-
-        ${
-          disponible
-          ? `
-
-            <div class="cantidad-titulo">
-              Cantidad
-            </div>
-
-            <div class="cantidad-producto">
-
-              <button
-                type="button"
-                data-menos
-                aria-label="Disminuir cantidad"
-              >
-                −
-              </button>
-
-              <input
-                type="number"
-                value="1"
-                min="1"
-                max="${stock}"
-                inputmode="numeric"
-                data-cantidad
-              >
-
-              <button
-                type="button"
-                data-mas
-                aria-label="Aumentar cantidad"
-              >
-                +
-              </button>
-
-            </div>
-
-            <div class="producto-total">
-
-              <span>Total</span>
-
-              <strong data-total>
-                ${dinero(PRECIO)}
-              </strong>
-
-            </div>
-
-            <button
-              type="button"
-              class="btn-agregar-producto"
-              data-agregar
-            >
-              AGREGAR AL PEDIDO
-            </button>
-
-          `
-          : `
-
-            <div class="agotado-bloque">
-              TEMPORALMENTE NO DISPONIBLE
-            </div>
-
-          `
-        }
-
-      </div>
-    `;
-
-    if (disponible) {
-
-      const input =
-        card.querySelector("[data-cantidad]");
-
-      const total =
-        card.querySelector("[data-total]");
-
-      const menos =
-        card.querySelector("[data-menos]");
-
-      const mas =
-        card.querySelector("[data-mas]");
-
-      const agregar =
-        card.querySelector("[data-agregar]");
-
-      function actualizarCantidad(valor) {
-
-        let cantidad = Number(valor);
-
-        if (!Number.isFinite(cantidad) || cantidad < 1) {
-          cantidad = 1;
-        }
-
-        cantidad = Math.floor(cantidad);
-
-        if (cantidad > stock) {
-          cantidad = stock;
-        }
-
-        input.value = cantidad;
-
-        total.textContent =
-          dinero(cantidad * PRECIO);
-      }
-
-      menos.addEventListener("click", () => {
-
-        actualizarCantidad(
-          Number(input.value) - 1
-        );
-
-      });
-
-      mas.addEventListener("click", () => {
-
-        actualizarCantidad(
-          Number(input.value) + 1
-        );
-
-      });
-
-      input.addEventListener("input", () => {
-        actualizarCantidad(input.value);
-      });
-
-      input.addEventListener("blur", () => {
-        actualizarCantidad(input.value);
-      });
-
-      agregar.addEventListener("click", () => {
-
-        agregarAlPedido(
-          producto,
-          Number(input.value)
-        );
-
-      });
-    }
-
-    return card;
-  }
-
-  function renderProductos() {
-
-    const grid =
-      document.getElementById("productosGrid");
-
-    grid.innerHTML = "";
-
-    productos.forEach(producto => {
-
-      grid.appendChild(
-        crearTarjeta(producto)
-      );
-
-    });
-  }
-
-  function agregarAlPedido(producto, cantidad) {
-
-    if (!inventarioListo) return;
-
-    const inventario =
-      encontrarProducto(producto.ref);
-
-    const stock =
-      stockDisponible(producto.ref);
-
-    if (!inventario || stock <= 0) {
-
-      renderProductos();
-
-      mostrarToast(
-        "TEMPORALMENTE NO DISPONIBLE"
-      );
-
-      return;
-    }
-
-    cantidad = Math.max(
-      1,
-      Math.floor(Number(cantidad) || 1)
-    );
-
-    if (cantidad > stock) {
-      cantidad = stock;
-    }
-
-    const clave =
-      "chics-fashion-ojo-de-gato-" +
-      producto.ref;
-
-    const carrito =
-      obtenerCarrito();
-
-    const existente =
-      carrito.find(
-        item => item.clave === clave
-      );
-
-    const yaEnCarrito =
-      existente
-        ? Number(existente.cantidad) || 0
-        : 0;
-
-    if (yaEnCarrito + cantidad > stock) {
-
-      const faltante =
-        stock - yaEnCarrito;
-
-      if (faltante <= 0) {
-
-        mostrarToast(
-          "Ya tienes todas las unidades disponibles de la REF. " +
-          producto.ref +
-          " en tu pedido 💗"
-        );
-
-      } else {
-
-        mostrarToast(
-          "Puedes agregar máximo " +
-          faltante +
-          " unidad(es) más de la REF. " +
-          producto.ref
-        );
-
-      }
-
-      return;
-    }
-
-    if (existente) {
-
-      existente.cantidad =
-        yaEnCarrito + cantidad;
-
-    } else {
-
-      carrito.push({
-
-        clave: clave,
-
-        nombre:
-          "Ojo de Gato Chic's Fashion",
-
-        referencia:
-          producto.ref,
-
-        precio:
-          PRECIO,
-
-        cantidad:
-          cantidad,
-
-        imagen:
-          producto.imagen,
-
-        codigoOdoo:
-          inventario.codigo_original_odoo ||
-          inventario.codigo ||
-          ""
-
-      });
-    }
+  function guardarCarrito(carrito){
 
     localStorage.setItem(
       CLAVE_CARRITO,
       JSON.stringify(carrito)
     );
 
-    mostrarToast(
-      "💗 REF. " +
-      producto.ref +
-      " agregada a MI PEDIDO"
-    );
-
-    const card =
-      document.querySelector(
-        `.producto-card[data-ref="${producto.ref}"]`
-      );
-
-    if (card) {
-
-      const input =
-        card.querySelector("[data-cantidad]");
-
-      const total =
-        card.querySelector("[data-total]");
-
-      if (input) {
-        input.value = 1;
-      }
-
-      if (total) {
-        total.textContent = dinero(PRECIO);
-      }
-    }
   }
 
-  async function cargarInventario() {
 
-    try {
+  function cantidadEnCarrito(clave){
+
+    const carrito = obtenerCarrito();
+
+    const producto =
+      carrito.find(item => item.clave === clave);
+
+    return producto
+      ? Number(producto.cantidad || 0)
+      : 0;
+
+  }
+
+
+  function mostrarToast(mensaje){
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = mensaje;
+    toast.classList.add("activo");
+
+    clearTimeout(mostrarToast.timer);
+
+    mostrarToast.timer = setTimeout(() => {
+
+      toast.classList.remove("activo");
+
+    }, 2200);
+
+  }
+
+
+  /* ================================
+     BUSCAR PRODUCTO EN INVENTARIO
+  ================================= */
+
+  function buscarEnInventario(producto){
+
+    /*
+      PRIMER MÉTODO:
+      Buscar directamente por el código Odoo.
+
+      Esto es lo más seguro para estas
+      dos referencias.
+    */
+
+    if(inventario[producto.codigoOdoo]){
+
+      return inventario[producto.codigoOdoo];
+
+    }
+
+
+    /*
+      SEGUNDO MÉTODO:
+      Si algún día cambia la clave del JSON,
+      buscamos por codigo_original_odoo.
+    */
+
+    const lista = Object.values(inventario);
+
+    const porCodigo = lista.find(item => {
+
+      return String(item.codigo_original_odoo || "").trim()
+        === producto.codigoOdoo;
+
+    });
+
+    if(porCodigo){
+
+      return porCodigo;
+
+    }
+
+
+    /*
+      TERCER MÉTODO:
+      Búsqueda por nombre.
+
+      Debe cumplir TODAS estas condiciones:
+
+      - Chic's Fashion
+      - Ojo de Gato
+      - referencia exacta
+
+      Así NO se mezcla con la carta normal.
+    */
+
+    const refBuscada =
+      String(producto.refOdoo).padStart(3, "0");
+
+    const encontrado = lista.find(item => {
+
+      const nombre =
+        normalizarTexto(item.nombre);
+
+      if(!nombre.includes("CHICS FASHION")){
+        return false;
+      }
+
+      if(!nombre.includes("OJO DE GATO")){
+        return false;
+      }
+
+      const coincidenciaRef =
+        nombre.match(/\bREF\s*0*([0-9]+)\b/);
+
+      if(!coincidenciaRef){
+        return false;
+      }
+
+      const refEncontrada =
+        String(Number(coincidenciaRef[1]))
+          .padStart(3, "0");
+
+      return refEncontrada === refBuscada;
+
+    });
+
+    return encontrado || null;
+
+  }
+
+
+  /* ================================
+     CREAR TARJETAS
+  ================================= */
+
+  function crearTarjetas(){
+
+    const grid =
+      document.getElementById("gridProductos");
+
+    grid.innerHTML = "";
+
+
+    productosPagina.forEach(producto => {
+
+      const itemInventario =
+        buscarEnInventario(producto);
+
+
+      /*
+        Si existe en inventario,
+        usamos "disponible".
+
+        Si por alguna razón tiene un valor
+        negativo, lo tratamos como 0.
+      */
+
+      const encontrado =
+        Boolean(itemInventario);
+
+      const stock =
+        encontrado
+          ? Math.max(
+              0,
+              Number(itemInventario.disponible || 0)
+            )
+          : 0;
+
+
+      const disponible =
+        encontrado && stock > 0;
+
+
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "producto-card" +
+        (disponible ? "" : " no-disponible");
+
+
+      card.innerHTML = `
+
+        <div class="imagen-wrap">
+
+          <span class="badge ${disponible ? "" : "no"}">
+
+            ${
+              disponible
+                ? "DISPONIBLE"
+                : "NO DISPONIBLE"
+            }
+
+          </span>
+
+          <img
+            src="${producto.imagen}"
+            alt="${producto.nombre} REF. ${producto.ref}"
+          >
+
+        </div>
+
+
+        <div class="info">
+
+          <div class="tipo">
+            OJO DE GATO
+          </div>
+
+          <div class="nombre">
+            Chic's Fashion
+          </div>
+
+          <div class="referencia">
+            REF. ${producto.ref}
+          </div>
+
+          <div class="precio">
+
+            ${dinero(PRECIO)}
+
+            <small>
+              c/u
+            </small>
+
+          </div>
+
+
+          <div class="stock">
+
+            ${
+              disponible
+                ? `${stock} ${
+                    stock === 1
+                      ? "unidad disponible"
+                      : "unidades disponibles"
+                  }`
+                : ""
+            }
+
+          </div>
+
+
+          <div class="total-box">
+
+            <span>
+              TOTAL
+            </span>
+
+            <span
+              class="total"
+              id="total-${producto.ref}"
+            >
+              ${dinero(PRECIO)}
+            </span>
+
+          </div>
+
+
+          <div class="controles">
+
+            <div class="cantidad">
+
+              <button
+                type="button"
+                class="menos"
+                aria-label="Restar cantidad"
+              >
+                −
+              </button>
+
+              <input
+                type="number"
+                class="input-cantidad"
+                value="1"
+                min="1"
+                max="${Math.max(stock,1)}"
+                inputmode="numeric"
+              >
+
+              <button
+                type="button"
+                class="mas"
+                aria-label="Sumar cantidad"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="agregar"
+            ${disponible ? "" : "disabled"}
+          >
+            AGREGAR AL PEDIDO
+          </button>
+
+
+          <div class="agotado-bloque">
+
+            ${
+              encontrado
+                ? "TEMPORALMENTE NO DISPONIBLE"
+                : "CÓDIGO NO ENCONTRADO"
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      grid.appendChild(card);
+
+
+      /*
+        Si no está disponible,
+        no necesitamos activar controles.
+      */
+
+      if(!disponible){
+        return;
+      }
+
+
+      const input =
+        card.querySelector(".input-cantidad");
+
+      const botonMenos =
+        card.querySelector(".menos");
+
+      const botonMas =
+        card.querySelector(".mas");
+
+      const botonAgregar =
+        card.querySelector(".agregar");
+
+      const total =
+        card.querySelector(".total");
+
+
+      function maximoPermitido(){
+
+        const yaEnCarrito =
+          cantidadEnCarrito(producto.clave);
+
+        return Math.max(
+          0,
+          stock - yaEnCarrito
+        );
+
+      }
+
+
+      function actualizarCantidad(valor){
+
+        let cantidad =
+          parseInt(valor,10);
+
+        if(!Number.isFinite(cantidad)){
+          cantidad = 1;
+        }
+
+
+        const maximo =
+          maximoPermitido();
+
+
+        if(maximo <= 0){
+
+          input.value = 1;
+          botonAgregar.disabled = true;
+
+          return;
+
+        }
+
+
+        cantidad =
+          Math.max(
+            1,
+            Math.min(cantidad,maximo)
+          );
+
+
+        input.value = cantidad;
+
+        total.textContent =
+          dinero(PRECIO * cantidad);
+
+        botonAgregar.disabled = false;
+
+      }
+
+
+      botonMenos.addEventListener(
+        "click",
+        () => {
+
+          actualizarCantidad(
+            Number(input.value) - 1
+          );
+
+        }
+      );
+
+
+      botonMas.addEventListener(
+        "click",
+        () => {
+
+          actualizarCantidad(
+            Number(input.value) + 1
+          );
+
+        }
+      );
+
+
+      input.addEventListener(
+        "input",
+        () => {
+
+          actualizarCantidad(
+            input.value
+          );
+
+        }
+      );
+
+
+      input.addEventListener(
+        "blur",
+        () => {
+
+          actualizarCantidad(
+            input.value
+          );
+
+        }
+      );
+
+
+      botonAgregar.addEventListener(
+        "click",
+        () => {
+
+          /*
+            Volvemos a consultar el producto
+            dentro del inventario cargado.
+          */
+
+          const inventarioActual =
+            buscarEnInventario(producto);
+
+
+          if(!inventarioActual){
+
+            mostrarToast(
+              "No pudimos verificar este producto 💗"
+            );
+
+            return;
+
+          }
+
+
+          const stockActual =
+            Math.max(
+              0,
+              Number(
+                inventarioActual.disponible || 0
+              )
+            );
+
+
+          if(stockActual <= 0){
+
+            mostrarToast(
+              "Este producto no está disponible en este momento 💗"
+            );
+
+            return;
+
+          }
+
+
+          let cantidad =
+            parseInt(input.value,10);
+
+
+          if(!Number.isFinite(cantidad) || cantidad < 1){
+
+            cantidad = 1;
+
+          }
+
+
+          const carrito =
+            obtenerCarrito();
+
+
+          const existente =
+            carrito.find(
+              item =>
+                item.clave === producto.clave
+            );
+
+
+          const cantidadActual =
+            existente
+              ? Number(existente.cantidad || 0)
+              : 0;
+
+
+          const nuevaCantidad =
+            cantidadActual + cantidad;
+
+
+          if(nuevaCantidad > stockActual){
+
+            const faltante =
+              Math.max(
+                0,
+                stockActual - cantidadActual
+              );
+
+
+            if(faltante === 0){
+
+              mostrarToast(
+                "Ya tienes todas las unidades disponibles en tu pedido 💗"
+              );
+
+            }else{
+
+              mostrarToast(
+                `Solo puedes agregar ${faltante} ${
+                  faltante === 1
+                    ? "unidad más"
+                    : "unidades más"
+                } 💗`
+              );
+
+            }
+
+            actualizarCantidad(1);
+
+            return;
+
+          }
+
+
+          if(existente){
+
+            existente.cantidad =
+              nuevaCantidad;
+
+            existente.total =
+              PRECIO * nuevaCantidad;
+
+          }else{
+
+            carrito.push({
+
+              clave:
+                producto.clave,
+
+              nombre:
+                producto.nombre,
+
+              referencia:
+                producto.ref,
+
+              precio:
+                PRECIO,
+
+              cantidad:
+                cantidad,
+
+              total:
+                PRECIO * cantidad,
+
+              imagen:
+                producto.imagen
+
+            });
+
+          }
+
+
+          guardarCarrito(carrito);
+
+
+          mostrarToast(
+            `REF. ${producto.ref} agregada a tu pedido 💕`
+          );
+
+
+          input.value = 1;
+
+          total.textContent =
+            dinero(PRECIO);
+
+
+          actualizarCantidad(1);
+
+        }
+      );
+
+
+      actualizarCantidad(1);
+
+    });
+
+  }
+
+
+  /* ================================
+     CARGAR INVENTARIO CENTRAL
+  ================================= */
+
+  async function cargarInventario(){
+
+    const grid =
+      document.getElementById("gridProductos");
+
+
+    /*
+      Mensaje temporal mientras se consulta
+      el inventario.
+    */
+
+    grid.innerHTML = `
+
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:35px 15px;
+        color:#806f74;
+        font-size:14px;
+      ">
+        Consultando disponibilidad... 💕
+      </div>
+
+    `;
+
+
+    try{
+
+      /*
+        Date.now() + cache no-store
+        evita que el navegador se quede
+        mostrando un inventario viejo.
+      */
 
       const respuesta =
         await fetch(
-          "inventario.json?actualizacion=" +
-          Date.now(),
+          `inventario.json?actualizacion=${Date.now()}`,
           {
-            cache: "no-store"
+            cache:"no-store"
           }
         );
 
-      if (!respuesta.ok) {
+
+      if(!respuesta.ok){
+
         throw new Error(
-          "No se pudo cargar inventario"
+          "No se pudo cargar inventario.json"
         );
+
       }
+
 
       const datos =
         await respuesta.json();
 
-      inventarioProductos =
-        datos.productos || {};
 
-      inventarioListo = true;
+      if(
+        !datos ||
+        !datos.productos ||
+        typeof datos.productos !== "object"
+      ){
 
-      renderProductos();
+        throw new Error(
+          "Formato de inventario incorrecto"
+        );
 
-    } catch (error) {
+      }
 
-      inventarioProductos = {};
-      inventarioListo = false;
 
-      renderProductos();
+      inventario =
+        datos.productos;
+
+
+      crearTarjetas();
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      grid.innerHTML = `
+
+        <div style="
+          grid-column:1/-1;
+          max-width:560px;
+          margin:auto;
+          text-align:center;
+          background:#fff3f6;
+          border:1px solid #efc7d2;
+          border-radius:15px;
+          padding:24px 18px;
+          color:#8d5365;
+          font-size:14px;
+        ">
+
+          💗 En este momento no pudimos consultar
+          la disponibilidad de los productos.
+          Por favor intenta nuevamente en unos minutos.
+
+        </div>
+
+      `;
+
     }
+
   }
 
-  renderProductos();
+
+  /* ================================
+     INICIAR
+  ================================= */
+
   cargarInventario();
 
 </script>
