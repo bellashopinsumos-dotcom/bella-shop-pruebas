@@ -826,8 +826,10 @@ footer small{
 const PRECIO = 18900;
 
 /*
-  21 REFERENCIAS
-  ORDENADAS NUMÉRICAMENTE
+  21 REFERENCIAS QUEENIGTH
+
+  REF. 054 RETIRADA
+  REF. 160 AGREGADA
 */
 
 const referencias = [
@@ -837,7 +839,6 @@ const referencias = [
   "024",
   "034",
   "045",
-  "054",
   "057",
   "059",
   "60",
@@ -846,6 +847,7 @@ const referencias = [
   "140",
   "152",
   "159",
+  "160",
   "162",
   "177",
   "178",
@@ -1154,8 +1156,7 @@ function buscarProducto(productos, ref){
       normalizarTexto(producto.nombre);
 
     /*
-      PRIMERO CONFIRMAMOS QUE SEA
-      ESMALTE SEMIPERMANENTE
+      DEBE SER ESMALTE SEMIPERMANENTE
     */
 
     if(
@@ -1167,8 +1168,8 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      ACEPTAMOS LAS DIFERENTES FORMAS
-      EN QUE QUEENIGTH APARECE EN ODOO
+      QUEENIGTH APARECE DE DIFERENTES
+      FORMAS EN EL INVENTARIO
     */
 
     const esQueenigth =
@@ -1181,9 +1182,8 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      EXCLUIMOS OTRAS LÍNEAS
-      PARA NO CONFUNDIRLAS CON
-      LA CARTA NORMAL
+      EVITAMOS CONFUNDIR LA CARTA
+      CON OTRAS LÍNEAS QUEENIGTH
     */
 
     if(
@@ -1197,7 +1197,7 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      FORMATO 1:
+      FORMATO 1
 
       REF 001
       REF #001
@@ -1205,7 +1205,7 @@ function buscarProducto(productos, ref){
       REF # 6
       REF#006
 
-      Ejemplo:
+      EJEMPLO:
       ESMALTE SEMIPERMANENTE
       11 ML REF #6 QUEENIGHT
     */
@@ -1229,8 +1229,9 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      FORMATO 2:
+      FORMATO 2
 
+      PROF QN #45 11ML
       PROF QN #60 11ML
       PROF QN #112 11ML
       PROF QN #134 11ML
@@ -1256,15 +1257,12 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      FORMATO 3 DE RESPALDO:
+      FORMATO 3 DE RESPALDO
 
-      Si ya sabemos que es:
-      - esmalte semipermanente
-      - Queenigth / Queenight / QN
-
-      entonces buscamos una referencia
-      escrita simplemente como #60,
-      #112, etc.
+      COMO YA CONFIRMAMOS QUE ES
+      QUEENIGTH / QUEENIGHT / QN
+      Y ESMALTE SEMIPERMANENTE,
+      BUSCAMOS LA REFERENCIA #XXX
     */
 
     coincidencia =
@@ -1507,8 +1505,8 @@ function actualizarTarjeta(
       "NO DISPONIBLE";
 
     /*
-      NO REPETIMOS EL AVISO
-      EN EL TEXTO PEQUEÑO
+      NO MOSTRAMOS UN SEGUNDO
+      MENSAJE PEQUEÑO
     */
 
     stockTexto.textContent =
@@ -1612,8 +1610,8 @@ function agregarAlPedido(tarjeta){
 
 
   /*
-    SI NO ENCONTRÓ EL CÓDIGO,
-    NO SE PUEDE AGREGAR
+    SI EL CÓDIGO NO SE ENCONTRÓ,
+    NO PERMITIMOS AGREGAR
   */
 
   if(!encontrado){
@@ -1628,7 +1626,8 @@ function agregarAlPedido(tarjeta){
 
 
   /*
-    ENCONTRADO PERO SIN STOCK
+    PRODUCTO ENCONTRADO,
+    PERO SIN EXISTENCIAS
   */
 
   if(stock <= 0){
