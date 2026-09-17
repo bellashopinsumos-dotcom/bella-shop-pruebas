@@ -1066,6 +1066,10 @@
     @media(max-width:440px){.grid-productos{grid-template-columns:1fr}}
 
 .red-social svg{width:21px;height:21px;display:block}
+
+.selector-presentacion{width:100%;height:44px;border:1px solid #edcbd6;border-radius:13px;background:#fff;color:#3b2c31;padding:0 12px;font-size:13px;font-weight:700;outline:none;margin-bottom:10px}
+.presentacion-titulo{font-size:10px;font-weight:800;color:#806a72;margin-bottom:7px}
+
 </style>
 
 </head>
@@ -1344,39 +1348,48 @@
 
 
 <div class="toast" id="toast">Producto agregado 💕</div>
+
 <script>
-const productosPagina = [{"marca": "Latin Nails", "ml": "15 ml", "ref": "Top Coat 15ml Latin", "precio": 30500, "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat-15ml"}, {"marca": "Latin Nails", "ml": "8 ml", "ref": "Top Coat 8ml Latin", "precio": 18000, "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat-8ml"}, {"marca": "Muna", "ml": "12 ml", "ref": "2874-TC", "precio": 13500, "imagen": "imagenes/top-coat-muna.png", "clave": "muna-top-coat-12ml"}, {"marca": "Muna BB", "ml": "7 ml", "ref": "MUNABB-TC", "precio": 10000, "imagen": "imagenes/top-coat-muna.png", "clave": "munabb-top-coat-7ml"}, {"marca": "CANM", "ml": "15 ml", "ref": "Top Coat 15ml CANM", "precio": 27000, "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat-15ml"}, {"marca": "CANM", "ml": "8 ml", "ref": "Top Coat 8ml CANM", "precio": 17000, "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat-8ml"}, {"marca": "Cloe", "ml": "15 ml", "ref": "Top Coat 15 ml Cloe", "precio": 29000, "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat-15ml"}, {"marca": "Cloe", "ml": "10 ml", "ref": "Top Coat 10 ml Cloe", "precio": 22600, "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat-10ml"}, {"marca": "Chic's Fashion", "ml": "12 ml", "ref": "Top Coat Semipermanente 12 ml Chics Fashion", "precio": 21600, "imagen": "imagenes/top-coat-chics-fashion.png", "clave": "chics-top-coat-12ml"}];
+const gruposTopCoat = [{"marca": "Latin Nails", "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat", "opciones": [{"ml": "15 ml", "ref": "Top Coat 15ml Latin", "precio": 30500}, {"ml": "8 ml", "ref": "Top Coat 8ml Latin", "precio": 18000}]}, {"marca": "Muna", "imagen": "imagenes/top-coat-muna.png", "clave": "muna-top-coat", "opciones": [{"ml": "12 ml", "ref": "2874-TC", "precio": 13500}, {"ml": "7 ml", "ref": "MUNABB-TC", "precio": 10000}]}, {"marca": "CANM", "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat", "opciones": [{"ml": "15 ml", "ref": "Top Coat 15ml CANM", "precio": 27000}, {"ml": "8 ml", "ref": "Top Coat 8ml CANM", "precio": 17000}]}, {"marca": "Cloe", "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat", "opciones": [{"ml": "15 ml", "ref": "Top Coat 15 ml Cloe", "precio": 29000}, {"ml": "10 ml", "ref": "Top Coat 10 ml Cloe", "precio": 22600}]}, {"marca": "Chic's Fashion", "imagen": "imagenes/top-coat-chics-fashion.png", "clave": "chics-top-coat", "opciones": [{"ml": "12 ml", "ref": "Top Coat Semipermanente 12 ml Chics Fashion", "precio": 21600}]}];
 
 function dinero(valor) {
   return "$" + Number(valor).toLocaleString("es-CO");
 }
-
 function normalizarTexto(valor) {
-  return String(valor || "")
-    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-    .toUpperCase().replace(/[’'´`]/g,"")
-    .replace(/[^A-Z0-9]+/g," ").trim();
+  return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toUpperCase().replace(/[’'´`]/g,"").replace(/[^A-Z0-9]+/g," ").trim();
 }
-
+function buscarProducto(productos, marca, opcion) {
+  const ref=normalizarTexto(opcion.ref), mar=normalizarTexto(marca), ml=normalizarTexto(opcion.ml);
+  return Object.values(productos||{}).find(producto=>{
+    const nombre=normalizarTexto(producto.nombre);
+    if(nombre===ref || nombre.includes(ref)) return true;
+    const esTop=nombre.includes("TOP COAT") || nombre.includes("TOPCOAT");
+    const marcaOk=nombre.includes(mar)
+      || (mar==="LATIN NAILS" && nombre.includes("LATIN"))
+      || (mar==="MUNA" && (nombre.includes("MUNA") || nombre.includes("MUNABB")))
+      || (mar==="CHICS FASHION" && (nombre.includes("CHICS FASHION") || nombre.includes("CHIC S FASHION")));
+    return esTop && marcaOk && nombre.includes(ml);
+  });
+}
 function crearTarjetas() {
-  const grid = document.getElementById("gridProductos");
-  productosPagina.forEach(item => {
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "producto";
-    tarjeta.dataset.clave = item.clave;
-    tarjeta.dataset.ref = item.ref;
-    tarjeta.dataset.stock = "0";
-    tarjeta.dataset.encontrado = "false";
-    tarjeta.innerHTML = `
+  const grid=document.getElementById("gridProductos");
+  gruposTopCoat.forEach((grupo,gi)=>{
+    const t=document.createElement("article");
+    t.className="producto"; t.dataset.grupo=gi; t.dataset.stock="0"; t.dataset.encontrado="false";
+    const opciones=grupo.opciones.map((o,i)=>`<option value="${i}">${o.ml} · ${dinero(o.precio)}</option>`).join("");
+    t.innerHTML=`
       <div class="imagen-contenedor">
-        <img src="${item.imagen}" alt="Top Coat ${item.marca} ${item.ml}" loading="lazy">
+        <img src="${grupo.imagen}" alt="Top Coat ${grupo.marca}" loading="lazy">
         <span class="badge">CONSULTANDO...</span>
       </div>
       <div class="info">
         <div class="tipo">TOP COAT · BRILLO</div>
-        <h3>Top Coat ${item.marca}</h3>
-        <div class="ref">${item.ml} · REF. ${item.ref}</div>
-        <div class="precio-producto">${dinero(item.precio)}</div>
+        <h3>Top Coat ${grupo.marca}</h3>
+        <div class="presentacion-titulo">ESCOGE LA PRESENTACIÓN</div>
+        <select class="selector-presentacion">${opciones}</select>
+        <div class="ref"></div>
+        <div class="precio-producto"></div>
         <div class="unidad">Precio por unidad</div>
         <div class="stock-producto"></div>
         <div class="no-disponible-bloque">TEMPORALMENTE NO DISPONIBLE</div>
@@ -1386,110 +1399,84 @@ function crearTarjetas() {
           <input type="number" class="cantidad-input" value="1" min="1" disabled>
           <button type="button" class="mas" disabled>+</button>
         </div>
-        <div class="total-compra"><span>Total</span><strong>${dinero(item.precio)}</strong></div>
+        <div class="total-compra"><span>Total</span><strong></strong></div>
         <button type="button" class="agregar-pedido" disabled>AGREGAR AL PEDIDO</button>
       </div>`;
-    grid.appendChild(tarjeta);
-    prepararControles(tarjeta, item);
+    grid.appendChild(t);
+    prepararTarjeta(t,grupo);
   });
 }
-
-function prepararControles(tarjeta, item) {
-  const menos=tarjeta.querySelector(".menos"), mas=tarjeta.querySelector(".mas");
-  const input=tarjeta.querySelector(".cantidad-input"), total=tarjeta.querySelector(".total-compra strong");
-  function actualizar() {
-    let c=parseInt(input.value)||1, stock=Number(tarjeta.dataset.stock)||0;
-    if(c<1)c=1; if(stock>0 && c>stock)c=stock;
-    input.value=c; total.textContent=dinero(c*item.precio);
-  }
-  menos.onclick=()=>{if((parseInt(input.value)||1)>1){input.value--;actualizar();}};
-  mas.onclick=()=>{const s=Number(tarjeta.dataset.stock)||0;if((parseInt(input.value)||1)<s){input.value++;actualizar();}};
-  input.oninput=actualizar; input.onchange=actualizar;
-  tarjeta.querySelector(".agregar-pedido").onclick=()=>agregarAlPedido(tarjeta,item);
-}
-
-function buscarProducto(productos, item) {
-  const candidatos=Object.values(productos||{});
-  const ref=normalizarTexto(item.ref);
-  const marca=normalizarTexto(item.marca);
-  const ml=normalizarTexto(item.ml);
-  return candidatos.find(producto=>{
-    const nombre=normalizarTexto(producto.nombre);
-    if(nombre === ref || nombre.includes(ref)) return true;
-    const esTop=nombre.includes("TOP COAT") || nombre.includes("TOPCOAT");
-    const marcaOk =
-      nombre.includes(marca) ||
-      (marca==="LATIN NAILS" && nombre.includes("LATIN")) ||
-      (marca==="MUNA BB" && (nombre.includes("MUNA BB") || nombre.includes("MUNABB"))) ||
-      (marca==="CHICS FASHION" && (nombre.includes("CHICS FASHION") || nombre.includes("CHIC S FASHION")));
-    return esTop && marcaOk && nombre.includes(ml);
-  });
-}
-
-function actualizarTarjeta(tarjeta, producto) {
-  const badge=tarjeta.querySelector(".badge"), stockTexto=tarjeta.querySelector(".stock-producto");
-  const bloque=tarjeta.querySelector(".no-disponible-bloque"), menos=tarjeta.querySelector(".menos");
-  const mas=tarjeta.querySelector(".mas"), input=tarjeta.querySelector(".cantidad-input");
-  const agregar=tarjeta.querySelector(".agregar-pedido");
+function opcionActual(t,g) { return g.opciones[Number(t.querySelector(".selector-presentacion").value)||0]; }
+function pintarTarjeta(t,g) {
+  const o=opcionActual(t,g), producto=o._producto||null;
+  const badge=t.querySelector(".badge"), stockTxt=t.querySelector(".stock-producto"), bloque=t.querySelector(".no-disponible-bloque");
+  const menos=t.querySelector(".menos"), mas=t.querySelector(".mas"), input=t.querySelector(".cantidad-input"), agregar=t.querySelector(".agregar-pedido");
+  t.querySelector(".ref").textContent="REF. "+o.ref;
+  t.querySelector(".precio-producto").textContent=dinero(o.precio);
+  t.querySelector(".total-compra strong").textContent=dinero(o.precio);
+  input.value="1";
   if(!producto) {
-    tarjeta.dataset.stock="0"; tarjeta.dataset.encontrado="false"; tarjeta.classList.add("no-disponible");
-    badge.textContent="CÓDIGO NO ENCONTRADO"; stockTexto.textContent=""; bloque.textContent="CÓDIGO NO ENCONTRADO";
-    menos.disabled=mas.disabled=input.disabled=agregar.disabled=true; return;
+    t.dataset.stock="0";t.dataset.encontrado="false";t.classList.add("no-disponible");
+    badge.textContent="CÓDIGO NO ENCONTRADO";stockTxt.textContent="";bloque.textContent="CÓDIGO NO ENCONTRADO";
+    menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return;
   }
-  tarjeta.dataset.encontrado="true";
   const stock=Math.max(0,Math.floor(Number(producto.disponible)||0));
-  tarjeta.dataset.stock=String(stock);
+  t.dataset.stock=String(stock);t.dataset.encontrado="true";
   if(stock<=0) {
-    tarjeta.classList.add("no-disponible"); badge.textContent="NO DISPONIBLE"; stockTexto.textContent="";
-    bloque.textContent="TEMPORALMENTE NO DISPONIBLE"; menos.disabled=mas.disabled=input.disabled=agregar.disabled=true; return;
+    t.classList.add("no-disponible");badge.textContent="NO DISPONIBLE";stockTxt.textContent="";
+    bloque.textContent="TEMPORALMENTE NO DISPONIBLE";menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return;
   }
-  tarjeta.classList.remove("no-disponible"); badge.textContent="DISPONIBLE";
-  stockTexto.textContent="Disponibles: "+stock; input.max=String(stock); input.value="1";
-  menos.disabled=mas.disabled=input.disabled=agregar.disabled=false;
+  t.classList.remove("no-disponible");badge.textContent="DISPONIBLE";stockTxt.textContent="Disponibles: "+stock;
+  input.max=String(stock);menos.disabled=mas.disabled=input.disabled=agregar.disabled=false;
 }
-
+function prepararTarjeta(t,g) {
+  const sel=t.querySelector(".selector-presentacion"), menos=t.querySelector(".menos"), mas=t.querySelector(".mas"), input=t.querySelector(".cantidad-input");
+  function total() {
+    let c=parseInt(input.value)||1,s=Number(t.dataset.stock)||0;if(c<1)c=1;if(s>0&&c>s)c=s;input.value=c;
+    t.querySelector(".total-compra strong").textContent=dinero(c*opcionActual(t,g).precio);
+  }
+  sel.onchange=()=>pintarTarjeta(t,g);
+  menos.onclick=()=>{if((parseInt(input.value)||1)>1){input.value--;total();}};
+  mas.onclick=()=>{if((parseInt(input.value)||1)<(Number(t.dataset.stock)||0)){input.value++;total();}};
+  input.oninput=total;input.onchange=total;
+  t.querySelector(".agregar-pedido").onclick=()=>agregarAlPedido(t,g);
+  // Vista inicial mientras llega inventario
+  const o=opcionActual(t,g);t.querySelector(".ref").textContent="REF. "+o.ref;
+  t.querySelector(".precio-producto").textContent=dinero(o.precio);t.querySelector(".total-compra strong").textContent=dinero(o.precio);
+}
 async function cargarInventario() {
   try {
-    const respuesta=await fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"});
-    if(!respuesta.ok) throw new Error("No fue posible cargar inventario.");
-    const datos=await respuesta.json(), productos=datos.productos||{};
-    document.querySelectorAll(".producto").forEach((tarjeta,i)=>actualizarTarjeta(tarjeta,buscarProducto(productos,productosPagina[i])));
-  } catch(error) {
-    console.error(error);
-    document.querySelectorAll(".producto").forEach(t=>actualizarTarjeta(t,null));
+    const r=await fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error("No fue posible cargar inventario.");
+    const datos=await r.json(), productos=datos.productos||{};
+    gruposTopCoat.forEach(g=>g.opciones.forEach(o=>o._producto=buscarProducto(productos,g.marca,o)));
+    document.querySelectorAll(".producto").forEach(t=>pintarTarjeta(t,gruposTopCoat[Number(t.dataset.grupo)]));
+  } catch(e) {
+    console.error(e);
+    document.querySelectorAll(".producto").forEach(t=>pintarTarjeta(t,gruposTopCoat[Number(t.dataset.grupo)]));
   }
 }
-
 function obtenerCarrito() {
-  try { const c=JSON.parse(localStorage.getItem("bellaShopCarrito")); return Array.isArray(c)?c:[]; }
-  catch(e) { return []; }
+  try{const c=JSON.parse(localStorage.getItem("bellaShopCarrito"));return Array.isArray(c)?c:[]}catch(e){return[]}
 }
-
-function agregarAlPedido(tarjeta,item) {
-  const stock=Number(tarjeta.dataset.stock)||0;
-  if(tarjeta.dataset.encontrado!=="true") return mostrarToast("Código no encontrado en inventario.");
-  if(stock<=0) return mostrarToast("Producto temporalmente no disponible.");
-  const input=tarjeta.querySelector(".cantidad-input");
-  let cantidad=Math.max(1,parseInt(input.value)||1);
-  const carrito=obtenerCarrito(), existente=carrito.find(x=>x.clave===item.clave);
-  const actual=existente?Number(existente.cantidad)||0:0, disponible=stock-actual;
-  if(disponible<=0) return mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
+function agregarAlPedido(t,g) {
+  const o=opcionActual(t,g),stock=Number(t.dataset.stock)||0;
+  if(t.dataset.encontrado!=="true")return mostrarToast("Código no encontrado en inventario.");
+  if(stock<=0)return mostrarToast("Producto temporalmente no disponible.");
+  const input=t.querySelector(".cantidad-input");let cantidad=Math.max(1,parseInt(input.value)||1);
+  const carrito=obtenerCarrito(),clave=g.clave+"-"+normalizarTexto(o.ml).toLowerCase().replace(/ /g,"-");
+  const existente=carrito.find(x=>x.clave===clave),actual=existente?Number(existente.cantidad)||0:0,disponible=stock-actual;
+  if(disponible<=0)return mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
   cantidad=Math.min(cantidad,disponible);
-  if(existente) existente.cantidad=actual+cantidad;
-  else carrito.push({clave:item.clave,nombre:`Top Coat ${item.marca} ${item.ml}`,referencia:item.ref,precio:item.precio,cantidad,imagen:item.imagen,tipo:"individual"});
+  if(existente)existente.cantidad=actual+cantidad;
+  else carrito.push({clave,nombre:`Top Coat ${g.marca} ${o.ml}`,referencia:o.ref,precio:o.precio,cantidad,imagen:g.imagen,tipo:"individual"});
   localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));
-  input.value="1"; tarjeta.querySelector(".total-compra strong").textContent=dinero(item.precio);
-  mostrarToast(`Top Coat ${item.marca} ${item.ml} agregado a tu pedido 💕`);
+  input.value="1";t.querySelector(".total-compra strong").textContent=dinero(o.precio);
+  mostrarToast(`Top Coat ${g.marca} ${o.ml} agregado a tu pedido 💕`);
 }
-
 let temporizadorToast;
-function mostrarToast(mensaje) {
-  const toast=document.getElementById("toast"); toast.textContent=mensaje; toast.classList.add("mostrar");
-  clearTimeout(temporizadorToast); temporizadorToast=setTimeout(()=>toast.classList.remove("mostrar"),2200);
-}
-
-crearTarjetas();
-cargarInventario();
+function mostrarToast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("mostrar");clearTimeout(temporizadorToast);temporizadorToast=setTimeout(()=>t.classList.remove("mostrar"),2200)}
+crearTarjetas();cargarInventario();
 </script>
 
 </body>
