@@ -986,14 +986,14 @@ function buscarProducto(productos, item){
     const compacto = nombre.replace(/\s+/g,"");
 
     const esLatin = nombre.includes("LATIN");
-    const esBase =
-      nombre.includes("BASE") ||
-      nombre.includes("RUBBER");
+    const esEsmalteSemipermanente =
+      nombre.includes("ESMALTE SEMIPERMANENTE") ||
+      nombre.includes("ESMALTE SEMI PERMANENTE");
 
     const esMedida = compacto.includes(String(item.ml) + "ML");
     const esRef = coincideReferencia(nombre, item.ref);
 
-    return esLatin && esBase && esMedida && esRef;
+    return esLatin && esEsmalteSemipermanente && esMedida && esRef;
   });
 
   if(!coincidencias.length) return null;
