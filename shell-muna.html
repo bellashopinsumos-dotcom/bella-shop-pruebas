@@ -1655,7 +1655,7 @@
         class="logo-muna-hero"
       >
 
-      <h1>Shell</h1>
+      <h1>Shell Muna</h1>
 
       <p>
         ¡Llegaste a nuestros Shell Muna! 💕✨
@@ -2921,6 +2921,30 @@
     actualizarLinkMiPedido();
     cargarInventario();
   </script>
+
+
+<script>
+  // Respaldo de carga para imágenes Shell Muna en GitHub Pages.
+  document.querySelectorAll('img.producto-imagen[src*="muna-shell-"]').forEach(function(img) {
+    const original = img.getAttribute('src');
+    const base = original.replace(/\.(png|PNG)$/i, '');
+    const alternativas = [
+      original,
+      base + '.PNG',
+      base.replace('muna-shell-', 'Muna-shell-') + '.png',
+      base.replace('muna-shell-', 'Muna-Shell-') + '.png',
+      base.replace('muna-shell-', 'MUNA-SHELL-') + '.png'
+    ].filter((v, i, a) => a.indexOf(v) === i);
+
+    let intento = 0;
+    img.addEventListener('error', function probarSiguiente() {
+      intento++;
+      if (intento < alternativas.length) {
+        img.src = alternativas[intento];
+      }
+    });
+  });
+</script>
 
 </body>
 
