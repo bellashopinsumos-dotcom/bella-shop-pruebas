@@ -1126,15 +1126,24 @@ function prepararControles(tarjeta){
 
 }
 
-/* =========================
-   BUSCAR QUEENIGTH
-   EN INVENTARIO
-========================= */
+/* ==================================================
+   BUSCAR QUEENIGTH EN INVENTARIO
+
+   RECONOCE:
+   QUEENIGTH
+   QUEENIGHT
+   QN
+
+   Y FORMATOS COMO:
+   REF #6 QUEENIGHT
+   REF 006 QUEENIGTH
+   PROF QN #60 11ML
+================================================== */
 
 function buscarProducto(productos, ref){
 
   const numero =
-    referenciaNumero(ref);
+    String(Number(ref));
 
   const candidatos =
     Object.values(productos || {});
@@ -1145,9 +1154,8 @@ function buscarProducto(productos, ref){
       normalizarTexto(producto.nombre);
 
     /*
-      Debe pertenecer a:
+      PRIMERO CONFIRMAMOS QUE SEA
       ESMALTE SEMIPERMANENTE
-      QUEENIGTH
     */
 
     if(
@@ -1158,22 +1166,29 @@ function buscarProducto(productos, ref){
       return false;
     }
 
-    if(
-      !nombre.includes(
-        "QUEENIGTH"
-      )
-    ){
+    /*
+      ACEPTAMOS LAS DIFERENTES FORMAS
+      EN QUE QUEENIGTH APARECE EN ODOO
+    */
+
+    const esQueenigth =
+      nombre.includes("QUEENIGTH") ||
+      nombre.includes("QUEENIGHT") ||
+      /\bQN\b/.test(nombre);
+
+    if(!esQueenigth){
       return false;
     }
 
     /*
-      Evitamos que una referencia
-      de Carta se confunda con
-      otras líneas Queenigth.
+      EXCLUIMOS OTRAS LÍNEAS
+      PARA NO CONFUNDIRLAS CON
+      LA CARTA NORMAL
     */
 
     if(
       nombre.includes("OJO DE GATO") ||
+      nombre.includes("CAT EYE") ||
       nombre.includes("VITRAL") ||
       nombre.includes("RUBBER") ||
       nombre.includes("BASE")
@@ -1182,31 +1197,95 @@ function buscarProducto(productos, ref){
     }
 
     /*
-      Ejemplos que reconoce:
+      FORMATO 1:
 
-      REF 1
       REF 001
-      REF. 001
       REF #001
-      REF#001
-      REF # 001
+      REF. 001
+      REF # 6
+      REF#006
+
+      Ejemplo:
+      ESMALTE SEMIPERMANENTE
+      11 ML REF #6 QUEENIGHT
     */
 
-    const coincidencia =
+    let coincidencia =
       nombre.match(
         /\bREF\s*(?:#\s*)?0*(\d+)\b/
       );
 
-    if(!coincidencia){
-      return false;
+    if(coincidencia){
+
+      const refInventario =
+        String(
+          Number(coincidencia[1])
+        );
+
+      if(refInventario === numero){
+        return true;
+      }
+
     }
 
-    const referenciaInventario =
-      String(
-        Number(coincidencia[1])
+    /*
+      FORMATO 2:
+
+      PROF QN #60 11ML
+      PROF QN #112 11ML
+      PROF QN #134 11ML
+      PROF QN #140 11ML
+    */
+
+    coincidencia =
+      nombre.match(
+        /\bQN\s*#?\s*0*(\d+)\b/
       );
 
-    return referenciaInventario === numero;
+    if(coincidencia){
+
+      const refInventario =
+        String(
+          Number(coincidencia[1])
+        );
+
+      if(refInventario === numero){
+        return true;
+      }
+
+    }
+
+    /*
+      FORMATO 3 DE RESPALDO:
+
+      Si ya sabemos que es:
+      - esmalte semipermanente
+      - Queenigth / Queenight / QN
+
+      entonces buscamos una referencia
+      escrita simplemente como #60,
+      #112, etc.
+    */
+
+    coincidencia =
+      nombre.match(
+        /#\s*0*(\d+)\b/
+      );
+
+    if(coincidencia){
+
+      const refInventario =
+        String(
+          Number(coincidencia[1])
+        );
+
+      if(refInventario === numero){
+        return true;
+      }
+
+    }
+
+    return false;
 
   });
 
@@ -1428,8 +1507,8 @@ function actualizarTarjeta(
       "NO DISPONIBLE";
 
     /*
-      Dejamos vacío el texto pequeño
-      para NO repetir el aviso.
+      NO REPETIMOS EL AVISO
+      EN EL TEXTO PEQUEÑO
     */
 
     stockTexto.textContent =
@@ -1533,8 +1612,8 @@ function agregarAlPedido(tarjeta){
 
 
   /*
-    Si el código no se encontró,
-    jamás permitimos agregarlo.
+    SI NO ENCONTRÓ EL CÓDIGO,
+    NO SE PUEDE AGREGAR
   */
 
   if(!encontrado){
@@ -1549,8 +1628,7 @@ function agregarAlPedido(tarjeta){
 
 
   /*
-    Producto encontrado,
-    pero sin unidades.
+    ENCONTRADO PERO SIN STOCK
   */
 
   if(stock <= 0){
