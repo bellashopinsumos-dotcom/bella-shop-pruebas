@@ -1,1 +1,1380 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ojo de Gato Chic's Fashion | Bella Shop</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#fffdfd;color:#382b30}header{padding:12px 5%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f2dce4;background:#fff;position:sticky;top:0}.logo{width:180px}.nav{display:flex;gap:8px}.nav a{padding:10px 13px;border:1px solid #efc7d4;border-radius:30px;color:#d94a79;text-decoration:none;font-size:11px;font-weight:700}.nav .pedido{background:#e65385;color:#fff}.hero{text-align:center;padding:65px 20px;background:linear-gradient(135deg,#fff6f8,#fffdfd,#fdeef3)}.marca{width:min(280px,70vw);height:105px;object-fit:contain}.hero h1{font:500 42px Georgia,serif}.contenido{text-align:center;padding:70px 20px}.aviso{max-width:650px;margin:auto;padding:28px;border:1px solid #f0dce3;border-radius:22px;background:#fff;box-shadow:0 8px 25px #53303a10}.aviso h2{font:500 28px Georgia,serif}.aviso p{color:#806870;line-height:1.7}footer{text-align:center;background:#35272c;color:#f9eaf0;padding:25px}@media(max-width:600px){.logo{width:125px}.nav a{font-size:0;width:40px;height:40px;padding:11px;text-align:center}.hero h1{font-size:34px}}</style></head><body><header><img class="logo" src="imagenes/Logo Bellashop png.png" alt="Bella Shop"><div class="nav"><a href="chics-fashion.html">← VOLVER</a><a href="index.html">⌂ INICIO</a><a class="pedido" href="carrito.html">🛍 MI PEDIDO</a></div></header><section class="hero"><img class="marca" src="imagenes/logo chics.png" alt="Chic's Fashion"><h1>Ojo de Gato</h1><p>Chic's Fashion · Esmalte Semipermanente</p></section><main class="contenido"><div class="aviso"><h2>Estamos preparando esta sección ✨</h2><p>Aquí aparecerán los Ojo de Gato Chic's Fashion cuando agreguemos sus referencias, imágenes y disponibilidad reales.</p></div></main><footer>Bella Shop · Popayán, Cauca</footer></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ojo de Gato Chic's Fashion | Bella Shop</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffdfd;
+      color: #34292d;
+      overflow-x: hidden;
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      background: rgba(255, 253, 253, 0.97);
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #f2dce4;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      display: block;
+      width: 205px;
+      height: 72px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .acciones-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .boton-header {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 17px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .boton-volver,
+    .boton-inicio {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+    .boton-pedido {
+      background: #e65385;
+      color: white;
+      border: 1px solid #e65385;
+      box-shadow: 0 6px 18px rgba(230,83,133,.18);
+    }
+
+    .boton-header:hover {
+      transform: translateY(-2px);
+    }
+
+    .icono-header {
+      width: 17px;
+      height: 17px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 25px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(245,174,198,.18),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 75%,
+          rgba(230,83,133,.09),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #fff6f8 0%,
+          #fffdfd 50%,
+          #fdeef3 100%
+        );
+    }
+
+    .cara-hero {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(5deg);
+      opacity: .07;
+      pointer-events: none;
+    }
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #efcbd7;
+      background: rgba(255,255,255,.8);
+      color: #d74e7b;
+      border-radius: 40px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .logo-marca-hero {
+      display: block;
+      width: min(290px,75vw);
+      height: 105px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 50px;
+      font-weight: 500;
+      color: #33272b;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #765d65;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    /* =========================
+       PRODUCTOS
+    ========================== */
+
+    .productos {
+      position: relative;
+      overflow: hidden;
+      padding: 55px 5% 75px;
+      background: #fffdfd;
+    }
+
+    .cara-seccion {
+      position: absolute;
+      width: 240px;
+      left: -70px;
+      bottom: -45px;
+      opacity: .035;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .productos-contenido {
+      position: relative;
+      z-index: 2;
+      width: min(850px,100%);
+      margin: auto;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 22px;
+    }
+
+    /* =========================
+       TARJETAS
+    ========================== */
+
+    .producto-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.97);
+      border: 1px solid #f0d8e1;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(96,42,61,.08);
+      transition: .22s;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+      border-color: #e9bdcc;
+      box-shadow: 0 17px 38px rgba(96,42,61,.12);
+    }
+
+    .producto-imagen-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #fff7fa;
+      border-bottom: 1px solid #f5e3e9;
+    }
+
+    .producto-imagen {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .producto-card.agotado .producto-imagen {
+      opacity: .72;
+      filter: grayscale(.12);
+    }
+
+    .estado-producto {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      z-index: 2;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .estado-disponible {
+      background: #edf8f1;
+      color: #458463;
+      border: 1px solid #d4eadc;
+    }
+
+    .estado-agotado {
+      background: #fff0f3;
+      color: #be4868;
+      border: 1px solid #f1ccd7;
+    }
+
+    .producto-info {
+      padding: 21px;
+    }
+
+    .producto-tipo {
+      color: #a17d89;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .producto-ref {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      color: #3c2d32;
+      margin-bottom: 8px;
+    }
+
+    .producto-precio {
+      color: #d94a79;
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .stock-producto {
+      min-height: 18px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #2b8252;
+    }
+
+    /* =========================
+       CANTIDAD MÁS VISIBLE
+    ========================== */
+
+    .cantidad-titulo {
+      font-size: 12px;
+      color: #6c555d;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .cantidad-producto {
+      width: 100%;
+      min-height: 52px;
+      display: grid;
+      grid-template-columns: 55px 1fr 55px;
+      align-items: center;
+      background: #fff7fa;
+      border: 1px solid #eac4d1;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .cantidad-producto button {
+      height: 52px;
+      border: 0;
+      background: #fdebf1;
+      color: #d94a79;
+      font-size: 25px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .cantidad-producto button:active {
+      background: #f8dce6;
+    }
+
+    .cantidad-producto input {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      outline: 0;
+      text-align: center;
+      background: white;
+      color: #3f3035;
+      font-size: 18px;
+      font-weight: 900;
+      -moz-appearance: textfield;
+    }
+
+    .cantidad-producto input::-webkit-outer-spin-button,
+    .cantidad-producto input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .producto-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      margin-bottom: 13px;
+      background: #fff8fa;
+      border-radius: 13px;
+      color: #5f4851;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .producto-total strong {
+      color: #d94a79;
+      font-size: 18px;
+    }
+
+    .btn-agregar-producto {
+      width: 100%;
+      min-height: 49px;
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 15px;
+      background: #de5b86;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(210,70,115,.16);
+    }
+
+    .btn-agregar-producto:hover {
+      background: #d64d7b;
+    }
+
+    .agotado-bloque {
+      min-height: 49px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 14px;
+      background: #fff1f4;
+      color: #bc4968;
+      border: 1px solid #f0cfda;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* =========================
+       CONTACTO
+    ========================== */
+
+    .contacto {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 6% 65px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(230,83,133,.08),
+          transparent 24%
+        ),
+        linear-gradient(
+          135deg,
+          #fdeaf0,
+          #fff7f9 55%,
+          #fffdfd
+        );
+      border-top: 1px solid #f2dce4;
+    }
+
+    .cara-contacto {
+      position: absolute;
+      width: 250px;
+      left: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg);
+      opacity: .05;
+      pointer-events: none;
+    }
+
+    .contacto-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .contacto h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      font-weight: 500;
+      color: #382c30;
+      margin-bottom: 13px;
+    }
+
+    .contacto-texto {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #765d65;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #25D366;
+      color: white;
+      padding: 13px 22px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .redes {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 0 20px;
+    }
+
+    .red-social {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #d94d7a;
+      border: 1px solid #efc6d3;
+      text-decoration: none;
+    }
+
+    .red-social svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .ubicacion {
+      display: inline-flex;
+      text-decoration: none;
+      color: #765d65;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 15px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid #f0d7df;
+    }
+
+    footer {
+      background: #35272c;
+      color: #f9eaf0;
+      text-align: center;
+      padding: 28px 20px 25px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .footer-subtexto {
+      font-size: 11px;
+      color: #ddcbd1;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%,18px);
+      width: min(92%,390px);
+      background: #3b3035;
+      color: white;
+      padding: 13px 16px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s;
+      z-index: 9999;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%,0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 650px) {
+      header {
+        padding: 9px 12px;
+      }
+
+      .logo img {
+        width: 135px;
+        height: 55px;
+      }
+
+      .boton-header {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        font-size: 0;
+      }
+
+      .icono-header {
+        width: 18px;
+        height: 18px;
+      }
+
+      .hero {
+        padding: 48px 16px;
+      }
+
+      h1 {
+        font-size: 37px;
+      }
+
+      .productos {
+        padding: 40px 4% 60px;
+      }
+
+      .producto-info {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .productos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo img {
+        width: 112px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a class="logo" href="index.html">
+    <img
+      src="imagenes/Logo Bellashop png.png"
+      alt="Bella Shop"
+    >
+  </a>
+
+  <div class="acciones-header">
+
+    <a
+      class="boton-header boton-volver"
+      href="chics-fashion.html"
+    >
+      <svg
+        class="icono-header"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+      VOLVER
+    </a>
+
+    <a
+      class="boton-header boton-inicio"
+      href="index.html"
+    >
+      <svg
+        class="icono-header"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M3 11l9-8 9 8"/>
+        <path d="M5 10v10h14V10"/>
+      </svg>
+      INICIO
+    </a>
+
+    <a
+      class="boton-header boton-pedido"
+      href="carrito.html"
+    >
+      <svg
+        class="icono-header"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="9" cy="20" r="1"/>
+        <circle cx="18" cy="20" r="1"/>
+        <path d="M3 4h2l2.4 11h10.8l2-8H6"/>
+      </svg>
+      MI PEDIDO
+    </a>
+
+  </div>
+
+</header>
+
+<!-- PORTADA -->
+
+<section class="hero">
+
+  <img
+    class="cara-hero"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="hero-contenido">
+
+    <span class="etiqueta">
+      CHIC'S FASHION · SEMIPERMANENTE
+    </span>
+
+    <img
+      class="logo-marca-hero"
+      src="imagenes/logo chics.png"
+      alt="Chic's Fashion"
+    >
+
+    <h1>Ojo de Gato</h1>
+
+    <p>
+      Dale un efecto especial y luminoso a tus diseños con los
+      Ojo de Gato Chic's Fashion. ✨
+    </p>
+
+  </div>
+
+</section>
+
+<!-- PRODUCTOS -->
+
+<section class="productos">
+
+  <img
+    class="cara-seccion"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="productos-contenido">
+
+    <div
+      id="productosGrid"
+      class="productos-grid"
+    ></div>
+
+  </div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section class="contacto">
+
+  <img
+    class="cara-contacto"
+    src="imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="contacto-contenido">
+
+    <h2>¿Necesitas una ayudita? 💕</h2>
+
+    <p class="contacto-texto">
+      Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+      y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+    </p>
+
+    <a
+      class="boton-whatsapp"
+      target="_blank"
+      rel="noopener"
+      href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+    >
+      ESCRÍBENOS POR WHATSAPP
+    </a>
+
+    <div class="redes">
+
+      <a
+        class="red-social"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+        href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+
+      <a
+        class="red-social"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+        href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
+        </svg>
+      </a>
+
+      <a
+        class="red-social"
+        target="_blank"
+        rel="noopener"
+        aria-label="TikTok"
+        href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
+        </svg>
+      </a>
+
+    </div>
+
+    <a
+      class="ubicacion"
+      target="_blank"
+      rel="noopener"
+      href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/"
+    >
+      📍 Bella Shop · Popayán, Cauca
+    </a>
+
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-logo">Bella Shop</div>
+  <div class="footer-subtexto">
+    Tienda de Belleza · Popayán, Cauca
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+  const PRECIO = 23000;
+  const CLAVE_CARRITO = "bellaShopCarrito";
+
+  let inventarioProductos = {};
+  let inventarioListo = false;
+
+  const productos = [
+    {
+      ref: "90",
+      imagen: "imagenes/ojo-de-gato-chics-fashion-ref-90.png"
+    },
+    {
+      ref: "110",
+      imagen: "imagenes/ojo-de-gato-chics-fashion-ref-110.png"
+    }
+  ];
+
+  function dinero(valor) {
+    return new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      maximumFractionDigits: 0
+    }).format(valor);
+  }
+
+  function normalizarTexto(valor) {
+    return String(valor || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toUpperCase()
+      .replace(/[’'´`]/g, "")
+      .replace(/[^A-Z0-9]+/g, " ")
+      .trim();
+  }
+
+  /* BUSCAR ÚNICAMENTE OJO DE GATO CHIC'S */
+
+  function encontrarProducto(ref) {
+
+    const referencia = Number(ref);
+
+    for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+
+      if (!producto) continue;
+
+      const nombre = normalizarTexto(producto.nombre);
+
+      const esChics =
+        nombre.includes("CHICS FASHION") ||
+        nombre.includes("CHIC S FASHION");
+
+      if (!esChics) continue;
+
+      if (!nombre.includes("ESMALTE SEMIPERMANENTE")) continue;
+
+      if (!nombre.includes("OJO DE GATO")) continue;
+
+      const coincidencia =
+        nombre.match(/\bREF(?:ERENCIA)?\s*0*(\d{1,3})\b/);
+
+      if (
+        coincidencia &&
+        Number(coincidencia[1]) === referencia
+      ) {
+        return {
+          codigo,
+          ...producto
+        };
+      }
+    }
+
+    return null;
+  }
+
+  function stockDisponible(ref) {
+
+    const producto = encontrarProducto(ref);
+
+    if (!producto) return 0;
+
+    return Math.max(
+      0,
+      Number(producto.disponible) || 0
+    );
+  }
+
+  function mostrarToast(mensaje) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = mensaje;
+    toast.classList.add("visible");
+
+    clearTimeout(window._toastBella);
+
+    window._toastBella = setTimeout(() => {
+      toast.classList.remove("visible");
+    }, 2300);
+  }
+
+  function obtenerCarrito() {
+
+    try {
+      const carrito = JSON.parse(
+        localStorage.getItem(CLAVE_CARRITO) || "[]"
+      );
+
+      return Array.isArray(carrito) ? carrito : [];
+
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function crearTarjeta(producto) {
+
+    const stock = stockDisponible(producto.ref);
+    const disponible = inventarioListo && stock > 0;
+
+    const card = document.createElement("article");
+
+    card.className =
+      "producto-card" +
+      (disponible ? "" : " agotado");
+
+    card.dataset.ref = producto.ref;
+
+    card.innerHTML = `
+
+      <div class="producto-imagen-wrap">
+
+        <img
+          class="producto-imagen"
+          src="${producto.imagen}"
+          alt="Ojo de Gato Chic's Fashion REF ${producto.ref}"
+        >
+
+        <span class="estado-producto ${
+          disponible
+            ? "estado-disponible"
+            : "estado-agotado"
+        }">
+          ${
+            disponible
+              ? "DISPONIBLE"
+              : "NO DISPONIBLE"
+          }
+        </span>
+
+      </div>
+
+      <div class="producto-info">
+
+        <div class="producto-tipo">
+          OJO DE GATO · CHIC'S FASHION
+        </div>
+
+        <div class="producto-ref">
+          REF. ${producto.ref}
+        </div>
+
+        <div class="producto-precio">
+          ${dinero(PRECIO)}
+        </div>
+
+        <div class="stock-producto">
+          ${
+            disponible
+              ? "Disponible: " + stock
+              : ""
+          }
+        </div>
+
+        ${
+          disponible
+          ? `
+
+            <div class="cantidad-titulo">
+              Cantidad
+            </div>
+
+            <div class="cantidad-producto">
+
+              <button
+                type="button"
+                data-menos
+                aria-label="Disminuir cantidad"
+              >
+                −
+              </button>
+
+              <input
+                type="number"
+                value="1"
+                min="1"
+                max="${stock}"
+                inputmode="numeric"
+                data-cantidad
+              >
+
+              <button
+                type="button"
+                data-mas
+                aria-label="Aumentar cantidad"
+              >
+                +
+              </button>
+
+            </div>
+
+            <div class="producto-total">
+
+              <span>Total</span>
+
+              <strong data-total>
+                ${dinero(PRECIO)}
+              </strong>
+
+            </div>
+
+            <button
+              type="button"
+              class="btn-agregar-producto"
+              data-agregar
+            >
+              AGREGAR AL PEDIDO
+            </button>
+
+          `
+          : `
+
+            <div class="agotado-bloque">
+              TEMPORALMENTE NO DISPONIBLE
+            </div>
+
+          `
+        }
+
+      </div>
+    `;
+
+    if (disponible) {
+
+      const input =
+        card.querySelector("[data-cantidad]");
+
+      const total =
+        card.querySelector("[data-total]");
+
+      const menos =
+        card.querySelector("[data-menos]");
+
+      const mas =
+        card.querySelector("[data-mas]");
+
+      const agregar =
+        card.querySelector("[data-agregar]");
+
+      function actualizarCantidad(valor) {
+
+        let cantidad = Number(valor);
+
+        if (!Number.isFinite(cantidad) || cantidad < 1) {
+          cantidad = 1;
+        }
+
+        cantidad = Math.floor(cantidad);
+
+        if (cantidad > stock) {
+          cantidad = stock;
+        }
+
+        input.value = cantidad;
+
+        total.textContent =
+          dinero(cantidad * PRECIO);
+      }
+
+      menos.addEventListener("click", () => {
+
+        actualizarCantidad(
+          Number(input.value) - 1
+        );
+
+      });
+
+      mas.addEventListener("click", () => {
+
+        actualizarCantidad(
+          Number(input.value) + 1
+        );
+
+      });
+
+      input.addEventListener("input", () => {
+        actualizarCantidad(input.value);
+      });
+
+      input.addEventListener("blur", () => {
+        actualizarCantidad(input.value);
+      });
+
+      agregar.addEventListener("click", () => {
+
+        agregarAlPedido(
+          producto,
+          Number(input.value)
+        );
+
+      });
+    }
+
+    return card;
+  }
+
+  function renderProductos() {
+
+    const grid =
+      document.getElementById("productosGrid");
+
+    grid.innerHTML = "";
+
+    productos.forEach(producto => {
+
+      grid.appendChild(
+        crearTarjeta(producto)
+      );
+
+    });
+  }
+
+  function agregarAlPedido(producto, cantidad) {
+
+    if (!inventarioListo) return;
+
+    const inventario =
+      encontrarProducto(producto.ref);
+
+    const stock =
+      stockDisponible(producto.ref);
+
+    if (!inventario || stock <= 0) {
+
+      renderProductos();
+
+      mostrarToast(
+        "TEMPORALMENTE NO DISPONIBLE"
+      );
+
+      return;
+    }
+
+    cantidad = Math.max(
+      1,
+      Math.floor(Number(cantidad) || 1)
+    );
+
+    if (cantidad > stock) {
+      cantidad = stock;
+    }
+
+    const clave =
+      "chics-fashion-ojo-de-gato-" +
+      producto.ref;
+
+    const carrito =
+      obtenerCarrito();
+
+    const existente =
+      carrito.find(
+        item => item.clave === clave
+      );
+
+    const yaEnCarrito =
+      existente
+        ? Number(existente.cantidad) || 0
+        : 0;
+
+    if (yaEnCarrito + cantidad > stock) {
+
+      const faltante =
+        stock - yaEnCarrito;
+
+      if (faltante <= 0) {
+
+        mostrarToast(
+          "Ya tienes todas las unidades disponibles de la REF. " +
+          producto.ref +
+          " en tu pedido 💗"
+        );
+
+      } else {
+
+        mostrarToast(
+          "Puedes agregar máximo " +
+          faltante +
+          " unidad(es) más de la REF. " +
+          producto.ref
+        );
+
+      }
+
+      return;
+    }
+
+    if (existente) {
+
+      existente.cantidad =
+        yaEnCarrito + cantidad;
+
+    } else {
+
+      carrito.push({
+
+        clave: clave,
+
+        nombre:
+          "Ojo de Gato Chic's Fashion",
+
+        referencia:
+          producto.ref,
+
+        precio:
+          PRECIO,
+
+        cantidad:
+          cantidad,
+
+        imagen:
+          producto.imagen,
+
+        codigoOdoo:
+          inventario.codigo_original_odoo ||
+          inventario.codigo ||
+          ""
+
+      });
+    }
+
+    localStorage.setItem(
+      CLAVE_CARRITO,
+      JSON.stringify(carrito)
+    );
+
+    mostrarToast(
+      "💗 REF. " +
+      producto.ref +
+      " agregada a MI PEDIDO"
+    );
+
+    const card =
+      document.querySelector(
+        `.producto-card[data-ref="${producto.ref}"]`
+      );
+
+    if (card) {
+
+      const input =
+        card.querySelector("[data-cantidad]");
+
+      const total =
+        card.querySelector("[data-total]");
+
+      if (input) {
+        input.value = 1;
+      }
+
+      if (total) {
+        total.textContent = dinero(PRECIO);
+      }
+    }
+  }
+
+  async function cargarInventario() {
+
+    try {
+
+      const respuesta =
+        await fetch(
+          "inventario.json?actualizacion=" +
+          Date.now(),
+          {
+            cache: "no-store"
+          }
+        );
+
+      if (!respuesta.ok) {
+        throw new Error(
+          "No se pudo cargar inventario"
+        );
+      }
+
+      const datos =
+        await respuesta.json();
+
+      inventarioProductos =
+        datos.productos || {};
+
+      inventarioListo = true;
+
+      renderProductos();
+
+    } catch (error) {
+
+      inventarioProductos = {};
+      inventarioListo = false;
+
+      renderProductos();
+    }
+  }
+
+  renderProductos();
+  cargarInventario();
+
+</script>
+
+</body>
+</html>
