@@ -208,7 +208,7 @@
     "040407049": {
       "codigo": "040407049",
       "codigo_original_odoo": "040407049",
-      "nombre": "040407049 ESMALTE SEM. MOONSHINE GLASS CAT EYES Nº 4",
+      "nombre": "Moonshine Glass Cat Eye 04.1",
       "disponible": 3,
       "a_la_mano": 3
     },
@@ -236,9 +236,9 @@
     "040704049": {
       "codigo": "040704049",
       "codigo_original_odoo": "040704049",
-      "nombre": "ESMALTE MOONSHINE GLASS CATS EYE GEL",
-      "disponible": 0,
-      "a_la_mano": 0
+      "nombre": "Moonshine Glass Cat Eye 04",
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "040704059": {
       "codigo": "040704059",
@@ -30428,6 +30428,27 @@
       "codigo": "dn3962",
       "codigo_original_odoo": "dn3962",
       "nombre": "LAMPARA UV PIEDRAS 268W",
+      "disponible": 1,
+      "a_la_mano": 1
+    },
+    "040704051": {
+      "codigo": "040704051",
+      "codigo_original_odoo": "040704051",
+      "nombre": "Moonshine Glass Cat Eye 06",
+      "disponible": 4,
+      "a_la_mano": 4
+    },
+    "040404017": {
+      "codigo": "040404017",
+      "codigo_original_odoo": "040404017",
+      "nombre": "Dark Black Crystal Cat Eye 7.5 ml Queenight",
+      "disponible": 2,
+      "a_la_mano": 2
+    },
+    "040704060": {
+      "codigo": "040704060",
+      "codigo_original_odoo": "040704060",
+      "nombre": "Golden Olive 003",
       "disponible": 1,
       "a_la_mano": 1
     }
