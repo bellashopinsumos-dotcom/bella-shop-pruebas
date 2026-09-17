@@ -1350,7 +1350,7 @@
 <div class="toast" id="toast">Producto agregado 💕</div>
 
 <script>
-const gruposTopCoat = [{"marca": "Latin Nails", "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat", "opciones": [{"ml": "15 ml", "ref": "Top Coat 15ml Latin", "precio": 30500}, {"ml": "8 ml", "ref": "Top Coat 8ml Latin", "precio": 18000}]}, {"marca": "Muna", "imagen": "imagenes/top-coat-muna.png", "clave": "muna-top-coat", "opciones": [{"ml": "12 ml", "ref": "2874-TC", "precio": 13500}, {"ml": "7 ml", "ref": "MUNABB-TC", "precio": 10000}]}, {"marca": "CANM", "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat", "opciones": [{"ml": "15 ml", "ref": "Top Coat 15ml CANM", "precio": 27000}, {"ml": "8 ml", "ref": "Top Coat 8ml CANM", "precio": 17000}]}, {"marca": "Cloe", "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat", "opciones": [{"ml": "15 ml", "ref": "US01", "precio": 29000}, {"ml": "10 ml", "ref": "US00", "precio": 22600}]}, {"marca": "Chic's Fashion", "imagen": "imagenes/top-coat-chics-fashion.png", "clave": "chics-top-coat", "opciones": [{"ml": "12 ml", "ref": "Top Coat Semipermanente 12 ml Chics Fashion", "precio": 21600}]}];
+const gruposTopCoat = [{"marca": "Latin Nails", "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat", "opciones": [{"ml": "15 ml", "codigo": "SC-B23AD7E5A9AC", "precio": 30500}, {"ml": "8 ml", "codigo": "7707571982027", "precio": 18000}]}, {"marca": "Muna", "imagen": "imagenes/top-coat-muna.png", "clave": "muna-top-coat", "opciones": [{"ml": "12 ml", "codigo": "MUNA2874-TC", "precio": 13500}, {"ml": "7 ml", "codigo": "MUNABB-TC", "precio": 10000}]}, {"marca": "CANM", "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat", "opciones": [{"ml": "15 ml", "codigo": "7709554499640", "precio": 27000}, {"ml": "8 ml", "codigo": "7709554499510", "precio": 17000}]}, {"marca": "Cloe", "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat", "opciones": [{"ml": "15 ml", "codigo": "US01", "precio": 29000}, {"ml": "10 ml", "codigo": "US00", "precio": 22600}]}, {"marca": "Chic's Fashion", "imagen": "imagenes/top-coat-chics-fashion.png", "clave": "chics-top-coat", "opciones": [{"ml": "12 ml", "codigo": "288", "precio": 21600}]}];
 
 function dinero(valor) {
   return "$" + Number(valor).toLocaleString("es-CO");
@@ -1360,17 +1360,19 @@ function normalizarTexto(valor) {
     .toUpperCase().replace(/[’'´`]/g,"").replace(/[^A-Z0-9]+/g," ").trim();
 }
 function buscarProducto(productos, marca, opcion) {
-  const ref=normalizarTexto(opcion.ref), mar=normalizarTexto(marca), ml=normalizarTexto(opcion.ml);
-  return Object.values(productos||{}).find(producto=>{
-    const nombre=normalizarTexto(producto.nombre);
-    if(nombre===ref || nombre.includes(ref)) return true;
-    const esTop=nombre.includes("TOP COAT") || nombre.includes("TOPCOAT");
-    const marcaOk=nombre.includes(mar)
-      || (mar==="LATIN NAILS" && nombre.includes("LATIN"))
-      || (mar==="MUNA" && (nombre.includes("MUNA") || nombre.includes("MUNABB")))
-      || (mar==="CHICS FASHION" && (nombre.includes("CHICS FASHION") || nombre.includes("CHIC S FASHION")));
-    return esTop && marcaOk && nombre.includes(ml);
-  });
+  const codigo = String(opcion.codigo || "").trim();
+
+  // El inventario central está indexado por código.
+  if(productos && productos[codigo]){
+    return productos[codigo];
+  }
+
+  // Respaldo: si por alguna razón no está como llave, busca el mismo código
+  // en codigo o codigo_original_odoo. NO busca por nombre.
+  return Object.values(productos || {}).find(producto =>
+    String(producto.codigo || "").trim() === codigo ||
+    String(producto.codigo_original_odoo || "").trim() === codigo
+  ) || null;
 }
 function crearTarjetas() {
   const grid=document.getElementById("gridProductos");
@@ -1411,7 +1413,7 @@ function pintarTarjeta(t,g) {
   const o=opcionActual(t,g), producto=o._producto||null;
   const badge=t.querySelector(".badge"), stockTxt=t.querySelector(".stock-producto"), bloque=t.querySelector(".no-disponible-bloque");
   const menos=t.querySelector(".menos"), mas=t.querySelector(".mas"), input=t.querySelector(".cantidad-input"), agregar=t.querySelector(".agregar-pedido");
-  t.querySelector(".ref").textContent="REF. "+o.ref;
+  t.querySelector(".ref").textContent="CÓDIGO. "+o.codigo;
   t.querySelector(".precio-producto").textContent=dinero(o.precio);
   t.querySelector(".total-compra strong").textContent=dinero(o.precio);
   input.value="1";
@@ -1441,7 +1443,7 @@ function prepararTarjeta(t,g) {
   input.oninput=total;input.onchange=total;
   t.querySelector(".agregar-pedido").onclick=()=>agregarAlPedido(t,g);
   // Vista inicial mientras llega inventario
-  const o=opcionActual(t,g);t.querySelector(".ref").textContent="REF. "+o.ref;
+  const o=opcionActual(t,g);t.querySelector(".ref").textContent="CÓDIGO. "+o.codigo;
   t.querySelector(".precio-producto").textContent=dinero(o.precio);t.querySelector(".total-compra strong").textContent=dinero(o.precio);
 }
 async function cargarInventario() {
@@ -1464,12 +1466,12 @@ function agregarAlPedido(t,g) {
   if(t.dataset.encontrado!=="true")return mostrarToast("Código no encontrado en inventario.");
   if(stock<=0)return mostrarToast("Producto temporalmente no disponible.");
   const input=t.querySelector(".cantidad-input");let cantidad=Math.max(1,parseInt(input.value)||1);
-  const carrito=obtenerCarrito(),clave=g.clave+"-"+normalizarTexto(o.ml).toLowerCase().replace(/ /g,"-");
+  const carrito=obtenerCarrito(),clave=g.clave+"-"+String(o.codigo).toLowerCase();
   const existente=carrito.find(x=>x.clave===clave),actual=existente?Number(existente.cantidad)||0:0,disponible=stock-actual;
   if(disponible<=0)return mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
   cantidad=Math.min(cantidad,disponible);
   if(existente)existente.cantidad=actual+cantidad;
-  else carrito.push({clave,nombre:`Top Coat ${g.marca} ${o.ml}`,referencia:o.ref,precio:o.precio,cantidad,imagen:g.imagen,tipo:"individual"});
+  else carrito.push({clave,nombre:`Top Coat ${g.marca} ${o.ml}`,referencia:o.codigo,precio:o.precio,cantidad,imagen:g.imagen,tipo:"individual"});
   localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));
   input.value="1";t.querySelector(".total-compra strong").textContent=dinero(o.precio);
   mostrarToast(`Top Coat ${g.marca} ${o.ml} agregado a tu pedido 💕`);
