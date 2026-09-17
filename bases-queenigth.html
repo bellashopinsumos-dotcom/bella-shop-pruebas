@@ -1254,6 +1254,26 @@ function buscarProducto(
   tipo
 ){
 
+  /* Referencias ICE GEL que en Odoo aparecen con nombres genéricos. */
+  const codigosIceGel = {
+    "06": "041004006",
+    "11": "0410040011",
+    "33": "041004033"
+  };
+
+  if(tipo === "ice" && codigosIceGel[ref]){
+    const codigo = codigosIceGel[ref];
+    if(productos && productos[codigo]){
+      return productos[codigo];
+    }
+
+    const porCodigo = Object.values(productos || {}).find(producto =>
+      String(producto.codigo || "") === codigo ||
+      String(producto.codigo_original_odoo || "") === codigo
+    );
+    if(porCodigo) return porCodigo;
+  }
+
   const numero = numeroReferencia(ref);
   const candidatos = Object.values(productos || {});
 
