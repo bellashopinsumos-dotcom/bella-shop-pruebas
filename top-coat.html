@@ -942,7 +942,131 @@
       }
     }
 
-  </style>
+  
+    .stock {
+      position: relative;
+      z-index: 2;
+      min-height: 20px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #806870;
+    }
+
+    .stock.disponible { color: #3f8b62; }
+    .stock.agotado { color: #c54c68; }
+
+    .controles-compra {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cantidad-fila {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .cantidad-fila label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #765d65;
+    }
+
+    .cantidad {
+      width: 68px;
+      min-height: 38px;
+      border: 1px solid #efc7d4;
+      border-radius: 12px;
+      text-align: center;
+      font: inherit;
+      color: #4d3740;
+      background: #fff;
+      outline: none;
+    }
+
+    .total-producto {
+      font-size: 13px;
+      font-weight: 700;
+      color: #4d3740;
+    }
+
+    .agregar-carrito {
+      width: 100%;
+      min-height: 43px;
+      border: 0;
+      border-radius: 40px;
+      background: #e65385;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 11px 15px;
+      box-shadow: 0 6px 18px rgba(230,83,133,.16);
+    }
+
+    .agregar-carrito:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .mensaje-carrito {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      z-index: 3000;
+      background: #35272c;
+      color: white;
+      border-radius: 30px;
+      padding: 12px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,.18);
+      display: none;
+      text-align: center;
+    }
+
+  
+    .grid-productos{position:relative;z-index:3;max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .producto{position:relative;overflow:hidden;background:#fff;border:1px solid #f0dce3;border-radius:23px;padding:13px 13px 20px;box-shadow:0 8px 25px rgba(83,48,58,.07)}
+    .imagen-contenedor{position:relative;width:100%;aspect-ratio:4/3;border-radius:17px;overflow:hidden;background:#fff7f9}
+    .imagen-contenedor img{width:100%;height:100%;object-fit:cover;display:block}
+    .badge{position:absolute;top:10px;left:10px;background:#fff;color:#d94a79;border:1px solid #efc7d4;border-radius:30px;padding:7px 10px;font-size:10px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+    .producto.no-disponible .imagen-contenedor img{opacity:.42;filter:grayscale(.15)}
+    .info{padding:17px 5px 0}
+    .tipo{color:#d94a79;font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:7px}
+    .info h3{font:500 22px Georgia,serif;margin-bottom:7px;line-height:1.2}
+    .ref{color:#806a72;font-size:13px;font-weight:700;margin-bottom:13px}
+    .precio-producto{font-size:22px;font-weight:800;color:#382a2f;margin-bottom:5px}
+    .unidad{color:#917b83;font-size:11px;margin-bottom:14px}
+    .stock-producto{min-height:17px;font-size:11px;font-weight:700;color:#7c6870;margin-bottom:10px}
+    .cantidad-titulo{font-size:10px;font-weight:800;color:#806a72;margin-bottom:7px}
+    .cantidad-control{display:flex;align-items:center;width:100%;margin-bottom:12px;border:1px solid #edcbd6;border-radius:14px;overflow:hidden;background:#fff}
+    .cantidad-control button{width:48px;height:44px;border:0;background:#fff2f6;color:#d94a79;font-size:23px;font-weight:700;cursor:pointer}
+    .cantidad-control input{flex:1;min-width:0;height:44px;border:0;outline:none;text-align:center;font-size:16px;font-weight:800;color:#3b2c31;background:#fff}
+    .cantidad-control button:disabled,.cantidad-control input:disabled{opacity:.45;cursor:not-allowed}
+    .total-compra{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff7f9;border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:12px}
+    .total-compra strong{color:#d94a79;font-size:16px}
+    .agregar-pedido{width:100%;border:0;border-radius:40px;background:#e65385;color:#fff;padding:13px 14px;font-size:11px;font-weight:800;cursor:pointer}
+    .agregar-pedido:disabled{background:#e6cdd5;color:#997e87;cursor:not-allowed}
+    .no-disponible-bloque{display:none;text-align:center;background:#fff0f4;color:#c64b71;border:1px solid #f1c8d5;border-radius:13px;padding:12px 8px;font-size:11px;font-weight:800;margin-bottom:12px}
+    .producto.no-disponible .no-disponible-bloque{display:block}
+    .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,30px);background:#35272c;color:#fff;padding:13px 20px;border-radius:40px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:3000}
+    .toast.mostrar{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:850px){.grid-productos{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:440px){.grid-productos{grid-template-columns:1fr}}
+
+.red-social svg{width:21px;height:21px;display:block}
+</style>
 
 </head>
 
@@ -974,7 +1098,7 @@
     <div class="acciones-header">
 
       <a
-        href="index.html"
+        href="base-top.html"
         class="boton-header boton-volver"
         aria-label="Volver a Base y Top Coat"
       >
@@ -1093,95 +1217,12 @@
   ======================================= -->
 
   <section class="seccion">
-
-    <img
-      src="imagenes/Cara logo bellashop.png"
-      alt=""
-      class="cara-seccion"
-    >
-
-
+    <img src="imagenes/Cara logo bellashop.png" alt="" class="cara-seccion">
     <div class="titulo">
-
-      <h2>
-        Elige tu Top Coat
-      </h2>
-
-
-      <p>
-        Escoge la marca y presentación que necesitas.
-      </p>
-
+      <h2>Elige tu Top Coat favorito 💗</h2>
+      <p>Escoge la marca y presentación que necesitas y agrégala fácilmente a tu pedido. ✨</p>
     </div>
-
-
-
-    <div class="opciones opciones-productos">
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-latin.png" alt="Top Coat Latin Nails 15 ml" class="producto-imagen">
-        <h3>Top Coat Latin Nails</h3>
-        <div class="presentacion">15 ml</div>
-        <div class="referencia">REF. Top Coat 15ml Latin</div>
-        <div class="precio">$30.500</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-latin.png" alt="Top Coat Latin Nails 8 ml" class="producto-imagen">
-        <h3>Top Coat Latin Nails</h3>
-        <div class="presentacion">8 ml</div>
-        <div class="referencia">REF. Top Coat 8ml Latin</div>
-        <div class="precio">$18.000</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-muna.png" alt="Top Coat Muna 12 ml" class="producto-imagen">
-        <h3>Top Coat Muna</h3>
-        <div class="presentacion">12 ml</div>
-        <div class="referencia">REF. 2874-TC</div>
-        <div class="precio">$13.500</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-muna.png" alt="Top Coat Muna BB 7 ml" class="producto-imagen">
-        <h3>Top Coat Muna BB</h3>
-        <div class="presentacion">7 ml</div>
-        <div class="referencia">REF. MUNABB-TC</div>
-        <div class="precio">$10.000</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-canm.png" alt="Top Coat CANM 15 ml" class="producto-imagen">
-        <h3>Top Coat CANM</h3>
-        <div class="presentacion">15 ml</div>
-        <div class="referencia">REF. Top Coat 15ml CANM</div>
-        <div class="precio">$27.000</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-canm.png" alt="Top Coat CANM 8 ml" class="producto-imagen">
-        <h3>Top Coat CANM</h3>
-        <div class="presentacion">8 ml</div>
-        <div class="referencia">REF. Top Coat 8ml CANM</div>
-        <div class="precio">$17.000</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-cloe.png" alt="Top Coat Cloe 15 ml" class="producto-imagen">
-        <h3>Top Coat Cloe</h3>
-        <div class="presentacion">15 ml</div>
-        <div class="referencia">REF. Top Coat 15 ml Cloe</div>
-        <div class="precio">$29.000</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-cloe.png" alt="Top Coat Cloe 10 ml" class="producto-imagen">
-        <h3>Top Coat Cloe</h3>
-        <div class="presentacion">10 ml</div>
-        <div class="referencia">REF. Top Coat 10 ml Cloe</div>
-        <div class="precio">$22.600</div>
-      </div>
-      <div class="opcion producto-card">
-        <img src="imagenes/top-coat-chics-fashion.png" alt="Top Coat Chic's Fashion 12 ml" class="producto-imagen">
-        <h3>Top Coat Chic's Fashion</h3>
-        <div class="presentacion">12 ml</div>
-        <div class="referencia">REF. Top Coat Semipermanente 12 ml Chics Fashion</div>
-        <div class="precio">$21.600</div>
-      </div>
-    </div>
-
+    <div class="grid-productos" id="gridProductos"></div>
   </section>
 
 
@@ -1235,70 +1276,17 @@
 
 
       <div class="redes">
-
-        <a
-          href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
-          class="red-social"
-          aria-label="Instagram Bella Shop"
-          title="Instagram"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        <a href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw" class="red-social" aria-label="Instagram Bella Shop" title="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
-
         </a>
-
-
-        <a
-          href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
-          class="red-social"
-          aria-label="Facebook Bella Shop"
-          title="Facebook"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
-          </svg>
-
+        <a href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr" class="red-social" aria-label="Facebook Bella Shop" title="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/></svg>
         </a>
-
-
-        <a
-          href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
-          class="red-social"
-          aria-label="TikTok Bella Shop"
-          title="TikTok"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
-          </svg>
-
+        <a href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC" class="red-social" aria-label="TikTok Bella Shop" title="TikTok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/></svg>
         </a>
-
       </div>
 
 
@@ -1350,6 +1338,159 @@
 
   </footer>
 
+
+
+  
+
+
+<div class="toast" id="toast">Producto agregado 💕</div>
+<script>
+const productosPagina = [{"marca": "Latin Nails", "ml": "15 ml", "ref": "Top Coat 15ml Latin", "precio": 30500, "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat-15ml"}, {"marca": "Latin Nails", "ml": "8 ml", "ref": "Top Coat 8ml Latin", "precio": 18000, "imagen": "imagenes/top-coat-latin.png", "clave": "latin-top-coat-8ml"}, {"marca": "Muna", "ml": "12 ml", "ref": "2874-TC", "precio": 13500, "imagen": "imagenes/top-coat-muna.png", "clave": "muna-top-coat-12ml"}, {"marca": "Muna BB", "ml": "7 ml", "ref": "MUNABB-TC", "precio": 10000, "imagen": "imagenes/top-coat-muna.png", "clave": "munabb-top-coat-7ml"}, {"marca": "CANM", "ml": "15 ml", "ref": "Top Coat 15ml CANM", "precio": 27000, "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat-15ml"}, {"marca": "CANM", "ml": "8 ml", "ref": "Top Coat 8ml CANM", "precio": 17000, "imagen": "imagenes/top-coat-canm.png", "clave": "canm-top-coat-8ml"}, {"marca": "Cloe", "ml": "15 ml", "ref": "Top Coat 15 ml Cloe", "precio": 29000, "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat-15ml"}, {"marca": "Cloe", "ml": "10 ml", "ref": "Top Coat 10 ml Cloe", "precio": 22600, "imagen": "imagenes/top-coat-cloe.png", "clave": "cloe-top-coat-10ml"}, {"marca": "Chic's Fashion", "ml": "12 ml", "ref": "Top Coat Semipermanente 12 ml Chics Fashion", "precio": 21600, "imagen": "imagenes/top-coat-chics-fashion.png", "clave": "chics-top-coat-12ml"}];
+
+function dinero(valor) {
+  return "$" + Number(valor).toLocaleString("es-CO");
+}
+
+function normalizarTexto(valor) {
+  return String(valor || "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .toUpperCase().replace(/[’'´`]/g,"")
+    .replace(/[^A-Z0-9]+/g," ").trim();
+}
+
+function crearTarjetas() {
+  const grid = document.getElementById("gridProductos");
+  productosPagina.forEach(item => {
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "producto";
+    tarjeta.dataset.clave = item.clave;
+    tarjeta.dataset.ref = item.ref;
+    tarjeta.dataset.stock = "0";
+    tarjeta.dataset.encontrado = "false";
+    tarjeta.innerHTML = `
+      <div class="imagen-contenedor">
+        <img src="${item.imagen}" alt="Top Coat ${item.marca} ${item.ml}" loading="lazy">
+        <span class="badge">CONSULTANDO...</span>
+      </div>
+      <div class="info">
+        <div class="tipo">TOP COAT · BRILLO</div>
+        <h3>Top Coat ${item.marca}</h3>
+        <div class="ref">${item.ml} · REF. ${item.ref}</div>
+        <div class="precio-producto">${dinero(item.precio)}</div>
+        <div class="unidad">Precio por unidad</div>
+        <div class="stock-producto"></div>
+        <div class="no-disponible-bloque">TEMPORALMENTE NO DISPONIBLE</div>
+        <div class="cantidad-titulo">CANTIDAD</div>
+        <div class="cantidad-control">
+          <button type="button" class="menos" disabled>−</button>
+          <input type="number" class="cantidad-input" value="1" min="1" disabled>
+          <button type="button" class="mas" disabled>+</button>
+        </div>
+        <div class="total-compra"><span>Total</span><strong>${dinero(item.precio)}</strong></div>
+        <button type="button" class="agregar-pedido" disabled>AGREGAR AL PEDIDO</button>
+      </div>`;
+    grid.appendChild(tarjeta);
+    prepararControles(tarjeta, item);
+  });
+}
+
+function prepararControles(tarjeta, item) {
+  const menos=tarjeta.querySelector(".menos"), mas=tarjeta.querySelector(".mas");
+  const input=tarjeta.querySelector(".cantidad-input"), total=tarjeta.querySelector(".total-compra strong");
+  function actualizar() {
+    let c=parseInt(input.value)||1, stock=Number(tarjeta.dataset.stock)||0;
+    if(c<1)c=1; if(stock>0 && c>stock)c=stock;
+    input.value=c; total.textContent=dinero(c*item.precio);
+  }
+  menos.onclick=()=>{if((parseInt(input.value)||1)>1){input.value--;actualizar();}};
+  mas.onclick=()=>{const s=Number(tarjeta.dataset.stock)||0;if((parseInt(input.value)||1)<s){input.value++;actualizar();}};
+  input.oninput=actualizar; input.onchange=actualizar;
+  tarjeta.querySelector(".agregar-pedido").onclick=()=>agregarAlPedido(tarjeta,item);
+}
+
+function buscarProducto(productos, item) {
+  const candidatos=Object.values(productos||{});
+  const ref=normalizarTexto(item.ref);
+  const marca=normalizarTexto(item.marca);
+  const ml=normalizarTexto(item.ml);
+  return candidatos.find(producto=>{
+    const nombre=normalizarTexto(producto.nombre);
+    if(nombre === ref || nombre.includes(ref)) return true;
+    const esTop=nombre.includes("TOP COAT") || nombre.includes("TOPCOAT");
+    const marcaOk =
+      nombre.includes(marca) ||
+      (marca==="LATIN NAILS" && nombre.includes("LATIN")) ||
+      (marca==="MUNA BB" && (nombre.includes("MUNA BB") || nombre.includes("MUNABB"))) ||
+      (marca==="CHICS FASHION" && (nombre.includes("CHICS FASHION") || nombre.includes("CHIC S FASHION")));
+    return esTop && marcaOk && nombre.includes(ml);
+  });
+}
+
+function actualizarTarjeta(tarjeta, producto) {
+  const badge=tarjeta.querySelector(".badge"), stockTexto=tarjeta.querySelector(".stock-producto");
+  const bloque=tarjeta.querySelector(".no-disponible-bloque"), menos=tarjeta.querySelector(".menos");
+  const mas=tarjeta.querySelector(".mas"), input=tarjeta.querySelector(".cantidad-input");
+  const agregar=tarjeta.querySelector(".agregar-pedido");
+  if(!producto) {
+    tarjeta.dataset.stock="0"; tarjeta.dataset.encontrado="false"; tarjeta.classList.add("no-disponible");
+    badge.textContent="CÓDIGO NO ENCONTRADO"; stockTexto.textContent=""; bloque.textContent="CÓDIGO NO ENCONTRADO";
+    menos.disabled=mas.disabled=input.disabled=agregar.disabled=true; return;
+  }
+  tarjeta.dataset.encontrado="true";
+  const stock=Math.max(0,Math.floor(Number(producto.disponible)||0));
+  tarjeta.dataset.stock=String(stock);
+  if(stock<=0) {
+    tarjeta.classList.add("no-disponible"); badge.textContent="NO DISPONIBLE"; stockTexto.textContent="";
+    bloque.textContent="TEMPORALMENTE NO DISPONIBLE"; menos.disabled=mas.disabled=input.disabled=agregar.disabled=true; return;
+  }
+  tarjeta.classList.remove("no-disponible"); badge.textContent="DISPONIBLE";
+  stockTexto.textContent="Disponibles: "+stock; input.max=String(stock); input.value="1";
+  menos.disabled=mas.disabled=input.disabled=agregar.disabled=false;
+}
+
+async function cargarInventario() {
+  try {
+    const respuesta=await fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"});
+    if(!respuesta.ok) throw new Error("No fue posible cargar inventario.");
+    const datos=await respuesta.json(), productos=datos.productos||{};
+    document.querySelectorAll(".producto").forEach((tarjeta,i)=>actualizarTarjeta(tarjeta,buscarProducto(productos,productosPagina[i])));
+  } catch(error) {
+    console.error(error);
+    document.querySelectorAll(".producto").forEach(t=>actualizarTarjeta(t,null));
+  }
+}
+
+function obtenerCarrito() {
+  try { const c=JSON.parse(localStorage.getItem("bellaShopCarrito")); return Array.isArray(c)?c:[]; }
+  catch(e) { return []; }
+}
+
+function agregarAlPedido(tarjeta,item) {
+  const stock=Number(tarjeta.dataset.stock)||0;
+  if(tarjeta.dataset.encontrado!=="true") return mostrarToast("Código no encontrado en inventario.");
+  if(stock<=0) return mostrarToast("Producto temporalmente no disponible.");
+  const input=tarjeta.querySelector(".cantidad-input");
+  let cantidad=Math.max(1,parseInt(input.value)||1);
+  const carrito=obtenerCarrito(), existente=carrito.find(x=>x.clave===item.clave);
+  const actual=existente?Number(existente.cantidad)||0:0, disponible=stock-actual;
+  if(disponible<=0) return mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
+  cantidad=Math.min(cantidad,disponible);
+  if(existente) existente.cantidad=actual+cantidad;
+  else carrito.push({clave:item.clave,nombre:`Top Coat ${item.marca} ${item.ml}`,referencia:item.ref,precio:item.precio,cantidad,imagen:item.imagen,tipo:"individual"});
+  localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));
+  input.value="1"; tarjeta.querySelector(".total-compra strong").textContent=dinero(item.precio);
+  mostrarToast(`Top Coat ${item.marca} ${item.ml} agregado a tu pedido 💕`);
+}
+
+let temporizadorToast;
+function mostrarToast(mensaje) {
+  const toast=document.getElementById("toast"); toast.textContent=mensaje; toast.classList.add("mostrar");
+  clearTimeout(temporizadorToast); temporizadorToast=setTimeout(()=>toast.classList.remove("mostrar"),2200);
+}
+
+crearTarjetas();
+cargarInventario();
+</script>
 
 </body>
 
