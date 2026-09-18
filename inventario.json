@@ -1,5 +1,5 @@
 {
-  "fuente": "Odoo - reporte de existencias",
+  "fuente": "Odoo - reporte de existencias actualizado",
   "uso": "Archivo central de inventario para Bella Shop",
   "productos": {
     "#10": {
@@ -83,8 +83,8 @@
       "codigo": "00286",
       "codigo_original_odoo": "00286",
       "nombre": "LIMA CARTON PAQUETE GRANDE X12 SLENDY",
-      "disponible": 41,
-      "a_la_mano": 41
+      "disponible": 40,
+      "a_la_mano": 40
     },
     "010304016": {
       "codigo": "010304016",
@@ -195,8 +195,8 @@
       "codigo": "040404115",
       "codigo_original_odoo": "040404115",
       "nombre": "040404115 ESMALTE SEMI. GOLDEN GLASS #15 CAT EYE 12ML",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "040404124": {
       "codigo": "040404124",
@@ -608,8 +608,8 @@
       "codigo": "10116",
       "codigo_original_odoo": "10116",
       "nombre": "10116 CORTA CUTICULA MUNDIAL FLEX KRISMAR",
-      "disponible": 36,
-      "a_la_mano": 36
+      "disponible": 35,
+      "a_la_mano": 35
     },
     "10117": {
       "codigo": "10117",
@@ -979,8 +979,8 @@
       "codigo": "12-006",
       "codigo_original_odoo": "12-006",
       "nombre": "BOLSA DE PIES X 100 YAIMAR",
-      "disponible": 9,
-      "a_la_mano": 9
+      "disponible": 8,
+      "a_la_mano": 8
     },
     "12-007": {
       "codigo": "12-007",
@@ -1259,15 +1259,15 @@
       "codigo": "153",
       "codigo_original_odoo": "153",
       "nombre": "ESMALTE 8ML CAFE  DULCE 153 CANM",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "154": {
       "codigo": "154",
       "codigo_original_odoo": "154",
       "nombre": "ESMALTE 8ML TAMARINDO 154 CANM",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "156": {
       "codigo": "156",
@@ -1357,8 +1357,8 @@
       "codigo": "16-009",
       "codigo_original_odoo": "16-009",
       "nombre": "MANTEQUILLA FRESH 400ML VIDAN BLIME",
-      "disponible": 13,
-      "a_la_mano": 13
+      "disponible": 12,
+      "a_la_mano": 12
     },
     "16-010": {
       "codigo": "16-010",
@@ -1420,8 +1420,8 @@
       "codigo": "16-018",
       "codigo_original_odoo": "16-018",
       "nombre": "EXFOLIANTE NEVAFRES MARACUYA 1000ML",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 7,
+      "a_la_mano": 7
     },
     "16-019": {
       "codigo": "16-019",
@@ -1679,8 +1679,8 @@
       "codigo": "20/2",
       "codigo_original_odoo": "20/2",
       "nombre": "REPUJADOR 20-2 KS",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "20/8": {
       "codigo": "20/8",
@@ -1931,8 +1931,8 @@
       "codigo": "2306-001-29",
       "codigo_original_odoo": "2306-001-29",
       "nombre": "BASE RUBBER CLEAR 12ML MUNA -029",
-      "disponible": 73,
-      "a_la_mano": 73
+      "disponible": 71,
+      "a_la_mano": 71
     },
     "2306-001-34": {
       "codigo": "2306-001-34",
@@ -2071,15 +2071,15 @@
       "codigo": "267",
       "codigo_original_odoo": "267",
       "nombre": "ESMALTE SEMIPERMANENTE REF 102  CHIC´S FASHION",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "2675": {
       "codigo": "2675",
       "codigo_original_odoo": "2675",
       "nombre": "PINCEL DE GOMA SEGO",
-      "disponible": 48,
-      "a_la_mano": 48
+      "disponible": 47,
+      "a_la_mano": 47
     },
     "268": {
       "codigo": "268",
@@ -2092,8 +2092,8 @@
       "codigo": "269",
       "codigo_original_odoo": "269",
       "nombre": "ESMALTE SEMIPERMANENTE REF 104 - CHIC´S FASHION CHIC´S FASHION",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "272": {
       "codigo": "272",
@@ -2113,8 +2113,8 @@
       "codigo": "2874-01",
       "codigo_original_odoo": "2874-01",
       "nombre": "ESMALTE SEMIPERMANENTE 12 ML REF 2874-01 NEGRO MUNA",
-      "disponible": 45,
-      "a_la_mano": 45
+      "disponible": 44,
+      "a_la_mano": 44
     },
     "2874-04": {
       "codigo": "2874-04",
@@ -2134,8 +2134,8 @@
       "codigo": "2874-29-12",
       "codigo_original_odoo": "2874-29-12",
       "nombre": "ESMALTE SEMIPERMANENTE 12 ML REF MUNA2874-29                     ROJO",
-      "disponible": 11,
-      "a_la_mano": 11
+      "disponible": 10,
+      "a_la_mano": 10
     },
     "2874-3": {
       "codigo": "2874-3",
@@ -2197,8 +2197,8 @@
       "codigo": "30/5",
       "codigo_original_odoo": "30/5",
       "nombre": "CORTACUTICULA KS 30-5",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "30/7": {
       "codigo": "30/7",
@@ -2295,8 +2295,8 @@
       "codigo": "4067",
       "codigo_original_odoo": "4067",
       "nombre": "SET DE MOÑOS MIX",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "4069": {
       "codigo": "4069",
@@ -2449,8 +2449,8 @@
       "codigo": "61/12",
       "codigo_original_odoo": "61/12",
       "nombre": "CORTACUTICULA 61-12 KS",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "61/16": {
       "codigo": "61/16",
@@ -2470,15 +2470,15 @@
       "codigo": "614143399558",
       "codigo_original_odoo": "614143399558",
       "nombre": "ESMALTE SEMIPERMANENTE REF 022 CHIC´S FASHION",
-      "disponible": 7,
-      "a_la_mano": 7
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "614143399589": {
       "codigo": "614143399589",
       "codigo_original_odoo": "614143399589",
       "nombre": "ESMALTE SEMIPERMANENTE REF 025 CHIC´S FASHION",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 7,
+      "a_la_mano": 7
     },
     "614143399626": {
       "codigo": "614143399626",
@@ -2652,22 +2652,22 @@
       "codigo": "7702322000784",
       "codigo_original_odoo": "7702322000784",
       "nombre": "SUPER REMOVEDOR EN GEL X 30ML UTOPICK",
-      "disponible": 29,
-      "a_la_mano": 29
+      "disponible": 26,
+      "a_la_mano": 26
     },
     "7702322000890": {
       "codigo": "7702322000890",
       "codigo_original_odoo": "7702322000890",
       "nombre": "REMOVEDOR DE CUTICULA Y CALLO EN GEL X 60ML UTOPICK",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 7,
+      "a_la_mano": 7
     },
     "7702322000920": {
       "codigo": "7702322000920",
       "codigo_original_odoo": "7702322000920",
       "nombre": "EXFOLIANTE PROFECIONAL X 500ML MARACUYA UTOPICK",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "7702786000221": {
       "codigo": "7702786000221",
@@ -2729,8 +2729,8 @@
       "codigo": "7702786008326",
       "codigo_original_odoo": "7702786008326",
       "nombre": "PRIMER PARA SEMIPERMANENTE 8 ML LATIN NAILS",
-      "disponible": 12,
-      "a_la_mano": 12
+      "disponible": 11,
+      "a_la_mano": 11
     },
     "7703378004603": {
       "codigo": "7703378004603",
@@ -2778,8 +2778,8 @@
       "codigo": "7707194532463",
       "codigo_original_odoo": "7707194532463",
       "nombre": "ESMALTE TRADICIONAL TIERNA MASGLO",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "7707194534429": {
       "codigo": "7707194534429",
@@ -2813,8 +2813,8 @@
       "codigo": "7707571980221",
       "codigo_original_odoo": "7707571980221",
       "nombre": "PAINTING GEL BLANCO LATIN NAILS",
-      "disponible": 16,
-      "a_la_mano": 16
+      "disponible": 15,
+      "a_la_mano": 15
     },
     "7707571981761": {
       "codigo": "7707571981761",
@@ -2883,8 +2883,8 @@
       "codigo": "7707571986261",
       "codigo_original_odoo": "7707571986261",
       "nombre": "PRESS ON COFFIN LARGA LATIN",
-      "disponible": 20,
-      "a_la_mano": 20
+      "disponible": 17,
+      "a_la_mano": 17
     },
     "7707571986827": {
       "codigo": "7707571986827",
@@ -2953,8 +2953,8 @@
       "codigo": "7708279050025",
       "codigo_original_odoo": "7708279050025",
       "nombre": "REMOVEDOR SEMIPERMANENTE LIQUIDO MELOCOTON 175 ML UTOPICK",
-      "disponible": 7,
-      "a_la_mano": 7
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "7708279050032": {
       "codigo": "7708279050032",
@@ -2967,8 +2967,8 @@
       "codigo": "7708282479875",
       "codigo_original_odoo": "7708282479875",
       "nombre": "TALCO BABY POWER YAIMAR 400G",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "7708978693158": {
       "codigo": "7708978693158",
@@ -3100,8 +3100,8 @@
       "codigo": "7709554499510",
       "codigo_original_odoo": "7709554499510",
       "nombre": "TOP COAT 8 ML - CANM CANM",
-      "disponible": 10,
-      "a_la_mano": 10
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "7709554499536": {
       "codigo": "7709554499536",
@@ -3156,8 +3156,8 @@
       "codigo": "7709554499665",
       "codigo_original_odoo": "7709554499665",
       "nombre": "ESMALTE SEMIPERMANENTE ROSA FLAMENCO REF 17 15 ML CANM",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "7709554499672": {
       "codigo": "7709554499672",
@@ -3205,8 +3205,8 @@
       "codigo": "7709566200123",
       "codigo_original_odoo": "7709566200123",
       "nombre": "COLOR GEL 8ML-BLANCO AZUCENA",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "7709683692528": {
       "codigo": "7709683692528",
@@ -4003,8 +4003,8 @@
       "codigo": "BF26",
       "codigo_original_odoo": "BF26",
       "nombre": "BOMBAS EFERVECENTES X100 KS",
-      "disponible": 11,
-      "a_la_mano": 11
+      "disponible": 10,
+      "a_la_mano": 10
     },
     "BGG": {
       "codigo": "BGG",
@@ -4409,8 +4409,8 @@
       "codigo": "CA0650",
       "codigo_original_odoo": "CA0650",
       "nombre": "KIT PINCEL DE GOMA CA0650",
-      "disponible": 12,
-      "a_la_mano": 12
+      "disponible": 11,
+      "a_la_mano": 11
     },
     "CA0720": {
       "codigo": "CA0720",
@@ -4626,8 +4626,8 @@
       "codigo": "CA3909",
       "codigo_original_odoo": "CA3909",
       "nombre": "CA3909 PALETA MEZCLADORA",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "CA3913": {
       "codigo": "CA3913",
@@ -4724,8 +4724,8 @@
       "codigo": "CA4305",
       "codigo_original_odoo": "CA4305",
       "nombre": "PUNTAS DE CERAMICA FORMA CONO",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "CA4306": {
       "codigo": "CA4306",
@@ -4759,8 +4759,8 @@
       "codigo": "CA4315",
       "codigo_original_odoo": "CA4315",
       "nombre": "CA4315 PUNTA  FLAMA",
-      "disponible": 9,
-      "a_la_mano": 9
+      "disponible": 8,
+      "a_la_mano": 8
     },
     "CA4316": {
       "codigo": "CA4316",
@@ -5123,8 +5123,8 @@
       "codigo": "CM772",
       "codigo_original_odoo": "CM772",
       "nombre": "TINTAS COLOR FUSION REF 03 CANM",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 2,
+      "a_la_mano": 2
     },
     "CM773": {
       "codigo": "CM773",
@@ -5165,8 +5165,8 @@
       "codigo": "CM941",
       "codigo_original_odoo": "CM941",
       "nombre": "BUILDER GEL BEIGE 15 GR CANM",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "CMG72-2": {
       "codigo": "CMG72-2",
@@ -5284,8 +5284,8 @@
       "codigo": "DEJA013",
       "codigo_original_odoo": "DEJA013",
       "nombre": "LAMPARA PRESS ON INALAMBRICA DEJA 013",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "DEJA014": {
       "codigo": "DEJA014",
@@ -5298,8 +5298,8 @@
       "codigo": "DEJA017",
       "codigo_original_odoo": "DEJA017",
       "nombre": "DEJA017 RASPACALLOS INALAMBRICO+REPUESTOS 9V",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "DEJA018": {
       "codigo": "DEJA018",
@@ -5354,8 +5354,8 @@
       "codigo": "DEJA032",
       "codigo_original_odoo": "DEJA032",
       "nombre": "DEJA032 EXTRACTOR DE POLVO 80 WATS",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "DEJA033": {
       "codigo": "DEJA033",
@@ -5410,8 +5410,8 @@
       "codigo": "DEJA067",
       "codigo_original_odoo": "DEJA067",
       "nombre": "DEJA067 PINCEL DE POLYGEL CON ESPATULA",
-      "disponible": 23,
-      "a_la_mano": 23
+      "disponible": 22,
+      "a_la_mano": 22
     },
     "DEJA072": {
       "codigo": "DEJA072",
@@ -5459,8 +5459,8 @@
       "codigo": "DEJA085",
       "codigo_original_odoo": "DEJA085",
       "nombre": "DEJA085 FLAKE SURTIDO",
-      "disponible": 23,
-      "a_la_mano": 23
+      "disponible": 22,
+      "a_la_mano": 22
     },
     "DEJA088": {
       "codigo": "DEJA088",
@@ -5522,15 +5522,15 @@
       "codigo": "DEJA124",
       "codigo_original_odoo": "DEJA124",
       "nombre": "PINCEL LINER X 5 COLORES PASTELES",
-      "disponible": 28,
-      "a_la_mano": 28
+      "disponible": 26,
+      "a_la_mano": 26
     },
     "DEJA131": {
       "codigo": "DEJA131",
       "codigo_original_odoo": "DEJA131",
       "nombre": "PINCEL DOBLE PUNTA SILICONA X 5",
-      "disponible": 24,
-      "a_la_mano": 24
+      "disponible": 23,
+      "a_la_mano": 23
     },
     "DEJA135": {
       "codigo": "DEJA135",
@@ -5550,8 +5550,8 @@
       "codigo": "DEJA147",
       "codigo_original_odoo": "DEJA147",
       "nombre": "LLAVERO DE UNAS NATURAL CUADRADA",
-      "disponible": 11,
-      "a_la_mano": 11
+      "disponible": 10,
+      "a_la_mano": 10
     },
     "DEJA149": {
       "codigo": "DEJA149",
@@ -5998,8 +5998,8 @@
       "codigo": "DN165",
       "codigo_original_odoo": "DN165",
       "nombre": "DN165 COPA VIDRIO MORTERO ANDISA",
-      "disponible": 10,
-      "a_la_mano": 10
+      "disponible": 9,
+      "a_la_mano": 9
     },
     "DN1668": {
       "codigo": "DN1668",
@@ -6292,8 +6292,8 @@
       "codigo": "DN2061",
       "codigo_original_odoo": "DN2061",
       "nombre": "DN2061 LAMPARA UV PARA UÑAS 98W ANDISA",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "DN2062": {
       "codigo": "DN2062",
@@ -7608,8 +7608,8 @@
       "codigo": "DN3583",
       "codigo_original_odoo": "DN3583",
       "nombre": "DN3583 CORTACUTICULA G03 ANDISA",
-      "disponible": 25,
-      "a_la_mano": 25
+      "disponible": 24,
+      "a_la_mano": 24
     },
     "DN3584": {
       "codigo": "DN3584",
@@ -7622,8 +7622,8 @@
       "codigo": "DN3585",
       "codigo_original_odoo": "DN3585",
       "nombre": "DN3585 CORTACUTICULA G08",
-      "disponible": 19,
-      "a_la_mano": 19
+      "disponible": 18,
+      "a_la_mano": 18
     },
     "DN3596": {
       "codigo": "DN3596",
@@ -7657,8 +7657,8 @@
       "codigo": "DN3626",
       "codigo_original_odoo": "DN3626",
       "nombre": "LAMPARA PRESS ON GANCHO",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 7,
+      "a_la_mano": 7
     },
     "DN3627": {
       "codigo": "DN3627",
@@ -7790,15 +7790,15 @@
       "codigo": "DN3724",
       "codigo_original_odoo": "DN3724",
       "nombre": "DN3724 PUSHER DORADO  ANDISA",
-      "disponible": 15,
-      "a_la_mano": 15
+      "disponible": 14,
+      "a_la_mano": 14
     },
     "DN3725": {
       "codigo": "DN3725",
       "codigo_original_odoo": "DN3725",
       "nombre": "PUSHER TORNASOL",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "DN3735": {
       "codigo": "DN3735",
@@ -7874,8 +7874,8 @@
       "codigo": "DN3840",
       "codigo_original_odoo": "DN3840",
       "nombre": "DN3840 TOALLA COLORES X 50",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "DN3841": {
       "codigo": "DN3841",
@@ -8021,8 +8021,8 @@
       "codigo": "DN4094",
       "codigo_original_odoo": "DN4094",
       "nombre": "UÑAS PRESS EFECTO ACRILICO PINK SQUARE X300",
-      "disponible": 34,
-      "a_la_mano": 34
+      "disponible": 33,
+      "a_la_mano": 33
     },
     "DN4095": {
       "codigo": "DN4095",
@@ -8084,8 +8084,8 @@
       "codigo": "DN4111",
       "codigo_original_odoo": "DN4111",
       "nombre": "KIT DIFUMINADOR DE UÑAS",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "DN4113": {
       "codigo": "DN4113",
@@ -8154,22 +8154,22 @@
       "codigo": "DN4190",
       "codigo_original_odoo": "DN4190",
       "nombre": "IMAN MULTIFUNCIONAL X7",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "DN4193": {
       "codigo": "DN4193",
       "codigo_original_odoo": "DN4193",
       "nombre": "DN4193 CAJA DE BOLSAS ESTERIALIZASDORA X200",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "DN4250": {
       "codigo": "DN4250",
       "codigo_original_odoo": "DN4250",
       "nombre": "DN4250 PUNTA SILICONA",
-      "disponible": 22,
-      "a_la_mano": 22
+      "disponible": 21,
+      "a_la_mano": 21
     },
     "DN4251": {
       "codigo": "DN4251",
@@ -8252,8 +8252,8 @@
       "codigo": "DN4412",
       "codigo_original_odoo": "DN4412",
       "nombre": "EFECTO ESPEJO DORADO DN4412",
-      "disponible": 10,
-      "a_la_mano": 10
+      "disponible": 9,
+      "a_la_mano": 9
     },
     "DN4421": {
       "codigo": "DN4421",
@@ -8287,8 +8287,8 @@
       "codigo": "DN4619",
       "codigo_original_odoo": "DN4619",
       "nombre": "BLEDO CON PIEDRAS DN4619",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 2,
+      "a_la_mano": 2
     },
     "DN4625": {
       "codigo": "DN4625",
@@ -8350,8 +8350,8 @@
       "codigo": "DN4720",
       "codigo_original_odoo": "DN4720",
       "nombre": "KIT DE PINCELES X3 LINER",
-      "disponible": 11,
-      "a_la_mano": 11
+      "disponible": 10,
+      "a_la_mano": 10
     },
     "DN4723": {
       "codigo": "DN4723",
@@ -8413,15 +8413,15 @@
       "codigo": "DN4742",
       "codigo_original_odoo": "DN4742",
       "nombre": "DN4742 DRILL 45000RPM INALAMBRICO",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 2,
+      "a_la_mano": 2
     },
     "DN4749": {
       "codigo": "DN4749",
       "codigo_original_odoo": "DN4749",
       "nombre": "DN4749 PALETA DE PAINTING",
-      "disponible": 22,
-      "a_la_mano": 22
+      "disponible": 21,
+      "a_la_mano": 21
     },
     "DN4836": {
       "codigo": "DN4836",
@@ -10163,8 +10163,8 @@
       "codigo": "EXF0009",
       "codigo_original_odoo": "EXF0009",
       "nombre": "EXFOLIANTE PROFESSIONAL SANDIA X 500 ML UTOPICK",
-      "disponible": 7,
-      "a_la_mano": 7
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "EXFOLIANTE ESPUMOSO KS 1000ML": {
       "codigo": "EXFOLIANTE ESPUMOSO KS 1000ML",
@@ -10338,8 +10338,8 @@
       "codigo": "GENERAL",
       "codigo_original_odoo": "GENERAL",
       "nombre": "PRODUCTO GENERAL",
-      "disponible": 14,
-      "a_la_mano": 14
+      "disponible": 13,
+      "a_la_mano": 13
     },
     "GES02": {
       "codigo": "GES02",
@@ -10597,8 +10597,8 @@
       "codigo": "GVH-218",
       "codigo_original_odoo": "GVH-218",
       "nombre": "CORTAUÑAS RECTO GVH-218",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "GVH-238": {
       "codigo": "GVH-238",
@@ -10632,8 +10632,8 @@
       "codigo": "GVH-264",
       "codigo_original_odoo": "GVH-264",
       "nombre": "EFECTO AURORA ROSA GVH-264",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "GVH-367": {
       "codigo": "GVH-367",
@@ -10765,8 +10765,8 @@
       "codigo": "HC14763",
       "codigo_original_odoo": "HC14763",
       "nombre": "MIX COLA DE SIRENA HC14763 CRISTAL",
-      "disponible": 83,
-      "a_la_mano": 83
+      "disponible": 82,
+      "a_la_mano": 82
     },
     "HC14780": {
       "codigo": "HC14780",
@@ -11024,8 +11024,8 @@
       "codigo": "HK-032",
       "codigo_original_odoo": "HK-032",
       "nombre": "HK032 PINCEL POLYGEL HAKU",
-      "disponible": 7,
-      "a_la_mano": 7
+      "disponible": 6,
+      "a_la_mano": 6
     },
     "HK-036": {
       "codigo": "HK-036",
@@ -11087,8 +11087,8 @@
       "codigo": "HK-075",
       "codigo_original_odoo": "HK-075",
       "nombre": "HK075 PINCEL LINER INDIVIDUAL HAKU",
-      "disponible": 13,
-      "a_la_mano": 13
+      "disponible": 12,
+      "a_la_mano": 12
     },
     "HK-077": {
       "codigo": "HK-077",
@@ -11311,8 +11311,8 @@
       "codigo": "HK-329",
       "codigo_original_odoo": "HK-329",
       "nombre": "HK329 PARAFINA X 450GR HAKU",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "HK-331": {
       "codigo": "HK-331",
@@ -11759,8 +11759,8 @@
       "codigo": "IU109",
       "codigo_original_odoo": "IU109",
       "nombre": "IU109 GEL DE RELIEVE ILU",
-      "disponible": 31,
-      "a_la_mano": 31
+      "disponible": 28,
+      "a_la_mano": 28
     },
     "IU110-1": {
       "codigo": "IU110-1",
@@ -11780,8 +11780,8 @@
       "codigo": "IU110-2",
       "codigo_original_odoo": "IU110-2",
       "nombre": "GEL SOLIDO BLANCO ILU",
-      "disponible": 35,
-      "a_la_mano": 35
+      "disponible": 34,
+      "a_la_mano": 34
     },
     "IU110-8": {
       "codigo": "IU110-8",
@@ -11794,8 +11794,8 @@
       "codigo": "IU111-1",
       "codigo_original_odoo": "IU111-1",
       "nombre": "IU111-1 GEL SPIDER BLANCO",
-      "disponible": 34,
-      "a_la_mano": 34
+      "disponible": 33,
+      "a_la_mano": 33
     },
     "IU111-2": {
       "codigo": "IU111-2",
@@ -11857,8 +11857,8 @@
       "codigo": "JB30716",
       "codigo_original_odoo": "JB30716",
       "nombre": "PAÑITOS HUMEDOS VASITO",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "JD-120": {
       "codigo": "JD-120",
@@ -11913,8 +11913,8 @@
       "codigo": "JD77",
       "codigo_original_odoo": "JD77",
       "nombre": "JD77 TOALLITA LIMPIADORA DE UÑAS",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "JD83": {
       "codigo": "JD83",
@@ -12431,8 +12431,8 @@
       "codigo": "MLM10",
       "codigo_original_odoo": "MLM10",
       "nombre": "MLM9 LIMA SPONGE 180/240 MARA",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "MLM11": {
       "codigo": "MLM11",
@@ -12466,8 +12466,8 @@
       "codigo": "MLM5",
       "codigo_original_odoo": "MLM5",
       "nombre": "MLM5 LIMA 100/180  MARA",
-      "disponible": 265,
-      "a_la_mano": 265
+      "disponible": 263,
+      "a_la_mano": 263
     },
     "MLM9": {
       "codigo": "MLM9",
@@ -12529,8 +12529,8 @@
       "codigo": "MN245-142",
       "codigo_original_odoo": "MN245-142",
       "nombre": "SET DE PUNTAS X10 PARA DRILL MUNA",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 2,
+      "a_la_mano": 2
     },
     "MN245-145": {
       "codigo": "MN245-145",
@@ -12858,8 +12858,8 @@
       "codigo": "MPSJ20",
       "codigo_original_odoo": "MPSJ20",
       "nombre": "JELLY X10 SERVICIOS MARA",
-      "disponible": 2,
-      "a_la_mano": 2
+      "disponible": 1,
+      "a_la_mano": 1
     },
     "MPSJ20-INVIDUALX2": {
       "codigo": "MPSJ20-INVIDUALX2",
@@ -13334,15 +13334,15 @@
       "codigo": "MUNA002",
       "codigo_original_odoo": "MUNA002",
       "nombre": "POMADA DE CALENDULA MUNA",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "MUNA003": {
       "codigo": "MUNA003",
       "codigo_original_odoo": "MUNA003",
       "nombre": "REMOVEDOR DE CUTICULA COCO  MUNA",
-      "disponible": 38,
-      "a_la_mano": 38
+      "disponible": 37,
+      "a_la_mano": 37
     },
     "MUNA004": {
       "codigo": "MUNA004",
@@ -13397,8 +13397,8 @@
       "codigo": "MUNA011",
       "codigo_original_odoo": "MUNA011",
       "nombre": "HIDRA NAILS  CREMA HIDRATANTE 250ML MUNA",
-      "disponible": 26,
-      "a_la_mano": 26
+      "disponible": 25,
+      "a_la_mano": 25
     },
     "MUNA012": {
       "codigo": "MUNA012",
@@ -13467,8 +13467,8 @@
       "codigo": "MUNA201-MIX1",
       "codigo_original_odoo": "MUNA201-MIX1",
       "nombre": "PESTAÑAS-EFECTO VOLUMEN 0.07D MIX",
-      "disponible": 12,
-      "a_la_mano": 12
+      "disponible": 11,
+      "a_la_mano": 11
     },
     "MUNA202-MIX2": {
       "codigo": "MUNA202-MIX2",
@@ -13712,8 +13712,8 @@
       "codigo": "MUNA2874-48",
       "codigo_original_odoo": "MUNA2874-48",
       "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-48 MUNA",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "MUNA2874-49": {
       "codigo": "MUNA2874-49",
@@ -13775,15 +13775,15 @@
       "codigo": "MUNA2874-B",
       "codigo_original_odoo": "MUNA2874-B",
       "nombre": "BASE COAT 12 ML MUNA",
-      "disponible": 146,
-      "a_la_mano": 146
+      "disponible": 144,
+      "a_la_mano": 144
     },
     "MUNA2874-TC": {
       "codigo": "MUNA2874-TC",
       "codigo_original_odoo": "MUNA2874-TC",
       "nombre": "TOP COAT 12 ML  MUNA",
-      "disponible": 141,
-      "a_la_mano": 141
+      "disponible": 140,
+      "a_la_mano": 140
     },
     "MUNA2874TMAT": {
       "codigo": "MUNA2874TMAT",
@@ -13796,8 +13796,8 @@
       "codigo": "MUNA473",
       "codigo_original_odoo": "MUNA473",
       "nombre": "GEL 6 EN 1 MUNA 12 ML",
-      "disponible": 55,
-      "a_la_mano": 55
+      "disponible": 54,
+      "a_la_mano": 54
     },
     "MUNA920-01": {
       "codigo": "MUNA920-01",
@@ -13810,8 +13810,8 @@
       "codigo": "MUNA920-02",
       "codigo_original_odoo": "MUNA920-02",
       "nombre": "ESMALTE CRAQUELADO 15 ML REF 02 MUNA negro",
-      "disponible": 19,
-      "a_la_mano": 19
+      "disponible": 18,
+      "a_la_mano": 18
     },
     "MUNA920-05": {
       "codigo": "MUNA920-05",
@@ -13964,8 +13964,8 @@
       "codigo": "MUNA930-218",
       "codigo_original_odoo": "MUNA930-218",
       "nombre": "ESMALTE TRASLUCIDO REF MUNA930-218 MUNA ROSADO",
-      "disponible": 77,
-      "a_la_mano": 77
+      "disponible": 76,
+      "a_la_mano": 76
     },
     "MUNA930-219": {
       "codigo": "MUNA930-219",
@@ -14062,15 +14062,15 @@
       "codigo": "MUNA936-AMATISTA",
       "codigo_original_odoo": "MUNA936-AMATISTA",
       "nombre": "ESMALTE SATURADO 12ML REF MUNA936-AMATISTA MUNA",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "MUNA936-DORADO": {
       "codigo": "MUNA936-DORADO",
       "codigo_original_odoo": "MUNA936-DORADO",
       "nombre": "ESMALTE SATURADO 12ML REF MUNA936-DORADO MUNA",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "MUNA936-ORO ROSA": {
       "codigo": "MUNA936-ORO ROSA",
@@ -14083,8 +14083,8 @@
       "codigo": "MUNA936-PLATEADO",
       "codigo_original_odoo": "MUNA936-PLATEADO",
       "nombre": "ESMALTE SATURADO 12 ML REF MUNA936-PLATEADO MUNA",
-      "disponible": 8,
-      "a_la_mano": 8
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "MUNA936-ZAFIRO": {
       "codigo": "MUNA936-ZAFIRO",
@@ -14118,8 +14118,8 @@
       "codigo": "MUNA937-NEBULOSA ROSA",
       "codigo_original_odoo": "MUNA937-NEBULOSA ROSA",
       "nombre": "ESMALTE SATURADO 12M REF MUNA937-NEBULOSA ROSA MUNA",
-      "disponible": 10,
-      "a_la_mano": 10
+      "disponible": 9,
+      "a_la_mano": 9
     },
     "MUNA937-POLVO ESTRELLAS": {
       "codigo": "MUNA937-POLVO ESTRELLAS",
@@ -14384,8 +14384,8 @@
       "codigo": "MUNABB-2-20",
       "codigo_original_odoo": "MUNABB-2-20",
       "nombre": "ESMALTE SEMIPERMANENTE 7 ML MUNABB-2-20",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "MUNABB-2-34": {
       "codigo": "MUNABB-2-34",
@@ -14496,22 +14496,22 @@
       "codigo": "MUNABB-2-53",
       "codigo_original_odoo": "MUNABB-2-53",
       "nombre": "ESMALTE SEMIPERMANENTE BLANCO 7 ML MUNABB-2-53",
-      "disponible": 54,
-      "a_la_mano": 54
+      "disponible": 53,
+      "a_la_mano": 53
     },
     "MUNABB-2-54": {
       "codigo": "MUNABB-2-54",
       "codigo_original_odoo": "MUNABB-2-54",
       "nombre": "ESMALTE SEMIPERMANENTE 7 ML  NEGROMUNABB-2-54",
-      "disponible": 27,
-      "a_la_mano": 27
+      "disponible": 26,
+      "a_la_mano": 26
     },
     "MUNABB-2-55": {
       "codigo": "MUNABB-2-55",
       "codigo_original_odoo": "MUNABB-2-55",
       "nombre": "ESMALTE SEMIPERMANENTE 7 ML MUNABB-2-55",
-      "disponible": 16,
-      "a_la_mano": 16
+      "disponible": 15,
+      "a_la_mano": 15
     },
     "MUNABB-2-56": {
       "codigo": "MUNABB-2-56",
@@ -14874,8 +14874,8 @@
       "codigo": "MUNAPA0101",
       "codigo_original_odoo": "MUNAPA0101",
       "nombre": "POLVO SUELTO ACRILICO REF CLEAR MUNA PAC0101",
-      "disponible": 59,
-      "a_la_mano": 59
+      "disponible": 58,
+      "a_la_mano": 58
     },
     "MUNAPOL-31-12": {
       "codigo": "MUNAPOL-31-12",
@@ -14944,8 +14944,8 @@
       "codigo": "MW2411-053",
       "codigo_original_odoo": "MW2411-053",
       "nombre": "PUNTA FLAMA CINTA AMARILLA",
-      "disponible": 71,
-      "a_la_mano": 71
+      "disponible": 70,
+      "a_la_mano": 70
     },
     "MW2411-078": {
       "codigo": "MW2411-078",
@@ -15266,8 +15266,8 @@
       "codigo": "NOR16214",
       "codigo_original_odoo": "NOR16214",
       "nombre": "NOR16214 KIT PINCEL LINER KRISMAR",
-      "disponible": 14,
-      "a_la_mano": 14
+      "disponible": 13,
+      "a_la_mano": 13
     },
     "NOR16308": {
       "codigo": "NOR16308",
@@ -15392,8 +15392,8 @@
       "codigo": "NOR16552",
       "codigo_original_odoo": "NOR16552",
       "nombre": "NOR16552 PINCEL LINER #2 KRISMAR",
-      "disponible": 21,
-      "a_la_mano": 21
+      "disponible": 20,
+      "a_la_mano": 20
     },
     "NOR16553": {
       "codigo": "NOR16553",
@@ -15567,8 +15567,8 @@
       "codigo": "NOR16820",
       "codigo_original_odoo": "NOR16820",
       "nombre": "PINCEL PARA UÑAS DIFUMINAR KRISMAR",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "NOR16838": {
       "codigo": "NOR16838",
@@ -15623,8 +15623,8 @@
       "codigo": "NOR17086",
       "codigo_original_odoo": "NOR17086",
       "nombre": "MOÑOS MIX NOR17086",
-      "disponible": 12,
-      "a_la_mano": 12
+      "disponible": 11,
+      "a_la_mano": 11
     },
     "NOR17135": {
       "codigo": "NOR17135",
@@ -15658,8 +15658,8 @@
       "codigo": "OM027QB",
       "codigo_original_odoo": "OM027QB",
       "nombre": "HK067 PRESS ON COFFIN HAKU",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "Od0094": {
       "codigo": "Od0094",
@@ -15735,8 +15735,8 @@
       "codigo": "PACROSE15",
       "codigo_original_odoo": "PACROSE15",
       "nombre": "POLVO ACRILICO COVER ROSE 15 GR CLOE",
-      "disponible": 5,
-      "a_la_mano": 5
+      "disponible": 4,
+      "a_la_mano": 4
     },
     "PAGP15": {
       "codigo": "PAGP15",
@@ -15777,8 +15777,8 @@
       "codigo": "PAR100",
       "codigo_original_odoo": "PAR100",
       "nombre": "GUANTES NITRILO AZUL PAR",
-      "disponible": 69,
-      "a_la_mano": 69
+      "disponible": 66,
+      "a_la_mano": 66
     },
     "PAWBOOMER15": {
       "codigo": "PAWBOOMER15",
@@ -15798,8 +15798,8 @@
       "codigo": "PG0152",
       "codigo_original_odoo": "PG0152",
       "nombre": "PAINTING GEL BLANCO152 CLOE 5GR",
-      "disponible": 21,
-      "a_la_mano": 21
+      "disponible": 20,
+      "a_la_mano": 20
     },
     "PG0153": {
       "codigo": "PG0153",
@@ -29672,15 +29672,15 @@
       "codigo": "SUN54",
       "codigo_original_odoo": "SUN54",
       "nombre": "LAMPARA SUN DE MESA 54WATS KS",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "SUNAB-3": {
       "codigo": "SUNAB-3",
       "codigo_original_odoo": "SUNAB-3",
       "nombre": "LAMPARA DE MESA 288W SUNAB-3",
-      "disponible": 3,
-      "a_la_mano": 3
+      "disponible": 2,
+      "a_la_mano": 2
     },
     "SUNBT-11": {
       "codigo": "SUNBT-11",
@@ -29770,8 +29770,8 @@
       "codigo": "TOAKA-50",
       "codigo_original_odoo": "TOAKA-50",
       "nombre": "TOALLA PARA ESTETICA AKARELLA X50",
-      "disponible": 6,
-      "a_la_mano": 6
+      "disponible": 5,
+      "a_la_mano": 5
     },
     "TP301-NE": {
       "codigo": "TP301-NE",
@@ -29805,8 +29805,8 @@
       "codigo": "UC60",
       "codigo_original_odoo": "UC60",
       "nombre": "ULTRA CLEANSER LIMPIADOR DE PINCELES 60ML CLOE",
-      "disponible": 1,
-      "a_la_mano": 1
+      "disponible": 0,
+      "a_la_mano": 0
     },
     "UMC": {
       "codigo": "UMC",
@@ -30022,8 +30022,8 @@
       "codigo": "WS2306-001-08",
       "codigo_original_odoo": "WS2306-001-08",
       "nombre": "BASE RUBBER 15 ML REF 2306-001-08 MUNA",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "WS2306-001-10": {
       "codigo": "WS2306-001-10",
@@ -30267,8 +30267,8 @@
       "codigo": "Y58-8003",
       "codigo_original_odoo": "Y58-8003",
       "nombre": "ORGANIZADOR DE MAQUILLAJE EN ACRILICO",
-      "disponible": 4,
-      "a_la_mano": 4
+      "disponible": 3,
+      "a_la_mano": 3
     },
     "Z226": {
       "codigo": "Z226",
@@ -30451,6 +30451,48 @@
       "nombre": "Golden Olive 003",
       "disponible": 1,
       "a_la_mano": 1
+    },
+    "MUNA2874-1": {
+      "codigo": "MUNA2874-1",
+      "codigo_original_odoo": "MUNA2874-1",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-1 MUNA",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "MUNA2874-2": {
+      "codigo": "MUNA2874-2",
+      "codigo_original_odoo": "MUNA2874-2",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-02 MUNA BLANCO",
+      "disponible": 71,
+      "a_la_mano": 71
+    },
+    "MUNA2874-5": {
+      "codigo": "MUNA2874-5",
+      "codigo_original_odoo": "MUNA2874-5",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-5 MUNA",
+      "disponible": 5,
+      "a_la_mano": 5
+    },
+    "MUNA2874-6": {
+      "codigo": "MUNA2874-6",
+      "codigo_original_odoo": "MUNA2874-6",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-6 MUNA",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "MUNA2874-7": {
+      "codigo": "MUNA2874-7",
+      "codigo_original_odoo": "MUNA2874-7",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-7 MUNA",
+      "disponible": 0,
+      "a_la_mano": 0
+    },
+    "MUNA2874-8": {
+      "codigo": "MUNA2874-8",
+      "codigo_original_odoo": "MUNA2874-8",
+      "nombre": "ESMALTE SEMIPERMANENTE 12ML REF MUNA2874-8 MUNA",
+      "disponible": 0,
+      "a_la_mano": 0
     }
   }
 }
