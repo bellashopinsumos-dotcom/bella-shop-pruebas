@@ -1446,6 +1446,7 @@ function crearProducto(){
   grid.innerHTML=`
     <article class="producto" id="productoChics" data-stock="0" data-encontrado="false">
       <div class="imagen-contenedor" style="aspect-ratio:4/3;background:#fff;">
+        <span class="badge" style="display:none!important" aria-hidden="true"></span>
         <img src="${productoChics.imagen}" alt="Carta de colores Chic’s Fashion Tradicional"
              loading="lazy" style="object-fit:contain;">
         
@@ -1548,10 +1549,10 @@ function consultarReferencia(){
     t.dataset.encontrado="false";
     t.dataset.referencia=ref;
     t.classList.add("no-disponible");
-    b.textContent="REFERENCIA NO ENCONTRADA";
+    b.textContent="CÓDIGO NO ENCONTRADO";
     st.textContent="";
     bl.style.display="block";
-    bl.textContent="REFERENCIA NO ENCONTRADA EN INVENTARIO";
+    bl.textContent="CÓDIGO NO ENCONTRADO";
     controles.forEach(x=>x.disabled=true);
     return;
   }
@@ -1592,6 +1593,12 @@ function prepararTarjeta(){
     timer=setTimeout(consultarReferencia,180);
   });
   ref.addEventListener("change",consultarReferencia);
+  ref.addEventListener("keydown",(e)=>{
+    if(e.key==="Enter"){
+      e.preventDefault();
+      consultarReferencia();
+    }
+  });
 
   function total(){
     let c=Math.max(1,parseInt(input.value)||1);
@@ -1632,7 +1639,7 @@ function agregarAlPedido(){
   const stock=+t.dataset.stock||0;
   const ref=t.dataset.referencia||"";
 
-  if(t.dataset.encontrado!=="true") return mostrarToast("Referencia no encontrada en inventario.");
+  if(t.dataset.encontrado!=="true") return mostrarToast("CÓDIGO NO ENCONTRADO");
   if(stock<=0) return mostrarToast("Referencia temporalmente no disponible.");
 
   const input=t.querySelector(".cantidad-input");
