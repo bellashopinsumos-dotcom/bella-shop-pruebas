@@ -844,6 +844,17 @@
 
   </style>
 
+<style>
+.carta-wrap{max-width:1180px;margin:0 auto;background:#fff;border:1px solid #f0dce3;border-radius:24px;padding:24px;box-shadow:0 8px 25px rgba(83,48,58,.07);display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.85fr);gap:36px;align-items:center}
+.carta-img{width:100%;display:block;object-fit:contain;border-radius:18px}
+.compra-box{text-align:left}
+.compra-box h3{font:500 28px Georgia,serif;margin-bottom:8px}.precio-carta{font-size:25px;font-weight:800;margin:8px 0 18px}
+.ref-input{width:100%;height:48px;border:1px solid #efc7d4;border-radius:14px;padding:0 14px;font-size:16px;outline:none}
+.estado-ref{min-height:24px;margin:12px 0;font-size:13px;font-weight:800}.ok{color:#3f8b62}.mal{color:#c54c68}
+.cantidad-control{display:flex;align-items:center;border:1px solid #efc7d4;border-radius:14px;overflow:hidden;margin:10px 0 12px}.cantidad-control button{width:48px;height:44px;border:0;background:#fff2f6;color:#d94a79;font-size:22px}.cantidad-control input{flex:1;min-width:0;height:44px;border:0;text-align:center;font-weight:800}
+.agregar{width:100%;min-height:46px;border:0;border-radius:40px;background:#e65385;color:#fff;font-weight:800}.agregar:disabled{opacity:.45}
+@media(max-width:800px){.carta-wrap{grid-template-columns:1fr;padding:15px;gap:22px}.compra-box{text-align:center}}
+</style>
 </head>
 
 
@@ -982,14 +993,20 @@
   ======================================= -->
 
   <section class="seccion">
-    <img src="imagenes/Cara logo bellashop.png" alt="" class="cara-seccion">
-    <div class="titulo">
-      <img src="imagenes/logo-masglo.png" alt="MASGLO" style="width:170px;height:85px;object-fit:contain;margin:0 auto 14px;display:block;">
-      <h2>Masglo Tapa Azul</h2>
-      <p id="estado-carga">Cargando disponibilidad...</p>
-    </div>
-    <div id="productos" class="opciones"></div>
-  </section>
+<img src="imagenes/Cara logo bellashop.png" alt="" class="cara-seccion">
+<div class="titulo"><img src="imagenes/logo-masglo.png" alt="Masglo" style="width:170px;height:85px;object-fit:contain;margin:0 auto 14px;display:block;"><h2>Masglo Tapa Azul</h2><p>Mira la carta, escoge tu referencia y consulta su disponibilidad. 💕</p></div>
+<div class="carta-wrap">
+ <div><img class="carta-img" src="imagenes/CARTA-COLOR-TRADICIONAL-masglo.png" alt="Carta de colores Masglo tradicional tapa azul"></div>
+ <div class="compra-box">
+  <h3>Esmalte Tradicional Masglo</h3><div class="precio-carta">$9.200</div>
+  <label for="referencia" style="font-size:12px;font-weight:800">REFERENCIA</label>
+  <input id="referencia" class="ref-input" type="text" autocomplete="off" placeholder="Escribe la referencia">
+  <div id="estadoRef" class="estado-ref">Escribe una referencia para consultar.</div>
+  <div class="cantidad-control"><button id="menos" disabled>−</button><input id="cantidad" type="number" value="1" min="1" disabled><button id="mas" disabled>+</button></div>
+  <button id="agregar" class="agregar" disabled>AGREGAR AL PEDIDO</button>
+ </div>
+</div>
+</section>
 
 
 
@@ -1160,43 +1177,24 @@
 
 
 <script>
-const CONFIG={brand:"MASGLO",tipo:"masglo-azul",precio:9200};
-const normaliza=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[´’']/g,"").replace(/\s+/g," ").trim();
-function coincide(n){
- const x=normaliza(n);
- if(!x.includes(normaliza(CONFIG.brand))) return false;
- if(CONFIG.tipo==="masglo-azul") return x.includes("ESMALTE TRADICIONAL") && !x.includes("GEL EVOLUTION");
- if(CONFIG.tipo==="masglo-negra") return x.includes("GEL EVOLUTION");
- if(CONFIG.tipo==="masglo-bases") return x.includes("BASE ") || x.startsWith("BASE") || x.includes("CLINICAL");
- if(CONFIG.tipo==="masglo-brillos") return x.includes("BRILLO");
- if(CONFIG.tipo==="brescia-esmaltes") return x.includes("ESMALTE") && x.includes("BRESCIA");
- if(CONFIG.tipo==="brescia-bases") return x.includes("BASE") && x.includes("BRESCIA");
- if(CONFIG.tipo==="brescia-brillos") return x.includes("BRILLO") && x.includes("BRESCIA");
- return false;
+const PRECIO=9200; let inventario=[], actual=null, stock=0;
+const ref=document.getElementById("referencia"), estado=document.getElementById("estadoRef"), cant=document.getElementById("cantidad"), agregar=document.getElementById("agregar"), menos=document.getElementById("menos"), mas=document.getElementById("mas");
+const norm=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[´’']/g,"").replace(/\s+/g," ").trim();
+function limpiar(){actual=null;stock=0;cant.value=1;cant.disabled=menos.disabled=mas.disabled=agregar.disabled=true;}
+function buscar(){
+ const q=norm(ref.value); limpiar();
+ if(!q){estado.className="estado-ref";estado.textContent="Escribe una referencia para consultar.";return;}
+ const candidatos=inventario.filter(p=>{const n=norm(p.nombre);return n.includes("MASGLO")&&n.includes("ESMALTE TRADICIONAL")&&!n.includes("GEL EVOLUTION")&&(n.includes(" "+q+" ")||n.endsWith(" "+q)||n.includes("TONO "+q)||n.includes("REF "+q)||n.includes("REF. "+q)||n.includes("REFERENCIA "+q));});
+ if(!candidatos.length){estado.className="estado-ref mal";estado.textContent="CÓDIGO NO ENCONTRADO";return;}
+ actual=candidatos.sort((a,b)=>(Number(b.disponible)||0)-(Number(a.disponible)||0))[0]; stock=Math.max(0,Number(actual.disponible)||0);
+ if(stock<=0){estado.className="estado-ref mal";estado.textContent="TEMPORALMENTE NO DISPONIBLE";return;}
+ estado.className="estado-ref ok";estado.textContent="Disponibles: "+stock;cant.disabled=menos.disabled=mas.disabled=agregar.disabled=false;cant.max=stock;
 }
-function nombreCliente(n){
- return (n||"").replace(/\s+/g," ").trim()
-  .replace(/\s+MASGLO\s*$/i,"").replace(/\s+BRESCIA\s*$/i,"");
-}
-function dinero(n){return "$"+Number(n).toLocaleString("es-CO")}
-async function cargar(){
- const cont=document.getElementById("productos"), estado=document.getElementById("estado-carga");
- try{
-  const r=await fetch("inventario.json?"+Date.now()); const j=await r.json();
-  const arr=Object.values(j.productos||{}).filter(p=>coincide(p.nombre));
-  arr.sort((a,b)=>nombreCliente(a.nombre).localeCompare(nombreCliente(b.nombre),"es"));
-  estado.textContent=arr.length+" productos encontrados";
-  cont.innerHTML=arr.map(p=>{
-    const stock=Math.max(0,Number(p.disponible)||0);
-    return '<article class="opcion" style="cursor:default">'+
-      '<h3>'+nombreCliente(p.nombre)+'</h3>'+
-      (CONFIG.precio!==null?'<p style="font-size:20px;font-weight:700;color:#382b30;margin-bottom:8px">'+dinero(CONFIG.precio)+'</p>':'<p>Consulta el precio con Bella Shop.</p>')+
-      '<p style="font-weight:700;color:'+(stock>0?'#3f8b62':'#c54c68')+'">'+(stock>0?'Disponible: '+stock:'TEMPORALMENTE NO DISPONIBLE')+'</p>'+
-      '</article>';
-  }).join("") || '<p style="grid-column:1/-1;text-align:center">No encontramos productos en esta categoría.</p>';
- }catch(e){estado.textContent="No fue posible cargar el inventario."; cont.innerHTML="";}
-}
-cargar();
+ref.addEventListener("input",buscar); ref.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();buscar();}});
+menos.onclick=()=>{cant.value=Math.max(1,(Number(cant.value)||1)-1)}; mas.onclick=()=>{cant.value=Math.min(stock,(Number(cant.value)||1)+1)};
+cant.oninput=()=>{cant.value=Math.max(1,Math.min(stock,Number(cant.value)||1))};
+agregar.onclick=()=>{if(!actual||stock<1)return;const cantidad=Math.min(stock,Math.max(1,Number(cant.value)||1)), referencia=ref.value.trim().toUpperCase(), key="masglo-tapa-azul-"+referencia;let carrito=[];try{carrito=JSON.parse(localStorage.getItem("bellaShopCarrito"))||[]}catch(e){};const i=carrito.findIndex(x=>x.clave===key);const item={clave:key,nombre:"Esmalte Tradicional Masglo",referencia,precio:PRECIO,cantidad,imagen:"imagenes/CARTA-COLOR-TRADICIONAL-masglo.png"};if(i>=0){item.cantidad=Math.min(stock,(Number(carrito[i].cantidad)||0)+cantidad);carrito[i]=item}else carrito.push(item);localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));alert("Agregado al pedido 💕");};
+fetch("inventario.json?"+Date.now()).then(r=>r.json()).then(j=>{inventario=Object.values(j.productos||{})}).catch(()=>{estado.className="estado-ref mal";estado.textContent="No fue posible consultar el inventario.";});
 </script>
 </body>
 
