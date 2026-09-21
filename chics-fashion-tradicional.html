@@ -1075,6 +1075,70 @@
 .ref-visible{font-size:12px;font-weight:800;color:#7d606a;margin:2px 0 9px}
 </style>
 
+
+<style>
+/* Ajuste Bella Shop: carta Chic's Tradicional más grande */
+#gridProductos{
+  width:min(1180px,94%);
+  max-width:1180px;
+  margin:54px auto 80px;
+  display:block;
+}
+#productoChics{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(320px,.85fr);
+  align-items:center;
+  gap:42px;
+  padding:28px;
+  box-sizing:border-box;
+}
+#productoChics .imagen-contenedor{
+  width:100%;
+  aspect-ratio:auto !important;
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+  background:#fff;
+  border-radius:22px;
+}
+#productoChics .imagen-contenedor img{
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain !important;
+  display:block;
+}
+#productoChics .info{
+  width:100%;
+  box-sizing:border-box;
+}
+#productoChics .badge{
+  display:none !important;
+}
+@media(max-width:800px){
+  #gridProductos{
+    width:94%;
+    margin:30px auto 55px;
+  }
+  #productoChics{
+    display:block;
+    padding:16px;
+  }
+  #productoChics .imagen-contenedor{
+    min-height:0;
+    margin-bottom:22px;
+  }
+  #productoChics .imagen-contenedor img{
+    width:100%;
+  }
+}
+</style>
+
 </head>
 
 
@@ -1353,7 +1417,7 @@
 <script>
 const productoChics = {
   marca:"Chic’s Fashion",
-  logo:"imagenes/logo chics fashion.png",
+  logo:"imagenes/logo chics.png",
   imagen:"imagenes/carta-tra-chics.png",
   clave:"esmalte-tradicional-chics",
   nombre:"Esmalte Tradicional Chic’s Fashion",
@@ -1384,7 +1448,7 @@ function crearProducto(){
       <div class="imagen-contenedor" style="aspect-ratio:4/3;background:#fff;">
         <img src="${productoChics.imagen}" alt="Carta de colores Chic’s Fashion Tradicional"
              loading="lazy" style="object-fit:contain;">
-        <span class="badge">ELIGE TU REFERENCIA</span>
+        
       </div>
 
       <div class="info">
