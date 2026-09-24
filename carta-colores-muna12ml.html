@@ -1703,16 +1703,37 @@
     }
 
     function codigoOdoo(ref) {
-       const numero = String(Number(ref)).padStart(2, "0");
+      const numero = String(Number(ref)).padStart(2, "0");
+      const numeroSimple = String(Number(ref));
 
-       // ÚNICAMENTE la REF. 01 usa este código especial en inventario.
-       if (numero === "01") return "2874-01";
+      // Referencias que no aparecen en el inventario.
+      if (["16", "21", "23", "32", "33", "40", "41", "42", "44"].includes(numero)) {
+        return null;
+      }
 
-       // Las REF. 23 y 24 son la misma referencia y comparten el inventario de la 24.
-       if (numero === "23" || numero === "24") return "MUNA2874-24";
+      // Buscar las variantes reales con las que aparecen los códigos en inventario.
+      const variantes = [
+        "2874-" + numero,
+        "2874-" + numeroSimple,
+        "MUNA2874-" + numero,
+        "MUNA2874-" + numeroSimple
+      ];
 
-       // Las demás referencias conservan exactamente su código anterior.
-       return "MUNA2874-" + numero;
+      // La REF. 29 aparece con este código especial.
+      if (numero === "29") variantes.unshift("2874-29-12");
+
+      for (const codigo of variantes) {
+        if (inventarioProductos[codigo]) return codigo;
+      }
+
+      // Algunos registros no tienen código original, pero sí conservan la REF. 2874-## en el nombre.
+      const patron = new RegExp("2874[-\\s#]*0*" + numeroSimple + "(?!\\d)", "i");
+      for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+        const nombre = String(producto && producto.nombre || "");
+        if (patron.test(nombre)) return codigo;
+      }
+
+      return null;
     }
 
     function stockDisponible(ref) {
