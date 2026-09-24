@@ -2267,12 +2267,24 @@
       }
     }
 
-    function stockDeTarjeta(tarjeta) {
-      if (!tarjeta) return 0;
+    function productoInventarioDeTarjeta(tarjeta) {
+      if (!tarjeta) return null;
 
       const codigo = tarjeta.dataset.codigoOdoo;
-      const producto = inventarioProductos[codigo];
+      if (inventarioProductos[codigo]) return inventarioProductos[codigo];
 
+      if (codigo === "921-L16") {
+        for (const producto of Object.values(inventarioProductos)) {
+          const nombre = String(producto && producto.nombre || "").toUpperCase();
+          if (nombre.includes("921-L16")) return producto;
+        }
+      }
+
+      return null;
+    }
+
+    function stockDeTarjeta(tarjeta) {
+      const producto = productoInventarioDeTarjeta(tarjeta);
       if (!producto) return 0;
 
       const cantidad = Number(producto.disponible || 0);
@@ -2299,7 +2311,7 @@
       const agotado = tarjeta.querySelector(".contenido-agotado");
       const input = tarjeta.querySelector(".cantidad-producto input");
 
-      if (!inventarioProductos[tarjeta.dataset.codigoOdoo]) {
+      if (!productoInventarioDeTarjeta(tarjeta)) {
         tarjeta.classList.add("agotado");
         const estadoCodigo = tarjeta.querySelector(".estado-producto");
         const stockCodigo = tarjeta.querySelector(".stock-producto");
