@@ -1474,6 +1474,15 @@
       const referencia = normalizarTexto(tarjeta.dataset.ref);
       if (!referencia) return null;
 
+      const sinRegistroActual = [
+        "JARDIN DEL CAFE",
+        "HOJA DEL OTONO",
+        "GLACIAR",
+        "VIOLETA DE LA MODA"
+      ];
+
+      if (sinRegistroActual.includes(referencia)) return null;
+
       const candidatos = Object.values(inventarioProductos).filter(producto => {
         const nombre = normalizarTexto(producto && producto.nombre);
         return nombre && nombre.includes(referencia);
