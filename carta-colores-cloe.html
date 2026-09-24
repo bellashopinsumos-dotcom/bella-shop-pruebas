@@ -708,7 +708,9 @@
        CELULAR
     ======================================== */
 
-    @media (max-width: 800px) {
+    
+.carrusel-ayuda{text-align:center;margin-top:10px;color:#9a7180;font-size:12px;font-weight:700}.carrusel-puntos{display:flex;justify-content:center;gap:7px;margin-top:8px}.carrusel-punto{width:8px;height:8px;border-radius:50%;background:#efd4de;transition:.2s}.carrusel-punto.activo{background:#d94a79;transform:scale(1.18)}
+@media(max-width: 800px) {
 
       header {
         padding: 9px 12px 11px;
@@ -1410,7 +1412,7 @@
         <div class="carrusel-fotos">
         <img src="imagenes/carta1-semi-cloe.jpg" alt="Carta de colores Cloe 1">
         <img src="imagenes/carta2-semi-cloe.jpg" alt="Carta de colores Cloe 2">
-        </div>
+        </div><div class="carrusel-ayuda">Desliza para ver más →</div><div class="carrusel-puntos" aria-hidden="true"><span class="carrusel-punto activo"></span><span class="carrusel-punto"></span></div>
       </div>
 
 
@@ -2026,6 +2028,16 @@
     cargarInventario();
   </script>
 
+
+<script id="bellaCarruselPistas">
+(function(){
+ const carrusel=document.querySelector('.carrusel-fotos'); if(!carrusel)return;
+ const puntos=[...document.querySelectorAll('.carrusel-punto')];
+ function actualizar(){const i=Math.round(carrusel.scrollLeft/Math.max(1,carrusel.clientWidth));puntos.forEach((p,n)=>p.classList.toggle('activo',n===i));}
+ carrusel.addEventListener('scroll',actualizar,{passive:true}); actualizar();
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setTimeout(()=>{if(carrusel.scrollLeft<5){carrusel.scrollTo({left:Math.min(36,carrusel.clientWidth*.1),behavior:'smooth'});setTimeout(()=>carrusel.scrollTo({left:0,behavior:'smooth'}),500)}},700)}
+})();
+</script>
 </body>
 
 </html>
