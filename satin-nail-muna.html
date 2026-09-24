@@ -2233,6 +2233,22 @@
       const noDisponible = tarjeta.querySelector(".contenido-agotado");
       const input = tarjeta.querySelector(".cantidad-producto input");
 
+      if (!inventarioProductos[tarjeta.dataset.codigoOdoo]) {
+        tarjeta.classList.add("agotado");
+        const estadoCodigo = tarjeta.querySelector(".estado-producto");
+        const stockCodigo = tarjeta.querySelector(".stock-producto");
+        const disponibleCodigo = tarjeta.querySelector(".contenido-disponible");
+        const agotadoCodigo = tarjeta.querySelector(".contenido-agotado");
+        const inputCodigo = tarjeta.querySelector(".cantidad-producto input");
+        if (estadoCodigo) { estadoCodigo.textContent = "NO DISPONIBLE"; estadoCodigo.classList.remove("estado-disponible"); estadoCodigo.classList.add("estado-agotado"); }
+        if (stockCodigo) stockCodigo.textContent = "CÓDIGO NO ENCONTRADO";
+        if (disponibleCodigo) disponibleCodigo.style.display = "none";
+        if (agotadoCodigo) { agotadoCodigo.style.display = ""; agotadoCodigo.textContent = "CÓDIGO NO ENCONTRADO"; }
+        if (inputCodigo) inputCodigo.disabled = true;
+        tarjeta.querySelectorAll(".cantidad-producto button, .btn-agregar-producto").forEach(boton => boton.disabled = true);
+        return;
+      }
+
       if (stock > 0) {
         tarjeta.classList.remove("agotado");
 
