@@ -2652,11 +2652,49 @@
       }
     }
 
-    function stockDeTarjeta(tarjeta) {
+    function productoInventarioDeTarjeta(tarjeta) {
+      if (!tarjeta) return null;
+
+      const ref = String(tarjeta.dataset.ref || "").trim();
+      const numero = String(Number(ref));
+      const numero2 = numero.padStart(2, "0");
+      const numero3 = numero.padStart(3, "0");
+
+      const codigosExactos = [
+        "923-" + numero,
+        "923-" + numero2,
+        "923-" + numero3,
+        "923" + numero,
+        "923" + numero2,
+        "923" + numero3,
+        "MUNA923-" + numero,
+        "MUNA923-" + numero2,
+        "MUNA923-" + numero3
+      ];
+
+      for (const codigo of codigosExactos) {
+        if (inventarioProductos[codigo]) {
+          tarjeta.dataset.codigoOdoo = codigo;
+          return inventarioProductos[codigo];
+        }
+      }
+
+      const patron = new RegExp("923[-\\s]*0*" + numero + "(?!\\d)", "i");
+      for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+        const nombre = String(producto && producto.nombre || "");
+        if (patron.test(nombre)) {
+          tarjeta.dataset.codigoOdoo = codigo;
+          return producto;
+        }
+      }
+
+      return null;
+    }
+
+function stockDeTarjeta(tarjeta) {
       if (!tarjeta) return 0;
 
-      const codigo = tarjeta.dataset.codigoOdoo;
-      const producto = inventarioProductos[codigo];
+      const producto = productoInventarioDeTarjeta(tarjeta);
 
       if (!producto) return 0;
 
