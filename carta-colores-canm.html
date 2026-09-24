@@ -1476,20 +1476,18 @@
 
       const candidatos = Object.values(inventarioProductos).filter(producto => {
         const nombre = normalizarTexto(producto && producto.nombre);
-        if (!nombre) return false;
-
-        const esCanm = nombre.includes("CANM");
-        const esEsmalte =
-          nombre.includes("ESMALTE") ||
-          nombre.includes("COLOR GEL");
-
-        return esCanm && esEsmalte && nombre.includes(referencia);
+        return nombre && nombre.includes(referencia);
       });
 
       if (!candidatos.length) return null;
 
-      const conStock = candidatos.find(producto => Number(producto.disponible || 0) > 0);
-      return conStock || candidatos[0];
+      const candidatosCanm = candidatos.filter(producto =>
+        normalizarTexto(producto && producto.nombre).includes("CANM")
+      );
+      const grupo = candidatosCanm.length ? candidatosCanm : candidatos;
+
+      const conStock = grupo.find(producto => Number(producto.disponible || 0) > 0);
+      return conStock || grupo[0];
     }
 
     function obtenerStock(tarjeta) {
