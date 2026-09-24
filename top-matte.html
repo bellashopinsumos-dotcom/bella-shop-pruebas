@@ -1235,6 +1235,8 @@
     <div class="grid-productos" id="gridProductos"></div>
   </section>
 
+  <div class="toast" id="toast">Producto agregado 💕</div>
+
 <!-- ======================================
        AYUDA Y REDES
   ======================================= -->
@@ -1408,16 +1410,16 @@
         var carr=leerCarrito(),q=Number(input.value),existente=null;
         for(var i=0;i<carr.length;i++){if(carr[i].clave===p.clave){existente=carr[i];break;}}
         var ya=existente?(Number(existente.cantidad)||0):0;
-        if(ya+q>stock){alert("Solo hay "+stock+" unidad(es) disponibles.");return;}
+        if(ya+q>stock){mostrarToast("Solo hay "+stock+" unidad(es) disponibles.");return;}
         if(existente){existente.cantidad=ya+q;}
         else{carr.push({clave:p.clave,nombre:"Top Matte "+p.marca,referencia:p.ref,precio:p.precio,cantidad:q,imagen:p.imagen,codigoOdoo:(inv.codigo_original_odoo||inv.codigo||p.codigo)});}
         localStorage.setItem(CLAVE_CARRITO,JSON.stringify(carr));
-        alert("💗 Producto agregado a MI PEDIDO");
+        mostrarToast("Top Matte "+p.marca+" agregado a tu pedido 💕");
       };
     }
     return card;
   }
-  function render(){
+  var temporizadorToast;\n  function mostrarToast(m){var t=document.getElementById("toast");if(!t)return;t.textContent=m;t.classList.add("mostrar");clearTimeout(temporizadorToast);temporizadorToast=setTimeout(function(){t.classList.remove("mostrar");},2200);}\n  function render(){
     var grid=document.getElementById("gridProductos");
     if(!grid) return;
     grid.innerHTML="";
