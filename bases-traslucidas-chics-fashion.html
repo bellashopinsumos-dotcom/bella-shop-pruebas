@@ -993,8 +993,10 @@
 
   function crearTarjeta(producto) {
 
+    const productoInventario = encontrarProducto(producto.ref);
+    const codigoEncontrado = !inventarioListo || !!productoInventario;
     const stock = stockDisponible(producto.ref);
-    const disponible = inventarioListo && stock > 0;
+    const disponible = inventarioListo && codigoEncontrado && stock > 0;
 
     const card = document.createElement("article");
 
@@ -1100,7 +1102,7 @@
           `
           : `
             <div class="agotado-bloque">
-              TEMPORALMENTE NO DISPONIBLE
+              ${codigoEncontrado ? "TEMPORALMENTE NO DISPONIBLE" : "CÓDIGO NO ENCONTRADO"}
             </div>
           `
         }
@@ -1223,7 +1225,7 @@
       renderProductos();
 
       mostrarToast(
-        "TEMPORALMENTE NO DISPONIBLE"
+        inventario ? "TEMPORALMENTE NO DISPONIBLE" : "CÓDIGO NO ENCONTRADO"
       );
 
       return;
