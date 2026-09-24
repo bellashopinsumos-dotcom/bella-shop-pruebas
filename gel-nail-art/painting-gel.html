@@ -99,6 +99,22 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 </div>
 </section>
 
+<section class="seccion" style="padding-top:0">
+<div class="marca-bloque">
+<div class="marca-top"><h2>Painting Gel Muna</h2><p>Elige entre los Painting Gel individuales y las paletas Muna. 💗</p></div>
+<h3 style="font-size:24px;margin:5px 0 18px;text-align:center">Painting Gel Muna · Individuales</h3>
+<div class="producto-grid">
+<div class="visual"><div class="carrusel"><img src="imagenes/painting-muna.png" alt="Painting Gel Muna"></div></div>
+<div class="compra">
+<div class="precio">$13.000</div>
+<div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe el nombre de la referencia. Ejemplo: Luna Llena.</div>
+<label for="refMuna">REFERENCIA</label>
+<div class="fila-ref"><input id="refMuna" class="ref-input" autocomplete="off" placeholder="Ej. Luna Llena"><button id="buscarMuna" class="buscar" type="button">BUSCAR</button></div>
+<div id="estadoMuna" class="estado"></div>
+<div id="cantidadMuna" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosMuna">−</button><input id="cantMuna" type="number" value="1" min="1" readonly><button type="button" id="masMuna">+</button></div><div class="total"><span>Total</span><b id="totalMuna">$13.000</b></div><button id="agregarMuna" class="agregar" type="button">AGREGAR AL PEDIDO</button></div>
+</div></div>
+<div style="margin-top:28px;padding:22px;border:1px solid #f0dce3;border-radius:20px;background:#fff7fa;text-align:center"><h3 style="font-size:24px;margin-bottom:7px">Paletas Painting Gel Muna</h3><p style="color:#806870;font-size:14px">Aquí encontrarás las paletas completas de Painting Gel Muna. 💕</p></div>
+</div></section>
 <section class="contacto">
 <h2>¿Necesitas una ayudita? 💕</h2>
 <p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p>
@@ -188,5 +204,25 @@ var car=document.getElementById("carruselLatin"),pts=[].slice.call(document.quer
 })();
 </script>
 
+<script>
+(function(){
+var PRECIO=13000,inv={},actual=null,stock=0,q=1;
+var refs=["ESTRELLA FUGAZ","LUNA LLENA","NOCHE OSCURA","AMANECER LILA","BOSQUE DE HADAS","SOL DE PRIMAVERA","MANDARINA SOLAR"];
+var input=document.getElementById("refMuna"),estado=document.getElementById("estadoMuna"),wrap=document.getElementById("cantidadMuna"),cant=document.getElementById("cantMuna"),total=document.getElementById("totalMuna");
+function norm(v){var x=String(v||"").trim().toUpperCase().replace(/\s+/g," ");if(x==="MANDARINA SOL")x="MANDARINA SOLAR";return x}
+function money(n){return "$"+Number(n).toLocaleString("es-CO")}
+function find(ref){var vals=Object.values(inv);for(var i=0;i<vals.length;i++){var n=String(vals[i].nombre||"").toUpperCase().replace(/\s+/g," ");if(n.indexOf("MUNA")>=0&&n.indexOf("PAINTING")>=0&&n.indexOf(ref)>=0)return vals[i]}return null}
+function cart(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}
+function inCart(ref){var c=cart(),key="Painting Gel Muna - "+ref;for(var i=0;i<c.length;i++)if(c[i].clave===key)return Number(c[i].cantidad||0);return 0}
+function msg(type,title,txt){estado.className="estado show "+type;estado.innerHTML="<strong>"+title+"</strong><div class='unidades'>"+txt+"</div>"}
+function upd(){cant.value=q;total.textContent=money(q*PRECIO)}
+function consult(){actual=null;stock=0;q=1;upd();wrap.classList.remove("show");var ref=norm(input.value);input.value=ref.replace("MANDARINA SOLAR","MANDARINA SOL");if(refs.indexOf(ref)<0){msg("missing","CÓDIGO NO ENCONTRADO","Esa referencia no corresponde a Painting Gel Muna.");return}var p=find(ref);if(!p){msg("missing","CÓDIGO NO ENCONTRADO","No encontramos esa referencia en el inventario actualizado.");return}actual={ref:ref,item:p};stock=Math.max(0,Number(p.disponible||0));if(!stock){msg("zero","TEMPORALMENTE NO DISPONIBLE","0 unidades disponibles.");return}msg("ok","DISPONIBLE",stock+" unidad"+(stock===1?"":"es")+" disponible"+(stock===1?"":"s")+".");wrap.classList.add("show");}
+document.getElementById("buscarMuna").onclick=consult;input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();consult()}});
+document.getElementById("menosMuna").onclick=function(){if(q>1){q--;upd()}};
+document.getElementById("masMuna").onclick=function(){if(actual&&q<stock-inCart(actual.ref)){q++;upd()}else if(actual)msg("zero","CANTIDAD MÁXIMA","Solo hay "+stock+" unidad(es) disponibles.")};
+document.getElementById("agregarMuna").onclick=function(){if(!actual)return;var c=cart(),key="Painting Gel Muna - "+actual.ref,ex=null;for(var i=0;i<c.length;i++)if(c[i].clave===key){ex=c[i];break}if(inCart(actual.ref)+q>stock){msg("zero","CANTIDAD MÁXIMA","Tu pedido no puede superar las unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:key,nombre:"Painting Gel Muna",marca:"Muna",referencia:input.value,codigo:String(actual.item.codigo_original_odoo||actual.item.codigo||""),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/painting-muna.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel Muna agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consult()};
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inv=d.productos||{}}).catch(function(){});
+})();
+</script>
 </body>
 </html>
