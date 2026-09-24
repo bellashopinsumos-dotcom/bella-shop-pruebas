@@ -2214,13 +2214,40 @@
 
     function productoInventarioDeTarjeta(tarjeta) {
       if (!tarjeta) return null;
-      const numero = String(Number(String(tarjeta.dataset.ref || "").trim()));
-      const codigo = "929-" + numero.padStart(3, "0");
 
-      if (inventarioProductos[codigo]) {
-        tarjeta.dataset.codigoOdoo = codigo;
-        return inventarioProductos[codigo];
+      const ref = String(tarjeta.dataset.ref || "").trim();
+      const numero = String(Number(ref));
+      const numero2 = numero.padStart(2, "0");
+      const numero3 = numero.padStart(3, "0");
+
+      const codigosExactos = [
+        "929-" + numero,
+        "929-" + numero2,
+        "929-" + numero3,
+        "929" + numero,
+        "929" + numero2,
+        "929" + numero3,
+        "MUNA929-" + numero,
+        "MUNA929-" + numero2,
+        "MUNA929-" + numero3
+      ];
+
+      for (const codigo of codigosExactos) {
+        if (inventarioProductos[codigo]) {
+          tarjeta.dataset.codigoOdoo = codigo;
+          return inventarioProductos[codigo];
+        }
       }
+
+      const patron = new RegExp("929[-\\s]*0*" + numero + "(?!\\d)", "i");
+      for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+        const nombre = String(producto && producto.nombre || "");
+        if (patron.test(nombre)) {
+          tarjeta.dataset.codigoOdoo = codigo;
+          return producto;
+        }
+      }
+
       return null;
     }
 
