@@ -1040,20 +1040,22 @@
         return inventarioProductos[codigo];
       }
 
-      const referencia = normalizarTexto(tarjeta.dataset.ref);
+      const referenciaCompleta = normalizarTexto(tarjeta.dataset.ref);
+      const referencia = referenciaCompleta
+        .replace(/\b8 ML\b/g, "")
+        .replace(/\b15 ML\b/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+      const presentacion = referenciaCompleta.includes("15 ML") ? "15 ML" :
+                           referenciaCompleta.includes("8 ML") ? "8 ML" : "";
+
       if (!referencia) return null;
 
       const candidatos = Object.values(inventarioProductos).filter(producto => {
         const nombre = normalizarTexto(producto && producto.nombre);
-        if (!nombre) return false;
-
-        const esCanm = nombre.includes("CANM");
-        const esProductoUnas =
-          nombre.includes("ESMALTE") ||
-          nombre.includes("BASE") ||
-          nombre.includes("COLOR GEL");
-
-        return esCanm && esProductoUnas && nombre.includes(referencia);
+        if (!nombre || !nombre.includes(referencia)) return false;
+        if (presentacion && !nombre.includes(presentacion)) return false;
+        return nombre.includes("CANM");
       });
 
       if (!candidatos.length) return null;
@@ -1099,7 +1101,7 @@
         const agotadoCodigo = tarjeta.querySelector(".contenido-agotado");
         const inputCodigo = tarjeta.querySelector(".cantidad-producto input");
         if (estadoCodigo) {
-          estadoCodigo.textContent = "NO DISPONIBLE";
+          estadoCodigo.textContent = "CÓDIGO NO ENCONTRADO";
           estadoCodigo.classList.remove("estado-disponible");
           estadoCodigo.classList.add("estado-agotado");
         }
