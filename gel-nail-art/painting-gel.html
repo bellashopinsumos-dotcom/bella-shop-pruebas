@@ -70,6 +70,35 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 </div>
 </section>
 
+<section class="seccion" style="padding-top:0">
+<div class="marca-bloque">
+<div class="marca-top"><img class="logo-marca" src="../imagenes/logo latin.png" alt="Latin Nails"><h2>Painting Gel Latin</h2><p>Desliza las imágenes, elige tu referencia y agrégala a tu pedido. 💗</p></div>
+<div class="producto-grid">
+<div class="visual">
+<div class="carrusel" id="carruselLatin">
+<img src="imagenes/IMG_1396.PNG" alt="Painting Gel Latin 1">
+<img src="imagenes/IMG_1394.PNG" alt="Painting Gel Latin 2">
+</div>
+<div class="ayuda-slide">Desliza para ver más →</div>
+<div class="puntos" id="puntosLatin"><span class="punto activo"></span><span class="punto"></span></div>
+</div>
+<div class="compra">
+<div class="precio">$22.500</div>
+<div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe la referencia tal como aparece en las imágenes. Ejemplo: 013, M396 o Negro.</div>
+<label for="refLatin">REFERENCIA</label>
+<div class="fila-ref"><input id="refLatin" class="ref-input" inputmode="text" autocomplete="off" placeholder="Ej. 013"><button id="buscarLatin" class="buscar" type="button">BUSCAR</button></div>
+<div id="estadoLatin" class="estado"></div>
+<div id="cantidadLatin" class="cantidad-wrap">
+<label>CANTIDAD</label>
+<div class="cant"><button type="button" id="menosLatin">−</button><input id="cantLatin" type="number" value="1" min="1" readonly><button type="button" id="masLatin">+</button></div>
+<div class="total"><span>Total</span><b id="totalLatin">$22.500</b></div>
+<button id="agregarLatin" class="agregar" type="button">AGREGAR AL PEDIDO</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <section class="contacto">
 <h2>¿Necesitas una ayudita? 💕</h2>
 <p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p>
@@ -120,5 +149,44 @@ fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(fu
 var car=document.getElementById("carruselCloe"),pts=[].slice.call(document.querySelectorAll("#puntosCloe .punto"));car.addEventListener("scroll",function(){var i=Math.round(car.scrollLeft/Math.max(1,car.clientWidth));pts.forEach(function(p,n){p.classList.toggle("activo",n===i)})},{passive:true});
 })();
 </script>
+<script>
+(function(){
+var PRECIO=22500,inventario={},productoActual=null,stockActual=0,cantidad=1;
+var refs=["NEGRO","BLANCO","013","014","032","M396","N474","N881","N008","N136","N414"];
+var input=document.getElementById("refLatin"),estado=document.getElementById("estadoLatin"),wrap=document.getElementById("cantidadLatin"),cant=document.getElementById("cantLatin"),total=document.getElementById("totalLatin");
+function dinero(n){return "$"+Number(n).toLocaleString("es-CO")}
+function normalizar(v){var x=String(v||"").trim().toUpperCase().replace(/\s+/g,"");if(/^\d+$/.test(x))x=x.padStart(3,"0");return x}
+function buscar(ref){
+ var vals=Object.values(inventario),objetivo="PAINTING GEL "+ref+" LATIN NAILS";
+ for(var i=0;i<vals.length;i++){var p=vals[i]||{},n=String(p.nombre||"").toUpperCase().replace(/\s+/g," ").trim();if(n==="ELIMINAR PRODUCTO PAINTING GEL NEGRO LATIN NAILS")continue;if(n===objetivo)return p}
+ return null
+}
+function carrito(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}
+function yaEnCarrito(ref){var c=carrito(),clave="Painting Gel Latin - "+ref;for(var i=0;i<c.length;i++)if(c[i].clave===clave)return Number(c[i].cantidad||0);return 0}
+function mostrar(tipo,titulo,txt){estado.className="estado show "+tipo;estado.innerHTML="<strong>"+titulo+"</strong><div class='unidades'>"+txt+"</div>"}
+function reset(){productoActual=null;stockActual=0;cantidad=1;cant.value=1;total.textContent=dinero(PRECIO);wrap.classList.remove("show")}
+function consultar(){
+ reset();var ref=normalizar(input.value);input.value=ref;
+ if(refs.indexOf(ref)<0){mostrar("missing","CÓDIGO NO ENCONTRADO","Esa referencia no corresponde a esta colección de Painting Gel Latin.");return}
+ var p=buscar(ref);if(!p){mostrar("missing","CÓDIGO NO ENCONTRADO","No encontramos la referencia "+ref+" en el inventario actualizado.");return}
+ productoActual={ref:ref,item:p};stockActual=Math.max(0,Number(p.disponible||0));
+ if(stockActual<=0){mostrar("zero","TEMPORALMENTE NO DISPONIBLE","Referencia "+ref+" · 0 unidades disponibles.");return}
+ mostrar("ok","DISPONIBLE","Referencia "+ref+" · "+stockActual+" unidad"+(stockActual===1?"":"es")+" disponible"+(stockActual===1?"":"s")+".");wrap.classList.add("show");actualizar()
+}
+function actualizar(){cant.value=cantidad;total.textContent=dinero(cantidad*PRECIO)}
+document.getElementById("buscarLatin").onclick=consultar;input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();consultar()}});
+document.getElementById("menosLatin").onclick=function(){if(cantidad>1){cantidad--;actualizar()}};
+document.getElementById("masLatin").onclick=function(){if(!productoActual)return;var libre=stockActual-yaEnCarrito(productoActual.ref);if(cantidad<libre){cantidad++;actualizar()}else mostrar("zero","CANTIDAD MÁXIMA","Solo hay "+stockActual+" unidad(es) disponibles.")};
+document.getElementById("agregarLatin").onclick=function(){
+ if(!productoActual)return;var ref=productoActual.ref,ya=yaEnCarrito(ref);if(ya+cantidad>stockActual){mostrar("zero","CANTIDAD MÁXIMA","Tu pedido no puede superar las unidades disponibles.");return}
+ var c=carrito(),clave="Painting Gel Latin - "+ref,ex=null;for(var i=0;i<c.length;i++)if(c[i].clave===clave){ex=c[i];break}
+ if(ex)ex.cantidad=Number(ex.cantidad||0)+cantidad;else c.push({clave:clave,nombre:"Painting Gel Latin",marca:"Latin",referencia:ref,codigo:String(productoActual.item.codigo_original_odoo||productoActual.item.codigo||""),precio:PRECIO,cantidad:cantidad,imagen:"gel-nail-art/imagenes/IMG_1396.PNG"});
+ localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel Latin agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consultar()
+};
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inventario=d.productos||{}}).catch(function(){});
+var car=document.getElementById("carruselLatin"),pts=[].slice.call(document.querySelectorAll("#puntosLatin .punto"));car.addEventListener("scroll",function(){var i=Math.round(car.scrollLeft/Math.max(1,car.clientWidth));pts.forEach(function(p,n){p.classList.toggle("activo",n===i)})},{passive:true});
+})();
+</script>
+
 </body>
 </html>
