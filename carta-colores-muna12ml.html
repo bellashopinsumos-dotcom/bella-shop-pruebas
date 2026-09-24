@@ -1794,6 +1794,13 @@
         return;
       }
 
+      const codigoInventario = codigoOdoo(ref);
+      if (!inventarioProductos[codigoInventario]) {
+        mensajeError.textContent = "CÓDIGO NO ENCONTRADO";
+        input.select();
+        return;
+      }
+
       const stock = stockDisponible(ref);
 
       if (stock <= 0) {
