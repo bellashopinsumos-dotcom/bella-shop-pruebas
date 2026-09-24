@@ -910,13 +910,30 @@
 
     .carta-visual {
       padding: 18px;
+      overflow: hidden;
     }
 
-    .carta-visual img {
+    .carrusel-fotos {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 12px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .carrusel-fotos::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carrusel-fotos img {
       display: block;
+      flex: 0 0 100%;
       width: 100%;
       height: auto;
       border-radius: 16px;
+      scroll-snap-align: start;
     }
 
     .selector-referencias {
@@ -1390,10 +1407,10 @@
     <div class="producto-contenedor">
 
       <div class="carta-visual">
-        <img
-          src="imagenes/carta-colores-cloe.png"
-          alt="Carta de colores Cloe"
-        >
+        <div class="carrusel-fotos">
+        <img src="imagenes/carta1-semi-cloe.jpg" alt="Carta de colores Cloe 1">
+        <img src="imagenes/carta2-semi-cloe.jpg" alt="Carta de colores Cloe 2">
+        </div>
       </div>
 
 
