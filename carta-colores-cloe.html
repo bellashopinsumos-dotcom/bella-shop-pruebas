@@ -1721,34 +1721,40 @@
       return REFERENCIAS_CARTA_CLOE.has(normalizarReferencia(ref));
     }
 
+    function productoInventario(ref) {
+      const buscada = normalizarReferencia(ref);
+      const codigoPrincipal = "ESP" + String(Number(buscada)).padStart(4, "0");
+
+      const principal = inventarioProductos[codigoPrincipal];
+      if (principal && String(principal.nombre || "").toUpperCase().includes("CLOE")) {
+        return principal;
+      }
+
+      const candidatos = Object.values(inventarioProductos).filter(item => {
+        const nombre = String(item && item.nombre || "").toUpperCase();
+        if (!nombre.includes("CLOE")) return false;
+
+        const match = nombre.match(/\bREF(?:ERENCIA)?\.?\s*#?\s*0*(\d+)\b/i);
+        return match && normalizarReferencia(match[1]) === buscada;
+      });
+
+      if (!candidatos.length) return null;
+
+      const conStock = candidatos.find(item => Number(item.disponible || 0) > 0);
+      return conStock || candidatos[0];
+    }
+
     function codigoOdoo(ref) {
-      return "ESP" + String(Number(ref)).padStart(4, "0");
+      const producto = productoInventario(ref);
+      return producto ? String(producto.codigo || producto.codigo_original_odoo || "") : "";
     }
 
     function stockDisponible(ref) {
-      const codigo = codigoOdoo(ref);
-      const producto = inventarioProductos[codigo];
+      const producto = productoInventario(ref);
+      if (!producto) return 0;
 
-      if (producto && String(producto.nombre || "").toUpperCase().includes("CLOE")) {
-        const cantidad = Number(producto.disponible || 0);
-        return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
-      }
-
-      // Respaldo por nombre: ESMALTE SEMIPERMANENTE REF # CLOE
-      const buscada = normalizarReferencia(ref);
-
-      for (const item of Object.values(inventarioProductos)) {
-        const nombre = String(item.nombre || "").toUpperCase();
-        if (!nombre.includes("CLOE") || !nombre.includes("ESMALTE SEMIPERMANENTE")) continue;
-
-        const match = nombre.match(/\bREF(?:ERENCIA)?\.?\s*#?\s*0*(\d+)\b/i);
-        if (match && normalizarReferencia(match[1]) === buscada) {
-          const cantidad = Number(item.disponible || 0);
-          return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
-        }
-      }
-
-      return 0;
+      const cantidad = Number(producto.disponible || 0);
+      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
     }
 
     function cantidadEnCarrito(ref) {
@@ -1819,8 +1825,8 @@
         return;
       }
 
-      const codigoInventario = codigoOdoo(ref);
-      if (!inventarioProductos[codigoInventario]) {
+      const productoInventarioEncontrado = productoInventario(ref);
+      if (!productoInventarioEncontrado) {
         mensajeError.textContent = "CÓDIGO NO ENCONTRADO";
         input.select();
         return;
