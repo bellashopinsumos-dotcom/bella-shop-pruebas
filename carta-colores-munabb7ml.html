@@ -1695,71 +1695,38 @@
     }
 
     const REFERENCIAS_VALIDAS = ["02","03","08","09","10","11","12","15","17","18","19","20","21","22","23","24","25","26","27","34","35","36","37","38","39","40","41","42","43","45","46","47","50","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77"];
-    const CODIGOS_ODOO = {
-      "08": "MUNABB-2-04",
-      "02": "MUNABB-2-02",
-      "03": "MUNABB-2-03",
-      "09": "MUNABB-2-09",
-      "11": "MUNABB-02-11",
-      "12": "MUNABB-02-12",
-      "15": "MUNABB-02-15",
-      "17": "MUNABB-02-17",
-      "18": "MUNABB-02-18",
-      "19": "MUNABB-2-19",
-      "20": "MUNABB-2-20",
-      "21": "MUNABB-02-21",
-      "22": "MUNABB-02-22",
-      "23": "MUNABB-02-23",
-      "24": "MUNABB-02-24",
-      "25": "MUNABB-02-25",
-      "26": "MUNABB-02-26",
-      "34": "MUNABB-2-34",
-      "35": "MUNABB-2-35",
-      "36": "MUNABB-2-36",
-      "37": "MUNABB-2-37",
-      "38": "MUNABB-2-38",
-      "39": "MUNABB-2-39",
-      "40": "MUNABB-2-40",
-      "41": "MUNABB-2-41",
-      "42": "MUNABB-2-42",
-      "43": "MUNABB-2-43",
-      "45": "MUNABB-2-45",
-      "46": "MUNABB-2-46",
-      "47": "MUNABB-2-47",
-      "50": "MUNABB-2-50",
-      "52": "MUNABB-2-52",
-      "53": "MUNABB-2-53",
-      "54": "MUNABB-2-54",
-      "55": "MUNABB-2-55",
-      "56": "MUNABB-2-56",
-      "57": "MUNABB-2-57",
-      "58": "MUNABB-2-58",
-      "59": "MUNABB-2-59",
-      "60": "MUNABB-2-60",
-      "61": "MUNABB-2-61",
-      "62": "MUNABB-2-62",
-      "63": "MUNABB-2-63",
-      "64": "MUNABB-2-64",
-      "65": "MUNABB-2-65",
-      "66": "MUNABB-2-66",
-      "67": "MUNABB2-67",
-      "68": "MUNABB-2-68",
-      "69": "MUNABB-2-69",
-      "70": "MUNABB-2-70",
-      "71": "MUNABB-2-71",
-      "72": "MUNABB-2-72",
-      "73": "MUNABB-2-73",
-      "74": "MUNABB-2-74",
-      "75": "MUNABB-2-75",
-      "76": "MUNABB-2-76"
-    };
+    function codigoOdoo(ref) {
+      const numero = String(Number(ref));
+      const numero2 = numero.padStart(2, "0");
+      const numero3 = numero.padStart(3, "0");
+
+      const variantes = [
+        "MUNABB-2-" + numero3,
+        "MUNABB-2-" + numero2,
+        "MUNABB-2-" + numero,
+        "MUNABB-02-" + numero3,
+        "MUNABB-02-" + numero2,
+        "MUNABB-02-" + numero,
+        "MUNABB2-" + numero3,
+        "MUNABB2-" + numero2,
+        "MUNABB2-" + numero
+      ];
+
+      for (const codigo of variantes) {
+        if (inventarioProductos[codigo]) return codigo;
+      }
+
+      const patron = new RegExp("MUNABB[-\\s]*0?2[-\\s]*0*" + numero + "(?!\\d)", "i");
+      for (const [codigo, producto] of Object.entries(inventarioProductos)) {
+        const nombre = String(producto && producto.nombre || "");
+        if (patron.test(nombre)) return codigo;
+      }
+
+      return null;
+    }
 
     function referenciaValida(ref) {
       return REFERENCIAS_VALIDAS.includes(ref);
-    }
-
-    function codigoOdoo(ref) {
-      return CODIGOS_ODOO[ref] || null;
     }
 
     function stockDisponible(ref) {
