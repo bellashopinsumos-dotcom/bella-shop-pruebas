@@ -1,1 +1,120 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Painting Gel | Bella Shop</title></head><body><h1>Painting Gel</h1></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Painting Gel | Bella Shop</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:#fffdfd;color:#34292d;overflow-x:hidden}a{-webkit-tap-highlight-color:transparent}
+header{background:rgba(255,253,253,.97);padding:11px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #f2dce4;position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
+.logo img{display:block;width:205px;height:72px;object-fit:contain}.acciones{display:flex;gap:10px;flex-wrap:wrap}.btn-head{min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:11px 17px;border-radius:40px;text-decoration:none;font-size:12px;font-weight:700}.sec{background:#fff;color:#d94a79;border:1px solid #efc7d4}.pedido{background:#e65385;color:#fff;border:1px solid #e65385}
+.hero{position:relative;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;text-align:center;padding:58px 24px;background:radial-gradient(circle at 15% 20%,rgba(245,174,198,.18),transparent 25%),linear-gradient(135deg,#fff6f8,#fffdfd 50%,#fdeef3)}
+.cara{position:absolute;width:300px;right:3%;opacity:.06;pointer-events:none}.hero-in{position:relative;z-index:2;max-width:720px}.tag{display:inline-block;padding:8px 18px;border:1px solid #efcbd7;background:#ffffffcc;color:#d74e7b;border-radius:40px;font-size:11px;letter-spacing:1.2px;font-weight:700;margin-bottom:18px}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500}.hero h1{font-size:50px;margin-bottom:14px}.hero p{font-size:16px;line-height:1.7;color:#765d65}
+.seccion{padding:58px 5% 75px}.marca-bloque{max-width:1120px;margin:auto;background:#fff;border:1px solid #f0dce3;border-radius:25px;box-shadow:0 10px 30px rgba(83,48,58,.07);padding:24px}.marca-top{text-align:center;margin-bottom:20px}.logo-marca{width:150px;height:72px;object-fit:contain;margin-bottom:6px}.marca-top h2{font-size:31px;margin-bottom:7px}.marca-top p{color:#806870;font-size:14px}
+.producto-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(310px,.92fr);gap:30px;align-items:start}.visual{border:1px solid #f0d8e1;border-radius:20px;padding:14px;background:#fff}.carrusel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:10px;scrollbar-width:none}.carrusel::-webkit-scrollbar{display:none}.carrusel img{flex:0 0 100%;width:100%;height:auto;max-height:600px;object-fit:contain;border-radius:15px;scroll-snap-align:start;background:#fff}.ayuda-slide{text-align:center;color:#9a7180;font-size:12px;font-weight:700;margin-top:10px}.puntos{display:flex;justify-content:center;gap:7px;margin-top:8px}.punto{width:8px;height:8px;border-radius:50%;background:#efd4de}.punto.activo{background:#d94a79;transform:scale(1.18)}
+.compra{border:1px solid #f0d8e1;border-radius:20px;padding:24px;background:#fff;position:sticky;top:105px}.precio{font-size:25px;font-weight:800;color:#d94a79;margin-bottom:16px}.instruccion{background:#fff7fa;border:1px solid #f4d8e2;border-radius:15px;padding:14px;color:#6f5961;font-size:13px;line-height:1.55;margin-bottom:17px}.instruccion strong{display:block;color:#d94a79;margin-bottom:4px}
+label{display:block;font-size:12px;font-weight:800;color:#765d65;margin-bottom:7px}.fila-ref{display:grid;grid-template-columns:1fr auto;gap:9px}.ref-input{min-height:48px;border:1px solid #e8cbd5;border-radius:14px;padding:0 14px;font:inherit;text-transform:uppercase;outline:none}.ref-input:focus{border-color:#df7194;box-shadow:0 0 0 3px rgba(223,113,148,.1)}.buscar{border:0;border-radius:14px;padding:0 17px;background:#de5b86;color:#fff;font-weight:800;cursor:pointer}
+.estado{margin-top:15px;border-radius:15px;padding:14px;display:none}.estado.show{display:block}.estado.ok{background:#effaf3;color:#287846;border:1px solid #ccebd7}.estado.zero{background:#fff7ec;color:#9a641c;border:1px solid #f2ddbd}.estado.missing{background:#fff0f3;color:#a83e60;border:1px solid #f0cbd6}.estado strong{display:block;margin-bottom:4px}.unidades{font-size:13px;font-weight:700}
+.cantidad-wrap{display:none;margin-top:17px}.cantidad-wrap.show{display:block}.cant{display:flex;align-items:center;gap:10px;margin:8px 0 14px}.cant button{width:42px;height:42px;border-radius:50%;border:1px solid #e8cbd5;background:#fff;color:#d94a79;font-size:22px;cursor:pointer}.cant input{width:70px;height:44px;text-align:center;border:1px solid #e8cbd5;border-radius:12px;font-weight:800}.total{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid #f3e2e8;font-weight:700}.total b{color:#d94a79;font-size:19px}.agregar{width:100%;min-height:49px;border:0;border-radius:15px;background:#e65385;color:#fff;font-weight:800;cursor:pointer}.agregar:disabled{opacity:.45;cursor:not-allowed}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,25px);background:#35272c;color:#fff;padding:13px 19px;border-radius:30px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:2000}.toast.show{opacity:1;transform:translate(-50%,0)}
+.contacto{position:relative;overflow:hidden;padding:65px 6%;text-align:center;background:linear-gradient(135deg,#fdeaf0,#fff7f9 55%,#fffdfd);border-top:1px solid #f2dce4}.contacto h2{font-size:34px;margin-bottom:12px}.contacto p{max-width:650px;margin:0 auto 23px;color:#765d65;line-height:1.7;font-size:15px}.wa{display:inline-flex;background:#25D366;color:#fff;padding:13px 22px;border-radius:40px;text-decoration:none;font-weight:700;font-size:13px;margin-bottom:20px}.redes{display:flex;justify-content:center;gap:12px;margin-bottom:22px}.red{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#d94d7a;border:1px solid #efc6d3;text-decoration:none;font-weight:800}.ubicacion{display:inline-flex;color:#765d65;text-decoration:none;font-size:13px;font-weight:700;padding:9px 15px;border-radius:30px;background:#ffffffb8;border:1px solid #f0d7df}
+footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.footer-logo{font-family:Georgia,serif;font-size:18px;margin-bottom:5px}.footer-sub{font-size:11px;color:#ddcbd1}
+@media(max-width:800px){header{padding:9px 12px;gap:8px;flex-wrap:wrap}.logo{flex:1}.logo img{width:150px;height:58px}.acciones{gap:7px}.btn-head{min-height:38px;font-size:10px;padding:9px 11px}.hero{min-height:275px;padding:48px 18px}.hero h1{font-size:40px}.producto-grid{grid-template-columns:1fr}.compra{position:static}.seccion{padding:45px 14px 60px}.marca-bloque{padding:16px}.contacto{padding:55px 18px}}
+@media(max-width:440px){.logo img{width:135px;height:54px}.btn-head{font-size:0;width:40px;height:40px;padding:0}.btn-head::after{font-size:17px}.btn-head.volver::after{content:"←"}.btn-head.inicio::after{content:"⌂"}.btn-head.pedido::after{content:"🛒"}.hero h1{font-size:36px}.compra{padding:19px}.marca-top h2{font-size:28px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a>
+<div class="acciones">
+<a class="btn-head sec volver" href="gel-nail-art.html">VOLVER</a>
+<a class="btn-head sec inicio" href="../index.html">INICIO</a>
+<a class="btn-head pedido pedido" href="../carrito.html">MI PEDIDO</a>
+</div>
+</header>
+<section class="hero">
+<img class="cara" src="../imagenes/Cara logo bellashop.png" alt="">
+<div class="hero-in"><span class="tag">GEL NAIL ART</span><h1>Painting Gel</h1><p>Colores intensos y versátiles para crear detalles, trazos y diseños llenos de creatividad. 💕✨ Elige tu marca y encuentra tus referencias favoritas.</p></div>
+</section>
+
+<section class="seccion">
+<div class="marca-bloque">
+<div class="marca-top"><img class="logo-marca" src="../imagenes/logo cloe.png" alt="Cloe"><h2>Painting Gel Cloe</h2><p>Desliza las imágenes, elige tu referencia y agrégala a tu pedido. 💗</p></div>
+<div class="producto-grid">
+<div class="visual">
+<div class="carrusel" id="carruselCloe">
+<img src="imagenes/IMG_1343.PNG" alt="Painting Gel Cloe 1">
+<img src="imagenes/IMG_1344.PNG" alt="Painting Gel Cloe 2">
+<img src="imagenes/IMG_1345.PNG" alt="Painting Gel Cloe 3">
+<img src="imagenes/IMG_1346.PNG" alt="Painting Gel Cloe 4">
+<img src="imagenes/IMG_1347.PNG" alt="Painting Gel Cloe 5">
+<img src="imagenes/IMG_1348.PNG" alt="Painting Gel Cloe 6">
+</div>
+<div class="ayuda-slide">Desliza para ver más →</div>
+<div class="puntos" id="puntosCloe"><span class="punto activo"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span></div>
+</div>
+<div class="compra">
+<div class="precio">$18.500</div>
+<div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe el código PG que aparece en las imágenes. Ejemplo: PG152.</div>
+<label for="refCloe">REFERENCIA</label>
+<div class="fila-ref"><input id="refCloe" class="ref-input" inputmode="text" autocomplete="off" placeholder="Ej. PG152"><button id="buscarCloe" class="buscar" type="button">BUSCAR</button></div>
+<div id="estadoCloe" class="estado"></div>
+<div id="cantidadCloe" class="cantidad-wrap">
+<label>CANTIDAD</label>
+<div class="cant"><button type="button" id="menosCloe">−</button><input id="cantCloe" type="number" value="1" min="1" readonly><button type="button" id="masCloe">+</button></div>
+<div class="total"><span>Total</span><b id="totalCloe">$18.500</b></div>
+<button id="agregarCloe" class="agregar" type="button">AGREGAR AL PEDIDO</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="contacto">
+<h2>¿Necesitas una ayudita? 💕</h2>
+<p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p>
+<a class="wa" href="https://wa.me/573122002698" target="_blank" rel="noopener noreferrer">ESCRÍBENOS POR WHATSAPP</a>
+<div class="redes"><a class="red" href="https://www.instagram.com/bellashop_byluisazu" target="_blank" rel="noopener noreferrer">IG</a><a class="red" href="https://www.facebook.com/share/19W4wkJ3ZL/" target="_blank" rel="noopener noreferrer">f</a><a class="red" href="https://www.tiktok.com/@bellashopbyluisazu" target="_blank" rel="noopener noreferrer">♪</a></div>
+<a class="ubicacion" href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Bella Shop · Popayán, Cauca</a>
+</section>
+<footer><div class="footer-logo">Bella Shop</div><div class="footer-sub">Tienda de Belleza · Popayán, Cauca</div></footer>
+<div class="toast" id="toast">Producto agregado a tu pedido 💕</div>
+
+<script>
+(function(){
+var PRECIO=18500, inventario={}, productoActual=null, stockActual=0, cantidad=1;
+var refsPermitidas=["PG144","PG145","PG146","PG147","PG148","PG149","PG150","PG151","PG152","PG153","PG154","PG155","PG156","PG157","PG158","PG159","PG160","PG161","PG162","PG163","PG164","PG165","PG172","PG166","PG167","PG168","PG169","PG170","PG171"];
+var input=document.getElementById("refCloe"),estado=document.getElementById("estadoCloe"),wrap=document.getElementById("cantidadCloe"),cant=document.getElementById("cantCloe"),total=document.getElementById("totalCloe");
+function dinero(n){return "$"+Number(n).toLocaleString("es-CO")}
+function normalizar(v){var s=String(v||"").trim().toUpperCase().replace(/\s+/g,"");if(/^\d+$/.test(s))s="PG"+s;var m=s.match(/^PG0*(\d+)$/);return m?"PG"+m[1]:s}
+function codigoInventario(ref){var n=Number(ref.replace("PG",""));return "PG"+String(n).padStart(4,"0")}
+function buscarProducto(ref){var cod=codigoInventario(ref);if(inventario[cod])return inventario[cod];var vals=Object.values(inventario);for(var i=0;i<vals.length;i++){var p=vals[i]||{},nom=String(p.nombre||"").toUpperCase();if(nom.indexOf("CLOE")>=0&&nom.indexOf("PAINTING")>=0&&new RegExp("\\b"+ref.replace("PG","")+"\\b").test(nom))return p}return null}
+function enCarrito(ref){try{var c=JSON.parse(localStorage.getItem("bellaShopCarrito"))||[];var x=c.find(function(i){return i.clave==="Painting Gel Cloe - "+ref});return x?Number(x.cantidad||0):0}catch(e){return 0}}
+function mostrarEstado(tipo,titulo,txt){estado.className="estado show "+tipo;estado.innerHTML="<strong>"+titulo+"</strong><div class='unidades'>"+txt+"</div>"}
+function resetCompra(){productoActual=null;stockActual=0;cantidad=1;cant.value=1;total.textContent=dinero(PRECIO);wrap.classList.remove("show")}
+function consultar(){
+ resetCompra();var ref=normalizar(input.value);input.value=ref;
+ if(refsPermitidas.indexOf(ref)<0){mostrarEstado("missing","CÓDIGO NO ENCONTRADO","Esa referencia no corresponde a esta colección de Painting Gel Cloe.");return}
+ var p=buscarProducto(ref);
+ if(!p){mostrarEstado("missing","CÓDIGO NO ENCONTRADO","No encontramos "+ref+" en el inventario actualizado.");return}
+ productoActual={ref:ref,item:p};stockActual=Math.max(0,Number(p.disponible||0));
+ if(stockActual<=0){mostrarEstado("zero","TEMPORALMENTE NO DISPONIBLE",ref+" · 0 unidades disponibles.");return}
+ productoActual.item=p;mostrarEstado("ok","DISPONIBLE",ref+" · "+stockActual+" unidad"+(stockActual===1?"":"es")+" disponible"+(stockActual===1?"":"s")+".");wrap.classList.add("show");actualizar();
+}
+function actualizar(){cant.value=cantidad;total.textContent=dinero(cantidad*PRECIO)}
+document.getElementById("buscarCloe").onclick=consultar;input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();consultar()}});
+document.getElementById("menosCloe").onclick=function(){if(cantidad>1){cantidad--;actualizar()}};
+document.getElementById("masCloe").onclick=function(){if(!productoActual)return;var disponible=stockActual-enCarrito(productoActual.ref);if(cantidad<disponible){cantidad++;actualizar()}else{mostrarEstado("zero","CANTIDAD MÁXIMA","Solo hay "+stockActual+" unidad"+(stockActual===1?"":"es")+" disponible"+(stockActual===1?"":"s")+".")}};
+document.getElementById("agregarCloe").onclick=function(){
+ if(!productoActual)return;var ref=productoActual.ref,ya=enCarrito(ref);if(ya+cantidad>stockActual){mostrarEstado("zero","CANTIDAD MÁXIMA","Tu pedido no puede superar las unidades disponibles.");return}
+ var carrito=[];try{carrito=JSON.parse(localStorage.getItem("bellaShopCarrito"))||[]}catch(e){}
+ var clave="Painting Gel Cloe - "+ref,ex=carrito.find(function(i){return i.clave===clave});
+ if(ex)ex.cantidad=Number(ex.cantidad||0)+cantidad;else carrito.push({clave:clave,nombre:"Painting Gel Cloe",marca:"Cloe",referencia:ref,codigo:String(productoActual.item.codigo||productoActual.item.codigo_original_odoo||""),precio:PRECIO,cantidad:cantidad,imagen:"gel-nail-art/imagenes/IMG_1343.PNG"});
+ localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));var t=document.getElementById("toast");t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consultar();
+};
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inventario=d.productos||{}}).catch(function(){inventario={}});
+var car=document.getElementById("carruselCloe"),pts=[].slice.call(document.querySelectorAll("#puntosCloe .punto"));car.addEventListener("scroll",function(){var i=Math.round(car.scrollLeft/Math.max(1,car.clientWidth));pts.forEach(function(p,n){p.classList.toggle("activo",n===i)})},{passive:true});
+})();
+</script>
+</body>
+</html>
