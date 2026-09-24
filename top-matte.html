@@ -1348,29 +1348,87 @@
 
 
 <script>
-const CLAVE_CARRITO="bellaShopCarrito";
-const productosPagina=[
- {ref:"TOP COAT MATTE 8ML LATIN NAILS",codigo:"7707571984335",marca:"Latin",presentacion:"8 ml",precio:18000,imagen:"imagenes/top-matte-latin.jpeg",clave:"top-matte-latin"},
- {ref:"TOP MATTE CANM 8ML",codigo:"SC-162EAD402CF3",marca:"CANM",presentacion:"8 ml",precio:17000,imagen:"imagenes/top-matte-canm.jpeg",clave:"top-matte-canm"}
-];
-let inventario={};
-const dinero=n=>"$"+Number(n).toLocaleString("es-CO");
-function carrito(){try{const x=JSON.parse(localStorage.getItem(CLAVE_CARRITO)||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}
-function productoInventario(p){if(inventario[p.codigo])return inventario[p.codigo];return Object.values(inventario).find(x=>String(x.nombre||"").toUpperCase()===p.ref.toUpperCase())||null}
-function render(){
- const grid=document.getElementById("gridProductos");grid.innerHTML="";
- productosPagina.forEach(p=>{
-  const inv=productoInventario(p),encontrado=!!inv,stock=encontrado?Math.max(0,Number(inv.disponible)||0):0,ok=stock>0;
-  const card=document.createElement("article");card.className="producto"+(ok?"":" no-disponible");
-  card.innerHTML=`<div class="imagen-contenedor"><span class="badge">${ok?"DISPONIBLE":encontrado?"TEMPORALMENTE NO DISPONIBLE":"CÓDIGO NO ENCONTRADO"}</span><img src="${p.imagen}" alt="Top Matte ${p.marca}"></div><div class="info"><div class="tipo">TOP MATTE</div><h3>${p.marca}</h3><div class="ref">${p.presentacion}</div><div class="precio-producto">${dinero(p.precio)}</div><div class="unidad">c/u</div><div class="stock-producto">${ok?"Disponibles: "+stock:encontrado?"TEMPORALMENTE NO DISPONIBLE":"CÓDIGO NO ENCONTRADO"}</div><div class="cantidad-control"><button class="menos" ${ok?"":"disabled"}>−</button><input class="cantidad-input" type="number" value="1" min="1" max="${Math.max(1,stock)}" ${ok?"":"disabled"}><button class="mas" ${ok?"":"disabled"}>+</button></div><div class="total-compra"><span>TOTAL</span><strong>${dinero(p.precio)}</strong></div><button class="agregar-pedido" ${ok?"":"disabled"}>AGREGAR AL PEDIDO</button></div>`;
-  grid.appendChild(card); if(!ok)return;
-  const input=card.querySelector(".cantidad-input"),total=card.querySelector(".total-compra strong");
-  const actualiza=v=>{input.value=Math.max(1,Math.min(stock,Number(v)||1));total.textContent=dinero(p.precio*Number(input.value))};
-  card.querySelector(".menos").onclick=()=>actualiza(Number(input.value)-1);card.querySelector(".mas").onclick=()=>actualiza(Number(input.value)+1);input.oninput=()=>actualiza(input.value);
-  card.querySelector(".agregar-pedido").onclick=()=>{const c=carrito(),q=Number(input.value),e=c.find(x=>x.clave===p.clave),ya=e?Number(e.cantidad)||0:0;if(ya+q>stock)return alert("Solo hay "+stock+" unidad(es) disponibles.");if(e)e.cantidad=ya+q;else c.push({clave:p.clave,nombre:"Top Matte "+p.marca,referencia:p.ref,precio:p.precio,cantidad:q,imagen:p.imagen,codigoOdoo:inv.codigo_original_odoo||inv.codigo||p.codigo});localStorage.setItem(CLAVE_CARRITO,JSON.stringify(c));alert("💗 Producto agregado a MI PEDIDO");};
- });
-}
-render();\nfetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};render()}).catch(()=>{});
+(function(){
+  var CLAVE_CARRITO="bellaShopCarrito";
+  var productosPagina=[
+    {ref:"TOP COAT MATTE 8ML LATIN NAILS",codigo:"7707571984335",marca:"Latin",presentacion:"8 ml",precio:18000,imagen:"imagenes/top-matte-latin.jpeg",clave:"top-matte-latin"},
+    {ref:"TOP MATTE CANM 8ML",codigo:"SC-162EAD402CF3",marca:"CANM",presentacion:"8 ml",precio:17000,imagen:"imagenes/top-matte-canm.jpeg",clave:"top-matte-canm"}
+  ];
+  var inventario={};
+
+  function dinero(n){return "$"+Number(n).toLocaleString("es-CO");}
+  function leerCarrito(){try{var x=JSON.parse(localStorage.getItem(CLAVE_CARRITO)||"[]");return Array.isArray(x)?x:[];}catch(e){return [];}}
+  function buscarInventario(p){
+    if(inventario[p.codigo]) return inventario[p.codigo];
+    var vals=Object.values(inventario);
+    for(var i=0;i<vals.length;i++){
+      if(String(vals[i].nombre||"").toUpperCase()===p.ref.toUpperCase()) return vals[i];
+    }
+    return null;
+  }
+  function crearTarjeta(p){
+    var inv=buscarInventario(p);
+    var encontrado=!!inv;
+    var stock=encontrado?Math.max(0,Number(inv.disponible)||0):0;
+    var disponible=stock>0;
+    var card=document.createElement("article");
+    card.className="producto"+(disponible?"":" no-disponible");
+    var estado=disponible?"DISPONIBLE":(encontrado?"TEMPORALMENTE NO DISPONIBLE":"CÓDIGO NO ENCONTRADO");
+    card.innerHTML=
+      '<div class="imagen-contenedor">'+
+        '<span class="badge">'+estado+'</span>'+
+        '<img src="'+p.imagen+'" alt="Top Matte '+p.marca+'">'+
+      '</div>'+
+      '<div class="info">'+
+        '<div class="tipo">TOP MATTE</div>'+
+        '<h3>'+p.marca+'</h3>'+
+        '<div class="ref">'+p.presentacion+'</div>'+
+        '<div class="precio-producto">'+dinero(p.precio)+'</div>'+
+        '<div class="unidad">c/u</div>'+
+        '<div class="stock-producto">'+(disponible?"Disponibles: "+stock:estado)+'</div>'+
+        '<div class="cantidad-control">'+
+          '<button class="menos" '+(disponible?"":"disabled")+'>−</button>'+
+          '<input class="cantidad-input" type="number" value="1" min="1" max="'+Math.max(1,stock)+'" '+(disponible?"":"disabled")+'>'+
+          '<button class="mas" '+(disponible?"":"disabled")+'>+</button>'+
+        '</div>'+
+        '<div class="total-compra"><span>TOTAL</span><strong>'+dinero(p.precio)+'</strong></div>'+
+        '<button class="agregar-pedido" '+(disponible?"":"disabled")+'>AGREGAR AL PEDIDO</button>'+
+      '</div>';
+    if(disponible){
+      var input=card.querySelector(".cantidad-input");
+      var total=card.querySelector(".total-compra strong");
+      function actualizar(v){
+        var q=Math.max(1,Math.min(stock,Number(v)||1));
+        input.value=q; total.textContent=dinero(p.precio*q);
+      }
+      card.querySelector(".menos").onclick=function(){actualizar(Number(input.value)-1);};
+      card.querySelector(".mas").onclick=function(){actualizar(Number(input.value)+1);};
+      input.oninput=function(){actualizar(input.value);};
+      card.querySelector(".agregar-pedido").onclick=function(){
+        var carr=leerCarrito(),q=Number(input.value),existente=null;
+        for(var i=0;i<carr.length;i++){if(carr[i].clave===p.clave){existente=carr[i];break;}}
+        var ya=existente?(Number(existente.cantidad)||0):0;
+        if(ya+q>stock){alert("Solo hay "+stock+" unidad(es) disponibles.");return;}
+        if(existente){existente.cantidad=ya+q;}
+        else{carr.push({clave:p.clave,nombre:"Top Matte "+p.marca,referencia:p.ref,precio:p.precio,cantidad:q,imagen:p.imagen,codigoOdoo:(inv.codigo_original_odoo||inv.codigo||p.codigo)});}
+        localStorage.setItem(CLAVE_CARRITO,JSON.stringify(carr));
+        alert("💗 Producto agregado a MI PEDIDO");
+      };
+    }
+    return card;
+  }
+  function render(){
+    var grid=document.getElementById("gridProductos");
+    if(!grid) return;
+    grid.innerHTML="";
+    for(var i=0;i<productosPagina.length;i++) grid.appendChild(crearTarjeta(productosPagina[i]));
+  }
+  render();
+  fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"})
+    .then(function(r){return r.json();})
+    .then(function(d){inventario=d.productos||{};render();})
+    .catch(function(){});
+})();
 </script>
 
 </body>
