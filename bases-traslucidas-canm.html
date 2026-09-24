@@ -1023,9 +1023,47 @@
       }
     }
 
-    function obtenerStock(tarjeta) {
+    function normalizarTexto(valor) {
+      return String(valor || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase()
+        .replace(/[^A-Z0-9]+/g, " ")
+        .trim();
+    }
+
+    function productoInventarioDeTarjeta(tarjeta) {
+      if (!tarjeta) return null;
+
       const codigo = tarjeta.dataset.codigoOdoo;
-      const producto = inventarioProductos[codigo];
+      if (codigo && inventarioProductos[codigo]) {
+        return inventarioProductos[codigo];
+      }
+
+      const referencia = normalizarTexto(tarjeta.dataset.ref);
+      if (!referencia) return null;
+
+      const candidatos = Object.values(inventarioProductos).filter(producto => {
+        const nombre = normalizarTexto(producto && producto.nombre);
+        if (!nombre) return false;
+
+        const esCanm = nombre.includes("CANM");
+        const esProductoUnas =
+          nombre.includes("ESMALTE") ||
+          nombre.includes("BASE") ||
+          nombre.includes("COLOR GEL");
+
+        return esCanm && esProductoUnas && nombre.includes(referencia);
+      });
+
+      if (!candidatos.length) return null;
+
+      const conStock = candidatos.find(producto => Number(producto.disponible || 0) > 0);
+      return conStock || candidatos[0];
+    }
+
+    function obtenerStock(tarjeta) {
+      const producto = productoInventarioDeTarjeta(tarjeta);
       if (!producto) return 0;
       const stock = Number(producto.disponible || 0);
       return Number.isFinite(stock) ? Math.max(0, stock) : 0;
@@ -1053,7 +1091,7 @@
       const input = tarjeta.querySelector(".cantidad-producto input");
       const stock = obtenerStock(tarjeta);
 
-      if (!inventarioProductos[tarjeta.dataset.codigoOdoo]) {
+      if (!productoInventarioDeTarjeta(tarjeta)) {
         tarjeta.classList.add("agotado");
         const estadoCodigo = tarjeta.querySelector(".estado-producto");
         const stockCodigo = tarjeta.querySelector(".stock-producto");
