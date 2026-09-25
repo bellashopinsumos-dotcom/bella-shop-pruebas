@@ -138,6 +138,22 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 <button id="agregarMara" class="agregar" type="button">AGREGAR AL PEDIDO</button>
 </div>
 </div></div></div></section>
+<section class="seccion" style="padding-top:35px">
+<div class="marca-bloque" id="ilu">
+<div class="marca-top"><h2>Paleta Painting Gel ILU</h2><p>Paleta de Painting Gel para crear diseños y detalles. 💗</p></div>
+<div class="producto-grid">
+<div class="visual"><img src="imagenes/painting-ilu.png" alt="Paleta Painting Gel ILU" style="display:block;width:100%;height:auto;object-fit:contain;object-position:center;border-radius:15px"></div>
+<div class="compra">
+<div class="precio">$35.000</div>
+<div class="instruccion"><strong>Paleta Painting Gel ILU 💕</strong></div>
+<div id="estadoIlu" class="estado"></div>
+<div id="cantidadIlu" class="cantidad-wrap">
+<label>CANTIDAD</label>
+<div class="cant"><button type="button" id="menosIlu">−</button><input id="cantIlu" type="number" value="1" min="1" readonly><button type="button" id="masIlu">+</button></div>
+<div class="total"><span>Total</span><b id="totalIlu">$35.000</b></div>
+<button id="agregarIlu" class="agregar" type="button">AGREGAR AL PEDIDO</button>
+</div>
+</div></div></div></section>
 <section class="contacto">
 <h2>¿Necesitas una ayudita? 💕</h2>
 <p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p>
@@ -285,6 +301,15 @@ function mostrar(p){actual=p||null;stock=actual?Math.max(0,Number(actual.disponi
 document.getElementById("menosMara").onclick=function(){if(q>1){q--;upd()}};document.getElementById("masMara").onclick=function(){if(actual&&q<stock-inCart()){q++;upd()}else if(actual)msg("zero","CANTIDAD MÁXIMA","Solo hay "+stock+" unidad(es) disponibles.")};
 document.getElementById("agregarMara").onclick=function(){if(!actual||!stock)return;var c=cart(),k="Painting Gel Mara - MG002",ex=c.find(function(x){return x.clave===k});if(inCart()+q>stock){msg("zero","CANTIDAD MÁXIMA","No hay más unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:k,nombre:"Painting Gel Blanco Mara",marca:"Mara",referencia:"MG002",codigo:String(actual.codigo_original_odoo||actual.codigo||"MGP002"),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/paintinf-blancomara.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel Mara agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);mostrar(actual)};
 fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){mostrar((d.productos||{})["MGP002"]||null)}).catch(function(){mostrar(null)});
+})();
+</script>
+<script>
+(function(){var PRECIO=35000,actual=null,stock=0,q=1,estado=document.getElementById("estadoIlu"),wrap=document.getElementById("cantidadIlu"),cant=document.getElementById("cantIlu"),total=document.getElementById("totalIlu");
+function money(n){return "$"+Number(n).toLocaleString("es-CO")}function upd(){cant.value=q;total.textContent=money(q*PRECIO)}function msg(t,a,b){estado.className="estado show "+t;estado.innerHTML="<strong>"+a+"</strong><div class='unidades'>"+b+"</div>"}function cart(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}function inCart(){return cart().filter(function(x){return x.clave==="Paleta Painting Gel ILU - DN4749"}).reduce(function(a,x){return a+Number(x.cantidad||0)},0)}
+function mostrar(p){actual=p||null;stock=actual?Math.max(0,Number(actual.disponible||0)):0;q=1;upd();if(!actual){wrap.classList.remove("show");msg("missing","CÓDIGO NO ENCONTRADO","No encontramos este producto en el inventario actualizado.");return}if(!stock){wrap.classList.remove("show");msg("zero","TEMPORALMENTE NO DISPONIBLE","Paleta Painting Gel ILU · 0 unidades disponibles.");return}msg("ok","DISPONIBLE","Paleta Painting Gel ILU · "+stock+" unidad"+(stock===1?"":"es")+" disponible"+(stock===1?"":"s")+".");wrap.classList.add("show")}
+document.getElementById("menosIlu").onclick=function(){if(q>1){q--;upd()}};document.getElementById("masIlu").onclick=function(){if(actual&&q<stock-inCart()){q++;upd()}else if(actual)msg("zero","CANTIDAD MÁXIMA","Solo hay "+stock+" unidad(es) disponibles.")};
+document.getElementById("agregarIlu").onclick=function(){if(!actual||!stock)return;var c=cart(),k="Paleta Painting Gel ILU - DN4749",ex=c.find(function(x){return x.clave===k});if(inCart()+q>stock){msg("zero","CANTIDAD MÁXIMA","No hay más unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:k,nombre:"Paleta Painting Gel ILU",marca:"ILU",referencia:"DN4749",codigo:String(actual.codigo_original_odoo||actual.codigo||"DN4749"),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/painting-ilu.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Paleta Painting Gel ILU agregada a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);mostrar(actual)};
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){mostrar((d.productos||{})["DN4749"]||null)}).catch(function(){mostrar(null)});
 })();
 </script>
 </body>
