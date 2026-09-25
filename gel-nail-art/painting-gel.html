@@ -129,11 +129,14 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 <div class="visual"><img src="imagenes/paintinf-blancomara.png" alt="Painting Gel Blanco Mara" style="display:block;width:100%;height:auto;object-fit:contain;object-position:center;border-radius:15px"></div>
 <div class="compra">
 <div class="precio">$20.000</div>
-<div class="instruccion"><strong>Referencia disponible 💕</strong>Blanco · Ref. MG002</div>
-<label for="refMara">REFERENCIA</label>
-<div class="fila-ref"><input id="refMara" class="ref-input" autocomplete="off" placeholder="MG002"><button id="buscarMara" class="buscar" type="button">BUSCAR</button></div>
+<div class="instruccion"><strong>Blanco · Ref. MG002 💕</strong></div>
 <div id="estadoMara" class="estado"></div>
-<div id="cantidadMara" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosMara">−</button><input id="cantMara" type="number" value="1" min="1" readonly><button type="button" id="masMara">+</button></div><div class="total"><span>Total</span><b id="totalMara">$20.000</b></div><button id="agregarMara" class="agregar" type="button">AGREGAR AL PEDIDO</button></div>
+<div id="cantidadMara" class="cantidad-wrap">
+<label>CANTIDAD</label>
+<div class="cant"><button type="button" id="menosMara">−</button><input id="cantMara" type="number" value="1" min="1" readonly><button type="button" id="masMara">+</button></div>
+<div class="total"><span>Total</span><b id="totalMara">$20.000</b></div>
+<button id="agregarMara" class="agregar" type="button">AGREGAR AL PEDIDO</button>
+</div>
 </div></div></div></section>
 <section class="contacto">
 <h2>¿Necesitas una ayudita? 💕</h2>
@@ -276,12 +279,12 @@ fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(fu
 })();
 </script>
 <script>
-(function(){var PRECIO=20000,inv={},actual=null,stock=0,q=1,input=document.getElementById("refMara"),estado=document.getElementById("estadoMara"),wrap=document.getElementById("cantidadMara"),cant=document.getElementById("cantMara"),total=document.getElementById("totalMara");
-function norm(x){return String(x||"").trim().toUpperCase().replace(/\s+/g,"")}function money(n){return "$"+Number(n).toLocaleString("es-CO")}function upd(){cant.value=q;total.textContent=money(q*PRECIO)}function msg(t,a,b){estado.className="estado show "+t;estado.innerHTML="<strong>"+a+"</strong><div class='unidades'>"+b+"</div>"}function cart(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}function inCart(){return cart().filter(function(x){return x.clave==="Painting Gel Mara - MG002"}).reduce(function(a,x){return a+Number(x.cantidad||0)},0)}
-function consult(){actual=null;stock=0;q=1;upd();wrap.classList.remove("show");var r=norm(input.value);if(r!=="MG002"&&r!=="MGP002"&&r!=="BLANCO"){msg("missing","CÓDIGO NO ENCONTRADO","La referencia disponible es Blanco · MG002.");return}input.value="MG002";var p=inv["MGP002"]||null;if(!p){msg("missing","CÓDIGO NO ENCONTRADO","No encontramos esta referencia en el inventario actualizado.");return}actual=p;stock=Math.max(0,Number(p.disponible||0));if(!stock){msg("zero","TEMPORALMENTE NO DISPONIBLE","Blanco · MG002 · 0 unidades disponibles.");return}msg("ok","DISPONIBLE","Blanco · MG002 · "+stock+" unidad"+(stock===1?"":"es")+" disponible"+(stock===1?"":"s")+".");wrap.classList.add("show")}
-document.getElementById("buscarMara").onclick=consult;input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();consult()}});document.getElementById("menosMara").onclick=function(){if(q>1){q--;upd()}};document.getElementById("masMara").onclick=function(){if(actual&&q<stock-inCart()){q++;upd()}else if(actual)msg("zero","CANTIDAD MÁXIMA","Solo hay "+stock+" unidad(es) disponibles.")};
-document.getElementById("agregarMara").onclick=function(){if(!actual)return;var c=cart(),k="Painting Gel Mara - MG002",ex=c.find(function(x){return x.clave===k});if(inCart()+q>stock){msg("zero","CANTIDAD MÁXIMA","No hay más unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:k,nombre:"Painting Gel Blanco Mara",marca:"Mara",referencia:"MG002",codigo:String(actual.codigo_original_odoo||actual.codigo||"MGP002"),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/paintinf-blancomara.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel Mara agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consult()};
-fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inv=d.productos||{}}).catch(function(){});
+(function(){var PRECIO=20000,actual=null,stock=0,q=1,estado=document.getElementById("estadoMara"),wrap=document.getElementById("cantidadMara"),cant=document.getElementById("cantMara"),total=document.getElementById("totalMara");
+function money(n){return "$"+Number(n).toLocaleString("es-CO")}function upd(){cant.value=q;total.textContent=money(q*PRECIO)}function msg(t,a,b){estado.className="estado show "+t;estado.innerHTML="<strong>"+a+"</strong><div class='unidades'>"+b+"</div>"}function cart(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}function inCart(){return cart().filter(function(x){return x.clave==="Painting Gel Mara - MG002"}).reduce(function(a,x){return a+Number(x.cantidad||0)},0)}
+function mostrar(p){actual=p||null;stock=actual?Math.max(0,Number(actual.disponible||0)):0;q=1;upd();if(!actual){wrap.classList.remove("show");msg("missing","CÓDIGO NO ENCONTRADO","No encontramos este producto en el inventario actualizado.");return}if(!stock){wrap.classList.remove("show");msg("zero","TEMPORALMENTE NO DISPONIBLE","Blanco · MG002 · 0 unidades disponibles.");return}msg("ok","DISPONIBLE","Blanco · MG002 · "+stock+" unidad"+(stock===1?"":"es")+" disponible"+(stock===1?"":"s")+".");wrap.classList.add("show")}
+document.getElementById("menosMara").onclick=function(){if(q>1){q--;upd()}};document.getElementById("masMara").onclick=function(){if(actual&&q<stock-inCart()){q++;upd()}else if(actual)msg("zero","CANTIDAD MÁXIMA","Solo hay "+stock+" unidad(es) disponibles.")};
+document.getElementById("agregarMara").onclick=function(){if(!actual||!stock)return;var c=cart(),k="Painting Gel Mara - MG002",ex=c.find(function(x){return x.clave===k});if(inCart()+q>stock){msg("zero","CANTIDAD MÁXIMA","No hay más unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:k,nombre:"Painting Gel Blanco Mara",marca:"Mara",referencia:"MG002",codigo:String(actual.codigo_original_odoo||actual.codigo||"MGP002"),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/paintinf-blancomara.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel Mara agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);mostrar(actual)};
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){mostrar((d.productos||{})["MGP002"]||null)}).catch(function(){mostrar(null)});
 })();
 </script>
 </body>
