@@ -43,7 +43,6 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 <div class="producto-grid">
 <div class="visual">
 <div class="carrusel" id="carruselCloe">
-<img src="imagenes/IMG_1343.PNG" alt="Painting Gel Cloe 1">
 <img src="imagenes/IMG_1344.PNG" alt="Painting Gel Cloe 2">
 <img src="imagenes/IMG_1345.PNG" alt="Painting Gel Cloe 3">
 <img src="imagenes/IMG_1346.PNG" alt="Painting Gel Cloe 4">
@@ -51,7 +50,7 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 <img src="imagenes/IMG_1348.PNG" alt="Painting Gel Cloe 6">
 </div>
 <div class="ayuda-slide">Desliza para ver más →</div>
-<div class="puntos" id="puntosCloe"><span class="punto activo"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span></div>
+<div class="puntos" id="puntosCloe"><span class="punto activo"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span></div>
 </div>
 <div class="compra">
 <div class="precio">$18.500</div>
@@ -173,7 +172,7 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.foo
 <script>
 (function(){
 var PRECIO=18500, inventario={}, productoActual=null, stockActual=0, cantidad=1;
-var refsPermitidas=["PG144","PG145","PG146","PG147","PG148","PG149","PG150","PG151","PG152","PG153","PG154","PG155","PG156","PG157","PG158","PG159","PG160","PG161","PG162","PG163","PG164","PG165","PG172","PG166","PG167","PG168","PG169","PG170","PG171"];
+var refsPermitidas=["PG151","PG152","PG153","PG154","PG155","PG156","PG157","PG158","PG159","PG160","PG161","PG162","PG163","PG164","PG165","PG172","PG166","PG167","PG168","PG169","PG170","PG171"];
 var input=document.getElementById("refCloe"),estado=document.getElementById("estadoCloe"),wrap=document.getElementById("cantidadCloe"),cant=document.getElementById("cantCloe"),total=document.getElementById("totalCloe");
 function dinero(n){return "$"+Number(n).toLocaleString("es-CO")}
 function normalizar(v){var s=String(v||"").trim().toUpperCase().replace(/\s+/g,"");if(/^\d+$/.test(s))s="PG"+s;var m=s.match(/^PG0*(\d+)$/);return m?"PG"+m[1]:s}
@@ -199,7 +198,7 @@ document.getElementById("agregarCloe").onclick=function(){
  if(!productoActual)return;var ref=productoActual.ref,ya=enCarrito(ref);if(ya+cantidad>stockActual){mostrarEstado("zero","CANTIDAD MÁXIMA","Tu pedido no puede superar las unidades disponibles.");return}
  var carrito=[];try{carrito=JSON.parse(localStorage.getItem("bellaShopCarrito"))||[]}catch(e){}
  var clave="Painting Gel Cloe - "+ref,ex=carrito.find(function(i){return i.clave===clave});
- if(ex)ex.cantidad=Number(ex.cantidad||0)+cantidad;else carrito.push({clave:clave,nombre:"Painting Gel Cloe",marca:"Cloe",referencia:ref.replace("PG",""),codigo:String(productoActual.item.codigo||productoActual.item.codigo_original_odoo||""),precio:PRECIO,cantidad:cantidad,imagen:"gel-nail-art/imagenes/IMG_1343.PNG"});
+ if(ex)ex.cantidad=Number(ex.cantidad||0)+cantidad;else carrito.push({clave:clave,nombre:"Painting Gel Cloe",marca:"Cloe",referencia:ref.replace("PG",""),codigo:String(productoActual.item.codigo||productoActual.item.codigo_original_odoo||""),precio:PRECIO,cantidad:cantidad,imagen:"gel-nail-art/imagenes/IMG_1344.PNG"});
  localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));var t=document.getElementById("toast");t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consultar();
 };
 fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inventario=d.productos||{}}).catch(function(){inventario={}});
