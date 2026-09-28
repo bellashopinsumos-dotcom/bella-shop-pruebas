@@ -26,7 +26,7 @@ const grupos={
  "C005":{codigo:"CM486",img:"imagenes/IMG_1430.PNG"}}}
 };
 const chics={
- "BLANCO":{"TUBO 30GR":null,"TUBO 15GR":"1174","POTE 30GR":"1178"},
+ "BLANCO":{"TUBO 15GR":"1174","POTE 30GR":"1178"},
  "CLEAR":{"TUBO 30GR":"1169","TUBO 15GR":"1173","POTE 30GR":"1177"},
  "NUDE":{"TUBO 30GR":"1168","TUBO 15GR":"1172","POTE 30GR":"1176"},
  "PINK":{"TUBO 30GR":"1167","TUBO 15GR":"1171","POTE 30GR":"1175"}
@@ -41,9 +41,12 @@ function tarjetaSimple(id,g){
 }
 function tarjetaChics(){
  const fotos=Object.entries(fotosChics).map(([r,img])=>'<div class="foto-item"><img src="imagenes/'+img+'" alt="Polygel Chic\'s '+r+'"><b>'+r+'</b></div>').join("");
- return '<div class="marca"><img class="logo-marca" src="../imagenes/logo chics.png" alt="Logo Chic\'s Fashion"><h3>Chic\'s Fashion</h3><div class="chics-precios">Tubo 30 g: <b>$22.000</b> · Tubo 15 g: <b>$14.000</b> · Pote 30 g: <b>$22.000</b></div><div class="carrusel"><div class="fotos" id="carrusel-chics">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\'chics\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\'chics\',1)">›</button><div class="puntos" id="puntos-chics"></div></div><div class="selector"><select id="tono-chics"><option value="">Elige el tono</option>'+Object.keys(chics).map(r=>'<option>'+r+'</option>').join("")+'</select><select id="pres-chics"><option value="">Elige la presentación</option>'+Object.keys(preciosChics).map(r=>'<option>'+r+'</option>').join("")+'</select><button class="buscar" onclick="buscarChics()">BUSCAR</button><div class="estado" id="estado-chics"></div><div class="cantidad" id="cant-chics"><input type="number" min="1" value="1" id="qty-chics"><button class="agregar" onclick="agregarChics()">AGREGAR A MI PEDIDO</button></div></div></div>';
+ return '<div class="marca"><img class="logo-marca" src="../imagenes/logo chics.png" alt="Logo Chic\'s Fashion"><h3>Chic\'s Fashion</h3><div class="chics-precios">Tubo 30 g: <b>$22.000</b> · Tubo 15 g: <b>$14.000</b> · Pote 30 g: <b>$22.000</b></div><div class="carrusel"><div class="fotos" id="carrusel-chics">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\'chics\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\'chics\',1)">›</button><div class="puntos" id="puntos-chics"></div></div><div class="selector"><select id="tono-chics"><option value="">Elige el tono</option>'+Object.keys(chics).map(r=>'<option>'+r+'</option>').join("")+'</select><select id="pres-chics"><option value="">Elige la presentación</option></select><button class="buscar" onclick="buscarChics()">BUSCAR</button><div class="estado" id="estado-chics"></div><div class="cantidad" id="cant-chics"><input type="number" min="1" value="1" id="qty-chics"><button class="agregar" onclick="agregarChics()">AGREGAR A MI PEDIDO</button></div></div></div>';
 }
 document.getElementById("productos-polygel").innerHTML=tarjetaSimple("muna",grupos.muna)+tarjetaSimple("canm",grupos.canm)+tarjetaChics();
+actualizarPresentacionesChics();
+document.getElementById("tono-chics").addEventListener("change",actualizarPresentacionesChics);
+function actualizarPresentacionesChics(){const t=document.getElementById("tono-chics").value,s=document.getElementById("pres-chics");const opciones=t?Object.keys(chics[t]):Object.keys(preciosChics);s.innerHTML='<option value="">Elige la presentación</option>'+opciones.map(p=>'<option value="'+p+'">'+p+' · '+money(preciosChics[p])+'</option>').join("");document.getElementById("estado-chics").textContent="";document.getElementById("cant-chics").style.display="none";}
 ["muna","canm","chics"].forEach(iniciarCarrusel);
 function iniciarCarrusel(id){const el=document.getElementById("carrusel-"+id),p=document.getElementById("puntos-"+id);if(!el||!p)return;const slides=[...el.children];p.innerHTML=slides.map((_,i)=>'<button class="punto '+(i===0?'activo':'')+'" onclick="irCarrusel(\''+id+'\','+i+')"></button>').join("");el.addEventListener("scroll",()=>{const i=Math.round(el.scrollLeft/el.clientWidth);[...p.children].forEach((x,n)=>x.classList.toggle("activo",n===i));});}
 function moverCarrusel(id,dir){const el=document.getElementById("carrusel-"+id);if(!el)return;const total=el.children.length,actual=Math.round(el.scrollLeft/el.clientWidth);let sig=actual+dir;if(sig<0)sig=total-1;if(sig>=total)sig=0;el.scrollTo({left:sig*el.clientWidth,behavior:"smooth"});}
