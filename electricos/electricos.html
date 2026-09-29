@@ -23,6 +23,7 @@ const equipos=[
 {codigo:"SC-E34A8575530F",referencia:"DN2207",nombre:"Lámpara UV DN2207",descripcion:"Lámpara UV para uñas",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:96,precio:125000,imagen:"imagenes/eléctrico-DN2207.png"},
 {codigo:"SC-896EA06C65FE",referencia:"DN3338",nombre:"Lámpara UV DN3338",descripcion:"Lámpara 288W Andisa",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:115000,imagen:"imagenes/eléctrico-DN3338.png"},
 {codigo:"DEJA033",nombre:"Lámpara DEJA033",descripcion:"Lámpara UV LED 2 en 1",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:69000,imagen:"imagenes/eléctrico-DEJA033-rosada.png",colores:[{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA033-rosada.png"},{nombre:"Morada",imagen:"imagenes/eléctrico-DEJA033-morada.png"}]}
+,{codigo:"SUN S10",nombre:"Lámpara SUN S10",descripcion:"Lámara UV/LED 2 en 1",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:108,precio:175000,imagen:"imagenes/eléctrico-SUN-S10.png"}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
