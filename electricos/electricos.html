@@ -25,6 +25,7 @@ const equipos=[
 {codigo:"DEJA033",nombre:"Lámpara DEJA033",descripcion:"Lámpara UV LED 2 en 1",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:69000,imagen:"imagenes/eléctrico-DEJA033-rosada.png",colores:[{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA033-rosada.png"},{nombre:"Morada",imagen:"imagenes/eléctrico-DEJA033-morada.png"}]}
 ,{codigo:"SUN S10",nombre:"Lámpara SUN S10",descripcion:"Lámara UV/LED 2 en 1",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:108,precio:175000,imagen:"imagenes/eléctrico-SUNS10.png"}
 ,{codigo:"SUNBT-11",nombre:"Lámpara SUNBT-11",descripcion:"Lámpara inalámbrica",categoria:"lamparas",subcategoria:"uv-led",conexion:"inalambrica",watts:248,precio:149000,imagen:"imagenes/eléctrico-SUNBT11-rosada.png",colores:[{nombre:"Rosada",imagen:"imagenes/eléctrico-SUNBT11-rosada.png"},{nombre:"Blanco",imagen:"imagenes/eléctrico-SUNBT11-blanco.png"}]}
+,{codigo:"SUNV2",nombre:"Lámpara SUNV2",descripcion:"Lámpara inalámbrica",categoria:"lamparas",subcategoria:"uv-led",conexion:"inalambrica",watts:108,precio:149000,imagen:"imagenes/eléctrico-SUNV2.png"}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
