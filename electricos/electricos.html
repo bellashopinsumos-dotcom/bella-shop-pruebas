@@ -30,6 +30,7 @@ const equipos=[
 ,{codigo:"DEJA025",nombre:"Lámpara DEJA025",descripcion:"Lámpara UV LED",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:48,precio:29000,imagen:"imagenes/eléctrico-DEJA025-blanco.png",colores:[{nombre:"Blanco",imagen:"imagenes/eléctrico-DEJA025-blanco.png"},{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA025-rosada.png"}]}
 ,{codigo:"DEJA031",nombre:"Lámpara DEJA031",descripcion:"Lámpara UV LED 2 en 1 + Press On",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:85000,imagen:"imagenes/eléctrico-DEJA031.png"}
 ,{codigo:"DEJA021",nombre:"Lámpara DEJA021",descripcion:"Lámpara UV LED",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:69000,imagen:"imagenes/eléctrico-DEJA021-morado.png",colores:[{nombre:"Morado",imagen:"imagenes/eléctrico-DEJA021-morado.png"},{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA021-rosada.png"}]}
+,{codigo:"DEJA034",nombre:"Lámpara DEJA034",descripcion:"Lámpara UV LED",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:69000,imagen:"imagenes/eléctrico-DEJA034-morada.png",colores:[{nombre:"Morada",imagen:"imagenes/eléctrico-DEJA034-morada.png"},{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA034-rosada.png"}]}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
