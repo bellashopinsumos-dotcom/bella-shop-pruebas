@@ -27,6 +27,7 @@ const equipos=[
 ,{codigo:"SUNBT-11",nombre:"Lámpara SUNBT-11",descripcion:"Lámpara inalámbrica",categoria:"lamparas",subcategoria:"uv-led",conexion:"inalambrica",watts:248,precio:149000,imagen:"imagenes/eléctrico-SUNBT11-rosada.png",colores:[{nombre:"Rosada",imagen:"imagenes/eléctrico-SUNBT11-rosada.png"},{nombre:"Blanco",imagen:"imagenes/eléctrico-SUNBT11-Blanco.png"}]}
 ,{codigo:"SUNV2",nombre:"Lámpara SUNV2",descripcion:"Lámpara inalámbrica",categoria:"lamparas",subcategoria:"uv-led",conexion:"inalambrica",watts:108,precio:149000,imagen:"imagenes/eléctrico-SUNV2.png"}
 ,{codigo:"DEJA023",nombre:"Lámpara DEJA023",descripcion:"Lámpara UV LED",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:288,precio:69000,imagen:"imagenes/eléctrico-DEJA023-blanco.png",colores:[{nombre:"Blanco",imagen:"imagenes/eléctrico-DEJA023-blanco.png"},{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA023-rosada.png"}]}
+,{codigo:"DEJA025",nombre:"Lámpara DEJA025",descripcion:"Lámpara UV LED",categoria:"lamparas",subcategoria:"uv-led",conexion:"no-inalambrica",watts:48,precio:29000,imagen:"imagenes/eléctrico-DEJA025-blanco.png",colores:[{nombre:"Blanco",imagen:"imagenes/eléctrico-DEJA025-blanco.png"},{nombre:"Rosada",imagen:"imagenes/eléctrico-DEJA025-rosada.png"}]}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
