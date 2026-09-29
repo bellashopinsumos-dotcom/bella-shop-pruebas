@@ -61,7 +61,7 @@ function notifCanmAcri(t){const n=document.getElementById("notif-canm-acri");n.t
 function agregarCanmAcri(){if(!selCanmAcri){notifCanmAcri("ELIGE UN PRODUCTO");return}const q=document.getElementById("cant-canm-acri"),x=canmAcri[selCanmAcri];if(q.dataset.estado!=="ok"){notifCanmAcri(q.dataset.estado==="agotado"?"PRODUCTO TEMPORALMENTE AGOTADO":"CÓDIGO NO ENCONTRADO");return}const it=itemCodigo(x.codigo),qty=Math.min(Number(document.getElementById("qty-canm-acri").value)||1,Number(it.disponible)),key=x.codigo;let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]"),ex=car.find(y=>y.key===key);if(ex)ex.cantidad=Math.min(ex.cantidad+qty,Number(it.disponible));else car.push({key,nombre:"Polvo Acrílico CANM",referencia:selCanmAcri+" · 15 g",codigo:x.codigo,precio:x.precio,cantidad:qty,imagen:x.img});localStorage.setItem("bellaShopCarrito",JSON.stringify(car));notifCanmAcri("AGREGADO A MI PEDIDO 💗")}
 
 const cloe={
-"COVER BLUSH":{img:"imagenes/Polvo Acrilico Cover Blush Cloe 40 gr.png",p:{"15 g":{codigo:"SC-4A235809DC21",precio:24600},"40 g":{codigo:"SC-643234F3B72C",precio:47800}}},
+"COVER BLUSH":{img:"imagenes/Polvo Acrilico Cover Brush Cloe 40 gr.png",p:{"15 g":{codigo:"SC-4A235809DC21",precio:24600},"40 g":{codigo:"SC-643234F3B72C",precio:47800}}},
 "CLEAR":{img:"imagenes/Polvo Acrilico Clear Cloe 40 gr.png",p:{"15 g":{codigo:"PACLEAR15",precio:24600},"40 g":{codigo:"PACLEAR40",precio:47800}}},
 "COVER GLAM":{img:"imagenes/Polvo Acrilico Cover Glam Cloe 40 gr.png",p:{"15 g":{codigo:"SC-3331349C74F9",precio:24600},"40 g":{codigo:"SC-6966E735449A",precio:47800}}},
 "COVER ROSE":{img:"imagenes/Polvo Acrilico Cover Rose Cloe 40 gr.png",p:{"15 g":{codigo:"PACROSE15",precio:24600},"40 g":{codigo:"SC-B63D9196DCB0",precio:47800}}},
