@@ -383,6 +383,22 @@
       transform: scale(1.15);
     }
 
+    .opcion-deshabilitada {
+      opacity: .58;
+      cursor: not-allowed;
+      filter: grayscale(.15);
+    }
+
+    .opcion-deshabilitada:hover {
+      transform: none;
+      border-color: #f0dce3;
+      box-shadow: 0 8px 25px rgba(83, 48, 58, 0.07);
+    }
+
+    .opcion-deshabilitada .ver {
+      color: #8d7d83;
+    }
+
 
     .icono-categoria {
       position: relative;
@@ -1043,9 +1059,9 @@
 
 
 
-      <a
-        href="tradicional.html"
-        class="opcion"
+      <div
+        class="opcion opcion-deshabilitada"
+        aria-disabled="true"
       >
 
         <div class="icono-categoria">
@@ -1081,10 +1097,10 @@
 
 
         <span class="ver">
-          VER PRODUCTOS →
+          TEMPORALMENTE NO DISPONIBLE
         </span>
 
-      </a>
+      </div>
 
 
     </div>
