@@ -30189,6 +30189,13 @@
       "nombre": "PRIMER PARA SEMIPERMANENTE 15 ML LATIN NAILS",
       "disponible": 19,
       "a_la_mano": 19
+    },
+    "LS-22": {
+      "codigo": "LS-22",
+      "codigo_original_odoo": "LS-22",
+      "nombre": "LAMPARA LINTERNA PARA UÑAS PRESS ON AMELOW",
+      "disponible": 8,
+      "a_la_mano": 8
     }
   }
 }
