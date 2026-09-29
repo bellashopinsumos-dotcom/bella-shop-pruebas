@@ -17,11 +17,11 @@
 </section>
 <footer>© Bella Shop · Tienda de Belleza</footer><script>
 const latin={
-"CLEAR":{codigo:"SC-B3C4547D55A7",gramos:"14 g",precio:21000,img:"imagenes/acrilico-latin-clear.png"},
-"COVER WARM":{codigo:"SC-7D063C589966",gramos:"14 g",precio:24600,img:"imagenes/acrilico-latin-coverwarm.png"},
-"WHITE / BLANCO":{codigo:"SC-B15B86D0882C",gramos:"14 g",precio:21000,img:"imagenes/acrilico-latin-blanco.png"},
+"CLEAR":{codigo:"SC-B3C4547D55A7",gramos:"14 g",precio:18500,img:"imagenes/acrilico-latin-clear.png"},
+"COVER WARM":{codigo:"SC-7D063C589966",gramos:"14 g",precio:23300,img:"imagenes/acrilico-latin-coverwarm.png"},
+"WHITE / BLANCO":{codigo:"SC-B15B86D0882C",gramos:"14 g",precio:18500,img:"imagenes/acrilico-latin-blanco.png"},
 "TRASLÚCIDO PINK":{codigo:"SC-AB843680C053",gramos:"40 g",precio:44000,img:"imagenes/acrilico-latin-traslucidopink.png"},
-"PINK COVER":{codigo:"SC-D5A2D68AFA4A",gramos:"14 g",precio:24600,img:"imagenes/acrilico-latin-pinkcover.png"}
+"PINK COVER":{codigo:"SC-D5A2D68AFA4A",gramos:"14 g",precio:23300,img:"imagenes/acrilico-latin-pinkcover.png"}
 };
 let inventario={},seleccion="";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
@@ -61,11 +61,11 @@ function notifCanmAcri(t){const n=document.getElementById("notif-canm-acri");n.t
 function agregarCanmAcri(){if(!selCanmAcri){notifCanmAcri("ELIGE UN PRODUCTO");return}const q=document.getElementById("cant-canm-acri"),x=canmAcri[selCanmAcri];if(q.dataset.estado!=="ok"){notifCanmAcri(q.dataset.estado==="agotado"?"PRODUCTO TEMPORALMENTE AGOTADO":"CÓDIGO NO ENCONTRADO");return}const it=itemCodigo(x.codigo),qty=Math.min(Number(document.getElementById("qty-canm-acri").value)||1,Number(it.disponible)),key=x.codigo;let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]"),ex=car.find(y=>y.key===key);if(ex)ex.cantidad=Math.min(ex.cantidad+qty,Number(it.disponible));else car.push({key,nombre:"Polvo Acrílico CANM",referencia:selCanmAcri+" · 15 g",codigo:x.codigo,precio:x.precio,cantidad:qty,imagen:x.img});localStorage.setItem("bellaShopCarrito",JSON.stringify(car));notifCanmAcri("AGREGADO A MI PEDIDO 💗")}
 
 const cloe={
-"COVER BLUSH":{img:"imagenes/Polvo Acrilico Cover Brush Cloe 40 gr.png",p:{"15 g":{codigo:"SC-4A235809DC21",precio:24600},"40 g":{codigo:"SC-643234F3B72C",precio:47800}}},
-"CLEAR":{img:"imagenes/Polvo Acrilico Clear Cloe 40 gr.png",p:{"15 g":{codigo:"PACLEAR15",precio:24600},"40 g":{codigo:"PACLEAR40",precio:47800}}},
-"COVER GLAM":{img:"imagenes/Polvo Acrilico Cover Glam Cloe 40 gr.png",p:{"15 g":{codigo:"SC-3331349C74F9",precio:24600},"40 g":{codigo:"SC-6966E735449A",precio:47800}}},
-"COVER ROSE":{img:"imagenes/Polvo Acrilico Cover Rose Cloe 40 gr.png",p:{"15 g":{codigo:"PACROSE15",precio:24600},"40 g":{codigo:"SC-B63D9196DCB0",precio:47800}}},
-"GLITTER PINK":{img:"imagenes/Polvo Acrilico Glitter Pink Cloe 40 gr.png",p:{"15 g":{codigo:"PAGP15",precio:24600},"40 g":{codigo:"PAGP40",precio:47800}}}
+"COVER BLUSH":{img:"imagenes/Polvo Acrilico Cover Brush Cloe 40 gr.png",p:{"15 g":{codigo:"SC-4A235809DC21",precio:23300},"40 g":{codigo:"SC-643234F3B72C",precio:48800}}},
+"CLEAR":{img:"imagenes/Polvo Acrilico Clear Cloe 40 gr.png",p:{"15 g":{codigo:"PACLEAR15",precio:23300},"40 g":{codigo:"PACLEAR40",precio:48800}}},
+"COVER GLAM":{img:"imagenes/Polvo Acrilico Cover Glam Cloe 40 gr.png",p:{"15 g":{codigo:"SC-3331349C74F9",precio:23300},"40 g":{codigo:"SC-6966E735449A",precio:48800}}},
+"COVER ROSE":{img:"imagenes/Polvo Acrilico Cover Rose Cloe 40 gr.png",p:{"15 g":{codigo:"PACROSE15",precio:23300},"40 g":{codigo:"SC-B63D9196DCB0",precio:48800}}},
+"GLITTER PINK":{img:"imagenes/Polvo Acrilico Glitter Pink Cloe 40 gr.png",p:{"15 g":{codigo:"PAGP15",precio:23300},"40 g":{codigo:"PAGP40",precio:48800}}}
 };
 let tonoCloe="",presCloe="";
 const refsCloe=Object.keys(cloe),carrCloe=document.getElementById("carrusel-cloe");
