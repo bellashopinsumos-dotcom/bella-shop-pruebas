@@ -52,6 +52,7 @@ const equipos=[
 ,{codigo:"TP301-NE",nombre:"Drill Poderosa Muna",descripcion:"Drill profesional inalámbrico · 35.000 RPM",categoria:"drills",marca:"Muna",logo:"../imagenes/logo muna.png",conexion:"inalambrica",rpm:35000,precio:350000,imagen:"TP301-NE.png"}
 ,{codigo:"DN4330",nombre:"Drill DN4330",descripcion:"Drill de mesa · 35.000 RPM",categoria:"drills",conexion:"no-inalambrica",rpm:35000,precio:114000,imagen:"imagenes/Drill-DN4330-rosado.png",colores:[{nombre:"Rosado",imagen:"imagenes/Drill-DN4330-rosado.png"},{nombre:"Blanco",imagen:"imagenes/Drill-DN4330-blanco.png"}]}
 ,{codigo:"DEJA004",nombre:"Extractor de Polvo DEJA004",descripcion:"Extractor de polvo profesional · 4.500 RPM · 100W",categoria:"extractores",rpm:4500,watts:100,precio:99000,imagen:"imagenes/DEJA004-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DEJA004-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DEJA004-BLANCO.png"}]}
+,{codigo:"DEJA003",nombre:"Extractor de Polvo DEJA003",descripcion:"Extractor de polvo profesional · 108W",categoria:"extractores",watts:108,precio:82000,imagen:"imagenes/DEJA003-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DEJA003-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DEJA003-BLANCO.png"}]}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
