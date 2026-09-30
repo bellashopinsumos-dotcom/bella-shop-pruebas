@@ -54,6 +54,7 @@ const equipos=[
 ,{codigo:"DEJA004",nombre:"Extractor de Polvo DEJA004",descripcion:"Extractor de polvo profesional · 4.500 RPM · 100W",categoria:"extractores",rpm:4500,watts:100,precio:99000,imagen:"imagenes/DEJA004-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DEJA004-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DEJA004-BLANCO.png"}]}
 ,{codigo:"DEJA003",nombre:"Extractor de Polvo DEJA003",descripcion:"Extractor de polvo profesional · 108W",categoria:"extractores",watts:108,precio:82000,imagen:"imagenes/DEJA003-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DEJA003-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DEJA003-BLANCO.png"}]}
 ,{codigo:"DN3757",nombre:"Extractor de Polvo DN3757",descripcion:"Extractor de polvo profesional inalámbrico · 120W",categoria:"extractores",conexion:"inalambrica",watts:120,precio:217500,imagen:"imagenes/DN3757.png"}
+,{codigo:"DEJA005",nombre:"Extractor de Polvo DEJA005",descripcion:"Extractor de polvo profesional · 240W",categoria:"extractores",watts:240,precio:88900,imagen:"imagenes/DEJA005-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DEJA005-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DEJA005-BLANCO.png"}]}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
