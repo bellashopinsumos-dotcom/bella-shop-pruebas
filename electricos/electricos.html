@@ -47,6 +47,7 @@ const equipos=[
 ,{codigo:"IN551A",referencia:"IN551A",nombre:"Drill IN551A",descripcion:"Drill inalámbrico · 35.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:35000,precio:165000,imagen:"imagenes/Drill-IN551.png"}
 ,{codigo:"M858",nombre:"Drill M858",descripcion:"Drill inalámbrico · 50.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:50000,precio:165000,imagen:"Drill-M858.png",colores:[{nombre:"Rosado",imagen:"Drill-M858.png"},{nombre:"Amarillo",imagen:"Drill-M858.png"},{nombre:"Morado",imagen:"Drill-M858.png"},{nombre:"Blanco",imagen:"Drill-M858.png"}]}
 ,{codigo:"SC-AEB5826F2947",referencia:"IN-551",nombre:"Drill IN 551",descripcion:"Drill inalámbrico · 35.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:35000,precio:165000,imagen:"imagenes/Drill-IN551.png"}
+,{codigo:"DEJA072",nombre:"Drill DEJA072",descripcion:"Drill inalámbrico · 50.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:50000,precio:159000,imagen:"imagenes/Drill-DEJA072.png"}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
