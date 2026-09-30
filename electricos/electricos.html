@@ -48,6 +48,7 @@ const equipos=[
 ,{codigo:"DEJA072",nombre:"Drill DEJA072",descripcion:"Drill inalámbrico · 50.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:50000,precio:159000,imagen:"imagenes/Drill-DEJA072.png"}
 ,{codigo:"SC-AEB5826F2947",referencia:"IN-551",nombre:"Drill IN 551",descripcion:"Drill inalámbrico · 35.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:35000,precio:165000,imagen:"imagenes/Drill-IN551.png"}
 ,{codigo:"TP301-PLA",nombre:"Drill Inspiradora Muna",descripcion:"Drill profesional inalámbrico · 35.000 RPM",categoria:"drills",marca:"Muna",logo:"../imagenes/logo muna.png",conexion:"inalambrica",rpm:35000,precio:350000,imagen:"imagenes/TP301-PLA.png"}
+,{codigo:"TP301-NE",nombre:"Drill Poderosa Muna",descripcion:"Drill profesional inalámbrico · 35.000 RPM",categoria:"drills",marca:"Muna",logo:"../imagenes/logo muna.png",conexion:"inalambrica",rpm:35000,precio:350000,imagen:"TP301-NE.png"}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
