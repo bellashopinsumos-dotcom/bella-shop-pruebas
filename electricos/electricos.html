@@ -42,6 +42,7 @@ const equipos=[
 ,{codigo:"LS-22",nombre:"Lámpara Press On LS-22",descripcion:"Lámpara Press On · Funciona con pilas/baterías",categoria:"lamparas",tipoLampara:"press",subcategoria:"press-on",conexion:"pilas",watts:3,precio:8000,imagen:"imagenes/Press-LS-22.png"}
 ,{codigo:"DN4745",nombre:"Lámpara 2 en 1 DN4745",descripcion:"Lámpara Press On + Lámpara de luz · Producto nuevo",categoria:"lamparas",tipoLampara:"press",tiposLampara:["press","luz"],subcategoria:"press-on luz",conexion:"inalambrica",watts:8,precio:null,precioPendiente:true,inventarioPendiente:true,imagen:"imagenes/Press-DN4745.png"}
 ,{codigo:"DN4629",nombre:"Drill DN4629",descripcion:"Drill profesional inalámbrico · 45.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:45000,precio:165000,imagen:"imagenes/Drill-DN4629.png"}
+,{codigo:"DEJA009",nombre:"Drill DEJA009",descripcion:"Drill inalámbrico · 45.000 RPM",categoria:"drills",conexion:"inalambrica",rpm:45000,precio:149000,imagen:"imagenes/Drill-DEJA009-rosado.png",colores:[{nombre:"Rosado",imagen:"imagenes/Drill-DEJA009-rosado.png"},{nombre:"Blanco",imagen:"imagenes/Drill-DEJA009-blanco.png"}]}
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
