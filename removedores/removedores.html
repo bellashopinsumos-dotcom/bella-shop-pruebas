@@ -24,7 +24,8 @@ const productos=[
 {codigo:"MUNA933",nombre:"Removedor Mágico Muna 12 ml",marca:"Muna",logo:"../imagenes/logo muna.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/MUNA933.png"},
 {nombre:"Super Removedor en Gel Utopik",marca:"Utopik",logo:"../imagenes/logo UTOPICK.webp",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/REMOVEDORGELUTOPICK.png",variantes:[{codigo:"7702322000777",nombre:"15 ml"},{codigo:"7702322000784",nombre:"30 ml"}]},
 {codigo:"RM01",nombre:"Super Removedor en Gel Cloe 15 ml",marca:"Cloe",logo:"../imagenes/logo cloe.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/RM01.png"},
-{nombre:"Removedor Tradicional Chic\'s Fashion",marca:"Chic\'s Fashion",logo:"../imagenes/logo chics.png",zona:"esmalte",tipo:"liquido",usos:["tradicional"],imagen:"imagenes/remo-tradicional-chics.png",variantes:[{codigo:"140",nombre:"120 ml"},{codigo:"139",nombre:"60 ml"}]},\n{nombre:"removedorks",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/removedorks.png",proximamente:true}
+{nombre:"Removedor Tradicional Chic\'s Fashion",marca:"Chic\'s Fashion",logo:"../imagenes/logo chics.png",zona:"esmalte",tipo:"liquido",usos:["tradicional"],imagen:"imagenes/remo-tradicional-chics.png",variantes:[{codigo:"140",nombre:"120 ml"},{codigo:"139",nombre:"60 ml"}]},
+{nombre:"removedorks",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/removedorks.png",proximamente:true}
 ];
 let inventario={},zona="todo",uso="todo",tipo="todo";
 function item(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c||"").toUpperCase())}
