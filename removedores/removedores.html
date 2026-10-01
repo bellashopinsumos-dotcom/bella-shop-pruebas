@@ -8,7 +8,8 @@
 <main class="contenido">
 <div class="panel"><div class="buscar"><input id="buscar" type="search" placeholder="Busca removedor, acetona, marca o referencia..." autocomplete="off"><span>⌕</span></div>
 <div class="filtros">
-<div><p class="grupo-titulo">¿PARA QUÉ LO NECESITAS?</p><div class="chips" id="filtro-uso"><button class="chip activo" data-uso="todo">TODO</button><button class="chip" data-uso="tradicional">TRADICIONAL</button><button class="chip" data-uso="semipermanente">SEMIPERMANENTE</button></div></div>
+<div><p class="grupo-titulo">¿QUÉ QUIERES REMOVER?</p><div class="chips" id="filtro-zona"><button class="chip activo" data-zona="todo">TODO</button><button class="chip" data-zona="esmalte">ESMALTE</button><button class="chip" data-zona="cuticula">CUTÍCULA</button><button class="chip" data-zona="callos">CALLOS</button></div></div>
+<div><p class="grupo-titulo">USO DEL ESMALTE</p><div class="chips" id="filtro-uso"><button class="chip activo" data-uso="todo">TODO</button><button class="chip" data-uso="tradicional">TRADICIONAL</button><button class="chip" data-uso="semipermanente">SEMIPERMANENTE</button></div></div>
 <div><p class="grupo-titulo">TIPO DE REMOVEDOR</p><div class="chips" id="filtro-tipo"><button class="chip activo" data-tipo="todo">TODO</button><button class="chip" data-tipo="gel">GEL</button><button class="chip" data-tipo="liquido">LÍQUIDO / ACETONA</button></div></div>
 </div></div>
 <div class="resumen"><h2>Removedores disponibles</h2><span class="contador" id="contador">0 productos encontrados</span></div>
@@ -18,13 +19,13 @@
 <footer>© Bella Shop · Tienda de Belleza</footer>
 <script>
 const productos=[
-{codigo:"CM255",nombre:"Removedor Mágico Sandía CANM",marca:"CANM",logo:"../imagenes/logo-canm.png",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/CM255.png"},
-{codigo:"11088",nombre:"Removedor Magic Sugar",marca:"Magic Sugar",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/11088.png"},
-{codigo:"MUNA933",nombre:"Removedor Mágico Muna 12 ml",marca:"Muna",logo:"../imagenes/logo muna.png",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/MUNA933.png"},
-{nombre:"Super Removedor en Gel Utopik",marca:"Utopik",logo:"../imagenes/logo UTOPICK.webp",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/REMOVEDORGELUTOPICK.png",variantes:[{codigo:"7702322000777",nombre:"15 ml"},{codigo:"7702322000784",nombre:"30 ml"}]},
-{codigo:"RM01",nombre:"Super Removedor en Gel Cloe 15 ml",marca:"Cloe",logo:"../imagenes/logo cloe.png",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/RM01.png"}
+{codigo:"CM255",nombre:"Removedor Mágico Sandía CANM",marca:"CANM",logo:"../imagenes/logo-canm.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/CM255.png"},
+{codigo:"11088",nombre:"Removedor Magic Sugar",marca:"Magic Sugar",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/11088.png"},
+{codigo:"MUNA933",nombre:"Removedor Mágico Muna 12 ml",marca:"Muna",logo:"../imagenes/logo muna.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/MUNA933.png"},
+{nombre:"Super Removedor en Gel Utopik",marca:"Utopik",logo:"../imagenes/logo UTOPICK.webp",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/REMOVEDORGELUTOPICK.png",variantes:[{codigo:"7702322000777",nombre:"15 ml"},{codigo:"7702322000784",nombre:"30 ml"}]},
+{codigo:"RM01",nombre:"Super Removedor en Gel Cloe 15 ml",marca:"Cloe",logo:"../imagenes/logo cloe.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/RM01.png"}
 ];
-let inventario={},uso="todo",tipo="todo";
+let inventario={},zona="todo",uso="todo",tipo="todo";
 function item(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c||"").toUpperCase())}
 function money(n){return "$ "+Number(n||0).toLocaleString("es-CO")}
 function stockHtml(c){const i=item(c);if(!i)return '<div class="stock no">CÓDIGO NO ENCONTRADO</div>';const q=Number(i.disponible||0);return q>0?'<div class="stock">DISPONIBLE · '+q+' unidades</div>':'<div class="stock no">TEMPORALMENTE NO DISPONIBLE</div>'}
@@ -36,9 +37,10 @@ function seleccionarVariante(id,codigo,nombreProducto,nombreVariante,btn){
   box.querySelector(".detalle-variante").innerHTML='<div class="precio">'+(i?money(i.precio_venta):"Precio no disponible")+'</div>'+stockHtml(codigo)+'<button class="agregar" '+(ok?'':'disabled')+' onclick="agregar(\''+codigo+'\',\''+nombreProducto+' '+nombreVariante+'\')">AGREGAR AL PEDIDO</button>';
 }
 function tarjeta(x){if(x.variantes){const id="var-"+x.variantes[0].codigo;let bs=x.variantes.map(v=>'<button class="burbuja" onclick="seleccionarVariante(\''+id+'\',\''+v.codigo+'\',\''+x.nombre+'\',\''+v.nombre+'\',this)">'+v.nombre+'</button>').join("");return '<article class="card"><div class="foto"><img src="'+x.imagen+'" alt="'+x.nombre+'"></div><div class="info"><div class="marca">'+(x.logo?'<img src="'+x.logo+'" alt="'+x.marca+'" style="max-width:76px;max-height:30px;object-fit:contain;display:block;margin-bottom:5px">':'')+x.marca+'</div><h3>'+x.nombre+'</h3><div class="ref">Uso: SEMIPERMANENTE</div><div class="presentaciones" id="'+id+'"><div class="burbujas">'+bs+'</div><div class="detalle-variante"><span style="font-size:11px;color:#94727e">Elige una presentación para ver precio y disponibilidad.</span></div></div></div></article>'}const i=item(x.codigo),ok=i&&Number(i.disponible||0)>0;return '<article class="card"><div class="foto"><img src="'+x.imagen+'" alt="'+x.nombre+'"></div><div class="info"><div class="marca">'+(x.logo?'<img src="'+x.logo+'" alt="'+x.marca+'" style="max-width:76px;max-height:30px;object-fit:contain;display:block;margin-bottom:5px">':'')+x.marca+'</div><h3>'+x.nombre+'</h3><div class="ref">Uso: SEMIPERMANENTE</div><div class="ref">REF. '+x.codigo+'</div><div class="precio">'+(i?money(i.precio_venta):"Precio no disponible")+'</div>'+stockHtml(x.codigo)+'<button class="agregar" '+(ok?'':'disabled')+' onclick="agregar(\''+x.codigo+'\',\''+x.nombre+'\')">AGREGAR AL PEDIDO</button></div></article>'}
+document.querySelectorAll("#filtro-zona .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#filtro-zona .chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");zona=b.dataset.zona;filtrar()});
 document.querySelectorAll("#filtro-uso .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#filtro-uso .chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");uso=b.dataset.uso;filtrar()});
 document.querySelectorAll("#filtro-tipo .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#filtro-tipo .chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");tipo=b.dataset.tipo;filtrar()});
 document.getElementById("buscar").addEventListener("input",filtrar);
-function filtrar(){const q=document.getElementById("buscar").value.trim().toLowerCase();const a=productos.filter(x=>(uso==="todo"||(x.usos||[]).includes(uso))&&(tipo==="todo"||x.tipo===tipo)&&(!q||(x.nombre+" "+(x.marca||"")+" "+(x.codigo||"")+" "+(x.variantes||[]).map(v=>v.codigo).join(" ")).toLowerCase().includes(q)));document.getElementById("contador").textContent=a.length+" "+(a.length===1?"producto encontrado":"productos encontrados");document.getElementById("productos").innerHTML=a.length?a.map(tarjeta).join(""):'<div class="vacio"><b>No encontramos productos con esos filtros 💗</b>Prueba otra opción o vuelve a TODO.</div>'}
+function filtrar(){const q=document.getElementById("buscar").value.trim().toLowerCase();const a=productos.filter(x=>(zona==="todo"||x.zona===zona)&&(uso==="todo"||(x.usos||[]).includes(uso))&&(tipo==="todo"||x.tipo===tipo)&&(!q||(x.nombre+" "+(x.marca||"")+" "+(x.codigo||"")+" "+(x.variantes||[]).map(v=>v.codigo).join(" ")).toLowerCase().includes(q)));document.getElementById("contador").textContent=a.length+" "+(a.length===1?"producto encontrado":"productos encontrados");document.getElementById("productos").innerHTML=a.length?a.map(tarjeta).join(""):'<div class="vacio"><b>No encontramos productos con esos filtros 💗</b>Prueba otra opción o vuelve a TODO.</div>'}
 fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};filtrar()}).catch(()=>filtrar());
 </script></body></html>
