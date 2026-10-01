@@ -25,7 +25,7 @@ const productos=[
 {nombre:"Super Removedor en Gel Utopik",marca:"Utopik",logo:"../imagenes/logo UTOPICK.webp",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/REMOVEDORGELUTOPICK.png",variantes:[{codigo:"7702322000777",nombre:"15 ml"},{codigo:"7702322000784",nombre:"30 ml"}]},
 {codigo:"RM01",nombre:"Super Removedor en Gel Cloe 15 ml",marca:"Cloe",logo:"../imagenes/logo cloe.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/RM01.png"},
 {nombre:"Removedor Tradicional Chic\'s Fashion",marca:"Chic\'s Fashion",logo:"../imagenes/logo chics.png",zona:"esmalte",tipo:"liquido",usos:["tradicional"],imagen:"imagenes/remo-tradicional-chics.png",variantes:[{codigo:"140",nombre:"120 ml"},{codigo:"139",nombre:"60 ml"}]},
-{nombre:"Removedor Líquido Utopick",marca:"Utopick",logo:"../imagenes/logo UTOPICK.webp",zona:"esmalte",tipo:"liquido",usos:["tradicional","semipermanente"],imagen:"imagenes/acetona-utopick.png",variantes:[{codigo:"7708279050032",nombre:"175 ml · Sandía"},{codigo:"7708279050018",nombre:"175 ml · Pera"},{codigo:"7708279050025",nombre:"175 ml · Melocotón"},{codigo:"7702322000067",nombre:"500 ml · Sandía"},{codigo:"7702322000043",nombre:"500 ml · Pera"},{codigo:"7702322000050",nombre:"500 ml · Melocotón"},{codigo:"7702322000111",nombre:"1000 ml · Sandía"},{codigo:"SC-A23CC131ABEA",nombre:"1000 ml · Melocotón"}]},
+{nombre:"Removedor Líquido Utopick",marca:"Utopick",logo:"../imagenes/logo UTOPICK.webp",zona:"esmalte",tipo:"liquido",usos:["tradicional","semipermanente"],imagen:"imagenes/acetona-utopick.png",porOlor:true,variantes:[{codigo:"7708279050032",tamano:"175 ml",olor:"Sandía"},{codigo:"7708279050018",tamano:"175 ml",olor:"Pera"},{codigo:"7708279050025",tamano:"175 ml",olor:"Melocotón"},{codigo:"7702322000067",tamano:"500 ml",olor:"Sandía"},{codigo:"7702322000043",tamano:"500 ml",olor:"Pera"},{codigo:"7702322000050",tamano:"500 ml",olor:"Melocotón"},{codigo:"7702322000111",tamano:"1000 ml",olor:"Sandía"},{codigo:"SC-A23CC131ABEA",tamano:"1000 ml",olor:"Melocotón"}]},
 {nombre:"removedorks",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/removedorks.png",proximamente:true}
 ];
 let inventario={},zona="todo",uso="todo",tipo="todo";
@@ -49,9 +49,24 @@ function seleccionarVariante(id,codigo,nombreProducto,nombreVariante,btn){
   if(ok) agregarBtn.addEventListener("click",()=>agregar(codigo,nombreProducto+" "+nombreVariante,"q-"+codigo));
   detalle.appendChild(agregarBtn);
 }
+function seleccionarOlor(id,olor,x,btn){
+  const box=document.getElementById(id);if(!box)return;
+  box.querySelectorAll(".olor-btn").forEach(b=>b.classList.remove("activa"));btn.classList.add("activa");
+  const vs=x.variantes.filter(v=>v.olor===olor);
+  const zona=box.querySelector(".tamanos-olor");
+  zona.innerHTML='<div class="ref" style="margin-top:10px">ELIGE EL TAMAÑO</div><div class="burbujas">'+vs.map(v=>'<button class="burbuja tamano-btn" type="button" data-codigo="'+v.codigo+'">'+v.tamano+'</button>').join("")+'</div>';
+  box.querySelector(".detalle-variante").innerHTML='<span style="font-size:11px;color:#94727e">Elige un tamaño para ver precio y disponibilidad.</span>';
+  zona.querySelectorAll(".tamano-btn").forEach(b=>b.addEventListener("click",()=>{const v=vs.find(v=>v.codigo===b.dataset.codigo);seleccionarVariante(id,v.codigo,x.nombre,v.tamano+" · "+v.olor,b)}));
+}
 function tarjeta(x){
   if(x.variantes){
     const id="var-"+x.variantes[0].codigo;
+    if(x.porOlor){
+      const usos=x.usos||[];const usoTexto=usos.includes("tradicional")&&usos.includes("semipermanente")?"TRADICIONAL Y SEMIPERMANENTE":usos.includes("tradicional")?"TRADICIONAL":"SEMIPERMANENTE";
+      const olores=["Sandía","Pera","Melocotón"];
+      const botones=olores.map(o=>'<button class="burbuja olor-btn" type="button" data-olor="'+o+'">'+o+'</button>').join("");
+      return '<article class="card"><div class="foto"><img src="'+x.imagen+'" alt="'+x.nombre+'"></div><div class="info"><div class="marca">'+(x.logo?'<img src="'+x.logo+'" alt="'+x.marca+'" style="max-width:76px;max-height:30px;object-fit:contain;display:block;margin-bottom:5px">':x.marca)+'</div><h3>'+x.nombre+'</h3><div class="ref">Uso: '+usoTexto+'</div><div class="presentaciones" id="'+id+'"><div class="ref" style="margin-top:8px">ELIGE EL OLOR</div><div class="burbujas">'+botones+'</div><div class="tamanos-olor"></div><div class="detalle-variante"><span style="font-size:11px;color:#94727e">Primero elige un olor.</span></div></div></div></article>';
+    }
     const usos=x.usos||[];const usoTexto=usos.includes("tradicional")&&usos.includes("semipermanente")?"TRADICIONAL Y SEMIPERMANENTE":usos.includes("tradicional")?"TRADICIONAL":"SEMIPERMANENTE";
     const botones=x.variantes.map(v=>'<button class="burbuja" type="button" data-variante="'+v.codigo+'">'+v.nombre+'</button>').join("");
     return '<article class="card"><div class="foto"><img src="'+x.imagen+'" alt="'+x.nombre+'"></div><div class="info"><div class="marca">'+(x.logo?'<img src="'+x.logo+'" alt="'+x.marca+'" style="max-width:76px;max-height:30px;object-fit:contain;display:block;margin-bottom:5px">':x.marca)+'</div><h3>'+x.nombre+'</h3><div class="ref">Uso: '+usoTexto+'</div><div class="presentaciones" id="'+id+'"><div class="burbujas">'+botones+'</div><div class="detalle-variante"><span style="font-size:11px;color:#94727e">Elige una presentación para ver precio y disponibilidad.</span></div></div></div></article>';
@@ -63,6 +78,7 @@ function tarjeta(x){
 function activarVariantes(){
   productos.filter(x=>x.variantes).forEach(x=>{
     const id="var-"+x.variantes[0].codigo,box=document.getElementById(id); if(!box)return;
+    if(x.porOlor){box.querySelectorAll(".olor-btn").forEach(btn=>btn.addEventListener("click",()=>seleccionarOlor(id,btn.dataset.olor,x,btn)));return;}
     box.querySelectorAll(".burbuja").forEach(btn=>{
       btn.addEventListener("click",()=>{
         const v=x.variantes.find(v=>String(v.codigo)===String(btn.dataset.variante));
