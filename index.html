@@ -1350,6 +1350,11 @@
  .panel-categorias.activo{grid-template-columns:repeat(2,1fr);margin-left:14px;margin-right:14px}
 }
 
+
+.hero-acciones{display:flex;gap:12px;flex-wrap:wrap}
+.hero-acciones .boton-principal{border:0;cursor:pointer}
+.boton-secundario{padding:14px 23px;border-radius:30px;border:1px solid #e2a9bc;background:rgba(255,255,255,.72);color:#c94f77;font-size:12px;font-weight:800;cursor:pointer}
+@media(max-width:800px){.hero-acciones{justify-content:center}}
 </style>
 </head>
 <body>
@@ -1391,9 +1396,10 @@
         En Bella Shop tenemos un montón de cositas bonitas para acompañarte en cada creación.
         Explora nuestro catálogo, encuentra tus favoritos y déjate enamorar. 💅💗
       </p>
-<a class="boton-principal" href="#categorias">
-        EXPLORAR CATÁLOGO
-      </a>
+<div class="hero-acciones">
+<button class="boton-principal" type="button" onclick="abrirCategorias()">VER CATEGORÍAS</button>
+<button class="boton-secundario" type="button" onclick="buscarProducto()">BUSCAR PRODUCTO</button>
+</div>
 </div><div class="hero-media" aria-label="Próximo espacio para foto o video principal"></div>
 </section>
 <!-- ======================================
@@ -1540,6 +1546,19 @@
        PRODUCTOS
   ======================================= -->
 <script>
+function abrirCategorias(){
+ const panel=document.getElementById("panel-categorias");
+ if(panel&&!panel.classList.contains("activo")) panel.classList.add("activo");
+ const boton=document.querySelector(".ver-todas");
+ if(boton) boton.textContent="OCULTAR CATEGORÍAS ↑";
+ document.getElementById("categorias")?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function buscarProducto(){
+ const input=document.getElementById("buscador");
+ if(!input)return;
+ input.scrollIntoView({behavior:"smooth",block:"center"});
+ setTimeout(()=>input.focus(),450);
+}
 function moverCategorias(direccion){
  const carrusel=document.getElementById("carrusel-categorias");
  if(carrusel)carrusel.scrollBy({left:direccion*Math.min(carrusel.clientWidth*.82,780),behavior:"smooth"});
