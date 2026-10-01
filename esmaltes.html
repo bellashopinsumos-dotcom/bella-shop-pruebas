@@ -858,6 +858,47 @@
 
     }
 
+
+    /* NUEVA EXPERIENCIA VISUAL ESMALTES */
+    .hero{padding:54px 6%;text-align:left;min-height:390px}
+    .hero-grid{position:relative;z-index:3;width:100%;max-width:1100px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:48px}
+    .hero-contenido{max-width:590px}
+    .hero p{margin:0;max-width:560px}
+    .hero-visual{height:285px;position:relative;border-radius:32px;overflow:hidden;background:linear-gradient(145deg,#f9dce6,#fff7fa 54%,#efbfd0);border:1px solid rgba(230,83,133,.16);box-shadow:0 18px 45px rgba(101,54,70,.10)}
+    .hero-visual:before{content:"Bella Shop";position:absolute;left:26px;top:22px;font-family:Georgia,serif;font-style:italic;color:#d85a83;font-size:17px;opacity:.8}
+    .hero-visual-brillo{position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.65);filter:blur(2px);right:-35px;top:-65px}
+    .botella{position:absolute;bottom:27px;width:76px;border-radius:15px 15px 20px 20px;box-shadow:0 16px 22px rgba(77,42,54,.14);border:1px solid rgba(255,255,255,.75)}
+    .botella:before{content:"";position:absolute;width:43px;height:63px;left:16px;top:-59px;background:#30272b;border-radius:8px 8px 4px 4px}
+    .botella span{position:absolute;inset:42% 13px auto;height:35px;border-radius:7px;background:rgba(255,255,255,.82)}
+    .botella-1{height:142px;left:24%;background:#d8668e;transform:rotate(-6deg)}
+    .botella-2{height:165px;left:44%;background:#f0a6bd;z-index:2}
+    .botella-3{height:137px;left:64%;background:#9b6c83;transform:rotate(6deg)}
+    .hero-sello{position:absolute;right:20px;bottom:17px;width:78px;height:78px;border-radius:50%;background:#fff;color:#b94c70;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:8px;letter-spacing:.7px;box-shadow:0 8px 20px rgba(80,44,56,.1);transform:rotate(8deg)}
+    .hero-sello b{font-size:10px}
+    .seccion{background:linear-gradient(180deg,#fffdfd,#fff7f9 48%,#fffdfd);padding-top:72px}
+    .titulo{margin-bottom:32px}
+    .opciones{max-width:1050px;gap:24px}
+    .opcion{padding:0 28px 31px;justify-content:flex-start;min-height:430px;background:rgba(255,255,255,.94)}
+    .opcion-visual{position:relative;width:calc(100% + 56px);height:180px;margin:0 -28px 25px;border-radius:24px 24px 0 0;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:17px;padding-bottom:18px}
+    .semi-visual{background:linear-gradient(135deg,#f8dce7,#fff5f8 52%,#eab7c9)}
+    .tradicional-visual{background:linear-gradient(135deg,#f3e5e9,#fff8fa 52%,#e5cbd5)}
+    .opcion-visual:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.42);right:-35px;top:-75px}
+    .opcion-visual>span{position:absolute;left:18px;top:16px;padding:7px 11px;border-radius:20px;background:rgba(255,255,255,.82);color:#c64e76;font-size:9px;font-weight:900;letter-spacing:1px}
+    .mini-botella{position:relative;width:54px;height:82px;border-radius:10px 10px 13px 13px;box-shadow:0 10px 18px rgba(75,43,53,.13);z-index:2}
+    .mini-botella:before{content:"";position:absolute;width:29px;height:37px;left:12px;top:-33px;border-radius:5px 5px 3px 3px;background:#3b3034}
+    .mini-botella:after{content:"";position:absolute;left:8px;right:8px;top:31px;height:22px;border-radius:5px;background:rgba(255,255,255,.78)}
+    .semi-visual .a{background:#d65d87;transform:rotate(-5deg)}.semi-visual .b{background:#e8a2b8;height:92px}.semi-visual .c{background:#806174;transform:rotate(5deg)}
+    .tradicional-visual .a{background:#c84e76;transform:rotate(-5deg)}.tradicional-visual .b{background:#efb4c6;height:92px}.tradicional-visual .c{background:#a9778a;transform:rotate(5deg)}
+    .icono-categoria{width:58px;height:58px;margin-bottom:14px}.icono-categoria svg{width:30px;height:30px}
+    .opcion h3{font-size:25px}.opcion p{margin-bottom:14px}
+    .opcion-deshabilitada{opacity:.72}
+    @media(max-width:800px){
+      .hero{padding:42px 18px 34px;text-align:center}
+      .hero-grid{grid-template-columns:1fr;gap:28px}.hero p{margin:auto}.hero-visual{height:230px;max-width:520px;width:100%;margin:auto}
+      .botella-1{left:22%}.botella-2{left:43%}.botella-3{left:64%}
+      .opcion{min-height:405px}.opcion-visual{height:165px}
+    }
+    @media(max-width:440px){.hero-visual{height:205px}.botella{width:60px}.botella:before{width:35px;left:12px}.botella-1{left:19%}.botella-2{left:41%}.botella-3{left:63%}.hero-sello{width:65px;height:65px;right:10px}}
   </style>
 
 </head>
@@ -957,7 +998,7 @@
     >
 
 
-    <div class="hero-contenido">
+    <div class="hero-grid"><div class="hero-contenido">
 
       <span class="etiqueta">
         BELLA SHOP
@@ -977,7 +1018,14 @@
       </p>
 
     </div>
-
+    <div class="hero-visual" aria-label="Universo de esmaltes Bella Shop">
+      <div class="hero-visual-brillo"></div>
+      <div class="botella botella-1"><span></span></div>
+      <div class="botella botella-2"><span></span></div>
+      <div class="botella botella-3"><span></span></div>
+      <div class="hero-sello">COLOR<br><b>PARA CREAR</b></div>
+    </div>
+    </div>
   </section>
 
 
@@ -998,12 +1046,12 @@
     <div class="titulo">
 
       <h2>
-        Elige una categoría
+        ¿Qué tipo de esmalte buscas? 💕
       </h2>
 
 
       <p>
-        Selecciona el tipo de esmalte que deseas ver.
+        Elige tu favorito y descubre las marcas, tonos y colecciones que tenemos para ti.
       </p>
 
     </div>
@@ -1017,6 +1065,7 @@
         href="semipermanente.html"
         class="opcion"
       >
+        <div class="opcion-visual semi-visual"><div class="mini-botella a"></div><div class="mini-botella b"></div><div class="mini-botella c"></div><span>SEMIPERMANENTE</span></div>
 
         <div class="icono-categoria">
 
@@ -1063,6 +1112,7 @@
         class="opcion opcion-deshabilitada"
         aria-disabled="true"
       >
+        <div class="opcion-visual tradicional-visual"><div class="mini-botella a"></div><div class="mini-botella b"></div><div class="mini-botella c"></div><span>TRADICIONAL</span></div>
 
         <div class="icono-categoria">
 
