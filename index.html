@@ -1471,7 +1471,7 @@
 <!-- ======================================
        PRODUCTOS
   ======================================= -->
-<section class="seccion" id="productos">
+<section class="seccion" id="productos" style="display:none;">
 <img alt="" class="cara-decorativa cara-productos" src="imagenes/Cara logo bellashop.png"/>
 <div class="titulo">
 <h2>Resultados del catálogo</h2><p>Usa el buscador para encontrar productos, marcas y categorías.</p>
@@ -1758,9 +1758,12 @@ function toggleCategorias(){
 
 
 
-    mostrarProductos(
-      productos
-    );
+    const seccionResultados =
+      document.getElementById("productos");
+
+    seccionResultados.style.display = "none";
+    listaProductos.style.display = "none";
+    sinResultados.style.display = "none";
 
 
 
@@ -2065,14 +2068,16 @@ function toggleCategorias(){
         );
 
         panelBusqueda.innerHTML = "";
-
-        mostrarProductos(
-          productos
-        );
+        seccionResultados.style.display = "none";
+        listaProductos.style.display = "none";
+        sinResultados.style.display = "none";
 
         return;
 
       }
+
+      seccionResultados.style.display = "block";
+      listaProductos.style.display = "grid";
 
 
       const destinos =
