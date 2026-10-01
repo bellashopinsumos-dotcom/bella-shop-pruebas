@@ -28,7 +28,7 @@ let inventario={},uso="todo",tipo="todo";
 function item(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c||"").toUpperCase())}
 function money(n){return "$ "+Number(n||0).toLocaleString("es-CO")}
 function stockHtml(c){const i=item(c);if(!i)return '<div class="stock no">CÓDIGO NO ENCONTRADO</div>';const q=Number(i.disponible||0);return q>0?'<div class="stock">DISPONIBLE · '+q+' unidades</div>':'<div class="stock no">TEMPORALMENTE NO DISPONIBLE</div>'}
-function agregar(c,n){const i=item(c);if(!i||Number(i.disponible||0)<=0)return;let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");car.push({codigo:c,nombre:n,precio:Number(i.precio_venta||0),cantidad:1});localStorage.setItem("bellaShopCarrito",JSON.stringify(car));alert("Producto agregado a tu pedido 💗")}
+function agregar(c,n){const i=item(c);if(!i||Number(i.disponible||0)<=0)return;let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");car.push({codigo:c,nombre:n,precio:Number(i.precio_venta||0),cantidad:1});localStorage.setItem("bellaShopCarrito",JSON.stringify(car))}
 function seleccionarVariante(id,codigo,nombreProducto,nombreVariante,btn){
   const box=document.getElementById(id); if(!box)return;
   box.querySelectorAll(".burbuja").forEach(b=>b.classList.remove("activa")); btn.classList.add("activa");
