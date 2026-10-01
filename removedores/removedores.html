@@ -146,7 +146,7 @@ function mostrarAgregado(nombre,cantidad){let t=document.getElementById("toast-c
 function agregar(c,n,idCantidad){const i=item(c);if(!i||Number(i.disponible||0)<=0)return;const e=idCantidad?document.getElementById(idCantidad):null;const cantidad=Math.max(1,Math.min(Number(i.disponible||0),Number(e?e.textContent:1)||1));let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");car.push({codigo:c,referencia:c,nombre:n+" · REF. "+c,precio:Number(i.precio_venta||0),cantidad:cantidad});localStorage.setItem("bellaShopCarrito",JSON.stringify(car));mostrarAgregado(n,cantidad)}
 function seleccionarVariante(id,codigo,nombreProducto,nombreVariante,btn){
   const box=document.getElementById(id); if(!box)return;
-  box.querySelectorAll(".burbuja").forEach(b=>b.classList.remove("activa")); btn.classList.add("activa");
+  box.querySelectorAll(".tamano-btn").forEach(b=>b.classList.remove("activa")); btn.classList.add("activa");
   const i=item(codigo),ok=i&&Number(i.disponible||0)>0;
   const detalle=box.querySelector(".detalle-variante");
   const qid='q-'+codigo; detalle.innerHTML='<div class="precio">'+(i?money(i.precio_venta):"Precio no disponible")+'</div>'+stockHtml(codigo)+selectorCantidad(codigo,qid);
