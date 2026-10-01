@@ -1355,6 +1355,15 @@
 .hero-acciones .boton-principal{border:0;cursor:pointer}
 .boton-secundario{padding:14px 23px;border-radius:30px;border:1px solid #e2a9bc;background:rgba(255,255,255,.72);color:#c94f77;font-size:12px;font-weight:800;cursor:pointer}
 @media(max-width:800px){.hero-acciones{justify-content:center}}
+
+.promociones-home{padding:28px 5% 58px;background:#fff}
+.promociones-inner{max-width:1100px;margin:auto;padding:34px 38px;border-radius:28px;background:linear-gradient(135deg,#fff0f5,#ffe4ee);border:1px solid #f1cbd8;display:flex;align-items:center;justify-content:space-between;gap:25px;box-shadow:0 12px 35px rgba(83,48,58,.06)}
+.promociones-inner small{font-size:10px;font-weight:900;letter-spacing:1.3px;color:#d64f7b}
+.promociones-inner h2{font-family:Georgia,serif;font-size:30px;font-weight:500;margin:9px 0}
+.promociones-inner p{margin:0;color:#7c606a;line-height:1.55;max-width:650px}
+.promociones-estado{flex:0 0 auto;padding:11px 18px;border-radius:30px;background:#fff;color:#d64f7b;font-size:10px;font-weight:900;letter-spacing:1px;border:1px solid #efc7d5}
+.novedad-card span{display:block;margin-top:8px;color:#8b7079;font-size:11px;line-height:1.45;font-weight:400}
+@media(max-width:800px){.promociones-home{padding:18px 16px 42px}.promociones-inner{padding:27px 23px;display:block}.promociones-inner h2{font-size:25px}.promociones-estado{display:inline-block;margin-top:18px}}
 </style>
 </head>
 <body>
@@ -1396,10 +1405,6 @@
         En Bella Shop tenemos un montón de cositas bonitas para acompañarte en cada creación.
         Explora nuestro catálogo, encuentra tus favoritos y déjate enamorar. 💅💗
       </p>
-<div class="hero-acciones">
-<button class="boton-principal" type="button" onclick="abrirCategorias()">VER CATEGORÍAS</button>
-<button class="boton-secundario" type="button" onclick="buscarProducto()">BUSCAR PRODUCTO</button>
-</div>
 </div><div class="hero-media" aria-label="Próximo espacio para foto o video principal"></div>
 </section>
 <!-- ======================================
@@ -1448,12 +1453,19 @@
 </div>
 </section>
 
+<section class="promociones-home">
+<div class="promociones-inner">
+<div><small>PROMOCIONES BELLA SHOP 💕</small><h2>Un espacio para consentirte un poquito más ✨</h2><p>Aquí encontrarás nuestras promociones y oportunidades especiales cuando estén disponibles.</p></div>
+<div class="promociones-estado">PRÓXIMAMENTE</div>
+</div>
+</section>
+
 <section class="novedades-home">
-<div class="titulo"><h2>Descubre lo nuevo 💗</h2><p>Este espacio irá cambiando con lanzamientos, productos destacados y novedades de Bella Shop.</p></div>
+<div class="titulo"><h2>Descubre lo nuevo 💗</h2><p>Un espacio que iremos renovando con lo más reciente y especial de Bella Shop.</p></div>
 <div class="novedades-placeholder">
-<div class="novedad-card"><small>NOVEDADES</small><strong>Productos recién llegados</strong></div>
-<div class="novedad-card"><small>DESTACADOS</small><strong>Favoritos de Bella Shop</strong></div>
-<div class="novedad-card"><small>DESCUBRE</small><strong>Marcas y colecciones especiales</strong></div>
+<div class="novedad-card"><small>LO NUEVO</small><strong>Recién llegados</strong><span>Los productos que acaban de llegar a Bella Shop.</span></div>
+<div class="novedad-card"><small>PARA TI</small><strong>Recomendados por Bella Shop</strong><span>Una selección que iremos cambiando para ayudarte a descubrir productos.</span></div>
+<div class="novedad-card"><small>DESCUBRE</small><strong>Colecciones destacadas</strong><span>Lanzamientos, marcas y colecciones que merecen su propio espacio.</span></div>
 </div>
 </section>
 <!-- ======================================
