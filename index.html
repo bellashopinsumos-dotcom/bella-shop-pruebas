@@ -1318,6 +1318,13 @@
 .novedades-placeholder{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .novedad-card{min-height:180px;border-radius:22px;background:#fff;border:1px solid #eedce2;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
 .novedad-card small{color:#d94d7a;font-weight:800;margin-bottom:7px}.novedad-card strong{font-size:18px;color:#46343a}
+.novedad-carrusel{min-height:180px;border-radius:22px;overflow:hidden;position:relative;background:#fff;border:1px solid #eedce2}
+.novedad-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;pointer-events:none}
+.novedad-slide.activo{opacity:1;pointer-events:auto}
+.novedad-slide img{display:block;width:100%;height:100%;min-height:180px;object-fit:cover}
+.novedad-puntos{position:absolute;left:0;right:0;bottom:11px;z-index:4;display:flex;justify-content:center;gap:7px}
+.novedad-puntos button{width:8px;height:8px;border:0;border-radius:50%;padding:0;background:rgba(255,255,255,.62);box-shadow:0 1px 5px rgba(0,0,0,.18);cursor:pointer}
+.novedad-puntos button.activo{background:#d94d7a}
 @media(max-width:800px){
  .hero{min-height:auto;padding:48px 20px 32px;text-align:center;display:block}
  .hero-contenido{max-width:none}.hero p{margin:0 auto 25px}.hero h1{font-size:39px}
@@ -1461,9 +1468,11 @@
 <section class="novedades-home">
 <div class="titulo"><h2>Descubre lo nuevo 💗</h2><p>Un espacio que iremos renovando con lo más reciente y especial de Bella Shop.</p></div>
 <div class="novedades-placeholder">
-<a class="novedad-card novedad-ks" href="removedores/removedores.html" style="padding:0;overflow:hidden;text-decoration:none;background:#fff;">
-<img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop" style="display:block;width:100%;height:100%;min-height:180px;object-fit:cover;">
-</a>
+<div class="novedad-carrusel" id="novedad-carrusel">
+<a class="novedad-slide activo" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop"></a>
+<a class="novedad-slide" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop"></a>
+<div class="novedad-puntos"><button class="activo" type="button" aria-label="Ver novedad 1"></button><button type="button" aria-label="Ver novedad 2"></button></div>
+</div>
 <div class="novedad-card"><small>PARA TI</small><strong>Recomendados por Bella Shop</strong><span>Una selección que iremos cambiando para ayudarte a descubrir productos.</span></div>
 <div class="novedad-card"><small>DESCUBRE</small><strong>Colecciones destacadas</strong><span>Lanzamientos, marcas y colecciones que merecen su propio espacio.</span></div>
 </div>
@@ -2193,5 +2202,16 @@ function toggleCategorias(){
 
 
   </script>
+<script>
+(function(){
+ const box=document.getElementById("novedad-carrusel"); if(!box)return;
+ const slides=[...box.querySelectorAll(".novedad-slide")], puntos=[...box.querySelectorAll(".novedad-puntos button")];
+ let actual=0, timer;
+ function mostrar(i){actual=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle("activo",n===actual));puntos.forEach((p,n)=>p.classList.toggle("activo",n===actual))}
+ function iniciar(){clearInterval(timer);timer=setInterval(()=>mostrar(actual+1),4000)}
+ puntos.forEach((p,i)=>p.addEventListener("click",()=>{mostrar(i);iniciar()}));
+ iniciar();
+})();
+</script>
 </body>
 </html>
