@@ -1413,16 +1413,29 @@ body.intro-activa{overflow:hidden}
  .hero-contenido{max-width:780px!important}
 }
 
+
+/* ===== VIDEO COMO FONDO SUAVE DEL HERO ===== */
+.bella-intro{display:none!important}
+.hero{position:relative!important;overflow:hidden!important;min-height:520px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:72px 7%!important;text-align:center!important;background:#fff8fa!important}
+.hero-video-fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;filter:saturate(.68) brightness(1.12) contrast(.88);transform:scale(1.025)}
+.hero-video-velo{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(255,249,251,.82) 0%,rgba(255,247,250,.60) 24%,rgba(255,247,250,.52) 50%,rgba(255,247,250,.60) 76%,rgba(255,249,251,.82) 100%);box-shadow:inset 0 55px 60px -45px #fff,inset 0 -65px 65px -48px #fff}
+.hero-contenido{position:relative!important;z-index:4!important;max-width:800px!important;margin:auto!important;padding:32px 38px!important;border-radius:32px;background:rgba(255,255,255,.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);box-shadow:0 18px 55px rgba(117,72,87,.05)}
+.hero .etiqueta{background:rgba(255,255,255,.76);box-shadow:0 4px 18px rgba(117,72,87,.07)}
+.hero h1{text-shadow:0 2px 18px rgba(255,255,255,.96)}
+.hero p{max-width:680px!important;margin:0 auto!important;color:#6f555e!important;text-shadow:0 1px 10px rgba(255,255,255,.96)}
+.cara-hero{display:none!important}
+@media(max-width:800px){
+ .hero{min-height:470px!important;padding:42px 18px!important}
+ .hero-video-fondo{object-fit:cover;object-position:center;filter:saturate(.62) brightness(1.15) contrast(.86);transform:scale(1.04)}
+ .hero-video-velo{background:rgba(255,247,250,.68);box-shadow:inset 0 45px 55px -38px #fff,inset 0 -55px 58px -40px #fff}
+ .hero-contenido{padding:28px 18px!important;border-radius:26px;background:rgba(255,255,255,.38)}
+ .hero h1{font-size:39px!important}
+ .hero p{font-size:15px!important;line-height:1.65!important}
+}
+
 </style>
 </head>
 <body>
-<div class="bella-intro" id="bella-intro" aria-label="Bienvenida Bella Shop">
-  <video id="bella-intro-video" autoplay muted playsinline preload="auto">
-    <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
-  </video>
-  <div class="bella-intro-tinte"></div>
-  <button class="bella-intro-saltar" id="bella-intro-saltar" type="button">ENTRAR AHORA</button>
-</div>
 <!-- ======================================
        CABECERA
   ======================================= -->
@@ -1447,6 +1460,10 @@ body.intro-activa{overflow:hidden}
        PORTADA
   ======================================= -->
 <section class="hero" id="inicio">
+<video class="hero-video-fondo" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+  <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
+</video>
+<div class="hero-video-velo" aria-hidden="true"></div>
 <img alt="" class="cara-hero" src="imagenes/Cara logo bellashop.png"/>
 <div class="hero-contenido">
 <span class="etiqueta">
@@ -2262,38 +2279,6 @@ function toggleCategorias(){
  box.querySelector(".novedad-flecha.izq").addEventListener("click",()=>{mostrar(actual-1);iniciar()});
  box.querySelector(".novedad-flecha.der").addEventListener("click",()=>{mostrar(actual+1);iniciar()});
  iniciar();
-})();
-</script>
-
-<script>
-(function(){
-  const intro=document.getElementById('bella-intro');
-  const video=document.getElementById('bella-intro-video');
-  const saltar=document.getElementById('bella-intro-saltar');
-  if(!intro||!video)return;
-
-  if(sessionStorage.getItem('bellaIntroVista')==='1'){
-    intro.remove();
-    return;
-  }
-
-  document.body.classList.add('intro-activa');
-  let cerrando=false;
-  function entrar(){
-    if(cerrando)return;
-    cerrando=true;
-    sessionStorage.setItem('bellaIntroVista','1');
-    intro.classList.add('saliendo');
-    document.body.classList.remove('intro-activa');
-    setTimeout(()=>intro.remove(),950);
-  }
-
-  video.addEventListener('ended',entrar);
-  video.addEventListener('error',entrar);
-  saltar.addEventListener('click',entrar);
-  const intento=video.play();
-  if(intento&&intento.catch)intento.catch(()=>{});
-  setTimeout(entrar,8000);
 })();
 </script>
 
