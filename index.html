@@ -1454,6 +1454,42 @@ body.intro-activa{overflow:hidden}
  .hero-contenido{padding:25px 14px!important;background:rgba(255,255,255,.30)!important;backdrop-filter:blur(1px)!important;-webkit-backdrop-filter:blur(1px)!important;box-shadow:none!important}
 }
 
+
+/* ===== CORRECCIÓN HERO MÓVIL SEGÚN VISTA REAL ===== */
+@media(max-width:800px){
+ .hero{
+   min-height:0!important;
+   height:auto!important;
+   padding:42px 16px 28px!important;
+   display:block!important;
+   overflow:hidden!important;
+ }
+ .hero-contenido{
+   width:100%!important;
+   max-width:680px!important;
+   margin:0 auto!important;
+   padding:20px 12px 22px!important;
+   min-height:0!important;
+ }
+ .hero-video-fondo{
+   top:50%!important;
+   left:50%!important;
+   width:118%!important;
+   height:auto!important;
+   aspect-ratio:2944/1248!important;
+   transform:translate(-50%,-46%)!important;
+   object-fit:contain!important;
+   opacity:.68!important;
+ }
+ .hero-video-velo{
+   background:linear-gradient(180deg,rgba(255,248,250,.76) 0%,rgba(255,248,250,.42) 25%,rgba(255,248,250,.38) 65%,rgba(255,248,250,.78) 100%)!important;
+ }
+ .hero .etiqueta{margin-bottom:26px!important}
+ .hero h1{margin-bottom:20px!important}
+ .hero p{margin:0!important}
+ #categorias{padding-top:38px!important}
+}
+
 </style>
 </head>
 <body>
