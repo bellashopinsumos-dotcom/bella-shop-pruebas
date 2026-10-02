@@ -1390,9 +1390,36 @@
  .hero-media::before{background:linear-gradient(90deg,rgba(255,248,250,.58) 0%,transparent 16%,transparent 84%,rgba(255,248,250,.58) 100%)}
 }
 
+
+/* ===== INTRO CINEMÁTICA BELLA SHOP ===== */
+.bella-intro{position:fixed;inset:0;z-index:99999;background:#fff7fa;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:1;visibility:visible;transition:opacity .9s ease,visibility .9s ease}
+.bella-intro.saliendo{opacity:0;visibility:hidden;pointer-events:none}
+.bella-intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.84) brightness(1.04)}
+.bella-intro-tinte{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,247,250,.10),transparent 24%,transparent 72%,rgba(255,247,250,.22));box-shadow:inset 0 0 110px rgba(255,238,244,.20)}
+.bella-intro-saltar{position:absolute;right:26px;bottom:24px;z-index:2;border:1px solid rgba(255,255,255,.78);background:rgba(255,255,255,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#b84f73;padding:11px 18px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:1px;cursor:pointer;box-shadow:0 6px 22px rgba(83,48,58,.10)}
+body.intro-activa{overflow:hidden}
+
+/* La portada vuelve a ser limpia: el video vive solo en la bienvenida */
+.hero{min-height:480px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:72px 7%!important;text-align:center!important;background:radial-gradient(circle at 15% 20%,rgba(245,174,198,.20),transparent 24%),radial-gradient(circle at 85% 80%,rgba(230,83,133,.10),transparent 24%),linear-gradient(135deg,#fff6f8 0%,#fffdfd 50%,#fdeef3 100%)!important}
+.hero-contenido{max-width:780px!important;margin:auto!important;padding:0!important}
+.hero p{max-width:680px!important;margin:0 auto 30px!important}
+@media(max-width:800px){
+ .bella-intro video{object-fit:cover}
+ .bella-intro-saltar{right:16px;bottom:18px;padding:10px 15px}
+ .hero{min-height:390px!important;padding:58px 22px!important}
+ .hero-contenido{max-width:780px!important}
+}
+
 </style>
 </head>
 <body>
+<div class="bella-intro" id="bella-intro" aria-label="Bienvenida Bella Shop">
+  <video id="bella-intro-video" autoplay muted playsinline preload="auto">
+    <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
+  </video>
+  <div class="bella-intro-tinte"></div>
+  <button class="bella-intro-saltar" id="bella-intro-saltar" type="button">ENTRAR AHORA</button>
+</div>
 <!-- ======================================
        CABECERA
   ======================================= -->
@@ -1431,7 +1458,7 @@
         En Bella Shop tenemos un montón de cositas bonitas para acompañarte en cada creación.
         Explora nuestro catálogo, encuentra tus favoritos y déjate enamorar. 💅💗
       </p>
-</div><div class="hero-media" aria-label="Presentación Bella Shop"><video autoplay muted loop playsinline preload="metadata" aria-label="Video de presentación Bella Shop"><source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4"></video></div>
+</div>
 </section>
 <!-- ======================================
        CATEGORÍAS
@@ -2234,5 +2261,38 @@ function toggleCategorias(){
  iniciar();
 })();
 </script>
+
+<script>
+(function(){
+  const intro=document.getElementById('bella-intro');
+  const video=document.getElementById('bella-intro-video');
+  const saltar=document.getElementById('bella-intro-saltar');
+  if(!intro||!video)return;
+
+  if(sessionStorage.getItem('bellaIntroVista')==='1'){
+    intro.remove();
+    return;
+  }
+
+  document.body.classList.add('intro-activa');
+  let cerrando=false;
+  function entrar(){
+    if(cerrando)return;
+    cerrando=true;
+    sessionStorage.setItem('bellaIntroVista','1');
+    intro.classList.add('saliendo');
+    document.body.classList.remove('intro-activa');
+    setTimeout(()=>intro.remove(),950);
+  }
+
+  video.addEventListener('ended',entrar);
+  video.addEventListener('error',entrar);
+  saltar.addEventListener('click',entrar);
+  const intento=video.play();
+  if(intento&&intento.catch)intento.catch(()=>{});
+  setTimeout(entrar,8000);
+})();
+</script>
+
 </body>
 </html>
