@@ -1325,6 +1325,8 @@
 .novedad-puntos{position:absolute;left:0;right:0;bottom:11px;z-index:4;display:flex;justify-content:center;gap:7px}
 .novedad-puntos button{width:8px;height:8px;border:0;border-radius:50%;padding:0;background:rgba(255,255,255,.62);box-shadow:0 1px 5px rgba(0,0,0,.18);cursor:pointer}
 .novedad-puntos button.activo{background:#d94d7a}
+.novedad-flecha{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:36px;height:36px;border-radius:50%;border:1px solid rgba(239,198,211,.9);background:rgba(255,255,255,.9);color:#d94d7a;font-size:25px;line-height:30px;cursor:pointer;box-shadow:0 4px 12px rgba(83,48,58,.12)}
+.novedad-flecha.izq{left:10px}.novedad-flecha.der{right:10px}
 @media(max-width:800px){
  .hero{min-height:auto;padding:48px 20px 32px;text-align:center;display:block}
  .hero-contenido{max-width:none}.hero p{margin:0 auto 25px}.hero h1{font-size:39px}
@@ -1471,7 +1473,7 @@
 <div class="novedad-carrusel" id="novedad-carrusel">
 <a class="novedad-slide activo" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop"></a>
 <a class="novedad-slide" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop"></a>
-<div class="novedad-puntos"><button class="activo" type="button" aria-label="Ver novedad 1"></button><button type="button" aria-label="Ver novedad 2"></button></div>
+<button class="novedad-flecha izq" type="button" aria-label="Novedad anterior">‹</button><button class="novedad-flecha der" type="button" aria-label="Siguiente novedad">›</button><div class="novedad-puntos"><button class="activo" type="button" aria-label="Ver novedad 1"></button><button type="button" aria-label="Ver novedad 2"></button></div>
 </div>
 <div class="novedad-card"><small>PARA TI</small><strong>Recomendados por Bella Shop</strong><span>Una selección que iremos cambiando para ayudarte a descubrir productos.</span></div>
 <div class="novedad-card"><small>DESCUBRE</small><strong>Colecciones destacadas</strong><span>Lanzamientos, marcas y colecciones que merecen su propio espacio.</span></div>
@@ -2210,6 +2212,8 @@ function toggleCategorias(){
  function mostrar(i){actual=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle("activo",n===actual));puntos.forEach((p,n)=>p.classList.toggle("activo",n===actual))}
  function iniciar(){clearInterval(timer);timer=setInterval(()=>mostrar(actual+1),4000)}
  puntos.forEach((p,i)=>p.addEventListener("click",()=>{mostrar(i);iniciar()}));
+ box.querySelector(".novedad-flecha.izq").addEventListener("click",()=>{mostrar(actual-1);iniciar()});
+ box.querySelector(".novedad-flecha.der").addEventListener("click",()=>{mostrar(actual+1);iniciar()});
  iniciar();
 })();
 </script>
