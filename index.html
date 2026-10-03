@@ -1800,6 +1800,29 @@ footer{
  }
 }
 
+
+/* ===== FOTOS COMPLETAS DEL CARRUSEL EN ESCRITORIO ===== */
+@media(min-width:801px){
+ .hero-slide-nuevo{
+   background:linear-gradient(135deg,#fff 0%,#fff5f8 50%,#fdeaf1 100%)!important;
+ }
+ .hero-slide-nuevo img{
+   width:100%!important;
+   height:100%!important;
+   object-fit:contain!important;
+   object-position:center center!important;
+ }
+}
+/* En móvil también priorizamos ver el producto completo sin afectar el video */
+@media(max-width:800px){
+ .hero-slide-nuevo img{
+   width:100%!important;
+   height:100%!important;
+   object-fit:contain!important;
+   object-position:center center!important;
+ }
+}
+
 </style>
 </head>
 <body>
