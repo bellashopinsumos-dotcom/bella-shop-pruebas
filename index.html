@@ -1823,6 +1823,30 @@ footer{
  }
 }
 
+
+/* ===== LANZAMIENTO ILU ===== */
+.ilu-lanzamiento{position:relative;overflow:hidden;grid-template-columns:1.05fr .95fr!important;gap:46px!important}
+.ilu-logo-real{display:block;max-width:190px;max-height:82px;object-fit:contain;object-position:left center;margin:17px 0 13px}
+.ilu-copy h2{max-width:560px;font-size:40px!important;line-height:1.04!important;margin:0 0 14px!important;color:#5e414d!important}
+.ilu-copy p{max-width:570px;line-height:1.65!important}
+.ilu-etiquetas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.ilu-etiquetas span{font:800 9px/1 Arial,sans-serif;letter-spacing:1.15px;padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.78);border:1px solid #edcbd7;color:#ad4d6e}
+.ilu-escena{position:relative;min-height:285px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 38%,#fff 0%,#fff8fa 30%,#f8dce7 100%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 0 45px rgba(255,255,255,.65),0 14px 36px rgba(135,66,91,.10)}
+.ilu-logo-marco{position:relative;z-index:3;width:72%;max-width:290px;min-height:120px;padding:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(161,83,111,.10);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ilu-logo-marco img{width:100%;max-height:95px;object-fit:contain}
+.ilu-escena small{position:relative;z-index:3;margin-top:17px;font:800 9px/1 Arial,sans-serif;letter-spacing:2.2px;color:#ad6980}
+.ilu-burbuja{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.9);background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(248,201,217,.28));box-shadow:inset 0 0 14px rgba(255,255,255,.85)}
+.burbuja-a{width:105px;height:105px;right:-20px;top:15px}.burbuja-b{width:64px;height:64px;left:22px;bottom:25px}
+.ilu-brillo{position:absolute;color:#fff;text-shadow:0 2px 12px rgba(186,96,126,.25);z-index:2}.brillo-a{font-size:32px;left:12%;top:18%}.brillo-b{font-size:25px;right:13%;bottom:20%}
+@media(max-width:800px){
+ .ilu-lanzamiento{grid-template-columns:1fr!important;gap:24px!important}
+ .ilu-logo-real{max-width:145px;max-height:64px;margin:13px 0 10px}
+ .ilu-copy h2{font-size:30px!important}
+ .ilu-escena{min-height:205px;border-radius:22px}
+ .ilu-logo-marco{max-width:220px;min-height:90px;padding:20px}
+ .ilu-logo-marco img{max-height:70px}
+}
+
 </style>
 </head>
 <body>
@@ -1937,16 +1961,21 @@ footer{
 
 
 <section class="ilu-teaser">
-<div class="ilu-inner">
+<div class="ilu-inner ilu-lanzamiento">
   <div class="ilu-copy">
-    <div class="ilu-kicker">PRÓXIMAMENTE EN BELLA SHOP</div>
-    <h2>Algo nuevo está por llegar ✨</h2>
-    <p>ILU se suma muy pronto a nuestro catálogo. Estamos preparando su llegada para que descubras la colección desde el primer día.</p>
-    <span class="ilu-proximamente">ILU · MUY PRONTO</span>
+    <div class="ilu-kicker">NUEVA MARCA · PRÓXIMAMENTE</div>
+    <img class="ilu-logo-real" src="imagenes/logo%20ilu.png" alt="ILU">
+    <h2>Una nueva historia de color está por llegar</h2>
+    <p>Muy pronto podrás descubrir ILU en Bella Shop. Estamos preparando su llegada para presentarte la marca como se merece.</p>
+    <div class="ilu-etiquetas"><span>PRÓXIMAMENTE</span><span>EN BELLA SHOP</span></div>
   </div>
-  <div class="ilu-decor" aria-hidden="true">
-    <span class="ilu-orbita orbita-1"></span><span class="ilu-orbita orbita-2"></span>
-    <strong>ILU</strong><small>NEW BRAND</small>
+  <div class="ilu-escena" aria-hidden="true">
+    <span class="ilu-brillo brillo-a">✦</span>
+    <span class="ilu-brillo brillo-b">✧</span>
+    <span class="ilu-burbuja burbuja-a"></span>
+    <span class="ilu-burbuja burbuja-b"></span>
+    <div class="ilu-logo-marco"><img src="imagenes/logo%20ilu.png" alt=""></div>
+    <small>COMING SOON</small>
   </div>
 </div>
 </section>
