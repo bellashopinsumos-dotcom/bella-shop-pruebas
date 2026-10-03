@@ -50,6 +50,66 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.foo
  .categorias{padding:40px 14px 48px}.section-title{margin-bottom:23px}.cards{grid-template-columns:1fr;gap:14px;max-width:520px}.card{min-height:165px;padding:21px 20px;border-radius:22px}.card-kicker{margin-bottom:14px}.card h3{font-size:26px}.card p{margin-bottom:14px}
  .help{padding:40px 17px}.help h2{font-size:27px}
 }
+
+/* ===== AJUSTE FINAL DE COMPOSICION ESMALTES ===== */
+.hero{min-height:300px!important}
+.hero-inner{grid-template-columns:1.15fr .85fr!important;gap:38px!important}
+.hero-copy{padding-left:12px}
+.hero h1{margin-bottom:13px!important}
+.hero-art{
+ height:185px!important;
+ border-left:1px solid rgba(213,143,167,.22);
+}
+.hero-word{display:none!important}
+.hero-monograma{
+ position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
+ font:italic 500 72px/1 Georgia,serif;
+ letter-spacing:-6px;color:rgba(157,85,110,.13);
+}
+.hero-frase{
+ position:absolute;left:50%;top:55%;transform:translateX(-50%);
+ white-space:nowrap;
+ font:800 8px/1 Arial,sans-serif;letter-spacing:2.3px;
+ color:rgba(164,78,108,.54);
+}
+.hero-raya{
+ position:absolute;width:54px;height:1px;left:50%;top:68%;transform:translateX(-50%);
+ background:linear-gradient(90deg,transparent,#d29aae,transparent);
+}
+.hero-art:before{width:125px!important;height:125px!important;right:10%!important;top:8%!important}
+.hero-art:after{width:140px!important;left:10%!important;bottom:12%!important}
+.s1{left:25%!important;top:20%!important}.s2{right:22%!important;bottom:17%!important}
+.b1{right:27%!important;top:19%!important}.b2{left:26%!important;bottom:21%!important}
+
+.categorias{padding-top:48px!important}
+.section-title{max-width:620px;margin-left:auto!important;margin-right:auto!important;margin-bottom:28px!important}
+.cards{align-items:stretch}
+.card{display:flex;flex-direction:column;justify-content:center;min-height:185px!important;padding:25px 27px!important}
+.card-kicker{margin-bottom:13px!important}
+.card h3{margin-bottom:9px!important}
+.card p{margin-bottom:16px!important}
+.card-link{margin-top:auto;padding-top:2px}
+.card-star{right:13%!important;top:20%!important}
+.card-pearl{right:9%!important;bottom:15%!important}
+
+@media(max-width:800px){
+ .hero{padding:30px 0 23px!important}
+ .hero-inner{grid-template-columns:1fr!important;gap:18px!important}
+ .hero-copy{padding-left:0!important}
+ .hero-art{height:82px!important;border-left:0!important;border-top:1px solid rgba(213,143,167,.18)}
+ .hero-monograma{font-size:51px!important;top:48%!important}
+ .hero-frase{top:61%!important;font-size:6.5px!important;letter-spacing:1.7px!important}
+ .hero-raya{top:77%!important}
+ .hero-art:before{width:64px!important;height:64px!important;right:16%!important;top:6%!important}
+ .hero-art:after{width:85px!important;left:13%!important;bottom:0!important}
+ .s1{left:26%!important;top:19%!important;font-size:15px!important}
+ .s2{right:24%!important;bottom:8%!important}
+ .b1{width:19px!important;height:19px!important;right:29%!important;top:14%!important}
+ .b2{width:10px!important;height:10px!important}
+ .categorias{padding-top:35px!important}
+ .card{min-height:158px!important;padding:20px!important}
+}
+
 </style>
 </head>
 <body>
@@ -69,7 +129,7 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.foo
    <p>Encuentra el color perfecto para cada creación. Explora nuestras opciones de esmaltes y descubre marcas, tonos y colecciones para tus diseños.</p>
   </div>
   <div class="hero-art" aria-hidden="true">
-   <span class="hero-word">Esmaltes</span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="bubble b1"></span><span class="bubble b2"></span>
+   <span class="hero-monograma">BS</span><span class="hero-frase">COLOR · ESTILO · CREATIVIDAD</span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="bubble b1"></span><span class="bubble b2"></span><span class="hero-raya"></span>
   </div>
  </div>
 </section>
