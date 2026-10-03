@@ -150,8 +150,8 @@ const productos=[
 {codigo:"SC-CC6B34479473",nombre:"Ablandador de Callos Slendy 60 ml",marca:"Slendy",zona:"callos",tipo:"gel",usos:["callos"],imagen:"imagenes/CALLOSSLENDY.png"},
 {codigo:"7702322000890",nombre:"Removedor de Cutícula y Callos en Gel Utopick 60 ml",marca:"Utopick",logo:"../imagenes/logo UTOPICK.webp",zona:"callos",zonas:["callos","cuticula"],tipo:"gel",usos:["callos","cuticula"],imagen:"imagenes/CALLOSUTOPICK.png"},
 {codigo:"SC-65188AF5834D",nombre:"Ablandador de Callos Brescia",marca:"Brescia",logo:"../imagenes/logo-brescia.png",zona:"callos",tipo:"liquido",usos:["callos"],imagen:"imagenes/CALLOSBRESCIA.png"},
-{nombre:"Ablandador de Callos KS",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"callos",tipo:"gel",usos:["callos"],imagen:"imagenes/CALLOSKS.png",proximamente:true},
-{nombre:"removedorks",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/removedorks.png",proximamente:true}
+{codigo:"1880001000372",nombre:"Removedor de Callos en Gel KS 250 ml",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"callos",tipo:"gel",usos:["callos"],imagen:"imagenes/CALLOSKS.png"},
+{codigo:"1880000200056",nombre:"Removedor en Gel KS",marca:"KS",logo:"../imagenes/LOGOKS.png",zona:"esmalte",tipo:"gel",usos:["semipermanente"],imagen:"imagenes/removedorks.png"}
 ];
 let inventario={},zona="todo",uso="todo",tipo="todo";
 function item(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c||"").toUpperCase())}
