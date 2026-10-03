@@ -899,7 +899,151 @@
       .opcion{min-height:405px}.opcion-visual{height:165px}
     }
     @media(max-width:440px){.hero-visual{height:205px}.botella{width:60px}.botella:before{width:35px;left:12px}.botella-1{left:19%}.botella-2{left:41%}.botella-3{left:63%}.hero-sello{width:65px;height:65px;right:10px}}
-  </style>
+  
+/* ===== ESMALTES · IDENTIDAD DEL NUEVO INICIO ===== */
+.hero{
+ min-height:310px!important;
+ padding:42px 6%!important;
+ background:
+  radial-gradient(circle at 10% 15%,rgba(242,184,204,.20),transparent 24%),
+  linear-gradient(135deg,#fff 0%,#fff8fa 52%,#fbe6ed 100%)!important;
+}
+.hero-grid{max-width:1050px!important;gap:34px!important}
+.hero .etiqueta{
+ padding:7px 15px!important;
+ background:rgba(255,255,255,.72)!important;
+ letter-spacing:1.7px!important;
+}
+.hero h1{
+ font-style:italic;
+ font-size:clamp(42px,5vw,62px)!important;
+ color:#704858!important;
+ letter-spacing:-1.6px;
+ margin-bottom:12px!important;
+}
+.hero p{font-size:14px!important;line-height:1.65!important}
+.hero-editorial{
+ height:225px!important;
+ border-radius:28px!important;
+ background:
+  radial-gradient(circle at 74% 24%,rgba(255,255,255,.92),transparent 24%),
+  linear-gradient(145deg,#fff 0%,#fff6f9 48%,#f5dce5 100%)!important;
+ border:1px solid rgba(231,190,204,.72)!important;
+ box-shadow:0 15px 36px rgba(112,66,82,.08)!important;
+}
+.hero-editorial:before{
+ content:"";
+ position:absolute;
+ width:125px;height:125px;
+ right:-38px;top:-42px;
+ border-radius:50%;
+ background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(226,154,180,.13));
+ border:1px solid rgba(255,255,255,.9);
+}
+.hero-marca{
+ position:absolute;left:25px;top:22px;
+ font:800 8px/1 Arial,sans-serif;
+ letter-spacing:2.6px;color:rgba(173,81,113,.34);
+}
+.hero-palabra{
+ position:absolute;left:50%;top:48%;
+ transform:translate(-50%,-50%);
+ font:italic 500 clamp(34px,4vw,50px)/1 Georgia,serif;
+ color:#85566a;
+ white-space:nowrap;
+}
+.hero-linea{
+ position:absolute;width:58px;height:1px;
+ left:50%;top:68%;transform:translateX(-50%);
+ background:linear-gradient(90deg,transparent,#d391aa,transparent);
+}
+.hero-cristal{
+ position:absolute;border-radius:50%;
+ border:1px solid rgba(255,255,255,.94);
+ background:radial-gradient(circle at 30% 25%,#fff 0 10%,rgba(255,255,255,.45) 12% 30%,rgba(226,153,180,.16) 70%);
+ box-shadow:inset -4px -4px 10px rgba(218,144,170,.08),0 6px 14px rgba(105,58,75,.06);
+}
+.cristal-1{width:29px;height:29px;right:20%;top:29%}
+.cristal-2{width:16px;height:16px;left:18%;bottom:22%}
+.hero-estrella{position:absolute;color:rgba(197,92,129,.38);font-family:Georgia,serif}
+.estrella-1{left:20%;top:27%;font-size:18px}.estrella-2{right:25%;bottom:21%;font-size:14px}
+.hero-onda{
+ position:absolute;width:145px;height:48px;right:-25px;bottom:20px;
+ border-top:2px solid rgba(212,119,152,.18);border-radius:50%;transform:rotate(-10deg);
+}
+.hero-sello,.hero-visual-brillo,.botella{display:none!important}
+
+/* tarjetas de subcategoria mas compactas */
+.seccion{padding:52px 6% 64px!important}
+.titulo{margin-bottom:27px!important}
+.titulo h2{font-size:30px!important;font-style:italic;color:#704858!important}
+.opciones{max-width:900px!important;gap:20px!important}
+.opcion{
+ min-height:285px!important;
+ padding:0 24px 24px!important;
+ border-radius:23px!important;
+ background:linear-gradient(145deg,#fff 0%,#fffafd 65%,#fff5f8 100%)!important;
+ box-shadow:0 10px 27px rgba(96,54,69,.065)!important;
+}
+.opcion:hover{transform:translateY(-3px)!important}
+.opcion-visual{
+ width:calc(100% + 48px)!important;
+ height:105px!important;
+ margin:0 -24px 18px!important;
+ border-radius:23px 23px 0 0!important;
+}
+.opcion-editorial{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ padding:0!important;
+ overflow:hidden!important;
+}
+.opcion-editorial>span{
+ position:absolute!important;left:16px!important;top:14px!important;
+ padding:6px 9px!important;font-size:8px!important;
+}
+.opcion-editorial b{
+ position:relative;z-index:2;
+ font:italic 500 25px/1 Georgia,serif;
+ color:#805064;
+}
+.opcion-editorial i{
+ position:absolute;right:17%;top:23%;
+ font:normal 16px/1 Georgia,serif;color:rgba(193,87,124,.34);
+}
+.opcion-editorial em{
+ position:absolute;width:78px;height:78px;border-radius:50%;
+ right:-22px;bottom:-31px;
+ border:1px solid rgba(255,255,255,.9);
+ background:rgba(255,255,255,.28);
+}
+.icono-categoria{width:46px!important;height:46px!important;margin-bottom:10px!important}
+.icono-categoria svg{width:24px!important;height:24px!important}
+.opcion h3{font-size:22px!important;margin-bottom:7px!important}
+.opcion p{font-size:13px!important;line-height:1.5!important;margin-bottom:12px!important}
+.ver{font-size:10px!important;letter-spacing:.8px!important}
+.semi-visual{background:linear-gradient(135deg,#f8dfe8,#fff8fa 56%,#f1cbd9)!important}
+.tradicional-visual{background:linear-gradient(135deg,#f5e8ed,#fffafd 56%,#ead8df)!important}
+
+@media(max-width:800px){
+ .hero{min-height:auto!important;padding:34px 17px 30px!important}
+ .hero-grid{gap:20px!important}
+ .hero h1{font-size:43px!important}
+ .hero-editorial{height:150px!important;max-width:500px!important}
+ .hero-palabra{font-size:35px!important}
+ .seccion{padding:40px 14px 52px!important}
+ .titulo{margin-bottom:22px!important}
+ .titulo h2{font-size:27px!important}
+ .opciones{gap:15px!important}
+ .opcion{min-height:250px!important;padding:0 18px 20px!important}
+ .opcion-visual{width:calc(100% + 36px)!important;margin:0 -18px 15px!important;height:88px!important}
+ .opcion-editorial b{font-size:22px!important}
+ .icono-categoria{width:40px!important;height:40px!important}
+ .opcion h3{font-size:21px!important}
+}
+
+</style>
 
 </head>
 
@@ -1018,12 +1162,15 @@
       </p>
 
     </div>
-    <div class="hero-visual" aria-label="Universo de esmaltes Bella Shop">
-      <div class="hero-visual-brillo"></div>
-      <div class="botella botella-1"><span></span></div>
-      <div class="botella botella-2"><span></span></div>
-      <div class="botella botella-3"><span></span></div>
-      <div class="hero-sello">COLOR<br><b>PARA CREAR</b></div>
+    <div class="hero-visual hero-editorial" aria-hidden="true">
+      <span class="hero-marca">BELLA SHOP</span>
+      <span class="hero-palabra">Esmaltes</span>
+      <span class="hero-linea"></span>
+      <span class="hero-cristal cristal-1"></span>
+      <span class="hero-cristal cristal-2"></span>
+      <span class="hero-estrella estrella-1">✦</span>
+      <span class="hero-estrella estrella-2">✧</span>
+      <span class="hero-onda"></span>
     </div>
     </div>
   </section>
@@ -1065,7 +1212,7 @@
         href="semipermanente.html"
         class="opcion"
       >
-        <div class="opcion-visual semi-visual"><div class="mini-botella a"></div><div class="mini-botella b"></div><div class="mini-botella c"></div><span>SEMIPERMANENTE</span></div>
+        <div class="opcion-visual opcion-editorial semi-visual"><span>SEMIPERMANENTE</span><b>Color que dura</b><i>✦</i><em></em></div>
 
         <div class="icono-categoria">
 
@@ -1112,7 +1259,7 @@
         class="opcion opcion-deshabilitada"
         aria-disabled="true"
       >
-        <div class="opcion-visual tradicional-visual"><div class="mini-botella a"></div><div class="mini-botella b"></div><div class="mini-botella c"></div><span>TRADICIONAL</span></div>
+        <div class="opcion-visual opcion-editorial tradicional-visual"><span>TRADICIONAL</span><b>Clásicos de siempre</b><i>✧</i><em></em></div>
 
         <div class="icono-categoria">
 
