@@ -1,250 +1,1278 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Esmaltes | Bella Shop</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;color:#3d3035;background:#fff;overflow-x:hidden}
-a{-webkit-tap-highlight-color:transparent}
-header{height:92px;padding:10px 5%;display:flex;align-items:center;gap:22px;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid #f0dce3;backdrop-filter:blur(12px)}
-.logo{flex-shrink:0;display:flex;align-items:center}.logo img{width:190px;height:68px;object-fit:contain}
-.header-spacer{flex:1}
-.nav-btn{min-height:42px;padding:10px 16px;border-radius:999px;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.25px;display:flex;align-items:center;gap:7px;transition:.2s}
-.inicio-btn{color:#c64e76;background:#fff;border:1px solid #ecc5d2}.pedido-btn{color:#fff;background:#e65385;border:1px solid #e65385;box-shadow:0 6px 18px rgba(230,83,133,.16)}
-.nav-btn:hover{transform:translateY(-2px)}
-.hero{position:relative;min-height:330px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.96),transparent 24%),radial-gradient(circle at 12% 88%,rgba(242,181,202,.15),transparent 24%),linear-gradient(135deg,#fff 0%,#fff8fa 52%,#f9e3eb 100%);border-bottom:1px solid #f3dfe6}
-.hero-inner{width:min(1080px,90%);margin:auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:45px;position:relative;z-index:2}
-.eyebrow{display:inline-block;font-size:9px;font-weight:900;letter-spacing:2.5px;color:#c4597d;margin-bottom:13px}
-.hero h1{font:italic 500 clamp(46px,6vw,70px)/.95 Georgia,"Times New Roman",serif;color:#704858;letter-spacing:-2px;margin-bottom:16px}
-.hero-copy p{max-width:520px;color:#7d6870;font-size:14px;line-height:1.7}
-.hero-art{height:220px;position:relative}
-.hero-word{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);font:italic 500 clamp(38px,5vw,58px)/1 Georgia,serif;color:rgba(151,82,107,.70);white-space:nowrap}
-.hero-art:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:7%;top:2%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.98),rgba(255,255,255,.35) 30%,rgba(230,161,185,.10) 72%);border:1px solid rgba(255,255,255,.92);box-shadow:inset -10px -10px 25px rgba(223,151,176,.08),0 14px 30px rgba(110,64,80,.05)}
-.hero-art:after{content:"";position:absolute;width:190px;height:55px;left:7%;bottom:17%;border-top:2px solid rgba(207,110,144,.18);border-radius:50%;transform:rotate(-9deg)}
-.spark{position:absolute;color:rgba(199,95,131,.38);font-family:Georgia,serif}.s1{left:22%;top:24%;font-size:21px}.s2{right:18%;bottom:20%;font-size:15px}
-.bubble{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.94);background:radial-gradient(circle at 30% 25%,#fff 0 12%,rgba(255,255,255,.4) 14% 32%,rgba(227,158,182,.14) 75%)}.b1{width:28px;height:28px;right:27%;top:23%}.b2{width:14px;height:14px;left:23%;bottom:26%}
-.categorias{padding:54px 5% 65px;background:linear-gradient(180deg,#fff,#fff9fb 58%,#fff)}
-.section-title{text-align:center;margin-bottom:30px}.section-title small{display:block;color:#c15a7d;font-size:9px;font-weight:900;letter-spacing:2.2px;margin-bottom:9px}.section-title h2{font:italic 500 clamp(28px,3.5vw,39px)/1.1 Georgia,serif;color:#704858;margin-bottom:9px}.section-title p{font-size:13px;color:#8a737b}
-.cards{max-width:880px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.card{position:relative;isolation:isolate;overflow:hidden;min-height:190px;border-radius:25px;padding:25px 25px 22px;text-decoration:none;border:1px solid rgba(232,190,205,.72);background:radial-gradient(circle at 82% 18%,rgba(255,255,255,.96),transparent 24%),linear-gradient(145deg,#fff 0%,#fff8fa 45%,#f8e3ea 100%);box-shadow:0 11px 29px rgba(104,59,75,.07);transition:.25s}
-.card:hover{transform:translateY(-4px);box-shadow:0 17px 34px rgba(104,59,75,.11)}
-.card:before{content:"";position:absolute;z-index:-1;width:105px;height:105px;border-radius:50%;right:-35px;top:-39px;background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(225,151,178,.13));border:1px solid rgba(255,255,255,.92)}
-.card:after{content:"";position:absolute;z-index:-1;width:110px;height:35px;left:-22px;bottom:10px;border-top:2px solid rgba(211,120,152,.16);border-radius:50%;transform:rotate(10deg)}
-.card-kicker{display:block;font-size:8px;font-weight:900;letter-spacing:1.8px;color:#c15a7d;margin-bottom:19px}
-.card h3{font:italic 500 29px/1 Georgia,serif;color:#744b5a;margin-bottom:11px}
-.card p{max-width:310px;color:#806b72;font-size:12px;line-height:1.55;margin-bottom:18px}
-.card-link{font-size:9px;font-weight:900;letter-spacing:1.2px;color:#c64e76}
-.card-star{position:absolute;right:20%;top:32%;font:18px/1 Georgia,serif;color:rgba(198,84,124,.30)}
-.card-pearl{position:absolute;width:20px;height:20px;border-radius:50%;right:13%;bottom:23%;background:radial-gradient(circle at 30% 25%,#fff 0 12%,rgba(255,255,255,.42) 14% 32%,rgba(226,153,180,.16) 75%);border:1px solid #fff}
-.disabled{opacity:.63;cursor:not-allowed;filter:grayscale(.08)}.disabled:hover{transform:none;box-shadow:0 11px 29px rgba(104,59,75,.07)}.disabled .card-link{color:#89767d}
-.help{padding:48px 18px;text-align:center;background:linear-gradient(135deg,#fbe8ef,#fff8fa 58%,#fff);border-top:1px solid #f0dce3}
-.help h2{font:italic 500 30px/1.1 Georgia,serif;color:#704858;margin-bottom:10px}.help p{max-width:570px;margin:0 auto 20px;color:#7e6870;font-size:13px;line-height:1.6}
-.whatsapp{display:inline-flex;padding:11px 18px;border-radius:999px;background:#25D366;color:#fff;text-decoration:none;font-size:11px;font-weight:900;box-shadow:0 7px 18px rgba(37,211,102,.15)}
-.social{margin-top:18px;display:flex;justify-content:center;gap:9px}.social a{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#c65379;background:#fff;border:1px solid #edc8d4;font-size:12px;font-weight:900}
-footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.footer-logo{font:18px Georgia,serif;margin-bottom:4px}.footer-subtexto{font-size:10px;color:#ddcbd1;letter-spacing:.4px}
-@media(max-width:800px){
- header{height:auto;min-height:76px;padding:8px 12px;gap:7px}.logo img{width:138px;height:56px}.nav-btn{width:40px;height:40px;min-height:40px;padding:0;justify-content:center;font-size:0}.nav-btn b{font-size:17px}
- .hero{min-height:auto;padding:34px 0 28px}.hero-inner{width:calc(100% - 30px);grid-template-columns:1fr;gap:12px;text-align:center}.hero h1{font-size:46px}.hero-copy p{margin:auto;font-size:13px}.hero-art{height:115px}.hero-word{font-size:34px}.hero-art:before{width:90px;height:90px;right:13%;top:4%}.hero-art:after{width:120px;left:12%;bottom:12%}.s1{left:24%;top:18%}.b1{right:28%;top:16%}
- .categorias{padding:40px 14px 48px}.section-title{margin-bottom:23px}.cards{grid-template-columns:1fr;gap:14px;max-width:520px}.card{min-height:165px;padding:21px 20px;border-radius:22px}.card-kicker{margin-bottom:14px}.card h3{font-size:26px}.card p{margin-bottom:14px}
- .help{padding:40px 17px}.help h2{font-size:27px}
-}
 
-/* ===== AJUSTE FINAL DE COMPOSICION ESMALTES ===== */
-.hero{min-height:300px!important}
-.hero-inner{grid-template-columns:1.15fr .85fr!important;gap:38px!important}
-.hero-copy{padding-left:12px}
-.hero h1{margin-bottom:13px!important}
-.hero-art{
- height:185px!important;
- border-left:1px solid rgba(213,143,167,.22);
-}
-.hero-word{display:none!important}
-.hero-monograma{
- position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);
- font:italic 500 72px/1 Georgia,serif;
- letter-spacing:-6px;color:rgba(157,85,110,.13);
-}
-.hero-frase{
- position:absolute;left:50%;top:55%;transform:translateX(-50%);
- white-space:nowrap;
- font:800 8px/1 Arial,sans-serif;letter-spacing:2.3px;
- color:rgba(164,78,108,.54);
-}
-.hero-raya{
- position:absolute;width:54px;height:1px;left:50%;top:68%;transform:translateX(-50%);
- background:linear-gradient(90deg,transparent,#d29aae,transparent);
-}
-.hero-art:before{width:125px!important;height:125px!important;right:10%!important;top:8%!important}
-.hero-art:after{width:140px!important;left:10%!important;bottom:12%!important}
-.s1{left:25%!important;top:20%!important}.s2{right:22%!important;bottom:17%!important}
-.b1{right:27%!important;top:19%!important}.b2{left:26%!important;bottom:21%!important}
+  <meta charset="UTF-8">
 
-.categorias{padding-top:48px!important}
-.section-title{max-width:620px;margin-left:auto!important;margin-right:auto!important;margin-bottom:28px!important}
-.cards{align-items:stretch}
-.card{display:flex;flex-direction:column;justify-content:center;min-height:185px!important;padding:25px 27px!important}
-.card-kicker{margin-bottom:13px!important}
-.card h3{margin-bottom:9px!important}
-.card p{margin-bottom:16px!important}
-.card-link{margin-top:auto;padding-top:2px}
-.card-star{right:13%!important;top:20%!important}
-.card-pearl{right:9%!important;bottom:15%!important}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-@media(max-width:800px){
- .hero{padding:30px 0 23px!important}
- .hero-inner{grid-template-columns:1fr!important;gap:18px!important}
- .hero-copy{padding-left:0!important}
- .hero-art{height:82px!important;border-left:0!important;border-top:1px solid rgba(213,143,167,.18)}
- .hero-monograma{font-size:51px!important;top:48%!important}
- .hero-frase{top:61%!important;font-size:6.5px!important;letter-spacing:1.7px!important}
- .hero-raya{top:77%!important}
- .hero-art:before{width:64px!important;height:64px!important;right:16%!important;top:6%!important}
- .hero-art:after{width:85px!important;left:13%!important;bottom:0!important}
- .s1{left:26%!important;top:19%!important;font-size:15px!important}
- .s2{right:24%!important;bottom:8%!important}
- .b1{width:19px!important;height:19px!important;right:29%!important;top:14%!important}
- .b2{width:10px!important;height:10px!important}
- .categorias{padding-top:35px!important}
- .card{min-height:158px!important;padding:20px!important}
-}
+  <title>Esmaltes | Bella Shop</title>
 
 
-/* ===== IDENTIDAD BELLA SHOP ===== */
-.bella-face{
- position:absolute;
- object-fit:contain;
- pointer-events:none;
- user-select:none;
- z-index:0;
-}
-.face-hero{
- width:245px;height:245px;
- right:-38px;bottom:-70px;
- opacity:.045;
- transform:rotate(7deg);
-}
-.categorias{position:relative;overflow:hidden}
-.face-categorias{
- width:210px;height:210px;
- left:-62px;bottom:-55px;
- opacity:.028;
- transform:rotate(-8deg);
-}
-.social a svg{width:18px;height:18px;display:block}
-@media(max-width:800px){
- .face-hero{width:170px;height:170px;right:-62px;bottom:-42px;opacity:.04}
- .face-categorias{width:145px;height:145px;left:-50px;bottom:-30px;opacity:.025}
- .social a svg{width:17px;height:17px}
-}
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
 
-/* Logo real Bella Shop en la composicion editorial */
-.hero-monograma{display:none!important}
-.hero-logo-fondo{
- position:absolute;
- left:50%;top:43%;
- transform:translate(-50%,-50%);
- width:min(270px,72%);
- height:105px;
- object-fit:contain;
- opacity:.105;
- filter:saturate(.75);
- pointer-events:none;
- user-select:none;
-}
-.hero-frase{top:66%!important}
-.hero-raya{top:77%!important}
-@media(max-width:800px){
- .hero-logo-fondo{width:205px;height:72px;top:40%;opacity:.11}
- .hero-frase{top:68%!important}
- .hero-raya{top:82%!important}
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
 
-/* Revertir composicion editorial al monograma BS */
-.hero-monograma{
- display:block!important;
- position:absolute!important;
- left:50%!important;top:46%!important;
- transform:translate(-50%,-50%)!important;
- font:italic 500 72px/1 Georgia,serif!important;
- letter-spacing:-6px!important;
- color:rgba(157,85,110,.13)!important;
-}
-.hero-logo-fondo{display:none!important}
-.hero-frase{top:55%!important}
-.hero-raya{top:68%!important}
-@media(max-width:800px){
- .hero-monograma{font-size:51px!important;top:48%!important}
- .hero-frase{top:61%!important}
- .hero-raya{top:77%!important}
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffdfd;
+      color: #34292d;
+      overflow-x: hidden;
+    }
 
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+
+    /* ========================================
+       CABECERA
+    ======================================== */
+
+    header {
+      background: rgba(255, 253, 253, 0.97);
+      padding: 11px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #f2dce4;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+
+    .logo img {
+      display: block;
+      width: 205px;
+      height: 72px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+
+    .acciones-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+
+    .boton-header {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 11px 17px;
+      border-radius: 40px;
+
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s;
+    }
+
+
+    .boton-volver {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+
+    .boton-volver:hover {
+      background: #fff4f7;
+      border-color: #e7adbf;
+      transform: translateY(-2px);
+    }
+
+
+    .boton-inicio {
+      background: white;
+      color: #d94a79;
+      border: 1px solid #efc7d4;
+    }
+
+
+    .boton-inicio:hover {
+      background: #fff4f7;
+      border-color: #e7adbf;
+      transform: translateY(-2px);
+    }
+
+
+    .boton-pedido {
+      background: #e65385;
+      color: white;
+      border: 1px solid #e65385;
+
+      box-shadow:
+        0 6px 18px rgba(230, 83, 133, 0.18);
+    }
+
+
+    .boton-pedido:hover {
+      background: #d94a79;
+      border-color: #d94a79;
+      transform: translateY(-2px);
+    }
+
+
+    .icono-header {
+      width: 17px;
+      height: 17px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+
+
+    /* ========================================
+       PORTADA
+    ======================================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 310px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 60px 25px;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(245, 174, 198, 0.18),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 75%,
+          rgba(230, 83, 133, 0.09),
+          transparent 25%
+        ),
+
+        linear-gradient(
+          135deg,
+          #fff6f8 0%,
+          #fffdfd 50%,
+          #fdeef3 100%
+        );
+    }
+
+
+    .cara-hero {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      object-fit: contain;
+      right: 4%;
+      top: 50%;
+
+      transform:
+        translateY(-50%)
+        rotate(5deg);
+
+      opacity: 0.07;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+    }
+
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #efcbd7;
+      background: rgba(255,255,255,0.8);
+      color: #d74e7b;
+      border-radius: 40px;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+
+    h1 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 50px;
+      font-weight: 500;
+      color: #33272b;
+      margin-bottom: 15px;
+    }
+
+
+    .logo-muna-hero {
+      display: block;
+      width: min(290px, 75vw);
+      height: 105px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+    }
+
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #765d65;
+      max-width: 620px;
+      margin: auto;
+    }
+
+
+
+    /* ========================================
+       SUBCATEGORÍAS
+    ======================================== */
+
+    .seccion {
+      position: relative;
+      overflow: hidden;
+      padding: 65px 6% 80px;
+    }
+
+
+    .cara-seccion {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      object-fit: contain;
+      left: -70px;
+      bottom: -45px;
+      opacity: 0.035;
+      transform: rotate(-8deg);
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .titulo {
+      text-align: center;
+      margin-bottom: 38px;
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .titulo h2 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 33px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #382b30;
+    }
+
+
+    .titulo p {
+      color: #887079;
+      font-size: 15px;
+    }
+
+
+    .opciones {
+      position: relative;
+      z-index: 3;
+
+      max-width: 720px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+
+    .opcion {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 220px;
+
+      background: white;
+
+      border: 1px solid #f0dce3;
+
+      border-radius: 24px;
+
+      text-decoration: none;
+      color: #4d3740;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 30px;
+
+      box-shadow:
+        0 8px 25px rgba(83, 48, 58, 0.07);
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        border-color 0.25s;
+    }
+
+
+    .opcion::before {
+      content: "";
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+
+      background: #fff2f6;
+
+      top: -48px;
+      right: -35px;
+
+      transition: transform 0.3s;
+    }
+
+
+    .opcion:hover {
+      transform: translateY(-6px);
+
+      border-color: #e9bdcc;
+
+      box-shadow:
+        0 15px 34px rgba(83, 48, 58, 0.12);
+    }
+
+
+    .opcion:hover::before {
+      transform: scale(1.15);
+    }
+
+
+    .icono-categoria {
+      position: relative;
+      z-index: 2;
+
+      width: 72px;
+      height: 72px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #fff1f5;
+
+      color: #e65385;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(230,83,133,.07);
+    }
+
+
+    .icono-categoria svg {
+      width: 38px;
+      height: 38px;
+      display: block;
+    }
+
+
+    .opcion h3 {
+      position: relative;
+      z-index: 2;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 26px;
+      font-weight: 500;
+
+      margin-bottom: 10px;
+
+      color: #3a2c31;
+    }
+
+
+    .opcion p {
+      position: relative;
+      z-index: 2;
+
+      font-size: 14px;
+      line-height: 1.6;
+      color: #806870;
+
+      max-width: 310px;
+      margin-bottom: 18px;
+    }
+
+
+    .ver {
+      position: relative;
+      z-index: 2;
+
+      color: #e65385;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 0.5px;
+    }
+
+
+
+    /* ========================================
+       AYUDA Y REDES SOCIALES
+    ======================================== */
+
+    .contacto {
+      position: relative;
+      overflow: hidden;
+      padding: 70px 6% 65px;
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(230,83,133,.08),
+          transparent 24%
+        ),
+        linear-gradient(
+          135deg,
+          #fdeaf0,
+          #fff7f9 55%,
+          #fffdfd
+        );
+
+      border-top: 1px solid #f2dce4;
+    }
+
+
+    .cara-contacto {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      left: 4%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg);
+      opacity: 0.05;
+
+      pointer-events: none;
+      user-select: none;
+    }
+
+
+    .contacto-contenido {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+      margin: auto;
+    }
+
+
+    .contacto h2 {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 35px;
+      font-weight: 500;
+      color: #382c30;
+      margin-bottom: 13px;
+    }
+
+
+    .contacto-texto {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      color: #765d65;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: #25D366;
+      color: white;
+
+      padding: 13px 22px;
+      border-radius: 40px;
+
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+
+      margin-bottom: 25px;
+
+      box-shadow:
+        0 8px 22px rgba(37, 211, 102, 0.18);
+
+      transition:
+        transform 0.2s,
+        filter 0.2s;
+    }
+
+
+    .boton-whatsapp:hover {
+      transform: translateY(-2px);
+      filter: brightness(.97);
+    }
+
+
+    .boton-whatsapp svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+
+    .redes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+
+    .red-social {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: white;
+      color: #d94d7a;
+
+      border: 1px solid #efc6d3;
+
+      text-decoration: none;
+
+      box-shadow:
+        0 5px 16px rgba(83,48,58,.06);
+
+      transition:
+        transform .2s,
+        border-color .2s,
+        background .2s;
+    }
+
+
+    .red-social:hover {
+      transform: translateY(-3px);
+      background: #fff4f7;
+      border-color: #e7adbf;
+    }
+
+
+    .red-social svg {
+      width: 21px;
+      height: 21px;
+      display: block;
+    }
+
+
+    .ubicacion {
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      color: #765d65;
+      font-size: 13px;
+      font-weight: 700;
+
+      padding: 9px 15px;
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.72);
+      border: 1px solid #f0d7df;
+    }
+
+
+    .ubicacion svg {
+      width: 17px;
+      height: 17px;
+      color: #e65385;
+    }
+
+
+
+    /* ========================================
+       PIE DE PÁGINA
+    ======================================== */
+
+    footer {
+      background: #35272c;
+      color: #f9eaf0;
+      text-align: center;
+      padding: 28px 20px 25px;
+    }
+
+
+    .footer-logo {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+
+    .footer-subtexto {
+      font-size: 11px;
+      color: #ddcbd1;
+      letter-spacing: .4px;
+    }
+
+
+
+    /* ========================================
+       CELULAR
+    ======================================== */
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 9px 12px 11px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+
+      .logo {
+        flex: 1;
+        min-width: 0;
+      }
+
+
+      .logo img {
+        width: 150px;
+        height: 58px;
+      }
+
+
+      .acciones-header {
+        gap: 7px;
+      }
+
+
+      .boton-header {
+        min-height: 38px;
+        font-size: 10px;
+        padding: 9px 11px;
+        gap: 6px;
+      }
+
+
+      .icono-header {
+        width: 15px;
+        height: 15px;
+      }
+
+
+      .hero {
+        min-height: 285px;
+        padding: 50px 20px;
+      }
+
+
+      .cara-hero {
+        width: 250px;
+        height: 250px;
+        right: -80px;
+        opacity: 0.055;
+      }
+
+
+      h1 {
+        font-size: 40px;
+      }
+
+
+      .logo-muna-hero {
+        width: min(245px, 72vw);
+        height: 90px;
+      }
+
+
+      .hero p {
+        font-size: 15px;
+      }
+
+
+      .seccion {
+        padding: 50px 15px 60px;
+      }
+
+
+      .titulo h2 {
+        font-size: 29px;
+      }
+
+
+      .opciones {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 18px;
+      }
+
+
+      .opcion {
+        min-height: 205px;
+        border-radius: 20px;
+      }
+
+
+      .opcion h3 {
+        font-size: 24px;
+      }
+
+
+      .cara-seccion {
+        width: 180px;
+        height: 180px;
+      }
+
+
+      .contacto {
+        padding: 55px 18px 50px;
+      }
+
+
+      .contacto h2 {
+        font-size: 30px;
+      }
+
+
+      .cara-contacto {
+        width: 190px;
+        height: 190px;
+        left: -60px;
+        opacity: 0.04;
+      }
+
+    }
+
+
+
+    @media (max-width: 440px) {
+
+      header {
+        align-items: center;
+      }
+
+
+      .logo img {
+        width: 135px;
+        height: 54px;
+      }
+
+
+      .boton-header {
+        font-size: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+
+
+      .boton-header .icono-header {
+        width: 18px;
+        height: 18px;
+      }
+
+
+      h1 {
+        font-size: 36px;
+      }
+
+
+      .opcion {
+        padding: 25px 18px;
+      }
+
+    }
+
+  
+    .logo-marca {
+      width: 150px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+  
+/* ===== IDENTIDAD VISUAL BELLA SHOP 2026 ===== */
+.hero{background:radial-gradient(circle at 12% 18%,rgba(245,174,198,.22),transparent 25%),radial-gradient(circle at 88% 78%,rgba(230,83,133,.12),transparent 27%),linear-gradient(135deg,#fff4f7 0%,#fffdfd 48%,#fbe6ed 100%)!important;border-bottom:1px solid #f3dce4}
+.hero:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:-80px;top:-105px;background:rgba(255,255,255,.48);box-shadow:-85px 185px 0 rgba(255,255,255,.22);pointer-events:none}
+.hero:after{content:"BELLA SHOP";position:absolute;right:6%;bottom:24px;color:#d65a82;font-size:10px;font-weight:900;letter-spacing:3px;opacity:.48;pointer-events:none}
+.hero-in,.hero-contenido{position:relative;z-index:3}
+.hero h1{letter-spacing:-1px}
+.contenido,.seccion{background:linear-gradient(180deg,#fffdfd 0%,#fff7f9 45%,#fffdfd 100%)}
+.opciones{gap:22px}
+.opcion,.marca{border-color:#efd4dd!important;box-shadow:0 12px 32px rgba(91,52,65,.08)!important}
+.opcion{background:linear-gradient(155deg,#fff 0%,#fff 68%,#fff5f8 100%)!important}
+.opcion:hover{box-shadow:0 18px 38px rgba(91,52,65,.13)!important}
+.contacto{background:radial-gradient(circle at 88% 18%,rgba(255,255,255,.75),transparent 22%),linear-gradient(135deg,#f9e0e8,#fff7f9 55%,#fffdfd)!important}
+@media(max-width:800px){.hero:before{width:230px;height:230px;right:-95px;top:-65px}.hero:after{right:18px;bottom:14px;font-size:8px}.opcion,.marca{border-radius:22px!important}}
+
+    .opcion-deshabilitada{opacity:.62;cursor:not-allowed;filter:grayscale(.08)}
+    .opcion-deshabilitada:hover{transform:none;border-color:#f0dce3;box-shadow:0 12px 32px rgba(91,52,65,.08)!important}
+    .opcion-deshabilitada .ver{color:#8d7d83}
 </style>
+
 </head>
+
+
+
 <body>
-<header>
-<a class="logo" href="index.html" aria-label="Bella Shop"><img src="imagenes/Logo Bellashop png.png" alt="Bella Shop - Tienda de Belleza"></a>
-<div class="header-spacer"></div>
-<a class="nav-btn inicio-btn" href="index.html" aria-label="Inicio"><b>‹</b><span>INICIO</span></a>
-<a class="nav-btn pedido-btn" href="carrito.html" aria-label="Mi pedido"><b>🛍</b><span>MI PEDIDO</span></a>
-</header>
 
-<main>
-<section class="hero"><img class="bella-face face-hero" src="imagenes/Cara logo bellashop.png" alt="" aria-hidden="true">
- <div class="hero-inner">
-  <div class="hero-copy">
-   <span class="eyebrow">BELLA SHOP · COLOR</span>
-   <h1>Esmaltes</h1>
-   <p>Encuentra el color perfecto para cada creación. Explora nuestras opciones de esmaltes y descubre marcas, tonos y colecciones para tus diseños.</p>
-  </div>
-  <div class="hero-art" aria-hidden="true">
-   <span class="hero-monograma">BS</span><span class="hero-frase">COLOR · ESTILO · CREATIVIDAD</span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="bubble b1"></span><span class="bubble b2"></span><span class="hero-raya"></span>
-  </div>
- </div>
-</section>
 
-<section class="categorias"><img class="bella-face face-categorias" src="imagenes/Cara logo bellashop.png" alt="" aria-hidden="true">
- <div class="section-title">
-  <small>ELIGE TU ESTILO</small>
-  <h2>¿Qué tipo de esmalte buscas?</h2>
-  <p>Entra a tu categoría y descubre todos los tonos disponibles.</p>
- </div>
- <div class="cards">
-  <a class="card" href="semipermanente.html">
-   <span class="card-kicker">SEMIPERMANENTE</span>
-   <h3>Esmalte Semipermanente</h3>
-   <p>Marcas, colores y colecciones para acabados duraderos y llenos de color.</p>
-   <span class="card-link">VER PRODUCTOS →</span><span class="card-star">✦</span><span class="card-pearl"></span>
-  </a>
-  <div class="card disabled" aria-disabled="true">
-   <span class="card-kicker">TRADICIONAL</span>
-   <h3>Esmalte Tradicional</h3>
-   <p>Esmaltes clásicos, bases y brillos para complementar tus diseños.</p>
-   <span class="card-link">TEMPORALMENTE NO DISPONIBLE</span><span class="card-star">✧</span><span class="card-pearl"></span>
-  </div>
- </div>
-</section>
+  <!-- ======================================
+       CABECERA
+  ======================================= -->
 
-<section class="help">
- <h2>¿Necesitas una ayudita?</h2>
- <p>Escríbenos y con gusto te ayudamos a encontrar los esmaltes que necesitas.</p>
- <a class="whatsapp" href="https://wa.me/573122002698?text=%C2%A1Hola%20Bella%20Shop!%20Necesito%20ayuda%20con%20los%20esmaltes." target="_blank" rel="noopener noreferrer">WHATSAPP BELLA SHOP</a>
- <div class="social">
-  <a href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw" target="_blank" rel="noopener noreferrer" aria-label="Instagram Bella Shop">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-  </a>
-  <a href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook Bella Shop">
-   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/></svg>
-  </a>
-  <a href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC" target="_blank" rel="noopener noreferrer" aria-label="TikTok Bella Shop">
-   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/></svg>
-  </a>
- </div>
-</section>
-</main>
-<footer><div class="footer-logo">Bella Shop</div><div class="footer-subtexto">Tienda de Belleza · Popayán, Cauca</div></footer>
+  <header>
+
+    <a
+      href="index.html"
+      class="logo"
+      aria-label="Bella Shop"
+    >
+
+      <img
+        src="imagenes/Logo Bellashop png.png"
+        alt="Bella Shop - Tienda de Belleza"
+      >
+
+    </a>
+
+
+    <div class="acciones-header">
+
+      <a
+        href="index.html"
+        class="boton-header boton-volver"
+        aria-label="Volver al inicio"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+
+        <span>VOLVER</span>
+
+      </a>
+
+
+      <a
+        href="index.html"
+        class="boton-header boton-inicio"
+        aria-label="Ir al inicio"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5.5 10.5V20h13v-9.5"/>
+          <path d="M9.5 20v-6h5v6"/>
+        </svg>
+
+        <span>INICIO</span>
+
+      </a>
+
+
+      <a
+        href="carrito.html"
+        class="boton-header boton-pedido"
+        aria-label="Mi pedido"
+      >
+
+        <svg
+          class="icono-header"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="9" cy="20" r="1"/>
+          <circle cx="19" cy="20" r="1"/>
+          <path d="M3 4h2l2.3 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"/>
+        </svg>
+
+        <span>MI PEDIDO</span>
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ======================================
+       PORTADA
+  ======================================= -->
+
+  <section class="hero">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-hero"
+    >
+
+
+    <div class="hero-contenido">
+
+      <span class="etiqueta">
+        BELLA SHOP
+      </span>
+
+
+      <h1>Esmaltes</h1>
+
+
+      <p>
+        ¡Aquí empieza el color! 💕✨
+        Elige entre nuestros esmaltes semipermanentes y tradicionales y descubre todos los tonos que tenemos para ti.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       SUBCATEGORÍAS
+  ======================================= -->
+
+  <section class="seccion">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-seccion"
+    >
+
+
+    <div class="titulo">
+
+      <h2>
+        ¿Qué tipo de esmalte buscas? 💕
+      </h2>
+
+
+      <p>
+        Elige tu favorito y descubre las marcas, tonos y colecciones que tenemos para ti.
+      </p>
+
+    </div>
+
+
+
+    <div class="opciones">
+
+      <a href="semipermanente.html" class="opcion">
+        <div class="icono-categoria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 3h8v5H8z"/>
+            <rect x="6" y="8" width="12" height="13" rx="3"/>
+            <path d="M9 14c1.8-1.5 4.2-1.5 6 0"/>
+            <path d="M9 17h6"/>
+          </svg>
+        </div>
+        <h3>Esmalte Semipermanente</h3>
+        <p>Descubre nuestras marcas, colores y colecciones de esmaltes semipermanentes.</p>
+        <span class="ver">VER PRODUCTOS →</span>
+      </a>
+
+      <div class="opcion opcion-deshabilitada" aria-disabled="true">
+        <div class="icono-categoria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 3h6v5H9z"/>
+            <rect x="6" y="8" width="12" height="13" rx="3"/>
+            <path d="M9 14h6"/>
+            <path d="M10 17h4"/>
+          </svg>
+        </div>
+        <h3>Esmalte Tradicional</h3>
+        <p>Encuentra esmaltes tradicionales, bases, brillos y diferentes opciones para tus diseños.</p>
+        <span class="ver">TEMPORALMENTE NO DISPONIBLE</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       AYUDA Y REDES
+  ======================================= -->
+
+  <section class="contacto">
+
+    <img
+      src="imagenes/Cara logo bellashop.png"
+      alt=""
+      class="cara-contacto"
+    >
+
+
+    <div class="contacto-contenido">
+
+      <h2>
+        ¿Necesitas una ayudita? 💕
+      </h2>
+
+
+      <p class="contacto-texto">
+        Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas
+        y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗
+      </p>
+
+
+      <a
+        href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop%21%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97"
+        class="boton-whatsapp"
+        aria-label="WhatsApp Bella Shop"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.8 11.8 0 0 0 5.7 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.2-3.5-8.5Zm-8.4 18.3a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 18.2-5.1 9.9 9.9 0 0 1-9.8 9.8Zm5.4-7.4c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.9-1.7-2.2-.2-.3 0-.4.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5H7c-.3 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.8 6.1 5.3.9.4 1.5.6 2 .7.9.3 1.7.2 2.3.1.7-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/>
+        </svg>
+
+        ESCRÍBENOS POR WHATSAPP
+
+      </a>
+
+
+
+      <div class="redes">
+
+        <a
+          href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+          class="red-social"
+          aria-label="Instagram Bella Shop"
+          title="Instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+
+        </a>
+
+
+        <a
+          href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+          class="red-social"
+          aria-label="Facebook Bella Shop"
+          title="Facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/>
+          </svg>
+
+        </a>
+
+
+        <a
+          href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+          class="red-social"
+          aria-label="TikTok Bella Shop"
+          title="TikTok"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/>
+          </svg>
+
+        </a>
+
+      </div>
+
+
+
+      <a
+        href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D"
+        class="ubicacion"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver ubicación de Bella Shop en Google Maps"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/>
+          <circle cx="12" cy="10" r="2.5"/>
+        </svg>
+
+        Bella Shop · Popayán, Cauca
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================
+       PIE DE PÁGINA
+  ======================================= -->
+
+  <footer>
+
+    <div class="footer-logo">
+      Bella Shop
+    </div>
+
+    <div class="footer-subtexto">
+      Tienda de Belleza · Popayán, Cauca
+    </div>
+
+  </footer>
+
+
 </body>
+
 </html>
