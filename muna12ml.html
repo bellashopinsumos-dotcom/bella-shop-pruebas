@@ -880,6 +880,33 @@
       margin: 0 auto 18px;
     }
 
+  
+    /* FILTRO MUNA 12 ML */
+    .filtro-colecciones{
+      position:relative;z-index:3;max-width:980px;margin:0 auto 28px;
+      padding:18px 20px;background:#fff;border:1px solid #f0dce3;border-radius:20px;
+      box-shadow:0 7px 22px rgba(83,48,58,.055);
+    }
+    .filtro-titulo{display:block;text-align:center;color:#b75b79;font-size:9px;font-weight:800;letter-spacing:1.5px;margin-bottom:13px}
+    .filtro-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+    .filtro-chip{
+      border:1px solid #ecc9d5;background:#fff8fa;color:#8a6471;border-radius:999px;
+      padding:9px 13px;font-size:9px;font-weight:800;letter-spacing:.35px;cursor:pointer;
+      transition:.2s;
+    }
+    .filtro-chip:hover{border-color:#df9fb4;background:#fff1f5}
+    .filtro-chip.activo{background:#e65385;color:#fff;border-color:#e65385;box-shadow:0 5px 13px rgba(230,83,133,.16)}
+    .filtro-ayuda{text-align:center;color:#9a838b;font-size:11px;margin-top:12px}
+    .opcion.oculta-filtro{display:none!important}
+    .opciones.filtro-activo{grid-template-columns:minmax(260px,420px);justify-content:center}
+    @media(max-width:800px){
+      .filtro-colecciones{margin-bottom:22px;padding:15px 12px;border-radius:17px}
+      .filtro-chips{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:2px 1px 7px;scrollbar-width:none}
+      .filtro-chips::-webkit-scrollbar{display:none}
+      .filtro-chip{flex:0 0 auto;padding:9px 12px}
+      .opciones.filtro-activo{grid-template-columns:minmax(0,500px)}
+    }
+
   </style>
 
 </head>
@@ -1059,69 +1086,88 @@
 
 
 
+    <div class="filtro-colecciones" aria-label="Filtrar colecciones Muna 12 ml">
+      <span class="filtro-titulo">FILTRAR POR COLECCIÓN</span>
+      <div class="filtro-chips">
+        <button type="button" class="filtro-chip activo" data-filtro="todos">TODOS</button>
+        <button type="button" class="filtro-chip" data-filtro="todos-tonos">CLÁSICOS</button>
+        <button type="button" class="filtro-chip" data-filtro="fluorescente">FLUORESCENTE</button>
+        <button type="button" class="filtro-chip" data-filtro="jelly">JELLY</button>
+        <button type="button" class="filtro-chip" data-filtro="macarron">MACARRÓN</button>
+        <button type="button" class="filtro-chip" data-filtro="satin">SATIN NAIL</button>
+        <button type="button" class="filtro-chip" data-filtro="shell">SHELL</button>
+        <button type="button" class="filtro-chip" data-filtro="ojo-gato">OJO DE GATO</button>
+        <button type="button" class="filtro-chip" data-filtro="bases">BASES TRASLÚCIDAS</button>
+        <button type="button" class="filtro-chip" data-filtro="saturados">SATURADOS</button>
+        <button type="button" class="filtro-chip" data-filtro="reflectivos">REFLECTIVOS</button>
+        <button type="button" class="filtro-chip" data-filtro="craquelados">CRAQUELADOS</button>
+      </div>
+      <p class="filtro-ayuda">Selecciona una colección para verla rápidamente.</p>
+    </div>
+
     <div class="opciones">
 
-      <a href="carta-colores-muna12ml.html" class="opcion">
+      <a href="carta-colores-muna12ml.html" class="opcion" data-coleccion="todos-tonos">
         <h3>Carta de Colores Muna</h3>
         <p>Explora la carta general de colores Muna 12 ml.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="fluorescente-muna.html" class="opcion">
+      <a href="fluorescente-muna.html" class="opcion" data-coleccion="fluorescente">
         <h3>Fluorescente Muna</h3>
         <p>Tonos intensos y vibrantes para diseños llenos de color.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="jelly-muna.html" class="opcion">
+      <a href="jelly-muna.html" class="opcion" data-coleccion="jelly">
         <h3>Jelly Gel Muna</h3>
         <p>Tonos traslúcidos con acabado suave y efecto gelatina.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="macarron-muna.html" class="opcion">
+      <a href="macarron-muna.html" class="opcion" data-coleccion="macarron">
         <h3>Macarrón Muna</h3>
         <p>Colores suaves y delicados inspirados en tonos pastel.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="satin-nail-muna.html" class="opcion">
+      <a href="satin-nail-muna.html" class="opcion" data-coleccion="satin">
         <h3>Satin Nail Muna</h3>
         <p>Tonos con acabado satinado y brillo elegante.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="shell-muna.html" class="opcion">
+      <a href="shell-muna.html" class="opcion" data-coleccion="shell">
         <h3>Shell Muna</h3>
         <p>Tonos con efectos especiales y acabado llamativo.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="ojo-de-gato-muna.html" class="opcion">
+      <a href="ojo-de-gato-muna.html" class="opcion" data-coleccion="ojo-gato">
         <h3>Ojo de Gato Muna</h3>
         <p>Colores magnéticos con efecto ojo de gato.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="bases-traslucidas-muna.html" class="opcion">
+      <a href="bases-traslucidas-muna.html" class="opcion" data-coleccion="bases">
         <h3>Bases Traslúcidas Muna</h3>
         <p>Bases con tonos suaves y traslúcidos para acabados naturales.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="saturado-gel-muna.html" class="opcion">
+      <a href="saturado-gel-muna.html" class="opcion" data-coleccion="saturados">
         <h3>Saturados Muna</h3>
         <p>Colores intensos y pigmentados para diseños destacados.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="reflectivos-muna.html" class="opcion">
+      <a href="reflectivos-muna.html" class="opcion" data-coleccion="reflectivos">
         <h3>Reflectivos Muna</h3>
         <p>Tonos con efecto reflectivo y brillo especial bajo la luz.</p>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="craquelados-muna.html" class="opcion">
+      <a href="craquelados-muna.html" class="opcion" data-coleccion="craquelados">
         <h3>Craquelados Muna</h3>
         <p>Tonos con efecto craquelado para diseños diferentes.</p>
         <span class="ver">VER TONOS →</span>
@@ -1297,6 +1343,24 @@
 
   </footer>
 
+
+  <script>
+    (function(){
+      const botones=[...document.querySelectorAll(".filtro-chip")];
+      const tarjetas=[...document.querySelectorAll(".opciones .opcion[data-coleccion]")];
+      const grid=document.querySelector(".opciones");
+      botones.forEach(boton=>{
+        boton.addEventListener("click",()=>{
+          const filtro=boton.dataset.filtro;
+          botones.forEach(b=>b.classList.toggle("activo",b===boton));
+          tarjetas.forEach(t=>{
+            t.classList.toggle("oculta-filtro",filtro!=="todos" && t.dataset.coleccion!==filtro);
+          });
+          grid.classList.toggle("filtro-activo",filtro!=="todos");
+        });
+      });
+    })();
+  </script>
 
 </body>
 
