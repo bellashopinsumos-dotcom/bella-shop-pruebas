@@ -1885,6 +1885,89 @@ footer{
  .ilu-d1{width:90px;height:90px}.ilu-d2{width:45px;height:45px}
 }
 
+
+/* ===== ILU MINIMAL · ELEGANTE ===== */
+.ilu-teaser.ilu-minimal{
+ padding:54px 4%!important;
+ background:linear-gradient(180deg,#fff 0%,#fff8fa 42%,#fdebf2 100%)!important;
+}
+.ilu-minimal-inner{
+ position:relative;
+ min-height:310px;
+ max-width:1320px;
+ margin:0 auto;
+ border-radius:30px;
+ overflow:hidden;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ background:
+   radial-gradient(circle at 50% 48%,rgba(255,255,255,.98) 0%,rgba(255,255,255,.80) 31%,transparent 61%),
+   linear-gradient(135deg,#fff 0%,#fff7fa 52%,#f9dfe8 100%);
+ border:1px solid rgba(237,203,215,.75);
+ box-shadow:0 18px 48px rgba(126,65,86,.08);
+}
+.ilu-minimal-kicker{
+ position:relative;z-index:3;
+ font:800 9px/1 Arial,sans-serif;
+ letter-spacing:2.5px;
+ color:#b56b83;
+ margin-bottom:24px;
+}
+.ilu-minimal-logo{
+ position:relative;z-index:3;
+ display:block;
+ width:min(360px,48%);
+ max-height:130px;
+ object-fit:contain;
+ filter:drop-shadow(0 10px 20px rgba(80,45,57,.06));
+}
+.ilu-minimal-linea{
+ position:relative;z-index:3;
+ width:42px;height:1px;
+ margin:25px 0 13px;
+ background:#dca6b8;
+}
+.ilu-minimal-inner p{
+ position:relative;z-index:3;
+ margin:0!important;
+ font-family:Georgia,"Times New Roman",serif!important;
+ font-size:16px!important;
+ font-style:italic;
+ letter-spacing:.3px;
+ color:#8a6673!important;
+}
+.ilu-minimal-brillo{
+ position:absolute;z-index:2;
+ color:rgba(214,133,160,.58);
+ font-family:Georgia,serif;
+}
+.ilu-mb1{font-size:30px;left:17%;top:26%}
+.ilu-mb2{font-size:21px;right:19%;bottom:27%}
+.ilu-minimal-cristal{
+ position:absolute;
+ border-radius:50%;
+ border:1px solid rgba(255,255,255,.95);
+ background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(244,194,211,.14));
+ box-shadow:inset 0 0 18px rgba(255,255,255,.9),0 10px 28px rgba(166,91,117,.06);
+}
+.ilu-mc1{width:95px;height:95px;right:-20px;top:-22px}
+.ilu-mc2{width:54px;height:54px;left:7%;bottom:-13px}
+@media(max-width:800px){
+ .ilu-teaser.ilu-minimal{padding:30px 12px!important}
+ .ilu-minimal-inner{min-height:230px;border-radius:24px}
+ .ilu-minimal-kicker{font-size:8px;letter-spacing:1.8px;margin-bottom:18px}
+ .ilu-minimal-logo{width:min(230px,62%);max-height:90px}
+ .ilu-minimal-linea{margin:19px 0 10px}
+ .ilu-minimal-inner p{font-size:14px!important}
+ .ilu-mb1{left:9%;top:24%;font-size:23px}
+ .ilu-mb2{right:10%;bottom:22%;font-size:18px}
+ .ilu-mc1{width:65px;height:65px}
+ .ilu-mc2{width:38px;height:38px}
+}
+
 </style>
 </head>
 <body>
@@ -2015,24 +2098,17 @@ footer{
 </section>
 
 
-<section class="ilu-teaser" id="ilu">
-<div class="ilu-inner ilu-lanzamiento">
-  <div class="ilu-copy">
-    <div class="ilu-kicker">NUEVA MARCA · PRÓXIMAMENTE</div>
-    <img class="ilu-logo-real" src="imagenes/logo%20ilu.png" alt="ILU">
-    <h2>Una nueva historia de color está por llegar</h2>
-    <p>Muy pronto podrás descubrir ILU en Bella Shop. Estamos preparando su llegada para presentarte la marca como se merece.</p>
-    <div class="ilu-etiquetas"><span>PRÓXIMAMENTE</span><span>EN BELLA SHOP</span></div>
+<section class="ilu-teaser ilu-minimal" id="ilu">
+  <div class="ilu-minimal-inner">
+    <span class="ilu-minimal-kicker">PRÓXIMAMENTE EN BELLA SHOP</span>
+    <img class="ilu-minimal-logo" src="imagenes/logo%20ilu.png" alt="ILU">
+    <div class="ilu-minimal-linea"></div>
+    <p>Muy pronto.</p>
+    <span class="ilu-minimal-brillo ilu-mb1">✦</span>
+    <span class="ilu-minimal-brillo ilu-mb2">✧</span>
+    <span class="ilu-minimal-cristal ilu-mc1"></span>
+    <span class="ilu-minimal-cristal ilu-mc2"></span>
   </div>
-  <div class="ilu-escena" aria-hidden="true">
-    <span class="ilu-brillo brillo-a">✦</span>
-    <span class="ilu-brillo brillo-b">✧</span>
-    <span class="ilu-burbuja burbuja-a"></span>
-    <span class="ilu-burbuja burbuja-b"></span>
-    <div class="ilu-logo-marco"><img src="imagenes/logo%20ilu.png" alt=""></div>
-    <small>COMING SOON</small>
-  </div>
-</div>
 </section>
 
 
