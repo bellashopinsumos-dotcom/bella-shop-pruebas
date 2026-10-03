@@ -1640,6 +1640,44 @@ footer{background:#f3dce5!important;border-top:1px solid #e6bdcc!important}
  .nuevos-home{background:linear-gradient(180deg,#f9e8ef,#f5e3eb)!important}
 }
 
+
+/* ===== MOVIMIENTO SUAVE DEL CARRUSEL (excepto video) ===== */
+.hero-slide:not(.hero-slide-video) img{
+ transform:scale(1.035);
+ transition:transform 3s cubic-bezier(.22,.61,.36,1),filter .7s ease;
+ filter:saturate(.96) brightness(.99);
+}
+.hero-slide.activo:not(.hero-slide-video) img{
+ transform:scale(1);
+ filter:saturate(1.04) brightness(1.01);
+}
+.hero-slide:not(.hero-slide-video) .hero-nuevo-accion,
+.hero-slide:not(.hero-slide-video) .hero-promo-contenido{
+ opacity:0;
+ transform:translateY(12px);
+ transition:opacity .55s ease .16s,transform .65s cubic-bezier(.22,.61,.36,1) .16s;
+}
+.hero-slide.activo:not(.hero-slide-video) .hero-nuevo-accion,
+.hero-slide.activo:not(.hero-slide-video) .hero-promo-contenido{
+ opacity:1;
+ transform:translateY(0);
+}
+.hero-slide-promo:before{
+ content:"";position:absolute;inset:-12%;z-index:0;pointer-events:none;
+ background:radial-gradient(circle at 25% 35%,rgba(255,255,255,.34),transparent 18%),
+            radial-gradient(circle at 75% 65%,rgba(255,255,255,.25),transparent 20%);
+ transform:translateX(-2%);
+ transition:transform 3s ease;
+}
+.hero-slide-promo.activo:before{transform:translateX(2%)}
+.hero-promo-contenido{z-index:1}
+@media(prefers-reduced-motion:reduce){
+ .hero-slide:not(.hero-slide-video) img,
+ .hero-slide:not(.hero-slide-video) .hero-nuevo-accion,
+ .hero-slide:not(.hero-slide-video) .hero-promo-contenido,
+ .hero-slide-promo:before{transition:none!important;transform:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -2532,7 +2570,7 @@ function toggleCategorias(){
    slides.forEach((s,n)=>s.classList.toggle("activo",n===actual));
    puntos.forEach((p,n)=>p.classList.toggle("activo",n===actual));
  }
- function iniciar(){clearInterval(timer);timer=setInterval(()=>mostrar(actual+1),5000)}
+ function iniciar(){clearInterval(timer);timer=setInterval(()=>mostrar(actual+1),3000)}
  puntos.forEach((p,i)=>p.addEventListener("click",e=>{e.preventDefault();mostrar(i);iniciar()}));
  box.querySelector(".hero-flecha.izq").addEventListener("click",e=>{e.preventDefault();mostrar(actual-1);iniciar()});
  box.querySelector(".hero-flecha.der").addEventListener("click",e=>{e.preventDefault();mostrar(actual+1);iniciar()});
