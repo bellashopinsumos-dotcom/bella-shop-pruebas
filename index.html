@@ -1414,103 +1414,51 @@ body.intro-activa{overflow:hidden}
 }
 
 
-/* ===== PORTADA VISUAL BELLA SHOP ===== */
-.bella-intro{display:none!important}
-.hero{
-  position:relative!important;
-  overflow:hidden!important;
-  height:390px!important;
-  min-height:0!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  padding:24px 6%!important;
-  margin:0!important;
-  text-align:center!important;
-  background:#fff5f8!important;
-}
-.hero-video-fondo{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  object-position:center!important;
-  z-index:0!important;
-  filter:saturate(.78) brightness(1.05) contrast(.92)!important;
-}
-.hero-video-velo{
-  position:absolute!important;
-  inset:0!important;
-  z-index:1!important;
-  pointer-events:none!important;
-  background:linear-gradient(90deg,rgba(255,246,249,.74) 0%,rgba(255,246,249,.32) 34%,rgba(255,246,249,.28) 66%,rgba(255,246,249,.72) 100%)!important;
-  box-shadow:inset 0 45px 55px -42px #fff,inset 0 -48px 58px -45px #fff!important;
-}
-.hero-contenido{
-  position:relative!important;
-  z-index:3!important;
-  width:min(820px,92%)!important;
-  max-width:820px!important;
-  margin:0 auto!important;
-  padding:24px 30px!important;
-  border-radius:28px!important;
-  background:rgba(255,255,255,.26)!important;
-  box-shadow:none!important;
-  backdrop-filter:blur(1px)!important;
-  -webkit-backdrop-filter:blur(1px)!important;
-}
-.hero .etiqueta{
-  display:inline-block!important;
-  margin:0 0 16px!important;
-  background:rgba(255,255,255,.78)!important;
-  box-shadow:0 5px 18px rgba(117,72,87,.08)!important;
-}
-.hero h1{
-  margin:0!important;
-  text-shadow:0 2px 20px rgba(255,255,255,.98)!important;
-}
-.cara-hero{display:none!important}
+/* ===== CARRUSEL PRINCIPAL BELLA SHOP ===== */
+.hero-principal{padding:0;margin:0;background:#fff7fa}
+.hero-carrusel{position:relative;width:100%;height:430px;overflow:hidden;background:#fbeef2}
+.hero-slide{position:absolute;inset:0;display:block;opacity:0;visibility:hidden;transition:opacity .7s ease;pointer-events:none;text-decoration:none}
+.hero-slide.activo{opacity:1;visibility:visible;pointer-events:auto;z-index:2}
+.hero-slide img,.hero-slide video{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hero-slide-velo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,247,250,.78),rgba(255,247,250,.30) 50%,rgba(255,247,250,.72))}
+.hero-slide-texto{position:absolute;z-index:3;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:35px}
+.hero-slide-texto span{font-size:12px;letter-spacing:2.2px;font-weight:800;color:#b4496b;background:rgba(255,255,255,.82);padding:9px 15px;border-radius:999px}
+.hero-slide-texto h1{max-width:820px;margin:17px auto 20px;font-size:52px;line-height:1.02;color:#533d45;text-shadow:0 2px 18px #fff}
+.hero-slide-texto h1 em{display:block;color:#d94d7a;font-style:normal}
+.hero-slide-texto b,.hero-promo-contenido b{display:inline-block;padding:11px 18px;border-radius:999px;background:#d94d7a;color:#fff;font-size:12px;letter-spacing:.8px}
+.hero-slide-promo{background:linear-gradient(135deg,#fff8fa,#f8dfe7)}
+.hero-promo-contenido{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:35px 18px;color:#604851}
+.hero-promo-contenido small{font-weight:800;letter-spacing:1.4px;color:#b4496b}
+.hero-promo-contenido h2{font-size:42px;max-width:760px;margin:12px auto 8px}
+.hero-promo-contenido p{margin:0 0 20px;color:#80646e}
+.hero-flecha{position:absolute;top:50%;transform:translateY(-50%);z-index:7;width:42px;height:42px;border-radius:50%;border:1px solid rgba(239,198,211,.95);background:rgba(255,255,255,.88);color:#d94d7a;font-size:28px;cursor:pointer;box-shadow:0 5px 16px rgba(83,48,58,.12)}
+.hero-flecha.izq{left:18px}.hero-flecha.der{right:18px}
+.hero-puntos{position:absolute;left:0;right:0;bottom:15px;z-index:8;display:flex;justify-content:center;gap:8px}
+.hero-puntos button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.72);box-shadow:0 1px 6px rgba(0,0,0,.2);cursor:pointer}
+.hero-puntos button.activo{background:#d94d7a;transform:scale(1.15)}
+.promociones-destino{padding:58px 7%;background:#fff7fa;text-align:center}
+.promociones-destino>div{max-width:900px;margin:auto;padding:34px;border:1px solid #efdce3;border-radius:26px;background:#fff}
+.promociones-destino small{color:#b4496b;font-weight:800;letter-spacing:1.2px}
+.promociones-destino h2{margin:8px 0;color:#5d424c}
+.promociones-destino p{color:#80646e}
+.promociones-destino span{display:inline-block;margin-top:8px;padding:8px 13px;border-radius:999px;background:#f8e3ea;color:#b4496b;font-size:12px;font-weight:800}
 #categorias{padding-top:34px!important}
-
 @media(max-width:800px){
-  .hero{
-    height:265px!important;
-    min-height:0!important;
-    padding:8px 12px!important;
-    margin:0!important;
-  }
-  .hero-video-fondo{
-    width:100%!important;
-    height:100%!important;
-    object-fit:cover!important;
-    object-position:center!important;
-    opacity:.88!important;
-    filter:saturate(.72) brightness(1.07) contrast(.90)!important;
-  }
-  .hero-video-velo{
-    background:linear-gradient(90deg,rgba(255,247,250,.62),rgba(255,247,250,.30) 50%,rgba(255,247,250,.62))!important;
-    box-shadow:inset 0 28px 32px -27px #fff,inset 0 -30px 34px -28px #fff!important;
-  }
-  .hero-contenido{
-    width:94%!important;
-    padding:12px 8px!important;
-    border-radius:18px!important;
-    background:rgba(255,255,255,.20)!important;
-    backdrop-filter:none!important;
-    -webkit-backdrop-filter:none!important;
-  }
-  .hero .etiqueta{
-    margin:0 0 11px!important;
-    font-size:11px!important;
-  }
-  .hero h1{
-    font-size:32px!important;
-    line-height:1.02!important;
-  }
-  #categorias{
-    padding-top:22px!important;
-  }
+ .hero-carrusel{height:245px}
+ .hero-slide img,.hero-slide video{object-fit:cover}
+ .hero-slide-texto{padding:20px 42px}
+ .hero-slide-texto span{font-size:9px;letter-spacing:1.5px;padding:7px 10px}
+ .hero-slide-texto h1{font-size:30px;margin:10px auto 13px;line-height:1.02}
+ .hero-slide-texto b,.hero-promo-contenido b{font-size:10px;padding:8px 12px}
+ .hero-promo-contenido{padding:24px 42px}
+ .hero-promo-contenido h2{font-size:28px;line-height:1.05;margin:8px auto}
+ .hero-promo-contenido p{font-size:13px;margin-bottom:14px}
+ .hero-flecha{width:32px;height:32px;font-size:22px}
+ .hero-flecha.izq{left:8px}.hero-flecha.der{right:8px}
+ .hero-puntos{bottom:9px}
+ #categorias{padding-top:24px!important}
+ .promociones-destino{padding:35px 16px}
+ .promociones-destino>div{padding:25px 16px}
 }
 
 </style>
@@ -1539,21 +1487,41 @@ body.intro-activa{overflow:hidden}
 <!-- ======================================
        PORTADA
   ======================================= -->
-<section class="hero" id="inicio">
-<video class="hero-video-fondo" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-  <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
-</video>
-<div class="hero-video-velo" aria-hidden="true"></div>
-<img alt="" class="cara-hero" src="imagenes/Cara logo bellashop.png"/>
-<div class="hero-contenido">
-<span class="etiqueta">
-        INSUMOS DE BELLEZA
-      </span>
-<h1>
-        Tu mundo de color y belleza
-        <span>empieza aquí</span>
-</h1>
-
+<section class="hero-principal" id="inicio">
+<div class="hero-carrusel" id="hero-carrusel">
+  <a class="hero-slide activo hero-slide-video" href="#categorias" aria-label="Explorar catálogo Bella Shop">
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
+    </video>
+    <div class="hero-slide-velo"></div>
+    <div class="hero-slide-texto">
+      <span>INSUMOS DE BELLEZA</span>
+      <h1>Tu mundo de color y belleza <em>empieza aquí</em></h1>
+      <b>EXPLORAR CATÁLOGO</b>
+    </div>
+  </a>
+  <a class="hero-slide" href="removedores/removedores.html" aria-label="Ver nuevo Removedor KS">
+    <img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop">
+  </a>
+  <a class="hero-slide" href="removedores/removedores.html" aria-label="Ver nuevo Ablandador de Callos KS">
+    <img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop">
+  </a>
+  <a class="hero-slide hero-slide-promo" href="#promociones" aria-label="Ver promociones Bella Shop">
+    <div class="hero-promo-contenido">
+      <small>PROMOCIONES BELLA SHOP 💕</small>
+      <h2>Un espacio para consentirte un poquito más ✨</h2>
+      <p>Aquí encontrarás nuestras oportunidades especiales.</p>
+      <b>VER PROMOCIONES</b>
+    </div>
+  </a>
+  <button class="hero-flecha izq" type="button" aria-label="Anterior">‹</button>
+  <button class="hero-flecha der" type="button" aria-label="Siguiente">›</button>
+  <div class="hero-puntos" aria-label="Diapositivas">
+    <button class="activo" type="button" aria-label="Portada Bella Shop"></button>
+    <button type="button" aria-label="Removedor KS"></button>
+    <button type="button" aria-label="Ablandador KS"></button>
+    <button type="button" aria-label="Promociones"></button>
+  </div>
 </div>
 </section>
 <!-- ======================================
@@ -1594,17 +1562,7 @@ body.intro-activa{overflow:hidden}
 </div>
 </section>
 
-<section class="novedades-home">
-<div class="titulo"><h2>Descubre lo nuevo 💗</h2><p>Un espacio que iremos renovando con lo más reciente y especial de Bella Shop.</p></div>
-<div class="novedades-placeholder">
-<div class="novedad-carrusel" id="novedad-carrusel">
-<a class="novedad-slide activo" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop"></a>
-<a class="novedad-slide" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop"></a>
-<button class="novedad-flecha izq" type="button" aria-label="Novedad anterior">‹</button><button class="novedad-flecha der" type="button" aria-label="Siguiente novedad">›</button><div class="novedad-puntos"><button class="activo" type="button" aria-label="Ver novedad 1"></button><button type="button" aria-label="Ver novedad 2"></button></div>
-</div>
 
-</div>
-</section>
 <section class="ilu-teaser">
 <div class="ilu-inner">
 <div><div class="ilu-kicker">UNA NOVEDAD MUY ESPECIAL</div><h2>ILU está por llegar a Bella Shop ✨</h2><p>Muy pronto conocerás una nueva línea de color. Estamos preparando algo especial para recibirla como se merece.</p><span class="ilu-proximamente">PRÓXIMAMENTE</span></div>
@@ -1612,12 +1570,7 @@ body.intro-activa{overflow:hidden}
 </div>
 </section>
 
-<section class="promociones-home">
-<div class="promociones-inner">
-<div><small>PROMOCIONES BELLA SHOP 💕</small><h2>Un espacio para consentirte un poquito más ✨</h2><p>Aquí encontrarás nuestras promociones y oportunidades especiales cuando estén disponibles.</p></div>
-<div class="promociones-estado">PRÓXIMAMENTE</div>
-</div>
-</section>
+
 
 
 <!-- ======================================
@@ -1643,6 +1596,9 @@ body.intro-activa{overflow:hidden}
 <!-- ======================================
        AYUDA Y REDES
   ======================================= -->
+<section id="promociones" class="promociones-destino">
+<div><small>PROMOCIONES BELLA SHOP 💕</small><h2>Promociones</h2><p>Muy pronto encontrarás aquí nuestras oportunidades especiales.</p><span>PRÓXIMAMENTE</span></div>
+</section>
 <section class="contacto">
 <img alt="" class="cara-contacto" src="imagenes/Cara logo bellashop.png"/>
 <div class="contacto-contenido">
@@ -2359,5 +2315,23 @@ function toggleCategorias(){
 })();
 </script>
 
+<script>
+(function(){
+ const box=document.getElementById("hero-carrusel"); if(!box)return;
+ const slides=[...box.querySelectorAll(".hero-slide")];
+ const puntos=[...box.querySelectorAll(".hero-puntos button")];
+ let actual=0,timer;
+ function mostrar(i){
+   actual=(i+slides.length)%slides.length;
+   slides.forEach((s,n)=>s.classList.toggle("activo",n===actual));
+   puntos.forEach((p,n)=>p.classList.toggle("activo",n===actual));
+ }
+ function iniciar(){clearInterval(timer);timer=setInterval(()=>mostrar(actual+1),5000)}
+ puntos.forEach((p,i)=>p.addEventListener("click",e=>{e.preventDefault();mostrar(i);iniciar()}));
+ box.querySelector(".hero-flecha.izq").addEventListener("click",e=>{e.preventDefault();mostrar(actual-1);iniciar()});
+ box.querySelector(".hero-flecha.der").addEventListener("click",e=>{e.preventDefault();mostrar(actual+1);iniciar()});
+ iniciar();
+})();
+</script>
 </body>
 </html>
