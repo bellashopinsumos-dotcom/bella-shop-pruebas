@@ -1520,6 +1520,48 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
  .promo-estado{grid-column:1/-1;justify-self:start;margin-left:78px}
 }
 
+
+/* ===== AJUSTE TIPOGRÁFICO + NUEVOS ===== */
+.hero-slide-texto h1,.hero-promo-contenido h2,.hero-info-contenido h2,
+#categorias .titulo h2,.ilu-copy h2,.promo-copy h2,.nuevos-cabecera h2{
+ font-family:Georgia,"Times New Roman",serif!important;
+ font-weight:500!important;
+ letter-spacing:-.035em!important;
+}
+.hero-slide-texto h1{font-size:56px!important;line-height:.98!important}
+.hero-slide-texto h1 em{font-style:italic!important;font-weight:500!important}
+.hero-promo-contenido h2,.hero-info-contenido h2{font-size:48px!important;line-height:1.02!important;color:#603f4d!important;max-width:760px;margin:12px auto 10px}
+.hero-info-contenido{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:35px;background:linear-gradient(125deg,#f0e8fa,#ffeaf1 52%,#f7dce6);color:#684d58}
+.hero-info-contenido small{font-size:11px;letter-spacing:2px;font-weight:900;color:#a24e6a;background:rgba(255,255,255,.65);padding:8px 13px;border-radius:999px}
+.hero-info-contenido p{max-width:610px;margin:0 0 20px;color:#80646e}
+.hero-cta{position:relative;z-index:10;display:inline-block;padding:11px 18px;border-radius:999px;background:#d94d7a;color:#fff!important;text-decoration:none;font:800 11px/1 Arial,sans-serif;letter-spacing:.8px;box-shadow:0 8px 18px rgba(216,77,122,.18)}
+.hero-slide{cursor:grab;user-select:none;-webkit-user-select:none}
+.hero-slide:active{cursor:grabbing}
+.nuevos-home{padding:58px 5%;background:linear-gradient(180deg,#fff 0%,#fff4f8 100%)}
+.nuevos-cabecera{max-width:1180px;margin:0 auto 25px;display:flex;align-items:end;justify-content:space-between;gap:25px}
+.nuevos-cabecera small{color:#b5496d;font-weight:900;letter-spacing:1.5px;font-size:10px}
+.nuevos-cabecera h2{font-size:38px;margin:6px 0;color:#59404b}
+.nuevos-cabecera p{margin:0;color:#8b707a}
+.nuevos-cabecera>a{white-space:nowrap;text-decoration:none;color:#b5496d;font-size:11px;font-weight:900;letter-spacing:.7px;border-bottom:1px solid #dba9ba;padding-bottom:4px}
+.nuevos-grid{max-width:1180px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.nuevo-card{position:relative;overflow:hidden;border-radius:26px;background:#fff;border:1px solid #efdce3;box-shadow:0 12px 32px rgba(103,61,76,.08);transition:transform .2s ease,box-shadow .2s ease}
+.nuevo-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(103,61,76,.13)}
+.nuevo-card img{width:100%;aspect-ratio:16/8.2;object-fit:cover;display:block}
+.nuevo-card span{position:absolute;top:14px;left:14px;background:#d94d7a;color:#fff;padding:7px 10px;border-radius:999px;font:900 9px/1 Arial,sans-serif;letter-spacing:1px;box-shadow:0 5px 14px rgba(92,46,61,.15)}
+@media(max-width:800px){
+ .hero-slide-texto h1{font-size:33px!important;line-height:1!important}
+ .hero-promo-contenido h2,.hero-info-contenido h2{font-size:29px!important}
+ .hero-info-contenido{padding:25px 42px}
+ .hero-info-contenido p{font-size:13px;margin-bottom:14px}
+ .nuevos-home{padding:42px 12px}
+ .nuevos-cabecera{align-items:flex-start;margin-bottom:18px}
+ .nuevos-cabecera h2{font-size:29px}
+ .nuevos-cabecera p{font-size:13px}
+ .nuevos-cabecera>a{font-size:9px;margin-top:10px}
+ .nuevos-grid{grid-template-columns:1fr;gap:14px}
+ .nuevo-card{border-radius:20px}
+}
+
 </style>
 </head>
 <body>
@@ -1548,38 +1590,39 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
   ======================================= -->
 <section class="hero-principal" id="inicio">
 <div class="hero-carrusel" id="hero-carrusel">
-  <a class="hero-slide activo hero-slide-video" href="#categorias" aria-label="Explorar catálogo Bella Shop">
-    <video autoplay muted loop playsinline preload="metadata">
+  <div class="hero-slide activo hero-slide-video">
+    <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
       <source src="inicio/imagenes/Bella-Shop-Inicio-sin-marca.mp4" type="video/mp4">
     </video>
     <div class="hero-slide-velo"></div>
     <div class="hero-slide-texto">
       <span>INSUMOS DE BELLEZA</span>
       <h1>Tu mundo de color y belleza <em>empieza aquí</em></h1>
-      <b>EXPLORAR CATÁLOGO</b>
+      <a class="hero-cta" href="#categorias">EXPLORAR CATÁLOGO</a>
     </div>
-  </a>
-  <a class="hero-slide" href="removedores/removedores.html" aria-label="Ver nuevo Removedor KS">
-    <img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop">
-  </a>
-  <a class="hero-slide" href="removedores/removedores.html" aria-label="Ver nuevo Ablandador de Callos KS">
-    <img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop">
-  </a>
-  <a class="hero-slide hero-slide-promo" href="#promociones" aria-label="Ver promociones Bella Shop">
+  </div>
+  <div class="hero-slide hero-slide-promo">
     <div class="hero-promo-contenido">
-      <small>OFERTAS Y OPORTUNIDADES</small>
-      <h2>Promos que vale la pena mirar 💗</h2>
-      <p>Cuando tengamos precios y productos especiales, los encontrarás aquí.</p>
-      <b>VER PROMOCIONES</b>
+      <small>PROMOCIONES BELLA SHOP</small>
+      <h2>Detalles especiales para ti</h2>
+      <p>Descuentos, combos y oportunidades que iremos preparando para nuestra comunidad.</p>
+      <a class="hero-cta" href="#promociones">VER PROMOCIONES</a>
     </div>
-  </a>
+  </div>
+  <div class="hero-slide hero-slide-info">
+    <div class="hero-info-contenido">
+      <small>BELLA SHOP · POPAYÁN</small>
+      <h2>Todo para crear, inspirarte y brillar</h2>
+      <p>Encuentra tus marcas, productos y herramientas favoritas en un solo lugar.</p>
+      <a class="hero-cta" href="#categorias">DESCUBRIR CATEGORÍAS</a>
+    </div>
+  </div>
   <button class="hero-flecha izq" type="button" aria-label="Anterior">‹</button>
   <button class="hero-flecha der" type="button" aria-label="Siguiente">›</button>
   <div class="hero-puntos" aria-label="Diapositivas">
     <button class="activo" type="button" aria-label="Portada Bella Shop"></button>
-    <button type="button" aria-label="Removedor KS"></button>
-    <button type="button" aria-label="Ablandador KS"></button>
-    <button type="button" aria-label="Promociones"></button>
+    <button type="button" aria-label="Promociones Bella Shop"></button>
+    <button type="button" aria-label="Conoce Bella Shop"></button>
   </div>
 </div>
 </section>
@@ -1618,6 +1661,16 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
 <a href="preparadores/preparadores.html">Preparadores</a><a href="polygel/polygel.html">Polygel</a><a href="polvos-acrilicos/polvos-acrilicos.html">Polvos Acrílicos</a>
 <span>Herramientas</span><span>Pinceles</span><a href="removedores/removedores.html">Removedores</a><span>SPA</span>
 <span>Pestañas y Cejas</span><span>Decoración</span><span>Press On</span><span>Limas</span><span>Depilación</span><span>Varios</span><span>Promociones</span>
+</div>
+</section>
+<section class="nuevos-home" id="nuevos">
+<div class="nuevos-cabecera">
+  <div><small>RECIÉN LLEGADOS</small><h2>Lo nuevo en Bella Shop</h2><p>Descubre las últimas novedades que llegaron a nuestra tienda.</p></div>
+  <a href="removedores/removedores.html">VER TODOS →</a>
+</div>
+<div class="nuevos-grid">
+  <a class="nuevo-card" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS"><span>NUEVO</span></a>
+  <a class="nuevo-card" href="removedores/removedores.html"><img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS"><span>NUEVO</span></a>
 </div>
 </section>
 
