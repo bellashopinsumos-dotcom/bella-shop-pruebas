@@ -2081,6 +2081,105 @@ footer{
  .cat-visual.cat-con-imagen img{object-fit:cover!important}
 }
 
+
+/* ===== CATEGORIAS EDITORIALES · SIN IMAGENES ===== */
+.cat-visual.cat-elegante{
+ position:relative!important;
+ isolation:isolate;
+ overflow:hidden!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-height:100%!important;
+ padding:26px 18px!important;
+ background:
+   radial-gradient(circle at 75% 20%,rgba(255,255,255,.98),transparent 25%),
+   linear-gradient(145deg,#fff 0%,#fff8fa 43%,#fbe6ed 100%)!important;
+ border:1px solid rgba(232,190,205,.72)!important;
+ box-shadow:0 12px 30px rgba(121,64,84,.07)!important;
+ text-decoration:none!important;
+}
+.cat-visual.cat-elegante::before{
+ content:""!important;
+ display:block!important;
+ position:absolute!important;
+ width:105px!important;height:105px!important;
+ border-radius:50%!important;
+ right:-36px!important;top:-38px!important;
+ background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(239,179,200,.14))!important;
+ border:1px solid rgba(255,255,255,.9)!important;
+ box-shadow:inset 0 0 20px rgba(255,255,255,.9)!important;
+ z-index:-1!important;
+}
+.cat-visual.cat-elegante::after{
+ content:""!important;
+ display:block!important;
+ position:absolute!important;
+ width:55px!important;height:55px!important;
+ border-radius:50%!important;
+ left:-20px!important;bottom:-20px!important;
+ background:rgba(255,255,255,.38)!important;
+ border:1px solid rgba(255,255,255,.75)!important;
+ z-index:-1!important;
+}
+.cat-elegante strong{
+ position:relative;z-index:3;
+ display:block;
+ max-width:95%;
+ font-family:Georgia,"Times New Roman",serif!important;
+ font-size:clamp(23px,2.15vw,34px)!important;
+ line-height:1.03!important;
+ font-weight:500!important;
+ font-style:italic;
+ letter-spacing:-.7px!important;
+ color:#744c5b!important;
+ text-align:center!important;
+ text-shadow:0 1px 0 rgba(255,255,255,.9);
+}
+.cat-elegante i{
+ position:absolute;
+ z-index:2;
+ width:46px;height:1px;
+ left:50%;bottom:27%;
+ transform:translateX(-50%);
+ background:linear-gradient(90deg,transparent,#d89aaf,transparent);
+}
+.cat-elegante .cat-destello{
+ position:absolute!important;
+ z-index:2!important;
+ display:block!important;
+ top:18%!important;left:15%!important;
+ font-family:Georgia,serif!important;
+ font-size:17px!important;
+ color:rgba(204,111,143,.48)!important;
+ line-height:1!important;
+}
+.cat-elegante:hover{
+ transform:translateY(-3px)!important;
+ box-shadow:0 17px 34px rgba(121,64,84,.11)!important;
+}
+.cat-elegante:hover strong{color:#c04f76!important}
+
+/* variaciones suaves, todas dentro de la misma identidad */
+.cat-base,.cat-preparadores,.cat-removedores{
+ background:linear-gradient(135deg,#fff 0%,#fff4f8 52%,#f8dce7 100%)!important;
+}
+.cat-gel,.cat-polygel{
+ background:linear-gradient(145deg,#fff 0%,#fbf5ff 48%,#f3e4f4 100%)!important;
+}
+.cat-electricos,.cat-polvos{
+ background:linear-gradient(145deg,#fff 0%,#fff8f9 45%,#f7e3ea 100%)!important;
+}
+@media(max-width:800px){
+ .cat-visual.cat-elegante{padding:20px 13px!important}
+ .cat-elegante strong{
+   font-size:clamp(24px,7vw,31px)!important;
+   letter-spacing:-.5px!important;
+ }
+ .cat-elegante i{bottom:24%}
+ .cat-elegante .cat-destello{top:16%!important;left:13%!important}
+}
+
 </style>
 </head>
 <body>
@@ -2170,16 +2269,16 @@ footer{
 <div class="categorias-carrusel-wrap">
 <button class="carrusel-flecha izq" type="button" aria-label="Categorías anteriores" onclick="moverCategorias(-1)">‹</button>
 <div class="categorias-carrusel" id="carrusel-categorias">
-<a class="cat-visual cat-con-imagen" href="esmaltes.html"><img src="inicio/imagenes/ESMALTE.png" alt="Esmaltes"></a>
-<a class="cat-visual cat-con-imagen" href="base-top.html"><img src="inicio/imagenes/BASEYTOP.png" alt="Base y Top Coat"></a>
-<a class="cat-visual cat-con-imagen" href="gel-nail-art/gel-nail-art.html"><img src="inicio/imagenes/GELNAILART.png" alt="Gel Nail Art"></a>
-<a class="cat-visual cat-con-imagen" href="electricos/electricos.html"><img src="inicio/imagenes/ELECTRICOS.png" alt="Eléctricos"></a>
-<a class="cat-visual cat-con-imagen" href="preparadores/preparadores.html"><img src="inicio/imagenes/PREPARADORES.png" alt="Preparadores"></a>
-<a class="cat-visual cat-con-imagen" href="polygel/polygel.html"><img src="inicio/imagenes/POLYGEL.png" alt="Polygel"></a>
-<a class="cat-visual cat-con-imagen" href="polvos-acrilicos/polvos-acrilicos.html"><img src="inicio/imagenes/POLVOACRILICO.png" alt="Polvos Acrílicos"></a>
+<a class="cat-visual cat-elegante cat-esmaltes" href="esmaltes.html"><span class="cat-destello">✦</span><strong>Esmaltes</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-base" href="base-top.html"><span class="cat-destello">✦</span><strong>Base y Top Coat</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-gel" href="gel-nail-art/gel-nail-art.html"><span class="cat-destello">✦</span><strong>Gel Nail Art</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-electricos" href="electricos/electricos.html"><span class="cat-destello">✦</span><strong>Eléctricos</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-preparadores" href="preparadores/preparadores.html"><span class="cat-destello">✦</span><strong>Preparadores</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-polygel" href="polygel/polygel.html"><span class="cat-destello">✦</span><strong>Polygel</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-polvos" href="polvos-acrilicos/polvos-acrilicos.html"><span class="cat-destello">✦</span><strong>Polvos Acrílicos</strong><i></i></a>
 <div class="cat-visual futura"><span>Herramientas</span></div>
 <div class="cat-visual futura"><span>Pinceles</span></div>
-<a class="cat-visual cat-con-imagen" href="removedores/removedores.html"><img src="inicio/imagenes/REMOVEDORES.png" alt="Removedores"></a>
+<a class="cat-visual cat-elegante cat-removedores" href="removedores/removedores.html"><span class="cat-destello">✦</span><strong>Removedores</strong><i></i></a>
 <div class="cat-visual futura"><span>SPA</span></div>
 <div class="cat-visual futura"><span>Pestañas y Cejas</span></div>
 <div class="cat-visual futura"><span>Decoración</span></div>
