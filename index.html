@@ -2057,6 +2057,30 @@ footer{
  }
 }
 
+
+/* ===== IMAGENES DEFINITIVAS DE CATEGORIAS ===== */
+.cat-visual.cat-con-imagen{
+ padding:0!important;
+ background:#fff!important;
+ overflow:hidden!important;
+ border-color:#efd6df!important;
+}
+.cat-visual.cat-con-imagen::before,
+.cat-visual.cat-con-imagen::after{display:none!important}
+.cat-visual.cat-con-imagen img{
+ display:block!important;
+ width:100%!important;
+ height:100%!important;
+ object-fit:cover!important;
+ object-position:center!important;
+ border-radius:inherit!important;
+ transition:transform .35s ease!important;
+}
+.cat-visual.cat-con-imagen:hover img{transform:scale(1.025)}
+@media(max-width:800px){
+ .cat-visual.cat-con-imagen img{object-fit:cover!important}
+}
+
 </style>
 </head>
 <body>
@@ -2146,16 +2170,16 @@ footer{
 <div class="categorias-carrusel-wrap">
 <button class="carrusel-flecha izq" type="button" aria-label="Categorías anteriores" onclick="moverCategorias(-1)">‹</button>
 <div class="categorias-carrusel" id="carrusel-categorias">
-<a class="cat-visual" href="esmaltes.html"><span>Esmaltes</span></a>
-<a class="cat-visual" href="base-top.html"><span>Base y Top Coat</span></a>
-<a class="cat-visual" href="gel-nail-art/gel-nail-art.html"><span>Gel Nail Art</span></a>
-<a class="cat-visual" href="electricos/electricos.html"><span>Eléctricos</span></a>
-<a class="cat-visual" href="preparadores/preparadores.html"><span>Preparadores</span></a>
-<a class="cat-visual" href="polygel/polygel.html"><span>Polygel</span></a>
+<a class="cat-visual cat-con-imagen" href="esmaltes.html"><img src="inicio/imagenes/ESMALTE.png" alt="Esmaltes"></a>
+<a class="cat-visual cat-con-imagen" href="base-top.html"><img src="inicio/imagenes/BASEYTOP.png" alt="Base y Top Coat"></a>
+<a class="cat-visual cat-con-imagen" href="gel-nail-art/gel-nail-art.html"><img src="inicio/imagenes/GELNAILART.png" alt="Gel Nail Art"></a>
+<a class="cat-visual cat-con-imagen" href="electricos/electricos.html"><img src="inicio/imagenes/ELECTRICOS.png" alt="Eléctricos"></a>
+<a class="cat-visual cat-con-imagen" href="preparadores/preparadores.html"><img src="inicio/imagenes/PREPARADORES.png" alt="Preparadores"></a>
+<a class="cat-visual cat-con-imagen" href="polygel/polygel.html"><img src="inicio/imagenes/POLYGEL.png" alt="Polygel"></a>
 <a class="cat-visual" href="polvos-acrilicos/polvos-acrilicos.html"><span>Polvos Acrílicos</span></a>
 <div class="cat-visual futura"><span>Herramientas</span></div>
 <div class="cat-visual futura"><span>Pinceles</span></div>
-<a class="cat-visual" href="removedores/removedores.html"><span>Removedores</span></a>
+<a class="cat-visual cat-con-imagen" href="removedores/removedores.html"><img src="inicio/imagenes/REMOVEDORES.png" alt="Removedores"></a>
 <div class="cat-visual futura"><span>SPA</span></div>
 <div class="cat-visual futura"><span>Pestañas y Cejas</span></div>
 <div class="cat-visual futura"><span>Decoración</span></div>
