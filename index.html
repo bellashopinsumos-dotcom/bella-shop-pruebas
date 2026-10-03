@@ -1562,6 +1562,18 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
  .nuevo-card{border-radius:20px}
 }
 
+
+/* Novedades dentro del carrusel: la imagen no navega; solo el CTA */
+.hero-slide-nuevo{background:#fff}
+.hero-slide-nuevo img{pointer-events:none}
+.hero-nuevo-accion{position:absolute;left:0;right:0;bottom:38px;z-index:6;display:flex;justify-content:center;pointer-events:none}
+.hero-nuevo-accion .hero-cta{pointer-events:auto;background:rgba(216,77,122,.94);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.7)}
+html{scroll-behavior:smooth}
+@media(max-width:800px){
+ .hero-nuevo-accion{bottom:30px}
+ .hero-nuevo-accion .hero-cta{font-size:9px;padding:8px 11px}
+}
+
 </style>
 </head>
 <body>
@@ -1598,9 +1610,19 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
     <div class="hero-slide-texto">
       <span>INSUMOS DE BELLEZA</span>
       <h1>Tu mundo de color y belleza <em>empieza aquí</em></h1>
-      <a class="hero-cta" href="#categorias">EXPLORAR CATÁLOGO</a>
     </div>
   </div>
+
+  <div class="hero-slide hero-slide-nuevo">
+    <img src="inicio/novedades/NOVEDADREMOVEDORKS.png" alt="Nuevo Removedor KS en Bella Shop">
+    <div class="hero-nuevo-accion"><a class="hero-cta" href="#nuevos">DESCUBRE LO NUEVO ↓</a></div>
+  </div>
+
+  <div class="hero-slide hero-slide-nuevo">
+    <img src="inicio/novedades/NOVEDADCALLOS.png" alt="Nuevo Ablandador de Callos KS en Bella Shop">
+    <div class="hero-nuevo-accion"><a class="hero-cta" href="#nuevos">DESCUBRE LO NUEVO ↓</a></div>
+  </div>
+
   <div class="hero-slide hero-slide-promo">
     <div class="hero-promo-contenido">
       <small>PROMOCIONES BELLA SHOP</small>
@@ -1609,20 +1631,14 @@ header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #f2dde
       <a class="hero-cta" href="#promociones">VER PROMOCIONES</a>
     </div>
   </div>
-  <div class="hero-slide hero-slide-info">
-    <div class="hero-info-contenido">
-      <small>BELLA SHOP · POPAYÁN</small>
-      <h2>Todo para crear, inspirarte y brillar</h2>
-      <p>Encuentra tus marcas, productos y herramientas favoritas en un solo lugar.</p>
-      <a class="hero-cta" href="#categorias">DESCUBRIR CATEGORÍAS</a>
-    </div>
-  </div>
+
   <button class="hero-flecha izq" type="button" aria-label="Anterior">‹</button>
   <button class="hero-flecha der" type="button" aria-label="Siguiente">›</button>
   <div class="hero-puntos" aria-label="Diapositivas">
     <button class="activo" type="button" aria-label="Portada Bella Shop"></button>
+    <button type="button" aria-label="Nuevo Removedor KS"></button>
+    <button type="button" aria-label="Nuevo Ablandador KS"></button>
     <button type="button" aria-label="Promociones Bella Shop"></button>
-    <button type="button" aria-label="Conoce Bella Shop"></button>
   </div>
 </div>
 </section>
