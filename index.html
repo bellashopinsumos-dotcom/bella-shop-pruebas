@@ -2255,6 +2255,96 @@ footer{
  .cat-visual.cat-elegante::before{width:66px!important;height:66px!important}
 }
 
+
+/* ===== CATEGORIAS · DECORACION BELLA SHOP REFINADA ===== */
+.cat-elegante .cat-sello{
+ position:absolute;z-index:0;
+ right:12px;bottom:9px;
+ font:800 8px/1 Arial,sans-serif;
+ letter-spacing:2.2px;
+ color:rgba(176,91,120,.13);
+ transform:rotate(-5deg);
+}
+.cat-elegante .cat-onda{
+ position:absolute;z-index:1;
+ width:115px;height:42px;
+ right:-22px;bottom:18px;
+ border:2px solid rgba(219,135,164,.18);
+ border-left-color:transparent;
+ border-bottom-color:transparent;
+ border-radius:50%;
+ transform:rotate(-16deg);
+}
+.cat-elegante .cat-onda::before{
+ content:"";
+ position:absolute;
+ width:92px;height:30px;
+ right:14px;top:9px;
+ border-top:1px solid rgba(218,124,157,.22);
+ border-radius:50%;
+}
+.cat-elegante .cat-onda::after{
+ content:"";
+ position:absolute;
+ width:48px;height:7px;
+ right:28px;top:20px;
+ border-radius:50%;
+ background:linear-gradient(90deg,transparent,rgba(221,139,167,.16),transparent);
+ filter:blur(1px);
+}
+.cat-elegante .cat-perla{
+ position:absolute;z-index:2;
+ width:22px;height:22px;
+ right:18%;top:18%;
+ border-radius:50%;
+ background:
+  radial-gradient(circle at 32% 28%,rgba(255,255,255,.98) 0 12%,rgba(255,255,255,.45) 13% 30%,rgba(238,174,197,.18) 58%,rgba(255,255,255,.3) 100%);
+ border:1px solid rgba(255,255,255,.9);
+ box-shadow:inset -4px -4px 9px rgba(218,145,170,.10),0 5px 12px rgba(126,66,87,.07);
+}
+.cat-elegante .cat-perla::after{
+ content:"";
+ position:absolute;
+ width:6px;height:6px;
+ border-radius:50%;
+ left:-20px;top:30px;
+ background:rgba(226,159,182,.22);
+ box-shadow:26px 17px 0 rgba(255,255,255,.65);
+}
+.cat-elegante strong::before{
+ content:"";
+ position:absolute;
+ z-index:-1;
+ width:72%;height:18px;
+ left:14%;bottom:-3px;
+ background:radial-gradient(ellipse,rgba(235,177,197,.18),transparent 68%);
+ filter:blur(5px);
+}
+.cat-elegante strong::after{
+ content:"♡";
+ position:absolute;
+ font-family:Georgia,serif;
+ font-size:12px;
+ font-style:normal;
+ color:rgba(201,103,137,.32);
+ right:-18px;top:-9px;
+}
+/* invertir parte de la ornamentacion para crear ritmo */
+.cat-base .cat-onda,.cat-electricos .cat-onda,.cat-polygel .cat-onda,.cat-removedores .cat-onda{
+ right:auto;left:-24px;transform:rotate(164deg);
+}
+.cat-base .cat-perla,.cat-electricos .cat-perla,.cat-polygel .cat-perla,.cat-removedores .cat-perla{
+ right:auto;left:17%;
+}
+.cat-gel .cat-perla,.cat-polvos .cat-perla{width:27px;height:27px}
+.cat-preparadores .cat-onda,.cat-removedores .cat-onda{opacity:.72}
+@media(max-width:800px){
+ .cat-elegante .cat-sello{font-size:7px;letter-spacing:1.7px;right:9px;bottom:7px}
+ .cat-elegante .cat-onda{width:92px;height:35px;bottom:14px}
+ .cat-elegante .cat-perla{width:18px;height:18px}
+ .cat-elegante strong::after{font-size:10px;right:-14px}
+}
+
 </style>
 </head>
 <body>
@@ -2344,16 +2434,16 @@ footer{
 <div class="categorias-carrusel-wrap">
 <button class="carrusel-flecha izq" type="button" aria-label="Categorías anteriores" onclick="moverCategorias(-1)">‹</button>
 <div class="categorias-carrusel" id="carrusel-categorias">
-<a class="cat-visual cat-elegante cat-esmaltes" href="esmaltes.html"><span class="cat-destello">✦</span><strong>Esmaltes</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-base" href="base-top.html"><span class="cat-destello">✦</span><strong>Base y Top Coat</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-gel" href="gel-nail-art/gel-nail-art.html"><span class="cat-destello">✦</span><strong>Gel Nail Art</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-electricos" href="electricos/electricos.html"><span class="cat-destello">✦</span><strong>Eléctricos</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-preparadores" href="preparadores/preparadores.html"><span class="cat-destello">✦</span><strong>Preparadores</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-polygel" href="polygel/polygel.html"><span class="cat-destello">✦</span><strong>Polygel</strong><i></i></a>
-<a class="cat-visual cat-elegante cat-polvos" href="polvos-acrilicos/polvos-acrilicos.html"><span class="cat-destello">✦</span><strong>Polvos Acrílicos</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-esmaltes" href="esmaltes.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Esmaltes</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-base" href="base-top.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Base y Top Coat</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-gel" href="gel-nail-art/gel-nail-art.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Gel Nail Art</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-electricos" href="electricos/electricos.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Eléctricos</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-preparadores" href="preparadores/preparadores.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Preparadores</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-polygel" href="polygel/polygel.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Polygel</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-polvos" href="polvos-acrilicos/polvos-acrilicos.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Polvos Acrílicos</strong><i></i></a>
 <div class="cat-visual futura"><span>Herramientas</span></div>
 <div class="cat-visual futura"><span>Pinceles</span></div>
-<a class="cat-visual cat-elegante cat-removedores" href="removedores/removedores.html"><span class="cat-destello">✦</span><strong>Removedores</strong><i></i></a>
+<a class="cat-visual cat-elegante cat-removedores" href="removedores/removedores.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Removedores</strong><i></i></a>
 <div class="cat-visual futura"><span>SPA</span></div>
 <div class="cat-visual futura"><span>Pestañas y Cejas</span></div>
 <div class="cat-visual futura"><span>Decoración</span></div>
