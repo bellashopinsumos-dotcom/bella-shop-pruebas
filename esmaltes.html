@@ -139,6 +139,29 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.foo
  .social a svg{width:17px;height:17px}
 }
 
+
+/* Logo real Bella Shop en la composicion editorial */
+.hero-monograma{display:none!important}
+.hero-logo-fondo{
+ position:absolute;
+ left:50%;top:43%;
+ transform:translate(-50%,-50%);
+ width:min(270px,72%);
+ height:105px;
+ object-fit:contain;
+ opacity:.105;
+ filter:saturate(.75);
+ pointer-events:none;
+ user-select:none;
+}
+.hero-frase{top:66%!important}
+.hero-raya{top:77%!important}
+@media(max-width:800px){
+ .hero-logo-fondo{width:205px;height:72px;top:40%;opacity:.11}
+ .hero-frase{top:68%!important}
+ .hero-raya{top:82%!important}
+}
+
 </style>
 </head>
 <body>
@@ -158,7 +181,7 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.foo
    <p>Encuentra el color perfecto para cada creación. Explora nuestras opciones de esmaltes y descubre marcas, tonos y colecciones para tus diseños.</p>
   </div>
   <div class="hero-art" aria-hidden="true">
-   <span class="hero-monograma">BS</span><span class="hero-frase">COLOR · ESTILO · CREATIVIDAD</span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="bubble b1"></span><span class="bubble b2"></span><span class="hero-raya"></span>
+   <img class="hero-logo-fondo" src="imagenes/Logo Bellashop png.png" alt="" aria-hidden="true"><span class="hero-frase">COLOR · ESTILO · CREATIVIDAD</span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="bubble b1"></span><span class="bubble b2"></span><span class="hero-raya"></span>
   </div>
  </div>
 </section>
