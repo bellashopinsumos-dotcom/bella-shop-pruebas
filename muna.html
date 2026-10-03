@@ -925,6 +925,46 @@
  .ver{font-size:9px!important}
 }
 
+
+/* ===== EXPLORADOR MUNA ===== */
+.muna-explorador{max-width:980px;margin:0 auto 24px;position:relative;z-index:3}
+.muna-buscador{height:50px;background:#fff;border:1px solid #ecd7df;border-radius:16px;display:flex;align-items:center;gap:10px;padding:0 16px;box-shadow:0 7px 22px rgba(83,48,58,.05)}
+.muna-buscador svg{width:19px;height:19px;color:#d65a82;flex:0 0 auto}
+.muna-buscador input{width:100%;border:0;outline:0;background:transparent;color:#4b3940;font-size:14px}
+.muna-buscador input::placeholder{color:#a28d94}
+.muna-filtros{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin-top:14px}
+.filtro-grupo{background:#fffafd;border:1px solid #f0dce3;border-radius:16px;padding:13px 14px}
+.filtro-label{display:block;font-size:8px;font-weight:900;letter-spacing:1.4px;color:#bd6683;margin-bottom:9px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:1px solid #eccbd6;background:#fff;color:#8b6673;border-radius:999px;padding:8px 13px;font-size:11px;font-weight:700;cursor:pointer}
+.chip.activo{background:#e65385;color:#fff;border-color:#e65385}
+.filtro-grupo select{width:100%;height:35px;border:0;outline:0;background:transparent;color:#674f58;font-size:12px;font-weight:700}
+.muna-resumen{text-align:right;color:#947c84;font-size:11px;margin-top:10px;padding-right:4px}
+.muna-resumen strong{color:#d65380}
+.muna-grid{position:relative;z-index:3;max-width:980px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.muna-card{position:relative;overflow:hidden;min-height:150px;padding:22px 20px;border-radius:20px;text-decoration:none;color:#4d3740;border:1px solid #efdce3;background:radial-gradient(circle at 88% 15%,#fff,transparent 26%),linear-gradient(145deg,#fff,#fff9fb 55%,#fbeaf0);box-shadow:0 8px 23px rgba(83,48,58,.055);transition:.22s}
+.muna-card:after{content:"";position:absolute;width:74px;height:74px;border-radius:50%;right:-28px;top:-30px;background:rgba(230,83,133,.055)}
+.muna-card:hover{transform:translateY(-4px);border-color:#e5b8c7;box-shadow:0 13px 28px rgba(83,48,58,.09)}
+.muna-kicker{position:relative;z-index:2;font-size:8px;font-weight:900;letter-spacing:1.2px;color:#c45d80;text-transform:uppercase}
+.muna-card h3{position:relative;z-index:2;font-family:Georgia,"Times New Roman",serif;font-size:22px;font-weight:500;color:#47343b;margin:12px 0 7px}
+.muna-card p{position:relative;z-index:2;color:#887078;font-size:12px;line-height:1.45;margin-bottom:14px}
+.muna-card .ver{display:block}
+.muna-vacio{max-width:980px;margin:18px auto 0;padding:25px;text-align:center;border:1px dashed #e7c5d0;border-radius:18px;color:#8d747d;background:#fffafd}
+@media(max-width:800px){
+ .muna-filtros{grid-template-columns:1fr}
+ .muna-grid{grid-template-columns:repeat(2,1fr);gap:11px}
+ .muna-card{min-height:142px;padding:18px 15px}
+ .muna-card h3{font-size:19px}
+ .muna-buscador input{font-size:12px}
+}
+@media(max-width:440px){
+ .muna-grid{grid-template-columns:1fr 1fr}
+ .muna-card{min-height:135px;padding:17px 13px}
+ .muna-card h3{font-size:17px;margin:9px 0 6px}
+ .muna-card p{font-size:10.5px;margin-bottom:11px}
+ .muna-kicker{font-size:7px}
+}
+
 </style>
 
 </head>
@@ -1104,82 +1144,129 @@
 
 
 
-    <div class="opciones opciones-directas">
+    <div class="muna-explorador">
+      <div class="muna-buscador">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="buscarMuna" type="search" placeholder="Busca una colección: Shell, Jelly, Ojo de gato..." autocomplete="off">
+      </div>
 
-      <a href="carta-colores-muna12ml.html" class="opcion opcion-coleccion">
-        <span class="presentacion">Carta general · 12 ml</span>
-        <h3>Carta de Colores Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="fluorescente-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Fluorescente Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="jelly-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Jelly Gel Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="macarron-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Macarrón Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="satin-nail-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Satin Nail Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="shell-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Shell Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="ojo-de-gato-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Ojo de Gato Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="bases-traslucidas-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Bases Traslúcidas Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="saturado-gel-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Saturados Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="reflectivos-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Reflectivos Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="craquelados-muna.html" class="opcion opcion-coleccion">
-        <span class="presentacion">12 ml</span>
-        <h3>Craquelados Muna</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
-      <a href="munabb7ml.html" class="opcion opcion-bb">
-        <img src="imagenes/logo munabb.png" alt="Logo Muna BB" class="logo-marca">
-        <span class="presentacion">7 ml</span>
-        <h3>Muna BB</h3>
-        <span class="ver">VER TONOS →</span>
-      </a>
-
+      <div class="muna-filtros">
+        <div class="filtro-grupo">
+          <span class="filtro-label">PRESENTACIÓN</span>
+          <div class="chips" id="filtroMl">
+            <button type="button" class="chip activo" data-ml="todos">Todos</button>
+            <button type="button" class="chip" data-ml="12">12 ml</button>
+            <button type="button" class="chip" data-ml="7">7 ml</button>
+          </div>
+        </div>
+        <div class="filtro-grupo">
+          <span class="filtro-label">TIPO</span>
+          <select id="filtroTipo" aria-label="Filtrar por tipo">
+            <option value="todos">Todas las colecciones</option>
+            <option value="clasicos">Clásicos</option>
+            <option value="fluorescente">Fluorescente</option>
+            <option value="jelly">Jelly</option>
+            <option value="macarron">Macarrón</option>
+            <option value="satin">Satin</option>
+            <option value="shell">Shell</option>
+            <option value="ojo-gato">Ojo de gato</option>
+            <option value="bases">Bases traslúcidas</option>
+            <option value="saturados">Saturados</option>
+            <option value="reflectivos">Reflectivos</option>
+            <option value="craquelados">Craquelados</option>
+            <option value="bb">Muna BB</option>
+          </select>
+        </div>
+      </div>
+      <div class="muna-resumen"><strong id="contadorMuna">12</strong> opciones para explorar</div>
     </div>
+
+    <div class="muna-grid" id="gridMuna">
+      <a href="carta-colores-muna12ml.html" class="muna-card" data-ml="12" data-tipo="clasicos" data-buscar="carta de colores clásicos todos los tonos muna de 12 ml">
+        <span class="muna-kicker">Clásicos · 12 ml</span>
+        <h3>Carta de Colores</h3>
+        <p>Todos los tonos Muna de 12 ml</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="fluorescente-muna.html" class="muna-card" data-ml="12" data-tipo="fluorescente" data-buscar="fluorescente fluorescente tonos vibrantes y llamativos">
+        <span class="muna-kicker">Fluorescente · 12 ml</span>
+        <h3>Fluorescente</h3>
+        <p>Tonos vibrantes y llamativos</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="jelly-muna.html" class="muna-card" data-ml="12" data-tipo="jelly" data-buscar="jelly gel jelly efecto translúcido tipo jelly">
+        <span class="muna-kicker">Jelly · 12 ml</span>
+        <h3>Jelly Gel</h3>
+        <p>Efecto translúcido tipo jelly</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="macarron-muna.html" class="muna-card" data-ml="12" data-tipo="macarron" data-buscar="macarrón macarrón tonos suaves y delicados">
+        <span class="muna-kicker">Macarrón · 12 ml</span>
+        <h3>Macarrón</h3>
+        <p>Tonos suaves y delicados</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="satin-nail-muna.html" class="muna-card" data-ml="12" data-tipo="satin" data-buscar="satin nail satin acabado satinado">
+        <span class="muna-kicker">Satin · 12 ml</span>
+        <h3>Satin Nail</h3>
+        <p>Acabado satinado</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="shell-muna.html" class="muna-card" data-ml="12" data-tipo="shell" data-buscar="shell shell colección shell muna">
+        <span class="muna-kicker">Shell · 12 ml</span>
+        <h3>Shell</h3>
+        <p>Colección Shell Muna</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="ojo-de-gato-muna.html" class="muna-card" data-ml="12" data-tipo="ojo-gato" data-buscar="ojo de gato efectos efecto magnético">
+        <span class="muna-kicker">Efectos · 12 ml</span>
+        <h3>Ojo de Gato</h3>
+        <p>Efecto magnético</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="bases-traslucidas-muna.html" class="muna-card" data-ml="12" data-tipo="bases" data-buscar="bases traslúcidas bases bases con efecto translúcido">
+        <span class="muna-kicker">Bases · 12 ml</span>
+        <h3>Bases Traslúcidas</h3>
+        <p>Bases con efecto translúcido</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="saturado-gel-muna.html" class="muna-card" data-ml="12" data-tipo="saturados" data-buscar="saturados saturados color intenso para nail art">
+        <span class="muna-kicker">Saturados · 12 ml</span>
+        <h3>Saturados</h3>
+        <p>Color intenso para nail art</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="reflectivos-muna.html" class="muna-card" data-ml="12" data-tipo="reflectivos" data-buscar="reflectivos efectos brillo reflectivo">
+        <span class="muna-kicker">Efectos · 12 ml</span>
+        <h3>Reflectivos</h3>
+        <p>Brillo reflectivo</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="craquelados-muna.html" class="muna-card" data-ml="12" data-tipo="craquelados" data-buscar="craquelados efectos efecto craquelado">
+        <span class="muna-kicker">Efectos · 12 ml</span>
+        <h3>Craquelados</h3>
+        <p>Efecto craquelado</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="munabb7ml.html" class="muna-card" data-ml="7" data-tipo="bb" data-buscar="muna bb muna bb presentación de 7 ml">
+        <span class="muna-kicker">Muna BB · 7 ml</span>
+        <h3>Muna BB</h3>
+        <p>Presentación de 7 ml</p>
+        <span class="ver">VER TONOS →</span>
+      </a>
+    </div>
+    <div class="muna-vacio" id="vacioMuna" hidden>No encontramos una colección con esos filtros 💗</div>
 
   </section>
 
@@ -1349,6 +1436,40 @@
 
   </footer>
 
+
+<script>
+(function(){
+  const buscar=document.getElementById("buscarMuna");
+  const tipo=document.getElementById("filtroTipo");
+  const cards=[...document.querySelectorAll(".muna-card")];
+  const chips=[...document.querySelectorAll("#filtroMl .chip")];
+  const contador=document.getElementById("contadorMuna");
+  const vacio=document.getElementById("vacioMuna");
+  let ml="todos";
+  function normalizar(s){return (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+  function filtrar(){
+    const q=normalizar(buscar.value.trim());
+    const t=tipo.value;
+    let visibles=0;
+    cards.forEach(card=>{
+      const okMl=ml==="todos"||card.dataset.ml===ml;
+      const okTipo=t==="todos"||card.dataset.tipo===t;
+      const okQ=!q||normalizar(card.dataset.buscar).includes(q);
+      const ok=okMl&&okTipo&&okQ;
+      card.style.display=ok?"":"none";
+      if(ok)visibles++;
+    });
+    contador.textContent=visibles;
+    vacio.hidden=visibles!==0;
+  }
+  chips.forEach(b=>b.addEventListener("click",()=>{
+    chips.forEach(x=>x.classList.remove("activo"));
+    b.classList.add("activo"); ml=b.dataset.ml; filtrar();
+  }));
+  buscar.addEventListener("input",filtrar);
+  tipo.addEventListener("change",filtrar);
+})();
+</script>
 
 </body>
 
