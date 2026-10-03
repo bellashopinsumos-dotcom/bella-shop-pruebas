@@ -2004,6 +2004,59 @@ footer{
  .hero-carrusel{border-radius:22px!important}
 }
 
+
+/* ===== CARRUSEL PORTADA · FOTO A RAS DEL MARCO ===== */
+.hero-principal{
+ padding-left:0!important;
+ padding-right:0!important;
+}
+.hero-carrusel{
+ width:calc(100% - 24px)!important;
+ margin-left:auto!important;
+ margin-right:auto!important;
+ box-sizing:border-box!important;
+ background:transparent!important;
+ border:none!important;
+ overflow:hidden!important;
+}
+.hero-slide-nuevo{
+ inset:0!important;
+ margin:0!important;
+ padding:0!important;
+ background:transparent!important;
+ overflow:hidden!important;
+}
+.hero-slide-nuevo img{
+ position:absolute!important;
+ inset:0!important;
+ width:100%!important;
+ height:100%!important;
+ margin:0!important;
+ padding:0!important;
+ display:block!important;
+ object-fit:contain!important;
+ object-position:center center!important;
+ background:transparent!important;
+ border:none!important;
+ border-radius:inherit!important;
+}
+@media(max-width:800px){
+ .hero-principal{
+   padding:8px 0!important;
+   background:linear-gradient(180deg,#fff 0%,#fff7fa 100%)!important;
+ }
+ .hero-carrusel{
+   width:calc(100% - 24px)!important;
+   margin:0 12px!important;
+   border-radius:24px!important;
+ }
+ .hero-slide,
+ .hero-slide-nuevo,
+ .hero-slide-nuevo img{
+   border-radius:24px!important;
+ }
+}
+
 </style>
 </head>
 <body>
