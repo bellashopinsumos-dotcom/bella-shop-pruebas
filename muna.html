@@ -880,7 +880,52 @@
       margin: 0 auto 18px;
     }
 
-  </style>
+  
+/* ===== MUNA · NAVEGACION DIRECTA A COLECCIONES ===== */
+.opciones.opciones-directas{
+ max-width:980px!important;
+ grid-template-columns:repeat(3,1fr)!important;
+ gap:16px!important;
+}
+.opcion-coleccion,.opcion-bb{
+ min-height:155px!important;
+ padding:24px 18px!important;
+ background:linear-gradient(150deg,#fff 0%,#fff 65%,#fff4f7 100%)!important;
+}
+.opcion-coleccion h3,.opcion-bb h3{
+ font-size:21px!important;
+ margin:10px 0 15px!important;
+}
+.presentacion{
+ position:relative;z-index:2;
+ display:inline-flex;
+ padding:6px 10px;
+ border-radius:999px;
+ background:#fff1f5;
+ border:1px solid #f0d1dc;
+ color:#c45479;
+ font-size:9px;
+ font-weight:800;
+ letter-spacing:.7px;
+}
+.opcion-bb .logo-marca{
+ width:105px!important;height:48px!important;
+ margin:0 auto 2px!important;
+ position:relative;z-index:2;
+}
+@media(max-width:800px){
+ .opciones.opciones-directas{grid-template-columns:repeat(2,1fr)!important;gap:12px!important}
+ .opcion-coleccion,.opcion-bb{min-height:145px!important;padding:20px 13px!important}
+ .opcion-coleccion h3,.opcion-bb h3{font-size:19px!important}
+}
+@media(max-width:440px){
+ .opciones.opciones-directas{grid-template-columns:1fr 1fr!important}
+ .opcion-coleccion,.opcion-bb{min-height:138px!important}
+ .opcion-coleccion h3,.opcion-bb h3{font-size:17px!important}
+ .ver{font-size:9px!important}
+}
+
+</style>
 
 </head>
 
@@ -1047,29 +1092,90 @@
     <div class="titulo">
 
       <h2>
-        Elige tu presentación
+        Explora Muna
       </h2>
 
 
       <p>
-        Escoge el tamaño que prefieras para descubrir sus tonos de esmalte.
+        Entra directamente a la colección que buscas o explora Muna BB de 7 ml.
       </p>
 
     </div>
 
 
 
-    <div class="opciones">
+    <div class="opciones opciones-directas">
 
-      <a href="muna12ml.html" class="opcion">
-        <img src="imagenes/logo muna.png" alt="Logo Muna" class="logo-marca">
-        <p>Descubre los tonos de esmalte semipermanente Muna en presentación de 12 ml.</p>
+      <a href="carta-colores-muna12ml.html" class="opcion opcion-coleccion">
+        <span class="presentacion">Carta general · 12 ml</span>
+        <h3>Carta de Colores Muna</h3>
         <span class="ver">VER TONOS →</span>
       </a>
 
-      <a href="munabb7ml.html" class="opcion">
+      <a href="fluorescente-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Fluorescente Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="jelly-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Jelly Gel Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="macarron-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Macarrón Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="satin-nail-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Satin Nail Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="shell-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Shell Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="ojo-de-gato-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Ojo de Gato Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="bases-traslucidas-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Bases Traslúcidas Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="saturado-gel-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Saturados Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="reflectivos-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Reflectivos Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="craquelados-muna.html" class="opcion opcion-coleccion">
+        <span class="presentacion">12 ml</span>
+        <h3>Craquelados Muna</h3>
+        <span class="ver">VER TONOS →</span>
+      </a>
+
+      <a href="munabb7ml.html" class="opcion opcion-bb">
         <img src="imagenes/logo munabb.png" alt="Logo Muna BB" class="logo-marca">
-        <p>Descubre los tonos de esmalte semipermanente Muna BB en presentación de 7 ml.</p>
+        <span class="presentacion">7 ml</span>
+        <h3>Muna BB</h3>
         <span class="ver">VER TONOS →</span>
       </a>
 
