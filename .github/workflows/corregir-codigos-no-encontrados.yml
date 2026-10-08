@@ -1,62 +1,60 @@
-name: Ajustar electricos
-
+name: Corregir electricos definitivo
 on:
   push:
     paths:
       - '.github/workflows/corregir-codigos-no-encontrados.yml'
-
 permissions:
   contents: write
-
 jobs:
-  ajustar:
+  corregir:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Ajustar pagina
+      - name: Aplicar ajustes
         shell: python
         run: |
           from pathlib import Path
-          import re
           p=Path('electricos/electricos.html')
           s=p.read_text(encoding='utf-8')
 
-          # Recordar categoria activa al recargar.
-          inicio=s.index('document.querySelectorAll(".chip").forEach(b=>b.addEventListener')
-          fin=s.index('\nfunction actualizarFiltros()', inicio)
-          eventos='''const estadoKey="bellaShopElectricosCategoria";
-          try{const guardada=localStorage.getItem(estadoKey);if(guardada&&document.querySelector('.chip[data-cat="'+guardada+'"]'))categoria=guardada}catch(e){}
+          # Persistencia de categoria al actualizar.
+          ini=s.index('document.querySelectorAll(".chip").forEach(b=>b.addEventListener')
+          fin=s.index('\nfunction actualizarFiltros()',ini)
+          nuevo='''const estadoKey="bellaShopElectricosCategoria";
+          try{const g=localStorage.getItem(estadoKey);if(g&&document.querySelector('.chip[data-cat="'+g+'"]'))categoria=g}catch(e){}
           document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("activo",x.dataset.cat===categoria));
           document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");categoria=b.dataset.cat;try{localStorage.setItem(estadoKey,categoria)}catch(e){}actualizarFiltros();filtrar()}));["buscar","precio","watts","rpm","conexion","tipo-lampara"].forEach(id=>document.getElementById(id).addEventListener(id==="buscar"?"input":"change",filtrar));'''
-          s=s[:inicio]+eventos+s[fin:]
+          s=s[:ini]+nuevo+s[fin:]
 
-          # Tinas no muestran datos propios de lamparas.
-          s=s.replace("x.categoria==='raspacallos'?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion==\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>'", "(x.categoria==='raspacallos'||x.categoria==='tinas')?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion==\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>'")
-
-          # Ocultar controles de compra cuando no hay stock o no se encuentra codigo.
-          patron=r"<div class=\\\"controles\\\"><input class=\\\"qty\\\" id=\\\"qty-'\+x\.codigo\+'\\\" type=\\\"number\\\" min=\\\"1\\\" '\+\(stock>0\?'max=\\\"'\+stock\+'\\\"':' '\?\)"
-          # Reemplazo literal sobre el fragmento real, mas seguro por limites conocidos.
-          marca="+'<div class=\"estado '+(stock>0?\"ok\":\"no\")+'\">'+estado+'</div>"
-          pos=s.index(marca)
-          cini=s.index("<div class=\"controles\">",pos)
-          cfin=s.index("<div class=\"mini\" id=\"mini-",cini)
-          mini_fin=s.index("</div></article>'",cfin)+6
-          bloque=s[cini:mini_fin]
-          s=s[:cini]+"'+(stock>0?'"+bloque+"':'')+'"+s[mini_fin:]
-
+          # Ajustes visuales robustos: agotados sin compra y tinas sin etiquetas de lampara.
+          extra='''
+function ajustarTarjetasBella(){
+ document.querySelectorAll("#productos .producto").forEach(card=>{
+   const estado=card.querySelector(".estado.no");
+   if(estado){const controles=card.querySelector(".controles");if(controles)controles.style.display="none";}
+   const titulo=(card.querySelector("h3")?.textContent||"").toUpperCase();
+   if(titulo.includes("DEJA074")||titulo.includes("DN2925")){
+     card.querySelectorAll(".dato").forEach(d=>{if(!d.textContent.toUpperCase().includes("REF."))d.style.display="none";});
+   }
+ });
+}
+const productosBella=document.getElementById("productos");
+if(productosBella)new MutationObserver(ajustarTarjetasBella).observe(productosBella,{childList:true,subtree:true});
+'''
+          cierre=s.rfind('</script>')
+          assert cierre!=-1
+          s=s[:cierre]+extra+s[cierre:]
           p.write_text(s,encoding='utf-8')
 
-          # Verificaciones obligatorias.
           t=p.read_text(encoding='utf-8')
           assert 'bellaShopElectricosCategoria' in t
-          assert 'localStorage.setItem(estadoKey,categoria)' in t
-          assert "x.categoria==='tinas'" in t
-          assert "stock>0?'" in t
-      - name: Guardar
+          assert 'MutationObserver(ajustarTarjetasBella)' in t
+          assert 'DEJA074' in t and 'DN2925' in t
+      - name: Guardar cambios
         run: |
           git config user.name "Bella Shop Bot"
           git config user.email "actions@users.noreply.github.com"
           git add electricos/electricos.html
           git diff --cached --quiet && exit 0
-          git commit -m "Corregir estado agotados y tinas en electricos"
+          git commit -m "Corregir categoria agotados y tinas"
           git push
