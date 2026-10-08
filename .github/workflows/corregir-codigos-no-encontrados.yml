@@ -1,4 +1,4 @@
-name: Corregir códigos no encontrados
+name: Corregir inventario Muna fluorescente
 
 on:
   push:
@@ -13,49 +13,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Corregir enlaces de inventario
+        with:
+          fetch-depth: 0
+      - name: Agregar referencias faltantes al inventario
         shell: python
         run: |
+          import json
           from pathlib import Path
-
-          def reemplazar(path, viejo, nuevo):
-              p = Path(path)
-              s = p.read_text(encoding='utf-8')
-              if viejo not in s:
-                  raise SystemExit(f'No se encontró patrón en {path}: {viejo[:100]}')
-              p.write_text(s.replace(viejo, nuevo), encoding='utf-8')
-
-          # MUNA FLUORESCENTE: usar los códigos reales entregados.
-          reemplazar('fluorescente-muna.html', 'data-ref="02" data-codigo-odoo="921-L02"', 'data-ref="02" data-codigo-odoo="92102"')
-          reemplazar('fluorescente-muna.html', 'data-ref="11" data-codigo-odoo="921-11"', 'data-ref="11" data-codigo-odoo="92111"')
-          # REF 07 ya está correctamente enlazada con 921-07.
-
-          # QUEENIGTH OJO DE GATO: para Moonshine usar la referencia interna Odoo,
-          # conservando la REF 06 visible. Dark y Golden se mantienen con los códigos dados.
-          reemplazar('ojo-de-gato-queenigth.html', '{ ref:"06", codigo:"040704051", nombre:"Moonshine Glass Cat Eye 06"', '{ ref:"06", codigo:"040407051", nombre:"Moonshine Glass Cat Eye 06", nombreOdoo:"040407051 ESMALTE SEM. MOONSHINE GLASS CAT EYES Nº 6"')
-          reemplazar('ojo-de-gato-queenigth.html', '{ ref:"Dark", codigo:"040404017", nombre:"Dark Black Crystal"', '{ ref:"Dark", codigo:"040404017", nombre:"Dark Black Crystal", nombreOdoo:"DARK BLACK CRYSTAL CAT EYE GEL 7.5 ML QUEENIGHT"')
-          reemplazar('ojo-de-gato-queenigth.html', '{ ref:"003", codigo:"040704060", nombre:"Golden Olive 003"', '{ ref:"003", codigo:"040704060", nombre:"Golden Olive 003", nombreOdoo:"ESMALTE SEMIPERMANENTE GOLDEN CAT 003"')
-          reemplazar('ojo-de-gato-queenigth.html', 'function buscarProducto(\n  productos,\n  codigo\n){\n\n  if(productos && productos[codigo]){\n    return productos[codigo];\n  }\n\n  return Object.values(productos || {}).find(producto =>\n    String(producto.codigo || "") === codigo ||\n    String(producto.codigo_original_odoo || "") === codigo\n  );\n\n}', 'function buscarProducto(\n  productos,\n  codigo,\n  nombreOdoo = ""\n){\n\n  if(productos && productos[codigo]){\n    return productos[codigo];\n  }\n\n  return Object.values(productos || {}).find(producto =>\n    String(producto.codigo || "").trim() === String(codigo).trim() ||\n    String(producto.codigo_original_odoo || "").trim() === String(codigo).trim() ||\n    (nombreOdoo && String(producto.nombre || "").trim().toUpperCase() === String(nombreOdoo).trim().toUpperCase())\n  );\n\n}')
-          reemplazar('ojo-de-gato-queenigth.html', 'buscarProducto(\n              productos,\n              codigo\n            )', 'buscarProducto(\n              productos,\n              codigo,\n              (productosPagina.find(item => item.ref === ref) || {}).nombreOdoo || ""\n            )')
-
-          # QUEENIGTH VITRAL: códigos reales + respaldo por nombre exacto de Odoo.
-          reemplazar('vitral-queenigth.html', '{ ref:"02", codigo:"041104002" },', '{ ref:"02", codigo:"041104002", nombreOdoo:"ESMALTE SEMIPERMANTE GLASS ICE GEL VITRAL02" },')
-          reemplazar('vitral-queenigth.html', '{ ref:"03", codigo:"041104003" }', '{ ref:"03", codigo:"041104003", nombreOdoo:"ESMALTE SEMIPERMANTE GLASS ICE GEL VITRAL03" }')
-          reemplazar('vitral-queenigth.html', 'function buscarProducto(\n  productos,\n  codigo\n){\n\n  if(productos && productos[codigo]){\n    return productos[codigo];\n  }\n\n  return Object.values(productos || {}).find(producto =>\n    String(producto.codigo || "") === codigo ||\n    String(producto.codigo_original_odoo || "") === codigo\n  );\n\n}', 'function buscarProducto(\n  productos,\n  codigo,\n  nombreOdoo = ""\n){\n\n  if(productos && productos[codigo]){\n    return productos[codigo];\n  }\n\n  return Object.values(productos || {}).find(producto =>\n    String(producto.codigo || "").trim() === String(codigo).trim() ||\n    String(producto.codigo_original_odoo || "").trim() === String(codigo).trim() ||\n    (nombreOdoo && String(producto.nombre || "").trim().toUpperCase() === String(nombreOdoo).trim().toUpperCase())\n  );\n\n}')
-          reemplazar('vitral-queenigth.html', 'buscarProducto(\n              productos,\n              codigo\n            )', 'buscarProducto(\n              productos,\n              codigo,\n              (productosPagina.find(item => item.ref === ref) || {}).nombreOdoo || ""\n            )')
-
-          # PRIMER LATIN: conservar códigos reales y permitir fallback por nombre Odoo.
-          reemplazar('preparadores/primer.html', '{ml:"15 ml",codigo:"7702786000382",precio:22000}', '{ml:"15 ml",codigo:"7702786000382",precio:22000,nombreOdoo:"PRIMER PARA SEMIPERMANENTE 15 ML LATIN NAILS"}')
-          reemplazar('preparadores/primer.html', '{ml:"8 ml",codigo:"7702786008326",precio:13800}', '{ml:"8 ml",codigo:"7702786008326",precio:13800,nombreOdoo:"PRIMER PARA SEMIPERMANENTE 8 ML LATIN NAILS"}')
-          reemplazar('preparadores/primer.html', 'function buscar(codigo){if(inventario[codigo])return inventario[codigo];return Object.values(inventario).find(p=>String(p.codigo||"").trim()===codigo||String(p.codigo_original_odoo||"").trim()===codigo)||null}', 'function buscar(codigo,nombreOdoo=""){if(inventario[codigo])return inventario[codigo];return Object.values(inventario).find(p=>String(p.codigo||"").trim()===codigo||String(p.codigo_original_odoo||"").trim()===codigo||(nombreOdoo&&String(p.nombre||"").trim().toUpperCase()===String(nombreOdoo).trim().toUpperCase()))||null}')
-          reemplazar('preparadores/primer.html', 'const o=actual(),p=buscar(o.codigo);', 'const o=actual(),p=buscar(o.codigo,o.nombreOdoo);')
-
-      - name: Guardar correcciones
+          p = Path('inventario.json')
+          datos = json.loads(p.read_text(encoding='utf-8'))
+          productos = datos.setdefault('productos', {})
+          productos['92102'] = {
+            'codigo':'92102','codigo_original_odoo':'92102',
+            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 02',
+            'precio_venta':12500,'disponible':5,'a_la_mano':5
+          }
+          productos['921-07'] = {
+            'codigo':'921-07','codigo_original_odoo':'921-07',
+            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 07',
+            'precio_venta':12500,'disponible':1,'a_la_mano':1
+          }
+          productos['92111'] = {
+            'codigo':'92111','codigo_original_odoo':'92111',
+            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 11',
+            'precio_venta':12500,'disponible':0,'a_la_mano':0
+          }
+          p.write_text(json.dumps(datos, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+          for codigo, stock in [('92102',5),('921-07',1),('92111',0)]:
+            x=productos[codigo]
+            assert x['precio_venta']==12500 and x['disponible']==stock
+      - name: Guardar inventario corregido
         run: |
           git config user.name "Bella Shop Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add fluorescente-muna.html ojo-de-gato-queenigth.html vitral-queenigth.html preparadores/primer.html
+          git add inventario.json
           git diff --cached --quiet && exit 0
-          git commit -m "Corregir productos con código no encontrado"
+          git commit -m "Corregir inventario fluorescente Muna 02 07 11"
           git push
