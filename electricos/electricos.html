@@ -77,6 +77,9 @@ const equipos=[
 ,{codigo:"DN3993",nombre:"Extractor de Polvo DN3993",descripcion:"Extractor de polvo alámbrico · 4.000 RPM · 60W",categoria:"extractores",conexion:"no-inalambrica",rpm:4000,watts:60,precio:159000,imagen:"imagenes/DN3993-ROSADO.png",colores:[{nombre:"Rosado",imagen:"imagenes/DN3993-ROSADO.png"},{nombre:"Blanco",imagen:"imagenes/DN3993-BLANCO.png"}]}
 ,{codigo:"DN3768",nombre:"Extractor de Polvo DN3768",descripcion:"Extractor de polvo alámbrico · 35.000 RPM · 120W",categoria:"extractores",conexion:"no-inalambrica",rpm:35000,watts:120,precio:179000,imagen:"DN3768.png"}
 ,{codigo:"858-M1",nombre:"Extractor de Polvo 858-M1",descripcion:"Extractor de polvo · Disponible en blanco y rosado",categoria:"extractores",precio:68000,imagen:"imagenes/858-M1.png",colores:[{nombre:"Blanco",imagen:"imagenes/858-M1.png"},{nombre:"Rosado",imagen:"imagenes/858-M1.png"}]}
+,{codigo:"6901234321487",referencia:"DEJA074",nombre:"Tina Eléctrica Plegable DEJA074",descripcion:"Tina eléctrica plegable para pies",categoria:"tinas",precioInventario:true,imagen:"imagenes/DEJA074.png"}
+,{codigo:"DN2925",referencia:"DN2925",nombre:"Tina Plegable de Pies DN2925",descripcion:"Tina plegable de pies",categoria:"tinas",precioInventario:true,imagen:"imagenes/DN2925.png"}
+
 ];let inventario={},categoria="todo";
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function itemCodigo(c){return Object.values(inventario||{}).find(x=>String(x.codigo||"").toUpperCase()===String(c).toUpperCase())}
