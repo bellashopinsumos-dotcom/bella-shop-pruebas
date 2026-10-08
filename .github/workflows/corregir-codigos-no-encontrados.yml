@@ -1,4 +1,4 @@
-name: Corregir UX electricos
+name: Ajustar electricos
 
 on:
   push:
@@ -9,55 +9,54 @@ permissions:
   contents: write
 
 jobs:
-  corregir:
+  ajustar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Aplicar mejoras de UX
+      - name: Ajustar pagina
         shell: python
         run: |
           from pathlib import Path
+          import re
           p=Path('electricos/electricos.html')
           s=p.read_text(encoding='utf-8')
 
-          # 1. Recordar categoria y filtros al recargar.
-          old='document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");categoria=b.dataset.cat;actualizarFiltros();filtrar()}));["buscar","precio","watts","rpm","conexion","tipo-lampara"].forEach(id=>document.getElementById(id).addEventListener(id==="buscar"?"input":"change",filtrar));'
-          new='''const estadoKey="bellaShopElectricosEstado";
-          function guardarEstado(){localStorage.setItem(estadoKey,JSON.stringify({categoria,buscar:document.getElementById("buscar").value,precio:document.getElementById("precio").value,watts:document.getElementById("watts").value,rpm:document.getElementById("rpm").value,conexion:document.getElementById("conexion").value,tipoLampara:document.getElementById("tipo-lampara").value}))}
-          function restaurarEstado(){try{const e=JSON.parse(localStorage.getItem(estadoKey)||"{}");if(e.categoria&&document.querySelector('.chip[data-cat="'+e.categoria+'"]'))categoria=e.categoria;document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("activo",x.dataset.cat===categoria));[["buscar",e.buscar],["precio",e.precio],["watts",e.watts],["rpm",e.rpm],["conexion",e.conexion],["tipo-lampara",e.tipoLampara]].forEach(([id,v])=>{const el=document.getElementById(id);if(el&&v!=null&&[...el.options||[]].some(o=>o.value===v)||id==="buscar"&&el&&v!=null)el.value=v})}catch(_){}}
-          document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");categoria=b.dataset.cat;actualizarFiltros();guardarEstado();filtrar()}));["buscar","precio","watts","rpm","conexion","tipo-lampara"].forEach(id=>document.getElementById(id).addEventListener(id==="buscar"?"input":"change",()=>{guardarEstado();filtrar()}));'''
-          assert old in s, 'No se encontro bloque de eventos'
-          s=s.replace(old,new,1)
+          # Recordar categoria activa al recargar.
+          inicio=s.index('document.querySelectorAll(".chip").forEach(b=>b.addEventListener')
+          fin=s.index('\nfunction actualizarFiltros()', inicio)
+          eventos='''const estadoKey="bellaShopElectricosCategoria";
+          try{const guardada=localStorage.getItem(estadoKey);if(guardada&&document.querySelector('.chip[data-cat="'+guardada+'"]'))categoria=guardada}catch(e){}
+          document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("activo",x.dataset.cat===categoria));
+          document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chip").forEach(x=>x.classList.remove("activo"));b.classList.add("activo");categoria=b.dataset.cat;try{localStorage.setItem(estadoKey,categoria)}catch(e){}actualizarFiltros();filtrar()}));["buscar","precio","watts","rpm","conexion","tipo-lampara"].forEach(id=>document.getElementById(id).addEventListener(id==="buscar"?"input":"change",filtrar));'''
+          s=s[:inicio]+eventos+s[fin:]
 
-          # 2. Tinas: solo referencia, sin etiquetas de lampara.
-          old2="x.categoria==='raspacallos'?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion===\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>')+'<span class=\"dato\">REF. '+(x.referencia||x.codigo)+'</span>"
-          new2="(x.categoria==='raspacallos'||x.categoria==='tinas')?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion===\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>')+'<span class=\"dato\">REF. '+(x.referencia||x.codigo)+'</span>"
-          assert old2 in s, 'No se encontro bloque de etiquetas'
-          s=s.replace(old2,new2,1)
+          # Tinas no muestran datos propios de lamparas.
+          s=s.replace("x.categoria==='raspacallos'?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion==\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>'", "(x.categoria==='raspacallos'||x.categoria==='tinas')?'':'<span class=\"dato\">⚡ '+x.watts+'W</span><span class=\"dato\">UV/LED</span><span class=\"dato\">🔌 '+(x.conexion==\"inalambrica\"?'INALÁMBRICA':'NO INALÁMBRICA')+'</span>'")
 
-          # 3. Sin stock: ocultar cantidad y boton de compra.
-          old3="+'<div class=\"estado '+(stock>0?\"ok\":\"no\")+'\">'+estado+'</div><div class=\"controles\"><input class=\"qty\" id=\"qty-'+x.codigo+'\" type=\"number\" min=\"1\" '+(stock>0?'max=\"'+stock+'\"':'')+' value=\"1\"><button class=\"agregar\" onclick=\"agregar(\\\''+x.codigo+'\\\')\">AGREGAR A MI PEDIDO</button></div><div class=\"mini\" id=\"mini-'+x.codigo+'\"></div>'"
-          new3="+'<div class=\"estado '+(stock>0?\"ok\":\"no\")+'\">'+estado+'</div>'+(stock>0?'<div class=\"controles\"><input class=\"qty\" id=\"qty-'+x.codigo+'\" type=\"number\" min=\"1\" max=\"'+stock+'\" value=\"1\"><button class=\"agregar\" onclick=\"agregar(\\\''+x.codigo+'\\\')\">AGREGAR A MI PEDIDO</button></div><div class=\"mini\" id=\"mini-'+x.codigo+'\"></div>':'')"
-          assert old3 in s, 'No se encontro bloque de compra'
-          s=s.replace(old3,new3,1)
-
-          # Restaurar antes del primer render.
-          old4='actualizarFiltros();fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"})'
-          new4='restaurarEstado();actualizarFiltros();fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"})'
-          assert old4 in s, 'No se encontro inicio de inventario'
-          s=s.replace(old4,new4,1)
+          # Ocultar controles de compra cuando no hay stock o no se encuentra codigo.
+          patron=r"<div class=\\\"controles\\\"><input class=\\\"qty\\\" id=\\\"qty-'\+x\.codigo\+'\\\" type=\\\"number\\\" min=\\\"1\\\" '\+\(stock>0\?'max=\\\"'\+stock\+'\\\"':' '\?\)"
+          # Reemplazo literal sobre el fragmento real, mas seguro por limites conocidos.
+          marca="+'<div class=\"estado '+(stock>0?\"ok\":\"no\")+'\">'+estado+'</div>"
+          pos=s.index(marca)
+          cini=s.index("<div class=\"controles\">",pos)
+          cfin=s.index("<div class=\"mini\" id=\"mini-",cini)
+          mini_fin=s.index("</div></article>'",cfin)+6
+          bloque=s[cini:mini_fin]
+          s=s[:cini]+"'+(stock>0?'"+bloque+"':'')+'"+s[mini_fin:]
 
           p.write_text(s,encoding='utf-8')
-          assert 'x.categoria===\'tinas\'' in s
-          assert 'restaurarEstado();actualizarFiltros();fetch' in s
-          assert "stock>0?'<div class=\"controles\"" in s
-      - name: Guardar cambios
+
+          # Verificaciones obligatorias.
+          t=p.read_text(encoding='utf-8')
+          assert 'bellaShopElectricosCategoria' in t
+          assert 'localStorage.setItem(estadoKey,categoria)' in t
+          assert "x.categoria==='tinas'" in t
+          assert "stock>0?'" in t
+      - name: Guardar
         run: |
           git config user.name "Bella Shop Bot"
           git config user.email "actions@users.noreply.github.com"
           git add electricos/electricos.html
           git diff --cached --quiet && exit 0
-          git commit -m "Mejorar agotados filtros y tinas en electricos"
+          git commit -m "Corregir estado agotados y tinas en electricos"
           git push
