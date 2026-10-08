@@ -1,0 +1,62 @@
+name: Auditar productos sin codigo
+on:
+  push:
+    paths:
+      - '.github/workflows/auditar-productos-sin-codigo.yml'
+permissions:
+  contents: write
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Auditar catalogo completo
+        run: |
+          python - <<'PY'
+          import os,re,json
+          ignorar={'.git','.github','node_modules','auditorias'}
+          hall=[]
+          for root,dirs,files in os.walk('.'):
+            dirs[:]=[d for d in dirs if d not in ignorar]
+            for fn in files:
+              if not fn.lower().endswith(('.html','.js')): continue
+              path=os.path.join(root,fn)
+              try: txt=open(path,encoding='utf-8').read()
+              except: continue
+              # Objetos JS que parecen productos vendibles
+              for m in re.finditer(r'\{[^{}]{0,3000}\}',txt,re.S):
+                s=m.group(0)
+                if not re.search(r'\b(precio|price)\s*:',s,re.I): continue
+                if not re.search(r'\b(nombre|name|titulo|title)\s*:',s,re.I): continue
+                nm=re.search(r'\b(?:nombre|name|titulo|title)\s*:\s*["\'`]([^"\'`]+)',s,re.I)
+                name=nm.group(1).strip() if nm else '(nombre no detectable)'
+                fields=[]
+                for key in ('codigo','código','barcode','referencia','ref','nombreOdoo','codigo_original_odoo'):
+                  mm=re.search(r'\b'+re.escape(key)+r'\s*:\s*(["\'`])([^"\'`]*)\1',s,re.I)
+                  if mm and mm.group(2).strip() and mm.group(2).strip().lower() not in ('null','undefined','none','-'):
+                    fields.append((key,mm.group(2).strip()))
+                if not fields:
+                  line=txt.count('\n',0,m.start())+1
+                  hall.append((path.lstrip('./'),line,name,'SIN IDENTIFICADOR'))
+          # dedupe exactos
+          seen=[]
+          for x in hall:
+            if x not in seen: seen.append(x)
+          os.makedirs('auditorias',exist_ok=True)
+          with open('auditorias/productos-sin-codigo.txt','w',encoding='utf-8') as f:
+            f.write('AUDITORIA CATALOGO BELLA SHOP - PRODUCTOS SIN IDENTIFICADOR\n')
+            f.write('Se considera valido: codigo, codigo de barras, referencia o nombreOdoo.\n')
+            f.write(f'Total detectado: {len(seen)}\n\n')
+            for path,line,name,status in seen:
+              f.write(f'{name} | {path} | linea {line} | {status}\n')
+          print('Total detectado:',len(seen))
+          PY
+      - name: Guardar resultado
+        run: |
+          git config user.name "Bella Shop Maintenance Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add auditorias/productos-sin-codigo.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Generar auditoria de productos sin identificador"
+            git push
+          fi
