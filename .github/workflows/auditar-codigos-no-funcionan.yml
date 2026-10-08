@@ -1,0 +1,88 @@
+name: Auditar códigos que no funcionan
+on:
+  push:
+    paths:
+      - '.github/workflows/auditar-codigos-no-funcionan.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Instalar navegador
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+      - name: Auditar páginas renderizadas
+        run: |
+          python3 -m http.server 8765 >/tmp/bella-http.log 2>&1 &
+          cat > /tmp/audit.js <<'EOF'
+          const { chromium } = require(process.cwd() + '/node_modules/playwright');
+          const fs = require('fs');
+          const path = require('path');
+          function walk(dir){
+            let out=[];
+            for(const e of fs.readdirSync(dir,{withFileTypes:true})){
+              if(['.git','node_modules'].includes(e.name)) continue;
+              const p=path.join(dir,e.name);
+              if(e.isDirectory()) out=out.concat(walk(p));
+              else if(e.isFile() && e.name.endsWith('.html')) out.push(p.replace(/^\.\//,''));
+            }
+            return out;
+          }
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:1280,height:900}});
+            const pages=walk('.');
+            const rows=[];
+            for(const file of pages){
+              try{
+                await page.goto('http://127.0.0.1:8765/'+file.split(path.sep).map(encodeURIComponent).join('/'),{waitUntil:'networkidle',timeout:12000});
+                await page.waitForTimeout(700);
+                const found=await page.locator('body').evaluate((body)=>{
+                  const bad=[];
+                  const all=[...body.querySelectorAll('*')];
+                  const nodes=all.filter(el=>{
+                    const t=(el.innerText||'').trim().toUpperCase();
+                    if(!t.includes('CÓDIGO NO ENCONTRADO') && !t.includes('CODIGO NO ENCONTRADO')) return false;
+                    const child=[...el.children].some(c=>{const ct=(c.innerText||'').trim().toUpperCase();return ct.includes('CÓDIGO NO ENCONTRADO')||ct.includes('CODIGO NO ENCONTRADO')});
+                    if(child) return false;
+                    const s=getComputedStyle(el); return s.display!=='none' && s.visibility!=='hidden';
+                  });
+                  for(const n of nodes){
+                    let card=n.closest('article,.producto,.product-card,.card,.tarjeta,.producto-card,[data-ref],[data-codigo]') || n.parentElement;
+                    const title=card?.querySelector('h1,h2,h3,h4,.nombre,.titulo,.product-name')?.innerText?.trim()||'';
+                    const ref=card?.querySelector('.ref,.referencia,.codigo,.code')?.innerText?.trim()||card?.dataset?.ref||card?.dataset?.codigo||'';
+                    const text=(card?.innerText||'').split('\n').map(x=>x.trim()).filter(Boolean).slice(0,8).join(' | ');
+                    bad.push({title,ref,text});
+                  }
+                  return bad;
+                });
+                for(const x of found) rows.push({file,...x});
+              }catch(e){}
+            }
+            await browser.close();
+            const uniq=[]; const seen=new Set();
+            for(const r of rows){const k=r.file+'|'+r.title+'|'+r.ref+'|'+r.text;if(!seen.has(k)){seen.add(k);uniq.push(r)}}
+            let txt='AUDITORÍA REAL: PRODUCTOS QUE MUESTRAN CÓDIGO NO ENCONTRADO\n';
+            txt+='No incluye productos simplemente agotados/stock 0.\nTotal: '+uniq.length+'\n\n';
+            uniq.forEach((r,i)=>{txt+=`${i+1}. ${r.title||'(sin título detectado)'} | ${r.ref||'(sin ref detectada)'} | ${r.file}\n   ${r.text}\n`;});
+            fs.mkdirSync('auditorias',{recursive:true});
+            fs.writeFileSync('auditorias/codigos-no-funcionan.txt',txt);
+            console.log(txt);
+          })();
+          EOF
+          node /tmp/audit.js
+      - name: Guardar auditoría
+        run: |
+          git config user.name 'Bella Shop Audit Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add auditorias/codigos-no-funcionan.txt
+          git diff --cached --quiet || git commit -m 'Auditoría real de códigos no encontrados'
+          git push
