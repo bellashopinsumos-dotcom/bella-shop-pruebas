@@ -1,4 +1,4 @@
-name: Corregir inventario Muna fluorescente
+name: Montar tinas electricas
 
 on:
   push:
@@ -9,44 +9,68 @@ permissions:
   contents: write
 
 jobs:
-  corregir:
+  montar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Agregar referencias faltantes al inventario
+      - name: Agregar inventario y productos
         shell: python
         run: |
           import json
           from pathlib import Path
+
+          # Inventario central: conservar todo y agregar/actualizar solo estas dos referencias.
           p = Path('inventario.json')
           datos = json.loads(p.read_text(encoding='utf-8'))
           productos = datos.setdefault('productos', {})
-          productos['92102'] = {
-            'codigo':'92102','codigo_original_odoo':'92102',
-            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 02',
-            'precio_venta':12500,'disponible':5,'a_la_mano':5
+          productos['6901234321487'] = {
+            'codigo':'6901234321487',
+            'codigo_original_odoo':'6901234321487',
+            'referencia_interna':'DEJA074',
+            'nombre':'TINA ELECTRICA PLEGABLE',
+            'precio_venta':135000,
+            'disponible':7,
+            'a_la_mano':7
           }
-          productos['921-07'] = {
-            'codigo':'921-07','codigo_original_odoo':'921-07',
-            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 07',
-            'precio_venta':12500,'disponible':1,'a_la_mano':1
-          }
-          productos['92111'] = {
-            'codigo':'92111','codigo_original_odoo':'92111',
-            'nombre':'ESMALTE SEMIPERMANENTE MUNA FLUORESCENTE REF 11',
-            'precio_venta':12500,'disponible':0,'a_la_mano':0
+          productos['DN2925'] = {
+            'codigo':'DN2925',
+            'codigo_original_odoo':'DN2925',
+            'referencia_interna':'DN2925',
+            'nombre':'DN2925 TINA PLEGABLE DE PIES',
+            'precio_venta':85000,
+            'disponible':2,
+            'a_la_mano':2
           }
           p.write_text(json.dumps(datos, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-          for codigo, stock in [('92102',5),('921-07',1),('92111',0)]:
-            x=productos[codigo]
-            assert x['precio_venta']==12500 and x['disponible']==stock
-      - name: Guardar inventario corregido
+
+          # Página de eléctricos: usar el espacio/categoría TINAS ya existente.
+          h = Path('electricos/electricos.html')
+          html = h.read_text(encoding='utf-8')
+          nuevos = '''
+          ,{codigo:"6901234321487",referencia:"DEJA074",nombre:"Tina Eléctrica Plegable DEJA074",descripcion:"Tina eléctrica plegable para pies",categoria:"tinas",precioInventario:true,imagen:"imagenes/DEJA074.png"}
+          ,{codigo:"DN2925",referencia:"DN2925",nombre:"Tina Plegable de Pies DN2925",descripcion:"Tina plegable de pies",categoria:"tinas",precioInventario:true,imagen:"imagenes/DN2925.png"}
+          '''
+          if 'Tina Eléctrica Plegable DEJA074' not in html:
+            needle = '\n];let inventario={},categoria="todo";'
+            assert needle in html, 'No se encontró el cierre de la lista de equipos'
+            html = html.replace(needle, nuevos + needle, 1)
+            h.write_text(html, encoding='utf-8')
+
+          assert productos['6901234321487']['precio_venta'] == 135000
+          assert productos['6901234321487']['disponible'] == 7
+          assert productos['DN2925']['precio_venta'] == 85000
+          assert productos['DN2925']['disponible'] == 2
+          html = h.read_text(encoding='utf-8')
+          assert 'imagenes/DEJA074.png' in html and 'imagenes/DN2925.png' in html
+          assert 'categoria:"tinas"' in html
+
+      - name: Guardar cambios
         run: |
           git config user.name "Bella Shop Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add inventario.json
+          git add inventario.json electricos/electricos.html
           git diff --cached --quiet && exit 0
-          git commit -m "Corregir inventario fluorescente Muna 02 07 11"
+          git commit -m "Agregar tinas electricas DEJA074 y DN2925"
           git push
