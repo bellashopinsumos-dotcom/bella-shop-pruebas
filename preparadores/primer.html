@@ -54,16 +54,16 @@ footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px 25px
 <div class="toast" id="toast"></div>
 <script>
 const opciones=[
- {ml:"15 ml",codigo:"7702786000382",precio:22000},
- {ml:"8 ml",codigo:"7702786008326",precio:13800}
+ {ml:"15 ml",codigo:"7702786000382",precio:22000,nombreOdoo:"PRIMER PARA SEMIPERMANENTE 15 ML LATIN NAILS"},
+ {ml:"8 ml",codigo:"7702786008326",precio:13800,nombreOdoo:"PRIMER PARA SEMIPERMANENTE 8 ML LATIN NAILS"}
 ];
 const producto=document.getElementById("producto"),sel=document.getElementById("presentacion"),badge=producto.querySelector(".badge"),stockTxt=document.getElementById("stock"),bloque=document.getElementById("bloque"),precio=document.getElementById("precio"),total=document.getElementById("total"),cant=document.getElementById("cantidad"),menos=document.getElementById("menos"),mas=document.getElementById("mas"),agregar=document.getElementById("agregar");
 let inventario={},stock=0,encontrado=false;
 const dinero=v=>"$"+Number(v).toLocaleString("es-CO");
 function actual(){return opciones[Number(sel.value)||0]}
-function buscar(codigo){if(inventario[codigo])return inventario[codigo];return Object.values(inventario).find(p=>String(p.codigo||"").trim()===codigo||String(p.codigo_original_odoo||"").trim()===codigo)||null}
+function buscar(codigo,nombreOdoo=""){if(inventario[codigo])return inventario[codigo];return Object.values(inventario).find(p=>String(p.codigo||"").trim()===codigo||String(p.codigo_original_odoo||"").trim()===codigo||(nombreOdoo&&String(p.nombre||"").trim().toUpperCase()===String(nombreOdoo).trim().toUpperCase()))||null}
 function pintar(){
- const o=actual(),p=buscar(o.codigo);precio.textContent=dinero(o.precio);total.textContent=dinero(o.precio);cant.value=1;stock=0;encontrado=!!p;
+ const o=actual(),p=buscar(o.codigo,o.nombreOdoo);precio.textContent=dinero(o.precio);total.textContent=dinero(o.precio);cant.value=1;stock=0;encontrado=!!p;
  if(!p){producto.classList.add("no-disponible");badge.textContent="CÓDIGO NO ENCONTRADO";stockTxt.textContent="";bloque.textContent="CÓDIGO NO ENCONTRADO";menos.disabled=mas.disabled=cant.disabled=agregar.disabled=true;return}
  stock=Math.max(0,Math.floor(Number(p.disponible)||0));
  if(stock<=0){producto.classList.add("no-disponible");badge.textContent="NO DISPONIBLE";stockTxt.textContent="";bloque.textContent="TEMPORALMENTE NO DISPONIBLE";menos.disabled=mas.disabled=cant.disabled=agregar.disabled=true;return}

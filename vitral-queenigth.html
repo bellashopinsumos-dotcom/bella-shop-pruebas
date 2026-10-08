@@ -851,8 +851,8 @@ const PRECIO = 18900;
 */
 
 const productosPagina = [
-  { ref:"02", codigo:"041104002" },
-  { ref:"03", codigo:"041104003" }
+  { ref:"02", codigo:"041104002", nombreOdoo:"ESMALTE SEMIPERMANTE GLASS ICE GEL VITRAL02" },
+  { ref:"03", codigo:"041104003", nombreOdoo:"ESMALTE SEMIPERMANTE GLASS ICE GEL VITRAL03" }
 ];
 
 /* =========================
@@ -1175,7 +1175,8 @@ function prepararControles(tarjeta){
 
 function buscarProducto(
   productos,
-  codigo
+  codigo,
+  nombreOdoo = ""
 ){
 
   if(productos && productos[codigo]){
@@ -1183,8 +1184,9 @@ function buscarProducto(
   }
 
   return Object.values(productos || {}).find(producto =>
-    String(producto.codigo || "") === codigo ||
-    String(producto.codigo_original_odoo || "") === codigo
+    String(producto.codigo || "").trim() === String(codigo).trim() ||
+    String(producto.codigo_original_odoo || "").trim() === String(codigo).trim() ||
+    (nombreOdoo && String(producto.nombre || "").trim().toUpperCase() === String(nombreOdoo).trim().toUpperCase())
   );
 
 }
@@ -1239,7 +1241,8 @@ async function cargarInventario(){
           const producto =
             buscarProducto(
               productos,
-              codigo
+              codigo,
+              (productosPagina.find(item => item.ref === ref) || {}).nombreOdoo || ""
             );
 
           actualizarTarjeta(
