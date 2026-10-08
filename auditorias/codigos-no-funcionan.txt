@@ -1,0 +1,22 @@
+AUDITORÍA REAL: PRODUCTOS QUE MUESTRAN CÓDIGO NO ENCONTRADO
+No incluye productos simplemente agotados/stock 0.
+Total: 9
+
+1. REF 02 | 02 | fluorescente-muna.html
+   CÓDIGO NO ENCONTRADO | MUNA · FLUORESCENTE 12 ML | REF 02 | $12.500 c/u | CÓDIGO NO ENCONTRADO | CÓDIGO NO ENCONTRADO
+2. REF 07 | 07 | fluorescente-muna.html
+   CÓDIGO NO ENCONTRADO | MUNA · FLUORESCENTE 12 ML | REF 07 | $12.500 c/u | CÓDIGO NO ENCONTRADO | CÓDIGO NO ENCONTRADO
+3. REF 11 | 11 | fluorescente-muna.html
+   CÓDIGO NO ENCONTRADO | MUNA · FLUORESCENTE 12 ML | REF 11 | $12.500 c/u | CÓDIGO NO ENCONTRADO | CÓDIGO NO ENCONTRADO
+4. Moonshine Glass Cat Eye 06 | REF. 06 | ojo-de-gato-queenigth.html
+   CÓDIGO NO ENCONTRADO | OJO DE GATO QUEENIGTH | Moonshine Glass Cat Eye 06 | REF. 06 | $22.000 | Precio por unidad | CÓDIGO NO ENCONTRADO | CANTIDAD
+5. Dark Black Crystal | REF. Dark | ojo-de-gato-queenigth.html
+   CÓDIGO NO ENCONTRADO | OJO DE GATO QUEENIGTH | Dark Black Crystal | REF. Dark | $12.000 | Precio por unidad | CÓDIGO NO ENCONTRADO | CANTIDAD
+6. Golden Olive 003 | REF. 003 | ojo-de-gato-queenigth.html
+   CÓDIGO NO ENCONTRADO | OJO DE GATO QUEENIGTH | Golden Olive 003 | REF. 003 | $19.900 | Precio por unidad | CÓDIGO NO ENCONTRADO | CANTIDAD
+7. Primer Latin | (sin ref detectada) | preparadores/primer.html
+   CÓDIGO NO ENCONTRADO | LATIN NAILS · PRIMER | Primer Latin | ESCOGE LA PRESENTACIÓN | 15 ml | 8 ml | $22.000 | Precio por unidad
+8. Vitral | REF. 02 | vitral-queenigth.html
+   CÓDIGO NO ENCONTRADO | VITRAL QUEENIGTH | Vitral | REF. 02 | $18.900 | Precio por unidad | CÓDIGO NO ENCONTRADO | CANTIDAD
+9. Vitral | REF. 03 | vitral-queenigth.html
+   CÓDIGO NO ENCONTRADO | VITRAL QUEENIGTH | Vitral | REF. 03 | $18.900 | Precio por unidad | CÓDIGO NO ENCONTRADO | CANTIDAD
