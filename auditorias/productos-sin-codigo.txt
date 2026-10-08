@@ -1,0 +1,55 @@
+AUDITORIA CATALOGO BELLA SHOP - PRODUCTOS SIN IDENTIFICADOR
+Se considera valido: codigo, codigo de barras, referencia o nombreOdoo.
+Total detectado: 51
+
+Base Traslúcida Latin Nails REF. | bases-traslucidas-latin.html | linea 1177 | SIN IDENTIFICADOR
+(nombre no detectable) | shell-muna.html | linea 2942 | SIN IDENTIFICADOR
+Ojo de Gato Latin Nails REF. | ojo-de-gato-latin.html | linea 1172 | SIN IDENTIFICADOR
+(nombre no detectable) | carta-colores-canm.html | linea 1667 | SIN IDENTIFICADOR
+Craquelado Muna 15 ml | craquelados-muna.html | linea 1083 | SIN IDENTIFICADOR
+Esmalte Tradicional Masglo | masglo-tapa-azul.html | linea 1196 | SIN IDENTIFICADOR
+(nombre no detectable) | macarron-muna.html | linea 2725 | SIN IDENTIFICADOR
+Base Traslúcida CANM | bases-traslucidas-canm.html | linea 1233 | SIN IDENTIFICADOR
+Esmalte Semipermanente REF # | carta-colores-latin.html | linea 1199 | SIN IDENTIFICADOR
+Esmalte Tradicional Chic’s Fashion | chics-fashion-tradicional.html | linea 1418 | SIN IDENTIFICADOR
+(nombre no detectable) | chics-fashion-tradicional.html | linea 1657 | SIN IDENTIFICADOR
+(nombre no detectable) | carrito.html | linea 1359 | SIN IDENTIFICADOR
+(nombre no detectable) | carrito.html | linea 1457 | SIN IDENTIFICADOR
+(nombre no detectable) | blooming-canm.html | linea 1492 | SIN IDENTIFICADOR
+(nombre no detectable) | jelly-muna.html | linea 2378 | SIN IDENTIFICADOR
+Base Traslúcida Muna BB 7 ml | bases-traslucidas-munabb7ml.html | linea 1094 | SIN IDENTIFICADOR
+Carta de Colores Muna 12 ml | carta-colores-muna12ml.html | linea 2007 | SIN IDENTIFICADOR
+Ojo de Gato CANM 8 ml | ojo-de-gato-canm.html | linea 975 | SIN IDENTIFICADOR
+Gel de Saturación Queenigth | productos.js | linea 2 | SIN IDENTIFICADOR
+Carta de Colores Cloe | carta-colores-cloe.html | linea 2017 | SIN IDENTIFICADOR
+Saturado Gel Muna 12 ml | saturado-gel-muna.html | linea 1011 | SIN IDENTIFICADOR
+Reflectivo Muna 12 ml | reflectivos-muna.html | linea 1085 | SIN IDENTIFICADOR
+Carta de Colores Muna BB 7 ml | carta-colores-munabb7ml.html | linea 2002 | SIN IDENTIFICADOR
+(nombre no detectable) | ojo-de-gato-chics-fashion.html | linea 1501 | SIN IDENTIFICADOR
+Base Traslúcida Cloe | bases-traslucidas-cloe.html | linea 1443 | SIN IDENTIFICADOR
+(nombre no detectable) | bases-queenigth.html | linea 1900 | SIN IDENTIFICADOR
+(nombre no detectable) | vitral-queenigth.html | linea 1724 | SIN IDENTIFICADOR
+(nombre no detectable) | ojo-de-gato-queenigth.html | linea 1730 | SIN IDENTIFICADOR
+Ojo de Gato Cloe | ojo-de-gato-cloe.html | linea 985 | SIN IDENTIFICADOR
+(nombre no detectable) | fluorescente-muna.html | linea 2552 | SIN IDENTIFICADOR
+Base Traslúcida Chic | bases-traslucidas-chics-fashion.html | linea 1295 | SIN IDENTIFICADOR
+Esmalte Semipermanente Queenigth REF. | carta-colores-queenigth.html | linea 1705 | SIN IDENTIFICADOR
+Esmalte Semipermanente Chic | carta-colores-chics-fashion.html | linea 49 | SIN IDENTIFICADOR
+Top Matte | top-matte.html | linea 1415 | SIN IDENTIFICADOR
+(nombre no detectable) | satin-nail-muna.html | linea 2498 | SIN IDENTIFICADOR
+Polvo Acrílico Latin Nails | polvos-acrilicos/polvos-acrilicos.html | linea 55 | SIN IDENTIFICADOR
+Polvo Acrílico CANM | polvos-acrilicos/polvos-acrilicos.html | linea 75 | SIN IDENTIFICADOR
+Polvo Acrílico Cloe | polvos-acrilicos/polvos-acrilicos.html | linea 97 | SIN IDENTIFICADOR
+Polvo Acrílico Muna | polvos-acrilicos/polvos-acrilicos.html | linea 112 | SIN IDENTIFICADOR
+Gel de Saturación | gel-nail-art/gel-saturacion.html | linea 38 | SIN IDENTIFICADOR
+Gel Metalizado | gel-nail-art/gel-metalizado.html | linea 41 | SIN IDENTIFICADOR
+Spider Gel | gel-nail-art/spider-gel.html | linea 37 | SIN IDENTIFICADOR
+Painting Gel Cloe | gel-nail-art/painting-gel.html | linea 201 | SIN IDENTIFICADOR
+Painting Gel Latin | gel-nail-art/painting-gel.html | linea 239 | SIN IDENTIFICADOR
+Painting Gel Muna | gel-nail-art/painting-gel.html | linea 263 | SIN IDENTIFICADOR
+Colección Cósmica Painting Gel Muna x9 | gel-nail-art/painting-gel.html | linea 277 | SIN IDENTIFICADOR
+Colección Cósmica Painting Gel Muna x4 | gel-nail-art/painting-gel.html | linea 286 | SIN IDENTIFICADOR
+Painting Gel CANM | gel-nail-art/painting-gel.html | linea 294 | SIN IDENTIFICADOR
+(nombre no detectable) | removedores/removedores.html | linea 163 | SIN IDENTIFICADOR
+(nombre no detectable) | electricos/electricos.html | linea 89 | SIN IDENTIFICADOR
+Primer Latin | preparadores/primer.html | linea 76 | SIN IDENTIFICADOR
