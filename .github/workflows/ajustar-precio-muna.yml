@@ -1,0 +1,47 @@
+name: Ajustar precio Muna
+on:
+  push:
+    paths:
+      - '.github/workflows/ajustar-precio-muna.yml'
+permissions:
+  contents: write
+jobs:
+  ajustar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Cambiar solo precio a inventario
+        shell: python
+        run: |
+          from pathlib import Path
+          p=Path('carta-colores-muna12ml.html')
+          s=p.read_text(encoding='utf-8')
+          def rep(a,b):
+              global s
+              if a not in s:
+                  raise SystemExit('Patron no encontrado: '+a[:120])
+              s=s.replace(a,b,1)
+          rep('''        <p style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">\n          $12.500 c/u\n        </p>''','''        <p style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">\n          Precio según inventario\n        </p>''')
+          rep('''    const PRECIO_UNITARIO = 12500;\n''','')
+          rep('''    function stockDisponible(ref) {\n      const producto = inventarioProductos[codigoOdoo(ref)];\n      if (!producto) return 0;\n      const cantidad = Number(producto.disponible || 0);\n      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;\n    }''','''    function stockDisponible(ref) {\n      const producto = inventarioProductos[codigoOdoo(ref)];\n      if (!producto) return 0;\n      const cantidad = Number(producto.disponible || 0);\n      return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;\n    }\n\n    function precioInventario(ref) {\n      const producto = inventarioProductos[codigoOdoo(ref)];\n      if (!producto) return 0;\n      const precio = Number(producto.precio_venta || 0);\n      return Number.isFinite(precio) ? Math.max(0, precio) : 0;\n    }''')
+          rep('''                <div class="stock-ref disponible">\n                  🟢 ${stock} disponible${stock === 1 ? "" : "s"}\n                </div>''','''                <div class="stock-ref disponible">\n                  🟢 ${stock} disponible${stock === 1 ? "" : "s"}\n                </div>\n                <div style="margin-top:4px;font-size:13px;font-weight:900;color:#d94a79;">\n                  ${formatoPesos(precioInventario(ref))}\n                </div>''')
+          rep('''      subtotalPedido.textContent = formatoPesos(unidades * PRECIO_UNITARIO);''','''      const subtotal = [...referenciasSeleccionadas.entries()]\n        .reduce((suma, [ref, cantidad]) => suma + (cantidad * precioInventario(ref)), 0);\n      subtotalPedido.textContent = formatoPesos(subtotal);''')
+          rep('''        if (existente) {\n          existente.cantidad += cantidad;\n        } else {''','''        if (existente) {\n          existente.cantidad += cantidad;\n          existente.precio = precioInventario(ref);\n        } else {''')
+          rep('''            precio: PRECIO_UNITARIO,''','''            precio: precioInventario(ref),''')
+          p.write_text(s,encoding='utf-8')
+      - name: Verificar que solo cambió Muna
+        run: |
+          git diff --name-only
+          test "$(git diff --name-only)" = "carta-colores-muna12ml.html"
+          grep -q 'function precioInventario(ref)' carta-colores-muna12ml.html
+          grep -q 'precio: precioInventario(ref)' carta-colores-muna12ml.html
+          ! grep -q 'PRECIO_UNITARIO' carta-colores-muna12ml.html
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add carta-colores-muna12ml.html
+          git commit -m "Usar precio de inventario en carta Muna"
+          git push
