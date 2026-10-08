@@ -1,0 +1,50 @@
+name: Aplicar cantidades Odoo
+on:
+  push:
+    paths:
+      - 'actualizaciones/cantidades.json'
+permissions:
+  contents: write
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Actualizar solo cantidades
+        run: |
+          python - <<'PY'
+          import json
+          with open('inventario.json', encoding='utf-8') as f:
+              inv=json.load(f)
+          with open('actualizaciones/cantidades.json', encoding='utf-8') as f:
+              cambios=json.load(f)
+          productos=inv.get('productos',{})
+          aplicados=0
+          faltantes=[]
+          for codigo,valores in cambios.items():
+              if codigo not in productos:
+                  faltantes.append(codigo)
+                  continue
+              disponible,a_la_mano=valores
+              productos[codigo]['disponible']=disponible
+              productos[codigo]['a_la_mano']=a_la_mano
+              aplicados+=1
+          with open('inventario.json','w',encoding='utf-8') as f:
+              json.dump(inv,f,ensure_ascii=False,separators=(',',':'))
+          print(f'Cantidades aplicadas: {aplicados}; no encontrados: {len(faltantes)}')
+          if faltantes:
+              print('No encontrados:', faltantes)
+          PY
+      - name: Guardar inventario
+        run: |
+          git config user.name "Bella Shop Inventory Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add inventario.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios pendientes"
+          else
+            git commit -m "Actualizar únicamente cantidades de inventario"
+            git push
+          fi
