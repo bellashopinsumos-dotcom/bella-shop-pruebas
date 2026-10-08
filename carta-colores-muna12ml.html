@@ -1408,7 +1408,7 @@
         </h1>
 
         <p style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">
-          $12.500 c/u
+          Precio según inventario
         </p>
 
         <p class="descripcion-producto">
@@ -1682,7 +1682,6 @@
     const btnPedido = document.getElementById("agregarPedido");
     const estadoInventario = document.getElementById("estadoInventario");
 
-    const PRECIO_UNITARIO = 12500;
 
     function actualizarLinkMiPedido() {
       const link = document.getElementById("linkMiPedido");
@@ -1741,6 +1740,13 @@
       if (!producto) return 0;
       const cantidad = Number(producto.disponible || 0);
       return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
+    }
+
+    function precioInventario(ref) {
+      const producto = inventarioProductos[codigoOdoo(ref)];
+      if (!producto) return 0;
+      const precio = Number(producto.precio_venta || 0);
+      return Number.isFinite(precio) ? Math.max(0, precio) : 0;
     }
 
     function cantidadEnCarrito(ref) {
@@ -1916,6 +1922,9 @@
                 <div class="stock-ref disponible">
                   🟢 ${stock} disponible${stock === 1 ? "" : "s"}
                 </div>
+                <div style="margin-top:4px;font-size:13px;font-weight:900;color:#d94a79;">
+                  ${formatoPesos(precioInventario(ref))}
+                </div>
               </div>
 
               <div class="cantidad-control">
@@ -1941,7 +1950,9 @@
         .reduce((suma, cantidad) => suma + cantidad, 0);
 
       totalUnidades.textContent = unidades;
-      subtotalPedido.textContent = formatoPesos(unidades * PRECIO_UNITARIO);
+      const subtotal = [...referenciasSeleccionadas.entries()]
+        .reduce((suma, [ref, cantidad]) => suma + (cantidad * precioInventario(ref)), 0);
+      subtotalPedido.textContent = formatoPesos(subtotal);
     }
 
     btnAgregar.addEventListener("click", agregarReferencia);
@@ -2003,12 +2014,13 @@
 
         if (existente) {
           existente.cantidad += cantidad;
+          existente.precio = precioInventario(ref);
         } else {
           carrito.push({
             clave: claveProducto,
             nombre: "Carta de Colores Muna 12 ml",
             referencia: String(Number(ref)).padStart(2, "0"),
-            precio: PRECIO_UNITARIO,
+            precio: precioInventario(ref),
             cantidad: cantidad
           });
         }
