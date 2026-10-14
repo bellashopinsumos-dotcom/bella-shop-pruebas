@@ -1,0 +1,41 @@
+name: Aplicar inventario 6
+on:
+  push:
+    paths:
+      - 'actualizaciones/inv6-part*.txt'
+permissions:
+  contents: write
+jobs:
+  aplicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruir inventario
+        shell: python
+        run: |
+          import glob,base64,gzip
+          parts=sorted(glob.glob('actualizaciones/inv6-part*.txt'))
+          if len(parts)!=5:
+              print(f'Esperando 5 partes; hay {len(parts)}')
+              raise SystemExit(0)
+          data=''.join(open(p,encoding='utf-8').read().strip() for p in parts)
+          raw=gzip.decompress(base64.b64decode(data))
+          open('inventario.json','wb').write(raw)
+      - name: Validar y publicar
+        shell: bash
+        run: |
+          if [ ! -f inventario.json ]; then exit 0; fi
+          python - <<'PY'
+          import json
+          d=json.load(open('inventario.json',encoding='utf-8'))
+          assert len(d.get('productos',{})) >= 4400
+          assert d.get('fuente') == 'Producto (product.template) (6)(1).xlsx'
+          print('Productos:',len(d['productos']))
+          PY
+          rm -f actualizaciones/inv6-part*.txt inventario-actualizado-6.json actualizaciones/prueba-grande.json
+          git config user.name 'Bella Shop Inventario'
+          git config user.email 'bellashopinsumos@gmail.com'
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Actualizar inventario general desde Excel 6'
+          git push
