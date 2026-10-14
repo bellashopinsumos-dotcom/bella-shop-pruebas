@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'actualizaciones/inv6-part1.txt'
+      - '.github/workflows/aplicar-inventario-6.yml'
 permissions:
   contents: write
 jobs:
@@ -21,7 +22,6 @@ jobs:
               inv=json.load(f)
           productos=inv.get('productos',{})
           actualizados=0
-          # Lo que ya no aparece en el reporte nuevo queda sin disponibilidad.
           for p in productos.values():
               p['disponible']=0
               p['a_la_mano']=0
