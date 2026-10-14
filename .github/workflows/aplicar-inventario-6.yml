@@ -2,7 +2,7 @@ name: Aplicar inventario 6
 on:
   push:
     paths:
-      - 'actualizaciones/inv6-part*.txt'
+      - 'actualizaciones/inv6-part1.txt'
 permissions:
   contents: write
 jobs:
@@ -10,32 +10,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Reconstruir inventario
+      - name: Actualizar inventario central
         shell: python
         run: |
-          import glob,base64,gzip
-          parts=sorted(glob.glob('actualizaciones/inv6-part*.txt'))
-          if len(parts)!=5:
-              print(f'Esperando 5 partes; hay {len(parts)}')
-              raise SystemExit(0)
-          data=''.join(open(p,encoding='utf-8').read().strip() for p in parts)
-          raw=gzip.decompress(base64.b64decode(data))
-          open('inventario.json','wb').write(raw)
-      - name: Validar y publicar
+          import json,base64,gzip
+          packed=open('actualizaciones/inv6-part1.txt',encoding='utf-8').read().strip()
+          updates=json.loads(gzip.decompress(base64.b64decode(packed)).decode('utf-8'))
+          assert len(updates) >= 4400, len(updates)
+          with open('inventario.json',encoding='utf-8') as f:
+              inv=json.load(f)
+          productos=inv.get('productos',{})
+          actualizados=0
+          # Lo que ya no aparece en el reporte nuevo queda sin disponibilidad.
+          for p in productos.values():
+              p['disponible']=0
+              p['a_la_mano']=0
+          for key,p in productos.items():
+              candidatos=[str(key),str(p.get('codigo','')),str(p.get('codigo_original_odoo',''))]
+              dato=None
+              for c in candidatos:
+                  if c and c in updates:
+                      dato=updates[c]; break
+              if dato is None and p.get('nombre'):
+                  dato=updates.get('NOMBRE::'+str(p['nombre']).strip())
+              if dato is not None:
+                  p['precio_venta']=dato[0]
+                  p['disponible']=dato[1]
+                  p['a_la_mano']=dato[2]
+                  actualizados+=1
+          inv['fuente']='Producto (product.template) (6)(1).xlsx'
+          inv['uso']='Archivo central de inventario para Bella Shop'
+          inv['actualizacion']='2026-10-14'
+          inv['registros_excel']=len(updates)
+          inv['productos_actualizados']=actualizados
+          with open('inventario.json','w',encoding='utf-8') as f:
+              json.dump(inv,f,ensure_ascii=False,separators=(',',':'))
+          print('Registros Excel:',len(updates),'Productos del catálogo actualizados:',actualizados)
+      - name: Publicar y limpiar temporales
         shell: bash
         run: |
-          if [ ! -f inventario.json ]; then exit 0; fi
-          python - <<'PY'
-          import json
-          d=json.load(open('inventario.json',encoding='utf-8'))
-          assert len(d.get('productos',{})) >= 4400
-          assert d.get('fuente') == 'Producto (product.template) (6)(1).xlsx'
-          print('Productos:',len(d['productos']))
-          PY
-          rm -f actualizaciones/inv6-part*.txt inventario-actualizado-6.json actualizaciones/prueba-grande.json
+          rm -f actualizaciones/inv6-part1.txt inventario-actualizado-6.json actualizaciones/prueba-grande.json .github/workflows/aplicar-inventario-6.yml
           git config user.name 'Bella Shop Inventario'
           git config user.email 'bellashopinsumos@gmail.com'
           git add -A
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Actualizar inventario general desde Excel 6'
+          git commit -m 'Actualizar precios y cantidades generales desde inventario 6'
           git push
