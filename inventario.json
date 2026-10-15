@@ -62909,6 +62909,20 @@
       "cantidad_pronosticada": 0,
       "unidad_medida": "Unidades",
       "etiquetas": ""
+    },
+    "040404080": {
+      "codigo": "040404080",
+      "codigo_original_odoo": "040404080",
+      "nombre": "MOONSHINE GLASS CATS EYE OJO DE GATO ROJO REF 15 QUEENGHT",
+      "referencia_interna": "040404080",
+      "codigo_barras": "040404080",
+      "precio_venta": 22000,
+      "costo": 14900,
+      "disponible": 3,
+      "a_la_mano": 3,
+      "cantidad_pronosticada": 3,
+      "unidad_medida": "Unidades",
+      "etiquetas": ""
     }
   }
 }
