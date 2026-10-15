@@ -15,7 +15,7 @@ const productosPagina=[
 {ref:"005",codigo:"040704062",nombre:"Golden Olive 005",imagen:"queenigth-golden-olive-005.png"},
 {ref:"04.1",codigo:"040407049",nombre:"Moonshine Glass Cat Eye 04.1",imagen:"monshine-glass-qn-04.png"}
 ];
-const moonshine=[{tono:"04",codigo:"040407049"},{tono:"05",codigo:"040704050"},{tono:"06",codigo:"040407051"},{tono:"11",codigo:"040704056"}];
+const moonshine=[{tono:"04",codigo:"040704049"},{tono:"05",codigo:"040704050"},{tono:"06",codigo:"040407051"},{tono:"11",codigo:"040704056"}];
 const golden=[{tono:"02",codigo:"040404102"},{tono:"10",codigo:"040404110"},{tono:"13",codigo:"040404113"},{tono:"14",codigo:"040404114"},{tono:"15",codigo:"040404115"}];
 let inventario={},moonshineActivo=null,goldenActivo=null;const dinero=v=>"$"+Number(v||0).toLocaleString("es-CO");
 function buscar(c,n=""){if(inventario[c])return inventario[c];return Object.values(inventario).find(p=>String(p.codigo||"").trim()===c||String(p.codigo_original_odoo||"").trim()===c||String(p.referencia_interna||"").trim()===c||String(p.codigo_barras||"").trim()===c||(n&&String(p.nombre||"").trim().toUpperCase()===n.trim().toUpperCase()));}
