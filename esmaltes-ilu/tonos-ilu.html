@@ -40,6 +40,7 @@ input{
   font:inherit;
 }
 
+
 /* =========================================================
    HEADER
 ========================================================= */
@@ -96,6 +97,7 @@ header{
   height:17px;
 }
 
+
 /* =========================================================
    HERO
 ========================================================= */
@@ -103,6 +105,7 @@ header{
 .hero{
   text-align:center;
   padding:48px 20px 42px;
+
   background:
     radial-gradient(
       circle at 14% 20%,
@@ -173,6 +176,7 @@ header{
   line-height:1.7;
 }
 
+
 /* =========================================================
    CONTENIDO
 ========================================================= */
@@ -183,15 +187,16 @@ header{
   padding:35px 18px 65px;
 }
 
+
 /* =========================================================
-   CARTA ILU
+   CARTA
 ========================================================= */
 
 .carta-section{
   text-align:center;
 }
 
-.carta-section h2{
+.carta-section > h2{
   font:500 31px Georgia,serif;
   margin:0 0 8px;
 }
@@ -204,25 +209,35 @@ header{
   line-height:1.65;
 }
 
+
+/*
+  TODO queda dentro de este mismo cuadro:
+  imagen + selección.
+*/
+
 .carta-wrap{
   width:100%;
   max-width:1250px;
   margin:0 auto;
-  padding:7px;
+
   background:#fff;
+
   border:1px solid #f1dbe3;
   border-radius:23px;
-  box-shadow:0 18px 48px rgba(83,48,58,.09);
+
+  overflow:hidden;
+
+  box-shadow:
+    0 18px 48px rgba(83,48,58,.09);
 }
+
+
+/* IMAGEN */
 
 .carta-marco{
   width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  padding:7px 7px 0;
   background:#fff;
-  border-radius:17px;
-  overflow:hidden;
 }
 
 .carta-real{
@@ -230,112 +245,139 @@ header{
   width:100%;
   height:auto;
   object-fit:contain;
+  border-radius:17px 17px 8px 8px;
 }
 
-.carta-nota{
-  text-align:center;
-  color:#8b727b;
-  font-size:11px;
-  line-height:1.5;
-  margin:11px 8px 3px;
-}
 
 /* =========================================================
-   ELECCIÓN DE PRODUCTO
+   SELECCIÓN INTEGRADA
 ========================================================= */
 
 .compra{
-  max-width:950px;
-  margin:28px auto 0;
-  padding-top:27px;
-  border-top:1px solid var(--line);
+  width:100%;
+  margin:0;
+  padding:18px 22px 21px;
+
+  border-top:1px solid #f1dbe3;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffdfd,
+      #fff9fb
+    );
+
   text-align:center;
 }
 
 .compra-cabecera{
-  margin-bottom:17px;
+  margin:0 0 13px;
 }
 
 .compra-tag{
   display:block;
+
   color:var(--pink);
-  font-size:9px;
+
+  font-size:8px;
   font-weight:800;
-  letter-spacing:1.3px;
-  margin-bottom:5px;
+
+  letter-spacing:1.2px;
+
+  margin-bottom:4px;
 }
 
 .compra h2{
-  font:500 27px Georgia,serif;
-  margin:0 0 5px;
+  font:500 23px Georgia,serif;
+  margin:0;
 }
 
-.compra-cabecera p{
-  margin:0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-}
 
 /* =========================================================
-   OPCIONES
+   TRES OPCIONES
 ========================================================= */
 
 .categorias{
+  max-width:720px;
+  margin:0 auto;
+
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
+
+  gap:8px;
 }
 
 .categoria{
   appearance:none;
+
   border:1px solid #efd1db;
   background:#fff;
-  border-radius:15px;
-  padding:13px 10px;
+
+  border-radius:12px;
+
+  padding:10px 8px;
+
   cursor:pointer;
+
   color:var(--ink);
+
   transition:.18s;
+
   text-align:center;
 }
 
 .categoria:hover{
   border-color:#e9a9be;
+  background:#fffafb;
   transform:translateY(-1px);
-  box-shadow:0 6px 18px rgba(83,48,58,.06);
 }
 
 .categoria.activa{
   border-color:var(--pink);
-  background:#fff4f7;
-  box-shadow:0 5px 15px rgba(230,83,133,.08);
+  background:#fff1f5;
+
+  box-shadow:
+    0 4px 12px rgba(230,83,133,.08);
 }
 
 .categoria small{
   display:block;
+
   color:var(--pink);
-  font-size:8px;
+
+  font-size:7px;
   font-weight:800;
-  letter-spacing:1px;
-  margin-bottom:4px;
+
+  letter-spacing:.8px;
+
+  margin-bottom:3px;
 }
 
 .categoria strong{
   display:block;
-  font:500 17px Georgia,serif;
+  font:500 15px Georgia,serif;
 }
 
+
 /* =========================================================
-   PANEL DE ELECCIÓN
+   PANEL QUE SE ABRE
 ========================================================= */
 
 .referencias{
   display:none;
-  margin-top:10px;
-  padding:18px;
+
+  max-width:720px;
+
+  margin:8px auto 0;
+
+  padding:14px;
+
   border:1px solid #f1d7df;
-  border-radius:16px;
-  background:#fff9fb;
+
+  border-radius:12px;
+
+  background:#fff7fa;
+
   text-align:left;
 }
 
@@ -352,20 +394,23 @@ header{
 }
 
 .panel-cabecera{
-  margin-bottom:13px;
+  margin-bottom:10px;
 }
 
 .panel h3{
-  font:500 20px Georgia,serif;
-  margin:0 0 4px;
+  font:500 18px Georgia,serif;
+  margin:0 0 3px;
 }
 
 .panel p{
   margin:0;
+
   color:var(--muted);
-  font-size:11px;
+
+  font-size:10px;
   line-height:1.5;
 }
+
 
 /* =========================================================
    TONO MANUAL
@@ -374,52 +419,79 @@ header{
 .tono-manual{
   display:flex;
   align-items:center;
-  gap:8px;
-  max-width:520px;
+
+  gap:7px;
+
+  max-width:480px;
 }
 
 .numeral{
-  width:42px;
-  height:44px;
-  flex:0 0 42px;
+  width:40px;
+  height:42px;
+
+  flex:0 0 40px;
+
   display:grid;
   place-items:center;
-  border-radius:12px;
-  background:#fff0f5;
+
+  border-radius:10px;
+
+  background:#ffeef4;
+
   color:var(--pink);
-  font-size:19px;
+
+  font-size:18px;
   font-weight:800;
 }
 
 .tono-manual input{
   flex:1;
+
   min-width:0;
-  height:44px;
+
+  height:42px;
+
   border:1px solid #eacbd5;
-  border-radius:12px;
+
+  border-radius:10px;
+
   background:#fff;
-  padding:0 14px;
+
+  padding:0 13px;
+
   outline:none;
+
   color:var(--ink);
-  font-size:14px;
+
+  font-size:13px;
   font-weight:700;
 }
 
 .tono-manual input:focus{
   border-color:var(--pink);
-  box-shadow:0 0 0 3px rgba(230,83,133,.08);
+
+  box-shadow:
+    0 0 0 3px rgba(230,83,133,.08);
 }
 
 .btn-confirmar{
-  height:44px;
+  height:42px;
+
   border:0;
-  border-radius:12px;
-  padding:0 18px;
+
+  border-radius:10px;
+
+  padding:0 17px;
+
   background:var(--pink);
+
   color:#fff;
-  font-size:10px;
+
+  font-size:9px;
   font-weight:800;
+
   cursor:pointer;
+
   white-space:nowrap;
 }
 
@@ -427,38 +499,61 @@ header{
   filter:brightness(.97);
 }
 
+
+/* RESULTADO */
+
 .resultado-tono{
   display:none;
-  margin-top:11px;
-  padding:11px 13px;
-  border-radius:12px;
+
+  margin-top:9px;
+
+  padding:9px 11px;
+
+  border-radius:10px;
+
   background:#fff;
+
   border:1px solid #efd5de;
+
   font-size:11px;
+
   color:#765d65;
 }
 
+
 /* =========================================================
-   RUBBER Y OJO DE GATO
+   BASE RUBBER / OJO DE GATO
 ========================================================= */
 
 .ref-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-  gap:8px;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(85px,1fr));
+
+  gap:7px;
 }
 
 .ref{
   appearance:none;
+
   border:1px solid #eacbd5;
+
   background:#fff;
-  border-radius:12px;
-  padding:11px 8px;
+
+  border-radius:10px;
+
+  padding:10px 7px;
+
   text-align:center;
+
   cursor:pointer;
-  font-size:12px;
+
+  font-size:11px;
   font-weight:800;
+
   color:#624650;
+
   transition:.15s;
 }
 
@@ -469,20 +564,12 @@ header{
 
 .ref.seleccionada{
   border-color:var(--pink);
+
   color:var(--pink);
+
   background:#fff0f5;
-  box-shadow:0 0 0 2px rgba(230,83,133,.07);
 }
 
-.pendiente{
-  padding:13px;
-  border-radius:12px;
-  background:#fff;
-  color:#9a6678;
-  font-size:11px;
-  font-weight:700;
-  border:1px dashed #e8bdcc;
-}
 
 /* =========================================================
    CONTACTO
@@ -490,9 +577,13 @@ header{
 
 .contacto{
   position:relative;
+
   overflow:hidden;
+
   padding:64px 6% 58px;
+
   text-align:center;
+
   background:
     linear-gradient(
       135deg,
@@ -500,6 +591,7 @@ header{
       #fff8fa 55%,
       #fffdfd
     );
+
   border-top:1px solid #f2dce4;
 }
 
@@ -510,38 +602,58 @@ header{
 
 .contacto p{
   max-width:650px;
+
   margin:0 auto 22px;
+
   color:#765d65;
+
   line-height:1.7;
+
   font-size:14px;
 }
 
 .wa{
   display:inline-block;
+
   background:#25D366;
+
   color:#fff;
+
   padding:13px 22px;
+
   border-radius:40px;
+
   font-weight:700;
+
   font-size:13px;
+
   margin-bottom:22px;
 }
 
 .redes{
   display:flex;
+
   justify-content:center;
+
   gap:10px;
+
   margin-bottom:22px;
 }
 
 .red{
   width:44px;
   height:44px;
+
   border-radius:50%;
+
   display:grid;
+
   place-items:center;
+
   background:#fff;
+
   color:#d94d7a;
+
   border:1px solid #efc6d3;
 }
 
@@ -553,22 +665,33 @@ header{
 
 .ubi{
   display:inline-block;
+
   color:#765d65;
+
   font-size:13px;
   font-weight:700;
+
   padding:10px 16px;
+
   border-radius:30px;
+
   background:#fff;
+
   border:1px solid #f0d7df;
 }
 
 footer{
   background:#35272c;
+
   color:#f9eaf0;
+
   text-align:center;
+
   padding:27px 20px;
+
   font-size:11px;
 }
+
 
 /* =========================================================
    TABLET
@@ -604,15 +727,19 @@ footer{
   }
 
   .carta-wrap{
-    padding:4px;
     border-radius:17px;
   }
 
   .carta-marco{
-    border-radius:13px;
+    padding:4px 4px 0;
+  }
+
+  .carta-real{
+    border-radius:13px 13px 7px 7px;
   }
 
 }
+
 
 /* =========================================================
    CELULAR
@@ -621,42 +748,32 @@ footer{
 @media(max-width:600px){
 
   .compra{
-    margin-top:20px;
-    padding-top:22px;
+    padding:15px 12px 17px;
   }
 
   .categorias{
     grid-template-columns:1fr;
-    gap:7px;
+    gap:6px;
   }
 
   .categoria{
-    padding:11px 8px;
+    padding:9px 7px;
   }
 
   .referencias{
-    padding:14px;
+    padding:12px;
   }
 
   .tono-manual{
-    flex-wrap:wrap;
     max-width:none;
   }
 
-  .numeral{
-    width:40px;
-    flex-basis:40px;
-  }
-
-  .tono-manual input{
-    width:calc(100% - 48px);
-  }
-
-  .btn-confirmar{
-    width:100%;
-  }
-
 }
+
+
+/* =========================================================
+   CELULAR PEQUEÑO
+========================================================= */
 
 @media(max-width:440px){
 
@@ -671,8 +788,10 @@ footer{
 
   .btnh{
     font-size:0;
+
     width:40px;
     height:40px;
+
     padding:0;
   }
 
@@ -695,33 +814,50 @@ footer{
     height:56px;
   }
 
-  .carta-section h2{
+  .carta-section > h2{
     font-size:27px;
   }
 
   .carta-wrap{
-    padding:2px;
-    border-radius:12px;
+    border-radius:13px;
   }
 
   .carta-marco{
-    border-radius:10px;
+    padding:2px 2px 0;
   }
 
-  .carta-nota{
-    padding:0 5px;
-    font-size:10px;
+  .carta-real{
+    border-radius:11px 11px 5px 5px;
   }
 
   .compra h2{
-    font-size:25px;
+    font-size:21px;
+  }
+
+  .tono-manual{
+    flex-wrap:wrap;
+  }
+
+  .numeral{
+    width:38px;
+    flex-basis:38px;
+  }
+
+  .tono-manual input{
+    width:calc(100% - 45px);
+  }
+
+  .btn-confirmar{
+    width:100%;
   }
 
 }
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      HEADER
@@ -729,20 +865,30 @@ footer{
 
 <header>
 
-  <a href="../index.html" class="logo">
+  <a
+    href="../index.html"
+    class="logo"
+  >
+
     <img
       src="../imagenes/Logo Bellashop png.png"
       alt="Bella Shop"
     >
+
   </a>
 
+
   <div class="acciones">
+
+
+    <!-- VOLVER -->
 
     <a
       href="semi-ilu.html"
       class="btnh"
       aria-label="Volver"
     >
+
       <svg
         class="ico"
         viewBox="0 0 24 24"
@@ -753,14 +899,21 @@ footer{
         <path d="M15 18l-6-6 6-6"/>
       </svg>
 
-      <span>VOLVER</span>
+      <span>
+        VOLVER
+      </span>
+
     </a>
+
+
+    <!-- INICIO -->
 
     <a
       href="../index.html"
       class="btnh"
       aria-label="Inicio"
     >
+
       <svg
         class="ico"
         viewBox="0 0 24 24"
@@ -768,18 +921,28 @@ footer{
         stroke="currentColor"
         stroke-width="2"
       >
+
         <path d="M3 11.5 12 4l9 7.5"/>
+
         <path d="M5.5 10.5V20h13v-9.5"/>
+
       </svg>
 
-      <span>INICIO</span>
+      <span>
+        INICIO
+      </span>
+
     </a>
+
+
+    <!-- CARRITO -->
 
     <a
       href="../carrito.html"
       class="btnh pedido"
       aria-label="Mi pedido"
     >
+
       <svg
         class="ico"
         viewBox="0 0 24 24"
@@ -787,14 +950,21 @@ footer{
         stroke="currentColor"
         stroke-width="2"
       >
+
         <circle cx="9" cy="20" r="1"/>
+
         <circle cx="19" cy="20" r="1"/>
+
         <path
           d="M3 4h2l2.3 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 7H6"
         />
+
       </svg>
 
-      <span>MI PEDIDO</span>
+      <span>
+        MI PEDIDO
+      </span>
+
     </a>
 
   </div>
@@ -826,307 +996,322 @@ footer{
 
   </div>
 
-  <small>CARTA DE TONOS · ILU</small>
+
+  <small>
+    CARTA DE TONOS · ILU
+  </small>
+
 
   <h1>
-    Encuentra tu <em>favorito</em>
+    Encuentra tu
+    <em>favorito</em>
   </h1>
 
+
   <p>
-    Mira nuestra carta ILU, encuentra el tono que más te guste
-    y selecciónalo fácilmente más abajo.
+    Mira nuestra carta ILU,
+    encuentra el tono que más te guste
+    y selecciónalo fácilmente.
   </p>
 
 </section>
 
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
 
 <main class="wrap">
 
 
-<!-- =====================================================
-     CARTA DE TONOS
-===================================================== -->
+  <section class="carta-section">
 
-<section class="carta-section">
-
-  <h2>Carta de tonos ILU</h2>
-
-  <p class="carta-intro">
-    Observa la carta y encuentra tu favorito.
-    Recuerda el número que aparece debajo del tono
-    para seleccionarlo.
-  </p>
-
-  <div class="carta-wrap">
-
-    <div class="carta-marco">
-
-      <img
-        class="carta-real"
-        src="carta-ilu2.jpeg"
-        alt="Carta real de tonos ILU"
-      >
-
-    </div>
-
-    <p class="carta-nota">
-      Carta física ILU · Los tonos pueden presentar pequeñas
-      variaciones dependiendo de la pantalla y la iluminación.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     SELECCIÓN
-===================================================== -->
-
-<section class="compra">
-
-  <div class="compra-cabecera">
-
-    <span class="compra-tag">
-      ¿YA ELEGISTE TU FAVORITO?
-    </span>
 
     <h2>
-      Selecciona tu producto
+      Carta de tonos ILU
     </h2>
 
-    <p>
-      Elige la línea que deseas llevar y selecciona
-      tu referencia.
+
+    <p class="carta-intro">
+      Observa la carta y encuentra tu favorito.
+      Recuerda el número que aparece debajo del tono.
     </p>
 
-  </div>
-
-
-  <!-- ===================================================
-       CATEGORÍAS
-  =================================================== -->
-
-  <div class="categorias">
-
-
-    <!-- TONOS -->
-
-    <button
-      class="categoria"
-      type="button"
-      data-panel="color"
-    >
-
-      <small>
-        COLOR NAIL GEL
-      </small>
-
-      <strong>
-        Tonos de Color
-      </strong>
-
-    </button>
-
-
-    <!-- RUBBER -->
-
-    <button
-      class="categoria"
-      type="button"
-      data-panel="rubber"
-    >
-
-      <small>
-        BASE
-      </small>
-
-      <strong>
-        Base Rubber
-      </strong>
-
-    </button>
-
-
-    <!-- OJO DE GATO -->
-
-    <button
-      class="categoria"
-      type="button"
-      data-panel="gato"
-    >
-
-      <small>
-        EFECTO MAGNÉTICO
-      </small>
-
-      <strong>
-        Ojo de Gato
-      </strong>
-
-    </button>
-
-  </div>
-
-
-  <!-- ===================================================
-       CONTENIDO QUE APARECE AL SELECCIONAR
-  =================================================== -->
-
-  <div
-    class="referencias"
-    id="referencias"
-  >
-
 
     <!-- =================================================
-         TONOS DE COLOR
+         UN SOLO CUADRO:
+         CARTA + SELECCIÓN
     ================================================== -->
 
-    <div
-      class="panel"
-      id="panel-color"
-    >
-
-      <div class="panel-cabecera">
-
-        <h3>
-          ¿Qué tono deseas?
-        </h3>
-
-        <p>
-          Escribe el número que aparece debajo del tono
-          en la carta.
-        </p>
-
-      </div>
+    <div class="carta-wrap">
 
 
-      <div class="tono-manual">
+      <!-- CARTA -->
 
-        <span class="numeral">
-          #
-        </span>
+      <div class="carta-marco">
 
-        <input
-          type="text"
-          id="tonoManual"
-          maxlength="5"
-          autocomplete="off"
-          placeholder="Ej: 039"
-          aria-label="Número del tono ILU"
+        <img
+          class="carta-real"
+          src="carta-ilu2.jpeg"
+          alt="Carta de tonos ILU"
         >
 
-        <button
-          type="button"
-          class="btn-confirmar"
-          id="confirmarTono"
+      </div>
+
+
+      <!-- ===============================================
+           SELECCIÓN DENTRO DEL MISMO CUADRO
+      ================================================ -->
+
+      <section class="compra">
+
+
+        <div class="compra-cabecera">
+
+          <span class="compra-tag">
+            ¿YA ELEGISTE TU FAVORITO?
+          </span>
+
+          <h2>
+            ¿Qué deseas llevar?
+          </h2>
+
+        </div>
+
+
+        <!-- =============================================
+             OPCIONES
+        ============================================== -->
+
+        <div class="categorias">
+
+
+          <!-- TONOS -->
+
+          <button
+            class="categoria"
+            type="button"
+            data-panel="color"
+          >
+
+            <small>
+              COLOR NAIL GEL
+            </small>
+
+            <strong>
+              Tonos de Color
+            </strong>
+
+          </button>
+
+
+          <!-- BASE RUBBER -->
+
+          <button
+            class="categoria"
+            type="button"
+            data-panel="rubber"
+          >
+
+            <small>
+              BASE
+            </small>
+
+            <strong>
+              Base Rubber
+            </strong>
+
+          </button>
+
+
+          <!-- OJO DE GATO -->
+
+          <button
+            class="categoria"
+            type="button"
+            data-panel="gato"
+          >
+
+            <small>
+              EFECTO MAGNÉTICO
+            </small>
+
+            <strong>
+              Ojo de Gato
+            </strong>
+
+          </button>
+
+
+        </div>
+
+
+        <!-- =============================================
+             ÁREA DINÁMICA
+        ============================================== -->
+
+        <div
+          class="referencias"
+          id="referencias"
         >
-          ELEGIR TONO
-        </button>
-
-      </div>
 
 
-      <div
-        class="resultado-tono"
-        id="resultadoTono"
-      ></div>
+          <!-- ===========================================
+               TONOS DE COLOR
+          ============================================ -->
 
-    </div>
-
-
-    <!-- =================================================
-         BASE RUBBER
-    ================================================== -->
-
-    <div
-      class="panel"
-      id="panel-rubber"
-    >
-
-      <div class="panel-cabecera">
-
-        <h3>
-          Elige tu Base Rubber
-        </h3>
-
-        <p>
-          Selecciona la referencia que deseas.
-        </p>
-
-      </div>
+          <div
+            class="panel"
+            id="panel-color"
+          >
 
 
-      <!--
-        IMPORTANTE:
-        AQUÍ SE PONDRÁN LAS BASE RUBBER REALES.
+            <div class="panel-cabecera">
 
-        NO SE INVENTAN REFERENCIAS.
-        LAS REFERENCIAS SALDRÁN DEL EXCEL.
-      -->
+              <h3>
+                Elige tu tono
+              </h3>
 
-      <div
-        class="ref-grid"
-        id="bases-rubber"
-      >
+              <p>
+                Escribe el número que viste
+                en la carta.
+              </p>
 
-        <div class="pendiente">
-          Referencias pendientes de cargar desde el inventario.
+            </div>
+
+
+            <div class="tono-manual">
+
+
+              <span class="numeral">
+                #
+              </span>
+
+
+              <input
+                type="text"
+                id="tonoManual"
+                maxlength="5"
+                autocomplete="off"
+                placeholder="Ej: 039"
+                aria-label="Número del tono ILU"
+              >
+
+
+              <button
+                type="button"
+                class="btn-confirmar"
+                id="confirmarTono"
+              >
+                ELEGIR
+              </button>
+
+
+            </div>
+
+
+            <div
+              class="resultado-tono"
+              id="resultadoTono"
+            ></div>
+
+
+          </div>
+
+
+          <!-- ===========================================
+               BASE RUBBER
+          ============================================ -->
+
+          <div
+            class="panel"
+            id="panel-rubber"
+          >
+
+
+            <div class="panel-cabecera">
+
+              <h3>
+                Elige tu Base Rubber
+              </h3>
+
+              <p>
+                Selecciona la referencia que deseas.
+              </p>
+
+            </div>
+
+
+            <!--
+              AQUÍ IRÁN LAS BASES REALES.
+
+              NO SE CREA NINGUNA REFERENCIA.
+
+              CADA REFERENCIA SE TOMARÁ
+              DEL EXCEL DEL INVENTARIO.
+            -->
+
+            <div
+              class="ref-grid"
+              id="bases-rubber"
+            ></div>
+
+
+          </div>
+
+
+          <!-- ===========================================
+               OJO DE GATO
+          ============================================ -->
+
+          <div
+            class="panel"
+            id="panel-gato"
+          >
+
+
+            <div class="panel-cabecera">
+
+              <h3>
+                Elige tu Ojo de Gato
+              </h3>
+
+              <p>
+                Selecciona la referencia que deseas.
+              </p>
+
+            </div>
+
+
+            <!--
+              AQUÍ IRÁN LOS OJO DE GATO REALES.
+
+              NO SE CREA NINGUNA REFERENCIA.
+
+              CADA REFERENCIA SE TOMARÁ
+              DEL EXCEL DEL INVENTARIO.
+            -->
+
+            <div
+              class="ref-grid"
+              id="ojos-gato"
+            ></div>
+
+
+          </div>
+
+
         </div>
 
-      </div>
+
+      </section>
+
 
     </div>
 
 
-    <!-- =================================================
-         OJO DE GATO
-    ================================================== -->
+  </section>
 
-    <div
-      class="panel"
-      id="panel-gato"
-    >
-
-      <div class="panel-cabecera">
-
-        <h3>
-          Elige tu Ojo de Gato
-        </h3>
-
-        <p>
-          Selecciona la referencia que deseas.
-        </p>
-
-      </div>
-
-
-      <!--
-        IMPORTANTE:
-        AQUÍ SE PONDRÁN LOS OJO DE GATO REALES.
-
-        NO SE INVENTAN REFERENCIAS.
-        LAS REFERENCIAS SALDRÁN DEL EXCEL.
-      -->
-
-      <div
-        class="ref-grid"
-        id="ojos-gato"
-      >
-
-        <div class="pendiente">
-          Referencias pendientes de cargar desde el inventario.
-        </div>
-
-      </div>
-
-    </div>
-
-
-  </div>
-
-</section>
 
 </main>
 
@@ -1137,15 +1322,19 @@ footer{
 
 <section class="contacto">
 
+
   <h2>
     ¿Necesitas una ayudita? 💕
   </h2>
 
+
   <p>
     Estamos aquí para ti ✨
-    Escríbenos, cuéntanos qué necesitas y con mucho gusto
-    te ayudamos a encontrar tus productos favoritos. 💗
+    Escríbenos, cuéntanos qué necesitas
+    y con mucho gusto te ayudamos a encontrar
+    tus productos favoritos. 💗
   </p>
+
 
   <a
     class="wa"
@@ -1251,6 +1440,7 @@ footer{
 
     </a>
 
+
   </div>
 
 
@@ -1262,6 +1452,7 @@ footer{
   >
     ⌖ Bella Shop · Popayán, Cauca
   </a>
+
 
 </section>
 
@@ -1277,8 +1468,9 @@ footer{
 
 <script>
 
+
 /* =========================================================
-   ABRIR CATEGORÍAS
+   ABRIR OPCIÓN
 ========================================================= */
 
 const categorias =
@@ -1294,6 +1486,7 @@ const referencias =
 categorias.forEach(categoria => {
 
   categoria.addEventListener("click", () => {
+
 
     const tipo =
       categoria.dataset.panel;
@@ -1315,17 +1508,17 @@ categorias.forEach(categoria => {
     });
 
 
-    /* ACTIVAR CATEGORÍA */
+    /* ACTIVAR */
 
     categoria.classList.add("activa");
 
 
-    /* MOSTRAR CONTENEDOR */
+    /* MOSTRAR ÁREA */
 
     referencias.classList.add("visible");
 
 
-    /* MOSTRAR PANEL */
+    /* PANEL CORRECTO */
 
     const panelActivo =
       document.getElementById(
@@ -1338,6 +1531,7 @@ categorias.forEach(categoria => {
       panelActivo.classList.add("activo");
 
     }
+
 
   });
 
@@ -1360,23 +1554,14 @@ const resultadoTono =
 
 function seleccionarTonoManual(){
 
+
   let tono =
     tonoManual.value
       .trim()
       .toUpperCase();
 
 
-  /*
-    POR AHORA SOLO GUARDAMOS
-    LO QUE ESCRIBE EL CLIENTE.
-
-    TODAVÍA NO SE ESTÁ RELACIONANDO
-    CON NINGÚN CÓDIGO DE INVENTARIO.
-
-    ESA RELACIÓN SE HARÁ CON LOS
-    CÓDIGOS REALES DEL EXCEL.
-  */
-
+  /* VACÍO */
 
   if(!tono){
 
@@ -1392,13 +1577,16 @@ function seleccionarTonoManual(){
 
 
   /*
-    SI ES UN NÚMERO COMO 1, 39, 62...
-    LO MOSTRAMOS COMO 001, 039, 062.
+    NORMALIZACIÓN VISUAL:
 
-    ESTO ES SOLO EL NÚMERO VISUAL
-    DEL TONO DE LA CARTA.
+    1   -> 001
+    39  -> 039
+    62  -> 062
 
-    NO ES EL CÓDIGO DE INVENTARIO.
+    ESTO NO CREA UN CÓDIGO DE INVENTARIO.
+
+    SOLO NORMALIZA EL NÚMERO VISUAL
+    QUE EL CLIENTE VE EN LA CARTA.
   */
 
   if(/^\d{1,3}$/.test(tono)){
@@ -1412,15 +1600,33 @@ function seleccionarTonoManual(){
   resultadoTono.style.display =
     "block";
 
+
   resultadoTono.innerHTML =
     "Tono seleccionado: <strong>#" +
     tono +
     "</strong>";
 
+
+  /*
+    IMPORTANTE:
+
+    AQUÍ IMPLEMENTAREMOS DESPUÉS
+    LA RELACIÓN ENTRE EL TONO VISUAL
+    Y EL CÓDIGO REAL DEL EXCEL.
+
+    NO SE INVENTARÁ NINGÚN CÓDIGO.
+
+    SI EL CÓDIGO ASIGNADO NO APARECE
+    EN EL INVENTARIO:
+
+    CÓDIGO NO ENCONTRADO
+  */
+
+
 }
 
 
-/* BOTÓN */
+/* BOTÓN ELEGIR */
 
 confirmarTono.addEventListener(
   "click",
@@ -1451,6 +1657,7 @@ tonoManual.addEventListener(
 document.addEventListener(
   "click",
   function(event){
+
 
     const boton =
       event.target.closest(".ref");
@@ -1489,10 +1696,13 @@ document.addEventListener(
       "seleccionada"
     );
 
+
   }
 );
 
+
 </script>
+
 
 </body>
 </html>
