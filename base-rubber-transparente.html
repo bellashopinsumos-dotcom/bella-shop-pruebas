@@ -1371,8 +1371,8 @@ const gruposBaseRubber = [
     {ml:"15 ml",codigo:"7709554499671",buscarNombre:"BASE RUBBER CANM 15ML",buscarMarca:"CANM",precio:27000}
   ]},
 
-  {marca:"ILU",logo:"",imagen:"imagenes/rubberclear-ilu.png",clave:"ilu-rubber-clear",ref:"IU10-01",opciones:[
-    {ml:"15 ml",codigo:"IU10-01",precio:0,precioInventario:true}
+  {marca:"ILU",logo:"",imagen:"esmalte-ilu/rubberclear-ilu.png",clave:"ilu-rubber-clear",ref:"IU10-1",opciones:[
+    {ml:"15 ml",codigo:"IU10-1",precio:15000,precioInventario:true}
   ]}
 ];
 
@@ -1578,7 +1578,7 @@ async function cargarInventario(){
       g.opciones.forEach(o=>{
         o._producto=buscarProducto(productos,o);
         if(o.precioInventario && o._producto){
-          o.precio=Number(o._producto.precio_venta)||0;
+          o.precio=Number(o._producto.precio_venta)||o.precio;
         }
       })
     );
