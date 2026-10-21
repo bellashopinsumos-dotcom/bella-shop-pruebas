@@ -1369,6 +1369,10 @@ const gruposBaseRubber = [
   {marca:"CANM",logo:"imagenes/logo canm.png",imagen:"imagenes/rubber-clear-canm.png",clave:"canm-rubber-clear",ref:"CLEAR",opciones:[
     {ml:"8 ml",codigo:"7709554499672",precio:17000},
     {ml:"15 ml",codigo:"7709554499671",buscarNombre:"BASE RUBBER CANM 15ML",buscarMarca:"CANM",precio:27000}
+  ]},
+
+  {marca:"ILU",logo:"",imagen:"imagenes/rubberclear-ilu.png",clave:"ilu-rubber-clear",ref:"IU10-01",opciones:[
+    {ml:"15 ml",codigo:"IU10-01",precio:0,precioInventario:true}
   ]}
 ];
 
@@ -1429,10 +1433,10 @@ function crearTarjeta(grid,g,gi){
     </div>
 
     <div class="info">
-      <img class="logo-marca-producto" src="${g.logo}" alt="${g.marca}">
+      ${g.logo ? `<img class="logo-marca-producto" src="${g.logo}" alt="${g.marca}">` : ""}
       <div class="tipo">BASE RUBBER · TRANSPARENTE</div>
       <h3>Base Rubber Clear ${g.marca}</h3>
-      ${g.marca==="Muna" ? `<div class="ref-visible">Referencia ${g.ref}</div>` : ""}
+      ${(g.marca==="Muna" || g.marca==="ILU") ? `<div class="ref-visible">Referencia ${g.ref}</div>` : ""}
       ${selector}
 
       <div class="precio-producto"></div>
@@ -1571,9 +1575,12 @@ async function cargarInventario(){
     const productos=d.productos||{};
 
     gruposBaseRubber.forEach(g=>
-      g.opciones.forEach(o=>
-        o._producto=buscarProducto(productos,o)
-      )
+      g.opciones.forEach(o=>{
+        o._producto=buscarProducto(productos,o);
+        if(o.precioInventario && o._producto){
+          o.precio=Number(o._producto.precio_venta)||0;
+        }
+      })
     );
 
     document.querySelectorAll(".producto").forEach(t=>
