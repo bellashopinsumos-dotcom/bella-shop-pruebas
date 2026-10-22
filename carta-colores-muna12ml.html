@@ -1407,8 +1407,8 @@
           Carta de Colores Muna 12 ml
         </h1>
 
-        <p style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">
-          Precio según inventario
+        <p id="precioCarta" style="font-size:22px;font-weight:900;color:#d94a79;margin:0 0 14px;">
+          Consultando precio...
         </p>
 
         <p class="descripcion-producto">
@@ -1681,6 +1681,7 @@
     const subtotalPedido = document.getElementById("subtotalPedido");
     const btnPedido = document.getElementById("agregarPedido");
     const estadoInventario = document.getElementById("estadoInventario");
+    const precioCarta = document.getElementById("precioCarta");
 
 
     function actualizarLinkMiPedido() {
@@ -1752,8 +1753,18 @@
     function cantidadEnCarrito(ref) {
       try {
         const carrito = JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
-        const clave = "Carta de Colores Muna 12 ml - Ref. " + normalizarReferencia(ref);
-        const producto = carrito.find(item => item.clave === clave);
+        const codigoCompleto = codigoOdoo(ref);
+        const refCorta = String(Number(ref)).padStart(2, "0");
+        const claveCompleta = "Carta de Colores Muna 12 ml - Ref. " + codigoCompleto;
+
+        // Compatibilidad con productos agregados antes del arreglo de referencias completas.
+        const producto = carrito.find(item =>
+          item.clave === claveCompleta ||
+          (item.nombre === "Carta de Colores Muna 12 ml" &&
+           (String(item.referencia || "") === refCorta ||
+            String(item.referencia || "") === String(Number(ref))))
+        );
+
         return producto ? Number(producto.cantidad || 0) : 0;
       } catch (error) {
         return 0;
@@ -1781,6 +1792,26 @@
         inventarioProductos = datos.productos;
         inventarioListo = true;
 
+        // Mostrar el precio real de la carta directamente desde inventario.json.
+        const preciosCarta = [];
+        for (let numeroRef = 1; numeroRef <= 66; numeroRef++) {
+          const codigo = codigoOdoo(String(numeroRef));
+          const producto = codigo ? inventarioProductos[codigo] : null;
+          const precio = Number(producto && producto.precio_venta || 0);
+          if (Number.isFinite(precio) && precio > 0) preciosCarta.push(precio);
+        }
+
+        const preciosUnicos = [...new Set(preciosCarta)];
+        if (precioCarta) {
+          if (preciosUnicos.length === 1) {
+            precioCarta.textContent = formatoPesos(preciosUnicos[0]) + " c/u";
+          } else if (preciosUnicos.length > 1) {
+            precioCarta.textContent = "Desde " + formatoPesos(Math.min(...preciosUnicos)) + " c/u";
+          } else {
+            precioCarta.textContent = "Precio no disponible";
+          }
+        }
+
         estadoInventario.className = "estado-inventario ok";
         estadoInventario.textContent = "";
         estadoInventario.style.display = "none";
@@ -1790,6 +1821,7 @@
         console.error("Error cargando inventario:", error);
         inventarioListo = false;
         inventarioProductos = {};
+        if (precioCarta) precioCarta.textContent = "Precio no disponible";
 
         estadoInventario.style.display = "block";
         estadoInventario.className = "estado-inventario error";
@@ -1996,8 +2028,15 @@
 
       for (const [ref, cantidad] of referenciasSeleccionadas.entries()) {
         const stock = stockDisponible(ref);
-        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + ref;
-        const existente = carrito.find(producto => producto.clave === claveProducto);
+        const codigoCompleto = codigoOdoo(ref);
+        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + codigoCompleto;
+        const refCorta = String(Number(ref)).padStart(2, "0");
+        const existente = carrito.find(producto =>
+          producto.clave === claveProducto ||
+          (producto.nombre === "Carta de Colores Muna 12 ml" &&
+           (String(producto.referencia || "") === refCorta ||
+            String(producto.referencia || "") === String(Number(ref))))
+        );
         const cantidadActual = existente ? Number(existente.cantidad || 0) : 0;
 
         if (stock <= 0 || cantidadActual + cantidad > stock) {
@@ -2009,17 +2048,26 @@
       }
 
       referenciasSeleccionadas.forEach((cantidad, ref) => {
-        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + ref;
-        const existente = carrito.find(producto => producto.clave === claveProducto);
+        const codigoCompleto = codigoOdoo(ref);
+        const refCorta = String(Number(ref)).padStart(2, "0");
+        const claveProducto = "Carta de Colores Muna 12 ml - Ref. " + codigoCompleto;
+        const existente = carrito.find(producto =>
+          producto.clave === claveProducto ||
+          (producto.nombre === "Carta de Colores Muna 12 ml" &&
+           (String(producto.referencia || "") === refCorta ||
+            String(producto.referencia || "") === String(Number(ref))))
+        );
 
         if (existente) {
+          existente.clave = claveProducto;
           existente.cantidad += cantidad;
           existente.precio = precioInventario(ref);
+          existente.referencia = codigoCompleto;
         } else {
           carrito.push({
             clave: claveProducto,
             nombre: "Carta de Colores Muna 12 ml",
-            referencia: String(Number(ref)).padStart(2, "0"),
+            referencia: codigoCompleto,
             precio: precioInventario(ref),
             cantidad: cantidad
           });
