@@ -2463,7 +2463,10 @@
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       const carrito = leerCarrito();
-      const claveProducto = nombre + " - Ref. " + referencia;
+
+
+      const codigoCompleto = tarjeta?.dataset?.codigoOdoo || String(referencia);
+      const claveProducto = nombre + " - Ref. " + codigoCompleto;
 
       const existente = carrito.find(
         producto => producto.clave === claveProducto
@@ -2494,7 +2497,8 @@
 
       if (existente) {
         existente.cantidad += cantidad;
-      } else {
+            existente.referencia = codigoCompleto;
+    } else {
         carrito.push({
           clave: claveProducto,
           nombre: nombre,
