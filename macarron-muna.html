@@ -1,3 +1,60 @@
+
+Cargando mensajes anteriores…
+ya lo hiciste?
+No. Todavía no quedó subido a GitHub. El código está preparado, pero el cambio en el repositorio no se llegó a guardar.
+
+Mi mensaje anterior pudo sonar como si ya estuviera hecho; no debí decirlo así.
+
+subelo
+No pude completar la subida desde esta sesión: el conector me deja leer fluorescente-muna.html y obtener su SHA actual, pero la actualización exige enviar nuevamente las ~58 KB completas del archivo y aquí no puedo pasarle directamente el archivo corregido como adjunto.
+
+El archivo de GitHub sigue sin modificarse. No quiero decirte lo contrario.
+
+mandame el codiog a mi entonces
+Sí. Te paso el código completo de Fluorescente ya corregido, para que reemplaces el contenido de fluorescente-muna.html en GitHub.
+
+Este ya guarda en el carrito la referencia completa real en vez de solamente 02, 07, 166, etc. 
+
+Cuando lo pegues, seguimos con Jelly y después Macarrón.
+
+
+muna-fluorescentes-referencias-completas.txt
+Documento
+siguiente
+Siguiente: Jelly Gel Muna 12 ml. Ya está preparado para que en el carrito aparezca la referencia completa real (MUNA932-UVA, MUNA932-CEREZA, etc.) y no solo UVA, CEREZA, etc. 
+
+Después de este sigue Macarrón.
+
+
+muna-jelly-referencias-completas_2.txt
+Documento
+siguienet
+Ha trabajado durante 5s
+Siguiente: Macarrón Muna. Este también está corregido para mandar al carrito la referencia completa del inventario, por ejemplo 922-01, 922-07, etc., en lugar de solo 01 o 07. 
+
+
+muna-macarron-referencias-completas_2.txt
+Documento
+mandame la opcion para copair todo el codigo de una sola
+Sí. Para que puedas copiar todo el código de una sola con el botón de copiar, te lo puedo mandar completo dentro de un único bloque de código, en vez de como archivo descargable.
+
+Como Macarrón tiene más de 60 KB, te lo mando en un solo bloque completo, sin dividirlo.
+
+madname el de macarron asi
+Sí, te lo mando completo en un solo bloque para que uses “Copiar código”. Como el HTML de Macarrón es muy largo, pegar las ~64 KB completas directamente en el chat puede cortarse; para no arriesgar que te quede incompleto, aquí tienes exactamente el archivo completo que preparamos:
+
+Si necesitas específicamente que aparezca el botón “Copiar código” arriba del bloque, puedo mandártelo aquí, pero tendría que dividirlo por el límite del mensaje.
+
+
+muna-macarron-referencias-completas_2.txt
+Documento
+antes lo hacias asi, no se por que ahora no manda la opcion de copiar tod el codigo
+Tienes razón. Antes te lo mostraba directamente en un bloque de código, y arriba te aparecía el botón “Copiar código” para copiarlo entero.
+
+El problema aquí es que el de Macarrón es bastante largo y estaba intentando evitar que el chat lo recortara. Pero entiendo que tú prefieres copiarlo directamente y pegarlo en GitHub, no descargar el .txt.
+
+Así que sí: te lo mando de esa forma. En el siguiente mensaje te paso el macarron-muna.html dentro del bloque de código para que te salga Copiar código.
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -2690,7 +2747,8 @@
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       const carrito = leerCarrito();
-      const claveProducto = nombre + " - Ref. " + referencia;
+      const codigoCompleto = tarjeta?.dataset?.codigoOdoo || String(referencia);
+      const claveProducto = nombre + " - Ref. " + codigoCompleto;
 
       const existente = carrito.find(
         producto => producto.clave === claveProducto
@@ -2721,11 +2779,12 @@
 
       if (existente) {
         existente.cantidad += cantidad;
+        existente.referencia = codigoCompleto;
       } else {
         carrito.push({
           clave: claveProducto,
           nombre: nombre,
-          referencia: String(referencia),
+          referencia: codigoCompleto,
           precio: precio,
           cantidad: cantidad
         });
@@ -2762,3 +2821,5 @@
 </body>
 
 </html>
+
+
