@@ -1,0 +1,35 @@
+name: Corregir volver subcategorias Liquidos
+on:
+  push:
+    branches: [tmp-index-liquidos]
+permissions:
+  contents: write
+jobs:
+  corregir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Corregir botones volver
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          archivos=['removedores/removedores.html','preparadores/preparadores.html']
+          for nombre in archivos:
+              p=Path(nombre)
+              s=p.read_text(encoding='utf-8')
+              nuevo,n=re.subn(r'<a([^>]*?)href="\.\./index\.html"([^>]*?)>([^<]*VOLVER[^<]*)</a>',r'<a\1href="../liquidos.html"\2>\3</a>',s,count=1,flags=re.I)
+              if n!=1:
+                  raise SystemExit(f'No se encontró exactamente un botón VOLVER en {nombre}: {n}')
+              p.write_text(nuevo,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "Bella Shop Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add removedores/removedores.html preparadores/preparadores.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Liquidos: regresar subcategorias a pagina principal [skip ci]"
+          git push origin HEAD:main
