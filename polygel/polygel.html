@@ -25,20 +25,24 @@
 .filtro-btn{border:1px solid #e9b7c8;background:#fff;color:#765d65;border-radius:30px;padding:11px 22px;font-size:12px;font-weight:800;letter-spacing:.35px;cursor:pointer;transition:.2s ease;box-shadow:0 5px 14px rgba(91,52,65,.05)}
 .filtro-btn:hover{transform:translateY(-2px);border-color:#d94d7a;color:#d94d7a}
 .filtro-btn.activo{background:#e65385;border-color:#e65385;color:#fff;box-shadow:0 8px 18px rgba(230,83,133,.20)}
-.sin-resultados{display:none;max-width:680px;margin:10px auto 35px;padding:22px 18px;border:1px solid #f0dce3;border-radius:20px;background:#fff;color:#806870;font-size:14px;line-height:1.6}
-@media(max-width:600px){.filtros-productos{gap:8px;margin-bottom:26px}.filtro-btn{padding:10px 17px;font-size:11px}}
+.producto-filtro.oculto{display:none!important}
+.moldes-grid{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.molde-card{margin:0!important;padding:24px 18px!important}
+.molde-card .molde-img{display:block;width:100%;height:360px;object-fit:contain;background:#fff8fa;border:1px solid #f2dce4;border-radius:22px;margin:14px auto 18px}
+.molde-card .detalle-molde{font-size:13px;color:#765d65;line-height:1.7;margin:0 0 12px}
+@media(max-width:700px){.moldes-grid{grid-template-columns:1fr}.molde-card .molde-img{height:auto;max-height:none}.filtros-productos{gap:8px;margin-bottom:26px}.filtro-btn{padding:10px 17px;font-size:11px}}
 
 </style></head><body>
 <header><a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a><div class="acciones"><a class="btn" href="../index.html">← VOLVER</a><a class="btn" href="../index.html">INICIO</a><a class="btn pedido" href="../carrito.html">🛍️ MI PEDIDO</a></div></header>
 <section class="hero"><img class="cara" src="../imagenes/Cara logo bellashop.png" alt=""><div class="hero-in"><span class="tag">POLYGEL</span><h1>Polygel</h1><p>Dale forma a tus ideas con nuestros Polygel 💗✨ Elige tu tono favorito y crea uñas hermosas, resistentes y llenas de estilo.</p></div></section>
 <section class="contenido">
 <div class="filtros-productos" aria-label="Filtrar productos">
-<button type="button" class="filtro-btn activo" onclick="filtrarProductos('todos',this)">TODOS</button>
-<button type="button" class="filtro-btn" onclick="filtrarProductos('polygel',this)">POLYGEL</button>
-<button type="button" class="filtro-btn" onclick="filtrarProductos('moldes',this)">MOLDES</button>
+  <button type="button" class="filtro-btn activo" onclick="filtrarProductos('todos',this)">TODOS</button>
+  <button type="button" class="filtro-btn" onclick="filtrarProductos('polygel',this)">POLYGEL</button>
+  <button type="button" class="filtro-btn" onclick="filtrarProductos('moldes',this)">MOLDES</button>
 </div>
 <div id="productos-polygel"></div>
-<div id="sin-resultados-filtro" class="sin-resultados">Próximamente encontrarás aquí nuestros moldes disponibles. 💗</div>
+<div id="productos-moldes" class="moldes-grid"></div>
 </section>
 <section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p><a class="wa" href="https://wa.me/573122002698" target="_blank" rel="noopener noreferrer">ESCRÍBENOS POR WHATSAPP</a><div class="redes"><a class="red" href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw" aria-label="Instagram Bella Shop" title="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a class="red" href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr" aria-label="Facebook Bella Shop" title="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.2-1.5 1.6-1.5H17V4a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2V10H8v3h2.5v8h3.2Z"/></svg></a><a class="red" href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC" aria-label="TikTok Bella Shop" title="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 3c.4 2 1.6 3.3 3.6 3.8v3a8.2 8.2 0 0 1-3.6-1.1v6.1a6 6 0 1 1-5.2-6v3.1a3 3 0 1 0 2.2 2.9V3h3Z"/></svg></a></div><a class="ubicacion" href="https://www.google.com/maps/place/Bella+Shop/@2.4420044,-76.6123511,17z/data=!3m1!4b1!4m6!3m5!1s0x8e3003005f0a6057:0xc62c6717c94d513e!8m2!3d2.4420044!4d-76.6097762!16s%2Fg%2F11nb97qsp9?entry=ttu" target="_blank" rel="noopener noreferrer">Bella Shop · Popayán, Cauca</a></section>
 <footer>© Bella Shop · Tienda de Belleza</footer><script>
@@ -63,6 +67,15 @@ const grupos={
  "07":{codigo:"010504044",img:"imagenes/IMG_1448.PNG"},
  "03":{codigo:"010504040",img:"imagenes/IMG_1449.PNG"}}}
 };
+
+const moldes=[
+ {nombre:"Sandwich Nail Coffin Muna",ref:"MUNA-51",codigo:"MUNA-51",pcs:240,img:"imagenes/MUNA-51.png"},
+ {nombre:"Sandwich Nail Almond Muna",ref:"MUNA-50",codigo:"MUNA-50",pcs:240,img:"imagenes/MUNA-50.png"},
+ {nombre:"Sandwich Nail Coffin Queenight",ref:"010404001",codigo:"010404001",pcs:240,img:"imagenes/010404001.png"},
+ {nombre:"Sandwich Nail Square",ref:"DN4256",codigo:"DN4256",pcs:240,img:"imagenes/DN4256.png"},
+ {nombre:"Sandwich Nail Almond",ref:"CA4588",codigo:"CA4588",pcs:240,img:"imagenes/CA4588.png"}
+];
+
 const chics={
  "BLANCO":{"TUBO 15GR":"1174","POTE 30GR":"1178"},
  "CLEAR":{"TUBO 30GR":"1169","TUBO 15GR":"1173","POTE 30GR":"1177"},
@@ -82,7 +95,12 @@ function tarjetaChics(){
  return '<div class="marca"><img class="logo-marca" src="../imagenes/logo chics.png" alt="Logo Chic\'s Fashion"><h3>Polygel Chic\'s Fashion</h3><div class="chics-precios">Tubo 30 g: <b>$22.000</b> · Tubo 15 g: <b>$14.000</b> · Pote 30 g: <b>$22.000</b></div><div class="carrusel"><div class="fotos" id="carrusel-chics">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\'chics\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\'chics\',1)">›</button><div class="puntos" id="puntos-chics"></div></div><div class="selector"><div class="opciones-ref" id="opciones-tono-chics">'+Object.keys(chics).map(r=>'<button type="button" class="opcion-ref" onclick="elegirTonoChics(\''+r+'\',this)">'+r+'</button>').join("")+'</div><input type="hidden" id="tono-chics" value=""><div class="opciones-ref" id="opciones-pres-chics"></div><input type="hidden" id="pres-chics" value=""><div class="estado" id="estado-chics"></div><div class="cantidad bloqueada" id="cant-chics"><input type="number" min="1" value="1" id="qty-chics"><button class="agregar" onclick="agregarChics()">AGREGAR A MI PEDIDO</button></div><div class="mini-notificacion" id="notif-chics"></div></div></div>';
 }
 document.getElementById("productos-polygel").innerHTML=tarjetaSimple("muna",grupos.muna)+tarjetaSimple("canm",grupos.canm)+tarjetaChics()+tarjetaSimple("mara",grupos.mara)+tarjetaSimple("queenight",grupos.queenight);
-document.querySelectorAll("#productos-polygel > .marca").forEach(el=>el.dataset.categoria="polygel");
+document.querySelectorAll("#productos-polygel > .marca").forEach(el=>{
+ el.classList.add("producto-filtro");
+ el.dataset.categoria="polygel";
+});
+document.getElementById("productos-moldes").innerHTML=moldes.map((m,i)=>tarjetaMolde(m,i)).join("");
+
 actualizarPresentacionesChics();
 
 function elegirTonoChics(t,btn){document.getElementById("tono-chics").value=t;document.querySelectorAll("#opciones-tono-chics .opcion-ref").forEach(b=>b.classList.toggle("activa",b===btn));actualizarPresentacionesChics();}
@@ -93,7 +111,7 @@ function iniciarCarrusel(id){const el=document.getElementById("carrusel-"+id),p=
 function moverCarrusel(id,dir){const el=document.getElementById("carrusel-"+id);if(!el)return;const total=el.children.length,actual=Math.round(el.scrollLeft/el.clientWidth);let sig=actual+dir;if(sig<0)sig=total-1;if(sig>=total)sig=0;el.scrollTo({left:sig*el.clientWidth,behavior:"smooth"});}
 function irCarrusel(id,i){const el=document.getElementById("carrusel-"+id);if(el)el.scrollTo({left:i*el.clientWidth,behavior:"smooth"});}
 
-fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};["muna","canm","mara","queenight"].forEach(id=>{if(document.getElementById("ref-"+id).value)buscarSimple(id)});if(document.getElementById("tono-chics").value&&document.getElementById("pres-chics").value)buscarChics();});
+fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};["muna","canm","mara","queenight"].forEach(id=>{if(document.getElementById("ref-"+id).value)buscarSimple(id)});if(document.getElementById("tono-chics").value&&document.getElementById("pres-chics").value)buscarChics();moldes.forEach((_,i)=>buscarMolde(i));});
 function itemCodigo(codigo){return Object.values(inventario).find(x=>String(x.codigo).toUpperCase()===String(codigo).toUpperCase());}
 function estadoCantidad(id,tipo,stock){const q=document.getElementById("cant-"+id),inp=document.getElementById("qty-"+id);q.dataset.estado=tipo;q.classList.toggle("bloqueada",tipo!=="ok");if(stock>0){inp.max=stock;if(Number(inp.value)>stock)inp.value=stock;}else{inp.removeAttribute("max");inp.value=1;}}
 document.addEventListener("input",e=>{if(!e.target.matches('.cantidad input[type="number"]'))return;const max=Number(e.target.max);let v=Number(e.target.value);if(max>0&&v>max)e.target.value=max;if(v<1)e.target.value=1;});
@@ -106,17 +124,55 @@ function agregarSimple(id){const q=document.getElementById("cant-"+id),estado=q.
 function buscarChics(){const t=document.getElementById("tono-chics").value,p=document.getElementById("pres-chics").value,e=document.getElementById("estado-chics");if(!t||!p){e.className="estado";e.textContent="";estadoCantidad("chics","sin-seleccion",0);return}const codigo=chics[t][p];if(!codigo){e.className="estado no";e.textContent="CÓDIGO NO ENCONTRADO";estadoCantidad("chics","codigo",0);return}const it=itemCodigo(codigo);if(!it){e.className="estado no";e.textContent="CÓDIGO NO ENCONTRADO";estadoCantidad("chics","codigo",0);return}if(Number(it.disponible)<=0){e.className="estado no";e.textContent="TEMPORALMENTE NO DISPONIBLE";estadoCantidad("chics","agotado",0);return}e.className="estado ok";e.textContent="DISPONIBLE · "+it.disponible+" unidades · "+money(preciosChics[p]);estadoCantidad("chics","ok",Number(it.disponible));}
 function agregarChics(){const q=document.getElementById("cant-chics"),estado=q.dataset.estado;if(estado!=="ok"){notificar("chics",estado==="codigo"?"CÓDIGO NO ENCONTRADO":estado==="agotado"?"PRODUCTO TEMPORALMENTE AGOTADO":"ELIGE EL TONO Y LA PRESENTACIÓN");return}const t=document.getElementById("tono-chics").value,p=document.getElementById("pres-chics").value,codigo=t&&p&&chics[t][p],it=codigo&&itemCodigo(codigo);if(!it||Number(it.disponible)<=0){notificar("chics","PRODUCTO TEMPORALMENTE AGOTADO");return}let qty=Math.max(1,Number(document.getElementById("qty-chics").value)||1);qty=Math.min(qty,Number(it.disponible));agregar("Polygel Chic's Fashion "+t+" "+p,t+" · "+p,codigo,preciosChics[p],"imagenes/"+fotosChics[t],qty,"chics");}
 
+function tarjetaMolde(m,i){
+ const id="molde-"+i;
+ return '<div class="marca molde-card producto-filtro" data-categoria="moldes">'
+  +'<h3>'+m.nombre+'</h3>'
+  +'<div class="precio" id="precio-'+id+'">Precio según inventario</div>'
+  +'<img class="molde-img" src="'+m.img+'" alt="'+m.nombre+'">'
+  +'<div class="detalle-molde"><b>REF. '+m.ref+'</b> · '+m.pcs+' PCS</div>'
+  +'<div class="estado" id="estado-'+id+'"></div>'
+  +'<div class="cantidad bloqueada" id="cant-'+id+'">'
+  +'<input type="number" min="1" value="1" id="qty-'+id+'">'
+  +'<button class="agregar" onclick="agregarMolde('+i+')">AGREGAR A MI PEDIDO</button>'
+  +'</div><div class="mini-notificacion" id="notif-'+id+'"></div></div>';
+}
+
 function filtrarProductos(filtro,btn){
  document.querySelectorAll(".filtro-btn").forEach(b=>b.classList.toggle("activo",b===btn));
- const productos=[...document.querySelectorAll("#productos-polygel > .marca")];
- let visibles=0;
- productos.forEach(producto=>{
-   const mostrar=filtro==="todos"||producto.dataset.categoria===filtro;
-   producto.style.display=mostrar?"":"none";
-   if(mostrar)visibles++;
+ document.querySelectorAll(".producto-filtro").forEach(producto=>{
+   producto.classList.toggle("oculto",filtro!=="todos"&&producto.dataset.categoria!==filtro);
  });
- const vacio=document.getElementById("sin-resultados-filtro");
- if(vacio)vacio.style.display=visibles===0?"block":"none";
+}
+
+function buscarMolde(i){
+ const m=moldes[i],id="molde-"+i,e=document.getElementById("estado-"+id),p=document.getElementById("precio-"+id);
+ const it=itemCodigo(m.codigo);
+ if(!it){
+   p.textContent="Precio según inventario";
+   e.className="estado no";e.textContent="CÓDIGO NO ENCONTRADO";
+   estadoCantidad(id,"codigo",0);return;
+ }
+ p.textContent=m.pcs+" PCS · "+money(it.precio_venta);
+ if(Number(it.disponible)<=0){
+   e.className="estado no";e.textContent="TEMPORALMENTE NO DISPONIBLE";
+   estadoCantidad(id,"agotado",0);return;
+ }
+ e.className="estado ok";e.textContent="DISPONIBLE · "+it.disponible+" unidades";
+ estadoCantidad(id,"ok",Number(it.disponible));
+}
+
+function agregarMolde(i){
+ const m=moldes[i],id="molde-"+i,q=document.getElementById("cant-"+id),estado=q.dataset.estado;
+ if(estado!=="ok"){
+   notificar(id,estado==="codigo"?"CÓDIGO NO ENCONTRADO":estado==="agotado"?"PRODUCTO TEMPORALMENTE AGOTADO":"PRODUCTO NO DISPONIBLE");
+   return;
+ }
+ const it=itemCodigo(m.codigo);
+ if(!it||Number(it.disponible)<=0){notificar(id,"PRODUCTO TEMPORALMENTE AGOTADO");return}
+ let qty=Math.max(1,Number(document.getElementById("qty-"+id).value)||1);
+ qty=Math.min(qty,Number(it.disponible));
+ agregar(m.nombre+" "+m.pcs+" PCS",m.ref,m.codigo,Number(it.precio_venta),m.img,qty,id);
 }
 
 </script></body></html>
