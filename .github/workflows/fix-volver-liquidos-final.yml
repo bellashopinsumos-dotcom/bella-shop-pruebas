@@ -1,0 +1,49 @@
+name: Corregir volver a Liquidos
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-volver-liquidos-final.yml'
+permissions:
+  contents: write
+jobs:
+  corregir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Corregir enlaces VOLVER
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # Removedores: cambiar solo el primer enlace VOLVER del header.
+          p = Path('removedores/removedores.html')
+          s = p.read_text(encoding='utf-8')
+          old = '<a class="btn" href="../index.html">← VOLVER</a>'
+          new = '<a class="btn" href="../liquidos.html">← VOLVER</a>'
+          if old not in s:
+              raise SystemExit('No se encontró el botón VOLVER en Removedores')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+
+          # Preparadores: cambiar únicamente el href del botón con clase boton-volver.
+          p = Path('preparadores/preparadores.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''<a
+        href="../index.html"
+        class="boton-header boton-volver"'''
+          new = '''<a
+        href="../liquidos.html"
+        class="boton-header boton-volver"'''
+          if old not in s:
+              raise SystemExit('No se encontró el botón VOLVER en Preparadores')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Guardar cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add removedores/removedores.html preparadores/preparadores.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Corregir botones Volver hacia Liquidos"
+          git push
