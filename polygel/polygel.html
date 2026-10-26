@@ -171,11 +171,11 @@ let inventario={};
 const money=n=>"$"+Number(n).toLocaleString("es-CO");
 function tarjetaSimple(id,g){
  const fotos=Object.entries(g.refs).map(([r,x])=>'<div class="foto-item"><img src="'+x.img+'" alt="Polygel '+g.marca+' '+r+'"><b>REF. '+r+'</b></div>').join("");
- const logos={muna:"../imagenes/logo muna.png",canm:"../imagenes/logo-canm.png",mara:"../imagenes/logo mara.webp",queenight:"../imagenes/logo queenigth.png"}; const opciones=true?'<div class="opciones-ref" id="opciones-'+id+'">'+Object.keys(g.refs).map(r=>'<button type="button" class="opcion-ref" onclick="elegirRef(\''+id+'\',\''+r+'\',this)">'+r+'</button>').join("")+'</div><input type="hidden" id="ref-'+id+'" value="">':'<select id="ref-'+id+'" onchange="buscarSimple(\''+id+'\')"><option value="">Elige tu referencia</option>'+Object.keys(g.refs).map(r=>'<option>'+r+'</option>').join("")+'</select>'; return '<div class="marca"><img class="logo-marca" src="'+logos[id]+'" alt="Logo '+g.marca+'"><h3>Polygel '+g.marca+'</h3><div class="precio">30 g · '+money(g.precio)+'</div><div class="carrusel"><div class="fotos" id="carrusel-'+id+'">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\''+id+'\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\''+id+'\',1)">›</button><div class="puntos" id="puntos-'+id+'"></div></div><div class="selector">'+opciones+'<div class="estado" id="estado-'+id+'"></div><div class="cantidad bloqueada" id="cant-'+id+'"><input type="number" min="1" value="1" id="qty-'+id+'"><button class="agregar" onclick="agregarSimple(\''+id+'\')">AGREGAR A MI PEDIDO</button></div><div class="mini-notificacion" id="notif-'+id+'"></div></div></div>';
+ const logos={muna:"../imagenes/logo muna.png",canm:"../imagenes/logo-canm.png",mara:"../imagenes/logo mara.webp",queenight:"../imagenes/logo queenigth.png"}; const opciones=true?'<div class="opciones-ref" id="opciones-'+id+'">'+Object.keys(g.refs).map(r=>'<button type="button" class="opcion-ref" onclick="elegirRef(\''+id+'\',\''+r+'\',this)">'+r+'</button>').join("")+'</div><input type="hidden" id="ref-'+id+'" value="">':'<select id="ref-'+id+'" onchange="buscarSimple(\''+id+'\')"><option value="">Elige tu referencia</option>'+Object.keys(g.refs).map(r=>'<option>'+r+'</option>').join("")+'</select>'; return '<div class="marca"><img class="logo-marca" src="'+logos[id]+'" alt="Logo '+g.marca+'"><h3>Polygel '+g.marca+'</h3><div class="precio">30 g · '+money(g.precio)+'</div><div class="carrusel"><div class="fotos" id="carrusel-'+id+'">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\''+id+'\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\''+id+'\',1)">›</button><div class="puntos" id="puntos-'+id+'"></div></div><div class="selector">'+opciones+'<div class="estado" id="estado-'+id+'"></div><div class="cantidad bloqueada" id="cant-'+id+'"><input type="number" min="1" value="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()" id="qty-'+id+'"><button class="agregar" onclick="agregarSimple(\''+id+'\')">AGREGAR A MI PEDIDO</button></div><div class="mini-notificacion" id="notif-'+id+'"></div></div></div>';
 }
 function tarjetaChics(){
  const fotos=Object.entries(fotosChics).map(([r,img])=>'<div class="foto-item"><img src="imagenes/'+img+'" alt="Polygel Chic\'s '+r+'"><b>'+r+'</b></div>').join("");
- return '<div class="marca"><img class="logo-marca" src="../imagenes/logo chics.png" alt="Logo Chic\'s Fashion"><h3>Polygel Chic\'s Fashion</h3><div class="chics-precios">Tubo 30 g: <b>$22.000</b> · Tubo 15 g: <b>$14.000</b> · Pote 30 g: <b>$22.000</b></div><div class="carrusel"><div class="fotos" id="carrusel-chics">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\'chics\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\'chics\',1)">›</button><div class="puntos" id="puntos-chics"></div></div><div class="selector"><div class="opciones-ref" id="opciones-tono-chics">'+Object.keys(chics).map(r=>'<button type="button" class="opcion-ref" onclick="elegirTonoChics(\''+r+'\',this)">'+r+'</button>').join("")+'</div><input type="hidden" id="tono-chics" value=""><div class="opciones-ref" id="opciones-pres-chics"></div><input type="hidden" id="pres-chics" value=""><div class="estado" id="estado-chics"></div><div class="cantidad bloqueada" id="cant-chics"><input type="number" min="1" value="1" id="qty-chics"><button class="agregar" onclick="agregarChics()">AGREGAR A MI PEDIDO</button></div><div class="mini-notificacion" id="notif-chics"></div></div></div>';
+ return '<div class="marca"><img class="logo-marca" src="../imagenes/logo chics.png" alt="Logo Chic\'s Fashion"><h3>Polygel Chic\'s Fashion</h3><div class="chics-precios">Tubo 30 g: <b>$22.000</b> · Tubo 15 g: <b>$14.000</b> · Pote 30 g: <b>$22.000</b></div><div class="carrusel"><div class="fotos" id="carrusel-chics">'+fotos+'</div><button class="flecha izq" onclick="moverCarrusel(\'chics\',-1)">‹</button><button class="flecha der" onclick="moverCarrusel(\'chics\',1)">›</button><div class="puntos" id="puntos-chics"></div></div><div class="selector"><div class="opciones-ref" id="opciones-tono-chics">'+Object.keys(chics).map(r=>'<button type="button" class="opcion-ref" onclick="elegirTonoChics(\''+r+'\',this)">'+r+'</button>').join("")+'</div><input type="hidden" id="tono-chics" value=""><div class="opciones-ref" id="opciones-pres-chics"></div><input type="hidden" id="pres-chics" value=""><div class="estado" id="estado-chics"></div><div class="cantidad bloqueada" id="cant-chics"><input type="number" min="1" value="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()" id="qty-chics"><button class="agregar" onclick="agregarChics()">AGREGAR A MI PEDIDO</button></div><div class="mini-notificacion" id="notif-chics"></div></div></div>';
 }
 document.getElementById("productos-polygel").innerHTML=tarjetaSimple("muna",grupos.muna)+tarjetaSimple("canm",grupos.canm)+tarjetaChics()+tarjetaSimple("mara",grupos.mara)+tarjetaSimple("queenight",grupos.queenight);
 document.querySelectorAll("#productos-polygel > .marca").forEach(el=>{
@@ -229,7 +229,7 @@ function tarjetaLiquidoMoldeador(m,i){
   +'<div class="detalle-molde"><b>REF. '+m.ref+'</b> · '+m.ml+'</div>'
   +'<div class="estado" id="estado-'+id+'"></div>'
   +'<div class="cantidad bloqueada" id="cant-'+id+'">'
-  +'<input type="number" min="1" value="1" id="qty-'+id+'">'
+  +'<input type="number" min="1" value="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()" id="qty-'+id+'">'
   +'<button class="agregar" onclick="agregarLiquidoMoldeador('+i+')">AGREGAR A MI PEDIDO</button>'
   +'</div><div class="mini-notificacion" id="notif-'+id+'"></div></div>';
 }
@@ -274,7 +274,7 @@ function tarjetaMolde(m,i){
   +'<div class="detalle-molde"><b>REF. '+m.ref+'</b> · '+m.pcs+' PCS</div>'
   +'<div class="estado" id="estado-'+id+'"></div>'
   +'<div class="cantidad bloqueada" id="cant-'+id+'">'
-  +'<input type="number" min="1" value="1" id="qty-'+id+'">'
+  +'<input type="number" min="1" value="1" inputmode="numeric" pattern="[0-9]*" onfocus="this.select()" id="qty-'+id+'">'
   +'<button class="agregar" onclick="agregarMolde('+i+')">AGREGAR A MI PEDIDO</button>'
   +'</div><div class="mini-notificacion" id="notif-'+id+'"></div></div>';
 }
@@ -315,5 +315,35 @@ function agregarMolde(i){
  qty=Math.min(qty,Number(it.disponible));
  agregar(m.nombre+" "+m.pcs+" PCS",m.ref,m.codigo,Number(it.precio_venta),m.img,qty,id);
 }
+
+
+function normalizarCantidad(input){
+ const contenedor=input.closest(".cantidad");
+ const max=Number(contenedor?.dataset.max||0);
+ let valor=String(input.value||"").trim();
+
+ if(valor===""){
+   input.value=1;
+   return;
+ }
+
+ let cantidad=parseInt(valor,10);
+ if(!Number.isFinite(cantidad)||cantidad<1)cantidad=1;
+ if(max>0&&cantidad>max)cantidad=max;
+ input.value=cantidad;
+}
+
+document.addEventListener("focusout",function(e){
+ if(e.target&&e.target.matches('.cantidad input[type="number"]')){
+   normalizarCantidad(e.target);
+ }
+});
+
+document.addEventListener("keydown",function(e){
+ if(e.target&&e.target.matches('.cantidad input[type="number"]')&&e.key==="Enter"){
+   normalizarCantidad(e.target);
+   e.target.blur();
+ }
+});
 
 </script></body></html>
