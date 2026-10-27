@@ -1,0 +1,30 @@
+name: Fix removedores volver
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-removedores-volver-temp.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Corregir botón VOLVER
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('removedores/removedores.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('href="../liquidos.html">← VOLVER</a>', 'href="/bella-shop-pruebas/liquidos.html">← VOLVER</a>', 1)
+          s=s.replace('href="../index.html">← VOLVER</a>', 'href="/bella-shop-pruebas/liquidos.html">← VOLVER</a>', 1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Guardar y eliminar temporal
+        run: |
+          rm -f .github/workflows/fix-removedores-volver-temp.yml
+          git config user.name "bellashopinsumos-dotcom"
+          git config user.email "bellashopinsumos@gmail.com"
+          git add removedores/removedores.html .github/workflows/fix-removedores-volver-temp.yml
+          git commit -m "Arreglar botón volver de Removedores hacia Líquidos"
+          git push
