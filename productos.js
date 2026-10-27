@@ -1,3 +1,31 @@
+/* =========================================================
+   ÍNDICE OFICIAL DE PRODUCTOS PUBLICADOS · BELLA SHOP
+   Solo se agregan aquí productos que ya tienen una página real
+   dentro del catálogo. inventario.json sigue siendo la fuente de
+   precio, stock y códigos.
+   ========================================================= */
+const productosPublicados = [
+  {
+    id: "muna-12ml-carta-colores",
+    nombre: "Esmalte Semipermanente Muna 12 ml",
+    categoria: "Esmaltes",
+    subcategoria: "Semipermanente",
+    marca: "Muna",
+    presentacion: "12 ml",
+    url: "carta-colores-muna12ml.html",
+    referencias: [
+      "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+      "17","18","19","20","22","24","25","26","27","28","29","30","31","34","35",
+      "36","37","38","39","43","45","46","47","48","49","50","51","52","53","54","55",
+      "56","57","58","59","60","61","62","63","64","65","66"
+    ],
+    palabrasClave: [
+      "muna","esmalte muna","semipermanente muna","muna 12 ml","muna 12ml","carta de colores muna"
+    ]
+  }
+];
+
+/* ===== LISTADO ANTIGUO: se conserva para no romper funciones existentes ===== */
 const productos = [
   {
     id: "gel-saturacion-queenigth",
@@ -7,13 +35,7 @@ const productos = [
     subcategoria: "Gel de Saturación",
     marca: "Queenigth",
     imagen: "imagenes/Captura de pantalla 2026-09-10 144809.png",
-
-    referencias: [
-      "Rose Gold",
-      "Champagne Gold",
-      "Gold",
-      "Silver"
-    ]
+    referencias: ["Rose Gold","Champagne Gold","Gold","Silver"]
   }
 ];
 
