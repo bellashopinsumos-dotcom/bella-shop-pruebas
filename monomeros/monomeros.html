@@ -9,83 +9,26 @@
 </style>
 </head>
 <body>
-<header>
-<a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a>
-<div class="acciones"><a class="btn-head" href="../index.html">INICIO</a><a class="btn-head btn-pedido" href="../carrito.html">MI PEDIDO</a></div>
-</header>
+<header><a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a><div class="acciones"><a class="btn-head" href="../index.html">INICIO</a><a class="btn-head btn-pedido" href="../carrito.html">MI PEDIDO</a></div></header>
 <section class="hero"><div><h1>Monómeros</h1><p>Escoge la presentación que necesitas. El precio, la referencia y las existencias cambian automáticamente según la opción seleccionada.</p></div></section>
-<section class="seccion"><div class="grid" id="grid"></div></section>
-<footer><div>Bella Shop</div><div class="footer-sub">Tienda de Belleza · Popayán, Cauca</div></footer>
-<div class="toast" id="toast">Producto agregado 💕</div>
+<section class="seccion"><div class="grid" id="grid"></div></section><footer><div>Bella Shop</div><div class="footer-sub">Tienda de Belleza · Popayán, Cauca</div></footer><div class="toast" id="toast">Producto agregado 💕</div>
 <script>
 const productosMonomero=[
- {nombre:"Monómero Latin Nails",marca:"Latin Nails",imagen:"imagenes/monomero-latin.png",clave:"monomero-latin",opciones:[
-  {ml:"70 ml",codigo:"7709942803030",precio:25000},
-  {ml:"140 ml",codigo:"7709942803085",precio:44000}
- ]},
- {nombre:"Retention Latin Nails",marca:"Latin Nails",imagen:"imagenes/retenedores-latin.png",clave:"retention-latin",opciones:[
-  {ml:"70 ml",codigo:"7702786000290",precio:31300},
-  {ml:"140 ml",codigo:"7702786000306",precio:57500}
- ]},
- {nombre:"Monómero Cloe",marca:"Cloe",imagen:"imagenes/monomero-cloe.png",clave:"monomero-cloe",opciones:[
-  {ml:"60 ml",codigo:"MEMA60",precio:26000},
-  {ml:"120 ml",codigo:"MEMA120",precio:49500}
- ]}
+ {nombre:"Monómero Latin Nails",marca:"Latin Nails",imagen:"imagenes/monomero-latin.png",clave:"monomero-latin",opciones:[{ml:"70 ml",codigo:"7709942803030",precio:25000},{ml:"140 ml",codigo:"7709942803085",precio:44000}]},
+ {nombre:"Retention Latin Nails",marca:"Latin Nails",imagen:"imagenes/retenedores-latin.png",clave:"retention-latin",opciones:[{ml:"70 ml",codigo:"7702786000290",precio:31300},{ml:"140 ml",codigo:"7702786000306",precio:57500}]},
+ {nombre:"Monómero Cloe",marca:"Cloe",imagen:"imagenes/mono-cloe.png",clave:"monomero-cloe",opciones:[{ml:"60 ml",codigo:"MEMA60",precio:26000},{ml:"120 ml",codigo:"MEMA120",precio:49500}]},
+ {nombre:"Monómero Mia Secret",marca:"Mia Secret",imagen:"imagenes/monomero-mia.png",clave:"monomero-mia",opciones:[{ml:"118 ml",codigo:"LM230",precio:68500},{ml:"240 ml",codigo:"LM240",precio:127000}]},
+ {nombre:"Monómero Muna",marca:"Muna",imagen:"imagenes/monomero-muna.png",clave:"monomero-muna",opciones:[{ml:"60 ml",codigo:"MON0152",precio:28000},{ml:"130 ml",codigo:"MON0190",precio:49500}]},
+ {nombre:"Monómero CANM",marca:"CANM",imagen:"imagenes/monomero-canm.png",clave:"monomero-canm",opciones:[{ml:"70 ml",codigo:"7709544892692",precio:29900},{ml:"130 ml",codigo:"7709544892708",precio:53500},{ml:"250 ml",codigo:"7709544892715",precio:91400}]}
 ];
 const dinero=v=>"$"+Number(v).toLocaleString("es-CO");
-function buscarProducto(productos,codigo){
- codigo=String(codigo||"").trim();
- if(productos[codigo])return productos[codigo];
- return Object.values(productos||{}).find(p=>
-  String(p.codigo||"").trim()===codigo||
-  String(p.codigo_original_odoo||"").trim()===codigo||
-  String(p.referencia_interna||"").trim()===codigo||
-  String(p.codigo_barras||"").trim()===codigo
- )||null;
-}
+function buscarProducto(productos,codigo){codigo=String(codigo||"").trim();if(productos[codigo])return productos[codigo];return Object.values(productos||{}).find(p=>String(p.codigo||"").trim()===codigo||String(p.codigo_original_odoo||"").trim()===codigo||String(p.referencia_interna||"").trim()===codigo||String(p.codigo_barras||"").trim()===codigo)||null}
 function opcionActual(t,g){return g.opciones[Number(t.dataset.opcion)||0]}
-function crearTarjetas(){
- const grid=document.getElementById("grid");
- productosMonomero.forEach((g,gi)=>{
-  const t=document.createElement("article");
-  t.className="producto";t.dataset.grupo=gi;t.dataset.opcion=0;t.dataset.stock=0;t.dataset.encontrado="false";
-  const botones=g.opciones.map((o,i)=>`<button type="button" class="presentacion-btn${i===0?' activa':''}" data-opcion="${i}">${o.ml}</button>`).join("");
-  t.innerHTML=`<div class="imagen"><img src="${g.imagen}" alt="${g.nombre}" loading="lazy"><span class="badge">CONSULTANDO...</span></div><div class="info"><div class="tipo">MONÓMEROS · ACRÍLICO</div><h3>${g.nombre}</h3><div class="titulo-presentacion">ESCOGE LA PRESENTACIÓN</div><div class="presentaciones">${botones}</div><div class="ref"></div><div class="precio"></div><div class="unidad">Precio por unidad</div><div class="stock"></div><div class="no-disponible-bloque">TEMPORALMENTE NO DISPONIBLE</div><div class="cantidad-titulo">CANTIDAD</div><div class="cantidad-control"><button type="button" class="menos" disabled>−</button><input type="number" class="cantidad" value="1" min="1" disabled><button type="button" class="mas" disabled>+</button></div><div class="total"><span>Total</span><strong></strong></div><button type="button" class="agregar" disabled>AGREGAR AL PEDIDO</button></div>`;
-  grid.appendChild(t);preparar(t,g);
- });
-}
-function pintar(t,g){
- const o=opcionActual(t,g),p=o._producto||null,badge=t.querySelector('.badge'),stockTxt=t.querySelector('.stock'),bloque=t.querySelector('.no-disponible-bloque'),input=t.querySelector('.cantidad'),menos=t.querySelector('.menos'),mas=t.querySelector('.mas'),agregar=t.querySelector('.agregar');
- t.querySelectorAll('.presentacion-btn').forEach((b,i)=>b.classList.toggle('activa',i===Number(t.dataset.opcion)));
- t.querySelector('.ref').textContent='Ref. '+o.codigo;t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio);input.value='1';
- if(!p){t.dataset.stock=0;t.dataset.encontrado='false';t.classList.add('no-disponible');badge.textContent='CÓDIGO NO ENCONTRADO';stockTxt.textContent='';bloque.textContent='CÓDIGO NO ENCONTRADO';menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return;}
- o.precio=Number(p.precio_venta)||o.precio;const stock=Math.max(0,Math.floor(Number(p.disponible)||0));t.dataset.stock=stock;t.dataset.encontrado='true';t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio);
- if(stock<=0){t.classList.add('no-disponible');badge.textContent='NO DISPONIBLE';stockTxt.textContent='';bloque.textContent='TEMPORALMENTE NO DISPONIBLE';menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return;}
- t.classList.remove('no-disponible');badge.textContent='DISPONIBLE';stockTxt.textContent='Disponibles: '+stock;input.max=stock;menos.disabled=mas.disabled=input.disabled=agregar.disabled=false;
-}
-function preparar(t,g){
- const input=t.querySelector('.cantidad');
- t.querySelectorAll('.presentacion-btn').forEach(b=>b.onclick=()=>{t.dataset.opcion=b.dataset.opcion;pintar(t,g)});
- function total(normalizar=false){
-  const o=opcionActual(t,g),stock=Number(t.dataset.stock)||0;
-  if(input.value===''&&!normalizar){t.querySelector('.total strong').textContent=dinero(0);return;}
-  let n=parseInt(input.value);if(!Number.isFinite(n)||n<1)n=1;if(stock>0)n=Math.min(n,stock);if(normalizar)input.value=n;t.querySelector('.total strong').textContent=dinero(o.precio*n);
- }
- t.querySelector('.menos').onclick=()=>{let n=parseInt(input.value)||1;if(n>1){input.value=n-1;total(true)}};
- t.querySelector('.mas').onclick=()=>{let n=parseInt(input.value)||1,stock=Number(t.dataset.stock)||0;if(n<stock){input.value=n+1;total(true)}};
- input.oninput=()=>total(false);input.onblur=()=>total(true);
- t.querySelector('.agregar').onclick=()=>agregar(t,g);
- const o=opcionActual(t,g);t.querySelector('.ref').textContent='Ref. '+o.codigo;t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio);
-}
-async function cargarInventario(){
- try{const r=await fetch('../inventario.json?actualizacion='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Inventario');const datos=await r.json(),productos=datos.productos||{};productosMonomero.forEach(g=>g.opciones.forEach(o=>o._producto=buscarProducto(productos,o.codigo)));document.querySelectorAll('.producto').forEach(t=>pintar(t,productosMonomero[Number(t.dataset.grupo)]));}catch(e){console.error(e);document.querySelectorAll('.producto').forEach(t=>pintar(t,productosMonomero[Number(t.dataset.grupo)]));}
-}
+function crearTarjetas(){const grid=document.getElementById("grid");productosMonomero.forEach((g,gi)=>{const t=document.createElement("article");t.className="producto";t.dataset.grupo=gi;t.dataset.opcion=0;t.dataset.stock=0;t.dataset.encontrado="false";const botones=g.opciones.map((o,i)=>`<button type="button" class="presentacion-btn${i===0?' activa':''}" data-opcion="${i}">${o.ml}</button>`).join("");t.innerHTML=`<div class="imagen"><img src="${g.imagen}" alt="${g.nombre}" loading="lazy"><span class="badge">CONSULTANDO...</span></div><div class="info"><div class="tipo">MONÓMEROS · ACRÍLICO</div><h3>${g.nombre}</h3><div class="titulo-presentacion">ESCOGE LA PRESENTACIÓN</div><div class="presentaciones">${botones}</div><div class="ref"></div><div class="precio"></div><div class="unidad">Precio por unidad</div><div class="stock"></div><div class="no-disponible-bloque">TEMPORALMENTE NO DISPONIBLE</div><div class="cantidad-titulo">CANTIDAD</div><div class="cantidad-control"><button type="button" class="menos" disabled>−</button><input type="number" class="cantidad" value="1" min="1" disabled><button type="button" class="mas" disabled>+</button></div><div class="total"><span>Total</span><strong></strong></div><button type="button" class="agregar" disabled>AGREGAR AL PEDIDO</button></div>`;grid.appendChild(t);preparar(t,g)})}
+function pintar(t,g){const o=opcionActual(t,g),p=o._producto||null,badge=t.querySelector('.badge'),stockTxt=t.querySelector('.stock'),bloque=t.querySelector('.no-disponible-bloque'),input=t.querySelector('.cantidad'),menos=t.querySelector('.menos'),mas=t.querySelector('.mas'),agregar=t.querySelector('.agregar');t.querySelectorAll('.presentacion-btn').forEach((b,i)=>b.classList.toggle('activa',i===Number(t.dataset.opcion)));t.querySelector('.ref').textContent='Ref. '+o.codigo;t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio);input.value='1';if(!p){t.dataset.stock=0;t.dataset.encontrado='false';t.classList.add('no-disponible');badge.textContent='CÓDIGO NO ENCONTRADO';stockTxt.textContent='';bloque.textContent='CÓDIGO NO ENCONTRADO';menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return}o.precio=Number(p.precio_venta)||o.precio;const stock=Math.max(0,Math.floor(Number(p.disponible)||0));t.dataset.stock=stock;t.dataset.encontrado='true';t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio);if(stock<=0){t.classList.add('no-disponible');badge.textContent='NO DISPONIBLE';stockTxt.textContent='';bloque.textContent='TEMPORALMENTE NO DISPONIBLE';menos.disabled=mas.disabled=input.disabled=agregar.disabled=true;return}t.classList.remove('no-disponible');badge.textContent='DISPONIBLE';stockTxt.textContent='Disponibles: '+stock;input.max=stock;menos.disabled=mas.disabled=input.disabled=agregar.disabled=false}
+function preparar(t,g){const input=t.querySelector('.cantidad');t.querySelectorAll('.presentacion-btn').forEach(b=>b.onclick=()=>{t.dataset.opcion=b.dataset.opcion;pintar(t,g)});function total(normalizar=false){const o=opcionActual(t,g),stock=Number(t.dataset.stock)||0;if(input.value===''&&!normalizar){t.querySelector('.total strong').textContent=dinero(0);return}let n=parseInt(input.value);if(!Number.isFinite(n)||n<1)n=1;if(stock>0)n=Math.min(n,stock);if(normalizar)input.value=n;t.querySelector('.total strong').textContent=dinero(o.precio*n)}t.querySelector('.menos').onclick=()=>{let n=parseInt(input.value)||1;if(n>1){input.value=n-1;total(true)}};t.querySelector('.mas').onclick=()=>{let n=parseInt(input.value)||1,stock=Number(t.dataset.stock)||0;if(n<stock){input.value=n+1;total(true)}};input.oninput=()=>total(false);input.onblur=()=>total(true);t.querySelector('.agregar').onclick=()=>agregar(t,g);const o=opcionActual(t,g);t.querySelector('.ref').textContent='Ref. '+o.codigo;t.querySelector('.precio').textContent=dinero(o.precio);t.querySelector('.total strong').textContent=dinero(o.precio)}
+async function cargarInventario(){try{const r=await fetch('../inventario.json?actualizacion='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Inventario');const datos=await r.json(),productos=datos.productos||{};productosMonomero.forEach(g=>g.opciones.forEach(o=>o._producto=buscarProducto(productos,o.codigo)));document.querySelectorAll('.producto').forEach(t=>pintar(t,productosMonomero[Number(t.dataset.grupo)]))}catch(e){console.error(e);document.querySelectorAll('.producto').forEach(t=>pintar(t,productosMonomero[Number(t.dataset.grupo)]))}}
 function carrito(){try{const c=JSON.parse(localStorage.getItem('bellaShopCarrito'));return Array.isArray(c)?c:[]}catch(e){return[]}}
-function agregar(t,g){
- const o=opcionActual(t,g),stock=Number(t.dataset.stock)||0;if(t.dataset.encontrado!=='true')return toast('Código no encontrado en inventario.');if(stock<=0)return toast('Producto temporalmente no disponible.');const input=t.querySelector('.cantidad');let cantidad=Math.max(1,parseInt(input.value)||1),c=carrito(),clave=g.clave+'-'+String(o.codigo).toLowerCase(),ex=c.find(x=>x.clave===clave),actual=ex?Number(ex.cantidad)||0:0,disp=stock-actual;if(disp<=0)return toast('Ya tienes todas las unidades disponibles en tu pedido. 💕');cantidad=Math.min(cantidad,disp);if(ex)ex.cantidad=actual+cantidad;else c.push({clave,nombre:g.nombre+' '+o.ml,referencia:o.codigo,precio:o.precio,cantidad,imagen:'monomeros/'+g.imagen,tipo:'individual'});localStorage.setItem('bellaShopCarrito',JSON.stringify(c));input.value='1';t.querySelector('.total strong').textContent=dinero(o.precio);toast(g.nombre+' '+o.ml+' agregado 💕');
-}
-let tm;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('mostrar');clearTimeout(tm);tm=setTimeout(()=>t.classList.remove('mostrar'),2200)}
-crearTarjetas();cargarInventario();
-</script>
-</body>
-</html>
+function agregar(t,g){const o=opcionActual(t,g),stock=Number(t.dataset.stock)||0;if(t.dataset.encontrado!=='true')return toast('Código no encontrado en inventario.');if(stock<=0)return toast('Producto temporalmente no disponible.');const input=t.querySelector('.cantidad');let cantidad=Math.max(1,parseInt(input.value)||1),c=carrito(),clave=g.clave+'-'+String(o.codigo).toLowerCase(),ex=c.find(x=>x.clave===clave),actual=ex?Number(ex.cantidad)||0:0,disp=stock-actual;if(disp<=0)return toast('Ya tienes todas las unidades disponibles en tu pedido. 💕');cantidad=Math.min(cantidad,disp);if(ex)ex.cantidad=actual+cantidad;else c.push({clave,nombre:g.nombre+' '+o.ml,referencia:o.codigo,precio:o.precio,cantidad,imagen:'monomeros/'+g.imagen,tipo:'individual'});localStorage.setItem('bellaShopCarrito',JSON.stringify(c));input.value='1';t.querySelector('.total strong').textContent=dinero(o.precio);toast(g.nombre+' '+o.ml+' agregado 💕')}
+let tm;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('mostrar');clearTimeout(tm);tm=setTimeout(()=>t.classList.remove('mostrar'),2200)}crearTarjetas();cargarInventario();
+</script></body></html>
