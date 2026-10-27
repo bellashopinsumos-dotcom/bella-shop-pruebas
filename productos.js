@@ -42,14 +42,14 @@ const productos = [
     /* Base y Top */
     "base-coat.html","base-rubber.html","base-rubber-color.html","base-rubber-transparente.html","top-coat.html","top-matte.html",
 
-    /* Gel Nail Art */
-    "gel-nail-art/gel-metalizado.html","gel-nail-art/gel-saturacion.html","gel-nail-art/painting-gel.html","gel-nail-art/spider-gel.html",
+    /* Geles */
+    "geles/geles.html","gel-nail-art/gel-metalizado.html","gel-nail-art/gel-saturacion.html","gel-nail-art/painting-gel.html","gel-nail-art/spider-gel.html","polygel/polygel.html",
 
     /* Eléctricos */
     "electricos/electricos.html",
 
-    /* Polygel y acrílicos */
-    "polygel/polygel.html","polvos-acrilicos/polvos-acrilicos.html",
+    /* Acrílicos */
+    "polvos-acrilicos/polvos-acrilicos.html",
 
     /* Líquidos */
     "liquido-moldeador.html",
@@ -65,9 +65,10 @@ const productos = [
     {nombre:"Esmaltes",url:"esmaltes.html",claves:"esmalte esmaltes"},
     {nombre:"Semipermanentes",url:"semipermanente.html",claves:"semi semis semipermanente semipermanentes"},
     {nombre:"Base y Top Coat",url:"base-top.html",claves:"base bases top top coat"},
+    {nombre:"Geles",url:"geles/geles.html",claves:"gel geles gel nail art polygel builder gel construccion construcción painting spider metalizado saturacion"},
     {nombre:"Gel Nail Art",url:"gel-nail-art/gel-nail-art.html",claves:"gel nail art painting spider metalizado saturacion"},
-    {nombre:"Eléctricos",url:"electricos/electricos.html",claves:"electricos electrico lampara drill extractor press"},
     {nombre:"Polygel",url:"polygel/polygel.html",claves:"polygel moldes molde"},
+    {nombre:"Eléctricos",url:"electricos/electricos.html",claves:"electricos electrico lampara drill extractor press"},
     {nombre:"Polvos Acrílicos",url:"polvos-acrilicos/polvos-acrilicos.html",claves:"polvo polvos acrilico acrilicos"},
     {nombre:"Líquidos",url:"liquidos.html",claves:"liquido liquidos"},
     {nombre:"Removedores",url:"removedores/removedores.html",claves:"removedor removedores acetona cuticula callos"},
@@ -109,7 +110,6 @@ const productos = [
       salida.push({nombre,codigo,url,busqueda:norm(nombre+" "+codigo+" "+extra+" "+url),tipo:"Producto"});
     };
 
-    /* Objetos JS usados por las páginas del catálogo */
     const objetos=html.match(/\{[\s\S]{0,1300}?\}/g)||[];
     objetos.forEach(obj=>{
       const n=obj.match(/(?:nombre|name)\s*:\s*["'`]([^"'`]{2,180})["'`]/i);
@@ -118,7 +118,6 @@ const productos = [
       if(n) agregar(n[1],c?c[1]:"",m?m[1]:"");
     });
 
-    /* Tarjetas HTML con data-* o textos de producto */
     const tarjetas=html.match(/<(?:article|div)[^>]*(?:producto|product-card|tarjeta-producto|card-producto)[^>]*>[\s\S]{0,1800}?<\/(?:article|div)>/gi)||[];
     tarjetas.forEach(t=>{
       const n=t.match(/<(?:h2|h3|h4)[^>]*>([\s\S]*?)<\/(?:h2|h3|h4)>/i);
@@ -126,7 +125,6 @@ const productos = [
       if(n) agregar(n[1],c?c[1]:"",limpiarHtml(t).slice(0,400));
     });
 
-    /* La página misma también es un resultado válido (cartas/colecciones). */
     const titulo=tituloPagina(html,url);
     if(titulo && !/bella shop$/i.test(titulo)) agregar(titulo,"",limpiarHtml(html).slice(0,1800));
     return salida;
@@ -246,4 +244,39 @@ const productos = [
     }
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',activarLanzamientoILU); else activarLanzamientoILU();
+})();
+
+/* ===== REORGANIZACIÓN DE CATEGORÍAS · GELES ===== */
+(function(){
+  function actualizarCategoriasGeles(){
+    const carrusel=document.getElementById('carrusel-categorias');
+    if(carrusel){
+      const tarjetas=[...carrusel.querySelectorAll('.cat-visual')];
+      const gelNail=tarjetas.find(x=>x.textContent.trim().includes('Gel Nail Art'));
+      const polygel=tarjetas.find(x=>x.textContent.trim().includes('Polygel'));
+      const limas=tarjetas.find(x=>x.textContent.trim()==='Limas' || x.textContent.includes('Limas'));
+      if(gelNail){
+        gelNail.href='geles/geles.html';
+        const titulo=gelNail.querySelector('strong');
+        if(titulo) titulo.textContent='Geles';
+        gelNail.classList.add('cat-geles');
+      }
+      if(polygel) polygel.remove();
+      if(limas) limas.remove();
+    }
+
+    const panel=document.getElementById('panel-categorias');
+    if(panel){
+      [...panel.querySelectorAll('a,span')].forEach(el=>{
+        const texto=el.textContent.trim();
+        if(texto==='Gel Nail Art'){
+          if(el.tagName==='A') el.href='geles/geles.html';
+          el.textContent='Geles';
+        } else if(texto==='Polygel' || texto==='Limas'){
+          el.remove();
+        }
+      });
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',actualizarCategoriasGeles); else actualizarCategoriasGeles();
 })();
