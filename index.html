@@ -2615,613 +2615,185 @@ function toggleCategorias(){
 <script src="productos.js"></script>
 <script>
 
-    const listaProductos =
-      document.getElementById(
-        "lista-productos"
-      );
-
-
-    const buscador =
-      document.getElementById(
-        "buscador"
-      );
-
-
-    const sinResultados =
-      document.getElementById(
-        "sin-resultados"
-      );
-
-
-
-    function formatoPrecio(numero) {
-
-      return new Intl.NumberFormat(
-        "es-CO",
-        {
-          style: "currency",
-          currency: "COP",
-          maximumFractionDigits: 0
-        }
-
-      ).format(numero);
-
-    }
-
-
-
-    function mostrarProductos(lista) {
-
-      listaProductos.innerHTML = "";
-
-
-      if (lista.length === 0) {
-
-        sinResultados.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      sinResultados.style.display =
-        "none";
-
-
-
-      lista.forEach(
-        function(producto) {
-
-
-          const enlaceProducto =
-
-            "producto.html?id=" +
-
-            encodeURIComponent(
-              producto.id
-            );
-
-
-
-          const tarjeta =
-            document.createElement(
-              "article"
-            );
-
-
-          tarjeta.className =
-            "producto";
-
-
-
-          tarjeta.innerHTML = `
-
-            <a
-              href="${enlaceProducto}"
-              class="producto-enlace"
-            >
-
-              <img
-                src="${producto.imagen}"
-                alt="${producto.nombre}"
-              >
-
-            </a>
-
-
-
-            <div class="producto-info">
-
-
-              <span
-                class="categoria-producto"
-              >
-
-                ${producto.categoria}
-                ·
-                ${producto.subcategoria}
-
-              </span>
-
-
-
-              <a
-                href="${enlaceProducto}"
-                class="producto-enlace"
-              >
-
-                <h3>
-                  ${producto.nombre}
-                </h3>
-
-              </a>
-
-
-
-              <div class="marca">
-
-                Marca:
-                ${producto.marca}
-
-              </div>
-
-
-
-              <div class="precio">
-
-                ${formatoPrecio(
-                  producto.precio
-                )}
-
-              </div>
-
-
-
-              <a
-                href="${enlaceProducto}"
-                class="ver-producto"
-              >
-
-                VER PRODUCTO
-
-              </a>
-
-
-            </div>
-
-          `;
-
-
-
-          listaProductos.appendChild(
-            tarjeta
-          );
-
-
-        }
-      );
-
-
-    }
-
-
-
-    const seccionResultados =
-      document.getElementById("productos");
-
-    seccionResultados.style.display = "none";
-    listaProductos.style.display = "none";
-    sinResultados.style.display = "none";
-
-
-
-    const panelBusqueda =
-      document.getElementById(
-        "resultados-busqueda"
-      );
-
-
-    const destinosBusqueda = [
-      {
-        nombre: "Esmaltes",
-        tipo: "Categoría",
-        url: "esmaltes.html",
-        palabras: ["esmalte","esmaltes","uñas","unas"]
-      },
-      {
-        nombre: "Esmaltes Semipermanentes",
-        tipo: "Subcategoría",
-        url: "semipermanente.html",
-        palabras: ["semi","semis","semipermanente","semipermanentes","esmalte semipermanente"]
-      },
-      {
-        nombre: "Esmalte Tradicional",
-        tipo: "Subcategoría",
-        url: "esmaltes.html",
-        palabras: ["tradicional","tradicionales","esmalte tradicional"]
-      },
-
-      /* MUNA */
-      { nombre:"Muna", tipo:"Marca · Semipermanente", url:"muna.html",
-        palabras:["muna","semi","semipermanente"] },
-      { nombre:"Muna 12 ml", tipo:"Muna · Semipermanente", url:"muna12ml.html",
-        palabras:["muna","muna 12ml","12ml","semi","semipermanente"] },
-      { nombre:"Carta de Colores Muna", tipo:"Muna · Semipermanente", url:"carta-colores-muna12ml.html",
-        palabras:["muna","carta","carta de colores","colores","12ml","semi","semipermanente"] },
-      { nombre:"Fluorescente Muna", tipo:"Muna · Semipermanente", url:"fluorescente-muna.html",
-        palabras:["muna","fluorescente","fluorescentes","12ml","semi","semipermanente"] },
-      { nombre:"Jelly Gel Muna", tipo:"Muna · Semipermanente", url:"jelly-muna.html",
-        palabras:["muna","jelly","jelly gel","gelatina","12ml","semi","semipermanente"] },
-      { nombre:"Macarrón Muna", tipo:"Muna · Semipermanente", url:"macarron-muna.html",
-        palabras:["muna","macarron","macarrón","pastel","12ml","semi","semipermanente"] },
-      { nombre:"Satin Nail Muna", tipo:"Muna · Semipermanente", url:"satin-nail-muna.html",
-        palabras:["muna","satin","satin nail","satinado","15ml","semi","semipermanente"] },
-      { nombre:"Shell Muna", tipo:"Muna · Semipermanente", url:"shell-muna.html",
-        palabras:["muna","shell","15ml","semi","semipermanente"] },
-      { nombre:"Ojo de Gato Muna", tipo:"Muna · Semipermanente", url:"ojo-de-gato-muna.html",
-        palabras:["muna","ojo de gato","cat eye","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Muna", tipo:"Muna · Semipermanente", url:"bases-traslucidas-muna.html",
-        palabras:["muna","base","bases","traslucida","traslucidas","traslúcida","traslúcidas","semi","semipermanente"] },
-      { nombre:"Saturados Muna", tipo:"Muna · Semipermanente", url:"saturado-gel-muna.html",
-        palabras:["muna","saturado","saturados","saturado gel","gel de saturacion","semi","semipermanente"] },
-      { nombre:"Reflectivos Muna", tipo:"Muna · Semipermanente", url:"reflectivos-muna.html",
-        palabras:["muna","reflectivo","reflectivos","semi","semipermanente"] },
-      { nombre:"Craquelados Muna", tipo:"Muna · Semipermanente", url:"craquelados-muna.html",
-        palabras:["muna","craquelado","craquelados","semi","semipermanente"] },
-
-      /* MUNA BB */
-      { nombre:"Muna BB 7 ml", tipo:"Marca · Semipermanente", url:"munabb7ml.html",
-        palabras:["muna","muna bb","munabb","bb","7ml","semi","semipermanente"] },
-      { nombre:"Carta de Colores Muna BB", tipo:"Muna BB · Semipermanente", url:"carta-colores-munabb7ml.html",
-        palabras:["muna","muna bb","munabb","bb","carta","carta de colores","colores","7ml","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Muna BB", tipo:"Muna BB · Semipermanente", url:"bases-traslucidas-munabb7ml.html",
-        palabras:["muna","muna bb","munabb","bb","base","bases","traslucida","traslucidas","traslúcida","traslúcidas","7ml","semi","semipermanente"] },
-
-      /* CANM */
-      { nombre:"CANM", tipo:"Marca · Semipermanente", url:"canm.html",
-        palabras:["canm","semi","semipermanente"] },
-      { nombre:"Carta de Colores CANM", tipo:"CANM · Semipermanente", url:"carta-colores-canm.html",
-        palabras:["canm","carta","carta de colores","colores","color","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas CANM", tipo:"CANM · Semipermanente", url:"bases-traslucidas-canm.html",
-        palabras:["canm","base","bases","traslucida","traslucidas","semi","semipermanente"] },
-      { nombre:"Ojo de Gato CANM", tipo:"CANM · Semipermanente", url:"ojo-de-gato-canm.html",
-        palabras:["canm","ojo de gato","cat eye","semi","semipermanente"] },
-
-      /* CLOE */
-      { nombre:"Cloe", tipo:"Marca · Semipermanente", url:"cloe.html",
-        palabras:["cloe","semi","semipermanente"] },
-      { nombre:"Carta de Colores Cloe", tipo:"Cloe · Semipermanente", url:"carta-colores-cloe.html",
-        palabras:["cloe","carta","carta de colores","colores","color","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Cloe", tipo:"Cloe · Semipermanente", url:"bases-traslucidas-cloe.html",
-        palabras:["cloe","base","bases","traslucida","traslucidas","semi","semipermanente"] },
-      { nombre:"Ojo de Gato Cloe", tipo:"Cloe · Semipermanente", url:"ojo-de-gato-cloe.html",
-        palabras:["cloe","ojo de gato","cat eye","semi","semipermanente"] },
-
-      /* LATIN */
-      { nombre:"Latin Nails", tipo:"Marca · Semipermanente", url:"latin.html",
-        palabras:["latin","latin nails","semi","semipermanente"] },
-      { nombre:"Carta de Colores Latin Nails", tipo:"Latin Nails · Semipermanente", url:"carta-colores-latin.html",
-        palabras:["latin","latin nails","carta","carta de colores","colores","8ml","15ml","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Latin Nails", tipo:"Latin Nails · Semipermanente", url:"bases-traslucidas-latin.html",
-        palabras:["latin","latin nails","base","bases","traslucida","traslucidas","a232","b29","92","233","317","8ml","15ml","semi","semipermanente"] },
-      { nombre:"Ojo de Gato Latin Nails", tipo:"Latin Nails · Semipermanente", url:"ojo-de-gato-latin.html",
-        palabras:["latin","latin nails","ojo de gato","cat eye","005","8ml","semi","semipermanente"] },
-
-      /* CHIC'S FASHION */
-      { nombre:"Chic's Fashion", tipo:"Marca · Semipermanente", url:"chics-fashion.html",
-        palabras:["chics","chic","chic's","chics fashion","chic's fashion","semi","semipermanente"] },
-      { nombre:"Carta de Colores Chic's Fashion", tipo:"Chic's Fashion · Semipermanente", url:"carta-colores-chics-fashion.html",
-        palabras:["chics","chic","chic's","chics fashion","carta","carta de colores","colores","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Chic's Fashion", tipo:"Chic's Fashion · Semipermanente", url:"bases-traslucidas-chics-fashion.html",
-        palabras:["chics","chic","chic's","base","bases","traslucida","traslucidas","semi","semipermanente"] },
-      { nombre:"Ojo de Gato Chic's Fashion", tipo:"Chic's Fashion · Semipermanente", url:"ojo-de-gato-chics-fashion.html",
-        palabras:["chics","chic","chic's","ojo de gato","cat eye","semi","semipermanente"] },
-
-      /* QUEENIGTH */
-      { nombre:"Queenigth", tipo:"Marca · Semipermanente", url:"queenigth.html",
-        palabras:["queenigth","queen","semi","semipermanente"] },
-      { nombre:"Carta de Colores Queenigth", tipo:"Queenigth · Semipermanente", url:"carta-colores-queenigth.html",
-        palabras:["queenigth","queen","carta","carta de colores","colores","semi","semipermanente"] },
-      { nombre:"Bases Traslúcidas Queenigth", tipo:"Queenigth · Semipermanente", url:"bases-queenigth.html",
-        palabras:["queenigth","queen","base","bases","traslucida","traslucidas","ice gel","new collection","semi","semipermanente"] },
-      { nombre:"Vitral Queenigth", tipo:"Queenigth · Semipermanente", url:"vitral-queenigth.html",
-        palabras:["queenigth","queen","vitral","02","03","semi","semipermanente"] },
-      { nombre:"Ojo de Gato Queenigth", tipo:"Queenigth · Semipermanente", url:"ojo-de-gato-queenigth.html",
-        palabras:["queenigth","queen","ojo de gato","cat eye","golden glass","golden olive","moonshine","dark black crystal","semi","semipermanente"] }
-    ];
-
-    function normalizarTexto(texto) {
-
-      return String(texto || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim();
-
-    }
-
-
-    function obtenerTextoProducto(producto) {
-
-      const referencias =
-        Array.isArray(producto.referencias)
-          ? producto.referencias.join(" ")
-          : "";
-
-
-      return normalizarTexto(`
-        ${producto.nombre}
-        ${producto.marca}
-        ${producto.categoria}
-        ${producto.subcategoria}
-        ${referencias}
-      `);
-
-    }
-
-
-    function buscarDestinos(texto) {
-
-      return destinosBusqueda.filter(
-        function(destino) {
-
-          const contenido =
-            normalizarTexto(
-              destino.nombre +
-              " " +
-              destino.tipo +
-              " " +
-              destino.palabras.join(" ")
-            );
-
-
-          return contenido.includes(texto);
-
-        }
-      );
-
-    }
-
-
-    function buscarProductos(texto) {
-
-      return productos.filter(
-        function(producto) {
-
-          return obtenerTextoProducto(producto)
-            .includes(texto);
-
-        }
-      );
-
-    }
-
-
-    function dibujarSugerencias(
-      destinos,
-      productosEncontrados
-    ) {
-
-      panelBusqueda.innerHTML = "";
-
-
-      destinos.forEach(
-        function(destino) {
-
-          const enlace =
-            document.createElement("a");
-
-          enlace.href =
-            destino.url;
-
-          enlace.className =
-            "resultado-busqueda";
-
-          enlace.innerHTML = `
-            <span class="resultado-icono">⌕</span>
-
-            <span class="resultado-texto">
-              <span class="resultado-nombre">
-                ${destino.nombre}
-              </span>
-
-              <span class="resultado-tipo">
-                ${destino.tipo}
-              </span>
-            </span>
-          `;
-
-          panelBusqueda.appendChild(
-            enlace
-          );
-
-        }
-      );
-
-
-      productosEncontrados
-        .slice(0, 6)
-        .forEach(
-          function(producto) {
-
-            const enlace =
-              document.createElement("a");
-
-            enlace.href =
-              "producto.html?id=" +
-              encodeURIComponent(
-                producto.id
-              );
-
-            enlace.className =
-              "resultado-busqueda";
-
-            enlace.innerHTML = `
-              <span class="resultado-icono">♡</span>
-
-              <span class="resultado-texto">
-                <span class="resultado-nombre">
-                  ${producto.nombre}
-                </span>
-
-                <span class="resultado-tipo">
-                  ${producto.marca}
-                  ·
-                  ${producto.subcategoria}
-                </span>
-              </span>
-            `;
-
-            panelBusqueda.appendChild(
-              enlace
-            );
-
-          }
-        );
-
-
-      if (
-        destinos.length === 0 &&
-        productosEncontrados.length === 0
-      ) {
-
-        panelBusqueda.innerHTML = `
-          <div class="sin-sugerencias">
-            No encontramos coincidencias por ahora.
-          </div>
-        `;
-
-      }
-
-
-      panelBusqueda.classList.add(
-        "activo"
-      );
-
-    }
-
-
-    function ejecutarBusqueda() {
-
-      const texto =
-        normalizarTexto(
-          buscador.value
-        );
-
-
-      if (!texto) {
-
-        panelBusqueda.classList.remove(
-          "activo"
-        );
-
-        panelBusqueda.innerHTML = "";
-        seccionResultados.style.display = "none";
-        listaProductos.style.display = "none";
-        sinResultados.style.display = "none";
-
-        return;
-
-      }
-
-      seccionResultados.style.display = "block";
-      listaProductos.style.display = "grid";
-
-
-      const destinos =
-        buscarDestinos(texto);
-
-
-      const productosEncontrados =
-        buscarProductos(texto);
-
-
-      mostrarProductos(
-        productosEncontrados
-      );
-
-
-      dibujarSugerencias(
-        destinos,
-        productosEncontrados
-      );
-
-    }
-
-
-    buscador.addEventListener(
-      "input",
-      ejecutarBusqueda
-    );
-
-
-    buscador.addEventListener(
-      "focus",
-      function() {
-
-        if (
-          normalizarTexto(
-            buscador.value
-          )
-        ) {
-
-          ejecutarBusqueda();
-
-        }
-
-      }
-    );
-
-
-    buscador.addEventListener(
-      "keydown",
-      function(evento) {
-
-        if (evento.key === "Escape") {
-
-          panelBusqueda.classList.remove(
-            "activo"
-          );
-
-          buscador.blur();
-
-          return;
-
-        }
-
-
-        if (evento.key === "Enter") {
-
-          const primerResultado =
-            panelBusqueda.querySelector(
-              ".resultado-busqueda"
-            );
-
-
-          if (primerResultado) {
-
-            evento.preventDefault();
-
-            window.location.href =
-              primerResultado.href;
-
-          }
-
-        }
-
-      }
-    );
-
-
-    document.addEventListener(
-      "click",
-      function(evento) {
-
-        const contenedor =
-          document.querySelector(
-            ".buscador-contenedor"
-          );
-
-
-        if (
-          contenedor &&
-          !contenedor.contains(
-            evento.target
-          )
-        ) {
-
-          panelBusqueda.classList.remove(
-            "activo"
-          );
-
-        }
-
-      }
-    );
-
-
-  </script>
+/* ===== BUSCADOR GLOBAL BELLA SHOP =====
+   Fuente principal: inventario.json
+   Busca por nombre, referencia interna, código de barras y palabras del producto.
+   Los resultados llevan a la categoría/página correspondiente cuando se puede identificar.
+*/
+const buscador = document.getElementById("buscador");
+const panelBusqueda = document.getElementById("resultados-busqueda");
+const seccionResultados = document.getElementById("productos");
+const listaProductos = document.getElementById("lista-productos");
+const sinResultados = document.getElementById("sin-resultados");
+
+let inventarioBusqueda = [];
+
+const destinosBusqueda = [
+  {nombre:"Esmaltes",tipo:"Categoría",url:"esmaltes.html",palabras:["esmalte","esmaltes","semi","semipermanente"]},
+  {nombre:"Semipermanentes",tipo:"Categoría",url:"semipermanente.html",palabras:["semi","semis","semipermanente","semipermanentes"]},
+  {nombre:"Base y Top Coat",tipo:"Categoría",url:"base-top.html",palabras:["base","bases","top","top coat"]},
+  {nombre:"Gel Nail Art",tipo:"Categoría",url:"gel-nail-art.html",palabras:["gel","nail art","painting","liner"]},
+  {nombre:"Eléctricos",tipo:"Categoría",url:"electricos/electricos.html",palabras:["electricos","eléctricos","lampara","lámpara","drill","extractor","press"]},
+  {nombre:"Polygel",tipo:"Categoría",url:"polygel/polygel.html",palabras:["polygel","poly gel","moldes"]},
+  {nombre:"Polvos Acrílicos",tipo:"Categoría",url:"polvos-acrilicos.html",palabras:["acrilico","acrílico","polvo","polvos"]},
+  {nombre:"Líquidos",tipo:"Categoría",url:"liquidos.html",palabras:["liquido","líquido","liquidos","líquidos"]},
+  {nombre:"Removedores",tipo:"Líquidos",url:"removedores/removedores.html",palabras:["removedor","removedores","acetona","cuticula","cutícula","callos"]},
+  {nombre:"Preparadores",tipo:"Líquidos",url:"preparadores/preparadores.html",palabras:["preparador","preparadores","primer","ultrabond","bond"]},
+  {nombre:"Líquido Moldeador",tipo:"Líquidos",url:"liquido-moldeador.html",palabras:["liquido moldeador","líquido moldeador","moldeador","poly smooth"]},
+  {nombre:"Muna",tipo:"Marca",url:"muna.html",palabras:["muna"]},
+  {nombre:"ILU",tipo:"Marca",url:"ilu.html",palabras:["ilu"]},
+  {nombre:"Queenigth",tipo:"Marca",url:"queenigth.html",palabras:["queenigth","queen"]},
+  {nombre:"Chic's Fashion",tipo:"Marca",url:"chics-fashion.html",palabras:["chics","chic","chic's","fashion"]}
+];
+
+function normalizarTexto(texto){
+  return String(texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function textoInventario(p){
+  return normalizarTexto([
+    p.nombre,
+    p.codigo,
+    p.referencia_interna,
+    p.codigo_barras,
+    p.marca,
+    p.categoria,
+    p.etiquetas
+  ].filter(Boolean).join(" "));
+}
+
+function buscarDestinos(texto){
+  return destinosBusqueda.filter(d=>{
+    const contenido=normalizarTexto([d.nombre,d.tipo,...d.palabras].join(" "));
+    return contenido.includes(texto);
+  });
+}
+
+function buscarInventario(texto){
+  if(!texto) return [];
+  const palabras=texto.split(" ").filter(Boolean);
+  return inventarioBusqueda
+    .map(p=>{
+      const contenido=textoInventario(p);
+      if(!palabras.every(x=>contenido.includes(x))) return null;
+      let puntos=0;
+      const nombre=normalizarTexto(p.nombre);
+      const ref=normalizarTexto(p.referencia_interna || p.codigo);
+      const barras=normalizarTexto(p.codigo_barras);
+      if(nombre===texto) puntos+=100;
+      if(ref===texto || barras===texto) puntos+=120;
+      if(nombre.startsWith(texto)) puntos+=60;
+      if(nombre.includes(texto)) puntos+=35;
+      if(ref.includes(texto) || barras.includes(texto)) puntos+=50;
+      return {p,puntos};
+    })
+    .filter(Boolean)
+    .sort((a,b)=>b.puntos-a.puntos || String(a.p.nombre).localeCompare(String(b.p.nombre),"es"))
+    .map(x=>x.p);
+}
+
+function destinoProducto(p){
+  const t=normalizarTexto([p.nombre,p.categoria,p.etiquetas].filter(Boolean).join(" "));
+  if(t.includes("removedor") || t.includes("cuticula") || t.includes("callos")) return "removedores/removedores.html";
+  if(t.includes("primer") || t.includes("ultrabond") || t.includes("preparador")) return "preparadores/preparadores.html";
+  if(t.includes("moldeador") || t.includes("poly smooth")) return "liquido-moldeador.html";
+  if(t.includes("polygel")) return "polygel/polygel.html";
+  if(t.includes("drill") || t.includes("lampara") || t.includes("extractor") || t.includes("electric")) return "electricos/electricos.html";
+  if(t.includes("acril")) return "polvos-acrilicos.html";
+  if(t.includes("base") || t.includes("top coat")) return "base-top.html";
+  if(t.includes("gel nail") || t.includes("painting")) return "gel-nail-art.html";
+  if(t.includes("esmalte") || t.includes("semipermanente")) return "semipermanente.html";
+  return "index.html#categorias";
+}
+
+function referenciaVisible(p){
+  return p.referencia_interna || p.codigo_barras || p.codigo || "";
+}
+
+function dibujarSugerencias(destinos,productos){
+  panelBusqueda.innerHTML="";
+
+  destinos.slice(0,5).forEach(d=>{
+    const a=document.createElement("a");
+    a.href=d.url;
+    a.className="resultado-busqueda";
+    a.innerHTML=`<span class="resultado-icono">⌕</span>
+      <span class="resultado-texto">
+        <span class="resultado-nombre">${d.nombre}</span>
+        <span class="resultado-tipo">${d.tipo}</span>
+      </span>`;
+    panelBusqueda.appendChild(a);
+  });
+
+  productos.slice(0,12).forEach(p=>{
+    const a=document.createElement("a");
+    a.href=destinoProducto(p);
+    a.className="resultado-busqueda";
+    const ref=referenciaVisible(p);
+    const stock=Number(p.disponible || 0);
+    a.innerHTML=`<span class="resultado-icono">♡</span>
+      <span class="resultado-texto">
+        <span class="resultado-nombre">${p.nombre || "Producto Bella Shop"}</span>
+        <span class="resultado-tipo">${ref ? "REF. "+ref+" · " : ""}${stock>0 ? "Disponible · "+stock+" unidades" : "Temporalmente no disponible"}</span>
+      </span>`;
+    panelBusqueda.appendChild(a);
+  });
+
+  if(!destinos.length && !productos.length){
+    panelBusqueda.innerHTML='<div class="sin-sugerencias">No encontramos coincidencias.</div>';
+  }
+  panelBusqueda.classList.add("activo");
+}
+
+function ejecutarBusqueda(){
+  const texto=normalizarTexto(buscador.value);
+  if(!texto){
+    panelBusqueda.classList.remove("activo");
+    panelBusqueda.innerHTML="";
+    if(seccionResultados) seccionResultados.style.display="none";
+    if(listaProductos) listaProductos.style.display="none";
+    if(sinResultados) sinResultados.style.display="none";
+    return;
+  }
+  const destinos=buscarDestinos(texto);
+  const productos=buscarInventario(texto);
+  dibujarSugerencias(destinos,productos);
+}
+
+fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"})
+  .then(r=>{if(!r.ok)throw new Error("No se pudo cargar inventario.json");return r.json()})
+  .then(d=>{
+    const datos=d.productos || d || {};
+    inventarioBusqueda=Array.isArray(datos) ? datos : Object.values(datos);
+  })
+  .catch(err=>{
+    console.error("Buscador Bella Shop:",err);
+    inventarioBusqueda=[];
+  });
+
+buscador.addEventListener("input",ejecutarBusqueda);
+buscador.addEventListener("focus",()=>{if(normalizarTexto(buscador.value)) ejecutarBusqueda()});
+buscador.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    panelBusqueda.classList.remove("activo");
+    buscador.blur();
+  }
+  if(e.key==="Enter"){
+    const primero=panelBusqueda.querySelector(".resultado-busqueda");
+    if(primero){e.preventDefault();window.location.href=primero.href}
+  }
+});
+document.addEventListener("click",e=>{
+  const contenedor=document.querySelector(".buscador-contenedor");
+  if(contenedor && !contenedor.contains(e.target)) panelBusqueda.classList.remove("activo");
+});
+
+</script>
 <script>
 (function(){
  const box=document.getElementById("novedad-carrusel"); if(!box)return;
