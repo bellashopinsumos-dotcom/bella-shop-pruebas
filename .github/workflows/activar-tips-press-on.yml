@@ -1,0 +1,41 @@
+name: Activar Tips y Press On
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/activar-tips-press-on.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar-inicio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actualizar categoria en inicio
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          viejo = '<div class="cat-visual futura"><span>Press On</span></div>'
+          nuevo = '<a class="cat-visual cat-elegante" href="tips%20y%20press%20on/index.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Tips y Press On</strong><i></i></a>'
+          if viejo not in s:
+              raise SystemExit('No se encontro la tarjeta Press On esperada')
+          s = s.replace(viejo, nuevo, 1)
+          viejo_panel = '<span>Pestañas y Cejas</span><span>Decoración</span><span>Press On</span><span>Limas</span>'
+          nuevo_panel = '<span>Pestañas y Cejas</span><span>Decoración</span><a href="tips%20y%20press%20on/index.html">Tips y Press On</a><span>Limas</span>'
+          if viejo_panel not in s:
+              raise SystemExit('No se encontro Press On en el panel de categorias')
+          s = s.replace(viejo_panel, nuevo_panel, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git commit -m "Conectar Tips y Press On desde inicio"
+          git push
