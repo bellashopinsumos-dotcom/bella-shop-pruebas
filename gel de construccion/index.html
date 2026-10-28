@@ -3,39 +3,2530 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Gel de Construcción | Bella Shop</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:#fffdfd;color:#34292d;overflow-x:hidden}a{-webkit-tap-highlight-color:transparent}header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 5%;background:rgba(255,253,253,.97);border-bottom:1px solid #f2dce4;backdrop-filter:blur(10px)}.logo img{width:205px;height:70px;object-fit:contain}.acciones{display:flex;gap:8px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 16px;border-radius:40px;border:1px solid #efc7d4;background:#fff;color:#d94a79;text-decoration:none;font-size:11px;font-weight:800}.pedido{background:#e65385;color:#fff;border-color:#e65385}.hero{position:relative;overflow:hidden;text-align:center;padding:58px 20px;background:radial-gradient(circle at 20% 20%,rgba(245,174,198,.18),transparent 25%),linear-gradient(135deg,#fff5f8,#fffdfd 55%,#fdebf1)}.hero>img{position:absolute;width:300px;right:2%;top:50%;transform:translateY(-50%);opacity:.06}.hero div{position:relative;z-index:2}.tag{display:inline-block;padding:8px 18px;border:1px solid #efcbd7;border-radius:40px;color:#d74e7b;background:#ffffffd9;font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:15px}.hero h1{font:500 48px Georgia,serif;margin-bottom:12px}.hero p{max-width:680px;margin:auto;color:#765d65;line-height:1.7}.seccion{padding:50px 6% 75px;background:linear-gradient(180deg,#fffdfd,#fff8fa 50%,#fffdfd)}.intro{text-align:center;max-width:700px;margin:0 auto 32px}.intro h2{font:500 32px Georgia,serif;margin-bottom:8px}.intro p{color:#887079;font-size:14px;line-height:1.6}.marca-bloque{max-width:1080px;margin:0 auto 34px}.marca-titulo{text-align:center;color:#d94a79;font-size:12px;font-weight:900;letter-spacing:1px;margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.grid.uno{grid-template-columns:minmax(0,520px);justify-content:center}.card{background:#fff;border:1px solid #efd9e1;border-radius:24px;padding:13px 13px 20px;box-shadow:0 10px 28px rgba(83,48,58,.07);transition:.22s}.card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(83,48,58,.11)}.foto{width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#fff7fa,#fff);display:flex;align-items:center;justify-content:center}.foto img{width:100%;height:100%;object-fit:contain;display:block}.info{padding:16px 5px 0}.marca{font-size:10px;font-weight:900;letter-spacing:.9px;color:#d94a79;margin-bottom:7px}.info h3{font:500 23px Georgia,serif;margin-bottom:6px}.formato,.ref{font-size:12px;color:#806a72;font-weight:700;margin-bottom:10px}.precio{font-size:22px;font-weight:800;margin-bottom:4px}.stock{font-size:11px;font-weight:800;color:#3f8b62;margin-bottom:12px}.agotado .stock{color:#c54c68}.aviso{display:none;background:#fff0f4;color:#c64b71;border:1px solid #f1c8d5;border-radius:12px;padding:10px;text-align:center;font-size:11px;font-weight:800;margin-bottom:12px}.agotado .aviso{display:block}.cantidad{display:flex;border:1px solid #edcbd6;border-radius:14px;overflow:hidden;margin-bottom:12px}.cantidad button{width:48px;height:42px;border:0;background:#fff2f6;color:#d94a79;font-size:22px;cursor:pointer}.cantidad input{flex:1;min-width:0;border:0;text-align:center;font-size:15px;font-weight:800;outline:none}.agregar{width:100%;border:0;border-radius:40px;padding:13px;background:#e65385;color:#fff;font-size:11px;font-weight:800;cursor:pointer}.agregar:disabled,.cantidad button:disabled,.cantidad input:disabled{opacity:.45;cursor:not-allowed}.contacto{text-align:center;padding:58px 20px;background:linear-gradient(135deg,#fdeaf0,#fff7f9 55%,#fffdfd);border-top:1px solid #f2dce4}.contacto h2{font:500 34px Georgia,serif;margin-bottom:12px}.contacto p{color:#765d65;margin-bottom:20px}.wa{display:inline-block;background:#25D366;color:#fff;padding:13px 22px;border-radius:40px;text-decoration:none;font-weight:800;font-size:13px}.redes{display:flex;justify-content:center;gap:10px;margin:22px 0}.redes a{width:44px;height:44px;border-radius:50%;border:1px solid #efc6d3;background:#fff;color:#d94d7a;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:900}.ubicacion{text-decoration:none;color:#765d65;font-size:13px;font-weight:800}footer{background:#35272c;color:#f9eaf0;text-align:center;padding:27px 20px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,25px);opacity:0;transition:.2s;background:#35272c;color:#fff;padding:12px 18px;border-radius:30px;font-size:12px;font-weight:700;z-index:3000}.toast.mostrar{opacity:1;transform:translate(-50%,0)}
-@media(max-width:700px){header{padding:9px 12px;flex-wrap:wrap}.logo{flex:1}.logo img{width:145px;height:55px}.btn{width:40px;height:40px;padding:0;font-size:0}.acciones a:nth-child(1):before{content:'←';font-size:17px}.acciones a:nth-child(2):before{content:'⌂';font-size:17px}.acciones a:nth-child(3):before{content:'🛒';font-size:17px}.hero h1{font-size:38px}.grid,.grid.uno{grid-template-columns:1fr;max-width:500px;margin:auto}.seccion{padding:42px 15px 60px}}
+
+:root{
+  --rosa:#d94d7a;
+  --rosa-fuerte:#c93f6d;
+  --rosa-suave:#fff3f7;
+  --rosa-claro:#fdebf1;
+
+  --fondo:#fffdfd;
+  --blanco:#ffffff;
+
+  --texto:#33292d;
+  --texto-suave:#79666d;
+
+  --borde:#efdde3;
+  --oscuro:#34272c;
+
+  --verde:#3f8b62;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--fondo);
+  color:var(--texto);
+  overflow-x:hidden;
+}
+
+a{
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:9px 5%;
+
+  background:rgba(255,253,253,.96);
+  border-bottom:1px solid var(--borde);
+
+  backdrop-filter:blur(12px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+}
+
+.logo img{
+  width:205px;
+  height:70px;
+  object-fit:contain;
+}
+
+.acciones{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;
+
+  padding:10px 17px;
+
+  border-radius:40px;
+
+  border:1px solid #ecc7d3;
+
+  background:#fff;
+  color:var(--rosa);
+
+  text-decoration:none;
+
+  font-size:11px;
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  background:var(--rosa-suave);
+}
+
+.btn.pedido{
+  color:#fff;
+  background:var(--rosa);
+  border-color:var(--rosa);
+}
+
+.btn.pedido:hover{
+  background:var(--rosa-fuerte);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  text-align:center;
+
+  padding:65px 20px 62px;
+
+  background:
+  radial-gradient(
+    circle at 18% 22%,
+    rgba(235,144,175,.14),
+    transparent 26%
+  ),
+  radial-gradient(
+    circle at 85% 75%,
+    rgba(245,196,212,.22),
+    transparent 26%
+  ),
+  linear-gradient(
+    135deg,
+    #fff7f9 0%,
+    #fffdfd 50%,
+    #fceef3 100%
+  );
+}
+
+.hero>img{
+  position:absolute;
+
+  width:320px;
+
+  right:2%;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  opacity:.045;
+
+  pointer-events:none;
+}
+
+.hero-contenido{
+  position:relative;
+  z-index:2;
+
+  max-width:780px;
+  margin:auto;
+}
+
+.tag{
+  display:inline-block;
+
+  padding:8px 18px;
+
+  margin-bottom:17px;
+
+  border:1px solid #efcbd7;
+  border-radius:40px;
+
+  background:rgba(255,255,255,.88);
+
+  color:var(--rosa);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.2px;
+}
+
+.hero h1{
+  font-family:Georgia,serif;
+  font-size:49px;
+  line-height:1.05;
+  font-weight:500;
+
+  margin-bottom:15px;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+
+  color:var(--texto-suave);
+
+  font-size:14px;
+  line-height:1.7;
+}
+
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.seccion{
+  padding:48px 6% 80px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #fffdfd 0%,
+    #fff8fa 48%,
+    #fffdfd 100%
+  );
+}
+
+#contenido{
+  max-width:1100px;
+  margin:auto;
+}
+
+
+/* =========================
+   BLOQUE DE MARCA
+========================= */
+
+.marca-bloque{
+  margin:0 auto 52px;
+}
+
+.marca-bloque:last-child{
+  margin-bottom:0;
+}
+
+.marca-cabecera{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:74px;
+
+  margin-bottom:20px;
+
+  padding:10px 20px;
+
+  position:relative;
+}
+
+.marca-cabecera::before,
+.marca-cabecera::after{
+  content:"";
+
+  height:1px;
+  flex:1;
+
+  max-width:300px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #ead1da
+  );
+}
+
+.marca-cabecera::after{
+  background:linear-gradient(
+    90deg,
+    #ead1da,
+    transparent
+  );
+}
+
+.marca-logo{
+  min-width:180px;
+
+  padding:5px 25px;
+
+  text-align:center;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.marca-logo img{
+  display:block;
+
+  max-width:145px;
+  max-height:58px;
+
+  width:auto;
+  height:auto;
+
+  object-fit:contain;
+}
+
+.logo-marca-texto{
+  display:none;
+
+  color:var(--rosa);
+
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:1.3px;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,minmax(0,1fr));
+
+  gap:22px;
+}
+
+.grid.uno{
+  grid-template-columns:minmax(0,520px);
+  justify-content:center;
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.card{
+  overflow:hidden;
+
+  background:#fff;
+
+  border:1px solid var(--borde);
+  border-radius:25px;
+
+  padding:12px 12px 21px;
+
+  box-shadow:
+  0 8px 28px rgba(77,47,57,.07);
+
+  transition:
+  transform .22s,
+  box-shadow .22s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 15px 38px rgba(77,47,57,.11);
+}
+
+.foto{
+  position:relative;
+
+  width:100%;
+  aspect-ratio:4/3;
+
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:19px;
+
+  background:
+  radial-gradient(
+    circle at center,
+    #fff 0%,
+    #fff 42%,
+    #fff5f8 100%
+  );
+}
+
+.foto::after{
+  content:"";
+
+  position:absolute;
+
+  left:14%;
+  right:14%;
+  bottom:6%;
+
+  height:18px;
+
+  border-radius:50%;
+
+  background:rgba(64,38,46,.07);
+
+  filter:blur(13px);
+
+  z-index:0;
+}
+
+.foto img{
+  position:relative;
+  z-index:1;
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+}
+
+.info{
+  padding:18px 7px 0;
+}
+
+.marca{
+  display:inline-flex;
+
+  padding:5px 10px;
+
+  margin-bottom:10px;
+
+  border-radius:20px;
+
+  background:var(--rosa-suave);
+
+  color:var(--rosa);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.9px;
+}
+
+.info h3{
+  margin-bottom:8px;
+
+  font-family:Georgia,serif;
+  font-size:23px;
+  font-weight:500;
+
+  line-height:1.25;
+}
+
+.formato{
+  display:inline-block;
+
+  margin-bottom:12px;
+
+  color:#725e66;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.ref{
+  margin-bottom:15px;
+
+  color:#958087;
+
+  font-size:11px;
+  font-weight:700;
+}
+
+.precio{
+  margin-bottom:5px;
+
+  color:var(--texto);
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.stock{
+  margin-bottom:14px;
+
+  color:var(--verde);
+
+  font-size:11px;
+  font-weight:900;
+}
+
+.agotado .stock{
+  color:#c54c68;
+}
+
+.aviso{
+  display:none;
+
+  margin-bottom:13px;
+
+  padding:10px;
+
+  text-align:center;
+
+  background:#fff0f4;
+
+  border:1px solid #f1c8d5;
+  border-radius:12px;
+
+  color:#c64b71;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.agotado .aviso{
+  display:block;
+}
+
+
+/* =========================
+   CANTIDAD
+========================= */
+
+.cantidad{
+  display:grid;
+
+  grid-template-columns:50px 1fr 50px;
+
+  overflow:hidden;
+
+  margin-bottom:12px;
+
+  border:1px solid #edcbd6;
+  border-radius:14px;
+
+  background:#fff;
+}
+
+.cantidad button{
+  width:50px;
+  height:44px;
+
+  border:0;
+
+  background:#fff3f7;
+
+  color:var(--rosa);
+
+  font-size:22px;
+
+  cursor:pointer;
+}
+
+.cantidad button:active{
+  background:#f9dce6;
+}
+
+.cantidad input{
+  width:100%;
+  min-width:0;
+
+  border:0;
+  outline:none;
+
+  background:#fff;
+
+  text-align:center;
+
+  font-size:15px;
+  font-weight:900;
+}
+
+.agregar{
+  width:100%;
+
+  border:0;
+  border-radius:40px;
+
+  padding:14px;
+
+  background:var(--rosa);
+
+  color:#fff;
+
+  font-size:11px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.agregar:hover{
+  background:var(--rosa-fuerte);
+}
+
+.agregar:disabled,
+.cantidad button:disabled,
+.cantidad input:disabled{
+  opacity:.43;
+  cursor:not-allowed;
+}
+
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto{
+  text-align:center;
+
+  padding:62px 20px 56px;
+
+  border-top:1px solid var(--borde);
+
+  background:
+  radial-gradient(
+    circle at 50% 0,
+    #fff 0,
+    transparent 40%
+  ),
+  linear-gradient(
+    135deg,
+    #fcebf1,
+    #fff8fa 55%,
+    #fffdfd
+  );
+}
+
+.contacto-contenido{
+  max-width:680px;
+  margin:auto;
+}
+
+.contacto h2{
+  margin-bottom:11px;
+
+  font-family:Georgia,serif;
+  font-size:33px;
+  font-weight:500;
+}
+
+.contacto p{
+  max-width:570px;
+  margin:0 auto 22px;
+
+  color:var(--texto-suave);
+
+  font-size:14px;
+  line-height:1.65;
+}
+
+.wa{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  padding:13px 22px;
+
+  border-radius:40px;
+
+  background:#25D366;
+
+  color:#fff;
+
+  text-decoration:none;
+
+  font-size:12px;
+  font-weight:900;
+
+  box-shadow:
+  0 7px 18px rgba(37,211,102,.18);
+}
+
+
+/* =========================
+   REDES
+========================= */
+
+.redes{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:11px;
+
+  margin:24px 0 19px;
+}
+
+.redes a{
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid #ead7de;
+  border-radius:50%;
+
+  background:#fff;
+
+  text-decoration:none;
+
+  box-shadow:
+  0 4px 12px rgba(59,35,43,.06);
+
+  transition:
+  transform .2s,
+  box-shadow .2s;
+}
+
+.redes a:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+  0 7px 16px rgba(59,35,43,.11);
+}
+
+.redes svg{
+  width:20px;
+  height:20px;
+}
+
+
+/* INSTAGRAM */
+
+.instagram svg{
+  fill:none;
+
+  stroke:#d62976;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.instagram .relleno{
+  fill:#d62976;
+  stroke:none;
+}
+
+
+/* FACEBOOK */
+
+.facebook svg{
+  fill:#1877F2;
+}
+
+
+/* TIKTOK */
+
+.tiktok svg{
+  fill:#111;
+}
+
+
+/* UBICACION */
+
+.ubicacion{
+  color:#725f66;
+
+  text-decoration:none;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.ubicacion:hover{
+  color:var(--rosa);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:26px 20px;
+
+  background:var(--oscuro);
+
+  color:#f8e8ee;
+
+  text-align:center;
+
+  font-size:11px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:translate(-50%,25px);
+
+  z-index:3000;
+
+  opacity:0;
+
+  max-width:calc(100% - 30px);
+
+  padding:12px 19px;
+
+  border-radius:30px;
+
+  background:#34272c;
+  color:#fff;
+
+  text-align:center;
+
+  font-size:12px;
+  font-weight:700;
+
+  pointer-events:none;
+
+  transition:.22s;
+}
+
+.toast.mostrar{
+  opacity:1;
+
+  transform:translate(-50%,0);
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:700px){
+
+  header{
+    padding:8px 12px 10px;
+
+    flex-wrap:wrap;
+  }
+
+  .logo{
+    width:100%;
+
+    justify-content:center;
+  }
+
+  .logo img{
+    width:155px;
+    height:52px;
+  }
+
+  .acciones{
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr 1.2fr;
+
+    gap:7px;
+  }
+
+  .btn{
+    width:100%;
+
+    min-height:39px;
+
+    padding:9px 5px;
+
+    font-size:9px;
+  }
+
+  .hero{
+    padding:49px 18px 48px;
+  }
+
+  .hero>img{
+    width:240px;
+
+    right:-55px;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .tag{
+    font-size:9px;
+  }
+
+  .seccion{
+    padding:36px 14px 58px;
+  }
+
+  .marca-bloque{
+    margin-bottom:44px;
+  }
+
+  .marca-cabecera{
+    min-height:62px;
+
+    margin-bottom:14px;
+
+    padding:5px 0;
+  }
+
+  .marca-logo{
+    min-width:145px;
+
+    padding:4px 16px;
+  }
+
+  .marca-logo img{
+    max-width:120px;
+    max-height:48px;
+  }
+
+  .grid,
+  .grid.uno{
+    grid-template-columns:1fr;
+
+    max-width:500px;
+    margin:auto;
+
+    gap:17px;
+  }
+
+  .card{
+    border-radius:22px;
+  }
+
+  .info h3{
+    font-size:21px;
+  }
+
+  .contacto{
+    padding:50px 18px;
+  }
+
+  .contacto h2{
+    font-size:29px;
+  }
+
+}
+
+
+/* =========================
+   PANTALLAS MUY PEQUEÑAS
+========================= */
+
+@media(max-width:380px){
+
+  .btn{
+    font-size:8px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+}
+
 </style>
 </head>
+
+
 <body>
-<header><a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a><div class="acciones"><a class="btn" href="../geles/geles.html">VOLVER</a><a class="btn" href="../index.html">INICIO</a><a class="btn pedido" href="../carrito.html?modo=carrito">MI PEDIDO</a></div></header>
-<section class="hero"><img src="../imagenes/Cara logo bellashop.png" alt=""><div><span class="tag">BELLA SHOP · GELES</span><h1>Gel de Construcción</h1><p>Geles para estructura, extensión y construcción de uñas. Consulta precio y disponibilidad directamente desde nuestro inventario.</p></div></section>
-<section class="seccion"><div class="intro"><h2>Gel de Construcción</h2><p>Selecciona el producto que necesitas y agrégalo directamente a tu pedido.</p></div><div id="contenido"></div></section>
-<section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Estamos aquí para ti ✨ Escríbenos y con mucho gusto te ayudamos con tu pedido.</p><a class="wa" href="https://wa.me/573122002698" target="_blank" rel="noopener noreferrer">ESCRÍBENOS POR WHATSAPP</a><div class="redes"><a href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw" target="_blank" rel="noopener noreferrer">IG</a><a href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">f</a><a href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC" target="_blank" rel="noopener noreferrer">♪</a></div><a class="ubicacion" href="https://www.google.com/maps/place/Bella+Shop/" target="_blank" rel="noopener noreferrer">Bella Shop · Popayán, Cauca</a></section>
-<footer>Bella Shop · Tienda de Belleza · Popayán, Cauca</footer><div class="toast" id="toast"></div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <a class="logo" href="../index.html">
+    <img
+      src="../imagenes/Logo Bellashop png.png"
+      alt="Bella Shop"
+    >
+  </a>
+
+  <div class="acciones">
+
+    <a
+      class="btn"
+      href="../geles/geles.html"
+    >
+      VOLVER
+    </a>
+
+    <a
+      class="btn"
+      href="../index.html"
+    >
+      INICIO
+    </a>
+
+    <a
+      class="btn pedido"
+      href="../carrito.html?modo=carrito"
+    >
+      MI PEDIDO
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <img
+    src="../imagenes/Cara logo bellashop.png"
+    alt=""
+  >
+
+  <div class="hero-contenido">
+
+    <span class="tag">
+      BELLA SHOP · GELES
+    </span>
+
+    <h1>
+      Gel de Construcción
+    </h1>
+
+    <p>
+      Encuentra geles de construcción de nuestras marcas disponibles,
+      con precio y existencias actualizadas directamente desde el inventario.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     PRODUCTOS
+========================= -->
+
+<section class="seccion">
+
+  <div id="contenido"></div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACTO
+========================= -->
+
+<section class="contacto">
+
+  <div class="contacto-contenido">
+
+    <h2>
+      ¿Tienes dudas sobre algún producto?
+    </h2>
+
+    <p>
+      Escríbenos por WhatsApp y te ayudamos a elegir la referencia
+      que necesitas o a resolver cualquier duda sobre tu pedido.
+    </p>
+
+    <a
+      class="wa"
+      href="https://wa.me/573122002698"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WHATSAPP
+    </a>
+
+
+    <div class="redes">
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        class="instagram"
+        href="https://www.instagram.com/bellashop_byluisazu?stkn=eWhvYTluMzI2ZDcw"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram Bella Shop"
+        title="Instagram"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+          ></rect>
+
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+          ></circle>
+
+          <circle
+            class="relleno"
+            cx="17.4"
+            cy="6.6"
+            r="1"
+          ></circle>
+
+        </svg>
+
+      </a>
+
+
+
+      <!-- FACEBOOK -->
+
+      <a
+        class="facebook"
+        href="https://www.facebook.com/share/19W4wkJ3ZL/?mibextid=wwXIfr"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook Bella Shop"
+        title="Facebook"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            d="M14.2 8H17V4h-3.1C10.5 4 9 6 9 8.8V11H6v4h3v7h4v-7h3.4l.6-4h-4V9.1c0-.8.3-1.1 1.2-1.1Z"
+          ></path>
+
+        </svg>
+
+      </a>
+
+
+
+      <!-- TIKTOK -->
+
+      <a
+        class="tiktok"
+        href="https://www.tiktok.com/@bellashopbyluisazu?_r=1&_t=ZS-99cxLBT7EKC"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TikTok Bella Shop"
+        title="TikTok"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            d="M15 3c.5 2.3 1.8 3.7 4 4v3c-1.5-.1-2.8-.5-4-1.3V15a6 6 0 1 1-5-5.9v3.1a3 3 0 1 0 2 2.8V3h3Z"
+          ></path>
+
+        </svg>
+
+      </a>
+
+    </div>
+
+
+    <a
+      class="ubicacion"
+      href="https://www.google.com/maps/place/Bella+Shop/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Bella Shop · Popayán, Cauca
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+  Bella Shop · Tienda de Belleza · Popayán, Cauca
+</footer>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+
 <script>
-const PRODUCTOS=[
-{id:'latin-clearvisco',nombre:'Gel de Construcción Clear Visco',marca:'LATIN NAILS',formato:'15 gr',img:'imagenes/clearvisco-latin.png',refs:['7702786000221'],barcodes:['7702786000221'],names:['GEL DE CONSTRUCCION CLEAR VISCO 15 GR LATIN NAILS']},
-{id:'latin-megawhite',nombre:'Gel de Construcción Megawhite',marca:'LATIN NAILS',formato:'15 gr',img:'imagenes/megawhite-latin.png',refs:[],barcodes:['7702786000252'],names:['GEL DE CONSTRUCCION MEGAWHITE 15 GR LATIN NAILS']},
-{id:'queen-clear',nombre:'Gel de Construcción Clear / Transparente',marca:'QUEENIGHT',formato:'',img:'imagenes/cons-queen.png',refs:[],barcodes:['10309002'],names:['GEL DE CONSTRUCCION CLEAR  QUEENIGTH']},
-{id:'ks',nombre:'Gel de Construcción Clear / Transparente',marca:'KS',formato:'',img:'imagenes/cons-ks.png',refs:['GEL UV'],barcodes:['241581'],names:['GEL DE CONSTRUCCION KS']}
+
+/* ==================================================
+   PRODUCTOS
+================================================== */
+
+const PRODUCTOS = [
+
+  {
+    id:'latin-clearvisco',
+
+    nombre:
+    'Gel de Construcción Clear Visco',
+
+    marca:
+    'LATIN NAILS',
+
+    formato:
+    '15 gr',
+
+    img:
+    'imagenes/clearvisco-latin.png',
+
+    refs:[
+      '7702786000221'
+    ],
+
+    barcodes:[
+      '7702786000221'
+    ],
+
+    names:[
+      'GEL DE CONSTRUCCION CLEAR VISCO 15 GR LATIN NAILS'
+    ]
+  },
+
+
+  {
+    id:'latin-megawhite',
+
+    nombre:
+    'Gel de Construcción Megawhite',
+
+    marca:
+    'LATIN NAILS',
+
+    formato:
+    '15 gr',
+
+    img:
+    'imagenes/megawhite-latin.png',
+
+    refs:[],
+
+    barcodes:[
+      '7702786000252'
+    ],
+
+    names:[
+      'GEL DE CONSTRUCCION MEGAWHITE 15 GR LATIN NAILS'
+    ]
+  },
+
+
+  {
+    id:'queen-clear',
+
+    nombre:
+    'Gel de Construcción Clear / Transparente',
+
+    marca:
+    'QUEENIGHT',
+
+    formato:'',
+
+    img:
+    'imagenes/cons-queen.png',
+
+    /*
+      Código que se mostrará en la página
+      y que se enviará al carrito.
+    */
+
+    codigoFijo:
+    '010309002',
+
+    /*
+      Se prueban las dos variantes,
+      por si el inventario eliminó
+      el cero inicial.
+    */
+
+    refs:[
+      '010309002',
+      '10309002'
+    ],
+
+    barcodes:[
+      '010309002',
+      '10309002'
+    ],
+
+    names:[
+      'GEL DE CONSTRUCCION CLEAR QUEENIGTH',
+      'GEL DE CONSTRUCCION CLEAR QUEENIGHT',
+      'GEL DE CONSTRUCCION CLEAR TRANSPARENTE QUEENIGTH',
+      'GEL DE CONSTRUCCION CLEAR TRANSPARENTE QUEENIGHT'
+    ]
+  },
+
+
+  {
+    id:'ks',
+
+    nombre:
+    'Gel de Construcción Clear / Transparente',
+
+    marca:
+    'KS',
+
+    formato:'',
+
+    img:
+    'imagenes/cons-ks.png',
+
+    refs:[
+      'GEL UV'
+    ],
+
+    barcodes:[
+      '241581'
+    ],
+
+    names:[
+      'GEL DE CONSTRUCCION KS'
+    ]
+  }
+
 ];
-let inventario={};
-const normal=s=>String(s||'').trim().toUpperCase();
-function mapas(){const m={ref:{},bar:{},nom:{},key:{}};Object.entries(inventario).forEach(([k,p])=>{m.key[normal(k)]=p;if(p.referencia_interna)m.ref[normal(p.referencia_interna)]=p;if(p.codigo_barras)m.bar[normal(p.codigo_barras)]=p;if(p.nombre)m.nom[normal(p.nombre)]=p});return m}
-function buscar(x,m){for(const v of x.refs||[])if(m.ref[normal(v)])return m.ref[normal(v)];for(const v of x.barcodes||[])if(m.bar[normal(v)])return m.bar[normal(v)];for(const v of x.names||[])if(m.nom[normal(v)])return m.nom[normal(v)];for(const v of x.refs||[])if(m.key[normal(v)])return m.key[normal(v)];for(const v of x.barcodes||[])if(m.key[normal(v)])return m.key[normal(v)];return null}
-function dinero(n){return Number(n||0).toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0})}
-function stock(p){return Number(p?.cantidad_pronosticada ?? p?.disponible ?? p?.a_la_mano ?? 0)}
-function codigo(p){return p?.referencia_interna||p?.codigo_barras||p?.codigo||'Código no encontrado'}
-function card(x,i,m){const p=buscar(x,m),s=stock(p),ok=!!p&&s>0;return `<article class="card${ok?'':' agotado'}" data-i="${i}"><div class="foto"><img src="${x.img}" alt="${x.nombre} ${x.marca}"></div><div class="info"><div class="marca">${x.marca}</div><h3>${x.nombre}</h3>${x.formato?`<div class="formato">${x.formato}</div>`:''}<div class="ref">Ref: ${p?codigo(p):'Código no encontrado'}</div><div class="precio">${p?dinero(p.precio_venta):'Precio no disponible'}</div><div class="stock">${p?(s>0?`Disponible: ${s}`:'Agotado'):'Código no encontrado'}</div><div class="aviso">${p?'Temporalmente no disponible':'Código no encontrado'}</div><div class="cantidad"><button ${ok?'':'disabled'} data-op="-">−</button><input ${ok?'':'disabled'} value="1" inputmode="numeric"><button ${ok?'':'disabled'} data-op="+">+</button></div><button class="agregar" ${ok?'':'disabled'} data-add="1">AGREGAR AL PEDIDO</button></div></article>`}
-function render(){const m=mapas(),c=document.getElementById('contenido');const latin=PRODUCTOS.slice(0,2).map((x,i)=>card(x,i,m)).join('');const queen=card(PRODUCTOS[2],2,m);const ks=card(PRODUCTOS[3],3,m);c.innerHTML=`<div class="marca-bloque"><div class="marca-titulo">LATIN NAILS</div><div class="grid">${latin}</div></div><div class="marca-bloque"><div class="marca-titulo">QUEENIGHT</div><div class="grid uno">${queen}</div></div><div class="marca-bloque"><div class="marca-titulo">KS</div><div class="grid uno">${ks}</div></div>`}
-function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('mostrar');setTimeout(()=>e.classList.remove('mostrar'),2200)}
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const cardEl=b.closest('.card');if(!cardEl)return;const i=Number(cardEl.dataset.i),x=PRODUCTOS[i],m=mapas(),p=buscar(x,m),s=stock(p),inp=cardEl.querySelector('input');if(b.dataset.op){let v=Number(inp.value||1)+(b.dataset.op==='+'?1:-1);inp.value=Math.max(1,Math.min(s,v));return}if(b.dataset.add){let q=Math.max(1,Math.min(s,Number(inp.value||1))),ref=codigo(p),cart=JSON.parse(localStorage.getItem('bellaShopCarrito')||'[]'),clave='gelconstruccion:'+ref,ex=cart.find(z=>z.clave===clave);if(ex)ex.cantidad=Math.min(s,Number(ex.cantidad||0)+q);else cart.push({clave,nombre:x.nombre+' '+x.marca,referencia:ref,precio:Number(p.precio_venta||0),cantidad:q});localStorage.setItem('bellaShopCarrito',JSON.stringify(cart));toast('Agregado al pedido 💕')}});
-document.addEventListener('input',e=>{if(e.target.matches('.cantidad input'))e.target.value=e.target.value.replace(/\D/g,'')});
-document.addEventListener('blur',e=>{if(e.target.matches('.cantidad input')){const cardEl=e.target.closest('.card'),i=Number(cardEl.dataset.i),p=buscar(PRODUCTOS[i],mapas()),s=stock(p);e.target.value=Math.max(1,Math.min(s,Number(e.target.value||1))) }},true);
-fetch('../inventario.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{inventario=d.productos||d;render()}).catch(()=>render());
+
+
+
+/* ==================================================
+   LOGOS DE MARCAS
+================================================== */
+
+const LOGOS_MARCA = {
+
+  'LATIN NAILS':[
+    '../imagenes/LOGOLATIN.png',
+    '../imagenes/LOGO LATIN.png',
+    '../imagenes/Logo Latin.png',
+    '../imagenes/Logo Latin Nails.png',
+    '../imagenes/logo-latin.png'
+  ],
+
+  'QUEENIGHT':[
+    '../imagenes/LOGOQUEENIGHT.png',
+    '../imagenes/LOGO QUEENIGHT.png',
+    '../imagenes/Logo Queenight.png',
+    '../imagenes/LOGOQUEEN.png',
+    '../imagenes/logo-queenight.png'
+  ],
+
+  'KS':[
+    '../imagenes/LOGOKS.png'
+  ]
+
+};
+
+
+
+/* ==================================================
+   GRUPOS
+================================================== */
+
+const GRUPOS = [
+
+  {
+    marca:'LATIN NAILS',
+    indices:[0,1]
+  },
+
+  {
+    marca:'QUEENIGHT',
+    indices:[2]
+  },
+
+  {
+    marca:'KS',
+    indices:[3]
+  }
+
+];
+
+
+
+/* ==================================================
+   INVENTARIO
+================================================== */
+
+let inventario = {};
+
+
+
+/* ==================================================
+   NORMALIZADOR
+================================================== */
+
+const normal = s =>
+
+  String(s ?? '')
+
+  .normalize('NFD')
+
+  .replace(
+    /[\u0300-\u036f]/g,
+    ''
+  )
+
+  .trim()
+
+  .replace(
+    /\s+/g,
+    ' '
+  )
+
+  .toUpperCase();
+
+
+
+/* ==================================================
+   MAPAS DE INVENTARIO
+================================================== */
+
+function mapas(){
+
+  const m = {
+
+    ref:{},
+    bar:{},
+    nom:{},
+    key:{}
+
+  };
+
+
+  Object.entries(inventario)
+
+  .forEach(([k,p])=>{
+
+    m.key[
+      normal(k)
+    ] = p;
+
+
+    if(p.referencia_interna){
+
+      m.ref[
+        normal(
+          p.referencia_interna
+        )
+      ] = p;
+
+    }
+
+
+    if(p.codigo_barras){
+
+      m.bar[
+        normal(
+          p.codigo_barras
+        )
+      ] = p;
+
+    }
+
+
+    if(p.nombre){
+
+      m.nom[
+        normal(
+          p.nombre
+        )
+      ] = p;
+
+    }
+
+  });
+
+
+  return m;
+
+}
+
+
+
+/* ==================================================
+   BUSCAR PRODUCTO
+================================================== */
+
+function buscar(x,m){
+
+
+  for(
+    const v of x.refs || []
+  ){
+
+    if(
+      m.ref[
+        normal(v)
+      ]
+    ){
+
+      return m.ref[
+        normal(v)
+      ];
+
+    }
+
+  }
+
+
+
+  for(
+    const v of x.barcodes || []
+  ){
+
+    if(
+      m.bar[
+        normal(v)
+      ]
+    ){
+
+      return m.bar[
+        normal(v)
+      ];
+
+    }
+
+  }
+
+
+
+  for(
+    const v of x.names || []
+  ){
+
+    if(
+      m.nom[
+        normal(v)
+      ]
+    ){
+
+      return m.nom[
+        normal(v)
+      ];
+
+    }
+
+  }
+
+
+
+  for(
+    const v of x.refs || []
+  ){
+
+    if(
+      m.key[
+        normal(v)
+      ]
+    ){
+
+      return m.key[
+        normal(v)
+      ];
+
+    }
+
+  }
+
+
+
+  for(
+    const v of x.barcodes || []
+  ){
+
+    if(
+      m.key[
+        normal(v)
+      ]
+    ){
+
+      return m.key[
+        normal(v)
+      ];
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+
+/* ==================================================
+   PRECIO
+================================================== */
+
+function dinero(n){
+
+  return Number(n || 0)
+
+  .toLocaleString(
+    'es-CO',
+    {
+      style:'currency',
+      currency:'COP',
+      maximumFractionDigits:0
+    }
+  );
+
+}
+
+
+
+/* ==================================================
+   STOCK
+================================================== */
+
+function stock(p){
+
+  return Number(
+
+    p?.cantidad_pronosticada
+
+    ??
+
+    p?.disponible
+
+    ??
+
+    p?.a_la_mano
+
+    ??
+
+    0
+
+  );
+
+}
+
+
+
+/* ==================================================
+   CÓDIGO DE INVENTARIO
+================================================== */
+
+function codigoInventario(p){
+
+  return (
+
+    p?.referencia_interna
+
+    ||
+
+    p?.codigo_barras
+
+    ||
+
+    p?.codigo
+
+    ||
+
+    'Código no encontrado'
+
+  );
+
+}
+
+
+
+/* ==================================================
+   CÓDIGO QUE SE MOSTRARÁ
+================================================== */
+
+function codigoProducto(x,p){
+
+  return (
+
+    x.codigoFijo
+
+    ||
+
+    codigoInventario(p)
+
+  );
+
+}
+
+
+
+/* ==================================================
+   LOGO DE MARCA
+================================================== */
+
+function logoMarca(nombre){
+
+  const opciones =
+    LOGOS_MARCA[nombre] || [];
+
+
+  if(!opciones.length){
+
+    return `
+
+      <div class="marca-logo">
+
+        <span
+          class="logo-marca-texto"
+          style="display:block"
+        >
+          ${nombre}
+        </span>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const restantes =
+    encodeURIComponent(
+      JSON.stringify(
+        opciones.slice(1)
+      )
+    );
+
+
+  return `
+
+    <div class="marca-logo">
+
+      <img
+        src="${opciones[0]}"
+        data-restantes="${restantes}"
+        alt="Logo ${nombre}"
+        onerror="siguienteLogo(this)"
+      >
+
+      <span
+        class="logo-marca-texto"
+      >
+        ${nombre}
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* ==================================================
+   FALLBACK PARA LOGOS
+================================================== */
+
+function siguienteLogo(img){
+
+  let opciones = [];
+
+
+  try{
+
+    opciones =
+      JSON.parse(
+        decodeURIComponent(
+          img.dataset.restantes || '%5B%5D'
+        )
+      );
+
+  }
+  catch(e){
+
+    opciones = [];
+
+  }
+
+
+  if(opciones.length){
+
+    const siguiente =
+      opciones.shift();
+
+
+    img.dataset.restantes =
+      encodeURIComponent(
+        JSON.stringify(
+          opciones
+        )
+      );
+
+
+    img.src =
+      siguiente;
+
+  }
+  else{
+
+    img.style.display =
+      'none';
+
+
+    const texto =
+      img.parentElement
+      .querySelector(
+        '.logo-marca-texto'
+      );
+
+
+    if(texto){
+
+      texto.style.display =
+        'block';
+
+    }
+
+  }
+
+}
+
+
+
+/* ==================================================
+   TARJETA PRODUCTO
+================================================== */
+
+function card(x,i,m){
+
+  const p =
+    buscar(x,m);
+
+
+  const s =
+    stock(p);
+
+
+  const ok =
+    !!p && s > 0;
+
+
+  const codigoMostrar =
+
+    x.codigoFijo
+
+    ||
+
+    (
+      p
+
+      ?
+
+      codigoInventario(p)
+
+      :
+
+      'Código no encontrado'
+    );
+
+
+  return `
+
+    <article
+      class="card${ok ? '' : ' agotado'}"
+      data-i="${i}"
+    >
+
+
+      <div class="foto">
+
+        <img
+          src="${x.img}"
+          alt="${x.nombre} ${x.marca}"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="info">
+
+
+        <div class="marca">
+          ${x.marca}
+        </div>
+
+
+        <h3>
+          ${x.nombre}
+        </h3>
+
+
+        ${
+          x.formato
+
+          ?
+
+          `
+          <div class="formato">
+            ${x.formato}
+          </div>
+          `
+
+          :
+
+          ''
+        }
+
+
+        <div class="ref">
+          Ref: ${codigoMostrar}
+        </div>
+
+
+        <div class="precio">
+
+          ${
+            p
+
+            ?
+
+            dinero(
+              p.precio_venta
+            )
+
+            :
+
+            'Precio no disponible'
+          }
+
+        </div>
+
+
+        <div class="stock">
+
+          ${
+            p
+
+            ?
+
+            (
+              s > 0
+
+              ?
+
+              `Disponible: ${s}`
+
+              :
+
+              'Agotado'
+            )
+
+            :
+
+            'Código no encontrado'
+          }
+
+        </div>
+
+
+        <div class="aviso">
+
+          ${
+            p
+
+            ?
+
+            'Temporalmente no disponible'
+
+            :
+
+            'Código no encontrado'
+          }
+
+        </div>
+
+
+        <div class="cantidad">
+
+          <button
+            ${ok ? '' : 'disabled'}
+            data-op="-"
+            aria-label="Disminuir cantidad"
+          >
+            −
+          </button>
+
+
+          <input
+            ${ok ? '' : 'disabled'}
+            value="1"
+            inputmode="numeric"
+            aria-label="Cantidad"
+          >
+
+
+          <button
+            ${ok ? '' : 'disabled'}
+            data-op="+"
+            aria-label="Aumentar cantidad"
+          >
+            +
+          </button>
+
+        </div>
+
+
+        <button
+          class="agregar"
+          ${ok ? '' : 'disabled'}
+          data-add="1"
+        >
+          AGREGAR AL PEDIDO
+        </button>
+
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function render(){
+
+  const m =
+    mapas();
+
+
+  const c =
+    document.getElementById(
+      'contenido'
+    );
+
+
+  c.innerHTML =
+
+    GRUPOS
+
+    .map(g=>{
+
+
+      const productos =
+
+        g.indices
+
+        .map(i=>
+
+          card(
+            PRODUCTOS[i],
+            i,
+            m
+          )
+
+        )
+
+        .join('');
+
+
+      return `
+
+        <section class="marca-bloque">
+
+
+          <div class="marca-cabecera">
+
+            ${logoMarca(g.marca)}
+
+          </div>
+
+
+          <div
+            class="grid${g.indices.length === 1 ? ' uno' : ''}"
+          >
+
+            ${productos}
+
+          </div>
+
+
+        </section>
+
+      `;
+
+    })
+
+    .join('');
+
+}
+
+
+
+/* ==================================================
+   MENSAJE
+================================================== */
+
+function toast(t){
+
+  const e =
+    document.getElementById(
+      'toast'
+    );
+
+
+  e.textContent =
+    t;
+
+
+  e.classList.add(
+    'mostrar'
+  );
+
+
+  setTimeout(
+    ()=>{
+
+      e.classList.remove(
+        'mostrar'
+      );
+
+    },
+    2200
+  );
+
+}
+
+
+
+/* ==================================================
+   BOTONES
+================================================== */
+
+document.addEventListener(
+  'click',
+  e=>{
+
+
+    const b =
+      e.target.closest(
+        'button'
+      );
+
+
+    if(!b) return;
+
+
+    const cardEl =
+      b.closest(
+        '.card'
+      );
+
+
+    if(!cardEl) return;
+
+
+    const i =
+      Number(
+        cardEl.dataset.i
+      );
+
+
+    const x =
+      PRODUCTOS[i];
+
+
+    const m =
+      mapas();
+
+
+    const p =
+      buscar(x,m);
+
+
+    const s =
+      stock(p);
+
+
+    const inp =
+      cardEl.querySelector(
+        '.cantidad input'
+      );
+
+
+    /* ------------------
+       CANTIDAD
+    ------------------ */
+
+    if(b.dataset.op){
+
+      let v =
+
+        Number(
+          inp.value || 1
+        )
+
+        +
+
+        (
+          b.dataset.op === '+'
+
+          ?
+
+          1
+
+          :
+
+          -1
+        );
+
+
+      inp.value =
+
+        Math.max(
+          1,
+          Math.min(
+            s,
+            v
+          )
+        );
+
+
+      return;
+
+    }
+
+
+
+    /* ------------------
+       AGREGAR
+    ------------------ */
+
+    if(b.dataset.add){
+
+
+      if(!p || s <= 0){
+
+        return;
+
+      }
+
+
+      let q =
+
+        Math.max(
+          1,
+          Math.min(
+            s,
+            Number(
+              inp.value || 1
+            )
+          )
+        );
+
+
+      const ref =
+        codigoProducto(
+          x,
+          p
+        );
+
+
+      let cart =
+
+        JSON.parse(
+
+          localStorage.getItem(
+            'bellaShopCarrito'
+          )
+
+          ||
+
+          '[]'
+
+        );
+
+
+      const clave =
+        'gelconstruccion:' +
+        ref;
+
+
+      const ex =
+        cart.find(
+          z=>
+          z.clave === clave
+        );
+
+
+      if(ex){
+
+        ex.cantidad =
+
+          Math.min(
+
+            s,
+
+            Number(
+              ex.cantidad || 0
+            )
+
+            +
+
+            q
+
+          );
+
+      }
+      else{
+
+        cart.push({
+
+          clave,
+
+          nombre:
+            x.nombre +
+            ' ' +
+            x.marca,
+
+          referencia:
+            ref,
+
+          precio:
+            Number(
+              p.precio_venta || 0
+            ),
+
+          cantidad:
+            q
+
+        });
+
+      }
+
+
+      localStorage.setItem(
+
+        'bellaShopCarrito',
+
+        JSON.stringify(
+          cart
+        )
+
+      );
+
+
+      toast(
+        'Agregado al pedido 💕'
+      );
+
+    }
+
+  }
+);
+
+
+
+/* ==================================================
+   INPUT CANTIDAD
+================================================== */
+
+document.addEventListener(
+  'input',
+  e=>{
+
+    if(
+      e.target.matches(
+        '.cantidad input'
+      )
+    ){
+
+      e.target.value =
+
+        e.target.value
+
+        .replace(
+          /\D/g,
+          ''
+        );
+
+    }
+
+  }
+);
+
+
+
+/* ==================================================
+   VALIDAR AL SALIR
+================================================== */
+
+document.addEventListener(
+  'blur',
+  e=>{
+
+    if(
+      e.target.matches(
+        '.cantidad input'
+      )
+    ){
+
+      const cardEl =
+        e.target.closest(
+          '.card'
+        );
+
+
+      const i =
+        Number(
+          cardEl.dataset.i
+        );
+
+
+      const p =
+        buscar(
+          PRODUCTOS[i],
+          mapas()
+        );
+
+
+      const s =
+        stock(p);
+
+
+      e.target.value =
+
+        Math.max(
+          1,
+          Math.min(
+            s,
+            Number(
+              e.target.value || 1
+            )
+          )
+        );
+
+    }
+
+  },
+  true
+);
+
+
+
+/* ==================================================
+   CARGAR INVENTARIO
+================================================== */
+
+fetch(
+  '../inventario.json',
+  {
+    cache:'no-store'
+  }
+)
+
+.then(
+  r=>r.json()
+)
+
+.then(
+  d=>{
+
+    inventario =
+      d.productos || d;
+
+    render();
+
+  }
+)
+
+.catch(
+  ()=>{
+
+    render();
+
+  }
+);
+
 </script>
+
 </body>
 </html>
