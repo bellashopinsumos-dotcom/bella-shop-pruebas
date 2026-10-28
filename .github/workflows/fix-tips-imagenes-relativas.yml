@@ -1,0 +1,31 @@
+name: Fix imagenes Tips rutas relativas
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-tips-imagenes-relativas.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Corregir rutas por API
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python - <<'PY'
+          import os, json, base64, urllib.request, urllib.parse
+          repo=os.environ['REPO']; token=os.environ['GH_TOKEN']
+          path='tips y press on/index.html'; enc=urllib.parse.quote(path,safe='/')
+          headers={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          req=urllib.request.Request(f'https://api.github.com/repos/{repo}/contents/{enc}?ref=main',headers=headers)
+          with urllib.request.urlopen(req) as r:data=json.load(r)
+          s=base64.b64decode(data['content']).decode('utf-8')
+          base='/bella-shop-pruebas/tips%20y%20press%20on/imagenes/'
+          s=s.replace(base,'./imagenes/')
+          payload=json.dumps({'message':'Usar rutas relativas para imagenes Tips y Press On','content':base64.b64encode(s.encode()).decode(),'sha':data['sha'],'branch':'main'}).encode()
+          req=urllib.request.Request(f'https://api.github.com/repos/{repo}/contents/{enc}',data=payload,headers={**headers,'Content-Type':'application/json'},method='PUT')
+          with urllib.request.urlopen(req) as r:print(r.status)
+          PY
