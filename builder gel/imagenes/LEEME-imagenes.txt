@@ -1,0 +1,35 @@
+BELLA SHOP - BUILDER GEL
+
+Esta carpeta contiene las imágenes de la página Builder Gel.
+Cuando estén disponibles las fotos reales, reemplazar/agregar archivos con estos nombres EXACTOS:
+
+CANM
+- canm-beige.jpg       -> CM941 - BUILDER GEL BEIGE 15ML CANM
+- canm-blanco.jpg      -> BUILDER GEL BLANCO 15 GR CANM (sin referencia interna/código de barras en Odoo)
+- canm-crystal.jpg     -> 7709554499786 - BUILDER GEL CRYSTAL 15GR CANM
+- canm-rosa.jpg        -> CM940 - BUILDER GEL ROSA 15 GR CANM
+- canm-pink-iu113-4.jpg -> IU113-4 - BUILDER GEL CANM PINK 15ML
+
+ILU
+- ilu-clear.jpg        -> Código de barras IU113'1 - BUILDER GEL CLEAR ILU
+- ilu-nude.jpg         -> Código de barras IU113'2 - BUILDER GEL NUDE ILU
+- ilu-white.jpg        -> Código de barras IU113'3 - BUILDER GEL WITHE ILU
+- ilu-iu113-1.jpg      -> IU113-1 - BUILDER GEL #1 15ML
+
+LATIN NAILS
+- latin-52.jpg                     -> 7709005275996 - BUILDER GEL #52 LATIN NAILS
+- latin-57.jpg                     -> 7709925739950 - BUILDER GEL #57 LATIN NAILS
+- latin-62.jpg                     -> 7709005275958 - BUILDER GEL #62 LATIN NAILS
+- latin-clear-7709683692528.jpg    -> 7709683692528 - BUILDER GEL CLEAR 15ML LATIN NAILS
+- latin-clear-7709005275941.jpg    -> 7709005275941 - BUILDER GEL CLEAR 15ML LATIN NAILS
+
+CLOE
+- cloe-clear.jpg        -> 7709113655178 - GEL BUILDER CLEAR 30ML CLOE
+- cloe-cover.jpg        -> 7709113655468 - GEL BUILDER COVER 30ML CLOE
+- cloe-nude.jpg         -> 7709113655239 - GEL BUILDER NUDE 30ML CLOE
+- cloe-pink.jpg         -> 7709113655215 - GEL BUILDER PINK 30ML CLOE
+
+IMPORTANTE:
+- No cambiar referencias ni códigos para acomodar nombres de archivo.
+- La página busca inventario en este orden: referencia interna, código de barras y nombre exacto de Odoo.
+- placeholder-builder.svg se usa automáticamente cuando todavía no existe la foto real.
