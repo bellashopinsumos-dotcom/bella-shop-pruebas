@@ -1,4 +1,4 @@
-name: Corregir Tips
+name: Conectar B25-41B
 on:
   push:
     branches:
@@ -12,15 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Corregir datos
+      - name: Conectar inventario
         shell: bash
         run: |
-          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgidGlwcyB5IHByZXNzIG9uL2luZGV4Lmh0bWwiKQpzPXAucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCnM9cy5yZXBsYWNlKCJyZWZzOlsnQ0E0OTY1J10iLCAicmVmczpbJ0NBMzk2NSddIikKcz1zLnJlcGxhY2UoImltYWdlbjonLi9pbWFnZW5lcy9DQTQ5NjcucG5nJyIsICJpbWFnZW46Jy4vaW1hZ2VuZXMvQ0EzOTY3LnBuZyciKQpzPXMucmVwbGFjZSgiYmFyY29kZXM6WydDQTQ5NjcnXSIsICJiYXJjb2RlczpbJ0NBMzk2NyddIikKcz1zLnJlcGxhY2UoIm5vbWJyZXM6WydUSVBTIFNRVUFSRVg1NTAgUENTIEhBS1UnXSIsICJub21icmVzOlsnVElQUyBTUVVBUkUgWDU1MCBQQ1MgSEFLVSddIikKb2xkPSIke3guZm9ybWE9PT0nYWxtZW5kcmFkYSc/J0FMTUVORFJBREEnOnguZm9ybWE9PT0nY3VhZHJhZGEnPydDVUFEUkFEQSc6J0NPRkZJTid9IgpuZXc9IiR7eC5mb3JtYT09PSdhbG1lbmRyYWRhJz8nQUxNRU5EUkFEQSc6eC5mb3JtYT09PSdjdWFkcmFkYSc/J0NVQURSQURBJzp4LmZvcm1hPT09J2N1cnZhdHVyYS1jJz8nQ1VSVkFUVVJBIEMnOnguZm9ybWE9PT0nc29ucmlzYSc/J1RJUE8gU09OUklTQSc6J0NPRkZJTid9IgpzPXMucmVwbGFjZShvbGQsbmV3KQpwLndyaXRlX3RleHQocyxlbmNvZGluZz0idXRmLTgiKQo=' | base64 -d | python
+          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgidGlwcyB5IHByZXNzIG9uL2luZGV4Lmh0bWwiKQpzPXAucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCnM9cy5yZXBsYWNlKCJyZWZzOlsnQjI1LTQxQiddLGJhcmNvZGVzOlsnQjI1LTQxQiddLG5vbWJyZXM6WydTT0ZUIEdFTCBUSVBTIHgzMDAgQjI1LTQxQiddIiwicmVmczpbJ0IyNS00MSddLGJhcmNvZGVzOlsnQjI1LTQxJ10sbm9tYnJlczpbJ1NPRlQgR0VMIFRJUFMgeDMwMCBCMjUtNDEnXSIpCnAud3JpdGVfdGV4dChzLGVuY29kaW5nPSJ1dGYtOCIpCg==' | base64 -d | python
       - name: Guardar
         shell: bash
         run: |
           git config user.name 'Bella Shop Bot'
           git config user.email 'actions@users.noreply.github.com'
           git add 'tips y press on/index.html'
-          git commit -m 'Corregir referencias e insignias Tips' || true
+          git commit -m 'Conectar B25-41B a referencia B25-41' || true
           git push
