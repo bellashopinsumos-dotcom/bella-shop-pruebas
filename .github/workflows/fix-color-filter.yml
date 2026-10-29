@@ -1,0 +1,31 @@
+name: Fix color filter image
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-color-filter.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ajustar color visible al filtrar
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tips y press on/index.html')
+          s=p.read_text(encoding='utf-8')
+          old="filtroColor=b.dataset.color;render()"
+          new="filtroColor=b.dataset.color;if(filtroColor!=='todos'){PRODUCTOS.filter(x=>x.tipo==='press'&&(x.colores||[]).includes(filtroColor)).forEach(x=>{const im=(x.imagenes||[]).find(i=>normal(i.color)===normal(filtroColor));if(im)seleccionesColor[x.id]=im.color})}render()"
+          if old not in s:
+              raise SystemExit('No se encontro el bloque esperado')
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add 'tips y press on/index.html'
+          git commit -m 'Sincronizar foto con filtro de color'
+          git push
