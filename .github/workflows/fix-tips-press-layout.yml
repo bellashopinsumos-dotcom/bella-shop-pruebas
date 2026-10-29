@@ -1,0 +1,66 @@
+name: Fix Tips Press On layout
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-tips-press-layout.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aplicar correcciones
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tips y press on/index.html')
+          s=p.read_text(encoding='utf-8')
+          # PC: foto completa, proporcionada y sin recorte. Movil conserva su comportamiento.
+          s=s.replace(".carrusel-producto{position:relative;width:100%;height:476px;overflow:hidden;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center}.carrusel-producto img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}", ".carrusel-producto{position:relative;width:100%;height:430px;overflow:hidden;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center;padding:14px}.carrusel-producto img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}")
+          s=s.replace("grid-template-columns:minmax(560px,1.15fr) minmax(420px,.85fr)","grid-template-columns:minmax(430px,.9fr) minmax(480px,1.1fr)")
+          # Press: Color junto a Todos / Almendrada / Cuadrada / Coffin.
+          old='<div class="filtros subfiltros" id="filtroPress"><button class="filtro activo" data-forma="todos">Todos</button><button class="filtro" data-forma="almendrada">Almendradas</button><button class="filtro" data-forma="cuadrada">Cuadradas</button><button class="filtro" data-forma="coffin">Coffin</button></div><div class="subtitulo-filtro" id="tituloColor">FILTRAR POR COLOR</div><div class="filtros subfiltros" id="filtroColor"><button class="filtro activo" data-color="todos">Todos los colores</button><button class="filtro" data-color="pink">Pink</button><button class="filtro" data-color="nude">Nude</button><button class="filtro" data-color="brown">Brown</button></div>'
+          new='<div class="filtros subfiltros" id="filtroPress"><button class="filtro activo" data-forma="todos">Todos</button><button class="filtro" data-forma="almendrada">Almendradas</button><button class="filtro" data-forma="cuadrada">Cuadradas</button><button class="filtro" data-forma="coffin">Coffin</button><button class="filtro" id="btnColor" data-forma="color">Color</button></div><div class="filtros subfiltros" id="filtroColor"><button class="filtro activo" data-color="todos">Todos los colores</button><button class="filtro" data-color="pink">Pink</button><button class="filtro" data-color="nude">Nude</button><button class="filtro" data-color="brown">Brown</button></div>'
+          s=s.replace(old,new)
+          # Reemplazar manejo de filtros por version donde Color abre opciones y cada color fuerza su foto.
+          start=s.index('function activarFiltros()')
+          end=s.index('async function cargar()',start)
+          nf="""function activarFiltros(){
+          document.querySelectorAll('#filtroTipo .filtro').forEach(b=>b.addEventListener('click',()=>{
+            document.querySelectorAll('#filtroTipo .filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');
+            filtroTipo=b.dataset.tipo;filtroForma='todos';filtroColor='todos';
+            document.getElementById('filtroPress').classList.toggle('visible',filtroTipo==='press');
+            document.getElementById('filtroColor').classList.remove('visible');
+            document.getElementById('filtroTips').classList.toggle('visible',filtroTipo==='tips');
+            document.querySelectorAll('#filtroPress .filtro,#filtroTips .filtro').forEach(x=>x.classList.toggle('activo',x.dataset.forma==='todos'));
+            document.querySelectorAll('#filtroColor .filtro').forEach(x=>x.classList.toggle('activo',x.dataset.color==='todos'));
+            render();
+          }));
+          document.querySelectorAll('#filtroPress .filtro').forEach(b=>b.addEventListener('click',()=>{
+            if(b.dataset.forma==='color'){
+              document.querySelectorAll('#filtroPress .filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');
+              filtroForma='todos';document.getElementById('filtroColor').classList.add('visible');render();return;
+            }
+            document.querySelectorAll('#filtroPress .filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');
+            filtroForma=b.dataset.forma;filtroColor='todos';document.getElementById('filtroColor').classList.remove('visible');render();
+          }));
+          document.querySelectorAll('#filtroTips .filtro').forEach(b=>b.addEventListener('click',()=>{b.parentElement.querySelectorAll('.filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');filtroForma=b.dataset.forma;render()}));
+          document.querySelectorAll('#filtroColor .filtro').forEach(b=>b.addEventListener('click',()=>{
+            document.querySelectorAll('#filtroColor .filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');filtroColor=b.dataset.color;
+            if(filtroColor!=='todos') PRODUCTOS.filter(x=>x.tipo==='press'&&(x.colores||[]).includes(filtroColor)).forEach(x=>{const im=(x.imagenes||[]).find(i=>normal(i.color)===normal(filtroColor));if(im)seleccionesColor[x.id]=im.color});
+            render();
+          }));
+          }
+          """
+          s=s[:start]+nf+s[end:]
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "bellashopinsumos-dotcom"
+          git config user.email "actions@users.noreply.github.com"
+          git add 'tips y press on/index.html'
+          git diff --cached --quiet && exit 0
+          git commit -m "Arreglar filtro color y tamaño de fotos en PC"
+          git push
