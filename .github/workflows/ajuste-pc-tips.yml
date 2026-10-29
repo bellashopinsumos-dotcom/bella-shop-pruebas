@@ -1,60 +1,26 @@
-name: Agregar Tips al catalogo
+name: Cargar Tips
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '.github/workflows/ajuste-pc-tips.yml'
+      - .github/workflows/ajuste-pc-tips.yml
 permissions:
   contents: write
 jobs:
-  ajustar:
+  cargar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Agregar productos Tips y filtros
+      - name: Aplicar cambios
+        shell: bash
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          p=Path('tips y press on/index.html')
-          s=p.read_text(encoding='utf-8')
-
-          # Filtros para Tips: conserva el filtro principal y agrega todas las formas actuales.
-          nuevo_filtro='''<div class="filtros subfiltros" id="filtroTips"><button class="filtro activo" data-forma="todos">Todos</button><button class="filtro" data-forma="sonrisa">Tipo sonrisa</button><button class="filtro" data-forma="curvatura-c">Curvatura C</button><button class="filtro" data-forma="coffin">Coffin</button><button class="filtro" data-forma="cuadrada">Cuadradas</button><button class="filtro" data-forma="almendrada">Almendradas</button></div>'''
-          if 'id="filtroTips"' in s:
-              s=re.sub(r'<div class="filtros subfiltros" id="filtroTips">.*?</div>',nuevo_filtro,s,count=1,flags=re.S)
-          else:
-              m=re.search(r'(<div class="filtros subfiltros" id="filtroPress">.*?</div>)',s,re.S)
-              if not m:
-                  raise SystemExit('No se encontro filtroPress')
-              s=s[:m.end()]+nuevo_filtro+s[m.end():]
-
-          # Productos Tips. Las referencias son exactamente las indicadas por Bella Shop.
-          # Precio y stock se siguen tomando de inventario.json en tiempo real.
-          tips='''
-{id:'tip-w049',tipo:'tips',forma:'curvatura-c',nombre:'Tips Curvatura C',marca:'HAKU',formato:'550 pcs',descripcion:'Tips x550 piezas con curvatura C.',imagen:'./imagenes/W049.png',refs:['W049'],barcodes:['W049'],nombres:['TIPS SQUARE X550 PCS HAKU']},
-{id:'tip-deja056',tipo:'tips',forma:'coffin',nombre:'Tips Coffin',marca:'DEJA',formato:'240 pcs',descripcion:'Tips Coffin x240 piezas.',imagen:'./imagenes/DEJA056.png',refs:['DEJA056'],barcodes:['5551812512526'],nombres:['TIPS COFFIN X 240 DEJA056']},
-{id:'tip-hk445',tipo:'tips',forma:'coffin',nombre:'Tips Coffin',marca:'HAKU',formato:'120 pcs',descripcion:'Tips Coffin x120 piezas.',imagen:'./imagenes/HK-445.png',refs:['HK-445'],barcodes:['7702345454458'],nombres:['CANULA COFFI X120 PCS HAKU']},
-{id:'tip-b2554',tipo:'tips',forma:'cuadrada',nombre:'Tips Cuadradas',marca:'SEGO',formato:'240 pcs',descripcion:'Tips cuadrados x240 piezas.',imagen:'./imagenes/B25-54.png',refs:['B25-54'],barcodes:['B25-54'],nombres:['UÑAS PRESS ON X240 SQUARE SEGO B25-54']},
-{id:'tip-b2557',tipo:'tips',forma:'coffin',nombre:'Soft Gel Tips Coffin',marca:'TIPS',formato:'240 pcs',descripcion:'Soft Gel Tips Coffin x240 piezas.',imagen:'./imagenes/B25-57.png',refs:['B25-57'],barcodes:['B25-57'],nombres:['SOFT GEL TIPS COFFE x240 B25-57']},
-{id:'tip-b2541b',tipo:'tips',forma:'cuadrada',nombre:'Tips Cuadradas 15 Size',marca:'TIPS',formato:'300 pcs · 15 size',descripcion:'Tips cuadrados x300 piezas, 15 tamaños.',imagen:'./imagenes/B25-41B.png',refs:['B25-41B'],barcodes:['B25-41B'],nombres:['SOFT GEL TIPS x300 B25-41B']},
-{id:'tip-ca3965',tipo:'tips',forma:'cuadrada',nombre:'Tips Extensión Cuadrada',marca:'TIPS EXTENSION',formato:'600 pcs',descripcion:'Tips de extensión cuadrados x600 piezas.',imagen:'./imagenes/CA3965.png',refs:['CA3965'],barcodes:['CA3965'],nombres:['TIPS EXTENSION COFFIN 600 PS']},
-{id:'tip-ca3966',tipo:'tips',forma:'cuadrada',nombre:'Tips Extensión Cuadrada',marca:'TIPS EXTENSION',formato:'600 pcs',descripcion:'Tips de extensión cuadrados x600 piezas.',imagen:'./imagenes/CA3966.png',refs:['CA3966'],barcodes:['CA3966'],nombres:['TIPS EXTENSION CURVA C X120']},
-{id:'tip-ca3967',tipo:'tips',forma:'almendrada',nombre:'Tips Extensión Almendra',marca:'TIPS EXTENSION',formato:'600 pcs',descripcion:'Tips de extensión almendrados x600 piezas.',imagen:'./imagenes/CA3967.png',refs:['CA3967'],barcodes:['CA3967'],nombres:['TIPS EXTENSION ALMENDRA X 600PS']},
-{id:'tip-b2541',tipo:'tips',forma:'almendrada',nombre:'Soft Gel Tips Almendra',marca:'TIPS',formato:'300 pcs',descripcion:'Soft Gel Tips almendrados x300 piezas.',imagen:'./imagenes/B25-41.png',refs:['B25-41'],barcodes:['B25-41'],nombres:['SOFT GEL TIPS x300 B25-41']},
-'''
-          if "id:'tip-w049'" not in s:
-              marker='const PRODUCTOS=['
-              if marker not in s:
-                  raise SystemExit('No se encontro const PRODUCTOS=[')
-              s=s.replace(marker,marker+'\n'+tips,1)
-
-          p.write_text(s,encoding='utf-8')
-          PY
+          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmltcG9ydCByZQpwPVBhdGgoInRpcHMgeSBwcmVzcyBvbi9pbmRleC5odG1sIikKcz1wLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQpudWV2b19maWx0cm89JzxkaXYgY2xhc3M9ImZpbHRyb3Mgc3ViZmlsdHJvcyIgaWQ9ImZpbHRyb1RpcHMiPjxidXR0b24gY2xhc3M9ImZpbHRybyBhY3Rpdm8iIGRhdGEtZm9ybWE9InRvZG9zIj5Ub2RvczwvYnV0dG9uPjxidXR0b24gY2xhc3M9ImZpbHRybyIgZGF0YS1mb3JtYT0ic29ucmlzYSI+VGlwbyBzb25yaXNhPC9idXR0b24+PGJ1dHRvbiBjbGFzcz0iZmlsdHJvIiBkYXRhLWZvcm1hPSJjdXJ2YXR1cmEtYyI+Q3VydmF0dXJhIEM8L2J1dHRvbj48YnV0dG9uIGNsYXNzPSJmaWx0cm8iIGRhdGEtZm9ybWE9ImNvZmZpbiI+Q29mZmluPC9idXR0b24+PGJ1dHRvbiBjbGFzcz0iZmlsdHJvIiBkYXRhLWZvcm1hPSJjdWFkcmFkYSI+Q3VhZHJhZGFzPC9idXR0b24+PGJ1dHRvbiBjbGFzcz0iZmlsdHJvIiBkYXRhLWZvcm1hPSJhbG1lbmRyYWRhIj5BbG1lbmRyYWRhczwvYnV0dG9uPjwvZGl2PicKaWYgJ2lkPSJmaWx0cm9UaXBzIicgaW4gczoKICAgIHM9cmUuc3ViKHInPGRpdiBjbGFzcz0iZmlsdHJvcyBzdWJmaWx0cm9zIiBpZD0iZmlsdHJvVGlwcyI+Lio/PC9kaXY+JyxudWV2b19maWx0cm8scyxjb3VudD0xLGZsYWdzPXJlLlMpCmVsc2U6CiAgICBtPXJlLnNlYXJjaChyJyg8ZGl2IGNsYXNzPSJmaWx0cm9zIHN1YmZpbHRyb3MiIGlkPSJmaWx0cm9QcmVzcyI+Lio/PC9kaXY+KScscyxyZS5TKQogICAgaWYgbm90IG06IHJhaXNlIFN5c3RlbUV4aXQoIk5vIGZpbHRyb1ByZXNzIikKICAgIHM9c1s6bS5lbmQoKV0rbnVldm9fZmlsdHJvK3NbbS5lbmQoKTpdCnRpcHMgPSAiIiIKe2lkOid0aXAtdzA0OScsdGlwbzondGlwcycsZm9ybWE6J2N1cnZhdHVyYS1jJyxub21icmU6J1RpcHMgQ3VydmF0dXJhIEMnLG1hcmNhOidIQUtVJyxmb3JtYXRvOic1NTAgcGNzJyxkZXNjcmlwY2lvbjonVGlwcyB4NTUwIHBpZXphcyBjb24gY3VydmF0dXJhIEMuJyxpbWFnZW46Jy4vaW1hZ2VuZXMvVzA0OS5wbmcnLHJlZnM6WydXMDQ5J10sYmFyY29kZXM6WydXMDQ5J10sbm9tYnJlczpbJ1RJUFMgU1FVQVJFWDU1MCBQQ1MgSEFLVSddfSwKe2lkOid0aXAtZGVqYTA1NicsdGlwbzondGlwcycsZm9ybWE6J2NvZmZpbicsbm9tYnJlOidUaXBzIENvZmZpbicsbWFyY2E6J0RFSkEnLGZvcm1hdG86JzI0MCBwY3MnLGRlc2NyaXBjaW9uOidUaXBzIENvZmZpbiB4MjQwIHBpZXphcy4nLGltYWdlbjonLi9pbWFnZW5lcy9ERUpBMDU2LnBuZycscmVmczpbJ0RFSkEwNTYnXSxiYXJjb2RlczpbJzU1NTE4MTI1MTI1MjYnXSxub21icmVzOlsnVElQUyBDT0ZGSU4gWCAyNDAgREVKQTA1NiddfSwKe2lkOid0aXAtaGs0NDUnLHRpcG86J3RpcHMnLGZvcm1hOidjb2ZmaW4nLG5vbWJyZTonVGlwcyBDb2ZmaW4nLG1hcmNhOidIQUtVJyxmb3JtYXRvOicxMjAgcGNzJyxkZXNjcmlwY2lvbjonVGlwcyBDb2ZmaW4geDEyMCBwaWV6YXMuJyxpbWFnZW46Jy4vaW1hZ2VuZXMvSEstNDQ1LnBuZycscmVmczpbJ0hLLTQ0NSddLGJhcmNvZGVzOlsnNzcwMjM0NTQ1NDQ1OCddLG5vbWJyZXM6WydDQU5VTEEgQ09GRkkgWDEyMCBQQ1MgSEFLVSddfSwKe2lkOid0aXAtYjI1NTQnLHRpcG86J3RpcHMnLGZvcm1hOidjdWFkcmFkYScsbm9tYnJlOidUaXBzIEN1YWRyYWRhcycsbWFyY2E6J1NFR08nLGZvcm1hdG86JzI0MCBwY3MnLGRlc2NyaXBjaW9uOidUaXBzIGN1YWRyYWRvcyB4MjQwIHBpZXphcy4nLGltYWdlbjonLi9pbWFnZW5lcy9CMjUtNTQucG5nJyxyZWZzOlsnQjI1LTU0J10sYmFyY29kZXM6WydCMjUtNTQnXSxub21icmVzOlsnVcORQVMgUFJFU1MgT04gWDI0MCBTUVVBUkUgU0VHTyBCMjUtNTQnXX0sCntpZDondGlwLWIyNTU3Jyx0aXBvOid0aXBzJyxmb3JtYTonY29mZmluJyxub21icmU6J1NvZnQgR2VsIFRpcHMgQ29mZmluJyxtYXJjYTonVElQUycsZm9ybWF0bzonMjQwIHBjcycsZGVzY3JpcGNpb246J1NvZnQgR2VsIFRpcHMgQ29mZmluIHgyNDAgcGllemFzLicsaW1hZ2VuOicuL2ltYWdlbmVzL0IyNS01Ny5wbmcnLHJlZnM6WydCMjUtNTcnXSxiYXJjb2RlczpbJ0IyNS01NyddLG5vbWJyZXM6WydTT0ZUIEdFTCBUSVBTIENPRkZFIHgyNDAgQjI1LTU3J119LAp7aWQ6J3RpcC1iMjU0MWInLHRpcG86J3RpcHMnLGZvcm1hOidjdWFkcmFkYScsbm9tYnJlOidUaXBzIEN1YWRyYWRhcyAxNSBTaXplJyxtYXJjYTonVElQUycsZm9ybWF0bzonMzAwIHBjcyDCtyAxNSBzaXplJyxkZXNjcmlwY2lvbjonVGlwcyBjdWFkcmFkb3MgeDMwMCBwaWV6YXMsIDE1IHRhbWHDsW9zLicsaW1hZ2VuOicuL2ltYWdlbmVzL0IyNS00MUIucG5nJyxyZWZzOlsnQjI1LTQxQiddLGJhcmNvZGVzOlsnQjI1LTQxQiddLG5vbWJyZXM6WydTT0ZUIEdFTCBUSVBTIHgzMDAgQjI1LTQxQiddfSwKe2lkOid0aXAtY2EzOTY1Jyx0aXBvOid0aXBzJyxmb3JtYTonY3VhZHJhZGEnLG5vbWJyZTonVGlwcyBFeHRlbnNpw7NuIEN1YWRyYWRhJyxtYXJjYTonVElQUyBFWFRFTlNJT04nLGZvcm1hdG86JzYwMCBwY3MnLGRlc2NyaXBjaW9uOidUaXBzIGRlIGV4dGVuc2nDs24gY3VhZHJhZG9zIHg2MDAgcGllemFzLicsaW1hZ2VuOicuL2ltYWdlbmVzL0NBMzk2NS5wbmcnLHJlZnM6WydDQTQ5NjUnXSxiYXJjb2RlczpbJ0NBMzk2NSddLG5vbWJyZXM6WydUSVBTIEVYVEVOU0lPTiBDT0ZGSU4gNjAwIFBTJ119LAp7aWQ6J3RpcC1jYTM5NjYnLHRpcG86J3RpcHMnLGZvcm1hOidjdWFkcmFkYScsbm9tYnJlOidUaXBzIEV4dGVuc2nDs24gQ3VhZHJhZGEnLG1hcmNhOidUSVBTIEVYVEVOU0lPTicsZm9ybWF0bzonNjAwIHBjcycsZGVzY3JpcGNpb246J1RpcHMgZGUgZXh0ZW5zacOzbiBjdWFkcmFkb3MgeDYwMCBwaWV6YXMuJyxpbWFnZW46Jy4vaW1hZ2VuZXMvQ0EzOTY2LnBuZycscmVmczpbJ0NBMzk2NiddLGJhcmNvZGVzOlsnQ0EzOTY2J10sbm9tYnJlczpbJ1RJUFMgRVhURU5TSU9OIENVUlZBIEMgWDEyMCddfSwKe2lkOid0aXAtY2EzOTY3Jyx0aXBvOid0aXBzJyxmb3JtYTonYWxtZW5kcmFkYScsbm9tYnJlOidUaXBzIEV4dGVuc2nDs24gQWxtZW5kcmEnLG1hcmNhOidUSVBTIEVYVEVOU0lPTicsZm9ybWF0bzonNjAwIHBjcycsZGVzY3JpcGNpb246J1RpcHMgZGUgZXh0ZW5zacOzbiBhbG1lbmRyYWRvcyB4NjAwIHBpZXphcy4nLGltYWdlbjonLi9pbWFnZW5lcy9DQTQ5NjcucG5nJyxyZWZzOlsnQ0EzOTY3J10sYmFyY29kZXM6WydDQTQ5NjcnXSxub21icmVzOlsnVElQUyBFWFRFTlNJT04gQUxNRU5EUkEgWCA2MDBQUyddfSwKe2lkOid0aXAtYjI1NDEnLHRpcG86J3RpcHMnLGZvcm1hOidhbG1lbmRyYWRhJyxub21icmU6J1NvZnQgR2VsIFRpcHMgQWxtZW5kcmEnLG1hcmNhOidUSVBTJyxmb3JtYXRvOiczMDAgcGNzJyxkZXNjcmlwY2lvbjonU29mdCBHZWwgVGlwcyBhbG1lbmRyYWRvcyB4MzAwIHBpZXphcy4nLGltYWdlbjonLi9pbWFnZW5lcy9CMjUtNDEucG5nJyxyZWZzOlsnQjI1LTQxJ10sYmFyY29kZXM6WydCMjUtNDEnXSxub21icmVzOlsnU09GVCBHRUwgVElQUyB4MzAwIEIyNS00MSddfSwKIiIiCmlmICJpZDondGlwLXcwNDknIiBub3QgaW4gczoKICAgIG1hcmtlcj0iY29uc3QgUFJPRFVDVE9TPVsiCiAgICBpZiBtYXJrZXIgbm90IGluIHM6IHJhaXNlIFN5c3RlbUV4aXQoIk5vIFBST0RVQ1RPUyIpCiAgICBzPXMucmVwbGFjZShtYXJrZXIsIG1hcmtlcisiXG4iK3RpcHMsIDEpCnAud3JpdGVfdGV4dChzLGVuY29kaW5nPSJ1dGYtOCIpCg==' | base64 -d | python
       - name: Guardar
+        shell: bash
         run: |
-          git config user.name "Bella Shop Bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add "tips y press on/index.html"
-          git commit -m "Agregar productos Tips y nuevos filtros" || exit 0
+          git config user.name 'Bella Shop Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add 'tips y press on/index.html'
+          git commit -m 'Agregar productos Tips y filtros' || true
           git push
