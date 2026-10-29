@@ -1,0 +1,41 @@
+name: Reordenar categorias inicio
+on:
+  push:
+    paths:
+      - '.github/workflows/reordenar-categorias-inicio.yml'
+jobs:
+  ordenar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reordenar categorias activas antes de proximamente
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          press='<a class="cat-visual cat-elegante" href="tips%20y%20press%20on/index.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Tips y Press On</strong><i></i></a>\n'
+          if press not in s:
+              raise SystemExit('No se encontro tarjeta Tips y Press On')
+          s=s.replace(press,'',1)
+          marker='<div class="cat-visual futura"><span>Herramientas</span></div>'
+          if marker not in s:
+              raise SystemExit('No se encontro inicio de categorias proximamente')
+          s=s.replace(marker,press+marker,1)
+          panel_press='<a href="tips%20y%20press%20on/index.html">Tips y Press On</a>'
+          s=s.replace(panel_press,'',1)
+          panel_marker='<span>Herramientas</span><span>Pinceles</span><span>SPA</span>'
+          if panel_marker not in s:
+              raise SystemExit('No se encontro inicio de proximamente en panel')
+          s=s.replace(panel_marker,panel_press+panel_marker,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Bot"
+          git config user.email "bellashopinsumos@gmail.com"
+          git add index.html
+          git commit -m "Ordenar categorias disponibles antes de proximamente" || exit 0
+          git push
