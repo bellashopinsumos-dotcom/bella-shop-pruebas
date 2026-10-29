@@ -1,26 +1,49 @@
-name: Conectar B25-41B
+name: Agregar Press On colores
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - .github/workflows/ajuste-pc-tips.yml
 permissions:
   contents: write
 jobs:
-  corregir:
+  actualizar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Conectar inventario
-        shell: bash
+      - name: Actualizar pagina
+        shell: python
         run: |
-          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgidGlwcyB5IHByZXNzIG9uL2luZGV4Lmh0bWwiKQpzPXAucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCnM9cy5yZXBsYWNlKCJyZWZzOlsnQjI1LTQxQiddLGJhcmNvZGVzOlsnQjI1LTQxQiddLG5vbWJyZXM6WydTT0ZUIEdFTCBUSVBTIHgzMDAgQjI1LTQxQiddIiwicmVmczpbJ0IyNS00MSddLGJhcmNvZGVzOlsnQjI1LTQxJ10sbm9tYnJlczpbJ1NPRlQgR0VMIFRJUFMgeDMwMCBCMjUtNDEnXSIpCnAud3JpdGVfdGV4dChzLGVuY29kaW5nPSJ1dGYtOCIpCg==' | base64 -d | python
+          from pathlib import Path
+          p=Path('tips y press on/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace(".image-fallback{display:none;", ".carrusel-producto{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}.carrusel-producto img{width:100%;height:100%;max-height:390px;object-fit:contain}.carrusel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.92);color:var(--rosa2);font-size:20px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}.carrusel-btn.prev{left:10px}.carrusel-btn.next{right:10px}.color-label{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:4;background:rgba(255,255,255,.94);border:1px solid #efc7d4;color:var(--rosa2);border-radius:999px;padding:6px 12px;font-size:9px;font-weight:900;text-transform:uppercase}.image-fallback{display:none;")
+          if 'id="filtroColor"' not in s:
+              s=s.replace('<div class="filtros subfiltros" id="filtroTips">','<div class="filtros subfiltros" id="filtroColor"><button class="filtro activo" data-color="todos">Todos los colores</button><button class="filtro" data-color="pink">Pink</button><button class="filtro" data-color="nude">Nude</button><button class="filtro" data-color="brown">Brown</button></div><div class="filtros subfiltros" id="filtroTips">')
+          if "press-dn4096" not in s:
+              nuevos="""{id:'press-dn4096',tipo:'press',forma:'almendrada',colores:['brown','nude'],marca:'PRESS ON',nombre:'Press On Almendrada',formato:'300 pcs',imagenes:[{src:'./imagenes/IMG_2116.JPG.jpeg',color:'Brown'},{src:'./imagenes/IMG_2134.JPG.jpeg',color:'Nude'}],imagen:'./imagenes/IMG_2116.JPG.jpeg',descripcion:'Press On Almendrada x300 piezas, disponible en Brown y Nude.',refs:['DN4096'],barcodes:['DN4096'],nombres:[]},
+{id:'press-dn4093',tipo:'press',forma:'coffin',colores:['pink','nude'],marca:'PRESS ON',nombre:'Press On Coffin',formato:'300 pcs',imagenes:[{src:'./imagenes/IMG_2132.JPG.jpeg',color:'Pink'},{src:'./imagenes/IMG_2133.JPG.jpeg',color:'Nude'}],imagen:'./imagenes/IMG_2132.JPG.jpeg',descripcion:'Press On Coffin x300 piezas, disponible en Pink y Nude.',refs:['DN4093'],barcodes:['DN4093'],nombres:[]},
+{id:'press-dn4094',tipo:'press',forma:'cuadrada',colores:['pink','nude'],marca:'PRESS ON',nombre:'Press On Cuadrada',formato:'300 pcs',imagenes:[{src:'./imagenes/IMG_2138.JPG.jpeg',color:'Pink'},{src:'./imagenes/IMG_2139.JPG.jpeg',color:'Nude'}],imagen:'./imagenes/IMG_2138.JPG.jpeg',descripcion:'Press On Cuadrada x300 piezas, disponible en Pink y Nude.',refs:['DN4094'],barcodes:['DN4094'],nombres:[]},
+"""
+              s=s.replace("{id:'ca5262',tipo:'press'",nuevos+"{id:'ca5262',tipo:'press'")
+          s=s.replace("let inventario=[];let filtroTipo='todos';let filtroForma='todos';","let inventario=[];let filtroTipo='todos';let filtroForma='todos';let filtroColor='todos';")
+          s=s.replace("function visibleProductos(){return PRODUCTOS.filter(x=>{if(filtroTipo!=='todos'&&x.tipo!==filtroTipo)return false;if(filtroForma!=='todos'&&x.forma!==filtroForma)return false;return true})}","function visibleProductos(){return PRODUCTOS.filter(x=>{if(filtroTipo!=='todos'&&x.tipo!==filtroTipo)return false;if(filtroForma!=='todos'&&x.forma!==filtroForma)return false;if(filtroTipo==='press'&&filtroColor!=='todos'&&!(x.colores||[]).includes(filtroColor))return false;return true})}")
+          viejo='<img src="${x.imagen}" alt="${x.nombre} ${x.marca}" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="image-fallback">Imagen del producto<br>${x.id}</div>'
+          nuevo='${x.imagenes?`<div class="carrusel-producto" data-slide="0">${x.imagenes.map((im,i)=>`<img src="${im.src}" alt="${x.nombre} ${im.color}" style="display:${i===0?\'block\':\'none\'}">`).join(\'\')}<button class="carrusel-btn prev" type="button" onclick="moverCarrusel(\'${x.id}\',-1)">‹</button><button class="carrusel-btn next" type="button" onclick="moverCarrusel(\'${x.id}\',1)">›</button><span class="color-label">${x.imagenes[0].color}</span></div>`:`<img src="${x.imagen}" alt="${x.nombre} ${x.marca}" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><div class="image-fallback">Imagen del producto<br>${x.id}</div>`}'
+          s=s.replace(viejo,nuevo)
+          if 'function moverCarrusel' not in s:
+              s=s.replace('function obtener(id){',"function moverCarrusel(id,d){const x=PRODUCTOS.find(a=>a.id===id);if(!x?.imagenes)return;const card=document.querySelector(`[data-id=\"${id}\"]`);const c=card?.querySelector('.carrusel-producto');if(!c)return;let i=Number(c.dataset.slide||0);i=(i+d+x.imagenes.length)%x.imagenes.length;c.dataset.slide=i;c.querySelectorAll('img').forEach((im,j)=>im.style.display=j===i?'block':'none');const l=c.querySelector('.color-label');if(l)l.textContent=x.imagenes[i].color}\nfunction obtener(id){")
+          s=s.replace("filtroTipo=b.dataset.tipo;filtroForma='todos';document.getElementById('filtroPress').classList.toggle('visible',filtroTipo==='press');","filtroTipo=b.dataset.tipo;filtroForma='todos';filtroColor='todos';document.getElementById('filtroPress').classList.toggle('visible',filtroTipo==='press');document.getElementById('filtroColor').classList.toggle('visible',filtroTipo==='press');")
+          s=s.replace("document.querySelectorAll('.subfiltros .filtro').forEach(x=>x.classList.toggle('activo',x.dataset.forma==='todos'));render()","document.querySelectorAll('#filtroPress .filtro,#filtroTips .filtro').forEach(x=>x.classList.toggle('activo',x.dataset.forma==='todos'));document.querySelectorAll('#filtroColor .filtro').forEach(x=>x.classList.toggle('activo',x.dataset.color==='todos'));render()")
+          cierre="document.querySelectorAll('#filtroPress .filtro,#filtroTips .filtro').forEach(b=>b.addEventListener('click',()=>{const padre=b.parentElement;padre.querySelectorAll('.filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');filtroForma=b.dataset.forma;render()}))}"
+          nuevo_cierre="document.querySelectorAll('#filtroPress .filtro,#filtroTips .filtro').forEach(b=>b.addEventListener('click',()=>{const padre=b.parentElement;padre.querySelectorAll('.filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');filtroForma=b.dataset.forma;render()}));document.querySelectorAll('#filtroColor .filtro').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#filtroColor .filtro').forEach(x=>x.classList.remove('activo'));b.classList.add('activo');filtroColor=b.dataset.color;render()}))}"
+          s=s.replace(cierre,nuevo_cierre)
+          p.write_text(s,encoding='utf-8')
       - name: Guardar
         shell: bash
         run: |
           git config user.name 'Bella Shop Bot'
           git config user.email 'actions@users.noreply.github.com'
           git add 'tips y press on/index.html'
-          git commit -m 'Conectar B25-41B a referencia B25-41' || true
+          git commit -m 'Agregar Press On por color con carruseles' || true
           git push
