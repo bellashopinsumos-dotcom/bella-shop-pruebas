@@ -78,7 +78,7 @@ jobs:
           </script>'''
 
           patron = re.compile(r'<script>\s*\(function\(\)\{var PRECIO=19000,inv=\{\}.*?</script>', re.S)
-          s, n = patron.subn(nuevo_script, s, count=1)
+          s, n = patron.subn(lambda m: nuevo_script, s, count=1)
           if n != 1:
               raise SystemExit(f'No se pudo reemplazar el script CANM: {n}')
 
