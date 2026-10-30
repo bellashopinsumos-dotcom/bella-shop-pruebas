@@ -19,14 +19,12 @@ jobs:
           path = Path('pinceles/index.html')
           text = path.read_text(encoding='utf-8')
 
-          # 1) DN1277 sí tiene imagen real en la carpeta.
           old = "{ref:'DN1277',nombre:'Pata de cabra',categoria:'pata-de-cabra',tipo:'Pata de cabra',imagenes:[]},"
           new = "{ref:'DN1277',nombre:'Pata de cabra',categoria:'pata-de-cabra',tipo:'Pata de cabra',imagenes:['imagenes/DN1277.png']},"
           if old not in text:
               raise SystemExit('No se encontró bloque DN1277')
           text = text.replace(old, new, 1)
 
-          # 2) Agregar HK071 Acrílico #12 conectado al inventario.
           anchor = "{ref:'DN4718',nombre:'Pincel acrílico #10',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/DN4718.png']},"
           hk = "{ref:'HK071',nombre:'Pincel acrílico #12',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/HK071.png']},"
           if "ref:'HK071'" not in text:
@@ -34,7 +32,6 @@ jobs:
                   raise SystemExit('No se encontró ancla para HK071')
               text = text.replace(anchor, anchor + "\n " + hk, 1)
 
-          # 3) Variantes reales de color DEJA123.
           old123 = """{ref:'DEJA123',nombre:'Liner paquete x5 · 20 mm, 8 mm, 5 mm, 25 mm y 12 mm',categoria:'liner',tipo:'Liner · varios colores',variantes:[
    {id:'T1',nombre:'Tonalidad 1',imagen:'imagenes/DEJA123AM.png'},
    {id:'T2',nombre:'Tonalidad 2',imagen:'imagenes/DEJA123M.png'},
@@ -49,7 +46,6 @@ jobs:
               raise SystemExit('No se encontró bloque DEJA123')
           text = text.replace(old123, new123, 1)
 
-          # 4) Variantes reales de color DEJA124.
           old124 = """{ref:'DEJA124',nombre:'Liner paquete x5 · 8 mm, 5 mm, 20 mm, 25 mm y 12 mm',categoria:'liner',tipo:'Liner · varios colores',variantes:[
    {id:'T1',nombre:'Tonalidad 1',imagen:'imagenes/DEJA124.png'},
    {id:'T2',nombre:'Tonalidad 2',imagen:'imagenes/DEJA124A.png'},
@@ -68,17 +64,14 @@ jobs:
               raise SystemExit('No se encontró bloque DEJA124')
           text = text.replace(old124, new124, 1)
 
-          # 5) Selector visual con bolitas de color, no miniaturas.
           css_new = ".tonalidades{margin:2px 0 16px;padding:13px;border:1px solid #f0d5de;border-radius:16px;background:#fff9fb}.tonalidades-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px;font-size:10px;font-weight:900;letter-spacing:.55px;color:#9b5870;text-transform:uppercase}.tonalidades-label span:last-child{font-size:9px;font-weight:700;letter-spacing:0;color:#a88793;text-transform:none}.tonos{display:flex;flex-wrap:wrap;gap:11px;align-items:center}.tono-btn{appearance:none;width:36px;height:36px;border-radius:50%;border:2px solid #ead0d9;background:#fff;padding:4px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;justify-content:center}.tono-btn:hover{transform:scale(1.06);border-color:#d98aa4}.tono-btn.activo{border-color:#e65385;box-shadow:0 0 0 3px rgba(230,83,133,.16);transform:scale(1.07)}.swatch{display:block;width:24px;height:24px;border-radius:50%;border:1px solid rgba(80,50,60,.13);box-shadow:inset 0 1px 2px rgba(255,255,255,.45)}.tono-nombre{margin-top:9px;font-size:10px;font-weight:800;color:#8a6471}.tono-ayuda{font-size:9px;color:#a07d89;margin-top:5px;line-height:1.4}"
-          pattern = r"\.tonalidades\{.*?\.tono-ayuda\{.*?\}"
-          text2, n = re.subn(pattern, css_new, text, count=1, flags=re.S)
+          text2, n = re.subn(r"\.tonalidades\{.*?\.tono-ayuda\{.*?\}", css_new, text, count=1, flags=re.S)
           if n != 1:
               raise SystemExit(f'No se pudo reemplazar CSS tonalidades: {n}')
           text = text2
 
           selector_new = """function selectorTonalidadesHTML(cfg){if(!Array.isArray(cfg.variantes)||cfg.variantes.length<2)return '';return `<div class=\"tonalidades\" data-tonalidades><div class=\"tonalidades-label\"><span>Escoge el color</span><span>Obligatorio</span></div><div class=\"tonos\">${cfg.variantes.map((v,i)=>`<button class=\"tono-btn\" type=\"button\" data-variante=\"${v.id}\" data-index=\"${i}\" title=\"${v.nombre}\" aria-label=\"${v.nombre}\"><span class=\"swatch\" style=\"background:${v.swatch}\"></span></button>`).join('')}</div><div class=\"tono-nombre\" data-tono-nombre>Selecciona un color</div><div class=\"tono-ayuda\">Toca una bolita para escoger el color antes de agregarlo al pedido.</div></div>`}"""
-          pattern = r"function selectorTonalidadesHTML\(cfg\)\{.*?\}\nfunction crearCard"
-          text2, n = re.subn(pattern, selector_new + "\nfunction crearCard", text, count=1, flags=re.S)
+          text2, n = re.subn(r"function selectorTonalidadesHTML\(cfg\)\{.*?\}\nfunction crearCard", selector_new + "\nfunction crearCard", text, count=1, flags=re.S)
           if n != 1:
               raise SystemExit(f'No se pudo reemplazar selector de colores: {n}')
           text = text2
@@ -88,10 +81,8 @@ jobs:
           if old_click not in text:
               raise SystemExit('No se encontró manejador de selección de color')
           text = text.replace(old_click, new_click, 1)
-
           text = text.replace('Selecciona una tonalidad para agregar este producto.','Selecciona un color para agregar este producto.')
           text = text.replace('Escoge una tonalidad antes de agregar 💕','Escoge un color antes de agregar 💕')
-
           path.write_text(text, encoding='utf-8')
           PY
       - name: Guardar corrección y limpiar workflow temporal
@@ -102,3 +93,4 @@ jobs:
           git add pinceles/index.html
           git commit -m "Mejorar selector de colores y completar Pinceles"
           git push
+# trigger 2
