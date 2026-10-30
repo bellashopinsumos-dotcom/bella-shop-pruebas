@@ -2443,7 +2443,7 @@ footer{
 <a class="cat-visual cat-elegante cat-polvos" href="polvos-acrilicos/polvos-acrilicos.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Polvos Acrílicos</strong><i></i></a>
 <a class="cat-visual cat-elegante" href="tips%20y%20press%20on/index.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Tips y Press On</strong><i></i></a>
 <div class="cat-visual futura"><span>Herramientas</span></div>
-<div class="cat-visual futura"><span>Pinceles</span></div>
+<a class="cat-visual cat-elegante" href="pinceles/index.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Pinceles</strong><i></i></a>
 <div class="cat-visual futura"><span>SPA</span></div>
 <div class="cat-visual futura"><span>Pestañas y Cejas</span></div>
 <div class="cat-visual futura"><span>Decoración</span></div>
@@ -2458,7 +2458,7 @@ footer{
 <div class="panel-categorias" id="panel-categorias">
 <a href="esmaltes.html">Esmaltes</a><a href="base-top.html">Base y Top Coat</a><a href="gel-nail-art/gel-nail-art.html">Gel Nail Art</a><a href="electricos/electricos.html">Eléctricos</a>
 <a href="liquidos.html">Líquidos</a><a href="polygel/polygel.html">Polygel</a><a href="polvos-acrilicos/polvos-acrilicos.html">Polvos Acrílicos</a>
-<a href="tips%20y%20press%20on/index.html">Tips y Press On</a><span>Herramientas</span><span>Pinceles</span><span>SPA</span>
+<a href="tips%20y%20press%20on/index.html">Tips y Press On</a><span>Herramientas</span><a href="pinceles/index.html">Pinceles</a><span>SPA</span>
 <span>Pestañas y Cejas</span><span>Decoración</span><span>Limas</span><span>Depilación</span><span>Varios</span><span>Promociones</span>
 </div>
 </section>
@@ -2637,6 +2637,7 @@ const destinosBusqueda = [
   {nombre:"Polygel",tipo:"Categoría",url:"polygel/polygel.html",palabras:["polygel","poly gel","moldes"]},
   {nombre:"Polvos Acrílicos",tipo:"Categoría",url:"polvos-acrilicos.html",palabras:["acrilico","acrílico","polvo","polvos"]},
   {nombre:"Líquidos",tipo:"Categoría",url:"liquidos.html",palabras:["liquido","líquido","liquidos","líquidos"]},
+  {nombre:"Pinceles",tipo:"Categoría",url:"pinceles/index.html",palabras:["pincel","pinceles","brush","kolinsky"]},
   {nombre:"Removedores",tipo:"Líquidos",url:"removedores/removedores.html",palabras:["removedor","removedores","acetona","cuticula","cutícula","callos"]},
   {nombre:"Preparadores",tipo:"Líquidos",url:"preparadores/preparadores.html",palabras:["preparador","preparadores","primer","ultrabond","bond"]},
   {nombre:"Líquido Moldeador",tipo:"Líquidos",url:"liquido-moldeador.html",palabras:["liquido moldeador","líquido moldeador","moldeador","poly smooth"]},
@@ -2704,6 +2705,7 @@ function destinoProducto(p){
   if(t.includes("moldeador") || t.includes("poly smooth")) return "liquido-moldeador.html";
   if(t.includes("polygel")) return "polygel/polygel.html";
   if(t.includes("drill") || t.includes("lampara") || t.includes("extractor") || t.includes("electric")) return "electricos/electricos.html";
+  if(t.includes("pincel") || t.includes("brush") || t.includes("kolinsky")) return "pinceles/index.html";
   if(t.includes("acril")) return "polvos-acrilicos.html";
   if(t.includes("base") || t.includes("top coat")) return "base-top.html";
   if(t.includes("gel nail") || t.includes("painting")) return "gel-nail-art.html";
