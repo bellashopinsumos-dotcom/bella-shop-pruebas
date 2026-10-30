@@ -1,0 +1,45 @@
+name: Activar categoria Pinceles
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/activar-pinceles.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  activar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Activar Pinceles
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          cambios=[
+            ('<div class="cat-visual futura"><span>Pinceles</span></div>', '<a class="cat-visual cat-elegante" href="pinceles/index.html"><span class="cat-sello">BELLA SHOP</span><span class="cat-onda"></span><span class="cat-perla"></span><span class="cat-destello">✦</span><strong>Pinceles</strong><i></i></a>'),
+            ('<a href="tips%20y%20press%20on/index.html">Tips y Press On</a><span>Herramientas</span><span>Pinceles</span><span>SPA</span>', '<a href="tips%20y%20press%20on/index.html">Tips y Press On</a><span>Herramientas</span><a href="pinceles/index.html">Pinceles</a><span>SPA</span>'),
+            ('  {nombre:"Líquidos",tipo:"Categoría",url:"liquidos.html",palabras:["liquido","líquido","liquidos","líquidos"]},', '  {nombre:"Líquidos",tipo:"Categoría",url:"liquidos.html",palabras:["liquido","líquido","liquidos","líquidos"]},\n  {nombre:"Pinceles",tipo:"Categoría",url:"pinceles/index.html",palabras:["pincel","pinceles","brush","kolinsky"]},'),
+            ('  if(t.includes("acril")) return "polvos-acrilicos.html";', '  if(t.includes("pincel") || t.includes("brush") || t.includes("kolinsky")) return "pinceles/index.html";\n  if(t.includes("acril")) return "polvos-acrilicos.html";')
+          ]
+
+          for viejo,nuevo in cambios:
+              if viejo not in s:
+                  raise SystemExit('No se encontro un bloque esperado para activar Pinceles')
+              s=s.replace(viejo,nuevo,1)
+
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm .github/workflows/activar-pinceles.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/activar-pinceles.yml
+          git commit -m "Activar categoria Pinceles en Inicio"
+          git push
