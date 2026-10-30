@@ -5,421 +5,63 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Painting Gel | Bella Shop</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--rosa:#e65385;--rosa2:#d94a79;--borde:#efd8e1;--fondo:#fff8fa;--texto:#392d31;--suave:#7b626b}
-body{font-family:Arial,Helvetica,sans-serif;background:#fffdfd;color:var(--texto);overflow-x:hidden}
-a{-webkit-tap-highlight-color:transparent}
-header{background:rgba(255,253,253,.97);padding:10px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #f2dce4;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.logo img{display:block;width:190px;height:66px;object-fit:contain}
-.acciones{display:flex;gap:8px}
-.btn-head{min-height:40px;display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border-radius:30px;text-decoration:none;font-size:11px;font-weight:800}
-.sec{background:#fff;color:var(--rosa2);border:1px solid #efc7d4}
-.pedido{background:var(--rosa);color:#fff;border:1px solid var(--rosa)}
-.hero{position:relative;overflow:hidden;text-align:center;padding:48px 18px 38px;background:linear-gradient(135deg,#fff6f8,#fffdfd 55%,#fdeef3);border-bottom:1px solid #f2e1e7}
-.hero::after{content:"";position:absolute;width:260px;height:260px;right:-45px;top:-45px;background:url("../imagenes/Cara logo bellashop.png") center/contain no-repeat;opacity:.045;pointer-events:none}
-.hero-in{position:relative;z-index:2;max-width:760px;margin:auto}
-.tag{display:inline-block;padding:7px 16px;border:1px solid #efcbd7;background:#ffffffd9;color:var(--rosa2);border-radius:30px;font-size:10px;letter-spacing:1.1px;font-weight:800;margin-bottom:14px}
-h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500}
-.hero h1{font-size:44px;margin-bottom:10px}
-.hero p{font-size:14px;line-height:1.65;color:var(--suave);max-width:650px;margin:auto}
-.catalogo{padding:34px 5% 65px}
-.catalogo-in{max-width:1050px;margin:auto}
-.titulo-marcas{text-align:center;margin-bottom:16px;color:#5e4850;font-size:13px;font-weight:800}
-.marcas-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
-.marca-btn{border:1px solid var(--borde);background:#fff;border-radius:18px;padding:13px 8px;min-height:76px;cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#644e56}
-.marca-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(90,48,62,.07)}
-.marca-btn.active{border-color:#e8789d;background:#fff3f7;box-shadow:0 0 0 3px rgba(230,83,133,.08)}
-.marca-btn strong{font-size:14px}
-.marca-btn small{font-size:10px;color:#9a7d87;font-weight:700}
-.marca-btn.active strong{color:var(--rosa2)}
-.panel{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.8fr);gap:24px;background:#fff;border:1px solid var(--borde);border-radius:25px;padding:20px;box-shadow:0 12px 32px rgba(82,48,59,.07)}
-.visual{position:relative;min-height:420px;border:1px solid #f0dce3;border-radius:20px;background:#fffafc;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:14px}
-.visual::after{content:"";position:absolute;width:165px;height:165px;left:-55px;bottom:-55px;background:url("../imagenes/Cara logo bellashop.png") center/contain no-repeat;opacity:.035;pointer-events:none}
-.visual img{display:block;width:100%;height:100%;max-height:540px;object-fit:contain;border-radius:15px;position:relative;z-index:1}
-.nav-img{position:absolute;z-index:3;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid #ebcbd6;background:#ffffffeb;color:var(--rosa2);font-size:20px;cursor:pointer;display:none}
-.nav-img.show{display:block}.nav-img.prev{left:12px}.nav-img.next{right:12px}
-.puntos{position:absolute;z-index:3;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:6px}
-.punto{width:7px;height:7px;border-radius:50%;background:#e5c7d1}.punto.active{background:var(--rosa)}
-.compra{padding:6px 4px}
-.encabezado-producto{padding:4px 2px 16px;border-bottom:1px solid #f2e2e8;margin-bottom:17px}
-.encabezado-producto small{display:block;color:var(--rosa2);font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:5px}
-.encabezado-producto h2{font-size:31px;margin-bottom:6px}
-.encabezado-producto p{font-size:12px;color:#846b74;line-height:1.5}
-.precio-desde{font-size:13px;color:#725963;margin-top:7px}.precio-desde b{font-size:22px;color:var(--rosa2)}
-label{display:block;font-size:11px;font-weight:800;color:#765d65;margin:0 0 7px}
-.selector-wrap{position:relative}
-.selector{width:100%;min-height:52px;border:1px solid #e8cbd5;border-radius:14px;padding:0 42px 0 14px;background:#fff;color:#46343b;font:inherit;font-size:13px;font-weight:700;outline:none;appearance:none;cursor:pointer}
-.selector:focus{border-color:#df7194;box-shadow:0 0 0 3px rgba(223,113,148,.1)}
-.selector-wrap::after{content:"⌄";position:absolute;right:15px;top:50%;transform:translateY(-55%);color:var(--rosa2);font-size:20px;pointer-events:none}
-.ayuda{font-size:11px;color:#9a8089;margin:7px 2px 0;line-height:1.4}
-.estado{margin-top:15px;border-radius:14px;padding:13px 14px;display:none;font-size:12px;line-height:1.5}
-.estado.show{display:block}.estado.ok{background:#effaf3;color:#287846;border:1px solid #ccebd7}.estado.zero{background:#fff7ec;color:#94621e;border:1px solid #f0d9b6}.estado.missing{background:#fff0f3;color:#a83e60;border:1px solid #efc8d4}
-.estado strong{display:block;margin-bottom:3px}
-.ficha{display:none;margin-top:12px;background:#fff9fb;border:1px solid #f0dce3;border-radius:14px;padding:11px 13px}
-.ficha.show{display:block}.fila{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:11px;color:#765d65}.fila b{color:#3b2d32;text-align:right;overflow-wrap:anywhere}
-.cantidad-wrap{display:none;margin-top:15px}.cantidad-wrap.show{display:block}
-.cant{display:grid;grid-template-columns:44px 82px 44px;gap:8px;align-items:center;margin:8px 0 12px}
-.cant button{height:44px;border-radius:13px;border:1px solid #e8cbd5;background:#fff;color:var(--rosa2);font-size:22px;cursor:pointer}
-.cant input{height:44px;text-align:center;border:1px solid #e8cbd5;border-radius:13px;font-weight:800;font-size:15px;min-width:0}
-.total{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid #f3e2e8;font-size:13px;font-weight:700}
-.total b{color:var(--rosa2);font-size:20px}
-.agregar{width:100%;min-height:50px;border:0;border-radius:14px;background:var(--rosa);color:#fff;font-weight:800;cursor:pointer;font-size:13px}
-.agregar:disabled{opacity:.45;cursor:not-allowed}
-.cargando{text-align:center;padding:35px 15px;color:#8d727c;font-size:13px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,25px);background:#35272c;color:#fff;padding:12px 18px;border-radius:28px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:1000;text-align:center;max-width:90vw}.toast.show{opacity:1;transform:translate(-50%,0)}
-.contacto{text-align:center;padding:55px 18px;background:linear-gradient(135deg,#fdeaf0,#fff7f9 55%,#fffdfd);border-top:1px solid #f2dce4}
-.contacto h2{font-size:31px;margin-bottom:9px}.contacto p{color:#765d65;font-size:13px;margin-bottom:18px}.wa{display:inline-flex;background:#25D366;color:#fff;padding:12px 20px;border-radius:30px;text-decoration:none;font-weight:800;font-size:12px}
-footer{background:#35272c;color:#f9eaf0;text-align:center;padding:24px 20px}.footer-logo{font-family:Georgia,serif;font-size:17px}.footer-sub{font-size:10px;color:#ddcbd1;margin-top:4px}
-@media(max-width:800px){
-header{padding:8px 12px;gap:8px;flex-wrap:wrap}.logo{flex:1}.logo img{width:145px;height:55px}.btn-head{font-size:0;width:39px;height:39px;padding:0}.btn-head.volver::after{content:"←";font-size:17px}.btn-head.inicio::after{content:"⌂";font-size:17px}.btn-head.pedido::after{content:"🛒";font-size:16px}
-.hero{padding:37px 16px 30px}.hero h1{font-size:37px}.hero p{font-size:13px}
-.catalogo{padding:25px 12px 50px}.marcas-grid{grid-template-columns:repeat(5,minmax(68px,1fr));gap:7px;overflow-x:auto;padding-bottom:3px}.marca-btn{min-width:72px;min-height:66px;border-radius:15px;padding:9px 5px}.marca-btn strong{font-size:12px}.marca-btn small{font-size:9px}
-.panel{grid-template-columns:1fr;padding:13px;border-radius:20px;gap:14px}.visual{min-height:280px;max-height:390px}.compra{padding:4px}.encabezado-producto h2{font-size:28px}
-}
-@media(max-width:430px){.marcas-grid{display:flex}.marca-btn{flex:0 0 86px}.visual{min-height:255px}.selector{font-size:12px}.hero h1{font-size:34px}}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:#fffdfd;color:#34292d;overflow-x:hidden}a{-webkit-tap-highlight-color:transparent}
+header{background:rgba(255,253,253,.97);padding:11px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #f2dce4;position:sticky;top:0;z-index:1000;backdrop-filter:blur(10px)}
+.logo img{display:block;width:205px;height:72px;object-fit:contain}.acciones{display:flex;gap:10px;flex-wrap:wrap}.btn-head{min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:11px 17px;border-radius:40px;text-decoration:none;font-size:12px;font-weight:700}.sec{background:#fff;color:#d94a79;border:1px solid #efc7d4}.pedido{background:#e65385;color:#fff;border:1px solid #e65385}
+.hero{position:relative;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;text-align:center;padding:58px 24px;background:radial-gradient(circle at 15% 20%,rgba(245,174,198,.18),transparent 25%),linear-gradient(135deg,#fff6f8,#fffdfd 50%,#fdeef3)}
+.cara{position:absolute;width:300px;right:3%;opacity:.06;pointer-events:none}.hero-in{position:relative;z-index:2;max-width:720px}.tag{display:inline-block;padding:8px 18px;border:1px solid #efcbd7;background:#ffffffcc;color:#d74e7b;border-radius:40px;font-size:11px;letter-spacing:1.2px;font-weight:700;margin-bottom:18px}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500}.hero h1{font-size:50px;margin-bottom:14px}.hero p{font-size:16px;line-height:1.7;color:#765d65}
+.seccion{padding:58px 5% 75px}.marca-bloque{max-width:980px;margin:auto;background:#fff;border:1px solid #f0dce3;border-radius:25px;box-shadow:0 10px 30px rgba(83,48,58,.07);padding:24px}.marca-top{text-align:center;margin-bottom:20px}.logo-marca{width:150px;height:72px;object-fit:contain;margin-bottom:6px}.marca-top h2{font-size:31px;margin-bottom:7px}.marca-top p{color:#806870;font-size:14px}
+.producto-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);gap:30px;align-items:start}.visual{position:relative;overflow:hidden;border:1px solid #f0d8e1;border-radius:20px;padding:14px;background:#fff}.visual::after{content:"";position:absolute;width:170px;height:170px;left:-65px;bottom:-70px;background:url("../imagenes/Cara logo bellashop.png") center/contain no-repeat;opacity:.035;pointer-events:none}.carrusel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:10px;scrollbar-width:none}.carrusel::-webkit-scrollbar{display:none}.carrusel img{flex:0 0 100%;width:100%;height:auto;max-height:600px;object-fit:contain;object-position:center;border-radius:15px;scroll-snap-align:start;background:#fff}.ayuda-slide{text-align:center;color:#9a7180;font-size:12px;font-weight:700;margin-top:10px}.puntos{display:flex;justify-content:center;gap:7px;margin-top:8px}.punto{width:8px;height:8px;border-radius:50%;background:#efd4de}.punto.activo{background:#d94a79;transform:scale(1.18)}
+.compra{border:1px solid #f0d8e1;border-radius:20px;padding:24px;background:#fff;position:sticky;top:105px}.precio{font-size:25px;font-weight:800;color:#d94a79;margin-bottom:16px}.instruccion{background:#fff7fa;border:1px solid #f4d8e2;border-radius:15px;padding:14px;color:#6f5961;font-size:13px;line-height:1.55;margin-bottom:17px}.instruccion strong{display:block;color:#d94a79;margin-bottom:4px}
+label{display:block;font-size:12px;font-weight:800;color:#765d65;margin-bottom:7px}.fila-ref{display:grid;grid-template-columns:1fr auto;gap:9px}.ref-input{min-height:48px;border:1px solid #e8cbd5;border-radius:14px;padding:0 14px;font:inherit;text-transform:uppercase;outline:none}.ref-input:focus{border-color:#df7194;box-shadow:0 0 0 3px rgba(223,113,148,.1)}.buscar{border:0;border-radius:14px;padding:0 17px;background:#de5b86;color:#fff;font-weight:800;cursor:pointer}
+.estado{margin-top:15px;border-radius:15px;padding:14px;display:none}.estado.show{display:block}.estado.ok{background:#effaf3;color:#287846;border:1px solid #ccebd7}.estado.zero{background:#fff7ec;color:#9a641c;border:1px solid #f2ddbd}.estado.missing{background:#fff0f3;color:#a83e60;border:1px solid #f0cbd6}.estado strong{display:block;margin-bottom:4px}.unidades{font-size:13px;font-weight:700}
+.cantidad-wrap{display:none;margin-top:17px}.cantidad-wrap.show{display:block}.cant{display:flex;align-items:center;gap:10px;margin:8px 0 14px}.cant button{width:42px;height:42px;border-radius:50%;border:1px solid #e8cbd5;background:#fff;color:#d94a79;font-size:22px;cursor:pointer}.cant input{width:70px;height:44px;text-align:center;border:1px solid #e8cbd5;border-radius:12px;font-weight:800}.total{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid #f3e2e8;font-weight:700}.total b{color:#d94a79;font-size:19px}.agregar{width:100%;min-height:49px;border:0;border-radius:15px;background:#e65385;color:#fff;font-weight:800;cursor:pointer}.agregar:disabled{opacity:.45;cursor:not-allowed}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,25px);background:#35272c;color:#fff;padding:13px 19px;border-radius:30px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:2000}.toast.show{opacity:1;transform:translate(-50%,0)}
+.contacto{position:relative;overflow:hidden;padding:65px 6%;text-align:center;background:linear-gradient(135deg,#fdeaf0,#fff7f9 55%,#fffdfd);border-top:1px solid #f2dce4}.contacto::before{content:"";position:absolute;width:245px;height:245px;left:3%;top:50%;transform:translateY(-50%) rotate(-6deg);background:url("../imagenes/Cara logo bellashop.png") center/contain no-repeat;opacity:.05;pointer-events:none}.contacto>*{position:relative;z-index:2}.contacto h2{font-size:34px;margin-bottom:12px}.contacto p{max-width:650px;margin:0 auto 23px;color:#765d65;line-height:1.7;font-size:15px}.wa{display:inline-flex;background:#25D366;color:#fff;padding:13px 22px;border-radius:40px;text-decoration:none;font-weight:700;font-size:13px;margin-bottom:20px}.redes{display:flex;justify-content:center;gap:12px;margin-bottom:22px}.red{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#d94d7a;border:1px solid #efc6d3;text-decoration:none;font-weight:800}.red svg{width:21px;height:21px;display:block}.ubicacion{display:inline-flex;color:#765d65;text-decoration:none;font-size:13px;font-weight:700;padding:9px 15px;border-radius:30px;background:#ffffffb8;border:1px solid #f0d7df}
+footer{background:#35272c;color:#f9eaf0;text-align:center;padding:28px 20px}.footer-logo{font-family:Georgia,serif;font-size:18px;margin-bottom:5px}.footer-sub{font-size:11px;color:#ddcbd1}
+@media(max-width:800px){header{padding:9px 12px;gap:8px;flex-wrap:wrap}.logo{flex:1}.logo img{width:150px;height:58px}.acciones{gap:7px}.btn-head{min-height:38px;font-size:10px;padding:9px 11px}.hero{min-height:275px;padding:48px 18px}.hero h1{font-size:40px}.producto-grid{grid-template-columns:1fr}.compra{position:static}.seccion{padding:45px 14px 60px}.marca-bloque{padding:16px}.contacto{padding:55px 18px}}
+@media(max-width:440px){.logo img{width:135px;height:54px}.btn-head{font-size:0;width:40px;height:40px;padding:0}.btn-head::after{font-size:17px}.btn-head.volver::after{content:"←"}.btn-head.inicio::after{content:"⌂"}.btn-head.pedido::after{content:"🛒"}.hero h1{font-size:36px}.compra{padding:19px}.marca-top h2{font-size:28px}}
 </style>
 </head>
 <body>
 <header>
-  <a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a>
-  <div class="acciones">
-    <a class="btn-head sec volver" href="gel-nail-art.html">VOLVER</a>
-    <a class="btn-head sec inicio" href="../index.html">INICIO</a>
-    <a class="btn-head pedido" href="../carrito.html">MI PEDIDO</a>
-  </div>
+<a class="logo" href="../index.html"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a>
+<div class="acciones">
+<a class="btn-head sec volver" href="gel-nail-art.html">VOLVER</a>
+<a class="btn-head sec inicio" href="../index.html">INICIO</a>
+<a class="btn-head pedido pedido" href="../carrito.html">MI PEDIDO</a>
+</div>
 </header>
-
 <section class="hero">
-  <div class="hero-in">
-    <span class="tag">GEL NAIL ART</span>
-    <h1>Painting Gel</h1>
-    <p>Escoge la marca y luego el tono que necesitas. Solo mostramos referencias que están registradas correctamente en nuestro inventario.</p>
-  </div>
+<img class="cara" src="../imagenes/Cara logo bellashop.png" alt="">
+<div class="hero-in"><span class="tag">GEL NAIL ART</span><h1>Painting Gel</h1><p>Colores intensos y versátiles para crear detalles, trazos y diseños llenos de creatividad. 💕✨ Elige tu marca y encuentra tus referencias favoritas.</p></div>
 </section>
-
-<main class="catalogo">
-  <div class="catalogo-in">
-    <div class="titulo-marcas">ELIGE UNA MARCA</div>
-    <div class="marcas-grid" id="marcasGrid"></div>
-    <div id="zonaProducto"><div class="cargando">Cargando Painting Gel disponibles…</div></div>
-  </div>
-</main>
-
-<section class="contacto">
-  <h2>¿Necesitas ayuda? 💕</h2>
-  <p>Escríbenos y te ayudamos a encontrar la referencia correcta.</p>
-  <a class="wa" href="https://wa.me/573122002698" target="_blank" rel="noopener noreferrer">ESCRÍBENOS POR WHATSAPP</a>
+<section class="seccion">
+<div class="marca-bloque"><div class="marca-top"><img class="logo-marca" src="../imagenes/logo cloe.png" alt="Cloe"><h2>Painting Gel Cloe</h2><p>Desliza las imágenes, elige tu referencia y agrégala a tu pedido. 💗</p></div><div class="producto-grid"><div class="visual"><div class="carrusel" id="carruselCloe"><img src="imagenes/IMG_1344.PNG" alt="Painting Gel Cloe 2"><img src="imagenes/IMG_1345.PNG" alt="Painting Gel Cloe 3"><img src="imagenes/IMG_1346.PNG" alt="Painting Gel Cloe 4"><img src="imagenes/IMG_1347.PNG" alt="Painting Gel Cloe 5"><img src="imagenes/IMG_1348.PNG" alt="Painting Gel Cloe 6"></div><div class="ayuda-slide">Desliza para ver más →</div><div class="puntos" id="puntosCloe"><span class="punto activo"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span><span class="punto"></span></div></div><div class="compra"><div class="precio">$18.500</div><div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe únicamente el número de la referencia que aparece en las imágenes. Ejemplo: 152.</div><label for="refCloe">REFERENCIA</label><div class="fila-ref"><input id="refCloe" class="ref-input" inputmode="numeric" autocomplete="off" placeholder="Ej. 152"><button id="buscarCloe" class="buscar" type="button">BUSCAR</button></div><div id="estadoCloe" class="estado"></div><div id="cantidadCloe" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosCloe">−</button><input id="cantCloe" type="number" value="1" min="1" readonly><button type="button" id="masCloe">+</button></div><div class="total"><span>Total</span><b id="totalCloe">$18.500</b></div><button id="agregarCloe" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></div>
 </section>
-
-<footer>
-  <div class="footer-logo">Bella Shop</div>
-  <div class="footer-sub">Tienda de Belleza · Popayán, Cauca</div>
-</footer>
-
-<div class="toast" id="toast">Producto agregado a tu pedido 💕</div>
-
+<section class="seccion" style="padding-top:0"><div class="marca-bloque"><div class="marca-top"><img class="logo-marca" src="../imagenes/logo latin.png" alt="Latin Nails"><h2>Painting Gel Latin</h2><p>Desliza las imágenes, elige tu referencia y agrégala a tu pedido. 💗</p></div><div class="producto-grid"><div class="visual"><div class="carrusel" id="carruselLatin"><img src="imagenes/IMG_1393.PNG" alt="Painting Gel Latin 1"><img src="imagenes/IMG_1394.PNG" alt="Painting Gel Latin 2"></div><div class="ayuda-slide">Desliza para ver más →</div><div class="puntos" id="puntosLatin"><span class="punto activo"></span><span class="punto"></span></div></div><div class="compra"><div class="precio">$22.500</div><div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe la referencia tal como aparece en las imágenes. Ejemplo: 013, M396 o Negro.</div><label for="refLatin">REFERENCIA</label><div class="fila-ref"><input id="refLatin" class="ref-input" inputmode="text" autocomplete="off" placeholder="Ej. 013"><button id="buscarLatin" class="buscar" type="button">BUSCAR</button></div><div id="estadoLatin" class="estado"></div><div id="cantidadLatin" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosLatin">−</button><input id="cantLatin" type="number" value="1" min="1" readonly><button type="button" id="masLatin">+</button></div><div class="total"><span>Total</span><b id="totalLatin">$22.500</b></div><button id="agregarLatin" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></div></section>
+<section class="seccion" style="padding-top:0"><div class="marca-bloque"><div class="marca-top"><img src="../imagenes/logo muna.png" alt="Logo Muna" style="display:block;max-width:150px;max-height:70px;object-fit:contain;margin:0 auto 10px"><h2>Painting Gel Muna</h2><p>Elige entre los Painting Gel individuales y las paletas Muna. 💗</p></div><h3 style="font-size:24px;margin:5px 0 18px;text-align:center">Painting Gel Muna · Individuales</h3><div class="producto-grid"><div class="visual"><div class="carrusel"><img src="imagenes/painting-muna.png" alt="Painting Gel Muna"></div></div><div class="compra"><div class="precio">$13.000</div><div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe el nombre de la referencia. Ejemplo: Luna Llena.</div><label for="refMuna">REFERENCIA</label><div class="fila-ref"><input id="refMuna" class="ref-input" autocomplete="off" placeholder="Ej. Luna Llena"><button id="buscarMuna" class="buscar" type="button">BUSCAR</button></div><div id="estadoMuna" class="estado"></div><div id="cantidadMuna" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosMuna">−</button><input id="cantMuna" type="number" value="1" min="1" readonly><button type="button" id="masMuna">+</button></div><div class="total"><span>Total</span><b id="totalMuna">$13.000</b></div><button id="agregarMuna" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div><div style="margin-top:28px"><h3 style="font-size:24px;margin-bottom:7px;text-align:center">Colección Cósmica · Painting Gel Muna x9</h3><p style="color:#806870;font-size:14px;text-align:center;margin-bottom:18px">Elige tu referencia favorita de la colección. 💕✨</p><div class="producto-grid"><div class="visual"><div class="carrusel" id="carruselCosmica"><div style="min-width:100%;text-align:center"><img src="imagenes/IMG_1395.PNG" alt="Colección Cósmica Muna REF 6"><div style="font-weight:800;color:#e65385;margin-top:8px">REF. 6</div></div><div style="min-width:100%;text-align:center"><img src="imagenes/IMG_1396.PNG" alt="Colección Cósmica Muna REF 2"><div style="font-weight:800;color:#e65385;margin-top:8px">REF. 2</div></div></div><div class="compra"><div class="precio">$35.000</div><div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe 6 o 2 según la paleta que deseas.</div><label for="refCosmica">REFERENCIA</label><div class="fila-ref"><input id="refCosmica" class="ref-input" inputmode="numeric" autocomplete="off" placeholder="Ej. 6"><button id="buscarCosmica" class="buscar" type="button">BUSCAR</button></div><div id="estadoCosmica" class="estado"></div><div id="cantidadCosmica" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosCosmica">−</button><input id="cantCosmica" type="number" value="1" min="1" readonly><button type="button" id="masCosmica">+</button></div><div class="total"><span>Total</span><b id="totalCosmica">$35.000</b></div><button id="agregarCosmica" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></div></div></div></section>
+<section class="marca-bloque" id="canm"><div style="text-align:center;margin-bottom:18px"><img src="../imagenes/logo-canm.png" alt="CANM" style="max-width:150px;max-height:70px;object-fit:contain"></div><h2 style="text-align:center">Painting Gel CANM</h2><p style="text-align:center;color:#806870;margin-bottom:22px">Elige tu tono favorito y consulta las unidades disponibles. 💕✨</p><div class="producto-grid"><div class="visual"><img src="imagenes/painting-canm.png" alt="Painting Gel CANM" style="display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;border-radius:15px"></div><div class="compra"><div class="precio">$19.000</div><div class="instruccion"><strong>Elige tu referencia 💕</strong>Escribe el nombre tal como aparece en la imagen.</div><label for="refCanm">REFERENCIA</label><div class="fila-ref"><input id="refCanm" class="ref-input" autocomplete="off" placeholder="Ej. Brillo del Sol"><button id="buscarCanm" class="buscar" type="button">BUSCAR</button></div><div id="estadoCanm" class="estado"></div><div id="cantidadCanm" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosCanm">−</button><input id="cantCanm" type="number" value="1" min="1" readonly><button type="button" id="masCanm">+</button></div><div class="total"><span>Total</span><b id="totalCanm">$19.000</b></div><button id="agregarCanm" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></section>
+<section class="seccion" style="padding-top:35px"><div class="marca-bloque" id="mara"><div style="text-align:center;margin-bottom:18px"><img src="../imagenes/logo mara.webp" alt="Mara" style="max-width:150px;max-height:70px;object-fit:contain"></div><div class="marca-top"><h2>Painting Gel Mara</h2><p>Blanco intenso para tus diseños y detalles. 💗</p></div><div class="producto-grid"><div class="visual"><img src="imagenes/paintinf-blancomara.png" alt="Painting Gel Blanco Mara" style="display:block;width:100%;height:auto;object-fit:contain;object-position:center;border-radius:15px"></div><div class="compra"><div class="precio">$20.000</div><div class="instruccion"><strong>Blanco · Ref. MG002 💕</strong></div><div id="estadoMara" class="estado"></div><div id="cantidadMara" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosMara">−</button><input id="cantMara" type="number" value="1" min="1" readonly><button type="button" id="masMara">+</button></div><div class="total"><span>Total</span><b id="totalMara">$20.000</b></div><button id="agregarMara" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></div></section>
+<section class="seccion" style="padding-top:35px"><div class="marca-bloque" id="ilu"><div style="text-align:center;margin-bottom:18px"><img src="../imagenes/logo ilu.png" alt="ILU" style="max-width:150px;max-height:70px;object-fit:contain"></div><div class="marca-top"><h2>Paleta Painting Gel ILU</h2><p>Paleta de Painting Gel para crear diseños y detalles. 💗</p></div><div class="producto-grid"><div class="visual"><img src="imagenes/painting-ilu.png" alt="Paleta Painting Gel ILU" style="display:block;width:100%;height:auto;object-fit:contain;object-position:center;border-radius:15px"></div><div class="compra"><div class="precio">$35.000</div><div class="instruccion"><strong>Paleta Painting Gel ILU 💕</strong></div><div id="estadoIlu" class="estado"></div><div id="cantidadIlu" class="cantidad-wrap"><label>CANTIDAD</label><div class="cant"><button type="button" id="menosIlu">−</button><input id="cantIlu" type="number" value="1" min="1" readonly><button type="button" id="masIlu">+</button></div><div class="total"><span>Total</span><b id="totalIlu">$35.000</b></div><button id="agregarIlu" class="agregar" type="button">AGREGAR AL PEDIDO</button></div></div></div></div></section>
+<section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p></section><footer><div class="footer-logo">Bella Shop</div><div class="footer-sub">Tienda de Belleza · Popayán, Cauca</div></footer><div class="toast" id="toast">Producto agregado a tu pedido 💕</div>
 <script>
-(function(){
-const MARCAS=[
-  {id:"cloe",nombre:"Cloe",imagenes:["imagenes/IMG_1344.PNG","imagenes/IMG_1345.PNG","imagenes/IMG_1346.PNG","imagenes/IMG_1347.PNG","imagenes/IMG_1348.PNG"]},
-  {id:"latin",nombre:"Latin",imagenes:["imagenes/IMG_1393.PNG","imagenes/IMG_1394.PNG"]},
-  {id:"muna",nombre:"Muna",imagenes:["imagenes/painting-muna.png"]},
-  {id:"canm",nombre:"CANM",imagenes:["imagenes/painting-canm.png"]},
-  {id:"mara",nombre:"Mara",imagenes:["imagenes/paintinf-blancomara.png"]}
-];
-
-let inventario={};
-let porMarca={};
-let marcaActiva="cloe";
-let productoActual=null;
-let imagenActual=0;
-
-function norm(v){
-  return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().trim();
-}
-function money(v){
-  return "$"+Math.max(0,Number(v)||0).toLocaleString("es-CO");
-}
-function stock(p){
-  return Math.max(0,Math.floor(Number(p.disponible ?? p.cantidad_pronosticada ?? 0)||0));
-}
-function ref(p){ return String(p.referencia_interna||"").trim(); }
-function barra(p){ return String(p.codigo_barras||"").trim(); }
-function idReal(p){ return ref(p)||barra(p); }
-
-function esPaintingNormal(p){
-  const n=norm(p.nombre);
-  const esPainting=n.includes("PAINTING GEL")||n.includes("PAINT GEL")||n.includes("PAINTING MUNA");
-  if(!esPainting) return false;
-  if(n.includes("OJO DE GATO")) return false;
-  if(n.includes("PLATINUM")) return false;
-  if(n.includes("PALETA")) return false;
-  if(n.includes("M&G BELLA SHOP")) return false;
-  if(n.includes("ELIMINAR PRODUCTO")) return false;
-  return !!idReal(p);
-}
-function pertenece(p,id){
-  const n=norm(p.nombre);
-  if(id==="cloe") return n.includes("CLOE");
-  if(id==="latin") return n.includes("LATIN");
-  if(id==="muna") return n.includes("MUNA");
-  if(id==="canm") return n.includes("CANM");
-  if(id==="mara") return n.includes("MARA");
-  return false;
-}
-function nombreCorto(p,id){
-  let n=String(p.nombre||"").trim();
-  n=n.replace(/PAINTING\s*GEL/ig,"")
-     .replace(/PAINT\s*GEL/ig,"")
-     .replace(/PAINTING\s*MUNA/ig,"")
-     .replace(/\bLATIN NAILS\b/ig,"")
-     .replace(/\bCLOE\b/ig,"")
-     .replace(/\bCANM\b/ig,"")
-     .replace(/\bMARA\b/ig,"")
-     .replace(/\bMUNA\b/ig,"")
-     .replace(/\b5\s*GR\b/ig,"")
-     .replace(/\b5GR\b/ig,"")
-     .replace(/\s{2,}/g," ")
-     .replace(/^[\s\-–—:]+|[\s\-–—:]+$/g,"")
-     .trim();
-  return n||idReal(p);
-}
-function ordenar(lista,id){
-  return lista.sort((a,b)=>{
-    const sa=stock(a)>0?0:1, sb=stock(b)>0?0:1;
-    if(sa!==sb) return sa-sb;
-    return nombreCorto(a,id).localeCompare(nombreCorto(b,id),"es",{numeric:true,sensitivity:"base"});
-  });
-}
-
-function prepararInventario(){
-  const productos=Object.values(inventario.productos||{}).filter(esPaintingNormal);
-  MARCAS.forEach(m=>{
-    porMarca[m.id]=ordenar(productos.filter(p=>pertenece(p,m.id)),m.id);
-  });
-}
-
-function renderMarcas(){
-  const cont=document.getElementById("marcasGrid");
-  cont.innerHTML=MARCAS.map(m=>{
-    const total=(porMarca[m.id]||[]).length;
-    return `<button class="marca-btn ${m.id===marcaActiva?"active":""}" data-marca="${m.id}">
-      <strong>${m.nombre}</strong>
-      <small>${total} ${total===1?"referencia":"referencias"}</small>
-    </button>`;
-  }).join("");
-  cont.querySelectorAll(".marca-btn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      marcaActiva=btn.dataset.marca;
-      productoActual=null;
-      imagenActual=0;
-      renderMarcas();
-      renderPanel();
-    });
-  });
-}
-
-function renderPanel(){
-  const zona=document.getElementById("zonaProducto");
-  const marca=MARCAS.find(m=>m.id===marcaActiva);
-  const lista=porMarca[marcaActiva]||[];
-  if(!lista.length){
-    zona.innerHTML=`<div class="panel"><div class="cargando">No hay Painting Gel de ${marca.nombre} con referencia o código válido en el inventario actual.</div></div>`;
-    return;
-  }
-  const precios=lista.map(p=>Number(p.precio_venta)||0).filter(x=>x>0);
-  const minPrecio=precios.length?Math.min(...precios):0;
-  zona.innerHTML=`
-    <section class="panel">
-      <div class="visual">
-        <button class="nav-img prev" id="prevImg" aria-label="Imagen anterior">‹</button>
-        <img id="imgMarca" src="${marca.imagenes[0]}" alt="Painting Gel ${marca.nombre}">
-        <button class="nav-img next" id="nextImg" aria-label="Imagen siguiente">›</button>
-        <div class="puntos" id="puntos"></div>
-      </div>
-      <div class="compra">
-        <div class="encabezado-producto">
-          <small>PAINTING GEL · ${marca.nombre.toUpperCase()}</small>
-          <h2>${marca.nombre}</h2>
-          <p>${lista.length} referencias registradas en inventario.</p>
-          ${minPrecio?`<div class="precio-desde">Desde <b>${money(minPrecio)}</b></div>`:""}
-        </div>
-
-        <label for="selectorProducto">TONO O REFERENCIA</label>
-        <div class="selector-wrap">
-          <select class="selector" id="selectorProducto">
-            <option value="">Selecciona una opción</option>
-            ${lista.map((p,i)=>`<option value="${i}">${nombreCorto(p,marcaActiva)}${stock(p)<=0?" · Agotado":""}</option>`).join("")}
-          </select>
-        </div>
-        <div class="ayuda">Los tonos agotados aparecen identificados, pero solo podrás agregar al pedido los que tengan existencias.</div>
-
-        <div class="estado" id="estado"></div>
-        <div class="ficha" id="ficha"></div>
-
-        <div class="cantidad-wrap" id="cantidadWrap">
-          <label>CANTIDAD</label>
-          <div class="cant">
-            <button type="button" id="menos">−</button>
-            <input id="cantidad" type="number" inputmode="numeric" min="1" value="1">
-            <button type="button" id="mas">+</button>
-          </div>
-          <div class="total"><span>Total</span><b id="total">$0</b></div>
-          <button class="agregar" id="agregar" type="button" disabled>AGREGAR A MI PEDIDO</button>
-        </div>
-      </div>
-    </section>`;
-
-  configurarImagenes(marca);
-  document.getElementById("selectorProducto").addEventListener("change",seleccionarProducto);
-  document.getElementById("menos").addEventListener("click",()=>cambiarCantidad(-1));
-  document.getElementById("mas").addEventListener("click",()=>cambiarCantidad(1));
-  document.getElementById("cantidad").addEventListener("input",normalizarCantidad);
-  document.getElementById("cantidad").addEventListener("blur",normalizarCantidad);
-  document.getElementById("agregar").addEventListener("click",agregarCarrito);
-}
-
-function configurarImagenes(marca){
-  const img=document.getElementById("imgMarca");
-  const prev=document.getElementById("prevImg");
-  const next=document.getElementById("nextImg");
-  const puntos=document.getElementById("puntos");
-  const varias=marca.imagenes.length>1;
-  prev.classList.toggle("show",varias);
-  next.classList.toggle("show",varias);
-  puntos.innerHTML=marca.imagenes.map((_,i)=>`<span class="punto ${i===imagenActual?"active":""}"></span>`).join("");
-  function pintar(){
-    img.src=marca.imagenes[imagenActual];
-    puntos.querySelectorAll(".punto").forEach((p,i)=>p.classList.toggle("active",i===imagenActual));
-  }
-  prev.onclick=()=>{imagenActual=(imagenActual-1+marca.imagenes.length)%marca.imagenes.length;pintar()};
-  next.onclick=()=>{imagenActual=(imagenActual+1)%marca.imagenes.length;pintar()};
-}
-
-function seleccionarProducto(e){
-  const lista=porMarca[marcaActiva]||[];
-  const idx=e.target.value;
-  productoActual=idx===""?null:lista[Number(idx)];
-  const estado=document.getElementById("estado");
-  const ficha=document.getElementById("ficha");
-  const cantWrap=document.getElementById("cantidadWrap");
-  const agregar=document.getElementById("agregar");
-  if(!productoActual){
-    estado.className="estado";
-    ficha.className="ficha";
-    ficha.innerHTML="";
-    cantWrap.className="cantidad-wrap";
-    agregar.disabled=true;
-    return;
-  }
-
-  const s=stock(productoActual);
-  const precio=Math.max(0,Number(productoActual.precio_venta)||0);
-  const r=ref(productoActual);
-  const b=barra(productoActual);
-
-  ficha.innerHTML=`
-    <div class="fila"><span>Producto</span><b>${nombreCorto(productoActual,marcaActiva)}</b></div>
-    <div class="fila"><span>Referencia</span><b>${r||"—"}</b></div>
-    <div class="fila"><span>Código</span><b>${b||r||"—"}</b></div>
-    <div class="fila"><span>Precio</span><b>${money(precio)}</b></div>`;
-  ficha.className="ficha show";
-
-  if(s>0){
-    estado.className="estado show ok";
-    estado.innerHTML=`<strong>DISPONIBLE</strong>${s} ${s===1?"unidad disponible":"unidades disponibles"}.`;
-    cantWrap.className="cantidad-wrap show";
-    document.getElementById("cantidad").value=1;
-    document.getElementById("cantidad").max=s;
-    agregar.disabled=false;
-    actualizarTotal();
-  }else{
-    estado.className="estado show zero";
-    estado.innerHTML="<strong>TEMPORALMENTE NO DISPONIBLE</strong>Esta referencia está registrada, pero actualmente no tiene existencias.";
-    cantWrap.className="cantidad-wrap";
-    agregar.disabled=true;
-  }
-}
-
-function cantidadValida(){
-  if(!productoActual) return 1;
-  const max=stock(productoActual);
-  let v=parseInt(document.getElementById("cantidad").value,10);
-  if(!Number.isFinite(v)||v<1) v=1;
-  if(max>0&&v>max) v=max;
-  return v;
-}
-function normalizarCantidad(){
-  if(!productoActual) return;
-  const input=document.getElementById("cantidad");
-  input.value=cantidadValida();
-  actualizarTotal();
-}
-function cambiarCantidad(delta){
-  if(!productoActual) return;
-  const input=document.getElementById("cantidad");
-  input.value=Math.max(1,Math.min(stock(productoActual),cantidadValida()+delta));
-  actualizarTotal();
-}
-function actualizarTotal(){
-  if(!productoActual) return;
-  const precio=Math.max(0,Number(productoActual.precio_venta)||0);
-  document.getElementById("total").textContent=money(precio*cantidadValida());
-}
-function toast(msg){
-  const t=document.getElementById("toast");
-  t.textContent=msg;
-  t.classList.add("show");
-  clearTimeout(window.__toastBella);
-  window.__toastBella=setTimeout(()=>t.classList.remove("show"),2600);
-}
-function agregarCarrito(){
-  if(!productoActual||stock(productoActual)<=0) return;
-  const marca=MARCAS.find(m=>m.id===marcaActiva);
-  const cantidad=cantidadValida();
-  const precio=Math.max(0,Number(productoActual.precio_venta)||0);
-  const identidad=idReal(productoActual);
-  const item={
-    clave:"PAINTING|"+marcaActiva+"|"+identidad,
-    nombre:String(productoActual.nombre||"Painting Gel "+marca.nombre),
-    marca:marca.nombre,
-    referencia:ref(productoActual)||identidad,
-    codigo:barra(productoActual)||identidad,
-    precio:precio,
-    cantidad:cantidad,
-    imagen:marca.imagenes[0]
-  };
-
-  let carrito=[];
-  try{carrito=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");if(!Array.isArray(carrito))carrito=[]}catch(_){carrito=[]}
-  const pos=carrito.findIndex(x=>x&&x.clave===item.clave);
-  if(pos>=0){
-    const nueva=Math.min(stock(productoActual),(Number(carrito[pos].cantidad)||0)+cantidad);
-    carrito[pos]={...carrito[pos],...item,cantidad:nueva};
-  }else{
-    carrito.push(item);
-  }
-  localStorage.setItem("bellaShopCarrito",JSON.stringify(carrito));
-  toast("Agregado: "+nombreCorto(productoActual,marcaActiva)+" 💕");
-}
-
-async function iniciar(){
-  try{
-    const r=await fetch("../inventario.json?v=painting-20261030-2",{cache:"no-store"});
-    if(!r.ok) throw new Error("No se pudo cargar inventario");
-    inventario=await r.json();
-    prepararInventario();
-    const primera=MARCAS.find(m=>(porMarca[m.id]||[]).length);
-    if(primera) marcaActiva=primera.id;
-    renderMarcas();
-    renderPanel();
-  }catch(err){
-    document.getElementById("zonaProducto").innerHTML=`<div class="panel"><div class="estado show missing"><strong>NO PUDIMOS CARGAR EL INVENTARIO</strong>Actualiza la página o inténtalo nuevamente.</div></div>`;
-    console.error(err);
-  }
-}
-iniciar();
-})();
+(function(){var PRECIO=18500,inventario={},productoActual=null,stockActual=0,cantidad=1;var refsPermitidas=["PG151","PG152","PG153","PG154","PG155","PG156","PG157","PG158","PG159","PG160","PG161","PG162","PG163","PG164","PG165","PG172","PG166","PG167","PG168","PG169","PG170","PG171"];var input=document.getElementById("refCloe"),estado=document.getElementById("estadoCloe"),wrap=document.getElementById("cantidadCloe"),cant=document.getElementById("cantCloe"),total=document.getElementById("totalCloe");function dinero(n){return "$"+Number(n).toLocaleString("es-CO")}function normalizar(v){var s=String(v||"").trim().toUpperCase().replace(/\s+/g,"");if(/^\d+$/.test(s))s="PG"+s;var m=s.match(/^PG0*(\d+)$/);return m?"PG"+m[1]:s}function codigoInventario(ref){var n=Number(ref.replace("PG",""));return "PG"+String(n).padStart(4,"0")}function buscarProducto(ref){var cod=codigoInventario(ref);if(inventario[cod])return inventario[cod];var vals=Object.values(inventario);for(var i=0;i<vals.length;i++){var p=vals[i]||{},nom=String(p.nombre||"").toUpperCase();if(nom.indexOf("CLOE")>=0&&nom.indexOf("PAINTING")>=0&&new RegExp("\\b"+ref.replace("PG","")+"\\b").test(nom))return p}return null}function enCarrito(ref){try{var c=JSON.parse(localStorage.getItem("bellaShopCarrito"))||[];var x=c.find(function(i){return i.clave==="Painting Gel Cloe - "+ref});return x?Number(x.cantidad||0):0}catch(e){return 0}}function mostrarEstado(tipo,titulo,txt){estado.className="estado show "+tipo;estado.innerHTML="<strong>"+titulo+"</strong><div class='unidades'>"+txt+"</div>"}function resetCompra(){productoActual=null;stockActual=0;cantidad=1;cant.value=1;total.textContent=dinero(PRECIO);wrap.classList.remove("show")}function consultar(){resetCompra();var ref=normalizar(input.value);input.value=ref.replace("PG","");if(refsPermitidas.indexOf(ref)<0){mostrarEstado("missing","CÓDIGO NO ENCONTRADO","Esa referencia no corresponde a esta colección de Painting Gel Cloe.");return}var p=buscarProducto(ref);if(!p){mostrarEstado("missing","CÓDIGO NO ENCONTRADO","No encontramos la referencia "+ref.replace("PG","")+" en el inventario actualizado.");return}productoActual={ref:ref,item:p};stockActual=Math.max(0,Number(p.disponible||0));if(stockActual<=0){mostrarEstado("zero","TEMPORALMENTE NO DISPONIBLE","Referencia "+ref.replace("PG","")+" · 0 unidades disponibles.");return}mostrarEstado("ok","DISPONIBLE",ref+" · "+stockActual+" unidades disponibles.");wrap.classList.add("show");actualizar()}function actualizar(){cant.value=cantidad;total.textContent=dinero(cantidad*PRECIO)}document.getElementById("buscarCloe").onclick=consultar;fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inventario=d.productos||{}});})();
+</script>
+<script>
+(function(){var PRECIO=22500,inventario={},productoActual=null,stockActual=0,cantidad=1;var refs=["NEGRO","BLANCO","013","014","032","M396","N474","N881","N008","N136","N414"];var input=document.getElementById("refLatin"),estado=document.getElementById("estadoLatin"),wrap=document.getElementById("cantidadLatin");function normalizar(v){var x=String(v||"").trim().toUpperCase().replace(/\s+/g,"");if(/^\d+$/.test(x))x=x.padStart(3,"0");return x}function buscar(ref){var vals=Object.values(inventario),objetivo="PAINTING GEL "+ref+" LATIN NAILS";for(var i=0;i<vals.length;i++){var p=vals[i]||{},n=String(p.nombre||"").toUpperCase().replace(/\s+/g," ").trim();if(n===objetivo)return p}return null}function consultar(){var ref=normalizar(input.value);if(refs.indexOf(ref)<0)return;var p=buscar(ref);if(!p)return;productoActual={ref:ref,item:p};stockActual=Math.max(0,Number(p.disponible||0));estado.className="estado show "+(stockActual?"ok":"zero");estado.innerHTML="<strong>"+(stockActual?"DISPONIBLE":"TEMPORALMENTE NO DISPONIBLE")+"</strong><div class='unidades'>"+stockActual+" unidades disponibles.</div>";if(stockActual)wrap.classList.add("show")}document.getElementById("buscarLatin").onclick=consultar;fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inventario=d.productos||{}});})();
+</script>
+<script>
+(function(){var PRECIO=13000,inv={},actual=null,stock=0,q=1;var refs=["ESTRELLA FUGAZ","LUNA LLENA","NOCHE OSCURA","AMANECER LILA","BOSQUE DE HADAS","SOL DE PRIMAVERA","MANDARINA SOLAR"];var input=document.getElementById("refMuna"),estado=document.getElementById("estadoMuna"),wrap=document.getElementById("cantidadMuna");function norm(v){return String(v||"").trim().toUpperCase().replace(/\s+/g," ")}function find(ref){var vals=Object.values(inv);for(var i=0;i<vals.length;i++){var n=String(vals[i].nombre||"").toUpperCase();if(n.indexOf("MUNA")>=0&&n.indexOf("PAINTING")>=0&&n.indexOf(ref)>=0)return vals[i]}return null}function consult(){var ref=norm(input.value);if(refs.indexOf(ref)<0)return;var p=find(ref);if(!p)return;actual={ref:ref,item:p};stock=Math.max(0,Number(p.disponible||0));estado.className="estado show "+(stock?"ok":"zero");estado.innerHTML="<strong>"+(stock?"DISPONIBLE":"TEMPORALMENTE NO DISPONIBLE")+"</strong><div class='unidades'>"+stock+" unidades disponibles.</div>";if(stock)wrap.classList.add("show")}document.getElementById("buscarMuna").onclick=consult;fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inv=d.productos||{}});})();
+</script>
+<script>
+(function(){var PRECIO=19000,inv={},actual=null,stock=0,q=1,refs={"BRILLO DEL SOL":"7709544892937","FLAN DE FRESAS":"CM483","SELVA NEGRA":"7709544892586","SALVA NEGRA":"7709544892586","SENORITA":"7709544893019","ALGODON DE LA INDIA":"CM265","CREAM GEL":"CM379","CREMA DE LECHE":"CM379","LEYENDA DE ORO":"7709544892593"},input=document.getElementById("refCanm"),estado=document.getElementById("estadoCanm"),wrap=document.getElementById("cantidadCanm"),cant=document.getElementById("cantCanm"),total=document.getElementById("totalCanm");function norm(x){return String(x||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toUpperCase()}function money(n){return "$"+Number(n).toLocaleString("es-CO")}function upd(){cant.value=q;total.textContent=money(q*PRECIO)}function msg(t,a,b){estado.className="estado show "+t;estado.innerHTML="<strong>"+a+"</strong><div class='unidades'>"+b+"</div>"}function cart(){try{var x=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]");return Array.isArray(x)?x:[]}catch(e){return[]}}function inCart(r){return cart().filter(function(x){return x.clave==="Painting Gel CANM - "+r}).reduce(function(a,x){return a+Number(x.cantidad||0)},0)}function consult(){actual=null;stock=0;q=1;upd();wrap.classList.remove("show");var r=norm(input.value),target=refs[r];if(!target){msg("missing","CÓDIGO NO ENCONTRADO","Revisa el nombre de la referencia.");return}var p=inv[target]||null;if(!p){msg("missing","CÓDIGO NO ENCONTRADO","No encontramos esta referencia en el inventario actualizado.");return}actual={ref:r==="CREAM GEL"?"Crema de Leche":input.value.trim(),item:p};stock=Math.max(0,Number(p.disponible||0));if(!stock){msg("zero","TEMPORALMENTE NO DISPONIBLE","0 unidades disponibles.");return}msg("ok","DISPONIBLE",stock+" unidad"+(stock===1?"":"es")+" disponible"+(stock===1?"":"s")+".");wrap.classList.add("show")}document.getElementById("buscarCanm").onclick=consult;input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();consult()}});document.getElementById("menosCanm").onclick=function(){if(q>1){q--;upd()}};document.getElementById("masCanm").onclick=function(){if(actual&&q<stock-inCart(actual.ref)){q++;upd()}};document.getElementById("agregarCanm").onclick=function(){if(!actual)return;var c=cart(),k="Painting Gel CANM - "+actual.ref,ex=c.find(function(x){return x.clave===k});if(inCart(actual.ref)+q>stock){msg("zero","CANTIDAD MÁXIMA","No hay más unidades disponibles.");return}if(ex)ex.cantidad=Number(ex.cantidad||0)+q;else c.push({clave:k,nombre:"Painting Gel CANM",marca:"CANM",referencia:actual.ref,codigo:String(actual.item.codigo_original_odoo||actual.item.codigo||""),precio:PRECIO,cantidad:q,imagen:"gel-nail-art/imagenes/painting-canm.png"});localStorage.setItem("bellaShopCarrito",JSON.stringify(c));var t=document.getElementById("toast");t.textContent="Painting Gel CANM agregado a tu pedido 💕";t.classList.add("show");setTimeout(function(){t.classList.remove("show")},2200);consult()};fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){inv=d.productos||{}}).catch(function(){});})();
+</script>
+<script>
+(function(){var PRECIO=20000,actual=null,stock=0,q=1,estado=document.getElementById("estadoMara"),wrap=document.getElementById("cantidadMara");function mostrar(p){actual=p||null;stock=actual?Math.max(0,Number(actual.disponible||0)):0;estado.className="estado show "+(stock?"ok":"zero");estado.innerHTML="<strong>"+(stock?"DISPONIBLE":"TEMPORALMENTE NO DISPONIBLE")+"</strong><div class='unidades'>Blanco · MG002 · "+stock+" unidades disponibles.</div>";if(stock)wrap.classList.add("show")}fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){mostrar((d.productos||{})["MGP002"]||null)});})();
+</script>
+<script>
+(function(){var estado=document.getElementById("estadoIlu"),wrap=document.getElementById("cantidadIlu");function mostrar(p){var stock=p?Math.max(0,Number(p.disponible||0)):0;estado.className="estado show "+(stock?"ok":"zero");estado.innerHTML="<strong>"+(stock?"DISPONIBLE":"TEMPORALMENTE NO DISPONIBLE")+"</strong><div class='unidades'>Paleta Painting Gel ILU · "+stock+" unidades disponibles.</div>";if(stock)wrap.classList.add("show")}fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){mostrar((d.productos||{})["DN4749"]||null)});})();
 </script>
 </body>
 </html>
