@@ -39,3 +39,4 @@ jobs:
           git commit -m "Agregar pinceles DN26491 2648-1 y 2650-1" || exit 0
           git pull --rebase origin main
           git push
+# activar
