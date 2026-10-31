@@ -1,0 +1,41 @@
+name: Agregar pinceles 264x
+"on":
+  push:
+    paths:
+      - '.github/workflows/agregar-pinceles-264x-20261031.yml'
+permissions:
+  contents: write
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Agregar productos
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('pinceles/index.html')
+          t=p.read_text(encoding='utf-8')
+          if "ref:'DN26491'" in t or "ref:'2648-1'" in t or "ref:'2650-1'" in t:
+              raise SystemExit('Alguno de los productos ya existe; revisar antes de duplicar')
+          marker="{ref:'DEJA123',nombre:'Liner paquete x5 · 20 mm, 8 mm, 5 mm, 25 mm y 12 mm',categoria:'liner',tipo:'Liner · varios colores',variantes:["
+          bloque="""{ref:'DN26491',lookupRef:'DN2649-1',nombre:'Pincel liner · unidad',categoria:'liner',tipo:'Liner',imagenes:['imagenes/DN26491.png']},
+{ref:'2648-1',lookupRef:'DN2648-1',nombre:'Pincel liner · unidad',categoria:'liner',tipo:'Liner · varios colores',variantes:[
+{id:'RB',nombre:'Rosado blanco',imagen:'imagenes/2648-1RB.png',swatch:'linear-gradient(135deg,#f2a2bf 0%,#ffffff 100%)'},
+{id:'BR',nombre:'Blanco rosado',imagen:'imagenes/2648-1BR.png',swatch:'linear-gradient(135deg,#ffffff 0%,#ef9fbc 100%)'},
+{id:'MP',nombre:'Morado pink',imagen:'imagenes/2648-1MP.png',swatch:'linear-gradient(135deg,#8d62c7 0%,#f08ab8 100%)'}]},
+{ref:'2650-1',lookupRef:'DN2650-1',nombre:'Liner 7 mm · unidad',categoria:'liner',tipo:'Liner',imagenes:['imagenes/2650-1.png']},
+"""
+          if marker not in t:
+              raise SystemExit('No se encontró el punto de inserción')
+          t=t.replace(marker,bloque+marker,1)
+          p.write_text(t,encoding='utf-8')
+          PY
+      - name: Guardar cambios
+        run: |
+          git config user.name "Bella Shop Web"
+          git config user.email "actions@users.noreply.github.com"
+          git add pinceles/index.html
+          git commit -m "Agregar pinceles DN26491 2648-1 y 2650-1" || exit 0
+          git pull --rebase origin main
+          git push
