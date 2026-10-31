@@ -1,0 +1,49 @@
+from pathlib import Path
+
+p=Path('pinceles/index.html')
+t=p.read_text(encoding='utf-8')
+
+# Nuevos filtros
+if 'data-filtro="difuminar"' not in t:
+    t=t.replace('<button class="filtro" data-filtro="pata-de-cabra">PATA DE CABRA</button>', '<button class="filtro" data-filtro="pata-de-cabra">PATA DE CABRA</button><button class="filtro" data-filtro="difuminar">DIFUMINAR</button><button class="filtro" data-filtro="plano">PLANO</button>', 1)
+
+# DN1277 ahora tiene dos colores
+old="{ref:'DN1277',nombre:'Pata de cabra',categoria:'pata-de-cabra',tipo:'Pata de cabra',imagenes:['imagenes/DN1277.png']},"
+new="""{ref:'DN1277',nombre:'Pata de cabra',categoria:'pata-de-cabra',tipo:'Pata de cabra · varios colores',variantes:[
+{id:'V',nombre:'Verde claro',imagen:'imagenes/DN1277.png',swatch:'#b9e2c1'},
+{id:'M',nombre:'Morado',imagen:'imagenes/DN1277M.png',swatch:'#9b76c8'}]},"""
+if old in t:
+    t=t.replace(old,new,1)
+
+nuevos="""
+{ref:'DN1226',nombre:'Paquete x4 · Acrílico, Liner, Lengua de gato y Difuminar/Plano',categoria:'acrilico',categorias:['acrilico','liner','lengua-de-gato','difuminar','plano'],tipo:'Kit de pinceles x4',imagenes:['imagenes/DN1226.png']},
+{ref:'DN4727',nombre:'Paquete x2 · Acrílico, Liner y Plano',categoria:'acrilico',categorias:['acrilico','liner','plano'],tipo:'Kit de pinceles x2',imagenes:['imagenes/DN4727.png']},
+{ref:'W23311-119',nombre:'Pincel de goma · unidad',categoria:'goma',tipo:'Goma',imagenes:['imagenes/W23311-119.png']},
+{ref:'DN2495',nombre:'Pincel plano',categoria:'plano',tipo:'Plano',imagenes:['imagenes/DN2495.png']},
+{ref:'DN4542',nombre:'Liner paquete x3',categoria:'liner',tipo:'Liner · varios colores',variantes:[
+{id:'AR',nombre:'Azul rosado',imagen:'imagenes/DN4542AR.png',swatch:'linear-gradient(135deg,#7fc8ff 0%,#f39ac0 100%)'},
+{id:'RA',nombre:'Rosado amarillo claro',imagen:'imagenes/DN4542-RA.png',swatch:'linear-gradient(135deg,#f3a2c0 0%,#f7e7a0 100%)'}]},
+{ref:'VKN-B395',nombre:'Liner paquete x3',categoria:'liner',tipo:'Liner',imagenes:['imagenes/VKN-B395.png']},
+{ref:'2675',nombre:'Pincel de goma · unidad',categoria:'goma',tipo:'Goma',imagenes:['imagenes/2675.png']},
+{ref:'NOR16214',nombre:'Paquete x5 · Liner, Lengua de gato, Plano y Difuminar',categoria:'liner',categorias:['liner','lengua-de-gato','plano','difuminar'],tipo:'Kit de pinceles x5',imagenes:['imagenes/NOR16214.png']},
+{ref:'DEJA131',nombre:'Pinceles de goma x5',categoria:'goma',tipo:'Goma',imagenes:['imagenes/DEJA131.png']},
+{ref:'NOR16552',nombre:'Liner #2',categoria:'liner',tipo:'Liner',imagenes:['imagenes/NOR16552.png']},
+{ref:'NOR16849',nombre:'Pincel acrílico #10',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/NOR16849.png']},
+{ref:'CA0650',nombre:'Pinceles de goma x3',categoria:'goma',tipo:'Goma',imagenes:['imagenes/CA0650.png']},
+"""
+if "ref:'DN1226'" not in t:
+    marker="{ref:'DEJA123'"
+    pos=t.find(marker)
+    if pos<0:
+        raise SystemExit('No se encontró punto de inserción del catálogo')
+    t=t[:pos]+nuevos+t[pos:]
+
+# Soporte de múltiples filtros por producto
+if "el.dataset.categorias=" not in t:
+    t=t.replace("el.dataset.categoria=cfg.categoria;", "el.dataset.categoria=cfg.categoria;el.dataset.categorias=(cfg.categorias||[cfg.categoria]).filter(Boolean).join(' ');", 1)
+old_filter="const m=filtroActual==='todos'||x.dataset.categoria===filtroActual;"
+new_filter="const m=filtroActual==='todos'||String(x.dataset.categorias||x.dataset.categoria||'').split(/\\s+/).includes(filtroActual);"
+if old_filter in t:
+    t=t.replace(old_filter,new_filter,1)
+
+p.write_text(t,encoding='utf-8')
