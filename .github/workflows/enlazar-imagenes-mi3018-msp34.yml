@@ -35,3 +35,4 @@ jobs:
           git commit -m "Enlazar imágenes MI3018 y MSP34" || exit 0
           git pull --rebase origin main
           git push
+# activar ejecución
