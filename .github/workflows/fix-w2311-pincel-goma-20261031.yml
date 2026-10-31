@@ -1,0 +1,31 @@
+name: Corregir referencia pincel de goma
+"on":
+  push:
+    paths:
+      - '.github/workflows/fix-w2311-pincel-goma-20261031.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Corregir producto
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('pinceles/index.html')
+          t=p.read_text(encoding='utf-8')
+          old="{ref:'W23311-119',nombre:'Pincel de goma · unidad',categoria:'goma',tipo:'Goma',imagenes:['imagenes/W23311-119.png']},"
+          new="{ref:'W2311-119',nombre:'Pincel de goma',categoria:'goma',tipo:'Goma',imagenes:['imagenes/W23311-119.png']},"
+          if old not in t:
+              raise SystemExit('No se encontró el producto W23311-119 para corregir')
+          p.write_text(t.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Web"
+          git config user.email "actions@users.noreply.github.com"
+          git add pinceles/index.html
+          git commit -m "Corregir referencia W2311-119 y nombre Pincel de goma"
+          git push
