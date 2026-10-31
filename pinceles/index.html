@@ -66,7 +66,7 @@ const CATALOGO=[
 {ref:'DN4537',nombre:'Liner paquete x3 · 12 mm, 7 mm y 10 mm',categoria:'liner',tipo:'Liner',imagenes:['imagenes/DN4537.png']},
 {ref:'DN4718',nombre:'Pincel acrílico #10',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/DN4718.png']},
 {ref:'HK071',nombre:'Pincel acrílico #12',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/HK071.png']},
-{ref:'NOR16551',nombre:'Liner #1',categoria:'liner',tipo:'Liner',imagenes:['imagenes/NOR16551.png']},
+{ref:'NOR16551',nombre:'Liner #1',categoria:'liner',tipo:'Liner',imagenes:['imagenes/NOR16551LINER.png']},
 
 {ref:'DN1226',nombre:'Paquete x4 · Acrílico, Liner, Lengua de gato y Difuminar/Plano',categoria:'acrilico',categorias:['acrilico','liner','lengua-de-gato','difuminar','plano'],tipo:'Kit de pinceles x4',imagenes:['imagenes/DN1226.png']},
 {ref:'DN4727',nombre:'Paquete x2 · Acrílico, Liner y Plano',categoria:'acrilico',categorias:['acrilico','liner','plano'],tipo:'Kit de pinceles x2',imagenes:['imagenes/DN4727.png']},
@@ -112,7 +112,19 @@ const CATALOGO=[
 {id:'A',nombre:'Azul cielo',imagen:'imagenes/DEJA124A.png',swatch:'#8fd9f4'},
 {id:'B',nombre:'Blanco',imagen:'imagenes/DEJA124B.png',swatch:'#ffffff'},
 {id:'M',nombre:'Morado',imagen:'imagenes/DEJA124M.png',swatch:'#956ac2'},
-{id:'P',nombre:'Rosado claro piel',imagen:'imagenes/DEJA124P.png',swatch:'#eac5bb'}]}
+{id:'P',nombre:'Rosado claro piel',imagen:'imagenes/DEJA124P.png',swatch:'#eac5bb'}]},
+
+{ref:'19-004',nombre:'Liner 7 mm',categoria:'liner',tipo:'Liner',imagenes:['imagenes/19-004.png']},
+{ref:'DN3729',nombre:'Pincel para difuminar',categoria:'difuminar',tipo:'Difuminar',imagenes:['imagenes/DN3729.png']},
+{ref:'RJ10',nombre:'Lengua de gato con espátula',categoria:'lengua-de-gato',tipo:'Lengua de gato con espátula',imagenes:['imagenes/RJ10.png']},
+{ref:'HK032',nombre:'Lengua de gato con espátula',categoria:'lengua-de-gato',tipo:'Lengua de gato con espátula',imagenes:['imagenes/HK032.png']},
+{ref:'NOR16556',nombre:'Liner #3',categoria:'liner',tipo:'Liner',imagenes:['imagenes/NOR16556.png']},
+{ref:'DEJA067',nombre:'Lengua de gato con espátula',categoria:'lengua-de-gato',tipo:'Lengua de gato con espátula · varios colores',variantes:[
+{id:'R',nombre:'Rosado',imagen:'imagenes/DEJA067R.png',swatch:'#ef9dbd'},
+{id:'M',nombre:'Morado',imagen:'imagenes/DEJA067M.png',swatch:'#9a73c8'}]},
+{ref:'MP61',nombre:'Punzones',categoria:'punzones',tipo:'Punzones',imagenes:['imagenes/MPG1.png']},
+{ref:'DN958',nombre:'Pincel acrílico 2 puntas · #10 y #8',categoria:'acrilico',tipo:'Acrílico',imagenes:['imagenes/DN958.png']},
+{ref:'MP64',nombre:'Pincel para difuminar',categoria:'difuminar',tipo:'Difuminar',imagenes:['imagenes/MP64.png']}
 ];
 const contenedor=document.getElementById('productos'),sinResultados=document.getElementById('sinResultados');let inventario={},filtroActual='todos';
 function dinero(n){return '$'+Number(n||0).toLocaleString('es-CO')}
