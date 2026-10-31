@@ -1,0 +1,37 @@
+name: Enlazar imágenes MI3018 y MSP34
+"on":
+  push:
+    paths:
+      - '.github/workflows/enlazar-imagenes-mi3018-msp34.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enlazar imágenes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('pinceles/index.html')
+          t=p.read_text(encoding='utf-8')
+          reps={
+          "{ref:'MI3018',nombre:'Paquete x5 · Punzones, Liner y Plano',categoria:'punzones',categorias:['punzones','liner','plano'],tipo:'Kit de pinceles x5',imagenes:[]},":"{ref:'MI3018',nombre:'Paquete x5 · Punzones, Liner y Plano',categoria:'punzones',categorias:['punzones','liner','plano'],tipo:'Kit de pinceles x5',imagenes:['imagenes/MI3018.png']},",
+          "{ref:'MSP34',uid:'MSP34-ANGULAR',nombre:'Pincel angular',categoria:'angular',tipo:'Angular',imagenes:[]},":"{ref:'MSP34',uid:'MSP34-ANGULAR',nombre:'Pincel angular',categoria:'angular',tipo:'Angular',imagenes:['imagenes/MSP34ANGULAR.png']},",
+          "{ref:'MSP34',uid:'MSP34-PLANO',nombre:'Pincel plano',categoria:'plano',tipo:'Plano',imagenes:[]},":"{ref:'MSP34',uid:'MSP34-PLANO',nombre:'Pincel plano',categoria:'plano',tipo:'Plano',imagenes:['imagenes/MSP34PLANO.png']},",
+          "{ref:'MSP34',uid:'MSP34-LINER',nombre:'Pincel liner',categoria:'liner',tipo:'Liner',imagenes:[]},":"{ref:'MSP34',uid:'MSP34-LINER',nombre:'Pincel liner',categoria:'liner',tipo:'Liner',imagenes:['imagenes/MSP34LINER.png']},"
+          }
+          for old,new in reps.items():
+              if old in t:
+                  t=t.replace(old,new,1)
+          p.write_text(t,encoding='utf-8')
+          PY
+      - name: Guardar cambio
+        run: |
+          git config user.name "Bella Shop Web"
+          git config user.email "actions@users.noreply.github.com"
+          git add pinceles/index.html
+          git commit -m "Enlazar imágenes MI3018 y MSP34" || exit 0
+          git pull --rebase origin main
+          git push
