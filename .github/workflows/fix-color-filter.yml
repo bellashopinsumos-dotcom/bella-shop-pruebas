@@ -1,4 +1,4 @@
-name: Fix color filter image
+name: Actualizar pinceles 264x
 on:
   push:
     paths:
@@ -6,26 +6,34 @@ on:
 permissions:
   contents: write
 jobs:
-  fix:
+  actualizar:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Ajustar color visible al filtrar
+      - name: Agregar pinceles
         run: |
           python - <<'PY'
           from pathlib import Path
-          p=Path('tips y press on/index.html')
-          s=p.read_text(encoding='utf-8')
-          old="filtroColor=b.dataset.color;render()"
-          new="filtroColor=b.dataset.color;if(filtroColor!=='todos'){PRODUCTOS.filter(x=>x.tipo==='press'&&(x.colores||[]).includes(filtroColor)).forEach(x=>{const im=(x.imagenes||[]).find(i=>normal(i.color)===normal(filtroColor));if(im)seleccionesColor[x.id]=im.color})}render()"
-          if old not in s:
-              raise SystemExit('No se encontro el bloque esperado')
-          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          p=Path('pinceles/index.html')
+          t=p.read_text(encoding='utf-8')
+          if "ref:'DN26491'" in t or "ref:'2648-1'" in t or "ref:'2650-1'" in t:
+              raise SystemExit('Los productos ya existen')
+          marker="{ref:'DEJA123',nombre:'Liner paquete x5 · 20 mm, 8 mm, 5 mm, 25 mm y 12 mm',categoria:'liner',tipo:'Liner · varios colores',variantes:["
+          bloque="""{ref:'DN26491',lookupRef:'DN2649-1',nombre:'Pincel liner · unidad',categoria:'liner',tipo:'Liner',imagenes:['imagenes/DN26491.png']},
+{ref:'2648-1',lookupRef:'DN2648-1',nombre:'Pincel liner · unidad',categoria:'liner',tipo:'Liner · varios colores',variantes:[
+{id:'RB',nombre:'Rosado blanco',imagen:'imagenes/2648-1RB.png',swatch:'linear-gradient(135deg,#f2a2bf 0%,#ffffff 100%)'},
+{id:'BR',nombre:'Blanco rosado',imagen:'imagenes/2648-1BR.png',swatch:'linear-gradient(135deg,#ffffff 0%,#ef9fbc 100%)'},
+{id:'MP',nombre:'Morado pink',imagen:'imagenes/2648-1MP.png',swatch:'linear-gradient(135deg,#8d62c7 0%,#f08ab8 100%)'}]},
+{ref:'2650-1',lookupRef:'DN2650-1',nombre:'Liner 7 mm · unidad',categoria:'liner',tipo:'Liner',imagenes:['imagenes/2650-1.png']},
+"""
+          if marker not in t:
+              raise SystemExit('No se encontro el punto de insercion')
+          p.write_text(t.replace(marker,bloque+marker,1),encoding='utf-8')
           PY
       - name: Guardar cambio
         run: |
-          git config user.name "Bella Shop Bot"
+          git config user.name "Bella Shop Web"
           git config user.email "actions@users.noreply.github.com"
-          git add 'tips y press on/index.html'
-          git commit -m 'Sincronizar foto con filtro de color'
+          git add pinceles/index.html
+          git commit -m "Agregar pinceles DN26491 2648-1 y 2650-1" || exit 0
           git push
