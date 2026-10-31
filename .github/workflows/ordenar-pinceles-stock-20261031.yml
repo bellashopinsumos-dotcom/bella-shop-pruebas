@@ -31,3 +31,4 @@ jobs:
           git commit -m "Ordenar pinceles agotados al final" || exit 0
           git pull --rebase origin main
           git push
+# activar
