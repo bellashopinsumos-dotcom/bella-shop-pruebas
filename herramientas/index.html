@@ -56,17 +56,951 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
   {codigo: "REFERENCIA_REAL", nombre: "Nombre exacto", tipo: "Herramientas", imagen: "imagenes/REFERENCIA_REAL.png"}
   No crear referencias ni asignar precios manualmente; se consultan por código en el inventario.
 */
-const HERRAMIENTAS = [];
+const HERRAMIENTAS = [
+ {
+  "codigo": "211",
+  "codigo_barras": "",
+  "nombre": "CORTAUÑAS CURVO BELLA COSMETIC",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "727",
+  "codigo_barras": "727",
+  "nombre": "PUSHER DE RETIRO PLATEADO MERCI-727",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "2581",
+  "codigo_barras": "2581",
+  "nombre": "GUILLOTINA CON MEDIDOR SEGO",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "2588",
+  "codigo_barras": "2588",
+  "nombre": "GUILLOTINA TORNAZOL SEGO 2588",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "4151",
+  "codigo_barras": "20255030508319",
+  "nombre": "PUSHER RETIRO Y CUTICULA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "4154",
+  "codigo_barras": "2025060104154",
+  "nombre": "PINZA CURVA C PLATEADA",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "10109",
+  "codigo_barras": "7896075707158",
+  "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO MORADO KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "10116",
+  "codigo_barras": "7891060825381",
+  "nombre": "10116 CORTA CUTICULA MUNDIAL FLEX KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "10117",
+  "codigo_barras": "7891060679724",
+  "nombre": "10117 CORTACUTICULA MUNDIAL METALICO CLASICO KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "15051",
+  "codigo_barras": "15051",
+  "nombre": "ACEITE DE HERRAMIENTAS KS",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "202519904",
+  "codigo_barras": "202519904",
+  "nombre": "CORTACUTICULA KS 31-5",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "202519908",
+  "codigo_barras": "202519908",
+  "nombre": "CORTACUTICULA KS 80/7",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "202519916",
+  "codigo_barras": "202519916",
+  "nombre": "EXPLORADOR GUBIA KS",
+  "tipo": "Pedicura y podología"
+ },
+ {
+  "codigo": "11-30-0",
+  "codigo_barras": "049774018149",
+  "nombre": "ALICATE METALICO MUNDIAL FLEX 1130-0",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "CA3888",
+  "codigo_barras": "CA3888",
+  "nombre": "CA3888 REPUJADOR PARA DESENTERRAR",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DN4747",
+  "codigo_barras": "DN4747",
+  "nombre": "KIT DE LIMA Y PUSHER DN4747",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DEJA154",
+  "codigo_barras": "DEJA154",
+  "nombre": "LIMA PICO DE LORO METALICA DEJA154",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "7896075707141",
+  "codigo_barras": "7896075707141",
+  "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO ROSADO KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "7896075707110",
+  "codigo_barras": "7896075707110",
+  "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO VERDE KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "220-772",
+  "codigo_barras": "4002320452060",
+  "nombre": "ALICATE SOLIGEN GVH",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "CA01",
+  "codigo_barras": "7709550180639",
+  "nombre": "CA01 CORTACUTICULA AKARELLA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "CA3886",
+  "codigo_barras": "CA3886",
+  "nombre": "CA3886 REPUJADOR PARA DESENTERRAR",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DEJA094",
+  "codigo_barras": "6971164889135",
+  "nombre": "CEPILLO MANICURE X2 PASTEL",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "7707896017244",
+  "codigo_barras": "7707896017244",
+  "nombre": "CM01 CORTACUTICULA TORNASOL AKARELLA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "0818",
+  "codigo_barras": "0818",
+  "nombre": "CORTA UÑAS RECTO KRISMAR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "20/8",
+  "codigo_barras": "202519901",
+  "nombre": "CORTACUTICULA 20/8 KS",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "61/12",
+  "codigo_barras": "202519906",
+  "nombre": "CORTACUTICULA 61-12 KS",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "61/16",
+  "codigo_barras": "202519907",
+  "nombre": "CORTACUTICULA 61-16 KS",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "B25-69",
+  "codigo_barras": "B25-69",
+  "nombre": "CORTACUTICULA B25-69",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "GVH-064",
+  "codigo_barras": "8768465457648",
+  "nombre": "CORTACUTICULA COLORES GVH-064",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "CA4024",
+  "codigo_barras": "CA4024",
+  "nombre": "CORTACUTICULA CON RESORVE METALICO",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3259",
+  "codigo_barras": "5685688432593",
+  "nombre": "CORTACUTICULA DORADO DN3259",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "GVH-062",
+  "codigo_barras": "8768465457556",
+  "nombre": "CORTACUTICULA DORADO GVH-062",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "NOR167110",
+  "codigo_barras": "NOR167110",
+  "nombre": "CORTACUTICULA FIERCE",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "1131-0",
+  "codigo_barras": "049774018224",
+  "nombre": "CORTACUTICULA FLEX MUNDIAL AMELOW 1131-0",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "30/5",
+  "codigo_barras": "202519902",
+  "nombre": "CORTACUTICULA KS 30-5",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "30/7",
+  "codigo_barras": "202519903",
+  "nombre": "CORTACUTICULA KS 30-7",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "31/7",
+  "codigo_barras": "202519905",
+  "nombre": "CORTACUTICULA KS 31-7",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MUNAALI",
+  "codigo_barras": "793969937981",
+  "nombre": "CORTACUTICULA MUNA PROFESIONAL",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "GVH-063",
+  "codigo_barras": "8768465457327",
+  "nombre": "CORTACUTICULA ORO ROSA GVH-063",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "T-D7",
+  "codigo_barras": "6902672252067",
+  "nombre": "CORTACUTICULA PARA PIES AMELOW",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MKQ-801",
+  "codigo_barras": "8056899088010",
+  "nombre": "CORTACUTICULA SEGO BEAUTYTOOL",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3265",
+  "codigo_barras": "DN3265",
+  "nombre": "CORTACUTICULA TORNASOL ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "K18",
+  "codigo_barras": "",
+  "nombre": "CORTACUTICULA VCK AMELOW",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "GVH-216",
+  "codigo_barras": "6925100102116",
+  "nombre": "CORTAUÑAS CURVO GVH",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "211A",
+  "codigo_barras": "211A",
+  "nombre": "CORTAUÑAS RECTO BELLA COSMETIC",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "GVH-218",
+  "codigo_barras": "GVH-218",
+  "nombre": "CORTAUÑAS RECTO GVH-218",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "NOR16119-211",
+  "codigo_barras": "NOR16119-211",
+  "nombre": "CORTAUÑAS TRIM CURVO KRISMAR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DEJA140",
+  "codigo_barras": "DEJA140",
+  "nombre": "DEJA140 CORTA UÑAS CURVO TRIM",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DEJA153",
+  "codigo_barras": "DEJA153",
+  "nombre": "DEJA153 PUSHER METALICO",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DEJA176",
+  "codigo_barras": "6954154101769",
+  "nombre": "DEJA176 CORTACUTICULA PREMIUN RESORTE",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DEJA180",
+  "codigo_barras": "6954154101806",
+  "nombre": "DEJA180 CORTACUTICULA METALICO 7MM DEJAVU",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN1129",
+  "codigo_barras": "",
+  "nombre": "DN1129/ TIJERA DE MANICURA TORNASOL ANDISA",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN1305",
+  "codigo_barras": "DN1305",
+  "nombre": "DN1305 PINZA PLASTICA MULTICOLOR ANDISA",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "DN1557",
+  "codigo_barras": "",
+  "nombre": "DN1557 CORTA CUTICULA PLATEADO ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN1559",
+  "codigo_barras": "5685688415596",
+  "nombre": "DN1559 CORTACUTICULA GRANDE ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN1561",
+  "codigo_barras": "",
+  "nombre": "DN1561 CORTAUÑAS DE COLORES ANDISA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DN1565",
+  "codigo_barras": "DN1565",
+  "nombre": "DN1565/ EMPUJADOR Y CORTACUTICULA ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN1728",
+  "codigo_barras": "DN1728",
+  "nombre": "DN1728 PUSHER BICOLOR ANDISA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DN2025",
+  "codigo_barras": "DN2025",
+  "nombre": "DN2025 CEPILLO DE UÑA X1 ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN2028",
+  "codigo_barras": "DN2028",
+  "nombre": "DN2028 CORTACUTICULA METALICO TORNASOL ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN2029",
+  "codigo_barras": "DN2029",
+  "nombre": "DN2029 CORTACUTICULA TORNASOL ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN2415",
+  "codigo_barras": "DN2415",
+  "nombre": "DN2415 TIJERA PARA MOLDES NEGRA MATTE",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN2417",
+  "codigo_barras": "DN2417",
+  "nombre": "DN2417 TIJERAS BICOLOR",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN2494",
+  "codigo_barras": "",
+  "nombre": "DN2494 CORTACUTICULA DORADO ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN2706",
+  "codigo_barras": "DN2706",
+  "nombre": "DN2706 CEPILLO DE UÑAS X2 ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN3010",
+  "codigo_barras": "DN3010",
+  "nombre": "DN3010 PALOS DE NARANJO X100 ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN3012",
+  "codigo_barras": "DN3012",
+  "nombre": "DN3012 PALOS DE NARANJO X10 ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN352",
+  "codigo_barras": "dn352",
+  "nombre": "DN352 LIMA METALICA PICO DE LORO ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN354",
+  "codigo_barras": "DN354",
+  "nombre": "DN354 CORTA UÑAS RECTO",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DN3583",
+  "codigo_barras": "DN3583",
+  "nombre": "DN3583 CORTACUTICULA G03 ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3584",
+  "codigo_barras": "DN3584",
+  "nombre": "DN3584 CORTACUTICULA G02",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3585",
+  "codigo_barras": "DN3585",
+  "nombre": "DN3585 CORTACUTICULA G08",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3622",
+  "codigo_barras": "DN3622",
+  "nombre": "DN3622 CORTACUTICULA TORNASOL",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN3723",
+  "codigo_barras": "DN3723",
+  "nombre": "DN3723 GUILLOTINA CON MEDIDOR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DN3724",
+  "codigo_barras": "DN3724",
+  "nombre": "DN3724 PUSHER DORADO ANDISA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DN466",
+  "codigo_barras": "DN466",
+  "nombre": "DN466 CEPILLO DE UÑAS ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "DN495",
+  "codigo_barras": "DN495",
+  "nombre": "DN495 CORTACUTICULA TORNASOL ANDISA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "DN570",
+  "codigo_barras": "DN570",
+  "nombre": "DN570 PINZA DISCLOIDE ANDISA",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "DN573",
+  "codigo_barras": "DN573",
+  "nombre": "DN573 PINZA CURVATURA C TORNASOL ANDISA",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "DN632",
+  "codigo_barras": "DN632",
+  "nombre": "DN632/ PINZA PARA MOLDEAR UÑAS ANDISA",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "DN762",
+  "codigo_barras": "DN762",
+  "nombre": "DN762/ TIJERA DE MANICURA ANDISA",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN796",
+  "codigo_barras": "DN796",
+  "nombre": "DN796 KIT DE PUSHER Y REMOVEDOR X3 ANDISA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DUO",
+  "codigo_barras": "",
+  "nombre": "DUO PUSHER PROFESIONAL ROSADO MARA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "ESPATULA EN METAL STAR",
+  "codigo_barras": "",
+  "nombre": "ESPATULA EN METAL STAR",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "ESPATULA PARA RETIRO SEMI BOREAL ANDISA",
+  "codigo_barras": "",
+  "nombre": "ESPATULA PARA RETIRO SEMI BOREAL ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "ESPATULA PARA RETIRO SEMI EN ROSAD ANDISA",
+  "codigo_barras": "",
+  "nombre": "ESPATULA PARA RETIRO SEMI EN ROSAD ANDISA",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "NOR16396",
+  "codigo_barras": "",
+  "nombre": "GUILLOTINA CON GUIA KRISMAR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DEJA164",
+  "codigo_barras": "8202604060356",
+  "nombre": "GUILLOTINA CON MEDIDOR DEJA164",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "IN519",
+  "codigo_barras": "IN519",
+  "nombre": "GUILLOTINA CON MEDIDOR IN-519",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DX111",
+  "codigo_barras": "",
+  "nombre": "GUILLOTINA CON MEDIDOR MUNA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "HC16865",
+  "codigo_barras": "7707130871908",
+  "nombre": "HC16865 BISTURI CRISTAL",
+  "tipo": "Pedicura y podología"
+ },
+ {
+  "codigo": "7706478870116",
+  "codigo_barras": "7706478870116",
+  "nombre": "HERRAMIENTA UÑAS ENTERRADA IN 271",
+  "tipo": "Pedicura y podología"
+ },
+ {
+  "codigo": "HK-036",
+  "codigo_barras": "",
+  "nombre": "HK036 REPUJADOR PUSHER HAKU",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "HK-043",
+  "codigo_barras": "7702345450436",
+  "nombre": "HK043 GUILLOTINA TORNASOL HAKU",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "HK-271",
+  "codigo_barras": "6970869670185",
+  "nombre": "HK271 GUILLOTINA CON MEDIDOR HAKU",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "HK-282",
+  "codigo_barras": "",
+  "nombre": "HK282 TIJERA PUNTA CURVA HAKU",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "HK-316",
+  "codigo_barras": "",
+  "nombre": "HK316 CORTACUTICULA SOLINGEN HAKU",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "HK-328",
+  "codigo_barras": "7702345453284",
+  "nombre": "HK328 CORTA UÑAS RECTO HAKU",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "LIMA METALICA BELLA SHOP",
+  "codigo_barras": "",
+  "nombre": "LIMA METALICA BELLA SHOP",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "MPP-04",
+  "codigo_barras": "7709335696232",
+  "nombre": "MPP-04 CURETA DOBLE PEDICUERA MARA",
+  "tipo": "Pedicura y podología"
+ },
+ {
+  "codigo": "MPZ11-1",
+  "codigo_barras": "7709152970119",
+  "nombre": "MPZ111 REPUJADOR DE CUTICULA MUNA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "MPZ2",
+  "codigo_barras": "7708152970204",
+  "nombre": "MPZ2 CORTACUTICULA EN ACERO GALVANIZADO MARA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MPZ21",
+  "codigo_barras": "7709529710041",
+  "nombre": "MPZ21 CORTACUTICULA TORNASOL MARA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MPZ40",
+  "codigo_barras": "",
+  "nombre": "MPZ40 CORTACUTICULA ALICATE PARA PIES MARA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MPZ51",
+  "codigo_barras": "7709325880511",
+  "nombre": "MPZ51 GUILLOTINA PASTA MARA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "MPZ55-2",
+  "codigo_barras": "",
+  "nombre": "MPZ55-2 CORTACULTICULA METALICA MARA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MPZ65-2",
+  "codigo_barras": "",
+  "nombre": "MPZ65-2 CORTACUTICULA COLORES MARA",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "MPZ71-1",
+  "codigo_barras": "7709325887114",
+  "nombre": "MPZ71-1 CORTA UÑAS METALICO TORNASOL MARA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "MPZ71-2",
+  "codigo_barras": "7709325887121",
+  "nombre": "MPZ71-2 CORTA UÑAS METALICO MARA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "MRJ2310-218",
+  "codigo_barras": "",
+  "nombre": "MRJ2310-218 GUILLOTINA MEDIDOR BARU",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "MRJ34",
+  "codigo_barras": "",
+  "nombre": "MRJ34 PALETA MEZCLADORA METALICA PEQUEÑA BARU",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "MUNA-719",
+  "codigo_barras": "",
+  "nombre": "MUNA-719 REPUJADOR DE CUTICULA MUNA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "NOR021",
+  "codigo_barras": "",
+  "nombre": "NOR021 PINZA RECTA PLATEADA KRISMAR",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "NOR10184",
+  "codigo_barras": "",
+  "nombre": "NOR10184 CORTACUTICULA TRASLUCIDO KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "NOR10246",
+  "codigo_barras": "",
+  "nombre": "NOR10246 CORTA CUTICULA ORO ROSA KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "NOR16075",
+  "codigo_barras": "",
+  "nombre": "NOR16075 GUILLOTINA METALICA NEGRA KRISMAR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "NOR16185",
+  "codigo_barras": "NOR16185",
+  "nombre": "NOR16185 PINZA CURVA PLATEADA KRISMAR",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "NOR16389",
+  "codigo_barras": "NOR16389",
+  "nombre": "NOR16389 GUILLOTINA METALICA KRISMAR",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "NOR16413",
+  "codigo_barras": "NOR16413",
+  "nombre": "NOR16413 PUSHER DE RETIRO DE CUTICULA KRISMAR",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "NOR16488",
+  "codigo_barras": "",
+  "nombre": "NOR16488 TAPA SILICONA PARA CPRTACUTICULA KRISMAR",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "NOR16709",
+  "codigo_barras": "7805649510001",
+  "nombre": "NOR16709 CORTACUTICULA DORADO KRISMAR",
+  "tipo": "Cortacutículas y alicates"
+ },
+ {
+  "codigo": "EB-194",
+  "codigo_barras": "194",
+  "nombre": "PALOS DE NARANJO X10 EB-194",
+  "tipo": "Accesorios"
+ },
+ {
+  "codigo": "IN544",
+  "codigo_barras": "7704542505445",
+  "nombre": "PINZA CURVATURA C TORNAZOL IN 544",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "HK-542",
+  "codigo_barras": "HK-542",
+  "nombre": "PINZA LUJO MATE HAKU",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "1880001700258",
+  "codigo_barras": "1880001700258",
+  "nombre": "PINZA MOSQUITO KS",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "#10",
+  "codigo_barras": "202519909",
+  "nombre": "PINZA PODOLOGICA KS",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "6972613446664",
+  "codigo_barras": "6972613446664",
+  "nombre": "PINZA RECTA ZOLA TORNASOL BARU",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "PINZA-64",
+  "codigo_barras": "7172667400615",
+  "nombre": "PINZA-61 PINZA RECTA DU",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "PINZA64 PINZA CURVA DU",
+  "codigo_barras": "",
+  "nombre": "PINZA64 PINZA CURVA DU",
+  "tipo": "Pinzas"
+ },
+ {
+  "codigo": "MPZ69",
+  "codigo_barras": "7709325880696",
+  "nombre": "PUSHER METALICO MARA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "MPP-01",
+  "codigo_barras": "7709335696201",
+  "nombre": "PUSHER PARA MANICURE Y PEDICURE MARA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "PUSHER PLATEADO 2 EN 1  BELLA SHOP",
+  "codigo_barras": "",
+  "nombre": "PUSHER PLATEADO 2 EN 1 BELLA SHOP",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "MERCI-719",
+  "codigo_barras": "719",
+  "nombre": "PUSHER PLATEADO MERCI 719",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "DN3725",
+  "codigo_barras": "DN3725",
+  "nombre": "PUSHER TORNASOL",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "PUSHER VICKY GLOW",
+  "codigo_barras": "",
+  "nombre": "PUSHER VICKY GLOW",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "CA3887",
+  "codigo_barras": "CA3887",
+  "nombre": "REPUJADOR PARA DESENTERRAR CA3887",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "20/2",
+  "codigo_barras": "202519917",
+  "nombre": "REPUJADOR 20-2 KS",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "30/2",
+  "codigo_barras": "202519920",
+  "nombre": "REPUJADOR 30/2",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "60/4",
+  "codigo_barras": "202519918",
+  "nombre": "REPUJADOR 60/4 KS",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "90/3",
+  "codigo_barras": "202519914",
+  "nombre": "REPUJADOR 90-3 KS",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "90/42",
+  "codigo_barras": "202519919",
+  "nombre": "REPUJADOR 90-4.2",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "ZS246870",
+  "codigo_barras": "ZS246870",
+  "nombre": "REPUJADOR DE CUTICULA MUNA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "ZS251570",
+  "codigo_barras": "ZS251570",
+  "nombre": "REPUJADOR DE CUTICULA MUNA",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "GM113",
+  "codigo_barras": "GM113",
+  "nombre": "REPUJADOR DE UÑAS LRIS GM113",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "GM114",
+  "codigo_barras": "6972613449948",
+  "nombre": "REPUJADOR DE UÑAS LRIS GM114",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "1880001700241",
+  "codigo_barras": "1880001700241",
+  "nombre": "REPUJADOR TOKIO KS",
+  "tipo": "Repujadores y pushers"
+ },
+ {
+  "codigo": "TC113",
+  "codigo_barras": "",
+  "nombre": "TC113 CORTAUÑAS MUNA",
+  "tipo": "Cortaúñas y guillotinas"
+ },
+ {
+  "codigo": "DN2010",
+  "codigo_barras": "DN2010",
+  "nombre": "TIJERA CUTICULA ANDISA DN2010",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN2009",
+  "codigo_barras": "DN2009",
+  "nombre": "TIJERA DE CUTICULA M-101",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "40/3",
+  "codigo_barras": "202519912",
+  "nombre": "TIJERA KS 40/3 TALLA L",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "50/1",
+  "codigo_barras": "202519910",
+  "nombre": "TIJERA KS 50/1",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "50/2",
+  "codigo_barras": "202519911",
+  "nombre": "TIJERA KS 50/2",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "DN4253",
+  "codigo_barras": "DN4253",
+  "nombre": "TIJERA MANICURA RUSA DN4253",
+  "tipo": "Tijeras"
+ },
+ {
+  "codigo": "AG-1",
+  "codigo_barras": "6935826625813",
+  "nombre": "TIJERA PEQUEÑA METALICA AG-1 AMELOW",
+  "tipo": "Tijeras"
+ }
+];
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-let inventario = [], filtro = 'Todas', busqueda = '';
+let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '';
 function carrito(){try{const x=JSON.parse(localStorage.getItem('bellaShopCarrito')||'[]');return Array.isArray(x)?x:[]}catch{return []}}
 function guardarCarrito(x){localStorage.setItem('bellaShopCarrito',JSON.stringify(x));actualizarCarrito()}
 function actualizarCarrito(){$('numeroCarrito').textContent=carrito().reduce((s,x)=>s+Math.max(0,Number(x.cantidad)||0),0)}
 function encontrar(cfg){
- const claves=[cfg.codigo,cfg.referencia,cfg.codigo_barras].filter(Boolean).map(normal);
- return inventario.find(p=>[p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo].some(v=>v!=null&&claves.includes(normal(v))))||null;
+ for(const clave of [cfg.codigo,cfg.referencia,cfg.codigo_barras]){
+   const p=indiceInventario.get(normal(clave));
+   if(p)return p;
+ }
+ return null;
 }
 function stockDe(p){return p?Math.max(0,Number(p.disponible??p.cantidad_pronosticada??0)||0):0}
 function cantidadEnCarrito(codigo){
@@ -122,18 +1056,18 @@ function crearProducto(cfg){
  articulo.append(datos);return articulo;
 }
 function crearFiltros(){
- const tipos=['Todas',...new Set(HERRAMIENTAS.map(x=>x.tipo||'Herramientas'))];
+ const tipos=['Todas','Disponibles',...new Set(HERRAMIENTAS.map(x=>x.tipo||'Herramientas'))];
  $('filtros').replaceChildren();
  if(HERRAMIENTAS.length===0)return;
  for(const tipo of tipos){const b=elemento('button','filtro'+(tipo===filtro?' activo':''),tipo);b.type='button';b.setAttribute('aria-pressed',tipo===filtro?'true':'false');b.onclick=()=>{filtro=tipo;crearFiltros();mostrar()};$('filtros').append(b)}
 }
 function mostrar(){
  const q=normal(busqueda);
- const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.tipo].some(v=>normal(v).includes(q))));
- const grid=$('productos');grid.replaceChildren(...visibles.map(crearProducto));
+ const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(filtro==='Disponibles'&&stockDe(encontrar(cfg))>0)||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.codigo_barras,cfg.tipo].some(v=>normal(v).includes(q))));
+ visibles.sort((a,b)=>Number(stockDe(encontrar(b))>0)-Number(stockDe(encontrar(a))>0)||Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es'));const grid=$('productos');grid.replaceChildren(...visibles.map(crearProducto));
  $('vacio').hidden=visibles.length>0;
  $('vacio').style.display=visibles.length?'none':'block';
- $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' producto'+(visibles.length===1?'':'s'):'';
+ $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' productos · '+HERRAMIENTAS.filter(x=>stockDe(encontrar(x))>0).length+' disponibles':'';
  if(!visibles.length&&HERRAMIENTAS.length){$('tituloVacio').textContent='No encontramos coincidencias';$('textoVacio').textContent='Prueba otra palabra o selecciona un filtro diferente.'}
 }
 $('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
@@ -145,6 +1079,8 @@ async function iniciar(){
   if(!respuesta.ok)throw new Error('Inventario no disponible');
   const json=await respuesta.json(),base=json.productos||json;
   inventario=Array.isArray(base)?base:Object.values(base||{});
+  indiceInventario=new Map();
+  for(const p of inventario){for(const v of [p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo]){const c=normal(v);if(c&&!indiceInventario.has(c))indiceInventario.set(c,p)}}
   mostrar();
  }catch(e){console.warn('No se pudo cargar el inventario de Bella Shop:',e);mostrar()}
 }
