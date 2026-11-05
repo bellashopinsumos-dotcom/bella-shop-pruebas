@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff8fa">
+<title>Herramientas | Bella Shop</title>
+<style>
+:root{--rosa:#e65385;--fuerte:#cb4270;--tinta:#3c2c32;--suave:#836b74;--linea:#efd7e0;--fondo:#fffdfd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--fondo);color:var(--tinta);overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}a{-webkit-tap-highlight-color:transparent}
+header{position:sticky;top:0;z-index:100;background:rgba(255,253,253,.97);border-bottom:1px solid #f2dce4;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{display:flex;align-items:center}.logo img{width:195px;height:66px;object-fit:contain;object-position:left}
+.acciones{display:flex;gap:9px;align-items:center}.btn{display:inline-flex;justify-content:center;align-items:center;gap:7px;min-height:43px;padding:11px 16px;text-decoration:none;border:1px solid #efc7d4;border-radius:30px;background:white;color:var(--fuerte);font-size:12px;font-weight:800}.btn.pedido{background:var(--rosa);border-color:var(--rosa);color:white}.numero-carrito{background:white;color:var(--fuerte);border-radius:20px;min-width:19px;padding:2px 5px;text-align:center;font-size:10px}
+.hero{position:relative;overflow:hidden;min-height:300px;padding:61px 20px;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 12% 18%,rgba(245,174,198,.24),transparent 27%),radial-gradient(circle at 90% 85%,rgba(230,83,133,.11),transparent 30%),linear-gradient(135deg,#fff5f8,#fffdfd 52%,#fbe9ef);border-bottom:1px solid #f4dee5}
+.hero .cara{position:absolute;width:330px;right:1%;top:50%;transform:translateY(-50%) rotate(6deg);opacity:.05;pointer-events:none}.hero-in{position:relative;max-width:760px;z-index:1}.etiqueta{display:inline-block;padding:8px 17px;background:rgba(255,255,255,.85);border:1px solid #efcbd7;border-radius:22px;font-size:11px;font-weight:800;letter-spacing:1px;color:var(--fuerte)}h1{font:500 clamp(37px,6vw,56px) Georgia,"Times New Roman",serif;line-height:1.08;margin:16px 0;color:#37282e}h1 em{font-weight:400;color:var(--rosa)}.hero p{font-size:15px;line-height:1.8;color:#795f69;max-width:620px;margin:0 auto}
+main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#fffdfd 0%,#fff7fa 55%,#fffdfd 100%)}
+.panel{max-width:1130px;margin:0 auto 27px;padding:25px;background:rgba(255,255,255,.93);border:1px solid var(--linea);border-radius:23px;box-shadow:0 12px 33px rgba(97,49,66,.06)}
+.panel-titulo{color:#a07785;font-size:11px;font-weight:900;letter-spacing:1.3px;margin-bottom:14px}.buscar{position:relative}.buscar input{width:100%;padding:16px 45px 16px 18px;border:1px solid #e9cbd6;border-radius:35px;outline:0;background:#fff;font-size:14px;color:var(--tinta)}.buscar input:focus{border-color:var(--rosa);box-shadow:0 0 0 4px #e6538514}.buscar span{position:absolute;right:17px;top:50%;transform:translateY(-50%);color:#d95d86;font-size:24px}
+.filtros{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.filtro{border:1px solid #efd6df;padding:9px 16px;border-radius:25px;background:#fff;color:#8b6875;font-size:12px;font-weight:800}.filtro.activo{background:#e65385;border-color:#e65385;color:#fff}
+.resultados{max-width:1130px;margin:0 auto 19px;font-size:12px;color:#9a7b86}.productos{max-width:1130px;margin:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.producto{overflow:hidden;background:white;border:1px solid #efd8e0;border-radius:22px;box-shadow:0 10px 25px rgba(94,46,61,.05);display:flex;flex-direction:column}
+.foto{aspect-ratio:1.17;background:linear-gradient(135deg,#fff3f7,#fffafd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.foto img{width:100%;height:100%;object-fit:contain;padding:17px}.sin-foto{color:#b98b9b;font-size:13px;text-align:center;padding:20px}
+.datos{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}.tipo{align-self:flex-start;background:#fff1f5;color:#bc557a;border-radius:20px;padding:6px 11px;font-size:10px;text-transform:uppercase;font-weight:900;letter-spacing:.7px}.datos h2{font-size:18px;line-height:1.35;margin:0;font-weight:800}.ref{font-size:11px;color:#9d8490}.precio{font-size:22px;font-weight:900;color:#d74d7d}.estado{font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}.estado.ok{color:#4d886b}.estado.no{color:#c36968}.estado.missing{color:#a98390}
+.compra{display:flex;align-items:center;gap:9px;margin-top:auto;padding-top:4px}.cantidad{display:flex;align-items:center;border:1px solid #ebd7df;border-radius:12px;overflow:hidden;flex-shrink:0}.cantidad button{width:31px;height:38px;border:0;background:#fff6f9;color:#ba567a;font-size:17px;font-weight:bold}.cantidad output{width:29px;text-align:center;font-size:13px;font-weight:800}.agregar{flex:1;padding:11px 8px;min-height:40px;border:0;border-radius:12px;background:var(--rosa);color:white;font-weight:800;font-size:11px;letter-spacing:.15px}.compra button:disabled{opacity:.48;cursor:not-allowed}
+.nota{font-size:11px;color:#937985;line-height:1.5}.vacio{max-width:780px;text-align:center;margin:18px auto 5px;padding:65px 25px;background:#fff;border:1px solid #efd8e0;border-radius:25px}.vacio .icono{width:64px;height:64px;display:grid;place-items:center;background:#fff0f5;color:#d7517e;border-radius:22px;font-size:27px;margin:0 auto 18px}.vacio h2{font:500 29px Georgia,serif;margin:0 0 11px}.vacio p{color:#8c727d;line-height:1.7;font-size:14px;max-width:430px;margin:0 auto}.vacio a{display:inline-flex;margin-top:22px;padding:12px 19px;border-radius:24px;background:#e65385;color:#fff;text-decoration:none;font-size:12px;font-weight:800}
+.contacto{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#fdebf1,#fff8fa 60%,#fffdfd);border-top:1px solid var(--linea)}.contacto h2{font:500 33px Georgia,serif;margin:0 0 12px}.contacto p{color:#806774;line-height:1.6;margin:0 auto 23px;max-width:510px}.wa{background:#e65385;color:white;border-radius:30px;text-decoration:none;padding:13px 26px;font-size:13px;font-weight:800;display:inline-flex}footer{text-align:center;padding:32px 12px 38px;background:#fff;border-top:1px solid var(--linea)}footer strong{font:500 28px Georgia,serif;color:#d55482}footer p{font-size:12px;color:#9a8289}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:9999;opacity:0;pointer-events:none;background:#472d38;color:white;border-radius:30px;padding:13px 20px;max-width:92vw;text-align:center;box-shadow:0 12px 30px #0002;font-size:13px;font-weight:700;transition:.2s}.toast.visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:920px){.productos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){header{padding:9px 12px;gap:7px}.logo{min-width:0;flex:1}.logo img{width:132px;height:49px}.acciones{gap:6px}.btn{min-height:38px;padding:9px 10px;font-size:10px}.btn.pedido{gap:4px}.hero{min-height:260px;padding:45px 17px}.hero .cara{width:220px}.hero p{font-size:13px}main{padding:25px 12px 54px}.panel{padding:16px;border-radius:18px}.productos{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.datos{padding:12px;gap:8px}.datos h2{font-size:14px}.foto img{padding:8px}.precio{font-size:17px}.compra{flex-wrap:wrap}.agregar{flex-basis:100%}.cantidad{width:100%;justify-content:space-between}.cantidad output{flex:1}.vacio{padding:48px 15px}.vacio h2{font-size:26px}}
+@media(max-width:360px){.productos{grid-template-columns:1fr}.btn{padding:8px}.logo img{width:110px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="../index.html" aria-label="Volver a Bella Shop"><img src="../imagenes/Logo Bellashop png.png" alt="Bella Shop"></a>
+<nav class="acciones" aria-label="Navegación"><a class="btn" href="../index.html">← VOLVER</a><a class="btn pedido" href="../carrito.html">MI PEDIDO <span class="numero-carrito" id="numeroCarrito">0</span></a></nav>
+</header>
+<section class="hero"><img class="cara" src="../imagenes/Cara logo bellashop.png" alt="" aria-hidden="true"><div class="hero-in"><span class="etiqueta">BELLA SHOP · UÑAS Y BELLEZA</span><h1>Herramientas <em>✦</em></h1><p>Todo lo que necesitas para crear, cuidar y perfeccionar cada detalle de tu trabajo.</p></div></section>
+<main>
+<div class="panel">
+<div class="panel-titulo">ENCUENTRA TUS HERRAMIENTAS FAVORITAS</div>
+<div class="buscar"><input id="busqueda" type="search" placeholder="Buscar por nombre, referencia o código..." autocomplete="off" aria-label="Buscar herramientas"><span aria-hidden="true">⌕</span></div>
+<div class="filtros" id="filtros" aria-label="Filtrar herramientas"></div>
+</div>
+<p class="resultados" id="resultados" aria-live="polite"></p>
+<div class="productos" id="productos"></div>
+<div class="vacio" id="vacio"><div class="icono">✦</div><h2 id="tituloVacio">Estamos preparando esta sección</h2><p id="textoVacio">Muy pronto encontrarás aquí las herramientas de Bella Shop, con sus fotos, precios y disponibilidad actualizada.</p><a href="../index.html#categorias">Explorar otras categorías</a></div>
+</main>
+<section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Escríbenos y con gusto te ayudamos a encontrar lo que necesitas para tus trabajos de belleza.</p><a class="wa" href="https://wa.me/573122002698?text=Hola%20Bella%20Shop%2C%20quiero%20consultar%20sobre%20herramientas" target="_blank" rel="noopener">ESCRÍBENOS POR WHATSAPP</a></section>
+<footer><strong>Bella Shop</strong><p>Tienda de Belleza · Popayán, Cauca</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/*
+  CATÁLOGO DE HERRAMIENTAS
+  Agregar aquí únicamente productos reales verificados en inventario.json.
+  Ejemplo de estructura (NO es un producto publicado):
+  {codigo: "REFERENCIA_REAL", nombre: "Nombre exacto", tipo: "Herramientas", imagen: "imagenes/REFERENCIA_REAL.png"}
+  No crear referencias ni asignar precios manualmente; se consultan por código en el inventario.
+*/
+const HERRAMIENTAS = [];
+const $ = id => document.getElementById(id);
+const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
+const dinero = n => '$' + Number(n).toLocaleString('es-CO');
+let inventario = [], filtro = 'Todas', busqueda = '';
+function carrito(){try{const x=JSON.parse(localStorage.getItem('bellaShopCarrito')||'[]');return Array.isArray(x)?x:[]}catch{return []}}
+function guardarCarrito(x){localStorage.setItem('bellaShopCarrito',JSON.stringify(x));actualizarCarrito()}
+function actualizarCarrito(){$('numeroCarrito').textContent=carrito().reduce((s,x)=>s+Math.max(0,Number(x.cantidad)||0),0)}
+function encontrar(cfg){
+ const claves=[cfg.codigo,cfg.referencia,cfg.codigo_barras].filter(Boolean).map(normal);
+ return inventario.find(p=>[p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo].some(v=>v!=null&&claves.includes(normal(v))))||null;
+}
+function stockDe(p){return p?Math.max(0,Number(p.disponible??p.cantidad_pronosticada??0)||0):0}
+function cantidadEnCarrito(codigo){
+ const clave=normal(codigo);
+ return carrito().filter(x=>normal(x.baseRef||x.referencia||x.codigo)===clave).reduce((a,x)=>a+Math.max(0,Number(x.cantidad)||0),0);
+}
+function notificar(t){const e=$('toast');e.textContent=t;e.classList.add('visible');clearTimeout(notificar._t);notificar._t=setTimeout(()=>e.classList.remove('visible'),3000)}
+function agregar(cfg,p,q){
+ if(!p){notificar('Código no encontrado');return}
+ const referencia=String(p.referencia_interna||cfg.codigo);
+ const limite=stockDe(p)-cantidadEnCarrito(cfg.codigo);
+ if(limite<=0){notificar('Temporalmente no disponible');return}
+ const cantidad=Math.min(q,limite),lista=carrito(),clave='Herramienta - '+normal(cfg.codigo);
+ let item=lista.find(x=>x.clave===clave);
+ if(item){item.cantidad=Number(item.cantidad||0)+cantidad;item.precio=Number(p.precio_venta||0)}
+ else lista.push({clave,nombre:cfg.nombre,marca:'Bella Shop',referencia,codigo:String(p.codigo_barras||p.codigo_original_odoo||p.codigo||cfg.codigo),precio:Number(p.precio_venta||0),cantidad,imagen:cfg.imagen?'herramientas/'+cfg.imagen:'',baseRef:String(cfg.codigo)});
+ guardarCarrito(lista);notificar(cfg.nombre+' agregado a tu pedido 💕');mostrar();
+}
+function elemento(tag,clase,texto){const e=document.createElement(tag);if(clase)e.className=clase;if(texto!==undefined)e.textContent=texto;return e}
+function crearProducto(cfg){
+ const p=encontrar(cfg),stock=stockDe(p),precio=Number(p?.precio_venta||0);
+ const articulo=elemento('article','producto');
+ const foto=elemento('div','foto');
+ if(cfg.imagen){
+   const img=document.createElement('img');img.src=cfg.imagen;img.alt=cfg.nombre;img.loading='lazy';
+   img.onerror=()=>{foto.replaceChildren(elemento('span','sin-foto','Imagen pendiente'))};
+   foto.append(img);
+ }else foto.append(elemento('span','sin-foto','Imagen pendiente'));
+ articulo.append(foto);
+ const datos=elemento('div','datos');
+ datos.append(elemento('span','tipo',cfg.tipo||'Herramientas'),elemento('h2','',cfg.nombre),elemento('div','ref','REF. '+cfg.codigo));
+ datos.append(elemento('div','precio',p&&precio>0?dinero(precio):'Precio según inventario'));
+ let estado,clase;
+ if(!p){estado='Código no encontrado';clase='missing'}
+ else if(stock<=0){estado='Temporalmente no disponible';clase='no'}
+ else{estado='Disponible · '+stock+' unidad'+(stock===1?'':'es');clase='ok'}
+ datos.append(elemento('div','estado '+clase,estado));
+ if(p&&stock>0){
+   const fila=elemento('div','compra'),selector=elemento('div','cantidad'),menos=elemento('button','','−'),numero=elemento('output','','1'),mas=elemento('button','','+'),boton=elemento('button','agregar','AGREGAR AL PEDIDO'),nota=elemento('div','nota');
+   menos.type='button';mas.type='button';boton.type='button';
+   let q=1;
+   function sincronizar(){
+      const disponible=Math.max(0,stock-cantidadEnCarrito(cfg.codigo));
+      if(disponible>0)q=Math.min(q,disponible);
+      numero.textContent=q;menos.disabled=q<=1||disponible===0;mas.disabled=q>=disponible;boton.disabled=disponible===0;
+      nota.textContent=disponible===0?'Ya tienes todas las unidades disponibles en tu pedido.':'';
+   }
+   menos.onclick=()=>{q=Math.max(1,q-1);sincronizar()};
+   mas.onclick=()=>{q=Math.min(stock-cantidadEnCarrito(cfg.codigo),q+1);sincronizar()};
+   boton.onclick=()=>agregar(cfg,p,q);
+   selector.append(menos,numero,mas);fila.append(selector,boton);datos.append(fila,nota);sincronizar();
+ }
+ articulo.append(datos);return articulo;
+}
+function crearFiltros(){
+ const tipos=['Todas',...new Set(HERRAMIENTAS.map(x=>x.tipo||'Herramientas'))];
+ $('filtros').replaceChildren();
+ if(HERRAMIENTAS.length===0)return;
+ for(const tipo of tipos){const b=elemento('button','filtro'+(tipo===filtro?' activo':''),tipo);b.type='button';b.setAttribute('aria-pressed',tipo===filtro?'true':'false');b.onclick=()=>{filtro=tipo;crearFiltros();mostrar()};$('filtros').append(b)}
+}
+function mostrar(){
+ const q=normal(busqueda);
+ const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.tipo].some(v=>normal(v).includes(q))));
+ const grid=$('productos');grid.replaceChildren(...visibles.map(crearProducto));
+ $('vacio').hidden=visibles.length>0;
+ $('vacio').style.display=visibles.length?'none':'block';
+ $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' producto'+(visibles.length===1?'':'s'):'';
+ if(!visibles.length&&HERRAMIENTAS.length){$('tituloVacio').textContent='No encontramos coincidencias';$('textoVacio').textContent='Prueba otra palabra o selecciona un filtro diferente.'}
+}
+$('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
+window.addEventListener('storage',actualizarCarrito);
+async function iniciar(){
+ actualizarCarrito();crearFiltros();mostrar();
+ try{
+  const respuesta=await fetch('../inventario.json?actualizacion='+Date.now(),{cache:'no-store'});
+  if(!respuesta.ok)throw new Error('Inventario no disponible');
+  const json=await respuesta.json(),base=json.productos||json;
+  inventario=Array.isArray(base)?base:Object.values(base||{});
+  mostrar();
+ }catch(e){console.warn('No se pudo cargar el inventario de Bella Shop:',e);mostrar()}
+}
+iniciar();
+</script>
+</body>
+</html>
