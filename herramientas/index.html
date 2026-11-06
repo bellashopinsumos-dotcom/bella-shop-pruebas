@@ -16,7 +16,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,253,253,.97);border
 main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#fffdfd 0%,#fff7fa 55%,#fffdfd 100%)}
 .panel{max-width:1130px;margin:0 auto 27px;padding:25px;background:rgba(255,255,255,.93);border:1px solid var(--linea);border-radius:23px;box-shadow:0 12px 33px rgba(97,49,66,.06)}
 .panel-titulo{color:#a07785;font-size:11px;font-weight:900;letter-spacing:1.3px;margin-bottom:14px}.buscar{position:relative}.buscar input{width:100%;padding:16px 45px 16px 18px;border:1px solid #e9cbd6;border-radius:35px;outline:0;background:#fff;font-size:14px;color:var(--tinta)}.buscar input:focus{border-color:var(--rosa);box-shadow:0 0 0 4px #e6538514}.buscar span{position:absolute;right:17px;top:50%;transform:translateY(-50%);color:#d95d86;font-size:24px}
-.filtros{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.filtro{border:1px solid #efd6df;padding:9px 16px;border-radius:25px;background:#fff;color:#8b6875;font-size:12px;font-weight:800}.filtro.activo{background:#e65385;border-color:#e65385;color:#fff}
+.filtro-selector{margin-top:17px;padding-top:16px;border-top:1px solid #f6e5eb;display:flex;align-items:center;justify-content:space-between;gap:16px}.filtro-selector label{font-size:12px;font-weight:800;color:#956475}.select-contenedor{position:relative;width:min(100%,355px)}.select-contenedor select{appearance:none;-webkit-appearance:none;width:100%;min-height:46px;padding:12px 43px 12px 17px;border:1px solid #ebcfd9;border-radius:14px;background:#fff9fb;color:#654652;font-size:13px;font-weight:700;cursor:pointer;outline:none;box-shadow:0 3px 12px rgba(102,55,74,.04)}.select-contenedor select:focus-visible{outline:3px solid #e6538540;outline-offset:2px}.select-flecha{position:absolute;right:16px;top:50%;transform:translateY(-54%);pointer-events:none;color:#d44f7b;font-size:21px}
 .resultados{max-width:1130px;margin:0 auto 19px;font-size:12px;color:#9a7b86}.productos{max-width:1130px;margin:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .producto{overflow:hidden;background:white;border:1px solid #efd8e0;border-radius:22px;box-shadow:0 10px 25px rgba(94,46,61,.05);display:flex;flex-direction:column}
 .foto{aspect-ratio:1.17;background:linear-gradient(135deg,#fff3f7,#fffafd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.foto img{width:100%;height:100%;object-fit:contain;padding:17px}.sin-foto{color:#b98b9b;font-size:13px;text-align:center;padding:20px}
@@ -26,6 +26,7 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 .contacto{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#fdebf1,#fff8fa 60%,#fffdfd);border-top:1px solid var(--linea)}.contacto h2{font:500 33px Georgia,serif;margin:0 0 12px}.contacto p{color:#806774;line-height:1.6;margin:0 auto 23px;max-width:510px}.wa{background:#e65385;color:white;border-radius:30px;text-decoration:none;padding:13px 26px;font-size:13px;font-weight:800;display:inline-flex}footer{text-align:center;padding:32px 12px 38px;background:#fff;border-top:1px solid var(--linea)}footer strong{font:500 28px Georgia,serif;color:#d55482}footer p{font-size:12px;color:#9a8289}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:9999;opacity:0;pointer-events:none;background:#472d38;color:white;border-radius:30px;padding:13px 20px;max-width:92vw;text-align:center;box-shadow:0 12px 30px #0002;font-size:13px;font-weight:700;transition:.2s}.toast.visible{opacity:1;transform:translate(-50%,0)}
 @media(max-width:920px){.productos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){header{padding:9px 12px;gap:7px}.logo{min-width:0;flex:1}.logo img{width:132px;height:49px}.acciones{gap:6px}.btn{min-height:38px;padding:9px 10px;font-size:10px}.btn.pedido{gap:4px}.hero{min-height:260px;padding:45px 17px}.hero .cara{width:220px}.hero p{font-size:13px}main{padding:25px 12px 54px}.panel{padding:16px;border-radius:18px}.productos{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.datos{padding:12px;gap:8px}.datos h2{font-size:14px}.foto img{padding:8px}.precio{font-size:17px}.compra{flex-wrap:wrap}.agregar{flex-basis:100%}.cantidad{width:100%;justify-content:space-between}.cantidad output{flex:1}.vacio{padding:48px 15px}.vacio h2{font-size:26px}}
+@media(max-width:650px){.filtro-selector{align-items:stretch;flex-direction:column;gap:9px;margin-top:14px;padding-top:14px}.select-contenedor{width:100%}}
 @media(max-width:360px){.productos{grid-template-columns:1fr}.btn{padding:8px}.logo img{width:110px}}
 </style>
 </head>
@@ -39,7 +40,7 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 <div class="panel">
 <div class="panel-titulo">ENCUENTRA TUS HERRAMIENTAS FAVORITAS</div>
 <div class="buscar"><input id="busqueda" type="search" placeholder="Buscar por nombre, referencia o código..." autocomplete="off" aria-label="Buscar herramientas"><span aria-hidden="true">⌕</span></div>
-<div class="filtros" id="filtros" aria-label="Filtrar herramientas"></div>
+<div class="filtro-selector"><label for="filtroTipo">Explorar por tipo de herramienta</label><div class="select-contenedor"><select id="filtroTipo" aria-label="Seleccionar tipo de herramienta"></select><span class="select-flecha" aria-hidden="true">⌄</span></div></div>
 </div>
 <p class="resultados" id="resultados" aria-live="polite"></p>
 <div class="productos" id="productos"></div>
@@ -1057,21 +1058,29 @@ function crearProducto(cfg){
  articulo.append(datos);return articulo;
 }
 function crearFiltros(){
- const tipos=['Todas','Disponibles',...ORDEN_FILTROS.filter(tipo=>HERRAMIENTAS.some(x=>x.tipo===tipo))];
- $('filtros').replaceChildren();
- if(HERRAMIENTAS.length===0)return;
- for(const tipo of tipos){const b=elemento('button','filtro'+(tipo===filtro?' activo':''),tipo);b.type='button';b.setAttribute('aria-pressed',tipo===filtro?'true':'false');b.onclick=()=>{filtro=tipo;crearFiltros();mostrar()};$('filtros').append(b)}
+ const selector=$('filtroTipo');
+ const tipos=['Todas',...ORDEN_FILTROS.filter(tipo=>HERRAMIENTAS.some(x=>x.tipo===tipo))];
+ selector.replaceChildren();
+ for(const tipo of tipos){
+  const opcion=document.createElement('option');
+  opcion.value=tipo;
+  const cantidad=tipo==='Todas'?HERRAMIENTAS.length:HERRAMIENTAS.filter(x=>x.tipo===tipo).length;
+  opcion.textContent=(tipo==='Todas'?'Todas las herramientas':tipo)+' ('+cantidad+')';
+  selector.append(opcion);
+ }
+ selector.value=filtro;
 }
 function mostrar(){
  const q=normal(busqueda);
- const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(filtro==='Disponibles'&&stockDe(encontrar(cfg))>0)||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.codigo_barras,cfg.tipo].some(v=>normal(v).includes(q))));
+ const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.codigo_barras,cfg.tipo].some(v=>normal(v).includes(q))));
  visibles.sort((a,b)=>Number(stockDe(encontrar(b))>0)-Number(stockDe(encontrar(a))>0)||Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es'));const grid=$('productos');grid.replaceChildren(...visibles.map(crearProducto));
  $('vacio').hidden=visibles.length>0;
  $('vacio').style.display=visibles.length?'none':'block';
- $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' productos · '+HERRAMIENTAS.filter(x=>stockDe(encontrar(x))>0).length+' disponibles':'';
+ $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' producto'+(visibles.length===1?'':'s')+' encontrados':'';
  if(!visibles.length&&HERRAMIENTAS.length){$('tituloVacio').textContent='No encontramos coincidencias';$('textoVacio').textContent='Prueba otra palabra o selecciona un filtro diferente.'}
 }
 $('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
+$('filtroTipo').addEventListener('change',e=>{filtro=e.target.value;mostrar()});
 window.addEventListener('storage',actualizarCarrito);
 async function iniciar(){
  actualizarCarrito();crearFiltros();mostrar();
