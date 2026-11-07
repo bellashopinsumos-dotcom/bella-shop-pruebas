@@ -1059,8 +1059,20 @@ function crearProducto(cfg){
  const articulo=elemento('article','producto');
  const foto=elemento('div','foto');
  if(cfg.imagen){
-   const img=document.createElement('img');img.src=cfg.imagen;img.alt=cfg.nombre;img.loading='lazy';
-   img.onerror=()=>{foto.replaceChildren(elemento('span','sin-foto','Imagen pendiente'))};
+   const img=document.createElement('img');
+   img.alt=cfg.nombre;
+   img.loading='lazy';
+   // Rutas independientes de la barra final y del caché de la URL de la categoría.
+   const archivo=cfg.imagen.split('/').map(encodeURIComponent).join('/');
+   const urlPagina='/bella-shop-pruebas/herramientas/'+archivo;
+   const urlRespaldo='https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/herramientas/'+archivo;
+   img.onerror=()=>{
+    if(!img.dataset.respaldo){
+     img.dataset.respaldo='1';
+     img.src=urlRespaldo;
+    }else foto.replaceChildren(elemento('span','sin-foto','Imagen pendiente'));
+   };
+   img.src=urlPagina;
    foto.append(img);
  }else foto.append(elemento('span','sin-foto','Imagen pendiente'));
  articulo.append(foto);
