@@ -1147,8 +1147,12 @@ function mostrar(){
  const grid=$('productos'),vacio=$('vacio');
  if(!inventarioCargado){
   grid.replaceChildren();
-  vacio.hidden=true;vacio.style.display='none';
-  $('resultados').textContent=errorInventario?'No se pudo consultar el inventario. Actualiza la página para reintentar.':'Consultando disponibilidad...';
+  vacio.hidden=!errorInventario;vacio.style.display=errorInventario?'block':'none';
+  $('resultados').textContent=errorInventario?'No se pudo cargar el inventario':'Consultando disponibilidad...';
+  if(errorInventario){
+   $('tituloVacio').textContent='No pudimos cargar el inventario';
+   $('textoVacio').textContent='No se muestran productos porque no pudimos verificar las existencias. Actualiza la página para reintentar.';
+  }
   return;
  }
  const q=normal(busqueda);
@@ -1167,19 +1171,52 @@ function mostrar(){
 $('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
 $('filtroTipo').addEventListener('change',e=>{filtro=e.target.value;mostrar()});
 window.addEventListener('storage',actualizarCarrito);
+async function obtenerInventarioActual(){
+ // El primer intento usa GitHub Pages. El segundo consulta el mismo
+ // inventario directamente desde la rama main si Pages no lo está sirviendo.
+ const fuentes=[
+  '../inventario.json',
+  'https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/inventario.json'
+ ];
+ for(const fuente of fuentes){
+  try{
+   const separador=fuente.includes('?')?'&':'?';
+   const respuesta=await fetch(fuente+separador+'actualizacion='+Date.now(),{cache:'no-store'});
+   if(!respuesta.ok)throw new Error('HTTP '+respuesta.status);
+   const json=await respuesta.json();
+   const base=json.productos||json;
+   const registros=Array.isArray(base)?base:Object.values(base||{});
+   if(!registros.length||!registros.some(p=>p&&(p.referencia_interna||p.codigo_barras||p.codigo))){
+    throw new Error('Formato de inventario vacío o incorrecto');
+   }
+   return registros;
+  }catch(error){
+   console.warn('No se pudo consultar '+fuente+':',error);
+  }
+ }
+ throw new Error('Ninguna fuente de inventario está disponible');
+}
 async function iniciar(){
  actualizarCarrito();crearFiltros();mostrar();
  try{
-  const respuesta=await fetch('../inventario.json?actualizacion='+Date.now(),{cache:'no-store'});
-  if(!respuesta.ok)throw new Error('Inventario no disponible');
-  const json=await respuesta.json(),base=json.productos||json;
-  inventario=Array.isArray(base)?base:Object.values(base||{});
+  inventario=await obtenerInventarioActual();
   indiceInventario=new Map();
-  for(const p of inventario){for(const v of [p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo]){const c=normal(v);if(c&&!indiceInventario.has(c))indiceInventario.set(c,p)}}
+  for(const p of inventario){
+   if(!p||typeof p!=='object')continue;
+   for(const v of [p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo]){
+    const c=normal(v);
+    if(c&&!indiceInventario.has(c))indiceInventario.set(c,p);
+   }
+  }
   inventarioCargado=true;
+  errorInventario=false;
   crearFiltros();
   mostrar();
- }catch(e){errorInventario=true;console.warn('No se pudo cargar el inventario de Bella Shop:',e);mostrar()}
+ }catch(e){
+  errorInventario=true;
+  console.error('No se pudo cargar el inventario de Bella Shop:',e);
+  mostrar();
+ }
 }
 iniciar();
 </script>
