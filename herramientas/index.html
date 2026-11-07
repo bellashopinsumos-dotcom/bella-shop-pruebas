@@ -1025,7 +1025,7 @@ const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
 const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Aceites para herramientas","Protectores","Paletas mezcladoras"];
-let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '';
+let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
 function carrito(){try{const x=JSON.parse(localStorage.getItem('bellaShopCarrito')||'[]');return Array.isArray(x)?x:[]}catch{return []}}
 function guardarCarrito(x){localStorage.setItem('bellaShopCarrito',JSON.stringify(x));actualizarCarrito()}
 function actualizarCarrito(){$('numeroCarrito').textContent=carrito().reduce((s,x)=>s+Math.max(0,Number(x.cantidad)||0),0)}
@@ -1089,27 +1089,46 @@ function crearProducto(cfg){
  }
  articulo.append(datos);return articulo;
 }
+function herramientasDisponibles(){
+ // Mostrar solo productos cuya cantidad a la mano en inventario.json sea mayor que cero.
+ // Los códigos no encontrados tampoco se publican hasta tener existencias verificadas.
+ return HERRAMIENTAS.filter(cfg=>stockDe(encontrar(cfg))>0);
+}
 function crearFiltros(){
- const selector=$('filtroTipo');
- const tipos=['Todas',...ORDEN_FILTROS.filter(tipo=>HERRAMIENTAS.some(x=>x.tipo===tipo))];
+ const selector=$('filtroTipo'), disponibles=inventarioCargado?herramientasDisponibles():[];
+ const tipos=['Todas',...ORDEN_FILTROS.filter(tipo=>disponibles.some(x=>x.tipo===tipo))];
+ if(!tipos.includes(filtro))filtro='Todas';
  selector.replaceChildren();
  for(const tipo of tipos){
   const opcion=document.createElement('option');
   opcion.value=tipo;
-  const cantidad=tipo==='Todas'?HERRAMIENTAS.length:HERRAMIENTAS.filter(x=>x.tipo===tipo).length;
+  const cantidad=tipo==='Todas'?disponibles.length:disponibles.filter(x=>x.tipo===tipo).length;
   opcion.textContent=(tipo==='Todas'?'Todas las herramientas':tipo)+' ('+cantidad+')';
   selector.append(opcion);
  }
  selector.value=filtro;
+ selector.disabled=!inventarioCargado;
 }
 function mostrar(){
+ const grid=$('productos'),vacio=$('vacio');
+ if(!inventarioCargado){
+  grid.replaceChildren();
+  vacio.hidden=true;vacio.style.display='none';
+  $('resultados').textContent=errorInventario?'No se pudo consultar el inventario. Actualiza la página para reintentar.':'Consultando disponibilidad...';
+  return;
+ }
  const q=normal(busqueda);
- const visibles=HERRAMIENTAS.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.codigo_barras,cfg.tipo].some(v=>normal(v).includes(q))));
- visibles.sort((a,b)=>Number(stockDe(encontrar(b))>0)-Number(stockDe(encontrar(a))>0)||Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es'));const grid=$('productos');grid.replaceChildren(...visibles.map(crearProducto));
- $('vacio').hidden=visibles.length>0;
- $('vacio').style.display=visibles.length?'none':'block';
- $('resultados').textContent=HERRAMIENTAS.length?visibles.length+' producto'+(visibles.length===1?'':'s')+' encontrados':'';
- if(!visibles.length&&HERRAMIENTAS.length){$('tituloVacio').textContent='No encontramos coincidencias';$('textoVacio').textContent='Prueba otra palabra o selecciona un filtro diferente.'}
+ const disponibles=herramientasDisponibles();
+ const visibles=disponibles.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.codigo_barras,cfg.tipo].some(v=>normal(v).includes(q))));
+ visibles.sort((a,b)=>Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es'));
+ grid.replaceChildren(...visibles.map(crearProducto));
+ vacio.hidden=visibles.length>0;
+ vacio.style.display=visibles.length?'none':'block';
+ $('resultados').textContent=visibles.length+' producto'+(visibles.length===1?'':'s')+' disponibles';
+ if(!visibles.length){
+  $('tituloVacio').textContent=disponibles.length?'No encontramos coincidencias':'Por ahora no hay herramientas disponibles';
+  $('textoVacio').textContent=disponibles.length?'Prueba otra palabra o selecciona otra categoría.':'Los productos volverán a aparecer cuando tengan existencias en el inventario.';
+ }
 }
 $('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
 $('filtroTipo').addEventListener('change',e=>{filtro=e.target.value;mostrar()});
@@ -1123,8 +1142,10 @@ async function iniciar(){
   inventario=Array.isArray(base)?base:Object.values(base||{});
   indiceInventario=new Map();
   for(const p of inventario){for(const v of [p.referencia_interna,p.codigo_barras,p.codigo,p.codigo_original_odoo]){const c=normal(v);if(c&&!indiceInventario.has(c))indiceInventario.set(c,p)}}
+  inventarioCargado=true;
+  crearFiltros();
   mostrar();
- }catch(e){console.warn('No se pudo cargar el inventario de Bella Shop:',e);mostrar()}
+ }catch(e){errorInventario=true;console.warn('No se pudo cargar el inventario de Bella Shop:',e);mostrar()}
 }
 iniciar();
 </script>
