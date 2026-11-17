@@ -22,6 +22,11 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 .foto{aspect-ratio:1.17;background:linear-gradient(135deg,#fff3f7,#fffafd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.foto img{width:100%;height:100%;object-fit:contain;padding:17px}.sin-foto{color:#b98b9b;font-size:13px;text-align:center;padding:20px}
 .datos{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}.tipo{align-self:flex-start;background:#fff1f5;color:#bc557a;border-radius:20px;padding:6px 11px;font-size:10px;text-transform:uppercase;font-weight:900;letter-spacing:.7px}.datos h2{font-size:18px;line-height:1.35;margin:0;font-weight:800}.ref{font-size:11px;color:#9d8490}.precio{font-size:22px;font-weight:900;color:#d74d7d}.estado{font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}.estado.ok{color:#4d886b}.estado.no{color:#c36968}.estado.missing{color:#a98390}
 .compra{display:flex;align-items:center;gap:9px;margin-top:auto;padding-top:4px}.cantidad{display:flex;align-items:center;border:1px solid #ebd7df;border-radius:12px;overflow:hidden;flex-shrink:0}.cantidad button{width:31px;height:38px;border:0;background:#fff6f9;color:#ba567a;font-size:17px;font-weight:bold}.cantidad output{width:29px;text-align:center;font-size:13px;font-weight:800}.agregar{flex:1;padding:11px 8px;min-height:40px;border:0;border-radius:12px;background:var(--rosa);color:white;font-weight:800;font-size:11px;letter-spacing:.15px}.compra button:disabled{opacity:.48;cursor:not-allowed}
+.variantes{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.variantes-label{display:block;width:100%;font-size:11px;color:#8f7180;font-weight:800}
+.variante{padding:8px 13px;border:1px solid #efd4df;border-radius:11px;background:#fff8fa;color:#744b5b;font-size:12px;font-weight:700}
+.variante[aria-pressed="true"]{background:#fce5ed;border-color:#d64e7c;color:#9c2853;box-shadow:0 0 0 1px #d64e7c}
+.variante:focus-visible{outline:2px solid #b23d68;outline-offset:2px}
 .nota{font-size:11px;color:#937985;line-height:1.5}.vacio{max-width:780px;text-align:center;margin:18px auto 5px;padding:65px 25px;background:#fff;border:1px solid #efd8e0;border-radius:25px}.vacio .icono{width:64px;height:64px;display:grid;place-items:center;background:#fff0f5;color:#d7517e;border-radius:22px;font-size:27px;margin:0 auto 18px}.vacio h2{font:500 29px Georgia,serif;margin:0 0 11px}.vacio p{color:#8c727d;line-height:1.7;font-size:14px;max-width:430px;margin:0 auto}.vacio a{display:inline-flex;margin-top:22px;padding:12px 19px;border-radius:24px;background:#e65385;color:#fff;text-decoration:none;font-size:12px;font-weight:800}
 .contacto{padding:55px 20px;text-align:center;background:linear-gradient(135deg,#fdebf1,#fff8fa 60%,#fffdfd);border-top:1px solid var(--linea)}.contacto h2{font:500 33px Georgia,serif;margin:0 0 12px}.contacto p{color:#806774;line-height:1.6;margin:0 auto 23px;max-width:510px}.wa{background:#e65385;color:white;border-radius:30px;text-decoration:none;padding:13px 26px;font-size:13px;font-weight:800;display:inline-flex}footer{text-align:center;padding:32px 12px 38px;background:#fff;border-top:1px solid var(--linea)}footer strong{font:500 28px Georgia,serif;color:#d55482}footer p{font-size:12px;color:#9a8289}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:9999;opacity:0;pointer-events:none;background:#472d38;color:white;border-radius:30px;padding:13px 20px;max-width:92vw;text-align:center;box-shadow:0 12px 30px #0002;font-size:13px;font-weight:700;transition:.2s}.toast.visible{opacity:1;transform:translate(-50%,0)}
 @media(max-width:920px){.productos{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -117,7 +122,8 @@ const HERRAMIENTAS = [
     "codigo": "15051",
     "codigo_barras": "15051",
     "nombre": "ACEITE DE HERRAMIENTAS KS",
-    "tipo": "Aceites para herramientas"
+    "tipo": "Aceites para herramientas",
+    "imagen": "imagenes/ACEITEHERRAMIENTAS.png"
   },
   {
     "codigo": "202519904",
@@ -170,13 +176,15 @@ const HERRAMIENTAS = [
     "codigo": "7896075707141",
     "codigo_barras": "7896075707141",
     "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO ROSADO KRISMAR",
-    "tipo": "Cortacutículas"
+    "tipo": "Cortacutículas",
+    "imagen": "imagenes/MERHEJE-ROSADO.png"
   },
   {
     "codigo": "7896075707110",
     "codigo_barras": "7896075707110",
     "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO VERDE KRISMAR",
-    "tipo": "Cortacutículas"
+    "tipo": "Cortacutículas",
+    "imagen": "imagenes/MERHEJE-VERDE.png"
   },
   {
     "codigo": "220-772",
@@ -253,7 +261,15 @@ const HERRAMIENTAS = [
     "codigo": "CA4024",
     "codigo_barras": "CA4024",
     "nombre": "CORTACUTICULA CON RESORVE METALICO",
-    "tipo": "Cortacutículas"
+    "tipo": "Cortacutículas",
+    "imagen": "imagenes/CA4004.png"
+  },
+  {
+    "codigo": "CA3053",
+    "codigo_barras": "CA3053",
+    "nombre": "LIMA PICO LORO CA3053",
+    "tipo": "Limas metálicas",
+    "imagen": "imagenes/CA3053.png"
   },
   {
     "codigo": "DN3259",
@@ -409,7 +425,8 @@ const HERRAMIENTAS = [
     "codigo": "DEJA153",
     "codigo_barras": "DEJA153",
     "nombre": "DEJA153 PUSHER METALICO",
-    "tipo": "Pushers"
+    "tipo": "Pushers",
+    "imagen": "imagenes/DEJA153.png"
   },
   {
     "codigo": "DEJA176",
@@ -513,7 +530,8 @@ const HERRAMIENTAS = [
     "codigo": "DN3010",
     "codigo_barras": "DN3010",
     "nombre": "DN3010 PALOS DE NARANJO X100 ANDISA",
-    "tipo": "Palos de naranjo"
+    "tipo": "Palos de naranjo",
+    "imagen": "imagenes/DN3010.png"
   },
   {
     "codigo": "DN3012",
@@ -648,7 +666,18 @@ const HERRAMIENTAS = [
     "codigo": "DEJA164",
     "codigo_barras": "8202604060356",
     "nombre": "GUILLOTINA CON MEDIDOR DEJA164",
-    "tipo": "Guillotinas"
+    "tipo": "Guillotinas",
+    "imagen": "imagenes/DEJA164N.png",
+    "variantes": [
+      {
+        "color": "Negro",
+        "imagen": "imagenes/DEJA164N.png"
+      },
+      {
+        "color": "Blanco",
+        "imagen": "imagenes/DEJA164B.png"
+      }
+    ]
   },
   {
     "codigo": "IN519",
@@ -666,13 +695,15 @@ const HERRAMIENTAS = [
     "codigo": "HC16865",
     "codigo_barras": "7707130871908",
     "nombre": "HC16865 BISTURI CRISTAL",
-    "tipo": "Bisturís"
+    "tipo": "Bisturís",
+    "imagen": "imagenes/HC-16865.png"
   },
   {
     "codigo": "7706478870116",
     "codigo_barras": "7706478870116",
     "nombre": "HERRAMIENTA UÑAS ENTERRADA IN 271",
-    "tipo": "Uñas enterradas"
+    "tipo": "Uñas enterradas",
+    "imagen": "imagenes/IN-271.png"
   },
   {
     "codigo": "HK-036",
@@ -1125,39 +1156,83 @@ function notificar(t){const e=$('toast');e.textContent=t;e.classList.add('visibl
 function agregar(cfg,p,q){
  if(!p){notificar('Código no encontrado');return}
  const referencia=String(p.referencia_interna||referenciaInventario(cfg));
+ // Cada color ocupa una línea distinta del carrito, pero descuenta del mismo stock DEJA164.
+ const nombreCarrito=cfg.nombre+(cfg.colorElegido?' · '+cfg.colorElegido:'');
+ const clave='Herramienta - '+normal(cfg.codigo)+(cfg.colorElegido?' - '+normal(cfg.colorElegido):'');
  const limite=stockDe(p)-cantidadEnCarrito(cfg);
  if(limite<=0){notificar('Temporalmente no disponible');return}
- const cantidad=Math.min(q,limite),lista=carrito(),clave='Herramienta - '+normal(cfg.codigo);
+ const cantidad=Math.min(q,limite),lista=carrito();
  let item=lista.find(x=>x.clave===clave);
- if(item){item.cantidad=Number(item.cantidad||0)+cantidad;item.precio=Number(p.precio_venta||0)}
- else lista.push({clave,nombre:cfg.nombre,marca:'Bella Shop',referencia,codigo:String(p.codigo_barras||p.codigo_original_odoo||p.codigo||cfg.codigo),precio:Number(p.precio_venta||0),cantidad,imagen:cfg.imagen?'herramientas/'+cfg.imagen:'',baseRef:referenciaInventario(cfg)});
- guardarCarrito(lista);notificar(cfg.nombre+' agregado a tu pedido 💕');mostrar();
+ if(item){
+   item.cantidad=Number(item.cantidad||0)+cantidad;
+   item.precio=Number(p.precio_venta||0);
+   item.nombre=nombreCarrito;
+   if(cfg.imagen)item.imagen='herramientas/'+cfg.imagen;
+ }else{
+   lista.push({clave,nombre:nombreCarrito,marca:'Bella Shop',referencia,
+     codigo:String(p.codigo_barras||p.codigo_original_odoo||p.codigo||cfg.codigo),
+     precio:Number(p.precio_venta||0),cantidad,
+     imagen:cfg.imagen?'herramientas/'+cfg.imagen:'',
+     baseRef:referenciaInventario(cfg),
+     ...(cfg.colorElegido?{color:cfg.colorElegido}:{})});
+ }
+ guardarCarrito(lista);notificar(nombreCarrito+' agregado a tu pedido 💕');mostrar();
 }
 function elemento(tag,clase,texto){const e=document.createElement(tag);if(clase)e.className=clase;if(texto!==undefined)e.textContent=texto;return e}
 function crearProducto(cfg){
  const p=encontrar(cfg),stock=stockDe(p),precio=Number(p?.precio_venta||0);
+ const variantes=Array.isArray(cfg.variantes)?cfg.variantes:[];
+ let seleccion=variantes[0]||null;
  const articulo=elemento('article','producto');
  const foto=elemento('div','foto');
+ let img=null;
  if(cfg.imagen){
-   const img=document.createElement('img');
+   img=document.createElement('img');
    img.alt=cfg.nombre;
    img.loading='lazy';
-   // Rutas independientes de la barra final y del caché de la URL de la categoría.
-   const archivo=cfg.imagen.split('/').map(encodeURIComponent).join('/');
-   const urlPagina='/bella-shop-pruebas/herramientas/'+archivo;
-   const urlRespaldo='https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/herramientas/'+archivo;
-   img.onerror=()=>{
-    if(!img.dataset.respaldo){
-     img.dataset.respaldo='1';
-     img.src=urlRespaldo;
-    }else foto.replaceChildren(elemento('span','sin-foto','Imagen pendiente'));
-   };
-   img.src=urlPagina;
+   // El nombre de archivo cambia con el color; la referencia real no cambia.
+   function cambiarImagen(archivoImagen){
+     const archivo=archivoImagen.split('/').map(encodeURIComponent).join('/');
+     const urlPagina='/bella-shop-pruebas/herramientas/'+archivo;
+     const urlRespaldo='https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/herramientas/'+archivo;
+     img.dataset.respaldo='';
+     img.onerror=()=>{
+       if(img.dataset.respaldo!=='1'){
+         img.dataset.respaldo='1';
+         img.src=urlRespaldo;
+       }else foto.replaceChildren(elemento('span','sin-foto','Imagen pendiente'));
+     };
+     img.src=urlPagina;
+   }
+   cambiarImagen(seleccion?.imagen||cfg.imagen);
    foto.append(img);
+   foto.cambiarImagen=cambiarImagen;
  }else foto.append(elemento('span','sin-foto','Imagen pendiente'));
  articulo.append(foto);
  const datos=elemento('div','datos');
  datos.append(elemento('span','tipo',cfg.tipo||'Herramientas'),elemento('h2','',cfg.nombre),elemento('div','ref','REF. '+referenciaInventario(cfg)+(cfg.color?' · '+cfg.color:'')));
+ if(variantes.length){
+   const selectorColores=elemento('div','variantes');
+   const tituloColores=elemento('span','variantes-label','Selecciona el color:');
+   selectorColores.append(tituloColores);
+   const botones=[];
+   for(const variante of variantes){
+     const btn=elemento('button','variante',variante.color);
+     btn.type='button';
+     btn.setAttribute('aria-pressed',variante===seleccion?'true':'false');
+     btn.onclick=()=>{
+       seleccion=variante;
+       botones.forEach(b=>b.setAttribute('aria-pressed',b===btn?'true':'false'));
+       if(img){
+         img.alt=cfg.nombre+' · '+variante.color;
+         foto.cambiarImagen(variante.imagen);
+       }
+     };
+     botones.push(btn);
+     selectorColores.append(btn);
+   }
+   datos.append(selectorColores);
+ }
  datos.append(elemento('div','precio',p&&precio>0?dinero(precio):'Precio según inventario'));
  let estado,clase;
  if(!p){estado='Código no encontrado';clase='missing'}
@@ -1176,7 +1251,7 @@ function crearProducto(cfg){
    }
    menos.onclick=()=>{q=Math.max(1,q-1);sincronizar()};
    mas.onclick=()=>{q=Math.min(stock-cantidadEnCarrito(cfg),q+1);sincronizar()};
-   boton.onclick=()=>agregar(cfg,p,q);
+   boton.onclick=()=>agregar(seleccion?{...cfg,imagen:seleccion.imagen,colorElegido:seleccion.color}:cfg,p,q);
    selector.append(menos,numero,mas);fila.append(selector,boton);datos.append(fila,nota);sincronizar();
  }
  articulo.append(datos);return articulo;
