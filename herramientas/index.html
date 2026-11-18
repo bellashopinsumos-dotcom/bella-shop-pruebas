@@ -33,6 +33,42 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 @media(max-width:650px){header{padding:9px 12px;gap:7px}.logo{min-width:0;flex:1}.logo img{width:132px;height:49px}.acciones{gap:6px}.btn{min-height:38px;padding:9px 10px;font-size:10px}.btn.pedido{gap:4px}.hero{min-height:260px;padding:45px 17px}.hero .cara{width:220px}.hero p{font-size:13px}main{padding:25px 12px 54px}.panel{padding:16px;border-radius:18px}.productos{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.datos{padding:12px;gap:8px}.datos h2{font-size:14px}.foto img{padding:8px}.precio{font-size:17px}.compra{flex-wrap:wrap}.agregar{flex-basis:100%}.cantidad{width:100%;justify-content:space-between}.cantidad output{flex:1}.vacio{padding:48px 15px}.vacio h2{font-size:26px}}
 @media(max-width:650px){.filtro-selector{align-items:stretch;flex-direction:column;gap:9px;margin-top:14px;padding-top:14px}.select-contenedor{width:100%}}
 @media(max-width:360px){.productos{grid-template-columns:1fr}.btn{padding:8px}.logo img{width:110px}}
+
+/* Navegación ligera por familias de herramientas */
+.explorar-etiqueta{margin:21px 0 11px;color:#976f80;font-size:11px;font-weight:900;letter-spacing:1px}
+.grupos-rapidos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.grupo-rapido{display:flex;align-items:center;gap:11px;text-align:left;min-height:64px;padding:11px 12px;border-radius:15px;border:1px solid #f0d8e1;background:#fffafc;color:#654752;transition:border-color .15s,background .15s}
+.grupo-rapido:hover{border-color:#e995b2}
+.grupo-rapido[aria-pressed="true"]{border-color:#df6d96;background:#fce9f0;box-shadow:0 0 0 1px #f3c0d1}
+.grupo-rapido .grupo-icono{display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;border-radius:11px;background:#fff;color:#d3557f;font-size:17px}
+.grupo-rapido .grupo-contenido{display:flex;flex-direction:column;gap:3px;min-width:0}
+.grupo-rapido .grupo-nombre{font-size:12px;font-weight:800;line-height:1.24}
+.grupo-rapido .grupo-cantidad{font-size:10px;color:#9a7784;font-weight:700}
+.grupo-rapido:disabled{opacity:.5;cursor:default}
+.limpiar-filtros{border:0;background:none;color:#bd5077;font-weight:800;font-size:11px;padding:12px 3px 0;cursor:pointer}
+.ver-mas{display:block;margin:25px auto 4px;border:1px solid #e8aec2;border-radius:999px;background:#fff;color:#bf4672;min-height:46px;padding:12px 28px;font-size:12px;font-weight:900;box-shadow:0 4px 12px rgba(99,51,75,.05)}
+.ver-mas:hover{background:#fff0f5}
+.productos{gap:16px}
+.producto{border-radius:18px}
+.foto{aspect-ratio:1.32}
+.foto img{padding:12px}
+.datos{padding:15px;gap:8px}
+.datos h2{font-size:15px;line-height:1.34;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tipo{font-size:9px}
+@media(max-width:650px){
+.grupos-rapidos{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.grupo-rapido{min-height:62px;padding:10px 8px;gap:7px;border-radius:12px}
+.grupo-rapido .grupo-icono{width:28px;height:28px;font-size:15px;border-radius:8px}
+.grupo-rapido .grupo-nombre{font-size:10px}
+.grupo-rapido .grupo-cantidad{font-size:9px}
+.foto{aspect-ratio:1.13}
+.foto img{padding:7px}
+.datos{padding:10px;gap:7px}
+.datos h2{font-size:12px;line-height:1.3}
+.tipo{font-size:8px}
+.precio{font-size:16px}
+.ref,.estado{font-size:9px}
+}
 </style>
 </head>
 <body>
@@ -45,10 +81,14 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 <div class="panel">
 <div class="panel-titulo">ENCUENTRA TUS HERRAMIENTAS FAVORITAS</div>
 <div class="buscar"><input id="busqueda" type="search" placeholder="Buscar por nombre, referencia o código..." autocomplete="off" aria-label="Buscar herramientas"><span aria-hidden="true">⌕</span></div>
-<div class="filtro-selector"><label for="filtroTipo">Explorar por tipo de herramienta</label><div class="select-contenedor"><select id="filtroTipo" aria-label="Seleccionar tipo de herramienta"></select><span class="select-flecha" aria-hidden="true">⌄</span></div></div>
+<div class="explorar-etiqueta">ESCOGE UNA SECCIÓN</div>
+<div id="gruposRapidos" class="grupos-rapidos" role="group" aria-label="Secciones de herramientas"></div>
+<div class="filtro-selector"><label for="filtroTipo">Filtrar por tipo de herramienta</label><div class="select-contenedor"><select id="filtroTipo" aria-label="Seleccionar tipo de herramienta"></select><span class="select-flecha" aria-hidden="true">⌄</span></div></div>
+<button type="button" class="limpiar-filtros" id="limpiarFiltros">Limpiar filtros</button>
 </div>
 <p class="resultados" id="resultados" aria-live="polite"></p>
 <div class="productos" id="productos"></div>
+<button type="button" class="ver-mas" id="verMas" hidden>VER MÁS HERRAMIENTAS</button>
 <div class="vacio" id="vacio"><div class="icono">✦</div><h2 id="tituloVacio">Estamos preparando esta sección</h2><p id="textoVacio">Muy pronto encontrarás aquí las herramientas de Bella Shop, con sus fotos, precios y disponibilidad actualizada.</p><a href="../index.html#categorias">Explorar otras categorías</a></div>
 </main>
 <section class="contacto"><h2>¿Necesitas una ayudita? 💕</h2><p>Escríbenos y con gusto te ayudamos a encontrar lo que necesitas para tus trabajos de belleza.</p><a class="wa" href="https://wa.me/573122002698?text=Hola%20Bella%20Shop%2C%20quiero%20consultar%20sobre%20herramientas" target="_blank" rel="noopener">ESCRÍBENOS POR WHATSAPP</a></section>
@@ -1127,6 +1167,16 @@ const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
 const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Aceites para herramientas","Protectores","Paletas mezcladoras"];
+const GRUPOS_HERRAMIENTAS = [
+ {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
+ {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
+ {id:'repujadores',nombre:'Repujadores y pushers',icono:'💅',tipos:['Repujadores','Pushers']},
+ {id:'cortadores',nombre:'Cortaúñas y guillotinas',icono:'▤',tipos:['Cortaúñas','Guillotinas']},
+ {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
+ {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Curetas','Bisturís','Uñas enterradas']},
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Aceites para herramientas','Protectores','Paletas mezcladoras']}
+];
+let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
 function carrito(){try{const x=JSON.parse(localStorage.getItem('bellaShopCarrito')||'[]');return Array.isArray(x)?x:[]}catch{return []}}
 function guardarCarrito(x){localStorage.setItem('bellaShopCarrito',JSON.stringify(x));actualizarCarrito()}
@@ -1257,52 +1307,90 @@ function crearProducto(cfg){
  articulo.append(datos);return articulo;
 }
 function herramientasDisponibles(){
- // Mostrar solo productos cuya cantidad a la mano en inventario.json sea mayor que cero.
- // Los códigos no encontrados tampoco se publican hasta tener existencias verificadas.
- return HERRAMIENTAS.filter(cfg=>stockDe(encontrar(cfg))>0);
+ // Ocultar solo códigos con existencias verificadas de 0; un código no encontrado permanece visible.
+ return HERRAMIENTAS.filter(cfg=>{const p=encontrar(cfg);return !p||stockDe(p)>0});
+}
+function coincideGrupo(cfg){
+ const grupo=GRUPOS_HERRAMIENTAS.find(g=>g.id===grupoActivo);
+ return !grupo||!grupo.tipos||grupo.tipos.includes(cfg.tipo);
+}
+function crearGruposRapidos(disponibles){
+ const contenedor=$('gruposRapidos'),fragmento=document.createDocumentFragment();
+ for(const g of GRUPOS_HERRAMIENTAS){
+   const total=g.tipos?disponibles.filter(p=>g.tipos.includes(p.tipo)).length:disponibles.length;
+   if(g.tipos&&!total)continue;
+   const boton=elemento('button','grupo-rapido');
+   boton.type='button';
+   boton.setAttribute('aria-pressed',g.id===grupoActivo?'true':'false');
+   boton.disabled=!inventarioCargado;
+   boton.append(elemento('span','grupo-icono',g.icono));
+   const detalle=elemento('span','grupo-contenido');
+   detalle.append(elemento('span','grupo-nombre',g.nombre),elemento('span','grupo-cantidad',total+' producto'+(total===1?'':'s')));
+   boton.append(detalle);
+   boton.onclick=()=>{grupoActivo=g.id;filtro='Todas';limiteVisible=12;crearFiltros();mostrar()};
+   fragmento.append(boton);
+ }
+ contenedor.replaceChildren(fragmento);
 }
 function crearFiltros(){
- const selector=$('filtroTipo'), disponibles=inventarioCargado?herramientasDisponibles():[];
- const tipos=['Todas',...ORDEN_FILTROS.filter(tipo=>disponibles.some(x=>x.tipo===tipo))];
+ const selector=$('filtroTipo'),disponibles=inventarioCargado?herramientasDisponibles():[];
+ const enGrupo=disponibles.filter(coincideGrupo);
+ const tipos=['Todas',...ORDEN_FILTROS.filter(tipo=>enGrupo.some(x=>x.tipo===tipo))];
  if(!tipos.includes(filtro))filtro='Todas';
  selector.replaceChildren();
  for(const tipo of tipos){
-  const opcion=document.createElement('option');
-  opcion.value=tipo;
-  const cantidad=tipo==='Todas'?disponibles.length:disponibles.filter(x=>x.tipo===tipo).length;
-  opcion.textContent=(tipo==='Todas'?'Todas las herramientas':tipo)+' ('+cantidad+')';
-  selector.append(opcion);
+   const opcion=document.createElement('option');
+   opcion.value=tipo;
+   const cantidad=tipo==='Todas'?enGrupo.length:enGrupo.filter(x=>x.tipo===tipo).length;
+   opcion.textContent=(tipo==='Todas'?'Todos los tipos':tipo)+' ('+cantidad+')';
+   selector.append(opcion);
  }
  selector.value=filtro;
  selector.disabled=!inventarioCargado;
+ crearGruposRapidos(disponibles);
 }
 function mostrar(){
- const grid=$('productos'),vacio=$('vacio');
+ const grid=$('productos'),vacio=$('vacio'),mas=$('verMas');
  if(!inventarioCargado){
-  grid.replaceChildren();
-  vacio.hidden=!errorInventario;vacio.style.display=errorInventario?'block':'none';
-  $('resultados').textContent=errorInventario?'No se pudo cargar el inventario':'Consultando disponibilidad...';
-  if(errorInventario){
-   $('tituloVacio').textContent='No pudimos cargar el inventario';
-   $('textoVacio').textContent='No se muestran productos porque no pudimos verificar las existencias. Actualiza la página para reintentar.';
-  }
-  return;
+   grid.replaceChildren();
+   mas.hidden=true;mas.style.display='none';
+   vacio.hidden=!errorInventario;vacio.style.display=errorInventario?'block':'none';
+   $('resultados').textContent=errorInventario?'No se pudo cargar el inventario':'Consultando disponibilidad...';
+   if(errorInventario){
+     $('tituloVacio').textContent='No pudimos cargar el inventario';
+     $('textoVacio').textContent='No se muestran productos porque no pudimos verificar las existencias. Actualiza la página para reintentar.';
+   }
+   return;
  }
  const q=normal(busqueda);
  const disponibles=herramientasDisponibles();
- const visibles=disponibles.filter(cfg=>(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.referencia,cfg.codigo_barras,cfg.tipo,cfg.color].some(v=>normal(v).includes(q))));
- visibles.sort((a,b)=>Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es'));
- grid.replaceChildren(...visibles.map(crearProducto));
+ const visibles=disponibles.filter(cfg=>coincideGrupo(cfg)&&(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.referencia,cfg.codigo_barras,cfg.tipo,cfg.color].some(v=>normal(v).includes(q))));
+ // Artículos con existencias y fotos primero; códigos sin correspondencia siguen accesibles.
+ visibles.sort((a,b)=>{
+   const pa=encontrar(a),pb=encontrar(b);
+   const ordenStock=Number(!pa)-Number(!pb);
+   if(ordenStock)return ordenStock;
+   const ordenImagen=Number(!a.imagen)-Number(!b.imagen);
+   if(ordenImagen)return ordenImagen;
+   return Number(/\\bKS\\b/i.test(b.nombre))-Number(/\\bKS\\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es');
+ });
+ const mostrados=visibles.slice(0,limiteVisible);
+ grid.replaceChildren(...mostrados.map(crearProducto));
+ mas.hidden=visibles.length<=limiteVisible;
+ mas.style.display=mas.hidden?'none':'block';
+ if(!mas.hidden)mas.textContent='VER '+Math.min(12,visibles.length-limiteVisible)+' PRODUCTOS MÁS';
  vacio.hidden=visibles.length>0;
  vacio.style.display=visibles.length?'none':'block';
- $('resultados').textContent=visibles.length+' producto'+(visibles.length===1?'':'s')+' disponibles';
+ $('resultados').textContent=visibles.length?('Mostrando '+mostrados.length+' de '+visibles.length+' herramientas'):'0 herramientas encontradas';
  if(!visibles.length){
-  $('tituloVacio').textContent=disponibles.length?'No encontramos coincidencias':'Por ahora no hay herramientas disponibles';
-  $('textoVacio').textContent=disponibles.length?'Prueba otra palabra o selecciona otra categoría.':'Los productos volverán a aparecer cuando tengan existencias en el inventario.';
+   $('tituloVacio').textContent=disponibles.length?'No encontramos coincidencias':'Por ahora no hay herramientas disponibles';
+   $('textoVacio').textContent=disponibles.length?'Prueba otra palabra o selecciona otra sección.':'Los productos volverán a aparecer cuando tengan existencias en el inventario.';
  }
 }
-$('busqueda').addEventListener('input',e=>{busqueda=e.target.value;mostrar()});
-$('filtroTipo').addEventListener('change',e=>{filtro=e.target.value;mostrar()});
+$('busqueda').addEventListener('input',e=>{busqueda=e.target.value;grupoActivo='todas';filtro='Todas';limiteVisible=12;crearFiltros();mostrar()});
+$('filtroTipo').addEventListener('change',e=>{filtro=e.target.value;limiteVisible=12;mostrar()});
+$('limpiarFiltros').addEventListener('click',()=>{grupoActivo='todas';filtro='Todas';busqueda='';limiteVisible=12;$('busqueda').value='';crearFiltros();mostrar()});
+$('verMas').addEventListener('click',()=>{limiteVisible+=12;mostrar()});
 window.addEventListener('storage',actualizarCarrito);
 async function obtenerInventarioActual(){
  // El primer intento usa GitHub Pages. El segundo consulta el mismo
