@@ -1372,7 +1372,7 @@ function mostrar(){
    if(ordenStock)return ordenStock;
    const ordenImagen=Number(!a.imagen)-Number(!b.imagen);
    if(ordenImagen)return ordenImagen;
-   return Number(/\\bKS\\b/i.test(b.nombre))-Number(/\\bKS\\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es');
+   return Number(/\bKS\b/i.test(b.nombre))-Number(/\bKS\b/i.test(a.nombre))||a.nombre.localeCompare(b.nombre,'es');
  });
  const mostrados=visibles.slice(0,limiteVisible);
  grid.replaceChildren(...mostrados.map(crearProducto));
