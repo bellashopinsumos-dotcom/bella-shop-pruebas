@@ -43,7 +43,7 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 .grupo-rapido .grupo-icono{display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;border-radius:11px;background:#fff;color:#d3557f;font-size:17px}
 .grupo-rapido .grupo-contenido{display:flex;flex-direction:column;gap:3px;min-width:0}
 .grupo-rapido .grupo-nombre{font-size:12px;font-weight:800;line-height:1.24}
-.grupo-rapido .grupo-cantidad{font-size:10px;color:#9a7784;font-weight:700}
+
 .grupo-rapido:disabled{opacity:.5;cursor:default}
 .limpiar-filtros{border:0;background:none;color:#bd5077;font-weight:800;font-size:11px;padding:12px 3px 0;cursor:pointer}
 .ver-mas{display:block;margin:25px auto 4px;border:1px solid #e8aec2;border-radius:999px;background:#fff;color:#bf4672;min-height:46px;padding:12px 28px;font-size:12px;font-weight:900;box-shadow:0 4px 12px rgba(99,51,75,.05)}
@@ -60,7 +60,7 @@ main{min-height:420px;padding:46px 5% 80px;background:linear-gradient(180deg,#ff
 .grupo-rapido{min-height:62px;padding:10px 8px;gap:7px;border-radius:12px}
 .grupo-rapido .grupo-icono{width:28px;height:28px;font-size:15px;border-radius:8px}
 .grupo-rapido .grupo-nombre{font-size:10px}
-.grupo-rapido .grupo-cantidad{font-size:9px}
+
 .foto{aspect-ratio:1.13}
 .foto img{padding:7px}
 .datos{padding:10px;gap:7px}
@@ -1436,8 +1436,9 @@ const GRUPOS_HERRAMIENTAS = [
  {id:'cortadores',nombre:'Cortaúñas y guillotinas',icono:'▤',tipos:['Cortaúñas','Guillotinas']},
  {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
+ {id:'imanes',nombre:'Imanes',icono:'🧲',tipos:['Imanes']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
- {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas','Imanes']}
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas']}
 ];
 let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
@@ -1596,7 +1597,7 @@ function crearGruposRapidos(disponibles){
    boton.disabled=!inventarioCargado;
    boton.append(elemento('span','grupo-icono',g.icono));
    const detalle=elemento('span','grupo-contenido');
-   detalle.append(elemento('span','grupo-nombre',g.nombre),elemento('span','grupo-cantidad',total+' producto'+(total===1?'':'s')));
+   detalle.append(elemento('span','grupo-nombre',g.nombre));
    boton.append(detalle);
    boton.onclick=()=>{grupoActivo=g.id;filtro='Todas';limiteVisible=12;crearFiltros();mostrar()};
    fragmento.append(boton);
@@ -1612,8 +1613,7 @@ function crearFiltros(){
  for(const tipo of tipos){
    const opcion=document.createElement('option');
    opcion.value=tipo;
-   const cantidad=tipo==='Todas'?enGrupo.length:enGrupo.filter(x=>x.tipo===tipo).length;
-   opcion.textContent=(tipo==='Todas'?'Todos los tipos':tipo)+' ('+cantidad+')';
+   opcion.textContent=tipo==='Todas'?'Todos los tipos':tipo;
    selector.append(opcion);
  }
  selector.value=filtro;
@@ -1649,10 +1649,10 @@ function mostrar(){
  grid.replaceChildren(...mostrados.map(crearProducto));
  mas.hidden=visibles.length<=limiteVisible;
  mas.style.display=mas.hidden?'none':'block';
- if(!mas.hidden)mas.textContent='VER '+Math.min(12,visibles.length-limiteVisible)+' PRODUCTOS MÁS';
+ if(!mas.hidden)mas.textContent='VER MÁS HERRAMIENTAS';
  vacio.hidden=visibles.length>0;
  vacio.style.display=visibles.length?'none':'block';
- $('resultados').textContent=visibles.length?('Mostrando '+mostrados.length+' de '+visibles.length+' herramientas'):'0 herramientas encontradas';
+ $('resultados').textContent=visibles.length?(busqueda?'Resultados de búsqueda':grupoActivo==='todas'?'Explora nuestras herramientas':GRUPOS_HERRAMIENTAS.find(g=>g.id===grupoActivo)?.nombre||'Herramientas'):'No encontramos herramientas con estos filtros';
  if(!visibles.length){
    $('tituloVacio').textContent=disponibles.length?'No encontramos coincidencias':'Por ahora no hay herramientas disponibles';
    $('textoVacio').textContent=disponibles.length?'Prueba otra palabra o selecciona otra sección.':'Los productos volverán a aparecer cuando tengan existencias en el inventario.';
