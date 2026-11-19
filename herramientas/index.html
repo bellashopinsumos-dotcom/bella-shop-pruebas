@@ -1291,14 +1291,14 @@ const HERRAMIENTAS = [
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras"];
+const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
  {id:'repujadores',nombre:'Repujadores y pushers',icono:'💅',tipos:['Repujadores','Pushers']},
  {id:'cortadores',nombre:'Cortaúñas y guillotinas',icono:'▤',tipos:['Cortaúñas','Guillotinas']},
  {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
- {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Curetas','Bisturís','Uñas enterradas']},
+ {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
  {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores']}
 ];
@@ -1348,6 +1348,7 @@ function agregar(cfg,p,q){
    item.cantidad=Number(item.cantidad||0)+cantidad;
    item.precio=Number(p.precio_venta||0);
    item.nombre=nombreCarrito;
+   if(cfg.colorElegido)item.color=cfg.colorElegido;
    if(cfg.imagen)item.imagen='herramientas/'+cfg.imagen;
  }else{
    lista.push({clave,nombre:nombreCarrito,marca:'Bella Shop',referencia,
@@ -1397,12 +1398,14 @@ function crearProducto(cfg){
    const tituloColores=elemento('span','variantes-label','Selecciona el color:');
    selectorColores.append(tituloColores);
    const botones=[];
+   const colorElegidoTexto=elemento('div','nota','Color elegido: '+seleccion.color);
    for(const variante of variantes){
      const btn=elemento('button','variante',variante.color);
      btn.type='button';
      btn.setAttribute('aria-pressed',variante===seleccion?'true':'false');
      btn.onclick=()=>{
        seleccion=variante;
+       colorElegidoTexto.textContent='Color elegido: '+variante.color;
        botones.forEach(b=>b.setAttribute('aria-pressed',b===btn?'true':'false'));
        if(img){
          img.alt=cfg.nombre+' · '+variante.color;
@@ -1412,7 +1415,7 @@ function crearProducto(cfg){
      botones.push(btn);
      selectorColores.append(btn);
    }
-   datos.append(selectorColores);
+   datos.append(selectorColores,colorElegidoTexto);
  }
  datos.append(elemento('div','precio',p&&precio>0?dinero(precio):'Precio según inventario'));
  let estado,clase;
