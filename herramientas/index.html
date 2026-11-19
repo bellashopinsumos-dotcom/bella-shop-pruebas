@@ -1305,12 +1305,40 @@ const HERRAMIENTAS = [
     "nombre": "Pusher REP02",
     "tipo": "Pushers",
     "imagen": "imagenes/REP02.png"
+  },
+  {
+    "codigo": "DN4888",
+    "codigo_barras": "",
+    "nombre": "Imán para ojo de gato DN4888",
+    "tipo": "Imanes",
+    "imagen": "imagenes/DN4888.png",
+    "variantes": [
+      {
+        "color": "Negro",
+        "imagen": "imagenes/DN4888.png"
+      },
+      {
+        "color": "Amarillo pastel",
+        "imagen": "imagenes/DN4888.png"
+      },
+      {
+        "color": "Blanco",
+        "imagen": "imagenes/DN4888.png"
+      }
+    ]
+  },
+  {
+    "codigo": "DN2525",
+    "codigo_barras": "",
+    "nombre": "Imán para ojo de gato DN2525",
+    "tipo": "Imanes",
+    "imagen": "imagenes/DN2525.png"
   }
 ];
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas"];
+const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas","Imanes"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
@@ -1319,7 +1347,7 @@ const GRUPOS_HERRAMIENTAS = [
  {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
- {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas']}
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas','Imanes']}
 ];
 let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
