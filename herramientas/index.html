@@ -204,8 +204,9 @@ const HERRAMIENTAS = [
   {
     "codigo": "DN4747",
     "codigo_barras": "DN4747",
-    "nombre": "KIT DE LIMA Y PUSHER DN4747",
-    "tipo": "Kits de herramientas"
+    "nombre": "Pusher con lima DN4747",
+    "tipo": "Pushers",
+    "imagen": "imagenes/DN4747.png"
   },
   {
     "codigo": "DEJA154",
@@ -653,7 +654,8 @@ const HERRAMIENTAS = [
     "codigo": "DN573",
     "codigo_barras": "DN573",
     "nombre": "DN573 PINZA CURVATURA C TORNASOL ANDISA",
-    "tipo": "Pinzas"
+    "tipo": "Pinzas",
+    "imagen": "imagenes/DN573.png"
   },
   {
     "codigo": "DN632",
@@ -798,8 +800,9 @@ const HERRAMIENTAS = [
   {
     "codigo": "MPZ11-1",
     "codigo_barras": "7709152970119",
-    "nombre": "MPZ111 REPUJADOR DE CUTICULA MUNA",
-    "tipo": "Repujadores"
+    "nombre": "Repujador de cutícula Muna MPZ11-1",
+    "tipo": "Repujadores",
+    "imagen": "imagenes/MPZ11-1.png"
   },
   {
     "codigo": "MPZ2",
@@ -943,8 +946,10 @@ const HERRAMIENTAS = [
   {
     "codigo": "IN544",
     "codigo_barras": "7704542505445",
-    "nombre": "PINZA CURVATURA C TORNAZOL IN 544",
-    "tipo": "Pinzas"
+    "nombre": "Pinza de curvatura C tornasol IN-544",
+    "tipo": "Pinzas",
+    "referencia": "IN-544",
+    "imagen": "imagenes/IN-544.png"
   },
   {
     "codigo": "HK-542",
@@ -1286,12 +1291,26 @@ const HERRAMIENTAS = [
     "nombre": "Guillotina DN4902",
     "tipo": "Guillotinas",
     "imagen": "imagenes/DN4902.png"
+  },
+  {
+    "codigo": "DN4838",
+    "codigo_barras": "",
+    "nombre": "Bandeja DN4838",
+    "tipo": "Bandejas",
+    "imagen": "imagenes/DN4838.png"
+  },
+  {
+    "codigo": "REP02",
+    "codigo_barras": "",
+    "nombre": "Pusher REP02",
+    "tipo": "Pushers",
+    "imagen": "imagenes/REP02.png"
   }
 ];
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras"];
+const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
@@ -1300,7 +1319,7 @@ const GRUPOS_HERRAMIENTAS = [
  {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
- {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores']}
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas']}
 ];
 let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
