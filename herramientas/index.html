@@ -1132,7 +1132,8 @@ const HERRAMIENTAS = [
     "codigo": "AG-1",
     "codigo_barras": "6935826625813",
     "nombre": "TIJERA PEQUEÑA METALICA AG-1 AMELOW",
-    "tipo": "Tijeras"
+    "tipo": "Tijeras",
+    "imagen": "imagenes/6935826625813.png"
   },
   {
     "codigo": "202519915",
@@ -1161,12 +1162,62 @@ const HERRAMIENTAS = [
     "nombre": "Kit de pushers x4 Andisa DN2849",
     "tipo": "Kits de herramientas",
     "imagen": "imagenes/DN2849.png"
+  },
+  {
+    "codigo": "TC01",
+    "codigo_barras": "",
+    "nombre": "Tijera TC01",
+    "tipo": "Tijeras",
+    "imagen": "imagenes/TC01.png"
+  },
+  {
+    "codigo": "REGLA MEDIDOR DE TIPS",
+    "codigo_barras": "",
+    "nombre": "REGLA MEDIDOR DE TIPS",
+    "tipo": "Reglas y medidores",
+    "imagen": "imagenes/REGLA MEDIDOR DE TIPS.png",
+    "buscarPorNombre": true
+  },
+  {
+    "codigo": "DN3308",
+    "codigo_barras": "",
+    "nombre": "Paleta mezcladora DN3308",
+    "tipo": "Paletas mezcladoras",
+    "imagen": "imagenes/DN3308.png"
+  },
+  {
+    "codigo": "DN3307",
+    "codigo_barras": "",
+    "nombre": "Paleta mezcladora DN3307",
+    "tipo": "Paletas mezcladoras",
+    "imagen": "imagenes/DN3307.png"
+  },
+  {
+    "codigo": "CA3909",
+    "codigo_barras": "",
+    "nombre": "Paleta mezcladora CA3909",
+    "tipo": "Paletas mezcladoras",
+    "imagen": "imagenes/CA3909.png",
+    "variantes": [
+      {
+        "color": "Gris",
+        "imagen": "imagenes/CA3909.png"
+      },
+      {
+        "color": "Azul oscuro",
+        "imagen": "imagenes/CA3909.png"
+      },
+      {
+        "color": "Azul claro",
+        "imagen": "imagenes/CA3909.png"
+      }
+    ]
   }
 ];
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Aceites para herramientas","Protectores","Paletas mezcladoras"];
+const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
@@ -1174,7 +1225,8 @@ const GRUPOS_HERRAMIENTAS = [
  {id:'cortadores',nombre:'Cortaúñas y guillotinas',icono:'▤',tipos:['Cortaúñas','Guillotinas']},
  {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Curetas','Bisturís','Uñas enterradas']},
- {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Aceites para herramientas','Protectores','Paletas mezcladoras']}
+ {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores']}
 ];
 let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
@@ -1187,6 +1239,11 @@ function encontrar(cfg){
  for(const clave of [cfg.referencia,cfg.codigo,cfg.codigo_barras]){
    const p=indiceInventario.get(normal(clave));
    if(p)return p;
+ }
+ // Solo para artículos registrados por nombre, buscar coincidencia exacta.
+ if(cfg.buscarPorNombre){
+   const nombre=normal(cfg.nombre);
+   return inventario.find(p=>normal(p?.nombre)===nombre)||null;
  }
  return null;
 }
