@@ -21,194 +21,168 @@ const productos = [
   }
 ];
 
-/* =========================================================
-   BUSCADOR GLOBAL · SOLO CONTENIDO PUBLICADO
-   ========================================================= */
-(function () {
-  const paginasPublicadas = [
-    /* Esmaltes y cartas */
-    "carta-colores-muna12ml.html","fluorescente-muna.html","jelly-muna.html","macarron-muna.html",
-    "satin-nail-muna.html","shell-muna.html","ojo-de-gato-muna.html","bases-traslucidas-muna.html",
-    "saturado-gel-muna.html","reflectivos-muna.html","craquelados-muna.html",
-    "carta-colores-munabb7ml.html","bases-traslucidas-munabb7ml.html",
-    "carta-colores-canm.html","ojo-de-gato-canm.html","bases-traslucidas-canm.html","blooming-canm.html",
-    "carta-colores-cloe.html","ojo-de-gato-cloe.html","bases-traslucidas-cloe.html",
-    "carta-colores-latin.html","ojo-de-gato-latin.html","bases-traslucidas-latin.html",
-    "carta-colores-chics-fashion.html","ojo-de-gato-chics-fashion.html","bases-traslucidas-chics-fashion.html","chics-fashion-tradicional.html",
-    "carta-colores-queenigth.html","ojo-de-gato-queenigth.html","bases-queenigth.html","vitral-queenigth.html",
-    "masglo-bases.html","masglo-brillos.html","masglo-tapa-azul.html","masglo-tapa-negra.html",
-    "brescia-bases.html","brescia-brillos.html","brescia-esmaltes.html",
+/* ===== BUSCADOR ÚNICO BELLA SHOP: UN ARCHIVO, SIN RASTREAR PÁGINAS =====
+   Mantiene el diseño existente de la portada.
+   inventario.json es la única fuente de existencias y precios.
+   Los enlaces llevan a categorías que ya están publicadas, no a rutas inventadas.
+*/
+(function(){
+  "use strict";
 
-    /* Base y Top */
-    "base-coat.html","base-rubber.html","base-rubber-color.html","base-rubber-transparente.html","top-coat.html","top-matte.html",
-
-    /* Geles */
-    "geles/geles.html","gel-nail-art/gel-metalizado.html","gel-nail-art/gel-saturacion.html","gel-nail-art/painting-gel.html","gel-nail-art/spider-gel.html","polygel/polygel.html",
-
-    /* Eléctricos */
-    "electricos/electricos.html",
-
-    /* Acrílicos */
-    "polvos-acrilicos/polvos-acrilicos.html",
-
-    /* Líquidos */
-    "liquido-moldeador.html",
-    "preparadores/nivelador-ph.html","preparadores/primer.html","preparadores/protein-bond.html",
-    "removedores/removedor-gel.html","removedores/removedor-liquido.html","removedores/removedores.html",
-
-    /* ILU: carta/páginas activas */
-    "esmaltes-ilu/color-nail-gel.html","esmaltes-ilu/index.html","esmaltes-ilu/esmaltesilu.html",
-    "esmaltes-ilu/base-rubber-force.html","esmaltes-ilu/ojo-de-gato.html"
+  const CATEGORIAS = [
+    {nombre:"Esmaltes",url:"esmaltes.html",palabras:"esmalte esmaltes semipermanente semi tradicionales"},
+    {nombre:"Muna",url:"muna.html",palabras:"muna"},
+    {nombre:"CANM",url:"canm.html",palabras:"canm"},
+    {nombre:"Cloe",url:"cloe.html",palabras:"cloe cloy"},
+    {nombre:"Latin Nails",url:"latin.html",palabras:"latin"},
+    {nombre:"Queenigth",url:"queenigth.html",palabras:"queenigth queenight"},
+    {nombre:"Chic's Fashion",url:"chics-fashion.html",palabras:"chics chic fashion"},
+    {nombre:"ILU",url:"esmaltes-ilu/index.html",palabras:"ilu"},
+    {nombre:"Base y Top Coat",url:"base-top.html",palabras:"base rubber top coat"},
+    {nombre:"Geles",url:"geles/geles.html",palabras:"gel geles nail art painting spider metalizado saturado"},
+    {nombre:"Polygel",url:"polygel/polygel.html",palabras:"polygel poly gel"},
+    {nombre:"Eléctricos",url:"electricos/electricos.html",palabras:"lampara lamparas drill extractor raspacallos electrico uv led"},
+    {nombre:"Polvos Acrílicos",url:"polvos-acrilicos/polvos-acrilicos.html",palabras:"polvo acrilico acrilicos"},
+    {nombre:"Herramientas",url:"herramientas/index.html",palabras:"herramienta herramientas guillotina imanes cortacuticula pusher repujador"},
+    {nombre:"Pinceles",url:"pinceles/index.html",palabras:"pincel pinceles brush liner"},
+    {nombre:"Tips y Press On",url:"tips%20y%20press%20on/index.html",palabras:"tips press on uñas postizas"},
+    {nombre:"Removedores",url:"removedores/removedores.html",palabras:"removedor quitaesmalte ablandador cuticula callos acetona"},
+    {nombre:"Preparadores",url:"preparadores/preparadores.html",palabras:"primer protein bond ultrabond nivelador ph preparador"},
+    {nombre:"Líquidos",url:"liquidos.html",palabras:"liquido monomero moldeador"}
   ];
+  const normal = valor=>String(valor ?? "").normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"").toLowerCase()
+    .replace(/[^a-z0-9]+/g," ").trim();
+  const normalCodigo = valor=>normal(valor).replace(/\s+/g,"");
 
-  const destinos = [
-    {nombre:"Esmaltes",url:"esmaltes.html",claves:"esmalte esmaltes"},
-    {nombre:"Semipermanentes",url:"semipermanente.html",claves:"semi semis semipermanente semipermanentes"},
-    {nombre:"Base y Top Coat",url:"base-top.html",claves:"base bases top top coat"},
-    {nombre:"Geles",url:"geles/geles.html",claves:"gel geles gel nail art polygel builder gel construccion construcción painting spider metalizado saturacion"},
-    {nombre:"Gel Nail Art",url:"gel-nail-art/gel-nail-art.html",claves:"gel nail art painting spider metalizado saturacion"},
-    {nombre:"Polygel",url:"polygel/polygel.html",claves:"polygel moldes molde"},
-    {nombre:"Eléctricos",url:"electricos/electricos.html",claves:"electricos electrico lampara drill extractor press"},
-    {nombre:"Polvos Acrílicos",url:"polvos-acrilicos/polvos-acrilicos.html",claves:"polvo polvos acrilico acrilicos"},
-    {nombre:"Líquidos",url:"liquidos.html",claves:"liquido liquidos"},
-    {nombre:"Removedores",url:"removedores/removedores.html",claves:"removedor removedores acetona cuticula callos"},
-    {nombre:"Preparadores",url:"preparadores/preparadores.html",claves:"preparador preparadores primer nivelador protein bond ultrabond"},
-    {nombre:"Líquido moldeador",url:"liquido-moldeador.html",claves:"liquido moldeador poly smooth"},
-    {nombre:"ILU",url:"esmaltes-ilu/color-nail-gel.html",claves:"ilu ojo gato rubber color nail gel"},
-    {nombre:"Muna",url:"muna.html",claves:"muna"},
-    {nombre:"Queenigth",url:"queenigth.html",claves:"queenigth queenight"},
-    {nombre:"Chic’s Fashion",url:"chics-fashion.html",claves:"chics chic fashion"},
-    {nombre:"CANM",url:"canm.html",claves:"canm"},
-    {nombre:"Cloe",url:"cloe.html",claves:"cloe"},
-    {nombre:"Latin",url:"latin.html",claves:"latin"}
-  ];
-
-  let indice = [];
-  let promesaIndice = null;
-
-  function norm(v){
-    return String(v == null ? "" : v).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
-  }
-  function limpiarHtml(v){
-    return String(v||"").replace(/<[^>]*>/g," ").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/\s+/g," ").trim();
-  }
-  function tituloPagina(html,url){
-    const h1=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-    const title=html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-    return limpiarHtml((h1&&h1[1])||(title&&title[1])||url.replace(/\.html$/i,"").replace(/[\/-]+/g," "));
-  }
-  function extraerRegistros(html,url){
-    const salida=[];
-    const vistos=new Set();
-    const agregar=(nombre,codigo,extra)=>{
-      nombre=limpiarHtml(nombre);
-      codigo=limpiarHtml(codigo);
-      if(!nombre || nombre.length<2) return;
-      const k=norm(nombre+" "+codigo+" "+url);
-      if(vistos.has(k)) return;
-      vistos.add(k);
-      salida.push({nombre,codigo,url,busqueda:norm(nombre+" "+codigo+" "+extra+" "+url),tipo:"Producto"});
-    };
-
-    const objetos=html.match(/\{[\s\S]{0,1300}?\}/g)||[];
-    objetos.forEach(obj=>{
-      const n=obj.match(/(?:nombre|name)\s*:\s*["'`]([^"'`]{2,180})["'`]/i);
-      const c=obj.match(/(?:codigo|código|ref|referencia|referencia_interna|codigo_barras)\s*:\s*["'`]([^"'`]{1,120})["'`]/i);
-      const m=obj.match(/(?:marca)\s*:\s*["'`]([^"'`]{1,100})["'`]/i);
-      if(n) agregar(n[1],c?c[1]:"",m?m[1]:"");
-    });
-
-    const tarjetas=html.match(/<(?:article|div)[^>]*(?:producto|product-card|tarjeta-producto|card-producto)[^>]*>[\s\S]{0,1800}?<\/(?:article|div)>/gi)||[];
-    tarjetas.forEach(t=>{
-      const n=t.match(/<(?:h2|h3|h4)[^>]*>([\s\S]*?)<\/(?:h2|h3|h4)>/i);
-      const c=t.match(/(?:data-(?:codigo|ref|referencia)|(?:ref(?:erencia)?|código|codigo)\s*[:#-]?)\s*[="']?([A-Z0-9ÑÁÉÍÓÚ._-]{2,40})/i);
-      if(n) agregar(n[1],c?c[1]:"",limpiarHtml(t).slice(0,400));
-    });
-
-    const titulo=tituloPagina(html,url);
-    if(titulo && !/bella shop$/i.test(titulo)) agregar(titulo,"",limpiarHtml(html).slice(0,1800));
-    return salida;
+  function destino(item){
+    const t=normal([item.nombre,item.categoria,item.etiquetas].filter(Boolean).join(" "));
+    // Primero herramientas: "cortacutícula" no es un removedor.
+    if(/cortacuticula|cortauñas|guillotina|alicate|pusher|repujador|tijera|iman|gubia|guiador|corta piedras|pinza|empujador/.test(t))
+      return CATEGORIAS[13];
+    if(/pincel|brush|kolinsky|liner/.test(t)) return CATEGORIAS[14];
+    if(/drill|lampara|extractor|raspacallos electrico|tina electrica|torno/.test(t))
+      return CATEGORIAS[11];
+    if(/press on|tip\b|tips\b|uñas postizas|molde de uña/.test(t)) return CATEGORIAS[15];
+    if(/removedor|quitaesmalte|acetona|ablandador|callos|removedor de cuticula/.test(t))
+      return CATEGORIAS[16];
+    if(/primer|ultrabond|protein bond|nivelador ph|preparador/.test(t)) return CATEGORIAS[17];
+    if(/polygel|poly gel/.test(t)) return CATEGORIAS[10];
+    if(/polvo acrilico|acrilico en polvo|acrylic powder/.test(t)) return CATEGORIAS[12];
+    if(/base coat|top coat|base rubber|top matte/.test(t)) return CATEGORIAS[8];
+    if(/esmalte|semipermanente|ojo de gato|jelly|reflectivo|craquelado/.test(t)){
+      if(t.includes("muna")) return CATEGORIAS[1];
+      if(t.includes("canm")) return CATEGORIAS[2];
+      if(t.includes("cloe")||t.includes("cloy")) return CATEGORIAS[3];
+      if(t.includes("latin")) return CATEGORIAS[4];
+      if(t.includes("queenigth")||t.includes("queenight")) return CATEGORIAS[5];
+      if(t.includes("chic")) return CATEGORIAS[6];
+      if(/\bilu\b/.test(t)) return CATEGORIAS[7];
+      return CATEGORIAS[0];
+    }
+    if(/gel|painting|spider|saturado/.test(t)) return CATEGORIAS[9];
+    if(/liquido|monomero/.test(t)) return CATEGORIAS[18];
+    // No anunciar productos Odoo que aún no tienen una categoría publicada.
+    return null;
   }
 
-  async function cargarPagina(url){
-    try{
-      const r=await fetch(url,{cache:"force-cache"});
-      if(!r.ok) return [];
-      const html=await r.text();
-      return extraerRegistros(html,url);
-    }catch(e){ return []; }
-  }
-
-  async function cargarIndice(){
-    if(promesaIndice) return promesaIndice;
-    promesaIndice=(async()=>{
-      const lotes=[];
-      const tam=8;
-      for(let i=0;i<paginasPublicadas.length;i+=tam){
-        const bloque=paginasPublicadas.slice(i,i+tam);
-        const datos=await Promise.all(bloque.map(cargarPagina));
-        datos.forEach(x=>lotes.push(...x));
-      }
-      const mapa=new Map();
-      lotes.forEach(x=>{
-        const k=norm(x.nombre+"|"+x.codigo+"|"+x.url);
-        if(!mapa.has(k)) mapa.set(k,x);
-      });
-      indice=[...mapa.values()];
-      return indice;
-    })();
-    return promesaIndice;
-  }
-
-  function score(item,q){
-    const palabras=q.split(" ").filter(Boolean);
-    if(!palabras.every(p=>item.busqueda.includes(p))) return -1;
-    const n=norm(item.nombre), c=norm(item.codigo);
-    let s=10;
-    if(n===q) s+=100;
-    if(c===q) s+=120;
-    if(n.startsWith(q)) s+=50;
-    if(c.startsWith(q)) s+=60;
-    palabras.forEach(p=>{ if(n.includes(p))s+=8; if(c.includes(p))s+=12; });
-    return s;
-  }
-
-  function esc(v){return String(v||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
-
-  function instalarBuscador(){
-    const input=document.getElementById("buscador");
+  function instalar(){
+    const buscador=document.getElementById("buscador");
     const panel=document.getElementById("resultados-busqueda");
-    if(!input||!panel) return;
+    if(!buscador||!panel) return; // otras páginas incluyen productos.js sin buscador
 
-    cargarIndice();
-
-    async function buscar(e){
-      e.stopImmediatePropagation();
-      const q=norm(input.value);
-      if(!q){ panel.classList.remove("activo"); panel.innerHTML=""; return; }
-      panel.classList.add("activo");
-      panel.innerHTML='<div class="sin-sugerencias">Buscando en los productos publicados...</div>';
-      await cargarIndice();
-      if(norm(input.value)!==q) return;
-
-      const prod=indice.map(x=>({x,s:score(x,q)})).filter(x=>x.s>=0).sort((a,b)=>b.s-a.s).slice(0,10).map(x=>x.x);
-      const cats=destinos.filter(d=>d.claves.split(" ").some(k=>norm(k).includes(q)||q.includes(norm(k)))).slice(0,3);
-
-      const partes=[];
-      prod.forEach(p=>partes.push('<a class="resultado-busqueda" href="'+esc(p.url)+'"><span class="resultado-icono">♡</span><span class="resultado-texto"><span class="resultado-nombre">'+esc(p.nombre)+'</span><span class="resultado-tipo">Producto publicado'+(p.codigo?' · '+esc(p.codigo):'')+'</span></span></a>'));
-      cats.forEach(c=>partes.push('<a class="resultado-busqueda" href="'+esc(c.url)+'"><span class="resultado-icono">⌕</span><span class="resultado-texto"><span class="resultado-nombre">'+esc(c.nombre)+'</span><span class="resultado-tipo">Categoría</span></span></a>'));
-      panel.innerHTML=partes.length?partes.join(""):'<div class="sin-sugerencias">No encontramos ese producto entre los que ya están publicados en la web.</div>';
+    let registros=[],promesa=null,error=false,temporizador=null;
+    function cargar(){
+      if(promesa) return promesa;
+      promesa=fetch("inventario.json",{cache:"no-store"})
+        .then(r=>{if(!r.ok) throw Error("Inventario no disponible");return r.json()})
+        .then(data=>{
+          const base=data.productos ?? data;
+          registros=(Array.isArray(base)?base:Object.values(base || {}))
+            .filter(p=>p&&Number(p.disponible ?? p.a_la_mano ?? 0)>0)
+            .map(p=>({p,href:destino(p),
+              texto:normal([p.nombre,p.codigo,p.referencia_interna,p.codigo_barras,p.marca,p.etiquetas].join(" ")),
+              codigo:normalCodigo(p.referencia_interna || p.codigo || p.codigo_barras)}))
+            .filter(x=>x.href);
+          error=false;
+          return registros;
+        }).catch(e=>{console.warn("Bella Shop buscador:",e); error=true; registros=[];return registros;});
+      return promesa;
+    }
+    const cerrar=()=>{panel.classList.remove("activo");panel.textContent=""};
+    function mensaje(texto){
+      panel.textContent="";
+      const p=document.createElement("div");p.className="sin-sugerencias";p.textContent=texto;
+      panel.appendChild(p);panel.classList.add("activo");
+    }
+    function resultado(nombre,detalle,url,icono){
+      const a=document.createElement("a");
+      a.className="resultado-busqueda";a.href=url;
+      const simbolo=document.createElement("span");simbolo.className="resultado-icono";simbolo.textContent=icono;
+      const bloque=document.createElement("span");bloque.className="resultado-texto";
+      const titulo=document.createElement("span");titulo.className="resultado-nombre";titulo.textContent=nombre;
+      const tipo=document.createElement("span");tipo.className="resultado-tipo";tipo.textContent=detalle;
+      bloque.append(titulo,tipo);a.append(simbolo,bloque);
+      panel.appendChild(a);
+    }
+    function buscar(){
+      const q=normal(buscador.value);
+      if(!q){cerrar();return}
+      const palabras=q.split(" ").filter(Boolean);
+      const categorias=CATEGORIAS.filter(d=>{
+        const texto=normal(d.nombre+" "+d.palabras);
+        return palabras.every(p=>texto.includes(p));
+      }).slice(0,4);
+      const candidatos=registros.filter(x=>palabras.every(p=>x.texto.includes(p))).map(x=>{
+        const n=normal(x.p.nombre), ref=normalCodigo(x.p.referencia_interna || x.p.codigo || x.p.codigo_barras);
+        let puntos=0;
+        if(ref===normalCodigo(q)) puntos+=300;
+        if(n===q) puntos+=250;
+        if(ref.startsWith(normalCodigo(q))) puntos+=100;
+        if(n.startsWith(q)) puntos+=90;
+        if(n.includes(q)) puntos+=40;
+        return {...x,puntos};
+      }).sort((a,b)=>b.puntos-a.puntos || String(a.p.nombre).localeCompare(String(b.p.nombre),"es")).slice(0,8);
+      panel.textContent="";
+      categorias.forEach(d=>resultado(d.nombre,"Categoría",d.url,"⌕"));
+      candidatos.forEach(x=>{
+        const p=x.p;
+        const ref=p.referencia_interna || p.codigo_barras || p.codigo || "";
+        resultado(p.nombre || "Producto Bella Shop",
+          (ref?"REF. "+ref+" · ":"")+"Disponible · Ver "+x.href.nombre,
+          x.href.url,"♡");
+      });
+      if(!categorias.length&&!candidatos.length){
+        mensaje(error?"No se pudo consultar el inventario. Recarga la página e intenta de nuevo.":
+          "No encontramos productos disponibles con esa búsqueda.");
+      }else{
+        panel.classList.add("activo");
+      }
     }
 
-    input.addEventListener("input",buscar,true);
-    input.addEventListener("focus",function(e){ if(norm(input.value)) buscar(e); },true);
-    input.addEventListener("keydown",function(e){
-      if(e.key==="Escape"){ e.stopImmediatePropagation(); panel.classList.remove("activo"); input.blur(); }
-    },true);
+    buscador.addEventListener("focus",()=>{
+      if(buscador.value.trim()) buscar();
+      cargar().then(()=>{if(document.activeElement===buscador&&buscador.value.trim())buscar()});
+    });
+    buscador.addEventListener("input",()=>{
+      clearTimeout(temporizador);
+      if(!buscador.value.trim()){cerrar();return}
+      if(!promesa) mensaje("Buscando productos disponibles...");
+      temporizador=setTimeout(()=>cargar().then(buscar),120);
+    });
+    buscador.addEventListener("keydown",e=>{
+      if(e.key==="Escape"){cerrar();buscador.blur()}
+      if(e.key==="Enter"){
+        const primero=panel.querySelector("a.resultado-busqueda");
+        if(primero){e.preventDefault();window.location.href=primero.href}
+      }
+    });
+    document.addEventListener("click",e=>{
+      if(!e.target.closest(".buscador-contenedor"))cerrar();
+    });
   }
-
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",instalarBuscador);
-  else instalarBuscador();
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",instalar);
+  else instalar();
 })();
 
 /* ===== LANZAMIENTO ILU · HOME ===== */
