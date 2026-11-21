@@ -218,4 +218,16 @@ document.querySelectorAll("#filtro-tipo .chip").forEach(b=>b.onclick=()=>{docume
 document.getElementById("buscar").addEventListener("input",filtrar);
 function filtrar(){const q=document.getElementById("buscar").value.trim().toLowerCase();const a=productos.filter(x=>(zona==="todo"||(x.zonas||[x.zona]).includes(zona))&&(uso==="todo"||(x.usos||[]).includes(uso))&&(tipo==="todo"||x.tipo===tipo)&&(!q||(x.nombre+" "+(x.marca||"")+" "+(x.codigo||"")+" "+(x.variantes||[]).map(v=>v.codigo).join(" ")).toLowerCase().includes(q)));document.getElementById("contador").textContent=a.length+" "+(a.length===1?"producto encontrado":"productos encontrados");document.getElementById("productos").innerHTML=a.length?a.map(tarjeta).join(""):'<div class="vacio"><b>No encontramos productos con esos filtros 💗</b>Prueba otra opción o vuelve a TODO.</div>';activarVariantes()}
 fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};filtrar()}).catch(()=>filtrar());
-</script></body></html>
+</script>
+<script>
+/* Abrir la categoría con el producto buscado desde el inicio de Bella Shop. */
+(function(){
+  const termino=new URLSearchParams(window.location.search).get("buscar");
+  if(!termino)return;
+  const input=document.getElementById("buscar")||document.getElementById("busqueda");
+  if(!input)return;
+  input.value=termino;
+  input.dispatchEvent(new Event("input",{bubbles:true}));
+})();
+</script>
+</body></html>
