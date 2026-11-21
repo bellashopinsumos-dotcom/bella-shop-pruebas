@@ -1128,6 +1128,9 @@
 
 
 
+  // Mantener la cantidad indicada por las fichas de producto.
+  const cantidadSolicitada=Math.min(99,Math.max(1,Math.trunc(Number(parametros.get('cantidad'))||1)));
+
   /*
   ==============================
   CARRITO
@@ -1536,7 +1539,7 @@
     if (existente) {
 
 
-      existente.cantidad++;
+      existente.cantidad += cantidadSolicitada;
 
 
     } else {
@@ -1556,8 +1559,7 @@
         precio:
           precio,
 
-        cantidad:
-          1
+        cantidad: cantidadSolicitada
 
       });
 
