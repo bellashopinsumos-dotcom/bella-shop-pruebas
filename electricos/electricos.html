@@ -84,4 +84,16 @@ function render(a){document.getElementById("contador").textContent=a.length+" "+
 function cambiarColor(c,i,btn){const x=equipos.find(y=>y.codigo===c);if(!x||!x.colores)return;const img=document.getElementById("img-"+c);if(img)img.src=x.colores[i].imagen;const input=document.getElementById("qty-"+c);if(input)input.dataset.color=x.colores[i].nombre;if(btn){btn.parentElement.querySelectorAll(".color-burbuja").forEach(b=>b.classList.remove("activa"));btn.classList.add("activa")}}
 function agregar(c){const x=equipos.find(y=>y.codigo===c),it=itemCodigo(c),m=document.getElementById("mini-"+c);if(!it){m.textContent="CÓDIGO NO ENCONTRADO";return}const stock=Number(it.disponible);if(stock<=0){m.textContent="PRODUCTO TEMPORALMENTE AGOTADO";return}const inp=document.getElementById("qty-"+c);let qty=Math.max(1,Math.min(Number(inp.value)||1,stock));inp.value=qty;const color=inp.dataset.color||(x.colores?x.colores[0].nombre:"");let car=JSON.parse(localStorage.getItem("bellaShopCarrito")||"[]"),key=c+(color?"-"+color.toLowerCase():""),ex=car.find(y=>y.key===key);const usados=car.filter(y=>y.codigo===c).reduce((s,y)=>s+Number(y.cantidad||0),0);qty=Math.min(qty,Math.max(0,stock-usados));if(qty<=0){m.textContent="STOCK MÁXIMO EN MI PEDIDO";return}if(ex)ex.cantidad=Math.min(Number(ex.cantidad||0)+qty,stock);else car.push({key,nombre:x.nombre+(color?" · Color: "+color:""),referencia:x.referencia||x.codigo,codigo:x.codigo,precio:precioDe(x),cantidad:qty,imagen:x.colores?x.colores.find(z=>z.nombre===color)?.imagen||x.imagen:x.imagen,color});localStorage.setItem("bellaShopCarrito",JSON.stringify(car));m.textContent="AGREGADO A MI PEDIDO 💗";setTimeout(()=>m.textContent="",2200)}
 actualizarFiltros();fetch("../inventario.json?actualizacion="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(d=>{inventario=d.productos||{};filtrar()}).catch(()=>filtrar());
-</script></body></html>
+</script>
+<script>
+/* Abrir la categoría con el producto buscado desde el inicio de Bella Shop. */
+(function(){
+  const termino=new URLSearchParams(window.location.search).get("buscar");
+  if(!termino)return;
+  const input=document.getElementById("buscar")||document.getElementById("busqueda");
+  if(!input)return;
+  input.value=termino;
+  input.dispatchEvent(new Event("input",{bubbles:true}));
+})();
+</script>
+</body></html>
