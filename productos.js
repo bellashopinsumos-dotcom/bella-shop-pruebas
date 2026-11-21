@@ -148,9 +148,11 @@ const productos = [
       candidatos.forEach(x=>{
         const p=x.p;
         const ref=p.referencia_interna || p.codigo_barras || p.codigo || "";
+        const urlBuscable=["electricos/electricos.html","herramientas/index.html","removedores/removedores.html"].includes(x.href.url);
+        const enlace=urlBuscable?x.href.url+"?buscar="+encodeURIComponent(ref||p.nombre):x.href.url;
         resultado(p.nombre || "Producto Bella Shop",
           (ref?"REF. "+ref+" · ":"")+"Disponible · Ver "+x.href.nombre,
-          x.href.url,"♡");
+          enlace,"♡");
       });
       if(!categorias.length&&!candidatos.length){
         mensaje(error?"No se pudo consultar el inventario. Recarga la página e intenta de nuevo.":
