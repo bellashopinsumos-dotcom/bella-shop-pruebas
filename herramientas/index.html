@@ -1712,5 +1712,17 @@ async function iniciar(){
 }
 iniciar();
 </script>
+
+<script>
+/* Abrir la categoría con el producto buscado desde el inicio de Bella Shop. */
+(function(){
+  const termino=new URLSearchParams(window.location.search).get("buscar");
+  if(!termino)return;
+  const input=document.getElementById("buscar")||document.getElementById("busqueda");
+  if(!input)return;
+  input.value=termino;
+  input.dispatchEvent(new Event("input",{bubbles:true}));
+})();
+</script>
 </body>
 </html>
