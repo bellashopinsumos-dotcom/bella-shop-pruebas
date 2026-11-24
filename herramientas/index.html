@@ -191,7 +191,7 @@ const HERRAMIENTAS = [
     "codigo": "11-30-0",
     "codigo_barras": "049774018149",
     "nombre": "ALICATE METÁLICO MUNDIAL FLEX 11-30-0",
-    "tipo": "Alicates",
+    "tipo": "Cortacutículas",
     "imagen": "imagenes/049774018149.png"
   },
   {
@@ -226,7 +226,7 @@ const HERRAMIENTAS = [
     "codigo": "220-772",
     "codigo_barras": "4002320452060",
     "nombre": "ALICATE SOLIGEN GVH",
-    "tipo": "Alicates"
+    "tipo": "Cortacutículas"
   },
   {
     "codigo": "CA01",
@@ -858,7 +858,7 @@ const HERRAMIENTAS = [
     "codigo": "MPZ40",
     "codigo_barras": "",
     "nombre": "MPZ40 CORTACUTICULA ALICATE PARA PIES MARA",
-    "tipo": "Alicates"
+    "tipo": "Cortacutículas"
   },
   {
     "codigo": "MPZ51",
@@ -1537,13 +1537,13 @@ const HERRAMIENTAS = [
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Raspacallos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas","Imanes"];
+const ORDEN_FILTROS = ["Cortacutículas","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Raspacallos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas","Imanes"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
  {id:'repujadores',nombre:'Repujadores y pushers',icono:'💅',tipos:['Repujadores','Pushers']},
  {id:'cortadores',nombre:'Cortaúñas y guillotinas',icono:'▤',tipos:['Cortaúñas','Guillotinas']},
- {id:'tijeras',nombre:'Tijeras y alicates',icono:'✂',tipos:['Tijeras','Alicates']},
+ {id:'tijeras',nombre:'Tijeras',icono:'✂',tipos:['Tijeras']},
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
  {id:'imanes',nombre:'Imanes',icono:'🧲',tipos:['Imanes']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
