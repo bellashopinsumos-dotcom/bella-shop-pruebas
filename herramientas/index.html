@@ -209,12 +209,6 @@ const HERRAMIENTAS = [
     "imagen": "imagenes/DN4747.png"
   },
   {
-    "codigo": "DEJA154",
-    "codigo_barras": "DEJA154",
-    "nombre": "LIMA PICO DE LORO METALICA DEJA154",
-    "tipo": "Limas metálicas"
-  },
-  {
     "codigo": "7896075707141",
     "codigo_barras": "7896075707141",
     "nombre": "10109 CORTACUTICULA MERHEJE ESPATULA BASICO ROSADO KRISMAR",
@@ -309,9 +303,19 @@ const HERRAMIENTAS = [
   {
     "codigo": "CA3053",
     "codigo_barras": "CA3053",
-    "nombre": "LIMA PICO LORO CA3053",
+    "nombre": "LIMA METÁLICA PICO DE LORO",
     "tipo": "Limas metálicas",
-    "imagen": "imagenes/CA3053.png"
+    "imagen": "imagenes/CA3053.png",
+    "proveedores": [
+      {
+        "codigo": "CA3053",
+        "codigo_barras": "CA3053"
+      },
+      {
+        "codigo": "DEJA154",
+        "codigo_barras": "DEJA154"
+      }
+    ]
   },
   {
     "codigo": "DN3259",
@@ -466,9 +470,19 @@ const HERRAMIENTAS = [
   {
     "codigo": "DEJA153",
     "codigo_barras": "DEJA153",
-    "nombre": "DEJA153 PUSHER METALICO",
+    "nombre": "PUSHER METÁLICO PLATEADO",
     "tipo": "Pushers",
-    "imagen": "imagenes/DEJA153.png"
+    "imagen": "imagenes/DEJA153.png",
+    "proveedores": [
+      {
+        "codigo": "DEJA153",
+        "codigo_barras": "DEJA153"
+      },
+      {
+        "codigo": "MERCI-719",
+        "codigo_barras": "719"
+      }
+    ]
   },
   {
     "codigo": "DEJA176",
@@ -1009,12 +1023,6 @@ const HERRAMIENTAS = [
     "tipo": "Pushers"
   },
   {
-    "codigo": "MERCI-719",
-    "codigo_barras": "719",
-    "nombre": "PUSHER PLATEADO MERCI 719",
-    "tipo": "Pushers"
-  },
-  {
     "codigo": "DN3725",
     "codigo_barras": "DN3725",
     "nombre": "PUSHER TORNASOL",
@@ -1446,7 +1454,17 @@ function carrito(){try{const x=JSON.parse(localStorage.getItem('bellaShopCarrito
 function guardarCarrito(x){localStorage.setItem('bellaShopCarrito',JSON.stringify(x));actualizarCarrito()}
 function actualizarCarrito(){$('numeroCarrito').textContent=carrito().reduce((s,x)=>s+Math.max(0,Number(x.cantidad)||0),0)}
 function referenciaInventario(cfg){return String(cfg.referencia||cfg.codigo)}
+function registrosGrupo(cfg){
+ return (cfg.proveedores||[]).map(x=>({cfg:{...cfg,...x,proveedores:null},p:encontrar(x)})).filter(x=>x.p);
+}
 function encontrar(cfg){
+ if(cfg.proveedores){
+   const registros=registrosGrupo(cfg);
+   if(!registros.length)return null;
+   const activos=registros.filter(x=>stockDe(x.p)>0);
+   const precios=(activos.length?activos:registros).map(x=>Number(x.p.precio_venta||0));
+   return {...registros[0].p,disponible:registros.reduce((s,x)=>s+stockDe(x.p),0),precio_venta:Math.min(...precios),precio_maximo:Math.max(...precios)};
+ }
  // Las variantes comparten la referencia real en inventario.json.
  for(const clave of [cfg.referencia,cfg.codigo,cfg.codigo_barras]){
    const p=indiceInventario.get(normal(clave));
@@ -1467,12 +1485,23 @@ function codigoStockEnCarrito(item){
  return cfg?normal(referenciaInventario(cfg)):codigo;
 }
 function cantidadEnCarrito(cfg){
+ if(cfg.proveedores)return cfg.proveedores.reduce((s,x)=>s+cantidadEnCarrito(x),0);
  const clave=normal(referenciaInventario(cfg));
  return carrito().filter(x=>codigoStockEnCarrito(x)===clave)
    .reduce((a,x)=>a+Math.max(0,Number(x.cantidad)||0),0);
 }
 function notificar(t){const e=$('toast');e.textContent=t;e.classList.add('visible');clearTimeout(notificar._t);notificar._t=setTimeout(()=>e.classList.remove('visible'),3000)}
 function agregar(cfg,p,q){
+ if(cfg.proveedores){
+   let pendiente=Math.max(0,Math.min(q,stockDe(p)-cantidadEnCarrito(cfg)));
+   const registros=registrosGrupo(cfg).sort((a,b)=>Number(a.p.precio_venta||0)-Number(b.p.precio_venta||0));
+   for(const r of registros){
+     const unidades=Math.min(pendiente,Math.max(0,stockDe(r.p)-cantidadEnCarrito(r.cfg)));
+     if(unidades>0){agregar(r.cfg,r.p,unidades);pendiente-=unidades;}
+     if(pendiente<=0)break;
+   }
+   return;
+ }
  if(!p){notificar('Código no encontrado');return}
  const referencia=String(p.referencia_interna||referenciaInventario(cfg));
  // Cada color ocupa una línea distinta del carrito, pero descuenta del mismo stock DEJA164.
@@ -1530,7 +1559,7 @@ function crearProducto(cfg){
  }else foto.append(elemento('span','sin-foto','Imagen pendiente'));
  articulo.append(foto);
  const datos=elemento('div','datos');
- datos.append(elemento('span','tipo',cfg.tipo||'Herramientas'),elemento('h2','',cfg.nombre),elemento('div','ref','REF. '+referenciaInventario(cfg)+(cfg.color?' · '+cfg.color:'')));
+ datos.append(elemento('span','tipo',cfg.tipo||'Herramientas'),elemento('h2','',cfg.nombre),elemento('div','ref','REF. '+(cfg.proveedores?cfg.proveedores.map(x=>x.codigo).join(' / '):referenciaInventario(cfg))+(cfg.color?' · '+cfg.color:'')));
  if(variantes.length){
    const selectorColores=elemento('div','variantes');
    const tituloColores=elemento('span','variantes-label','Selecciona el color:');
@@ -1555,7 +1584,8 @@ function crearProducto(cfg){
    }
    datos.append(selectorColores,colorElegidoTexto);
  }
- datos.append(elemento('div','precio',p&&precio>0?dinero(precio):'Precio según inventario'));
+ datos.append(elemento('div','precio',p&&precio>0?(p.precio_maximo>precio?dinero(precio)+' – '+dinero(p.precio_maximo):dinero(precio)):'Precio según inventario'));
+ if(cfg.proveedores&&p?.precio_maximo>precio)datos.append(elemento('div','nota','Se agregan primero las unidades de menor precio; el carrito conserva el precio de cada referencia.'));
  let estado,clase;
  if(!p){estado='Código no encontrado';clase='missing'}
  else if(stock<=0){estado='Temporalmente no disponible';clase='no'}
@@ -1635,7 +1665,7 @@ function mostrar(){
  }
  const q=normal(busqueda);
  const disponibles=herramientasDisponibles();
- const visibles=disponibles.filter(cfg=>coincideGrupo(cfg)&&(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.referencia,cfg.codigo_barras,cfg.tipo,cfg.color].some(v=>normal(v).includes(q))));
+ const visibles=disponibles.filter(cfg=>coincideGrupo(cfg)&&(filtro==='Todas'||(cfg.tipo||'Herramientas')===filtro)&&(!q||[cfg.nombre,cfg.codigo,cfg.referencia,cfg.codigo_barras,cfg.tipo,cfg.color,...(cfg.proveedores||[]).flatMap(x=>[x.codigo,x.codigo_barras])].some(v=>normal(v).includes(q))));
  // Artículos con existencias y fotos primero; códigos sin correspondencia siguen accesibles.
  visibles.sort((a,b)=>{
    const pa=encontrar(a),pb=encontrar(b);
