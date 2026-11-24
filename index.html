@@ -2345,6 +2345,8 @@ footer{
  .cat-elegante strong::after{font-size:10px;right:-14px}
 }
 
+
+.lupa{pointer-events:auto;cursor:pointer}.resultado-busqueda.seleccionado{background:#fff1f5}.busqueda-etiqueta{font-size:10px;letter-spacing:.07em;font-weight:800;color:#a56a81;padding:10px 12px 4px}.busqueda-ver-todos{border:1px solid #efd5de;background:#fff5f8;color:#a74466;font:700 12px Arial;border-radius:12px;padding:12px;width:100%;cursor:pointer;margin:4px 0}.resultado-icono{position:relative;overflow:hidden}.busqueda-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff2f6}.resultado-nombre{overflow-wrap:anywhere}.resultados-busqueda{max-height:min(420px,55vh);overscroll-behavior:contain}#lista-productos>.resultado-busqueda{border:1px solid #efd5de;background:#fff;border-radius:15px;min-height:72px}#productos{scroll-margin-top:120px}@media(max-width:650px){.resultados-busqueda{max-height:48vh}.resultado-busqueda{padding:10px 7px;gap:8px}#buscador{font-size:16px}}
 </style>
 </head>
 <body>
@@ -2356,7 +2358,7 @@ footer{
 <img alt="Bella Shop - Tienda de Belleza" src="imagenes/Logo Bellashop png.png"/>
 </a>
 <div class="buscador-contenedor">
-<input autocomplete="off" id="buscador" placeholder="Buscar productos, marcas o categorías..." type="text"/>
+<input autocomplete="off" id="buscador" placeholder="Buscar productos, marcas o referencias..." type="search"/>
 <span class="lupa">
         ⌕
       </span>
@@ -2615,188 +2617,111 @@ function toggleCategorias(){
 <script src="productos.js"></script>
 <script>
 
-/* ===== BUSCADOR GLOBAL BELLA SHOP =====
-   Fuente principal: inventario.json
-   Busca por nombre, referencia interna, código de barras y palabras del producto.
-   Los resultados llevan a la categoría/página correspondiente cuando se puede identificar.
-*/
-const buscador = document.getElementById("buscador");
-const panelBusqueda = document.getElementById("resultados-busqueda");
-const seccionResultados = document.getElementById("productos");
-const listaProductos = document.getElementById("lista-productos");
-const sinResultados = document.getElementById("sin-resultados");
 
-let inventarioBusqueda = [];
-
-const destinosBusqueda = [
-  {nombre:"Esmaltes",tipo:"Categoría",url:"esmaltes.html",palabras:["esmalte","esmaltes","semi","semipermanente"]},
-  {nombre:"Semipermanentes",tipo:"Categoría",url:"semipermanente.html",palabras:["semi","semis","semipermanente","semipermanentes"]},
-  {nombre:"Base y Top Coat",tipo:"Categoría",url:"base-top.html",palabras:["base","bases","top","top coat"]},
-  {nombre:"Gel Nail Art",tipo:"Categoría",url:"gel-nail-art.html",palabras:["gel","nail art","painting","liner"]},
-  {nombre:"Eléctricos",tipo:"Categoría",url:"electricos/electricos.html",palabras:["electricos","eléctricos","lampara","lámpara","drill","extractor","press"]},
-  {nombre:"Polygel",tipo:"Categoría",url:"polygel/polygel.html",palabras:["polygel","poly gel","moldes"]},
-  {nombre:"Polvos Acrílicos",tipo:"Categoría",url:"polvos-acrilicos.html",palabras:["acrilico","acrílico","polvo","polvos"]},
-  {nombre:"Líquidos",tipo:"Categoría",url:"liquidos.html",palabras:["liquido","líquido","liquidos","líquidos"]},
-  {nombre:"Pinceles",tipo:"Categoría",url:"pinceles/index.html",palabras:["pincel","pinceles","brush","kolinsky"]},
-  {nombre:"Herramientas",tipo:"Categoría",url:"herramientas/index.html",palabras:["herramientas","herramienta","alicate","cortauñas","tijeras","empujador","repujador"]},
-  {nombre:"Removedores",tipo:"Líquidos",url:"removedores/removedores.html",palabras:["removedor","removedores","acetona","cuticula","cutícula","callos"]},
-  {nombre:"Preparadores",tipo:"Líquidos",url:"preparadores/preparadores.html",palabras:["preparador","preparadores","primer","ultrabond","bond"]},
-  {nombre:"Líquido Moldeador",tipo:"Líquidos",url:"liquido-moldeador.html",palabras:["liquido moldeador","líquido moldeador","moldeador","poly smooth"]},
-  {nombre:"Muna",tipo:"Marca",url:"muna.html",palabras:["muna"]},
-  {nombre:"ILU",tipo:"Marca",url:"ilu.html",palabras:["ilu"]},
-  {nombre:"Queenigth",tipo:"Marca",url:"queenigth.html",palabras:["queenigth","queen"]},
-  {nombre:"Chic's Fashion",tipo:"Marca",url:"chics-fashion.html",palabras:["chics","chic","chic's","fashion"]}
-];
-
-function normalizarTexto(texto){
-  return String(texto || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/\s+/g," ")
-    .trim();
+/* Buscador único: inventario real, coincidencias normalizadas y catálogo publicado. */
+function norm(v){return String(v??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\bcorta\s+u[nñ]as?\b/g,"cortaunas").replace(/\bcorta\s+cuticulas?\b/g,"cortacuticulas").replace(/\bsemi\s+permanentes?\b/g,"semipermanente").replace(/\braspa\s+callos?\b/g,"raspacallos").replace(/\bpoly\s+gel\b/g,"polygel")}
+function compact(v){return norm(v).replace(/\s/g,"")}
+function words(v){return norm(v).split(" ").filter(Boolean)}
+function near(a,b){if(a===b)return true;if(a.length<4||b.length<4||Math.abs(a.length-b.length)>1)return false;let i=0,j=0,e=0;while(i<a.length&&j<b.length){if(a[i]===b[j]){i++;j++;continue}if(++e>1)return false;if(a.length>b.length)i++;else if(b.length>a.length)j++;else{i++;j++}}return e+(a.length-i)+(b.length-j)<=1}
+function rank(item,query){const q=norm(query),qc=compact(query);if(!q)return -1;const name=norm(item.nombre),codes=(item.codes||[]).map(compact).filter(Boolean),hay=norm(item.text),w=words(hay);if(codes.includes(qc))return 1000;if(name===q)return 800;let score=0;if(name.startsWith(q))score+=130;else if(name.includes(q))score+=95;if(compact(name).includes(qc))score+=55;if(qc.length>=2&&codes.some(x=>x.startsWith(qc)))score+=150;const tokens=words(q).filter(x=>!["de","para","el","la","los","las","y","un","una","con"].includes(x));if(!tokens.length)return -1;for(const t of tokens){if(w.includes(t)){score+=35;continue}if(hay.includes(t)){score+=15;continue}if(t.length>=4&&w.some(v=>v.startsWith(t)||near(t,v))){score+=4;continue}if(score>=150&&tokens.length===1)return score;return -1}return score}
+function route(p){const n=norm(p.nombre);if(/\b(removedores?|acetona|removedor|removedor de cuticula|removedor de callos)\b/.test(n))return "removedores/removedores.html";if(/\b(lamparas?|drill|extractor|torno|raspacallos electrico|tina electrica)\b/.test(n))return "electricos/electricos.html";if(/\b(cortaunas?|cortacuticulas?|alicates?|tijeras?|pinzas?|pushers?|repujadores?|empujadores?|guillotinas?|imanes?|iman|cepillos?|raspacallos?|espatulas?|gubias?|curetas?|palos? de naranj[oa]|limas? metalicas?)\b/.test(n))return "herramientas/index.html";if(/\b(pinceles?|liner|kolinsky|brush|punzones?)\b/.test(n)&&!/\bgel\b/.test(n))return "pinceles/index.html";if(/\b(tips|press on|unas postizas)\b/.test(n))return "tips%20y%20press%20on/index.html";if(/\b(primer|ultrabond|protein bond|nivelador|preparador)\b/.test(n))return "preparadores/preparadores.html";if(/\b(moldeador|poly smooth)\b/.test(n))return "liquido-moldeador.html";if(/\bmonomeros?\b/.test(n))return "monomeros/monomeros.html";if(/\bpolygel\b/.test(n))return "polygel/polygel.html";if(/\bbuilder\b/.test(n))return "builder%20gel/index.html";if(/\bgel de construccion\b/.test(n))return "gel%20de%20construccion/index.html";if(/\bgel solido\b/.test(n))return "gel%20solido/index.html";if(/\b(polvo acrilico|polvos acrilicos|acrilico en polvo)\b/.test(n))return "polvos-acrilicos/polvos-acrilicos.html";if(/\b(base coat|base rubber|base ruber|top coat|top matte|base traslucida)\b/.test(n))return "base-top.html";if(/\b(gel nail|painting gel|spider gel|gel metalizado|gel saturacion|gel relieve)\b/.test(n))return "gel-nail-art/gel-nail-art.html";if(/\b(esmalte|semipermanente|gel polish)\b/.test(n)){for(const [k,u] of [["muna","muna.html"],["canm","canm.html"],["cloe","cloe.html"],["latin","latin.html"],["ilu","esmaltes-ilu/index.html"],["queenight","queenigth.html"],["queenigth","queenigth.html"],["chics","chics-fashion.html"],["masglo","masglo.html"],["brescia","brescia.html"]])if(words(n).includes(k))return u;return "esmaltes.html"}if(/\bgel\b/.test(n))return "geles/geles.html";return ""}
+const buscador=document.getElementById("buscador"), panelBusqueda=document.getElementById("resultados-busqueda");
+const seccionResultados=document.getElementById("productos"), listaProductos=document.getElementById("lista-productos"), sinResultados=document.getElementById("sin-resultados");
+const destinos=[["Herramientas","herramientas/index.html","herramientas cortauñas corta uñas cortacuticulas corta cuticula alicates tijeras pinzas pusher pushers repujador empujador guillotina iman imanes cepillo raspacallos espatula gubia cureta palitos naranjo lima metalica"],["Pinceles","pinceles/index.html","pincel pinceles liner brush kolinsky punzon lengua de gato pata de cabra"],["Eléctricos","electricos/electricos.html","electricos lamparas lampara drill torno extractor aspirador"],["Tips y Press On","tips%20y%20press%20on/index.html","tips press press on uñas postizas"],["Esmaltes","esmaltes.html","esmaltes esmalte tradicional"],["Semipermanentes","semipermanente.html","semi semis semipermanentes semipermanente gel polish"],["Base y Top Coat","base-top.html","base bases base rubber top coat top matte"],["Geles","geles/geles.html","gel geles"],["Gel Nail Art","gel-nail-art/gel-nail-art.html","nail art painting gel spider gel gel metalizado gel relieve gel saturacion"],["Polygel","polygel/polygel.html","polygel poly gel moldes dual"],["Builder Gel","builder%20gel/index.html","builder gel"],["Gel de construcción","gel%20de%20construccion/index.html","gel construccion"],["Gel sólido","gel%20solido/index.html","gel solido"],["Polvos acrílicos","polvos-acrilicos/polvos-acrilicos.html","polvos acrilicos polvo acrilico"],["Líquidos","liquidos.html","liquido liquidos"],["Removedores","removedores/removedores.html","removedor removedores acetona removedor cuticula removedor callos"],["Preparadores","preparadores/preparadores.html","primer preparador ultrabond protein bond nivelador ph"],["Monómeros","monomeros/monomeros.html","monomero monomeros"],["Líquido moldeador","liquido-moldeador.html","liquido moldeador poly smooth"],["Muna","muna.html","muna"],["CANM","canm.html","canm"],["Cloe","cloe.html","cloe"],["Latin","latin.html","latin latin nails"],["ILU","esmaltes-ilu/index.html","ilu"],["Queenight","queenigth.html","queenight queenigth"],["Chic's Fashion","chics-fashion.html","chics chic fashion"],["Masglo","masglo.html","masglo"],["Brescia","brescia.html","brescia"]];
+let publicados=[{"ref":"211","barras":"","nombre":"CORTAUÑAS CURVO BELLA COSMETIC","tipo":"Cortaúñas","url":"herramientas/index.html","q":"211","img":""},{"ref":"727","barras":"727","nombre":"PUSHER DE RETIRO PLATEADO MERCI-727","tipo":"Pushers","url":"herramientas/index.html","q":"727","img":""},{"ref":"2581","barras":"2581","nombre":"GUILLOTINA CON MEDIDOR SEGO","tipo":"Guillotinas","url":"herramientas/index.html","q":"2581","img":""},{"ref":"2588","barras":"2588","nombre":"GUILLOTINA TORNAZOL SEGO 2588","tipo":"Guillotinas","url":"herramientas/index.html","q":"2588","img":"herramientas/imagenes/2588.png"},{"ref":"4151","barras":"20255030508319","nombre":"PUSHER RETIRO Y CUTICULA","tipo":"Pushers","url":"herramientas/index.html","q":"4151","img":""},{"ref":"4154","barras":"2025060104154","nombre":"PINZA CURVA C PLATEADA","tipo":"Pinzas","url":"herramientas/index.html","q":"4154","img":""},{"ref":"10109","barras":"7896075707158","nombre":"CORTACUTÍCULA MERHEJE 10109 · MORADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"10109","img":"herramientas/imagenes/10109.png"},{"ref":"10116","barras":"7891060825381","nombre":"10116 CORTA CUTICULA MUNDIAL FLEX KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"10116","img":""},{"ref":"10117","barras":"7891060679724","nombre":"10117 CORTACUTICULA MUNDIAL METALICO CLASICO KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"10117","img":""},{"ref":"15051","barras":"15051","nombre":"ACEITE DE HERRAMIENTAS KS","tipo":"Aceites para herramientas","url":"herramientas/index.html","q":"15051","img":"herramientas/imagenes/ACEITEHERRAMIENTAS.png"},{"ref":"202519904","barras":"202519904","nombre":"CORTACUTÍCULA KS 31/5 CON PALANCA · 5 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"202519904","img":"herramientas/imagenes/31ks.png"},{"ref":"202519908","barras":"202519908","nombre":"CORTACUTÍCULA KS 80/7 CON PALANCA · 7 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"202519908","img":"herramientas/imagenes/80ks.png"},{"ref":"202519916","barras":"202519916","nombre":"EXPLORADOR GUBIA KS","tipo":"Gubias","url":"herramientas/index.html","q":"202519916","img":"herramientas/imagenes/gubiaks.png"},{"ref":"11-30-0","barras":"049774018149","nombre":"ALICATE METÁLICO MUNDIAL FLEX 11-30-0","tipo":"Cortacutículas","url":"herramientas/index.html","q":"11-30-0","img":"herramientas/imagenes/049774018149.png"},{"ref":"CA3888","barras":"CA3888","nombre":"REPUJADOR PARA DESENTERRAR CA3888","tipo":"Repujadores","url":"herramientas/index.html","q":"CA3888","img":"herramientas/imagenes/CA3888.png"},{"ref":"DN4747","barras":"DN4747","nombre":"PUSHER CON LIMA DN4747","tipo":"Pushers","url":"herramientas/index.html","q":"DN4747","img":"herramientas/imagenes/DN4747.png"},{"ref":"7896075707141","barras":"7896075707141","nombre":"10109 CORTACUTICULA MERHEJE ESPATULA BASICO ROSADO KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"7896075707141","img":"herramientas/imagenes/MERHEJE-ROSADO.png"},{"ref":"7896075707110","barras":"7896075707110","nombre":"10109 CORTACUTICULA MERHEJE ESPATULA BASICO VERDE KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"7896075707110","img":"herramientas/imagenes/MERHEJE-VERDE.png"},{"ref":"220-772","barras":"4002320452060","nombre":"ALICATE SOLIGEN GVH","tipo":"Cortacutículas","url":"herramientas/index.html","q":"220-772","img":""},{"ref":"CA01","barras":"7709550180639","nombre":"CORTACUTÍCULA AKARELLA CA01","tipo":"Cortacutículas","url":"herramientas/index.html","q":"CA01","img":"herramientas/imagenes/CA01.png"},{"ref":"CA3886","barras":"CA3886","nombre":"CA3886 REPUJADOR PARA DESENTERRAR","tipo":"Repujadores","url":"herramientas/index.html","q":"CA3886","img":""},{"ref":"DEJA094","barras":"6971164889135","nombre":"CEPILLO MANICURE X2 PASTEL","tipo":"Cepillos","url":"herramientas/index.html","q":"DEJA094","img":""},{"ref":"7707896017244","barras":"7707896017244","nombre":"CM01 CORTACUTICULA TORNASOL AKARELLA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"7707896017244","img":""},{"ref":"0818","barras":"0818","nombre":"CORTA UÑAS RECTO KRISMAR","tipo":"Cortaúñas","url":"herramientas/index.html","q":"0818","img":""},{"ref":"20/8","barras":"202519901","nombre":"CORTACUTÍCULA KS 20/8 CON PALANCA · 8 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"20/8","img":"herramientas/imagenes/20ks.png"},{"ref":"61/12","barras":"202519906","nombre":"CORTACUTÍCULA KS 61/12 CON PALANCA · 12 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"61/12","img":"herramientas/imagenes/61ks.png"},{"ref":"61/16","barras":"202519907","nombre":"CORTACUTÍCULA KS 61/16 CON PALANCA · 16 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"61/16","img":"herramientas/imagenes/61ks.png"},{"ref":"B25-69","barras":"B25-69","nombre":"CORTACUTÍCULA B25-69","tipo":"Cortacutículas","url":"herramientas/index.html","q":"B25-69","img":"herramientas/imagenes/B25-69.png"},{"ref":"GVH-064","barras":"8768465457648","nombre":"CORTACUTICULA COLORES GVH-064","tipo":"Cortacutículas","url":"herramientas/index.html","q":"GVH-064","img":""},{"ref":"CA4024","barras":"CA4024","nombre":"CORTACUTICULA CON RESORVE METALICO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"CA4024","img":"herramientas/imagenes/CA4004.png"},{"ref":"CA3053","barras":"CA3053","nombre":"LIMA PICO LORO CA3053","tipo":"Limas metálicas","url":"herramientas/index.html","q":"CA3053","img":"herramientas/imagenes/CA3053.png"},{"ref":"DEJA154","barras":"DEJA154","nombre":"LIMA PICO DE LORO METALICA DEJA154","tipo":"Limas metálicas","url":"herramientas/index.html","q":"DEJA154","img":"herramientas/imagenes/CA3053.png"},{"ref":"DN3259","barras":"5685688432593","nombre":"CORTACUTÍCULA ANDISA DN3259 · DORADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3259","img":"herramientas/imagenes/DN3259.png"},{"ref":"GVH-062","barras":"8768465457556","nombre":"CORTACUTICULA DORADO GVH-062","tipo":"Cortacutículas","url":"herramientas/index.html","q":"GVH-062","img":""},{"ref":"NOR167110","barras":"NOR167110","nombre":"CORTACUTICULA FIERCE","tipo":"Cortacutículas","url":"herramientas/index.html","q":"NOR167110","img":""},{"ref":"1131-0","barras":"049774018224","nombre":"CORTACUTÍCULA FLEX MUNDIAL AMELOW 1131-0 · MORADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"1131-0M","img":"herramientas/imagenes/1131-0M.png"},{"ref":"1131-0","barras":"049774018224","nombre":"CORTACUTÍCULA FLEX MUNDIAL AMELOW 1131-0 · ROSADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"1131-0R","img":"herramientas/imagenes/1131-0R.png"},{"ref":"30/5","barras":"202519902","nombre":"CORTACUTÍCULA KS 30/5 CON RESORTE · 5 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"30/5","img":"herramientas/imagenes/30ks.png"},{"ref":"30/7","barras":"202519903","nombre":"CORTACUTÍCULA KS 30/7 CON RESORTE · 7 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"30/7","img":"herramientas/imagenes/30ks.png"},{"ref":"31/7","barras":"202519905","nombre":"CORTACUTÍCULA KS 31/7 CON PALANCA · 7 MM","tipo":"Cortacutículas","url":"herramientas/index.html","q":"31/7","img":"herramientas/imagenes/31ks.png"},{"ref":"MUNAALI","barras":"793969937981","nombre":"CORTACUTICULA MUNA PROFESIONAL","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MUNAALI","img":""},{"ref":"GVH-063","barras":"8768465457327","nombre":"CORTACUTICULA ORO ROSA GVH-063","tipo":"Cortacutículas","url":"herramientas/index.html","q":"GVH-063","img":""},{"ref":"T-D7","barras":"6902672252067","nombre":"CORTACUTÍCULA PARA PIES AMELOW T-D7","tipo":"Cortacutículas","url":"herramientas/index.html","q":"T-D7","img":"herramientas/imagenes/T-D7.png"},{"ref":"MKQ-801","barras":"8056899088010","nombre":"CORTACUTÍCULA SEGO BEAUTYTOOL MKQ-801 · DORADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MKQ-801","img":"herramientas/imagenes/MKQ-801.png"},{"ref":"MKQ-801","barras":"8056899088010","nombre":"CORTACUTÍCULA SEGO BEAUTYTOOL MKQ-801 · PLATEADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MKQ-801P","img":"herramientas/imagenes/MKQ-801P.png"},{"ref":"DN3265","barras":"DN3265","nombre":"CORTACUTÍCULA TORNASOL ANDISA DN3265","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3265","img":"herramientas/imagenes/DN3265.png"},{"ref":"K18","barras":"","nombre":"CORTACUTÍCULA VCK AMELOW K18 · BLANCO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"K18B","img":"herramientas/imagenes/K18B.png"},{"ref":"K18","barras":"","nombre":"CORTACUTÍCULA VCK AMELOW K18 · ROSADO","tipo":"Cortacutículas","url":"herramientas/index.html","q":"K18R","img":"herramientas/imagenes/K18R.png"},{"ref":"211A","barras":"211A","nombre":"CORTAUÑAS RECTO BELLA COSMETIC","tipo":"Cortaúñas","url":"herramientas/index.html","q":"211A","img":""},{"ref":"GVH-218","barras":"GVH-218","nombre":"CORTAUÑAS RECTO GVH-218","tipo":"Cortaúñas","url":"herramientas/index.html","q":"GVH-218","img":""},{"ref":"DEJA140","barras":"DEJA140","nombre":"DEJA140 CORTA UÑAS CURVO TRIM","tipo":"Cortaúñas","url":"herramientas/index.html","q":"DEJA140","img":"herramientas/imagenes/DEJA140.png"},{"ref":"211-1","barras":"211'1","nombre":"CORTAUÑAS CURVO TRIM","tipo":"Cortaúñas","url":"herramientas/index.html","q":"211-1","img":"herramientas/imagenes/211-1.png"},{"ref":"GVH-216","barras":"6925100102116","nombre":"CORTAUÑAS CURVO TRIM","tipo":"Cortaúñas","url":"herramientas/index.html","q":"GVH-216","img":"herramientas/imagenes/211-1.png"},{"ref":"NOR16119-211","barras":"NOR16119-211","nombre":"CORTAUÑAS CURVO TRIM","tipo":"Cortaúñas","url":"herramientas/index.html","q":"NOR16119-211","img":"herramientas/imagenes/211-1.png"},{"ref":"DEJA153","barras":"DEJA153","nombre":"PUSHER METÁLICO PLATEADO","tipo":"Pushers","url":"herramientas/index.html","q":"DEJA153","img":"herramientas/imagenes/DEJA153.png"},{"ref":"MERCI-719","barras":"719","nombre":"PUSHER METÁLICO PLATEADO","tipo":"Pushers","url":"herramientas/index.html","q":"MERCI-719","img":"herramientas/imagenes/DEJA153.png"},{"ref":"DEJA176","barras":"6954154101769","nombre":"CORTACUTÍCULA DEJAVÚ DEJA176","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DEJA176","img":"herramientas/imagenes/DEJA176.png"},{"ref":"DEJA180","barras":"6954154101806","nombre":"CORTACUTÍCULA DEJAVÚ DEJA180","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DEJA180","img":"herramientas/imagenes/DEJA180.png"},{"ref":"DN1129","barras":"","nombre":"DN1129/ TIJERA DE MANICURA TORNASOL ANDISA","tipo":"Tijeras","url":"herramientas/index.html","q":"DN1129","img":""},{"ref":"DN1305","barras":"DN1305","nombre":"DN1305 PINZA PLASTICA MULTICOLOR ANDISA","tipo":"Pinzas","url":"herramientas/index.html","q":"DN1305","img":""},{"ref":"DN1557","barras":"","nombre":"DN1557 CORTA CUTICULA PLATEADO ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN1557","img":""},{"ref":"DN1559","barras":"5685688415596","nombre":"DN1559 CORTACUTICULA GRANDE ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN1559","img":"herramientas/imagenes/DN1559.png"},{"ref":"DN1561","barras":"","nombre":"DN1561 CORTAUÑAS DE COLORES ANDISA","tipo":"Cortaúñas","url":"herramientas/index.html","q":"DN1561","img":""},{"ref":"DN1565","barras":"DN1565","nombre":"DN1565/ EMPUJADOR Y CORTACUTICULA ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN1565","img":""},{"ref":"DN1728","barras":"DN1728","nombre":"DN1728 PUSHER BICOLOR ANDISA","tipo":"Pushers","url":"herramientas/index.html","q":"DN1728","img":""},{"ref":"DN2025","barras":"DN2025","nombre":"DN2025 CEPILLO DE UÑA X1 ANDISA","tipo":"Cepillos","url":"herramientas/index.html","q":"DN2025","img":""},{"ref":"DN2028","barras":"DN2028","nombre":"DN2028 CORTACUTICULA METALICO TORNASOL ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN2028","img":""},{"ref":"DN2029","barras":"DN2029","nombre":"DN2029 CORTACUTICULA TORNASOL ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN2029","img":""},{"ref":"DN2415","barras":"DN2415","nombre":"DN2415 TIJERA PARA MOLDES NEGRA MATTE","tipo":"Tijeras","url":"herramientas/index.html","q":"DN2415","img":""},{"ref":"DN2417","barras":"DN2417","nombre":"DN2417 TIJERAS BICOLOR","tipo":"Tijeras","url":"herramientas/index.html","q":"DN2417","img":""},{"ref":"DN2494","barras":"","nombre":"DN2494 CORTACUTICULA DORADO ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN2494","img":""},{"ref":"DN2706","barras":"DN2706","nombre":"DN2706 CEPILLO DE UÑAS X2 ANDISA","tipo":"Cepillos","url":"herramientas/index.html","q":"DN2706","img":"herramientas/imagenes/DN2706.png"},{"ref":"DN3010","barras":"DN3010","nombre":"DN3010 PALOS DE NARANJO X100 ANDISA","tipo":"Palos de naranjo","url":"herramientas/index.html","q":"DN3010","img":"herramientas/imagenes/DN3010.png"},{"ref":"DN3012","barras":"DN3012","nombre":"DN3012 PALOS DE NARANJO X10 ANDISA","tipo":"Palos de naranjo","url":"herramientas/index.html","q":"DN3012","img":""},{"ref":"DN352","barras":"dn352","nombre":"DN352 LIMA METALICA PICO DE LORO ANDISA","tipo":"Limas metálicas","url":"herramientas/index.html","q":"DN352","img":""},{"ref":"DN354","barras":"DN354","nombre":"DN354 CORTA UÑAS RECTO","tipo":"Cortaúñas","url":"herramientas/index.html","q":"DN354","img":""},{"ref":"DN3583","barras":"DN3583","nombre":"CORTACUTÍCULA ANDISA DN3583","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3583","img":"herramientas/imagenes/DN3583.png"},{"ref":"DN3584","barras":"DN3584","nombre":"CORTACUTÍCULA ANDISA DN3584","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3584","img":"herramientas/imagenes/DN3584.png"},{"ref":"DN3585","barras":"DN3585","nombre":"DN3585 CORTACUTICULA G08","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3585","img":""},{"ref":"DN3622","barras":"DN3622","nombre":"DN3622 CORTACUTICULA TORNASOL","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN3622","img":""},{"ref":"DN3723","barras":"DN3723","nombre":"DN3723 GUILLOTINA CON MEDIDOR","tipo":"Guillotinas","url":"herramientas/index.html","q":"DN3723","img":""},{"ref":"DN3724","barras":"DN3724","nombre":"PUSHER DORADO ANDISA DN3724","tipo":"Pushers","url":"herramientas/index.html","q":"DN3724","img":"herramientas/imagenes/DN3724.png"},{"ref":"DN466","barras":"DN466","nombre":"DN466 CEPILLO DE UÑAS ANDISA","tipo":"Cepillos","url":"herramientas/index.html","q":"DN466","img":""},{"ref":"DN495","barras":"DN495","nombre":"DN495 CORTACUTICULA TORNASOL ANDISA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"DN495","img":""},{"ref":"DN570","barras":"DN570","nombre":"DN570 PINZA DISCLOIDE ANDISA","tipo":"Pinzas","url":"herramientas/index.html","q":"DN570","img":""},{"ref":"DN573","barras":"DN573","nombre":"DN573 PINZA CURVATURA C TORNASOL ANDISA","tipo":"Pinzas","url":"herramientas/index.html","q":"DN573","img":"herramientas/imagenes/DN573.png"},{"ref":"DN632","barras":"DN632","nombre":"DN632/ PINZA PARA MOLDEAR UÑAS ANDISA","tipo":"Pinzas","url":"herramientas/index.html","q":"DN632","img":""},{"ref":"DN762","barras":"DN762","nombre":"DN762/ TIJERA DE MANICURA ANDISA","tipo":"Tijeras","url":"herramientas/index.html","q":"DN762","img":""},{"ref":"DN796","barras":"DN796","nombre":"DN796 KIT DE PUSHER Y REMOVEDOR X3 ANDISA","tipo":"Pushers","url":"herramientas/index.html","q":"DN796","img":"herramientas/imagenes/DN796.png"},{"ref":"DUO","barras":"","nombre":"DUO PUSHER PROFESIONAL ROSADO MARA","tipo":"Pushers","url":"herramientas/index.html","q":"DUO","img":""},{"ref":"ESPATULA EN METAL STAR","barras":"","nombre":"ESPATULA EN METAL STAR","tipo":"Espátulas","url":"herramientas/index.html","q":"ESPATULA EN METAL STAR","img":""},{"ref":"ESPATULA PARA RETIRO SEMI BOREAL ANDISA","barras":"","nombre":"ESPATULA PARA RETIRO SEMI BOREAL ANDISA","tipo":"Espátulas","url":"herramientas/index.html","q":"ESPATULA PARA RETIRO SEMI BOREAL ANDISA","img":""},{"ref":"ESPATULA PARA RETIRO SEMI EN ROSAD ANDISA","barras":"","nombre":"ESPATULA PARA RETIRO SEMI EN ROSAD ANDISA","tipo":"Espátulas","url":"herramientas/index.html","q":"ESPATULA PARA RETIRO SEMI EN ROSAD ANDISA","img":""},{"ref":"NOR16396","barras":"","nombre":"GUILLOTINA CON GUIA KRISMAR","tipo":"Guillotinas","url":"herramientas/index.html","q":"NOR16396","img":""},{"ref":"DEJA164","barras":"8202604060356","nombre":"GUILLOTINA CON MEDIDOR DEJA164","tipo":"Guillotinas","url":"herramientas/index.html","q":"DEJA164","img":"herramientas/imagenes/DEJA164N.png"},{"ref":"IN519","barras":"IN519","nombre":"GUILLOTINA CON MEDIDOR IN-519","tipo":"Guillotinas","url":"herramientas/index.html","q":"IN519","img":""},{"ref":"DX111","barras":"","nombre":"GUILLOTINA CON MEDIDOR MUNA","tipo":"Guillotinas","url":"herramientas/index.html","q":"DX111","img":""},{"ref":"HC16865","barras":"7707130871908","nombre":"HC16865 BISTURI CRISTAL","tipo":"Bisturís","url":"herramientas/index.html","q":"HC16865","img":"herramientas/imagenes/HC-16865.png"},{"ref":"7706478870116","barras":"7706478870116","nombre":"HERRAMIENTA UÑAS ENTERRADA IN 271","tipo":"Uñas enterradas","url":"herramientas/index.html","q":"7706478870116","img":"herramientas/imagenes/IN-271.png"},{"ref":"HK-036","barras":"","nombre":"HK036 REPUJADOR PUSHER HAKU","tipo":"Repujadores","url":"herramientas/index.html","q":"HK-036","img":""},{"ref":"HK-043","barras":"7702345450436","nombre":"HK043 GUILLOTINA TORNASOL HAKU","tipo":"Guillotinas","url":"herramientas/index.html","q":"HK-043","img":"herramientas/imagenes/HK043.png"},{"ref":"HK-271","barras":"6970869670185","nombre":"HK271 GUILLOTINA CON MEDIDOR HAKU","tipo":"Guillotinas","url":"herramientas/index.html","q":"HK-271","img":""},{"ref":"HK-282","barras":"","nombre":"HK282 TIJERA PUNTA CURVA HAKU","tipo":"Tijeras","url":"herramientas/index.html","q":"HK-282","img":""},{"ref":"HK-316","barras":"","nombre":"HK316 CORTACUTICULA SOLINGEN HAKU","tipo":"Cortacutículas","url":"herramientas/index.html","q":"HK-316","img":""},{"ref":"HK-328","barras":"7702345453284","nombre":"HK328 CORTA UÑAS RECTO HAKU","tipo":"Cortaúñas","url":"herramientas/index.html","q":"HK-328","img":""},{"ref":"LIMA METALICA BELLA SHOP","barras":"","nombre":"LIMA METALICA BELLA SHOP","tipo":"Limas metálicas","url":"herramientas/index.html","q":"LIMA METALICA BELLA SHOP","img":""},{"ref":"MPP-04","barras":"7709335696232","nombre":"MPP-04 CURETA DOBLE PEDICUERA MARA","tipo":"Curetas","url":"herramientas/index.html","q":"MPP-04","img":""},{"ref":"MPZ11-1","barras":"7709152970119","nombre":"REPUJADOR DE CUTÍCULA MUNA MPZ11-1","tipo":"Repujadores","url":"herramientas/index.html","q":"MPZ11-1","img":"herramientas/imagenes/MPZ11-1.png"},{"ref":"MPZ2","barras":"7708152970204","nombre":"MPZ2 CORTACUTICULA EN ACERO GALVANIZADO MARA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MPZ2","img":""},{"ref":"MPZ21","barras":"7709529710041","nombre":"MPZ21 CORTACUTICULA TORNASOL MARA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MPZ21","img":""},{"ref":"MPZ40","barras":"","nombre":"MPZ40 CORTACUTICULA ALICATE PARA PIES MARA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MPZ40","img":""},{"ref":"MPZ51","barras":"7709325880511","nombre":"MPZ51 GUILLOTINA PASTA MARA","tipo":"Guillotinas","url":"herramientas/index.html","q":"MPZ51","img":"herramientas/imagenes/MPZ51.png"},{"ref":"MPZ55-2","barras":"","nombre":"MPZ55-2 CORTACULTICULA METALICA MARA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MPZ55-2","img":""},{"ref":"MPZ65-2","barras":"","nombre":"MPZ65-2 CORTACUTICULA COLORES MARA","tipo":"Cortacutículas","url":"herramientas/index.html","q":"MPZ65-2","img":""},{"ref":"MPZ71-1","barras":"7709325887114","nombre":"MPZ71-1 CORTA UÑAS METALICO TORNASOL MARA","tipo":"Cortaúñas","url":"herramientas/index.html","q":"MPZ71-1","img":""},{"ref":"MPZ71-2","barras":"7709325887121","nombre":"MPZ71-2 CORTA UÑAS METALICO MARA","tipo":"Cortaúñas","url":"herramientas/index.html","q":"MPZ71-2","img":""},{"ref":"MRJ2310-218","barras":"","nombre":"MRJ2310-218 GUILLOTINA MEDIDOR BARU","tipo":"Guillotinas","url":"herramientas/index.html","q":"MRJ2310-218","img":""},{"ref":"MRJ34","barras":"","nombre":"MRJ34 PALETA MEZCLADORA METALICA PEQUEÑA BARU","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"MRJ34","img":""},{"ref":"MUNA-719","barras":"","nombre":"MUNA-719 REPUJADOR DE CUTICULA MUNA","tipo":"Repujadores","url":"herramientas/index.html","q":"MUNA-719","img":""},{"ref":"NOR021","barras":"","nombre":"NOR021 PINZA RECTA PLATEADA KRISMAR","tipo":"Pinzas","url":"herramientas/index.html","q":"NOR021","img":"herramientas/imagenes/NOR021.png"},{"ref":"NOR10184","barras":"","nombre":"NOR10184 CORTACUTICULA TRASLUCIDO KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"NOR10184","img":""},{"ref":"NOR10246","barras":"","nombre":"NOR10246 CORTA CUTICULA ORO ROSA KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"NOR10246","img":""},{"ref":"NOR16075","barras":"","nombre":"GUILLOTINA METÁLICA NOR16075","tipo":"Guillotinas","url":"herramientas/index.html","q":"NOR16075","img":"herramientas/imagenes/NOR16075.png"},{"ref":"NOR16185","barras":"NOR16185","nombre":"NOR16185 PINZA CURVA PLATEADA KRISMAR","tipo":"Pinzas","url":"herramientas/index.html","q":"NOR16185","img":"herramientas/imagenes/NOR16185.png"},{"ref":"NOR16389","barras":"NOR16389","nombre":"NOR16389 GUILLOTINA METALICA KRISMAR","tipo":"Guillotinas","url":"herramientas/index.html","q":"NOR16389","img":""},{"ref":"NOR16413","barras":"NOR16413","nombre":"PUSHER DE RETIRO DE CUTÍCULA NOR16413","tipo":"Pushers","url":"herramientas/index.html","q":"NOR16413","img":"herramientas/imagenes/NOR16413.png"},{"ref":"NOR16488","barras":"","nombre":"NOR16488 TAPA SILICONA PARA CPRTACUTICULA KRISMAR","tipo":"Protectores","url":"herramientas/index.html","q":"NOR16488","img":""},{"ref":"NOR16709","barras":"7805649510001","nombre":"NOR16709 CORTACUTICULA DORADO KRISMAR","tipo":"Cortacutículas","url":"herramientas/index.html","q":"NOR16709","img":""},{"ref":"EB-194","barras":"194","nombre":"PALOS DE NARANJO X10 EB-194","tipo":"Palos de naranjo","url":"herramientas/index.html","q":"EB-194","img":"herramientas/imagenes/194.png"},{"ref":"IN-544","barras":"7704542505445","nombre":"PINZA DE CURVATURA C TORNASOL IN-544","tipo":"Pinzas","url":"herramientas/index.html","q":"IN544","img":"herramientas/imagenes/IN-544.png"},{"ref":"HK-542","barras":"HK-542","nombre":"PINZA LUJO MATE HAKU","tipo":"Pinzas","url":"herramientas/index.html","q":"HK-542","img":""},{"ref":"1880001700258","barras":"1880001700258","nombre":"PINZA MOSQUITO KS","tipo":"Pinzas","url":"herramientas/index.html","q":"1880001700258","img":"herramientas/imagenes/pinzamosquitoks.png"},{"ref":"#10","barras":"202519909","nombre":"PINZA PODOLÓGICA KS #10 · 10 MM","tipo":"Pinzas","url":"herramientas/index.html","q":"#10","img":"herramientas/imagenes/pinzaks.png"},{"ref":"6972613446664","barras":"6972613446664","nombre":"PINZA RECTA ZOLA TORNASOL BARU","tipo":"Pinzas","url":"herramientas/index.html","q":"6972613446664","img":""},{"ref":"PINZA-64","barras":"7172667400615","nombre":"PINZA-61 PINZA RECTA DU","tipo":"Pinzas","url":"herramientas/index.html","q":"PINZA-64","img":""},{"ref":"PINZA64 PINZA CURVA DU","barras":"","nombre":"PINZA64 PINZA CURVA DU","tipo":"Pinzas","url":"herramientas/index.html","q":"PINZA64 PINZA CURVA DU","img":""},{"ref":"MPZ69","barras":"7709325880696","nombre":"PUSHER METÁLICO MARA MPZ69","tipo":"Pushers","url":"herramientas/index.html","q":"MPZ69","img":"herramientas/imagenes/MPZ69.png"},{"ref":"MPP-01","barras":"7709335696201","nombre":"PUSHER PARA MANICURE Y PEDICURE MARA","tipo":"Pushers","url":"herramientas/index.html","q":"MPP-01","img":""},{"ref":"PUSHER PLATEADO 2 EN 1  BELLA SHOP","barras":"","nombre":"PUSHER PLATEADO 2 EN 1 BELLA SHOP","tipo":"Pushers","url":"herramientas/index.html","q":"PUSHER PLATEADO 2 EN 1  BELLA SHOP","img":""},{"ref":"DN3725","barras":"DN3725","nombre":"PUSHER TORNASOL","tipo":"Pushers","url":"herramientas/index.html","q":"DN3725","img":""},{"ref":"PUSHER VICKY GLOW","barras":"","nombre":"PUSHER VICKY GLOW","tipo":"Pushers","url":"herramientas/index.html","q":"PUSHER VICKY GLOW","img":""},{"ref":"CA3887","barras":"CA3887","nombre":"REPUJADOR PARA DESENTERRAR CA3887","tipo":"Repujadores","url":"herramientas/index.html","q":"CA3887","img":"herramientas/imagenes/CA3887.png"},{"ref":"20/2","barras":"202519917","nombre":"REPUJADOR KS 20/2","tipo":"Repujadores","url":"herramientas/index.html","q":"20/2","img":"herramientas/imagenes/repujador20ks.png"},{"ref":"30/2","barras":"202519920","nombre":"REPUJADOR KS 30/2","tipo":"Repujadores","url":"herramientas/index.html","q":"30/2","img":"herramientas/imagenes/repujador30ks.png"},{"ref":"60/4","barras":"202519918","nombre":"REPUJADOR KS 60/4","tipo":"Repujadores","url":"herramientas/index.html","q":"60/4","img":"herramientas/imagenes/repujador60ks.png"},{"ref":"90/3","barras":"202519914","nombre":"REPUJADOR KS 90/3","tipo":"Repujadores","url":"herramientas/index.html","q":"90/3","img":"herramientas/imagenes/repujador90ks.png"},{"ref":"90/42","barras":"202519919","nombre":"REPUJADOR KS 90/4.2","tipo":"Repujadores","url":"herramientas/index.html","q":"90/42","img":"herramientas/imagenes/9040.2ks.png"},{"ref":"ZS246870","barras":"ZS246870","nombre":"REPUJADOR DE CUTICULA MUNA","tipo":"Repujadores","url":"herramientas/index.html","q":"ZS246870","img":""},{"ref":"ZS251570","barras":"ZS251570","nombre":"REPUJADOR DE CUTICULA MUNA","tipo":"Repujadores","url":"herramientas/index.html","q":"ZS251570","img":""},{"ref":"GM113","barras":"GM113","nombre":"PUSHER GM113 LRIS","tipo":"Pushers","url":"herramientas/index.html","q":"GM113","img":"herramientas/imagenes/MG113.png"},{"ref":"GM114","barras":"6972613449948","nombre":"PUSHER GM114 LRIS","tipo":"Pushers","url":"herramientas/index.html","q":"GM114","img":"herramientas/imagenes/GM114.png"},{"ref":"1880001700241","barras":"1880001700241","nombre":"REPUJADOR TOKIO KS","tipo":"Repujadores","url":"herramientas/index.html","q":"1880001700241","img":"herramientas/imagenes/tokioks.png"},{"ref":"TC113","barras":"","nombre":"TC113 CORTAUÑAS MUNA","tipo":"Cortaúñas","url":"herramientas/index.html","q":"TC113","img":""},{"ref":"DN2010","barras":"DN2010","nombre":"TIJERA CUTICULA ANDISA DN2010","tipo":"Tijeras","url":"herramientas/index.html","q":"DN2010","img":""},{"ref":"DN2009","barras":"DN2009","nombre":"TIJERA DE CUTICULA M-101","tipo":"Tijeras","url":"herramientas/index.html","q":"DN2009","img":""},{"ref":"40/3","barras":"202519912","nombre":"TIJERA KS 40/3 · TALLA L","tipo":"Tijeras","url":"herramientas/index.html","q":"40/3","img":"herramientas/imagenes/40ks.png"},{"ref":"50/1","barras":"202519910","nombre":"TIJERA KS 50/1 · TALLA S","tipo":"Tijeras","url":"herramientas/index.html","q":"50/1","img":"herramientas/imagenes/50ks.png"},{"ref":"50/2","barras":"202519911","nombre":"TIJERA KS 50/2 · TALLA M","tipo":"Tijeras","url":"herramientas/index.html","q":"50/2","img":"herramientas/imagenes/50ks.png"},{"ref":"DN4253","barras":"DN4253","nombre":"TIJERA PARA MANICURA RUSA DN4253","tipo":"Tijeras","url":"herramientas/index.html","q":"DN4253","img":"herramientas/imagenes/DN4253.png"},{"ref":"AG-1","barras":"6935826625813","nombre":"TIJERA PEQUEÑA METALICA AG-1 AMELOW","tipo":"Tijeras","url":"herramientas/index.html","q":"AG-1","img":"herramientas/imagenes/6935826625813.png"},{"ref":"202519915","barras":"202519915","nombre":"EXPLORADOR COBRA KS · 2 MM Y 3 MM","tipo":"Exploradores","url":"herramientas/index.html","q":"202519915","img":"herramientas/imagenes/cobraks.png"},{"ref":"202519921","barras":"202519921","nombre":"EXPLORADOR GUIADOR KS · 2 MM Y 3 MM","tipo":"Exploradores","url":"herramientas/index.html","q":"202519921","img":"herramientas/imagenes/guiadorks.png"},{"ref":"H-001","barras":"6934538360012","nombre":"DICLOIDE PROFESIONAL H-001","tipo":"Pinzas","url":"herramientas/index.html","q":"H-001","img":"herramientas/imagenes/H-001.png"},{"ref":"DN2849","barras":"","nombre":"KIT DE PUSHERS X4 ANDISA DN2849","tipo":"Kits de herramientas","url":"herramientas/index.html","q":"DN2849","img":"herramientas/imagenes/DN2849.png"},{"ref":"TC01","barras":"","nombre":"TIJERA TC01","tipo":"Tijeras","url":"herramientas/index.html","q":"TC01","img":"herramientas/imagenes/TC01.png"},{"ref":"REGLA MEDIDOR DE TIPS","barras":"","nombre":"REGLA MEDIDOR DE TIPS","tipo":"Reglas y medidores","url":"herramientas/index.html","q":"REGLA MEDIDOR DE TIPS","img":"herramientas/imagenes/REGLA MEDIDOR DE TIPS.png"},{"ref":"DN3308","barras":"","nombre":"PALETA MEZCLADORA DN3308","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"DN3308","img":"herramientas/imagenes/DN3308.png"},{"ref":"DN3307","barras":"","nombre":"PALETA MEZCLADORA DN3307","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"DN3307","img":"herramientas/imagenes/DN3307.png"},{"ref":"CA3909","barras":"","nombre":"PALETA MEZCLADORA CA3909","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"CA3909","img":"herramientas/imagenes/CA3909.png"},{"ref":"DN4830","barras":"","nombre":"PALETA MEZCLADORA DN4830","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"DN4830","img":"herramientas/imagenes/DN4830.png"},{"ref":"DN4829","barras":"","nombre":"PALETA MEZCLADORA DN4829","tipo":"Paletas mezcladoras","url":"herramientas/index.html","q":"DN4829","img":"herramientas/imagenes/DN4829.png"},{"ref":"MRJ-108","barras":"","nombre":"CORTA PIEDRAS MRJ-108","tipo":"Corta piedras","url":"herramientas/index.html","q":"MRJ-108","img":"herramientas/imagenes/MRJ-10B.png"},{"ref":"DN4902","barras":"","nombre":"GUILLOTINA DN4902","tipo":"Guillotinas","url":"herramientas/index.html","q":"DN4902","img":"herramientas/imagenes/DN4902.png"},{"ref":"DN4834","barras":"","nombre":"BANDEJA DN4834","tipo":"Bandejas","url":"herramientas/index.html","q":"DN4834","img":"herramientas/imagenes/DN4834.png"},{"ref":"REP02","barras":"","nombre":"PUSHER REP02","tipo":"Pushers","url":"herramientas/index.html","q":"REP02","img":"herramientas/imagenes/REP02.png"},{"ref":"DN4888","barras":"","nombre":"IMÁN PARA OJO DE GATO DN4888","tipo":"Imanes","url":"herramientas/index.html","q":"DN4888","img":"herramientas/imagenes/DN4888.png"},{"ref":"DN2525","barras":"","nombre":"IMÁN PARA OJO DE GATO DN2525","tipo":"Imanes","url":"herramientas/index.html","q":"DN2525","img":"herramientas/imagenes/DN2525.png"},{"ref":"DN4251","barras":"","nombre":"IMÁN PARA OJO DE GATO DN4251","tipo":"Imanes","url":"herramientas/index.html","q":"DN4251","img":"herramientas/imagenes/DN4251.png"},{"ref":"NOR17135","barras":"","nombre":"IMÁN PARA OJO DE GATO NOR17135","tipo":"Imanes","url":"herramientas/index.html","q":"NOR17135","img":"herramientas/imagenes/NOR17135.png"},{"ref":"CA4673","barras":"","nombre":"IMÁN PARA OJO DE GATO CA4673","tipo":"Imanes","url":"herramientas/index.html","q":"CA4673","img":"herramientas/imagenes/CA4673.png"},{"ref":"MRJ096","barras":"","nombre":"IMÁN PARA OJO DE GATO MRJ096","tipo":"Imanes","url":"herramientas/index.html","q":"MRJ096","img":"herramientas/imagenes/MRJ096.png"},{"ref":"DEJA091","barras":"","nombre":"IMÁN PARA OJO DE GATO DEJA091","tipo":"Imanes","url":"herramientas/index.html","q":"DEJA091","img":"herramientas/imagenes/DEJA091.png"},{"ref":"DN3841","barras":"","nombre":"IMÁN PARA OJO DE GATO DN3841","tipo":"Imanes","url":"herramientas/index.html","q":"DN3841","img":"herramientas/imagenes/DN3841.png"},{"ref":"DN3627","barras":"","nombre":"IMÁN PARA OJO DE GATO DN3627","tipo":"Imanes","url":"herramientas/index.html","q":"DN3627","img":"herramientas/imagenes/DN3627.png"},{"ref":"DN3608","barras":"","nombre":"IMÁN Y PINCEL LENGUA DE GATO DN3608","tipo":"Imanes","url":"herramientas/index.html","q":"DN3608","img":"herramientas/imagenes/DN3608.png"},{"ref":"NOR16635","barras":"NOR16635","nombre":"CEPILLO FACIAL KRISMAR NOR16635","tipo":"Cepillos","url":"herramientas/index.html","q":"NOR16635","img":"herramientas/imagenes/NOR16635.png"},{"ref":"DEJA143","barras":"DEJA143","nombre":"CEPILLO PEDICURE GRANDE DEJA143","tipo":"Cepillos","url":"herramientas/index.html","q":"DEJA143","img":"herramientas/imagenes/DEJA143.png"},{"ref":"DN2707","barras":"DN2707","nombre":"CEPILLO PARA UÑAS CON MANGO ANDISA DN2707","tipo":"Cepillos","url":"herramientas/index.html","q":"DN2707","img":"herramientas/imagenes/DN2707.png"},{"ref":"CA4689","barras":"CA4689","nombre":"RASPACALLOS ACRÍLICO CA4689","tipo":"Raspacallos","url":"herramientas/index.html","q":"CA4689","img":"herramientas/imagenes/CA4689.png"},{"ref":"DN1430","barras":"DN1430","nombre":"PINZA RECTA PARA PESTAÑAS CON GOMA ANDISA DN1430","tipo":"Pinzas","url":"herramientas/index.html","q":"DN1430","img":"herramientas/imagenes/DN1430.png"},{"ref":"DN2424","barras":"DN2424","nombre":"RASPACALLOS HIELO ANDISA DN2424","tipo":"Raspacallos","url":"herramientas/index.html","q":"DN2424","img":"herramientas/imagenes/DN2424.png"}];
+let inventarioBusqueda=[], indiceBusqueda=[], estadoCarga="cargando", seleccion=-1, resultadosActuales=[], categoriasActuales=[], limiteResultados=40, mostrandoTodos=false;
+const moneda=new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0});
+function crearIndice(){
+ const mapa=new Map();
+ for(const p of publicados)for(const k of [p.ref,p.barras]){if(k&&!mapa.has(compact(k)))mapa.set(compact(k),p)}
+ indiceBusqueda=inventarioBusqueda.filter(p=>p&&p.nombre&&Number(p.disponible??p.a_la_mano??0)>0).map(p=>{
+  const codes=[p.referencia_interna,p.codigo,p.codigo_barras,p.codigo_original_odoo].filter(Boolean);
+  const publicado=codes.map(k=>mapa.get(compact(k))).find(Boolean);
+  const nombre=publicado?.nombre||p.nombre, url=publicado?.url||route(p);
+  const ref=p.referencia_interna||p.codigo||p.codigo_barras||"";
+  return {nombre,codes,ref,stock:Number(p.disponible??p.a_la_mano),precio:Number(p.precio_venta),url,publicado,img:publicado?.img,text:[nombre,p.nombre,...codes,p.marca,p.categoria,p.etiquetas,publicado?.tipo].filter(Boolean).join(" ")};
+ });
 }
-
-function textoInventario(p){
-  return normalizarTexto([
-    p.nombre,
-    p.codigo,
-    p.referencia_interna,
-    p.codigo_barras,
-    p.marca,
-    p.categoria,
-    p.etiquetas
-  ].filter(Boolean).join(" "));
+function buscarProductos(q){
+ return indiceBusqueda.map(x=>({x,s:rank(x,q)})).filter(v=>v.s>=0).sort((a,b)=>b.s-a.s||Number(!!b.x.publicado)-Number(!!a.x.publicado)||a.x.nombre.localeCompare(b.x.nombre,"es")).map(v=>v.x);
 }
-
-function buscarDestinos(texto){
-  return destinosBusqueda.filter(d=>{
-    const contenido=normalizarTexto([d.nombre,d.tipo,...d.palabras].join(" "));
-    return contenido.includes(texto);
-  });
+function buscarCategorias(q){
+ return destinos.map(d=>({d,s:rank({nombre:d[0],text:d[0]+" "+d[2],codes:[]},q)})).filter(v=>v.s>=0).sort((a,b)=>b.s-a.s).slice(0,4).map(v=>v.d);
 }
-
-function buscarInventario(texto){
-  if(!texto) return [];
-  const palabras=texto.split(" ").filter(Boolean);
-  return inventarioBusqueda
-    .map(p=>{
-      const contenido=textoInventario(p);
-      if(!palabras.every(x=>contenido.includes(x))) return null;
-      let puntos=0;
-      const nombre=normalizarTexto(p.nombre);
-      const ref=normalizarTexto(p.referencia_interna || p.codigo);
-      const barras=normalizarTexto(p.codigo_barras);
-      if(nombre===texto) puntos+=100;
-      if(ref===texto || barras===texto) puntos+=120;
-      if(nombre.startsWith(texto)) puntos+=60;
-      if(nombre.includes(texto)) puntos+=35;
-      if(ref.includes(texto) || barras.includes(texto)) puntos+=50;
-      return {p,puntos};
-    })
-    .filter(Boolean)
-    .sort((a,b)=>b.puntos-a.puntos || String(a.p.nombre).localeCompare(String(b.p.nombre),"es"))
-    .map(x=>x.p);
+function enlaceProducto(p){
+ if(p.publicado?.url==="herramientas/index.html")return p.url+"?q="+encodeURIComponent(p.publicado.q||p.ref);
+ if(p.url==="electricos/electricos.html"&&p.publicado)return p.url+"?q="+encodeURIComponent(p.publicado.q||p.ref);
+ if(p.url)return p.url;
+ return "https://wa.me/573122002698?text="+encodeURIComponent("Hola Bella Shop, quiero consultar por "+p.nombre+" REF. "+p.ref);
 }
-
-function destinoProducto(p){
-  const t=normalizarTexto([p.nombre,p.categoria,p.etiquetas].filter(Boolean).join(" "));
-  if(t.includes("removedor") || t.includes("cuticula") || t.includes("callos")) return "removedores/removedores.html";
-  if(t.includes("primer") || t.includes("ultrabond") || t.includes("preparador")) return "preparadores/preparadores.html";
-  if(t.includes("moldeador") || t.includes("poly smooth")) return "liquido-moldeador.html";
-  if(t.includes("polygel")) return "polygel/polygel.html";
-  if(t.includes("drill") || t.includes("lampara") || t.includes("extractor") || t.includes("electric")) return "electricos/electricos.html";
-  if(t.includes("pincel") || t.includes("brush") || t.includes("kolinsky")) return "pinceles/index.html";
-  if(t.includes("herramientas") || t.includes("alicate") || t.includes("cortauñas") || t.includes("repujador") || t.includes("empujador")) return "herramientas/index.html";
-  if(t.includes("acril")) return "polvos-acrilicos.html";
-  if(t.includes("base") || t.includes("top coat")) return "base-top.html";
-  if(t.includes("gel nail") || t.includes("painting")) return "gel-nail-art.html";
-  if(t.includes("esmalte") || t.includes("semipermanente")) return "semipermanente.html";
-  return "index.html#categorias";
+function nodo(tag,clase,texto){const e=document.createElement(tag);if(clase)e.className=clase;if(texto!=null)e.textContent=texto;return e}
+function filaProducto(p){
+ const a=nodo("a","resultado-busqueda");a.href=enlaceProducto(p);
+ if(!p.url){a.target="_blank";a.rel="noopener noreferrer"}
+ const icono=nodo("span","resultado-icono","♡");
+ if(p.img){const im=nodo("img","busqueda-foto");im.src=p.img;im.alt="";im.loading="lazy";im.onerror=()=>im.remove();icono.append(im)}
+ const t=nodo("span","resultado-texto");
+ t.append(nodo("span","resultado-nombre",p.nombre),nodo("span","resultado-tipo",(p.ref?"REF. "+p.ref+" · ":"")+"Disponible · "+p.stock+" unid."+(p.precio>0?" · "+moneda.format(p.precio):"")));
+ if(!p.publicado)t.append(nodo("span","resultado-tipo",p.url?"Ver categoría · existencia en inventario":"Consultar en tienda"));
+ a.append(icono,t);return a;
 }
-
-function referenciaVisible(p){
-  return p.referencia_interna || p.codigo_barras || p.codigo || "";
+function filaCategoria(d){const a=nodo("a","resultado-busqueda");a.href=d[1];const t=nodo("span","resultado-texto");t.append(nodo("span","resultado-nombre",d[0]),nodo("span","resultado-tipo","Categoría"));a.append(nodo("span","resultado-icono","⌕"),t);return a}
+function cerrar(){panelBusqueda.classList.remove("activo");buscador.setAttribute("aria-expanded","false");seleccion=-1}
+function abrir(){panelBusqueda.classList.add("activo");buscador.setAttribute("aria-expanded","true")}
+function ejecutarBusqueda(abrirPanel=true){
+ const q=buscador.value.trim();seleccion=-1;
+ if(!q){cerrar();panelBusqueda.replaceChildren();seccionResultados.style.display="none";mostrandoTodos=false;return}
+ resultadosActuales=buscarProductos(q);categoriasActuales=buscarCategorias(q);
+ panelBusqueda.replaceChildren();
+ if(resultadosActuales.length){
+  panelBusqueda.append(nodo("div","busqueda-etiqueta","PRODUCTOS DISPONIBLES"));
+  resultadosActuales.slice(0,10).forEach(p=>panelBusqueda.append(filaProducto(p)));
+  if(resultadosActuales.length>10){const b=nodo("button","busqueda-ver-todos","VER LOS "+resultadosActuales.length+" RESULTADOS");b.type="button";b.onclick=()=>mostrarTodos(true);panelBusqueda.append(b)}
+ }
+ if(categoriasActuales.length){panelBusqueda.append(nodo("div","busqueda-etiqueta","CATEGORÍAS"));categoriasActuales.forEach(d=>panelBusqueda.append(filaCategoria(d)))}
+ if(estadoCarga==="cargando")panelBusqueda.append(nodo("div","sin-sugerencias","Consultando inventario…"));
+ else if(estadoCarga==="error"){const b=nodo("button","busqueda-ver-todos","No se pudo cargar el inventario · Reintentar");b.type="button";b.onclick=()=>cargarInventario();panelBusqueda.append(b)}
+ else if(!resultadosActuales.length)panelBusqueda.append(nodo("div","sin-sugerencias","No encontramos productos disponibles. Prueba otro nombre o referencia."));
+ if(abrirPanel)abrir();
+ if(mostrandoTodos)mostrarTodos(false);
 }
-
-function dibujarSugerencias(destinos,productos){
-  panelBusqueda.innerHTML="";
-
-  destinos.slice(0,5).forEach(d=>{
-    const a=document.createElement("a");
-    a.href=d.url;
-    a.className="resultado-busqueda";
-    a.innerHTML=`<span class="resultado-icono">⌕</span>
-      <span class="resultado-texto">
-        <span class="resultado-nombre">${d.nombre}</span>
-        <span class="resultado-tipo">${d.tipo}</span>
-      </span>`;
-    panelBusqueda.appendChild(a);
-  });
-
-  productos.slice(0,12).forEach(p=>{
-    const a=document.createElement("a");
-    a.href=destinoProducto(p);
-    a.className="resultado-busqueda";
-    const ref=referenciaVisible(p);
-    const stock=Number(p.disponible || 0);
-    a.innerHTML=`<span class="resultado-icono">♡</span>
-      <span class="resultado-texto">
-        <span class="resultado-nombre">${p.nombre || "Producto Bella Shop"}</span>
-        <span class="resultado-tipo">${ref ? "REF. "+ref+" · " : ""}${stock>0 ? "Disponible · "+stock+" unidades" : "Temporalmente no disponible"}</span>
-      </span>`;
-    panelBusqueda.appendChild(a);
-  });
-
-  if(!destinos.length && !productos.length){
-    panelBusqueda.innerHTML='<div class="sin-sugerencias">No encontramos coincidencias.</div>';
-  }
-  panelBusqueda.classList.add("activo");
+function mostrarTodos(scroll){
+ mostrandoTodos=true;if(scroll)limiteResultados=40;
+ seccionResultados.style.display="block";listaProductos.style.display="grid";sinResultados.style.display="none";listaProductos.replaceChildren();
+ seccionResultados.querySelector("h2").textContent="Resultados de búsqueda";
+ seccionResultados.querySelector(".titulo p").textContent=resultadosActuales.length+" productos disponibles para «"+buscador.value.trim()+"»";
+ resultadosActuales.slice(0,limiteResultados).forEach(p=>listaProductos.append(filaProducto(p)));
+ categoriasActuales.forEach(d=>listaProductos.append(filaCategoria(d)));
+ if(!resultadosActuales.length&&!categoriasActuales.length)listaProductos.append(nodo("p","sin-sugerencias",estadoCarga==="cargando"?"Consultando inventario…":"No encontramos coincidencias."));
+ if(resultadosActuales.length>limiteResultados){const b=nodo("button","busqueda-ver-todos","VER MÁS RESULTADOS");b.type="button";b.onclick=()=>{limiteResultados+=40;mostrarTodos(false)};listaProductos.append(b)}
+ if(scroll){cerrar();buscador.blur();seccionResultados.scrollIntoView({behavior:"smooth",block:"start"})}
 }
-
-function ejecutarBusqueda(){
-  const texto=normalizarTexto(buscador.value);
-  if(!texto){
-    panelBusqueda.classList.remove("activo");
-    panelBusqueda.innerHTML="";
-    if(seccionResultados) seccionResultados.style.display="none";
-    if(listaProductos) listaProductos.style.display="none";
-    if(sinResultados) sinResultados.style.display="none";
-    return;
-  }
-  const destinos=buscarDestinos(texto);
-  const productos=buscarInventario(texto);
-  dibujarSugerencias(destinos,productos);
+async function obtener(url,modo){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);
+ try{const r=await fetch(url,{cache:"no-cache",signal:controller.signal});if(!r.ok)throw Error("HTTP "+r.status);return modo==="json"?await r.json():await r.text()}finally{clearTimeout(timer)}
 }
-
-fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"})
-  .then(r=>{if(!r.ok)throw new Error("No se pudo cargar inventario.json");return r.json()})
-  .then(d=>{
-    const datos=d.productos || d || {};
-    inventarioBusqueda=Array.isArray(datos) ? datos : Object.values(datos);
-  })
-  .catch(err=>{
-    console.error("Buscador Bella Shop:",err);
-    inventarioBusqueda=[];
-  });
-
-buscador.addEventListener("input",ejecutarBusqueda);
-buscador.addEventListener("focus",()=>{if(normalizarTexto(buscador.value)) ejecutarBusqueda()});
+async function cargarInventario(){
+ estadoCarga="cargando";if(buscador.value.trim())ejecutarBusqueda();
+ for(const url of ["inventario.json","https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/inventario.json"]){
+  try{const d=await obtener(url,"json"),base=d.productos||d,items=Array.isArray(base)?base:Object.values(base||{});if(!items.length||!items.some(x=>x?.nombre&&("disponible" in x||"a_la_mano" in x)))throw Error("Inventario inválido");inventarioBusqueda=items;estadoCarga="listo";crearIndice();if(buscador.value.trim())ejecutarBusqueda(panelBusqueda.classList.contains("activo"));return}catch(e){console.warn("Inventario buscador",e)}
+ }
+ estadoCarga="error";if(buscador.value.trim())ejecutarBusqueda(panelBusqueda.classList.contains("activo"));
+}
+async function actualizarCatalogo(){
+ try{const html=await obtener("herramientas/index.html","text"),s=html.indexOf("const HERRAMIENTAS = ["),e=html.indexOf("\n];",s)+2;if(s<0||e<2)return;const a=JSON.parse(html.slice(s+"const HERRAMIENTAS = ".length,e));publicados=a.flatMap(p=>(p.proveedores||[p]).map(r=>({ref:r.referencia||r.codigo,barras:r.codigo_barras,nombre:p.nombre,tipo:p.tipo,url:"herramientas/index.html",q:r.codigo,img:p.imagen?"herramientas/"+p.imagen:""})));crearIndice();if(buscador.value.trim())ejecutarBusqueda(panelBusqueda.classList.contains("activo"))}catch(e){console.warn("Índice herramientas",e)}
+}
+buscador.setAttribute("aria-label","Buscar productos por nombre, marca o referencia");buscador.setAttribute("aria-controls","resultados-busqueda");buscador.setAttribute("aria-expanded","false");panelBusqueda.setAttribute("aria-live","polite");
+buscador.addEventListener("input",()=>{mostrandoTodos=false;seccionResultados.style.display="none";ejecutarBusqueda()});
+buscador.addEventListener("focus",()=>{if(buscador.value.trim())ejecutarBusqueda()});
 buscador.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){
-    panelBusqueda.classList.remove("activo");
-    buscador.blur();
-  }
-  if(e.key==="Enter"){
-    const primero=panelBusqueda.querySelector(".resultado-busqueda");
-    if(primero){e.preventDefault();window.location.href=primero.href}
-  }
+ if(e.key==="Escape"){cerrar();buscador.blur();return}
+ const links=[...panelBusqueda.querySelectorAll("a.resultado-busqueda")];
+ if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();if(!links.length)return;seleccion=(seleccion+(e.key==="ArrowDown"?1:-1)+links.length)%links.length;links.forEach((a,i)=>a.classList.toggle("seleccionado",i===seleccion));links[seleccion].scrollIntoView({block:"nearest"});return}
+ if(e.key==="Enter"&&buscador.value.trim()){e.preventDefault();if(seleccion>=0&&links[seleccion])location.href=links[seleccion].href;else mostrarTodos(true)}
 });
-document.addEventListener("click",e=>{
-  const contenedor=document.querySelector(".buscador-contenedor");
-  if(contenedor && !contenedor.contains(e.target)) panelBusqueda.classList.remove("activo");
-});
-
+document.addEventListener("click",e=>{if(!document.querySelector(".buscador-contenedor").contains(e.target))cerrar()});
+document.querySelector(".lupa")?.addEventListener("click",()=>{if(buscador.value.trim())mostrarTodos(true);else buscador.focus()});
+cargarInventario();actualizarCatalogo();
 </script>
 <script>
 (function(){
