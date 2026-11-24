@@ -1838,6 +1838,8 @@ async function obtenerInventarioActual(){
  throw new Error('Ninguna fuente de inventario está disponible');
 }
 async function iniciar(){
+ const consulta=new URLSearchParams(location.search).get('q');
+ if(consulta){busqueda=consulta;$('busqueda').value=consulta;}
  actualizarCarrito();crearFiltros();mostrar();
  try{
   inventario=await obtenerInventarioActual();
