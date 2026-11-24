@@ -517,7 +517,18 @@ const HERRAMIENTAS = [
     "codigo": "DN1559",
     "codigo_barras": "5685688415596",
     "nombre": "DN1559 CORTACUTICULA GRANDE ANDISA",
-    "tipo": "Cortacutículas"
+    "tipo": "Cortacutículas",
+    "imagen": "imagenes/DN1559.png",
+    "variantes": [
+      {
+        "color": "Rosado",
+        "imagen": "imagenes/DN1559.png"
+      },
+      {
+        "color": "Negro",
+        "imagen": "imagenes/DN1559.png"
+      }
+    ]
   },
   {
     "codigo": "DN1561",
@@ -577,7 +588,22 @@ const HERRAMIENTAS = [
     "codigo": "DN2706",
     "codigo_barras": "DN2706",
     "nombre": "DN2706 CEPILLO DE UÑAS X2 ANDISA",
-    "tipo": "Cepillos"
+    "tipo": "Cepillos",
+    "imagen": "imagenes/DN2706.png",
+    "variantes": [
+      {
+        "color": "Lila",
+        "imagen": "imagenes/DN2706.png"
+      },
+      {
+        "color": "Azul cielo",
+        "imagen": "imagenes/DN2706.png"
+      },
+      {
+        "color": "Rosado",
+        "imagen": "imagenes/DN2706.png"
+      }
+    ]
   },
   {
     "codigo": "DN3010",
@@ -684,7 +710,8 @@ const HERRAMIENTAS = [
     "codigo": "DN796",
     "codigo_barras": "DN796",
     "nombre": "DN796 KIT DE PUSHER Y REMOVEDOR X3 ANDISA",
-    "tipo": "Kits de herramientas"
+    "tipo": "Pushers",
+    "imagen": "imagenes/DN796.png"
   },
   {
     "codigo": "DUO",
@@ -886,7 +913,8 @@ const HERRAMIENTAS = [
     "codigo": "NOR021",
     "codigo_barras": "",
     "nombre": "NOR021 PINZA RECTA PLATEADA KRISMAR",
-    "tipo": "Pinzas"
+    "tipo": "Pinzas",
+    "imagen": "imagenes/NOR021.png"
   },
   {
     "codigo": "NOR10184",
@@ -921,7 +949,8 @@ const HERRAMIENTAS = [
     "codigo": "NOR16185",
     "codigo_barras": "NOR16185",
     "nombre": "NOR16185 PINZA CURVA PLATEADA KRISMAR",
-    "tipo": "Pinzas"
+    "tipo": "Pinzas",
+    "imagen": "imagenes/NOR16185.png"
   },
   {
     "codigo": "NOR16389",
@@ -952,7 +981,8 @@ const HERRAMIENTAS = [
     "codigo": "EB-194",
     "codigo_barras": "194",
     "nombre": "PALOS DE NARANJO X10 EB-194",
-    "tipo": "Palos de naranjo"
+    "tipo": "Palos de naranjo",
+    "imagen": "imagenes/194.png"
   },
   {
     "codigo": "IN544",
@@ -1428,12 +1458,86 @@ const HERRAMIENTAS = [
     "nombre": "IMÁN Y PINCEL LENGUA DE GATO DN3608",
     "tipo": "Imanes",
     "imagen": "imagenes/DN3608.png"
+  },
+  {
+    "codigo": "NOR16635",
+    "codigo_barras": "NOR16635",
+    "nombre": "CEPILLO FACIAL KRISMAR NOR16635",
+    "tipo": "Cepillos",
+    "imagen": "imagenes/NOR16635.png",
+    "variantes": [
+      {
+        "color": "Azul",
+        "imagen": "imagenes/NOR16635.png"
+      },
+      {
+        "color": "Morado",
+        "imagen": "imagenes/NOR16635.png"
+      }
+    ]
+  },
+  {
+    "codigo": "DEJA143",
+    "codigo_barras": "DEJA143",
+    "nombre": "CEPILLO PEDICURE GRANDE DEJA143",
+    "tipo": "Cepillos",
+    "imagen": "imagenes/DEJA143.png",
+    "variantes": [
+      {
+        "color": "Morado",
+        "imagen": "imagenes/DEJA143.png"
+      },
+      {
+        "color": "Rosado",
+        "imagen": "imagenes/DEJA143.png"
+      }
+    ]
+  },
+  {
+    "codigo": "DN2707",
+    "codigo_barras": "DN2707",
+    "nombre": "CEPILLO PARA UÑAS CON MANGO ANDISA DN2707",
+    "tipo": "Cepillos",
+    "imagen": "imagenes/DN2707.png",
+    "variantes": [
+      {
+        "color": "Lila",
+        "imagen": "imagenes/DN2707.png"
+      }
+    ]
+  },
+  {
+    "codigo": "CA4689",
+    "codigo_barras": "CA4689",
+    "nombre": "RASPACALLOS ACRÍLICO CA4689",
+    "tipo": "Raspacallos",
+    "imagen": "imagenes/CA4689.png",
+    "variantes": [
+      {
+        "color": "Rosado",
+        "imagen": "imagenes/CA4689.png"
+      }
+    ]
+  },
+  {
+    "codigo": "DN1430",
+    "codigo_barras": "DN1430",
+    "nombre": "PINZA RECTA PARA PESTAÑAS CON GOMA ANDISA DN1430",
+    "tipo": "Pinzas",
+    "imagen": "imagenes/DN1430.png"
+  },
+  {
+    "codigo": "DN2424",
+    "codigo_barras": "DN2424",
+    "nombre": "RASPACALLOS HIELO ANDISA DN2424",
+    "tipo": "Raspacallos",
+    "imagen": "imagenes/DN2424.png"
   }
 ];
 const $ = id => document.getElementById(id);
 const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCase();
 const dinero = n => '$' + Number(n).toLocaleString('es-CO');
-const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas","Imanes"];
+const ORDEN_FILTROS = ["Cortacutículas","Alicates","Cortaúñas","Guillotinas","Repujadores","Pushers","Kits de herramientas","Tijeras","Pinzas","Exploradores","Gubias","Corta piedras","Curetas","Bisturís","Uñas enterradas","Limas metálicas","Cepillos","Raspacallos","Palos de naranjo","Espátulas","Reglas y medidores","Aceites para herramientas","Protectores","Paletas mezcladoras","Bandejas","Imanes"];
 const GRUPOS_HERRAMIENTAS = [
  {id:'todas',nombre:'Todas las herramientas',icono:'✦',tipos:null},
  {id:'cortacuticulas',nombre:'Cortacutículas',icono:'✂',tipos:['Cortacutículas']},
@@ -1443,7 +1547,7 @@ const GRUPOS_HERRAMIENTAS = [
  {id:'precision',nombre:'Pinzas y precisión',icono:'⌁',tipos:['Pinzas','Exploradores','Gubias','Corta piedras','Curetas','Bisturís','Uñas enterradas']},
  {id:'imanes',nombre:'Imanes',icono:'🧲',tipos:['Imanes']},
  {id:'paletas',nombre:'Paletas mezcladoras',icono:'🎨',tipos:['Paletas mezcladoras']},
- {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas']}
+ {id:'complementos',nombre:'Complementos y kits',icono:'✦',tipos:['Kits de herramientas','Limas metálicas','Cepillos','Raspacallos','Palos de naranjo','Espátulas','Reglas y medidores','Aceites para herramientas','Protectores','Bandejas']}
 ];
 let grupoActivo='todas',limiteVisible=12;
 let inventario = [], indiceInventario = new Map(), filtro = 'Todas', busqueda = '', inventarioCargado = false, errorInventario = false;
