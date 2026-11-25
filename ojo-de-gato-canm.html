@@ -706,7 +706,21 @@
 
 .boton-whatsapp svg {width:20px;height:20px;vertical-align:middle;margin-right:7px;}
 .ubicacion svg {width:17px;height:17px;vertical-align:middle;margin-right:5px;}
-</style>
+@media (min-width: 801px) {
+      .productos { padding: 42px 5% 64px; }
+      .productos-contenido, .productos-grid { width: min(1200px, 100%); }
+      .saturados-grid { grid-template-columns: repeat(2, minmax(0, 355px)); gap: 24px; align-items: stretch; justify-content: center; }
+      .producto-card { display: flex; flex-direction: column; min-width: 0; }
+      .producto-imagen-wrap { aspect-ratio: 4 / 3; flex-shrink: 0; }
+      .producto-imagen { object-fit: contain; }
+      .producto-info { display: flex; flex-direction: column; flex: 1; }
+      .contenido-disponible, .contenido-agotado { margin-top: auto; }
+      .producto-acciones { grid-template-columns: auto minmax(0,1fr); }
+    }
+    @media (min-width: 1100px) {
+      .saturados-grid { grid-template-columns: repeat(3, minmax(0, 355px)); gap: 24px; }
+    }
+    </style>
 </head>
 
 <body>
@@ -766,44 +780,14 @@
     <div class="productos-contenido">
       <div class="productos-grid saturados-grid">
 
-        <article class="producto-card" data-ref="C609" data-codigo-odoo="C609" data-precio="17000">
-          <div class="producto-imagen-wrap">
-            <span class="estado-producto estado-disponible">DISPONIBLE</span>
-            <img src="imagenes/canm-ojo-de-gato-ref-c609.png" alt="Ojo de Gato CANM 8 ml Ref. C609" class="producto-imagen">
-          </div>
-
-          <div class="producto-info">
-            <div class="producto-tipo">CANM · Ojo de Gato 8 ml</div>
-            <h3 class="producto-ref">REF. C609</h3>
-            <div class="producto-precio">$17.000 c/u</div>
-            <div class="stock-producto"></div>
-
-            <div class="contenido-disponible">
-              <div class="producto-total">Total: <strong>$17.000</strong></div>
-              <div class="producto-acciones">
-                <div class="cantidad-producto">
-                  <button type="button" aria-label="Restar cantidad">−</button>
-                  <input type="number" min="1" value="1" aria-label="Cantidad Ref. C609">
-                  <button type="button" aria-label="Sumar cantidad">+</button>
-                </div>
-                <button type="button" class="btn-agregar-producto">AGREGAR AL PEDIDO</button>
-              </div>
-            </div>
-
-            <div class="agotado-bloque contenido-agotado" style="display:none;">
-              TEMPORALMENTE NO DISPONIBLE
-            </div>
-          </div>
-        </article>
-
         <article class="producto-card" data-ref="C01" data-codigo-odoo="7709554499745" data-precio="16000">
           <div class="producto-imagen-wrap">
             <span class="estado-producto estado-disponible">DISPONIBLE</span>
-            <img src="esmaltes-canm/ojo-de-gato/C01.JPEG" alt="Ojo de Gato CANM 8 ml Ref. C01" class="producto-imagen">
+            <img src="esmaltes-canm/ojo-de-gato/C01.JPEG" alt="Ojo de Gato CANM 5 ml Ref. C01" class="producto-imagen">
           </div>
 
           <div class="producto-info">
-            <div class="producto-tipo">CANM · Ojo de Gato 8 ml</div>
+            <div class="producto-tipo">CANM · Ojo de Gato 5 ml</div>
             <h3 class="producto-ref">REF. C01</h3>
             <div class="producto-precio">$16.000 c/u</div>
             <div class="stock-producto"></div>
@@ -874,6 +858,66 @@
                 <div class="cantidad-producto">
                   <button type="button" aria-label="Restar cantidad">−</button>
                   <input type="number" min="1" value="1" aria-label="Cantidad Ref. C304">
+                  <button type="button" aria-label="Sumar cantidad">+</button>
+                </div>
+                <button type="button" class="btn-agregar-producto">AGREGAR AL PEDIDO</button>
+              </div>
+            </div>
+
+            <div class="agotado-bloque contenido-agotado" style="display:none;">
+              TEMPORALMENTE NO DISPONIBLE
+            </div>
+          </div>
+        </article>
+
+        <article class="producto-card" data-ref="C606" data-codigo-odoo="C606" data-precio="17000">
+          <div class="producto-imagen-wrap">
+            <span class="estado-producto estado-disponible">DISPONIBLE</span>
+            <img src="esmaltes-canm/ojo-de-gato/C606.JPEG" alt="Ojo de Gato CANM 8 ml Ref. C606" class="producto-imagen">
+          </div>
+
+          <div class="producto-info">
+            <div class="producto-tipo">CANM · Ojo de Gato 8 ml</div>
+            <h3 class="producto-ref">REF. C606</h3>
+            <div class="producto-precio">$17.000 c/u</div>
+            <div class="stock-producto"></div>
+
+            <div class="contenido-disponible">
+              <div class="producto-total">Total: <strong>$17.000</strong></div>
+              <div class="producto-acciones">
+                <div class="cantidad-producto">
+                  <button type="button" aria-label="Restar cantidad">−</button>
+                  <input type="number" min="1" value="1" aria-label="Cantidad Ref. C606">
+                  <button type="button" aria-label="Sumar cantidad">+</button>
+                </div>
+                <button type="button" class="btn-agregar-producto">AGREGAR AL PEDIDO</button>
+              </div>
+            </div>
+
+            <div class="agotado-bloque contenido-agotado" style="display:none;">
+              TEMPORALMENTE NO DISPONIBLE
+            </div>
+          </div>
+        </article>
+
+        <article class="producto-card" data-ref="C609" data-codigo-odoo="C609" data-precio="17000">
+          <div class="producto-imagen-wrap">
+            <span class="estado-producto estado-disponible">DISPONIBLE</span>
+            <img src="imagenes/canm-ojo-de-gato-ref-c609.png" alt="Ojo de Gato CANM 8 ml Ref. C609" class="producto-imagen">
+          </div>
+
+          <div class="producto-info">
+            <div class="producto-tipo">CANM · Ojo de Gato 8 ml</div>
+            <h3 class="producto-ref">REF. C609</h3>
+            <div class="producto-precio">$17.000 c/u</div>
+            <div class="stock-producto"></div>
+
+            <div class="contenido-disponible">
+              <div class="producto-total">Total: <strong>$17.000</strong></div>
+              <div class="producto-acciones">
+                <div class="cantidad-producto">
+                  <button type="button" aria-label="Restar cantidad">−</button>
+                  <input type="number" min="1" value="1" aria-label="Cantidad Ref. C609">
                   <button type="button" aria-label="Sumar cantidad">+</button>
                 </div>
                 <button type="button" class="btn-agregar-producto">AGREGAR AL PEDIDO</button>
@@ -1204,7 +1248,8 @@
       if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
 
       const carrito = leerCarrito();
-      const claveProducto = "Ojo de Gato CANM 8 ml - Ref. " + ref;
+      const nombreProducto = "Ojo de Gato CANM " + (ref === "C01" ? "5 ml" : "8 ml");
+      const claveProducto = nombreProducto + " - Ref. " + ref;
       const existente = carrito.find(producto => producto.clave === claveProducto);
       const cantidadActual = existente ? Number(existente.cantidad || 0) : 0;
 
@@ -1227,7 +1272,7 @@
       } else {
         carrito.push({
           clave: claveProducto,
-          nombre: "Ojo de Gato CANM 8 ml",
+          nombre: nombreProducto,
           referencia: ref,
           precio: precio,
           cantidad: cantidad
