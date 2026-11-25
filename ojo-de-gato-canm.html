@@ -720,7 +720,36 @@
     @media (min-width: 1100px) {
       .saturados-grid { grid-template-columns: repeat(3, minmax(0, 355px)); gap: 24px; }
     }
-    </style>
+    
+    /* Visor de tonos CANM */
+    .producto-imagen-wrap > button.foto-ampliar {
+      position:absolute; inset:0; width:100%; height:100%; padding:0; border:0;
+      background:transparent; cursor:zoom-in; display:block;
+    }
+    .foto-ampliar:focus-visible {outline:3px solid #d94a79; outline-offset:-4px;}
+    .foto-ampliar .lupa-foto {
+      position:absolute; right:12px; bottom:12px; width:34px; height:34px;
+      display:grid; place-items:center; border-radius:50%; color:#754958;
+      background:rgba(255,255,255,.94); box-shadow:0 2px 9px #56323c20;
+    }
+    .foto-ampliar .lupa-foto svg {width:18px;height:18px;}
+    #canmVisor {
+      border:0; padding:0; margin:auto; border-radius:20px; background:#fffafc;
+      color:#392b30; width:min(900px,94vw); max-width:94vw; max-height:92vh;
+      max-height:92dvh; overflow:hidden; box-shadow:0 20px 70px #0005;
+    }
+    #canmVisor::backdrop {background:rgba(30,21,25,.78);}
+    .visor-barra {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid #efdce4;}
+    .visor-titulo {font-size:14px;font-weight:700;}
+    .visor-controles {display:flex;align-items:center;gap:6px;}
+    .visor-controles button {width:40px;height:40px;border:1px solid #efcbd8;border-radius:12px;background:white;color:#a23d61;font-size:23px;cursor:pointer;}
+    .visor-controles button:disabled {opacity:.4;cursor:default;}
+    .visor-zona {height:min(65vh,620px);height:min(65dvh,620px);display:grid;place-items:center;overflow:hidden;position:relative;background:#fff6f9;touch-action:none;}
+    .visor-zona img {display:block;width:100%;height:100%;object-fit:contain;transform-origin:center;pointer-events:none;user-select:none;}
+    .visor-ayuda {text-align:center;font-size:12px;color:#765d65;padding:12px;}
+    @media(max-width:600px){#canmVisor{border-radius:16px}.visor-barra{padding:8px 10px}.visor-titulo{font-size:12px}.visor-zona{height:min(64dvh,520px)}.visor-controles button{width:37px;height:37px}}
+
+</style>
 </head>
 
 <body>
@@ -1316,6 +1345,65 @@
       history.scrollRestoration = "manual";
     }
     window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+  </script>
+
+
+  <dialog id="canmVisor" aria-labelledby="canmVisorTitulo">
+    <div class="visor-barra">
+      <span class="visor-titulo" id="canmVisorTitulo">Vista del tono</span>
+      <div class="visor-controles">
+        <button type="button" id="canmMenos" aria-label="Reducir zoom">−</button>
+        <button type="button" id="canmMas" aria-label="Ampliar zoom">+</button>
+        <button type="button" id="canmCerrar" aria-label="Cerrar visor">×</button>
+      </div>
+    </div>
+    <div class="visor-zona" id="canmZona"><img id="canmFotoGrande" alt="" draggable="false"></div>
+    <p class="visor-ayuda" id="canmAyuda">Usa + y − para acercar o alejar la foto.</p>
+  </dialog>
+  <script>
+  (() => {
+    const visor = document.getElementById('canmVisor');
+    const zona = document.getElementById('canmZona');
+    const foto = document.getElementById('canmFotoGrande');
+    const mas = document.getElementById('canmMas');
+    const menos = document.getElementById('canmMenos');
+    let zoom=1, x=0, y=0, inicio=null, anterior=null, overflowPrevio='';
+    function pintar(){
+      const bx=zona.clientWidth*(zoom-1)/2, by=zona.clientHeight*(zoom-1)/2;
+      x=Math.max(-bx,Math.min(bx,x)); y=Math.max(-by,Math.min(by,y));
+      foto.style.transform='translate('+x+'px,'+y+'px) scale('+zoom+')';
+      zona.style.cursor=zoom>1?'grab':'zoom-in';
+      menos.disabled=zoom<=1; mas.disabled=zoom>=4;
+      document.getElementById('canmAyuda').textContent=zoom>1?'Arrastra la imagen para ver los detalles · '+Math.round(zoom*100)+'%':'Usa + y − o toca dos veces para ampliar la foto.';
+    }
+    function cambiar(v){zoom=Math.max(1,Math.min(4,v));pintar();}
+    document.querySelectorAll('.producto-imagen-wrap img.producto-imagen').forEach(img=>{
+      const boton=document.createElement('button');
+      boton.type='button';boton.className='foto-ampliar';
+      boton.setAttribute('aria-label','Ampliar '+img.alt);
+      boton.innerHTML='<span class="lupa-foto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4M10.5 7.5v6m-3-3h6"/></svg></span>';
+      img.parentElement.appendChild(boton);
+      boton.addEventListener('click',()=>{
+        anterior=boton; foto.src=img.currentSrc||img.src;foto.alt=img.alt;
+        document.getElementById('canmVisorTitulo').textContent='Ref. '+img.closest('.producto-card').dataset.ref+' · CANM';
+        zoom=1;x=0;y=0;overflowPrevio=document.body.style.overflow;
+        visor.showModal(); document.body.style.overflow='hidden';pintar();
+        document.getElementById('canmCerrar').focus();
+      });
+    });
+    mas.addEventListener('click',()=>cambiar(zoom+.5));
+    menos.addEventListener('click',()=>cambiar(zoom-.5));
+    document.getElementById('canmCerrar').addEventListener('click',()=>visor.close());
+    visor.addEventListener('click',e=>{if(e.target===visor)visor.close();});
+    visor.addEventListener('close',()=>{document.body.style.overflow=overflowPrevio;foto.removeAttribute('src');inicio=null;if(anterior)anterior.focus();});
+    zona.addEventListener('wheel',e=>{e.preventDefault();cambiar(zoom+(e.deltaY<0?.25:-.25));},{passive:false});
+    zona.addEventListener('dblclick',()=>cambiar(zoom>1?1:2));
+    zona.addEventListener('pointerdown',e=>{if(zoom<=1||!e.isPrimary)return;inicio={px:e.clientX,py:e.clientY,x,y};zona.setPointerCapture(e.pointerId);});
+    zona.addEventListener('pointermove',e=>{if(!inicio||!e.isPrimary)return;x=inicio.x+e.clientX-inicio.px;y=inicio.y+e.clientY-inicio.py;pintar();});
+    zona.addEventListener('pointerup',()=>inicio=null);
+    zona.addEventListener('pointercancel',()=>inicio=null);
+    window.addEventListener('resize',()=>{if(visor.open)pintar();});
+  })();
   </script>
 
 </body>
