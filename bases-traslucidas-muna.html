@@ -636,6 +636,31 @@
         grid-template-columns: 1fr;
       }
     }
+  
+    /* Visor de fotografías: conserva la imagen original sin recortes. */
+    .ver-foto{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in;font:inherit;text-align:left}
+    .ver-foto:focus-visible{outline:3px solid #d95c86;outline-offset:-4px}
+    .ampliar-etiqueta{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #ead3dc;border-radius:999px;background:rgba(255,255,255,.94);color:#8b4862;font-size:11px;font-weight:700;box-shadow:0 3px 12px #63384918;pointer-events:none}
+    .estado-producto{pointer-events:none}
+    .visor-muna{box-sizing:border-box;width:min(860px,94vw);max-width:none;max-height:94vh;max-height:94dvh;padding:0;border:1px solid #efd8e1;border-radius:22px;background:#fff;color:#49353c;overflow:hidden;box-shadow:0 24px 90px #26121c55}
+    .visor-muna::backdrop{background:rgba(39,24,31,.76)}
+    .visor-cabecera{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid #f0e0e5}
+    .visor-cabecera h2{font:500 20px Georgia,serif;margin:0}
+    .visor-cerrar,.visor-control{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #eed6e0;border-radius:12px;background:#fff7fa;color:#8b4862;font:700 20px Arial,sans-serif;cursor:pointer}
+    .visor-cerrar:hover,.visor-control:hover{background:#fce9f0}
+    .visor-control:disabled{opacity:.4;cursor:default}
+    .visor-control:focus-visible,.visor-cerrar:focus-visible{outline:2px solid #d95c86}
+    .visor-area{height:min(64vh,610px);height:min(64dvh,610px);overflow:auto;overscroll-behavior:contain;background:#fcf3f7;touch-action:pan-x pan-y;position:relative;scrollbar-width:thin}
+    .visor-lienzo{display:flex;align-items:center;justify-content:center;min-width:100%;min-height:100%;width:max-content;height:max-content}
+    .visor-imagen{display:block;flex:none;max-width:none;max-height:none;object-fit:contain;user-select:none;-webkit-user-drag:none;cursor:zoom-in}
+    .visor-area.ampliado .visor-imagen{cursor:grab}
+    .visor-area.arrastrando .visor-imagen{cursor:grabbing}
+    .visor-inferior{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding:10px 12px}
+    .visor-nivel{min-width:58px;font-size:13px;font-weight:700;text-align:center}
+    .visor-restablecer{font:700 12px Arial,sans-serif;padding:0 12px}
+    .visor-ayuda{flex-basis:100%;text-align:center;font-size:11px;color:#846a74;margin:0}
+    @media(max-width:600px){.visor-muna{width:95vw;border-radius:17px}.visor-area{height:min(61vh,470px);height:min(61dvh,470px)}.visor-cabecera{padding:9px 12px}.visor-cabecera h2{font-size:18px}}
+
   </style>
 </head>
 
@@ -699,11 +724,14 @@
           <div class="producto-imagen-wrap">
             <span class="estado-producto estado-disponible">DISPONIBLE</span>
 
-            <img
-              src="imagenes/base-traslucida-muna-ref-218.png"
+            <button class="ver-foto" type="button" aria-label="Ampliar imagen de la referencia 218" aria-haspopup="dialog">
+              <img
+              src="esmaltes%20muna/12%20ml/bases%20traslucidas/IMG_2749.JPEG"
               alt="Bases Traslúcidas Muna 12 ml REF 218"
               class="producto-imagen"
             >
+              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg> Ampliar</span>
+            </button>
           </div>
 
           <div class="producto-info">
@@ -752,11 +780,14 @@
           <div class="producto-imagen-wrap">
             <span class="estado-producto estado-disponible">DISPONIBLE</span>
 
-            <img
-              src="imagenes/IMG_2745.JPEG"
+            <button class="ver-foto" type="button" aria-label="Ampliar imagen de la referencia 219" aria-haspopup="dialog">
+              <img
+              src="esmaltes%20muna/12%20ml/bases%20traslucidas/IMG_2745.JPEG"
               alt="Bases Traslúcidas Muna 12 ml REF 219"
               class="producto-imagen"
             >
+              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg> Ampliar</span>
+            </button>
           </div>
 
           <div class="producto-info">
@@ -889,6 +920,61 @@
     }
     tarjetas.forEach(t=>{t.querySelector(".estado-producto").textContent="CONSULTANDO";t.querySelector(".contenido-disponible").style.display="none";const input=t.querySelector("input");input.addEventListener("input",()=>actualizarTotal(t));input.addEventListener("change",()=>actualizarTotal(t))});
     cargarInventario();
+  </script>
+
+
+  <dialog class="visor-muna" id="visor-muna" aria-labelledby="visor-titulo">
+    <div class="visor-cabecera"><h2 id="visor-titulo">Imagen del producto</h2><button class="visor-cerrar" type="button" aria-label="Cerrar imagen" autofocus>×</button></div>
+    <div class="visor-area" id="visor-area"><div class="visor-lienzo"><img class="visor-imagen" id="visor-imagen" alt="" draggable="false"></div></div>
+    <div class="visor-inferior">
+      <button class="visor-control" id="visor-menos" type="button" aria-label="Alejar imagen">−</button>
+      <output class="visor-nivel" id="visor-nivel" aria-live="polite">100%</output>
+      <button class="visor-control" id="visor-mas" type="button" aria-label="Acercar imagen">+</button>
+      <button class="visor-control visor-restablecer" id="visor-reset" type="button">Restablecer</button>
+      <p class="visor-ayuda">Usa + o − para ampliar. Desliza la imagen para ver los detalles.</p>
+    </div>
+  </dialog>
+  <script>
+  (function(){
+    const modal=document.getElementById("visor-muna"),area=document.getElementById("visor-area"),img=document.getElementById("visor-imagen"),nivel=document.getElementById("visor-nivel"),mas=document.getElementById("visor-mas"),menos=document.getElementById("visor-menos");
+    let zoom=1,baseW=0,baseH=0,origen=null,drag=null,overflowAnterior="",pinza=null;
+    function ajustar(){
+      if(!modal.open||!img.naturalWidth)return;
+      const proporcion=Math.min(area.clientWidth/img.naturalWidth,area.clientHeight/img.naturalHeight,1);
+      baseW=img.naturalWidth*proporcion;baseH=img.naturalHeight*proporcion;escalar(zoom);
+    }
+    function escalar(valor,px=area.clientWidth/2,py=area.clientHeight/2){
+      const prev=zoom,antW=area.scrollWidth,antH=area.scrollHeight;
+      zoom=Math.max(1,Math.min(4,valor));
+      if(baseW){img.style.width=baseW*zoom+"px";img.style.height=baseH*zoom+"px";}
+      nivel.textContent=Math.round(zoom*100)+"%";menos.disabled=zoom<=1;mas.disabled=zoom>=4;area.classList.toggle("ampliado",zoom>1);
+      if(zoom===1){area.scrollLeft=0;area.scrollTop=0}
+      else if(zoom!==prev){area.scrollLeft=(area.scrollLeft+px)*area.scrollWidth/Math.max(1,antW)-px;area.scrollTop=(area.scrollTop+py)*area.scrollHeight/Math.max(1,antH)-py}
+    }
+    function abrir(btn){
+      const original=btn.querySelector(".producto-imagen"),ref=btn.closest(".producto-card").dataset.ref;
+      origen=btn;zoom=1;baseW=baseH=0;img.style.width="";img.style.height="";
+      document.getElementById("visor-titulo").textContent="Muna · Ref. "+ref;img.alt=original.alt;img.src=original.currentSrc||original.src;
+      overflowAnterior=document.body.style.overflow;document.body.style.overflow="hidden";modal.showModal();escalar(1);requestAnimationFrame(ajustar);
+    }
+    document.querySelectorAll(".ver-foto").forEach(btn=>btn.addEventListener("click",()=>abrir(btn)));
+    img.addEventListener("load",ajustar);
+    mas.onclick=()=>escalar(zoom+.5);menos.onclick=()=>escalar(zoom-.5);document.getElementById("visor-reset").onclick=()=>escalar(1);
+    modal.querySelector(".visor-cerrar").onclick=()=>modal.close();
+    modal.addEventListener("click",e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}});
+    modal.addEventListener("close",()=>{document.body.style.overflow=overflowAnterior;drag=pinza=null;area.classList.remove("arrastrando");origen?.focus()});
+    modal.addEventListener("keydown",e=>{if(e.key==="+"||e.key==="="){e.preventDefault();escalar(zoom+.5)}else if(e.key==="-"){e.preventDefault();escalar(zoom-.5)}});
+    area.addEventListener("wheel",e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const r=area.getBoundingClientRect();escalar(zoom*(e.deltaY<0?1.15:1/1.15),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+    img.addEventListener("dblclick",e=>{const r=area.getBoundingClientRect();escalar(zoom>1?1:2,e.clientX-r.left,e.clientY-r.top)});
+    area.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.button!==0||zoom<=1)return;drag={x:e.clientX,y:e.clientY,left:area.scrollLeft,top:area.scrollTop};area.setPointerCapture(e.pointerId);area.classList.add("arrastrando")});
+    area.addEventListener("pointermove",e=>{if(drag){area.scrollLeft=drag.left+drag.x-e.clientX;area.scrollTop=drag.top+drag.y-e.clientY}});
+    for(const evento of ["pointerup","pointercancel","lostpointercapture"])area.addEventListener(evento,()=>{drag=null;area.classList.remove("arrastrando")});
+    function distancia(t){return Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)}
+    area.addEventListener("touchstart",e=>{if(e.touches.length===2){e.preventDefault();pinza={dist:distancia(e.touches),zoom}}},{passive:false});
+    area.addEventListener("touchmove",e=>{if(e.touches.length===2&&pinza){e.preventDefault();const r=area.getBoundingClientRect();escalar(pinza.zoom*distancia(e.touches)/Math.max(1,pinza.dist),(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top)}},{passive:false});
+    for(const ev of ["touchend","touchcancel"])area.addEventListener(ev,()=>{pinza=null});
+    window.addEventListener("resize",ajustar);
+  })();
   </script>
 
 </body>
