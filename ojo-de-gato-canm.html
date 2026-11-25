@@ -722,33 +722,36 @@
     }
     
     /* Visor de tonos CANM */
-    .producto-imagen-wrap > button.foto-ampliar {
-      position:absolute; inset:0; width:100%; height:100%; padding:0; border:0;
-      background:transparent; cursor:zoom-in; display:block;
+    .producto-imagen-wrap > .foto-ampliar {position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:zoom-in;z-index:1;}
+    .foto-ampliar:focus-visible {outline:2px solid #d94a79;outline-offset:-4px;}
+    .lupa-foto {position:absolute;right:11px;bottom:11px;width:33px;height:33px;border:1px solid #efd6df;border-radius:50%;background:#fffefa;color:#b75b7c;display:grid;place-items:center;box-shadow:0 2px 8px #58324212;}
+    .lupa-foto svg {width:17px;height:17px;}
+    #canmVisor {position:fixed;inset:0;margin:auto;padding:0;border:1px solid #f0d8e1;border-radius:24px;background:#fffdfd;color:#392b30;width:min(860px,94vw);max-width:94vw;max-height:94vh;max-height:94dvh;overflow:hidden;box-shadow:0 24px 90px #29141f35;}
+    #canmVisor::backdrop {background:rgba(49,34,40,.55);backdrop-filter:blur(6px);}
+    #canmVisor[open] {display:flex;flex-direction:column;}
+    .visor-barra {display:flex;align-items:center;justify-content:space-between;padding:17px 23px;gap:12px;}
+    .visor-marca {display:block;font-size:10px;letter-spacing:1.6px;font-weight:800;color:#ad7c8d;margin-bottom:4px;}
+    .visor-titulo {display:block;font-family:Georgia,"Times New Roman",serif;font-size:23px;font-weight:500;line-height:1.1;}
+    .visor-cerrar {width:40px;height:40px;display:grid;place-items:center;border:1px solid #f0d8e1;border-radius:50%;background:#fff7fa;color:#855468;cursor:pointer;flex:none;}
+    .visor-cerrar svg,.visor-controles svg {width:19px;height:19px;}
+    .visor-zona {position:relative;margin:0 18px;flex:none;height:min(65vh,600px);height:min(65dvh,600px);background:#fdf0f5;border-radius:16px;overflow:hidden;touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;}
+    .visor-zona img {position:absolute;left:50%;top:50%;max-width:none;max-height:none;display:block;width:auto;height:auto;transform-origin:center;pointer-events:none;user-select:none;-webkit-user-drag:none;}
+    .visor-pie {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 22px 17px;}
+    .visor-ayuda {color:#96717f;font-size:12px;line-height:1.4;margin:0;}
+    .visor-controles {display:flex;align-items:center;gap:4px;border:1px solid #f0d8e1;border-radius:999px;padding:3px;background:white;flex:none;}
+    .visor-controles button {display:grid;place-items:center;width:33px;height:33px;padding:0;border:0;border-radius:50%;background:transparent;color:#a14e6d;cursor:pointer;}
+    .visor-controles button:hover,.visor-cerrar:hover {background:#f9e7ef;}
+    .visor-controles button:disabled {opacity:.35;cursor:default;}
+    .visor-porcentaje {font-size:12px;font-weight:700;min-width:45px;text-align:center;color:#754958;}
+    .visor-controles button:focus-visible,.visor-cerrar:focus-visible {outline:2px solid #d94a79;outline-offset:2px;}
+    @media(max-width:600px){
+      #canmVisor {width:calc(100vw - 20px);max-width:calc(100vw - 20px);border-radius:20px;}
+      .visor-barra {padding:14px 15px;}.visor-titulo{font-size:21px;}
+      .visor-zona{margin:0 9px;height:min(62vh,500px);height:min(62dvh,500px);border-radius:13px;}
+      .visor-pie{padding:12px 12px 15px;gap:8px;}.visor-ayuda{font-size:11px;}
+      .visor-controles button{width:34px;height:34px;}
     }
-    .foto-ampliar:focus-visible {outline:3px solid #d94a79; outline-offset:-4px;}
-    .foto-ampliar .lupa-foto {
-      position:absolute; right:12px; bottom:12px; width:34px; height:34px;
-      display:grid; place-items:center; border-radius:50%; color:#754958;
-      background:rgba(255,255,255,.94); box-shadow:0 2px 9px #56323c20;
-    }
-    .foto-ampliar .lupa-foto svg {width:18px;height:18px;}
-    #canmVisor {
-      border:0; padding:0; margin:auto; border-radius:20px; background:#fffafc;
-      color:#392b30; width:min(900px,94vw); max-width:94vw; max-height:92vh;
-      max-height:92dvh; overflow:hidden; box-shadow:0 20px 70px #0005;
-    }
-    #canmVisor::backdrop {background:rgba(30,21,25,.78);}
-    .visor-barra {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid #efdce4;}
-    .visor-titulo {font-size:14px;font-weight:700;}
-    .visor-controles {display:flex;align-items:center;gap:6px;}
-    .visor-controles button {width:40px;height:40px;border:1px solid #efcbd8;border-radius:12px;background:white;color:#a23d61;font-size:23px;cursor:pointer;}
-    .visor-controles button:disabled {opacity:.4;cursor:default;}
-    .visor-zona {height:min(65vh,620px);height:min(65dvh,620px);display:grid;place-items:center;overflow:hidden;position:relative;background:#fff6f9;touch-action:none;}
-    .visor-zona img {display:block;width:100%;height:100%;object-fit:contain;transform-origin:center;pointer-events:none;user-select:none;}
-    .visor-ayuda {text-align:center;font-size:12px;color:#765d65;padding:12px;}
-    @media(max-width:600px){#canmVisor{border-radius:16px}.visor-barra{padding:8px 10px}.visor-titulo{font-size:12px}.visor-zona{height:min(64dvh,520px)}.visor-controles button{width:37px;height:37px}}
-
+    @media(max-height:500px) and (orientation:landscape){.visor-zona{height:52dvh}.visor-barra{padding:8px 16px}.visor-pie{padding:6px 16px}.visor-titulo{font-size:18px}}
 </style>
 </head>
 
@@ -1349,60 +1352,100 @@
 
 
   <dialog id="canmVisor" aria-labelledby="canmVisorTitulo">
-    <div class="visor-barra">
-      <span class="visor-titulo" id="canmVisorTitulo">Vista del tono</span>
-      <div class="visor-controles">
-        <button type="button" id="canmMenos" aria-label="Reducir zoom">−</button>
-        <button type="button" id="canmMas" aria-label="Ampliar zoom">+</button>
-        <button type="button" id="canmCerrar" aria-label="Cerrar visor">×</button>
-      </div>
+    <div class="visor-barra"><div><span class="visor-marca">BELLA SHOP · CANM</span><span class="visor-titulo" id="canmVisorTitulo">Vista del tono</span></div>
+      <button class="visor-cerrar" type="button" id="canmCerrar" aria-label="Cerrar imagen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="visor-zona" id="canmZona"><img id="canmFotoGrande" alt="" draggable="false"></div>
-    <p class="visor-ayuda" id="canmAyuda">Usa + y − para acercar o alejar la foto.</p>
+    <div class="visor-pie">
+      <p class="visor-ayuda" id="canmAyuda">Amplía la foto para ver el tono.</p>
+      <div class="visor-controles">
+        <button type="button" id="canmMenos" aria-label="Reducir zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+        <span class="visor-porcentaje" id="canmPorcentaje">100%</span>
+        <button type="button" id="canmMas" aria-label="Ampliar zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button>
+        <button type="button" id="canmReset" aria-label="Restablecer zoom" title="Restablecer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg></button>
+      </div>
+    </div>
   </dialog>
   <script>
   (() => {
-    const visor = document.getElementById('canmVisor');
-    const zona = document.getElementById('canmZona');
-    const foto = document.getElementById('canmFotoGrande');
-    const mas = document.getElementById('canmMas');
-    const menos = document.getElementById('canmMenos');
-    let zoom=1, x=0, y=0, inicio=null, anterior=null, overflowPrevio='';
-    function pintar(){
-      const bx=zona.clientWidth*(zoom-1)/2, by=zona.clientHeight*(zoom-1)/2;
-      x=Math.max(-bx,Math.min(bx,x)); y=Math.max(-by,Math.min(by,y));
-      foto.style.transform='translate('+x+'px,'+y+'px) scale('+zoom+')';
-      zona.style.cursor=zoom>1?'grab':'zoom-in';
-      menos.disabled=zoom<=1; mas.disabled=zoom>=4;
-      document.getElementById('canmAyuda').textContent=zoom>1?'Arrastra la imagen para ver los detalles · '+Math.round(zoom*100)+'%':'Usa + y − o toca dos veces para ampliar la foto.';
+    const visor=document.getElementById('canmVisor'), zona=document.getElementById('canmZona'), foto=document.getElementById('canmFotoGrande');
+    const mas=document.getElementById('canmMas'), menos=document.getElementById('canmMenos'), reset=document.getElementById('canmReset');
+    const puntos=new Map();
+    let zoom=1,x=0,y=0,w=0,h=0,gesto=null,origen=null,overflowPrevio='',ultimoToque=null;
+    const limite=(n,a,b)=>Math.max(a,Math.min(b,n));
+    const local=(p)=>{const r=zona.getBoundingClientRect();return {x:p.x-r.left-r.width/2,y:p.y-r.top-r.height/2};};
+    function ajustar(){
+      if(!foto.naturalWidth||!zona.clientWidth)return;
+      const escala=Math.min(zona.clientWidth/foto.naturalWidth,zona.clientHeight/foto.naturalHeight);
+      w=foto.naturalWidth*escala;h=foto.naturalHeight*escala;
+      foto.style.width=w+'px';foto.style.height=h+'px';pintar();
     }
-    function cambiar(v){zoom=Math.max(1,Math.min(4,v));pintar();}
+    function pintar(){
+      const bx=Math.max(0,(w*zoom-zona.clientWidth)/2),by=Math.max(0,(h*zoom-zona.clientHeight)/2);
+      x=limite(x,-bx,bx);y=limite(y,-by,by);
+      foto.style.transform='translate(calc(-50% + '+x+'px),calc(-50% + '+y+'px)) scale('+zoom+')';
+      zona.style.cursor=zoom>1?'grab':'zoom-in';
+      menos.disabled=zoom<=1.001;mas.disabled=zoom>=3.999;reset.disabled=zoom<=1.001;
+      document.getElementById('canmPorcentaje').textContent=Math.round(zoom*100)+'%';
+    }
+    function ampliar(n,p={x:0,y:0}){
+      const nuevo=limite(n,1,4),factor=nuevo/zoom;
+      x=p.x-(p.x-x)*factor;y=p.y-(p.y-y)*factor;zoom=nuevo;pintar();
+    }
+    function empezarGesto(){
+      const a=[...puntos.values()];
+      if(a.length>=2){const medio=local({x:(a[0].x+a[1].x)/2,y:(a[0].y+a[1].y)/2});
+        gesto={tipo:'pinza',dist:Math.max(1,Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)),medio,zoom,x,y};ultimoToque=null;
+      }else if(a.length===1){gesto={tipo:'arrastre',px:a[0].x,py:a[0].y,x,y};}else gesto=null;
+    }
     document.querySelectorAll('.producto-imagen-wrap img.producto-imagen').forEach(img=>{
-      const boton=document.createElement('button');
-      boton.type='button';boton.className='foto-ampliar';
-      boton.setAttribute('aria-label','Ampliar '+img.alt);
-      boton.innerHTML='<span class="lupa-foto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4M10.5 7.5v6m-3-3h6"/></svg></span>';
-      img.parentElement.appendChild(boton);
-      boton.addEventListener('click',()=>{
-        anterior=boton; foto.src=img.currentSrc||img.src;foto.alt=img.alt;
-        document.getElementById('canmVisorTitulo').textContent='Ref. '+img.closest('.producto-card').dataset.ref+' · CANM';
-        zoom=1;x=0;y=0;overflowPrevio=document.body.style.overflow;
-        visor.showModal(); document.body.style.overflow='hidden';pintar();
-        document.getElementById('canmCerrar').focus();
+      const b=document.createElement('button');b.type='button';b.className='foto-ampliar';
+      b.setAttribute('aria-label','Ampliar '+img.alt);
+      b.innerHTML='<span class="lupa-foto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4M10.5 7.5v6m-3-3h6"/></svg></span>';
+      img.parentElement.appendChild(b);
+      b.addEventListener('click',()=>{
+        origen=b;zoom=1;x=0;y=0;w=0;h=0;puntos.clear();gesto=null;ultimoToque=null;
+        foto.style.width='0px';foto.style.height='0px';foto.alt=img.alt;foto.src=img.currentSrc||img.src;
+        document.getElementById('canmVisorTitulo').textContent='Ref. '+img.closest('.producto-card').dataset.ref;
+        document.getElementById('canmAyuda').textContent=matchMedia('(pointer:coarse)').matches?'Separa dos dedos para ampliar.':'Usa la rueda del ratón para ampliar.';
+        overflowPrevio=document.body.style.overflow;visor.showModal();document.body.style.overflow='hidden';ajustar();pintar();document.getElementById('canmCerrar').focus({preventScroll:true});
       });
     });
-    mas.addEventListener('click',()=>cambiar(zoom+.5));
-    menos.addEventListener('click',()=>cambiar(zoom-.5));
+    foto.addEventListener('load',ajustar);
+    mas.addEventListener('click',()=>ampliar(zoom+.5));
+    menos.addEventListener('click',()=>ampliar(zoom-.5));
+    reset.addEventListener('click',()=>{zoom=1;x=0;y=0;pintar();});
     document.getElementById('canmCerrar').addEventListener('click',()=>visor.close());
-    visor.addEventListener('click',e=>{if(e.target===visor)visor.close();});
-    visor.addEventListener('close',()=>{document.body.style.overflow=overflowPrevio;foto.removeAttribute('src');inicio=null;if(anterior)anterior.focus();});
-    zona.addEventListener('wheel',e=>{e.preventDefault();cambiar(zoom+(e.deltaY<0?.25:-.25));},{passive:false});
-    zona.addEventListener('dblclick',()=>cambiar(zoom>1?1:2));
-    zona.addEventListener('pointerdown',e=>{if(zoom<=1||!e.isPrimary)return;inicio={px:e.clientX,py:e.clientY,x,y};zona.setPointerCapture(e.pointerId);});
-    zona.addEventListener('pointermove',e=>{if(!inicio||!e.isPrimary)return;x=inicio.x+e.clientX-inicio.px;y=inicio.y+e.clientY-inicio.py;pintar();});
-    zona.addEventListener('pointerup',()=>inicio=null);
-    zona.addEventListener('pointercancel',()=>inicio=null);
-    window.addEventListener('resize',()=>{if(visor.open)pintar();});
+    visor.addEventListener('click',e=>{if(e.target===visor){const r=visor.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)visor.close();}});
+    visor.addEventListener('close',()=>{document.body.style.overflow=overflowPrevio;puntos.clear();gesto=null;foto.removeAttribute('src');if(origen)origen.focus({preventScroll:true});});
+    zona.addEventListener('wheel',e=>{e.preventDefault();ampliar(zoom*Math.exp(-e.deltaY*.002),local({x:e.clientX,y:e.clientY}));},{passive:false});
+    zona.addEventListener('dblclick',e=>{if(!matchMedia('(pointer:coarse)').matches)ampliar(zoom>1?1:2,local({x:e.clientX,y:e.clientY}));});
+    zona.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse'&&e.button!==0)return;
+      puntos.set(e.pointerId,{x:e.clientX,y:e.clientY,inicioX:e.clientX,inicioY:e.clientY,t:Date.now(),multi:puntos.size>0});
+      if(puntos.size>1)puntos.forEach(p=>p.multi=true);
+      zona.setPointerCapture(e.pointerId);empezarGesto();
+    });
+    zona.addEventListener('pointermove',e=>{
+      const p=puntos.get(e.pointerId);if(!p||!gesto)return;
+      p.x=e.clientX;p.y=e.clientY;const a=[...puntos.values()];
+      if(a.length>=2&&gesto.tipo==='pinza'){
+        const medio=local({x:(a[0].x+a[1].x)/2,y:(a[0].y+a[1].y)/2});
+        const distancia=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
+        zoom=limite(gesto.zoom*distancia/gesto.dist,1,4);
+        const f=zoom/gesto.zoom;x=medio.x-(gesto.medio.x-gesto.x)*f;y=medio.y-(gesto.medio.y-gesto.y)*f;pintar();
+      }else if(a.length===1&&gesto.tipo==='arrastre'){x=gesto.x+p.x-gesto.px;y=gesto.y+p.y-gesto.py;pintar();}
+    });
+    function terminar(e){
+      const p=puntos.get(e.pointerId);if(!p)return;puntos.delete(e.pointerId);
+      if(e.type==='pointerup'&&e.pointerType==='touch'&&!p.multi&&Date.now()-p.t<300&&Math.hypot(p.x-p.inicioX,p.y-p.inicioY)<10){
+        if(ultimoToque&&Date.now()-ultimoToque.t<320&&Math.hypot(p.x-ultimoToque.x,p.y-ultimoToque.y)<35){ampliar(zoom>1?1:2,local(p));ultimoToque=null;}
+        else ultimoToque={x:p.x,y:p.y,t:Date.now()};
+      }
+      empezarGesto();
+    }
+    ['pointerup','pointercancel','lostpointercapture'].forEach(evento=>zona.addEventListener(evento,terminar));
+    window.addEventListener('resize',()=>{if(visor.open)ajustar();});
   })();
   </script>
 
