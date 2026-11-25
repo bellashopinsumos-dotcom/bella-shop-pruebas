@@ -637,30 +637,33 @@
       }
     }
   
-    /* Visor de fotografías: conserva la imagen original sin recortes. */
-    .ver-foto{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in;font:inherit;text-align:left}
-    .ver-foto:focus-visible{outline:3px solid #d95c86;outline-offset:-4px}
-    .ampliar-etiqueta{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #ead3dc;border-radius:999px;background:rgba(255,255,255,.94);color:#8b4862;font-size:11px;font-weight:700;box-shadow:0 3px 12px #63384918;pointer-events:none}
+    /* Galería de producto · Bella Shop */
+    .ver-foto{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in;font:inherit}
+    .ver-foto:focus-visible{outline:2px solid #d95c86;outline-offset:-4px}
+    .ampliar-etiqueta{position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);color:#765561;box-shadow:0 2px 12px #34292d16;pointer-events:none}
+    .ampliar-etiqueta svg{width:19px;height:19px}
     .estado-producto{pointer-events:none}
-    .visor-muna{box-sizing:border-box;width:min(860px,94vw);max-width:none;max-height:94vh;max-height:94dvh;padding:0;border:1px solid #efd8e1;border-radius:22px;background:#fff;color:#49353c;overflow:hidden;box-shadow:0 24px 90px #26121c55}
-    .visor-muna::backdrop{background:rgba(39,24,31,.76)}
-    .visor-cabecera{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid #f0e0e5}
-    .visor-cabecera h2{font:500 20px Georgia,serif;margin:0}
-    .visor-cerrar,.visor-control{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #eed6e0;border-radius:12px;background:#fff7fa;color:#8b4862;font:700 20px Arial,sans-serif;cursor:pointer}
-    .visor-cerrar:hover,.visor-control:hover{background:#fce9f0}
-    .visor-control:disabled{opacity:.4;cursor:default}
-    .visor-control:focus-visible,.visor-cerrar:focus-visible{outline:2px solid #d95c86}
-    .visor-area{height:min(64vh,610px);height:min(64dvh,610px);overflow:auto;overscroll-behavior:contain;background:#fcf3f7;touch-action:pan-x pan-y;position:relative;scrollbar-width:thin}
-    .visor-lienzo{display:flex;align-items:center;justify-content:center;min-width:100%;min-height:100%;width:max-content;height:max-content}
-    .visor-imagen{display:block;flex:none;max-width:none;max-height:none;object-fit:contain;user-select:none;-webkit-user-drag:none;cursor:zoom-in}
+    .visor-muna{position:fixed;inset:0;margin:auto;width:min(960px,calc(100vw - 48px));height:min(760px,calc(100vh - 48px));height:min(760px,calc(100dvh - 48px));max-width:none;max-height:none;padding:0;border:0;border-radius:20px;background:#fffdfd;color:#34292d;overflow:hidden;box-shadow:0 24px 90px #0003}
+    .visor-muna[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+    .visor-muna::backdrop{background:rgba(29,21,25,.68);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+    .visor-cabecera{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;min-height:60px}
+    .visor-marca{display:block;font-size:10px;letter-spacing:1.8px;font-weight:700;color:#9d7180;margin-bottom:4px}
+    .visor-cabecera h2{font:500 18px Georgia,serif;margin:0;color:#47353c}
+    .visor-cerrar,.visor-control{display:grid;place-items:center;flex:none;width:42px;height:42px;border:0;border-radius:50%;background:transparent;color:#4e3c43;cursor:pointer}
+    .visor-cerrar:hover,.visor-control:hover{background:#f4e8ed}
+    .visor-control:disabled{opacity:.3;cursor:default}
+    .visor-control:focus-visible,.visor-cerrar:focus-visible{outline:2px solid #d95c86;outline-offset:2px}
+    .visor-area{position:relative;min-width:0;min-height:0;margin:0 20px;overflow:hidden;background:#faf3f5;border-radius:12px;touch-action:none;overscroll-behavior:contain}
+    .visor-imagen{position:absolute;left:50%;top:50%;display:block;max-width:none;max-height:none;object-fit:contain;user-select:none;-webkit-user-drag:none;transform:translate(-50%,-50%);cursor:zoom-in;will-change:transform}
     .visor-area.ampliado .visor-imagen{cursor:grab}
     .visor-area.arrastrando .visor-imagen{cursor:grabbing}
-    .visor-inferior{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding:10px 12px}
-    .visor-nivel{min-width:58px;font-size:13px;font-weight:700;text-align:center}
-    .visor-restablecer{font:700 12px Arial,sans-serif;padding:0 12px}
-    .visor-ayuda{flex-basis:100%;text-align:center;font-size:11px;color:#846a74;margin:0}
-    @media(max-width:600px){.visor-muna{width:95vw;border-radius:17px}.visor-area{height:min(61vh,470px);height:min(61dvh,470px)}.visor-cabecera{padding:9px 12px}.visor-cabecera h2{font-size:18px}}
-
+    .visor-inferior{display:flex;align-items:center;justify-content:center;gap:4px;min-height:66px;padding:8px 16px}
+    .visor-controles{display:flex;align-items:center;gap:3px;padding:2px 5px;border:1px solid #efdee4;border-radius:40px;background:white}
+    .visor-nivel{min-width:48px;font-size:12px;font-variant-numeric:tabular-nums;text-align:center;color:#765561}
+    .visor-control svg,.visor-cerrar svg{width:21px;height:21px;stroke-width:1.6}
+    .visor-separador{height:21px;width:1px;background:#efdee4;margin:0 3px}
+    @media(max-width:600px){.visor-muna{width:calc(100vw - 20px);height:min(700px,calc(100vh - 28px));height:min(700px,calc(100dvh - 28px));border-radius:16px}.visor-area{margin:0 10px;border-radius:10px}.visor-cabecera{padding:8px 14px;min-height:54px}.visor-cabecera h2{font-size:16px}.visor-inferior{min-height:60px}}
+    @media(prefers-reduced-motion:no-preference){.visor-muna[open]{animation:visor-entrada .18s ease-out}@keyframes visor-entrada{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}}
   </style>
 </head>
 
@@ -730,7 +733,7 @@
               alt="Bases Traslúcidas Muna 12 ml REF 218"
               class="producto-imagen"
             >
-              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg> Ampliar</span>
+              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg></span>
             </button>
           </div>
 
@@ -786,7 +789,7 @@
               alt="Bases Traslúcidas Muna 12 ml REF 219"
               class="producto-imagen"
             >
-              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg> Ampliar</span>
+              <span class="ampliar-etiqueta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10.5h5m-2.5-2.5v5"/></svg></span>
             </button>
           </div>
 
@@ -924,58 +927,68 @@
 
 
   <dialog class="visor-muna" id="visor-muna" aria-labelledby="visor-titulo">
-    <div class="visor-cabecera"><h2 id="visor-titulo">Imagen del producto</h2><button class="visor-cerrar" type="button" aria-label="Cerrar imagen" autofocus>×</button></div>
-    <div class="visor-area" id="visor-area"><div class="visor-lienzo"><img class="visor-imagen" id="visor-imagen" alt="" draggable="false"></div></div>
-    <div class="visor-inferior">
-      <button class="visor-control" id="visor-menos" type="button" aria-label="Alejar imagen">−</button>
+    <div class="visor-cabecera"><div><span class="visor-marca">MUNA · 12 ML</span><h2 id="visor-titulo">Base traslúcida</h2></div><button class="visor-cerrar" type="button" aria-label="Cerrar imagen" autofocus><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="visor-area" id="visor-area"><img class="visor-imagen" id="visor-imagen" alt="" draggable="false"></div>
+    <div class="visor-inferior"><div class="visor-controles">
+      <button class="visor-control" id="visor-menos" type="button" aria-label="Alejar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
       <output class="visor-nivel" id="visor-nivel" aria-live="polite">100%</output>
-      <button class="visor-control" id="visor-mas" type="button" aria-label="Acercar imagen">+</button>
-      <button class="visor-control visor-restablecer" id="visor-reset" type="button">Restablecer</button>
-      <p class="visor-ayuda">Usa + o − para ampliar. Desliza la imagen para ver los detalles.</p>
-    </div>
+      <button class="visor-control" id="visor-mas" type="button" aria-label="Acercar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button>
+      <span class="visor-separador" aria-hidden="true"></span><button class="visor-control" id="visor-reset" type="button" aria-label="Ajustar a la pantalla" title="Ajustar a la pantalla"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+    </div></div>
   </dialog>
   <script>
   (function(){
     const modal=document.getElementById("visor-muna"),area=document.getElementById("visor-area"),img=document.getElementById("visor-imagen"),nivel=document.getElementById("visor-nivel"),mas=document.getElementById("visor-mas"),menos=document.getElementById("visor-menos");
-    let zoom=1,baseW=0,baseH=0,origen=null,drag=null,overflowAnterior="",pinza=null;
+    let zoom=1,baseW=0,baseH=0,x=0,y=0,origen=null,overflowAnterior="",gesto=null;
+    const dedos=new Map();
+    const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+    function limites(){return {x:Math.max(0,(baseW*zoom-area.clientWidth)/2),y:Math.max(0,(baseH*zoom-area.clientHeight)/2)}}
+    function pintar(){
+      const l=limites();x=clamp(x,-l.x,l.x);y=clamp(y,-l.y,l.y);
+      img.style.transform="translate(calc(-50% + "+x+"px),calc(-50% + "+y+"px)) scale("+zoom+")";
+      nivel.textContent=Math.round(zoom*100)+"%";menos.disabled=zoom<=1.001;mas.disabled=zoom>=3.999;area.classList.toggle("ampliado",zoom>1.001);
+    }
     function ajustar(){
-      if(!modal.open||!img.naturalWidth)return;
-      const proporcion=Math.min(area.clientWidth/img.naturalWidth,area.clientHeight/img.naturalHeight,1);
-      baseW=img.naturalWidth*proporcion;baseH=img.naturalHeight*proporcion;escalar(zoom);
+      if(!modal.open||!img.naturalWidth||!area.clientWidth||!area.clientHeight)return;
+      const factor=Math.min(area.clientWidth/img.naturalWidth,area.clientHeight/img.naturalHeight);
+      baseW=img.naturalWidth*factor;baseH=img.naturalHeight*factor;
+      img.style.width=baseW+"px";img.style.height=baseH+"px";pintar();
     }
-    function escalar(valor,px=area.clientWidth/2,py=area.clientHeight/2){
-      const prev=zoom,antW=area.scrollWidth,antH=area.scrollHeight;
-      zoom=Math.max(1,Math.min(4,valor));
-      if(baseW){img.style.width=baseW*zoom+"px";img.style.height=baseH*zoom+"px";}
-      nivel.textContent=Math.round(zoom*100)+"%";menos.disabled=zoom<=1;mas.disabled=zoom>=4;area.classList.toggle("ampliado",zoom>1);
-      if(zoom===1){area.scrollLeft=0;area.scrollTop=0}
-      else if(zoom!==prev){area.scrollLeft=(area.scrollLeft+px)*area.scrollWidth/Math.max(1,antW)-px;area.scrollTop=(area.scrollTop+py)*area.scrollHeight/Math.max(1,antH)-py}
-    }
+    function escalar(v,px=0,py=0){const z=clamp(v,1,4),r=z/zoom;x=px-(px-x)*r;y=py-(py-y)*r;zoom=z;if(zoom===1)x=y=0;pintar()}
+    function punto(e){const r=area.getBoundingClientRect();return {x:e.clientX-r.left-r.width/2,y:e.clientY-r.top-r.height/2}}
     function abrir(btn){
-      const original=btn.querySelector(".producto-imagen"),ref=btn.closest(".producto-card").dataset.ref;
-      origen=btn;zoom=1;baseW=baseH=0;img.style.width="";img.style.height="";
-      document.getElementById("visor-titulo").textContent="Muna · Ref. "+ref;img.alt=original.alt;img.src=original.currentSrc||original.src;
-      overflowAnterior=document.body.style.overflow;document.body.style.overflow="hidden";modal.showModal();escalar(1);requestAnimationFrame(ajustar);
+      const foto=btn.querySelector(".producto-imagen"),ref=btn.closest(".producto-card").dataset.ref;
+      origen=btn;zoom=1;x=y=baseW=baseH=0;img.style.width=img.style.height="0px";img.alt=foto.alt;
+      document.getElementById("visor-titulo").textContent="Base traslúcida · Ref. "+ref;
+      overflowAnterior=document.body.style.overflow;document.body.style.overflow="hidden";modal.showModal();img.src=foto.currentSrc||foto.src;pintar();requestAnimationFrame(ajustar);
     }
     document.querySelectorAll(".ver-foto").forEach(btn=>btn.addEventListener("click",()=>abrir(btn)));
     img.addEventListener("load",ajustar);
     mas.onclick=()=>escalar(zoom+.5);menos.onclick=()=>escalar(zoom-.5);document.getElementById("visor-reset").onclick=()=>escalar(1);
     modal.querySelector(".visor-cerrar").onclick=()=>modal.close();
     modal.addEventListener("click",e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}});
-    modal.addEventListener("close",()=>{document.body.style.overflow=overflowAnterior;drag=pinza=null;area.classList.remove("arrastrando");origen?.focus()});
+    modal.addEventListener("close",()=>{document.body.style.overflow=overflowAnterior;dedos.clear();gesto=null;area.classList.remove("arrastrando");origen?.focus({preventScroll:true})});
     modal.addEventListener("keydown",e=>{if(e.key==="+"||e.key==="="){e.preventDefault();escalar(zoom+.5)}else if(e.key==="-"){e.preventDefault();escalar(zoom-.5)}});
-    area.addEventListener("wheel",e=>{if(!e.ctrlKey&&!e.metaKey)return;e.preventDefault();const r=area.getBoundingClientRect();escalar(zoom*(e.deltaY<0?1.15:1/1.15),e.clientX-r.left,e.clientY-r.top)},{passive:false});
-    img.addEventListener("dblclick",e=>{const r=area.getBoundingClientRect();escalar(zoom>1?1:2,e.clientX-r.left,e.clientY-r.top)});
-    area.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.button!==0||zoom<=1)return;drag={x:e.clientX,y:e.clientY,left:area.scrollLeft,top:area.scrollTop};area.setPointerCapture(e.pointerId);area.classList.add("arrastrando")});
-    area.addEventListener("pointermove",e=>{if(drag){area.scrollLeft=drag.left+drag.x-e.clientX;area.scrollTop=drag.top+drag.y-e.clientY}});
-    for(const evento of ["pointerup","pointercancel","lostpointercapture"])area.addEventListener(evento,()=>{drag=null;area.classList.remove("arrastrando")});
-    function distancia(t){return Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY)}
-    area.addEventListener("touchstart",e=>{if(e.touches.length===2){e.preventDefault();pinza={dist:distancia(e.touches),zoom}}},{passive:false});
-    area.addEventListener("touchmove",e=>{if(e.touches.length===2&&pinza){e.preventDefault();const r=area.getBoundingClientRect();escalar(pinza.zoom*distancia(e.touches)/Math.max(1,pinza.dist),(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top)}},{passive:false});
-    for(const ev of ["touchend","touchcancel"])area.addEventListener(ev,()=>{pinza=null});
-    window.addEventListener("resize",ajustar);
+    area.addEventListener("wheel",e=>{e.preventDefault();const p=punto(e);escalar(zoom*(e.deltaY<0?1.14:1/1.14),p.x,p.y)},{passive:false});
+    img.addEventListener("dblclick",e=>{const p=punto(e);escalar(zoom>1?1:2,p.x,p.y)});
+    function estadoGesto(){
+      const pts=[...dedos.values()];
+      if(pts.length>=2){const a=pts[0],b=pts[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;gesto={dist:Math.hypot(a.x-b.x,a.y-b.y),zoom,x,y,cx,cy}}
+      else if(pts.length===1)gesto={inicio:pts[0],x,y};
+      else gesto=null;
+    }
+    area.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse"&&e.button!==0)return;dedos.set(e.pointerId,punto(e));area.setPointerCapture(e.pointerId);estadoGesto();if(zoom>1)area.classList.add("arrastrando")});
+    area.addEventListener("pointermove",e=>{
+      if(!dedos.has(e.pointerId)||!gesto)return;dedos.set(e.pointerId,punto(e));
+      const pts=[...dedos.values()];
+      if(pts.length>=2&&gesto.dist!=null){
+        const a=pts[0],b=pts[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,z=clamp(gesto.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,gesto.dist),1,4),r=z/gesto.zoom;
+        zoom=z;x=cx-(gesto.cx-gesto.x)*r;y=cy-(gesto.cy-gesto.y)*r;pintar();
+      }else if(pts.length===1&&gesto.inicio&&zoom>1){x=gesto.x+pts[0].x-gesto.inicio.x;y=gesto.y+pts[0].y-gesto.inicio.y;pintar()}
+    });
+    for(const evento of ["pointerup","pointercancel","lostpointercapture"])area.addEventListener(evento,e=>{dedos.delete(e.pointerId);estadoGesto();if(!dedos.size)area.classList.remove("arrastrando")});
+    if(window.ResizeObserver)new ResizeObserver(ajustar).observe(area);else window.addEventListener("resize",ajustar);
   })();
   </script>
-
 </body>
 </html>
