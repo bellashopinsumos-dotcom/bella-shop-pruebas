@@ -720,7 +720,7 @@
 
               <div class="producto-acciones">
                 <div class="cantidad-producto">
-                  <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad(-1)">−</button>
+                  <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad(this.closest('.producto-card'),-1)">−</button>
 
                   <input
                     id="cantidad-218"
@@ -730,13 +730,66 @@
                     aria-label="Cantidad REF 218"
                   >
 
-                  <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad(1)">+</button>
+                  <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad(this.closest('.producto-card'),1)">+</button>
                 </div>
 
                 <button
                   type="button"
                   class="btn-agregar-producto"
-                  onclick="agregarProducto()"
+                  onclick="agregarProducto(this.closest('.producto-card'))"
+                >
+                  AGREGAR AL PEDIDO
+                </button>
+              </div>
+            </div>
+
+            <div class="agotado-bloque contenido-agotado" style="display:none;">
+              TEMPORALMENTE NO DISPONIBLE
+            </div>
+          </div>
+        </article>
+        <article class="producto-card" data-ref="219" data-codigo-odoo="MUNA930-219">
+          <div class="producto-imagen-wrap">
+            <span class="estado-producto estado-disponible">DISPONIBLE</span>
+
+            <img
+              src="imagenes/IMG_2745.JPEG"
+              alt="Bases Traslúcidas Muna 12 ml REF 219"
+              class="producto-imagen"
+            >
+          </div>
+
+          <div class="producto-info">
+            <div class="producto-tipo">Muna · Bases Traslúcidas 12 ml</div>
+            <h3 class="producto-ref">REF 219</h3>
+
+            <div class="producto-precio">$12.000 c/u</div>
+            <div class="stock-producto"></div>
+
+            <div class="contenido-disponible">
+              <div class="producto-total">
+                Total: <strong>$12.000</strong>
+              </div>
+
+              <div class="producto-acciones">
+                <div class="cantidad-producto">
+                  <button type="button" aria-label="Restar cantidad" onclick="cambiarCantidad(this.closest('.producto-card'),-1)">−</button>
+
+                  <input
+                    id="cantidad-219"
+                    type="number"
+                    min="1"
+                    value="1"
+                    aria-label="Cantidad REF 219"
+                  >
+
+                  <button type="button" aria-label="Sumar cantidad" onclick="cambiarCantidad(this.closest('.producto-card'),1)">+</button>
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-agregar-producto"
+                  onclick="agregarProducto(this.closest('.producto-card'))"
                 >
                   AGREGAR AL PEDIDO
                 </button>
@@ -798,259 +851,43 @@
 
   <script>
     const CLAVE_CARRITO = "bellaShopCarrito";
-    const CODIGO_ODOO = "MUNA930-218";
-    const PRECIO = 12500;
-
-    let inventarioProductos = {};
-    let inventarioListo = false;
-    let temporizadorToast;
-
-    function formatoPesos(valor) {
-      return "$" + valor.toLocaleString("es-CO");
+    const tarjetas = [...document.querySelectorAll(".producto-card")];
+    let inventarioProductos = {}, inventarioListo = false, temporizadorToast;
+    const formatoPesos = valor => "$" + Number(valor).toLocaleString("es-CO");
+    function leerCarrito(){try{const c=JSON.parse(localStorage.getItem(CLAVE_CARRITO)||"[]");return Array.isArray(c)?c:[]}catch(e){return []}}
+    function producto(t){return inventarioProductos[t.dataset.codigoOdoo]||Object.values(inventarioProductos).find(p=>[p.codigo,p.referencia_interna,p.codigo_barras].includes(t.dataset.codigoOdoo))}
+    function obtenerStock(t){return Math.max(0,Number(producto(t)?.disponible??producto(t)?.a_la_mano??0)||0)}
+    function precio(t){return Math.max(0,Number(producto(t)?.precio_venta)||0)}
+    function clave(t){return "Bases Traslúcidas Muna 12 ml - Ref. "+t.dataset.ref}
+    function usados(t){return leerCarrito().filter(p=>p.clave===clave(t)||p.codigo===t.dataset.codigoOdoo||p.baseRef===t.dataset.codigoOdoo).reduce((s,p)=>s+Math.max(0,Number(p.cantidad)||0),0)}
+    function libre(t){return Math.max(0,obtenerStock(t)-usados(t))}
+    function actualizarTotal(t){const input=t.querySelector("input"),max=libre(t);let q=Math.max(1,parseInt(input.value,10)||1);q=Math.min(q,Math.max(1,max));input.value=q;input.max=Math.max(1,max);t.querySelector(".producto-total strong").textContent=formatoPesos(q*precio(t));const botones=t.querySelectorAll(".cantidad-producto button");botones[0].disabled=max<=0||q<=1;botones[1].disabled=max<=0||q>=max;t.querySelector(".btn-agregar-producto").disabled=max<=0||!precio(t)||!inventarioListo}
+    function actualizarTarjeta(t){
+      const p=producto(t), stock=obtenerStock(t), estado=t.querySelector(".estado-producto"), texto=t.querySelector(".stock-producto"), disponible=t.querySelector(".contenido-disponible"), agotado=t.querySelector(".contenido-agotado"), input=t.querySelector("input");
+      const ok=inventarioListo&&!!p&&stock>0&&precio(t)>0;
+      t.classList.toggle("agotado",!ok);estado.classList.toggle("estado-disponible",ok);estado.classList.toggle("estado-agotado",!ok);estado.textContent=ok?"DISPONIBLE":"NO DISPONIBLE";
+      texto.textContent=!inventarioListo?"No se pudo verificar el inventario":!p?"CÓDIGO NO ENCONTRADO":stock>0?stock+" unidad"+(stock===1?" disponible":"es disponibles"):"Temporalmente no disponible";
+      t.querySelector(".producto-precio").textContent=precio(t)>0?formatoPesos(precio(t))+" c/u":"Precio según inventario";
+      disponible.style.display=ok?"":"none";agotado.style.display=ok?"none":"";agotado.textContent=!inventarioListo?"INVENTARIO NO DISPONIBLE":!p?"CÓDIGO NO ENCONTRADO":stock>0?"PRECIO NO DISPONIBLE":"TEMPORALMENTE NO DISPONIBLE";
+      input.disabled=!ok||libre(t)<=0;actualizarTotal(t);
     }
-
-    function leerCarrito() {
-      try {
-        const guardado = JSON.parse(localStorage.getItem(CLAVE_CARRITO)) || [];
-        return Array.isArray(guardado) ? guardado : [];
-      } catch (error) {
-        return [];
+    async function cargarInventario(){
+      for(const url of ["inventario.json","https://raw.githubusercontent.com/bellashopinsumos-dotcom/bella-shop-pruebas/main/inventario.json"]){
+        try{const r=await fetch(url+"?actualizacion="+Date.now(),{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const d=await r.json();if(!d.productos)throw Error("Formato inválido");inventarioProductos=d.productos;inventarioListo=true;break}catch(e){console.warn(e)}
       }
+      tarjetas.forEach(actualizarTarjeta);
     }
-
-    function obtenerStock() {
-      const producto = inventarioProductos[CODIGO_ODOO];
-      if (!producto) return 0;
-
-      const stock = Number(producto.disponible || 0);
-      return Number.isFinite(stock) ? Math.max(0, stock) : 0;
+    function cambiarCantidad(t,cambio){if(!inventarioListo||libre(t)<=0)return;const input=t.querySelector("input");input.value=Math.max(1,(parseInt(input.value,10)||1)+cambio);actualizarTotal(t)}
+    function mostrarToast(mensaje){const t=document.getElementById("toastCarrito");t.textContent=mensaje;t.classList.add("visible");clearTimeout(temporizadorToast);temporizadorToast=setTimeout(()=>t.classList.remove("visible"),2200)}
+    function agregarProducto(t){
+      if(!inventarioListo||!producto(t)||!precio(t)){mostrarToast("No pudimos verificar el producto.");return}
+      const input=t.querySelector("input"),q=Math.max(1,parseInt(input.value,10)||1);
+      if(q>libre(t)){mostrarToast("No hay suficientes unidades disponibles de REF "+t.dataset.ref);actualizarTotal(t);return}
+      const c=leerCarrito(),k=clave(t),p=c.find(x=>x.clave===k);
+      if(p){p.cantidad=Number(p.cantidad||0)+q;p.precio=precio(t);p.codigo=t.dataset.codigoOdoo;p.imagen=t.querySelector(".producto-imagen").getAttribute("src")}else c.push({clave:k,nombre:"Bases Traslúcidas Muna 12 ml",referencia:t.dataset.ref,codigo:t.dataset.codigoOdoo,precio:precio(t),cantidad:q,imagen:t.querySelector(".producto-imagen").getAttribute("src")});
+      localStorage.setItem(CLAVE_CARRITO,JSON.stringify(c));mostrarToast("✓ REF "+t.dataset.ref+" agregada a tu pedido 💗");input.value=1;actualizarTarjeta(t);
     }
-
-    function actualizarTarjeta() {
-      const tarjeta = document.querySelector(".producto-card");
-      const estado = tarjeta.querySelector(".estado-producto");
-      const stockTexto = tarjeta.querySelector(".stock-producto");
-      const disponible = tarjeta.querySelector(".contenido-disponible");
-      const noDisponible = tarjeta.querySelector(".contenido-agotado");
-      const input = document.getElementById("cantidad-218");
-
-      const stock = obtenerStock();
-
-      if (!inventarioProductos[tarjeta.dataset.codigoOdoo]) {
-        tarjeta.classList.add("agotado");
-        estado.textContent = "NO DISPONIBLE";
-        estado.classList.remove("estado-disponible");
-        estado.classList.add("estado-agotado");
-        stockTexto.textContent = "CÓDIGO NO ENCONTRADO";
-        disponible.style.display = "none";
-        noDisponible.style.display = "";
-        noDisponible.textContent = "CÓDIGO NO ENCONTRADO";
-        input.disabled = true;
-        tarjeta.querySelectorAll(".cantidad-producto button, .btn-agregar-producto").forEach(boton => boton.disabled = true);
-        return;
-      }
-
-      if (stock > 0) {
-        tarjeta.classList.remove("agotado");
-
-        estado.textContent = "DISPONIBLE";
-        estado.classList.remove("estado-agotado");
-        estado.classList.add("estado-disponible");
-
-        stockTexto.textContent =
-          stock + " unidad" + (stock === 1 ? "" : "es") +
-          " disponible" + (stock === 1 ? "" : "s");
-
-        disponible.style.display = "";
-        noDisponible.style.display = "none";
-
-        input.disabled = false;
-        input.max = stock;
-
-        tarjeta.querySelectorAll(
-          ".cantidad-producto button, .btn-agregar-producto"
-        ).forEach(boton => boton.disabled = false);
-
-      } else {
-        tarjeta.classList.add("agotado");
-
-        estado.textContent = "NO DISPONIBLE";
-        estado.classList.remove("estado-disponible");
-        estado.classList.add("estado-agotado");
-
-        stockTexto.textContent = "Temporalmente no disponible";
-        disponible.style.display = "none";
-        noDisponible.style.display = "";
-
-        input.disabled = true;
-
-        tarjeta.querySelectorAll(
-          ".cantidad-producto button, .btn-agregar-producto"
-        ).forEach(boton => boton.disabled = true);
-      }
-    }
-
-    async function cargarInventario() {
-      try {
-        const respuesta = await fetch(
-          "inventario.json?actualizacion=" + Date.now(),
-          { cache: "no-store" }
-        );
-
-        if (!respuesta.ok) {
-          throw new Error("No se pudo cargar inventario.json");
-        }
-
-        const datos = await respuesta.json();
-
-        if (!datos || !datos.productos) {
-          throw new Error("Formato de inventario inválido");
-        }
-
-        inventarioProductos = datos.productos;
-        inventarioListo = true;
-        actualizarTarjeta();
-
-      } catch (error) {
-        console.error(error);
-        inventarioListo = false;
-
-        const tarjeta = document.querySelector(".producto-card");
-        tarjeta.classList.add("agotado");
-
-        tarjeta.querySelector(".estado-producto").textContent = "NO DISPONIBLE";
-        tarjeta.querySelector(".estado-producto").classList.remove("estado-disponible");
-        tarjeta.querySelector(".estado-producto").classList.add("estado-agotado");
-
-        tarjeta.querySelector(".stock-producto").textContent =
-          "No se pudo verificar el inventario";
-
-        tarjeta.querySelector(".contenido-disponible").style.display = "none";
-        tarjeta.querySelector(".contenido-agotado").style.display = "";
-        tarjeta.querySelector(".contenido-agotado").textContent =
-          "INVENTARIO NO DISPONIBLE";
-      }
-    }
-
-    function actualizarTotal() {
-      const input = document.getElementById("cantidad-218");
-      let cantidad = parseInt(input.value, 10);
-
-      if (!Number.isInteger(cantidad) || cantidad < 1) {
-        cantidad = 1;
-      }
-
-      const stock = obtenerStock();
-
-      if (stock > 0 && cantidad > stock) {
-        cantidad = stock;
-      }
-
-      input.value = cantidad;
-
-      document.querySelector(".producto-total strong").textContent =
-        formatoPesos(cantidad * PRECIO);
-    }
-
-    function cambiarCantidad(cambio) {
-      const input = document.getElementById("cantidad-218");
-      if (!input || input.disabled) return;
-
-      let cantidad = parseInt(input.value, 10);
-      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
-
-      cantidad += cambio;
-
-      if (cantidad < 1) cantidad = 1;
-
-      const stock = obtenerStock();
-      if (stock > 0 && cantidad > stock) cantidad = stock;
-
-      input.value = cantidad;
-      actualizarTotal();
-    }
-
-    function mostrarToast(mensaje) {
-      const toast = document.getElementById("toastCarrito");
-
-      toast.textContent = mensaje;
-      toast.classList.add("visible");
-
-      clearTimeout(temporizadorToast);
-
-      temporizadorToast = setTimeout(() => {
-        toast.classList.remove("visible");
-      }, 2200);
-    }
-
-    function agregarProducto() {
-      if (!inventarioListo) {
-        mostrarToast("No pudimos verificar el inventario. Intenta de nuevo.");
-        return;
-      }
-
-      const stock = obtenerStock();
-
-      if (stock <= 0) {
-        mostrarToast("REF 218 está temporalmente no disponible.");
-        return;
-      }
-
-      const input = document.getElementById("cantidad-218");
-      let cantidad = parseInt(input.value, 10);
-
-      if (!Number.isInteger(cantidad) || cantidad < 1) cantidad = 1;
-
-      const carrito = leerCarrito();
-      const claveProducto = "Bases Traslúcidas Muna 12 ml - Ref. 218";
-
-      const existente = carrito.find(
-        producto => producto.clave === claveProducto
-      );
-
-      const cantidadActual = existente
-        ? Number(existente.cantidad || 0)
-        : 0;
-
-      if (cantidadActual + cantidad > stock) {
-        const restantes = Math.max(0, stock - cantidadActual);
-
-        if (restantes === 0) {
-          mostrarToast("Ya tienes todas las unidades disponibles de REF 218 en tu pedido.");
-        } else {
-          mostrarToast(
-            "Solo puedes agregar " + restantes +
-            " unidad" + (restantes === 1 ? "" : "es") +
-            " más de REF 218."
-          );
-        }
-
-        return;
-      }
-
-      if (existente) {
-        existente.cantidad += cantidad;
-      } else {
-        carrito.push({
-          clave: claveProducto,
-          nombre: "Bases Traslúcidas Muna 12 ml",
-          referencia: "218",
-          precio: PRECIO,
-          cantidad: cantidad
-        });
-      }
-
-      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-
-      mostrarToast("✓ REF 218 agregada a tu pedido 💗");
-
-      input.value = 1;
-      actualizarTotal();
-    }
-
-    document.getElementById("cantidad-218").addEventListener("input", actualizarTotal);
-    document.getElementById("cantidad-218").addEventListener("change", actualizarTotal);
-
+    tarjetas.forEach(t=>{t.querySelector(".estado-producto").textContent="CONSULTANDO";t.querySelector(".contenido-disponible").style.display="none";const input=t.querySelector("input");input.addEventListener("input",()=>actualizarTotal(t));input.addEventListener("change",()=>actualizarTotal(t))});
     cargarInventario();
   </script>
 
