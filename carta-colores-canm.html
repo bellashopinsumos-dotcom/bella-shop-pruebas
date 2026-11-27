@@ -1757,6 +1757,12 @@
         inventarioProductos = datos.productos;
         inventarioListo = true;
         document.querySelectorAll(".producto-card").forEach(actualizarTarjeta);
+        // Priorizar los tonos disponibles; conservar el orden original dentro de cada grupo.
+        document.querySelectorAll(".productos-grid").forEach(cuadricula => {
+          const tarjetas = Array.from(cuadricula.querySelectorAll(":scope > .producto-card"));
+          tarjetas.sort((a, b) => Number(a.classList.contains("agotado")) - Number(b.classList.contains("agotado")));
+          tarjetas.forEach(tarjeta => cuadricula.appendChild(tarjeta));
+        });
       } catch (error) {
         console.error(error);
         inventarioListo = false;
