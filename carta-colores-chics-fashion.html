@@ -13,6 +13,97 @@ header{background:#fffdfdf7;padding:11px 5%;display:flex;align-items:center;just
 
 .carrusel-ayuda{text-align:center;margin-top:10px;color:#9a7180;font-size:12px;font-weight:700}.carrusel-puntos{display:flex;justify-content:center;gap:7px;margin-top:8px}.carrusel-punto{width:8px;height:8px;border-radius:50%;background:#efd4de;transition:.2s}.carrusel-punto.activo{background:#d94a79;transform:scale(1.18)}
 @media(max-width:850px){.contenedor{grid-template-columns:1fr;gap:22px}.selector{position:static;padding:22px 18px}.producto{padding:38px 4% 55px}}@media(max-width:600px){header{padding:9px 12px;gap:8px;flex-wrap:wrap}.logo{flex:1;min-width:0}.logo img{width:135px;height:55px}.acciones{gap:5px;flex-wrap:nowrap}.btn{width:auto;height:38px;min-height:38px;padding:0 9px;font-size:9px;white-space:nowrap}.pedido{padding:0 10px}.hero{padding:48px 16px}.marca{height:95px}.form{grid-template-columns:1fr}.agregar{width:100%}.item{grid-template-columns:1fr auto}.ref{grid-column:1/-1}}@media(max-width:420px){.logo img{width:112px}.acciones{gap:6px}}
+    .referencias-titulo {
+      font-size: 15px;
+      font-weight: 800;
+      color: #49373e;
+      margin-bottom: 6px;
+    }
+
+    .referencias-ayuda {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #735e66;
+      margin-bottom: 12px;
+    }
+
+    .referencias-bolitas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: 10px 6px;
+      margin: 0 0 12px;
+      justify-items: center;
+    }
+
+    .bolita-ref {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid #ecc2d1;
+      border-radius: 50%;
+      background: #fff6f9;
+      color: #8e3656;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .15s, border-color .15s;
+    }
+
+    .bolita-ref:hover, .bolita-ref:focus-visible {
+      border-color: #d94a79;
+      outline: 2px solid #e8a2b9;
+      outline-offset: 2px;
+    }
+
+    .bolita-ref.seleccionada {
+      background: #d94a79;
+      border-color: #d94a79;
+      color: #fff;
+    }
+
+    .bolita-ref:disabled {
+      cursor: default;
+    }
+
+    .bolita-ref .ref-doble {
+      font-size: 11px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .bolita-cantidad {
+      position: absolute;
+      top: -5px;
+      right: -4px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 3px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: #783a52;
+      color: #fff;
+      font-size: 10px;
+    }
+
+    .referencias-vacias {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding: 14px;
+      border: 1px dashed #e8cbd5;
+      border-radius: 14px;
+      color: #735e66;
+      font-size: 13px;
+      text-align: center;
+    }
+
+
 </style>
 </head>
 <body>
@@ -23,10 +114,10 @@ header{background:#fffdfdf7;padding:11px 5%;display:flex;align-items:center;just
 <section class="hero"><img class="cara" src="imagenes/Cara logo bellashop.png" alt=""><div class="hero-contenido"><span class="tag">CHIC'S FASHION · SEMIPERMANENTE</span><img class="marca" src="imagenes/logo chics.png" alt="Chic's Fashion"><p>¡Llegó el momento de escoger tus favoritos! 💕💅 Mira nuestra carta de colores Chic's Fashion, encuentra los tonos que más te enamoren y agrega todas las referencias que quieras a tu pedido. ✨💗</p></div></section>
 <section class="producto"><img class="cara-seccion" src="imagenes/Cara logo bellashop.png" alt=""><div class="contenedor">
 <div class="carta"><div class="carrusel-fotos"><img src="imagenes/carta1-semi-chics.jpg" alt="Carta de colores Chic's Fashion referencias 001 a 060"><img src="imagenes/carta2-semi-chics.jpg" alt="Carta de colores Chic's Fashion referencias 061 a 120"></div><div class="carrusel-ayuda">Desliza para ver más →</div><div class="carrusel-puntos" aria-hidden="true"><span class="carrusel-punto activo"></span><span class="carrusel-punto"></span></div></div>
-<div class="selector"><span class="producto-marca">CHIC'S FASHION · SEMIPERMANENTE</span><h1>Carta de Colores Chic's Fashion</h1><p class="precio">$19.500 c/u</p><p class="descripcion">Mira la carta, identifica el número de la referencia que deseas y agrégala a tu selección. Puedes escoger varias referencias y una cantidad diferente para cada una.</p>
-<div class="como"><strong>💗 ¿Cómo escoger?</strong><p>Escribe una referencia entre 001 y 120. Te mostraremos su disponibilidad antes de agregarla al pedido.</p></div>
+<div class="selector"><span class="producto-marca">CHIC'S FASHION · SEMIPERMANENTE</span><h1>Carta de Colores Chic's Fashion</h1><p class="precio">$19.500 c/u</p><p class="descripcion">Elige tus tonos favoritos de la carta y toca su número para agregarlos a tu pedido.</p>
+<h2 class="referencias-titulo">Referencias disponibles</h2><p class="referencias-ayuda">Toca una bolita para agregar una unidad. Puedes tocarla nuevamente o ajustar la cantidad abajo.</p>
 <div id="estado" class="estado">Consultando disponibilidad...</div>
-<div class="form"><input id="inputRef" class="campo" inputmode="numeric" autocomplete="off" placeholder="Ejemplo: 001"><button id="btnRef" class="agregar" type="button" disabled>AGREGAR</button></div><div id="error" class="error"></div><div id="lista" class="lista"><div class="vacia">Todavía no has seleccionado referencias 💕</div></div>
+<div id="referenciasBolitas" class="referencias-bolitas" role="group" aria-label="Referencias disponibles"></div><div id="error" class="error" aria-live="polite"></div><div id="lista" class="lista"><div class="vacia">Todavía no has seleccionado referencias 💕</div></div>
 <div class="resumen"><span>Unidades: <strong id="unidades">0</strong></span><span>Total: <strong id="total">$0</strong></span></div><button id="btnPedido" class="final" type="button" disabled>AGREGAR TODO A MI PEDIDO</button>
 </div></div></section>
 <section class="contacto"><img class="cara-contacto" src="imagenes/Cara logo bellashop.png" alt=""><div class="contacto-contenido"><h2>¿Necesitas una ayudita? 💕</h2><p>Estamos aquí para ti ✨ Escríbenos, cuéntanos qué necesitas y con mucho gusto te ayudamos a encontrar tus productos favoritos. 💗</p><a class="wa" target="_blank" rel="noopener" href="https://wa.me/573122002698?text=%C2%A1Holaaa%2C%20Bella%20Shop!%20%F0%9F%92%95%E2%9C%A8%20Estuve%20viendo%20su%20cat%C3%A1logo%20y%20encontr%C3%A9%20varias%20cositas%20que%20me%20encantaron%20%F0%9F%A5%B0.%20%C2%BFMe%20ayudan%20por%20favor%20con%20mi%20pedido%3F%20%F0%9F%92%97">ESCRÍBENOS POR WHATSAPP</a>
@@ -34,20 +125,45 @@ header{background:#fffdfdf7;padding:11px 5%;display:flex;align-items:center;just
 <footer><div>Bella Shop</div><small>Tienda de Belleza · Popayán, Cauca</small></footer><div id="toast" class="toast"></div>
 <script>
 const PRECIO=19500,CLAVE_CARRITO='bellaShopCarrito';let inventario={},inventarioListo=false,seleccion=[];
-const $=id=>document.getElementById(id),input=$('inputRef'),btnRef=$('btnRef'),error=$('error'),lista=$('lista'),estado=$('estado'),btnPedido=$('btnPedido');
+const $=id=>document.getElementById(id),bolitas=$('referenciasBolitas'),error=$('error'),lista=$('lista'),estado=$('estado'),btnPedido=$('btnPedido');
 function dinero(n){return new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n)}
 function normalizarTexto(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[’'´`]/g,'').replace(/[^A-Z0-9]+/g,' ').trim()}
 function normalizarRef(v){const n=Number(String(v).trim());return Number.isInteger(n)&&n>=1&&n<=113?String(n).padStart(3,'0'):null}
 function encontrarProducto(ref){const n=Number(ref);for(const [codigo,p] of Object.entries(inventario)){const nombre=normalizarTexto((p&&p.nombre)||'');if(!(nombre.includes('CHICS FASHION')||nombre.includes('CHIC S FASHION')||nombre.includes('CHICS')))continue;if(!(nombre.includes('ESMALTE SEMIPERMANENTE')||nombre.includes('ESMALTE OJO DE GATO')))continue;const m=nombre.match(/\bREF(?:ERENCIA)?\s*0*(\d{1,3})\b/);if(m&&Number(m[1])===n)return {codigo,...p};}return null}
-function stock(ref){const p=encontrarProducto(ref);return p?Math.max(0,Number(p.disponible)||0):0}
+function stock(ref){const p=encontrarProducto(ref);const n=Number(p&&p.disponible);return Number.isFinite(n)?Math.max(0,n):0}
+function cantidadEnCarrito(ref){return carritoActual().filter(i=>i.clave==='chics-fashion-carta-'+ref).reduce((n,i)=>n+(Number(i.cantidad)||0),0)}
+function restante(ref){return Math.max(0,stock(ref)-cantidadEnCarrito(ref))}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('visible');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('visible'),2300)}
-async function cargarInventario(){try{const r=await fetch('inventario.json?actualizacion='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error();const d=await r.json();inventario=d.productos||{};inventarioListo=true;estado.className='estado ok';estado.textContent='';btnRef.disabled=false;render()}catch(e){inventarioListo=false;estado.className='estado error-inv';estado.textContent='No pudimos consultar la disponibilidad en este momento. Intenta nuevamente más tarde.';btnRef.disabled=true;btnPedido.disabled=true}}
-function agregarRef(){error.textContent='';if(!inventarioListo)return;const ref=normalizarRef(input.value);if(!ref){error.textContent='Escribe una referencia válida entre 001 y 113.';return}const p=encontrarProducto(ref);if(!p){error.textContent='CÓDIGO NO ENCONTRADO';return}const s=stock(ref);if(s<=0){error.textContent='La REF. '+ref+' está TEMPORALMENTE NO DISPONIBLE.';return}const ya=seleccion.find(x=>x.ref===ref);if(ya){if(ya.cantidad>=s){error.textContent='Solo hay '+s+' unidad(es) disponibles de la REF. '+ref+'.';return}ya.cantidad++}else seleccion.push({ref,cantidad:1});input.value='';render()}
-function render(){if(!seleccion.length){lista.innerHTML='<div class="vacia">Todavía no has seleccionado referencias 💕</div>'}else{lista.innerHTML=seleccion.map(x=>{const s=stock(x.ref),ok=s>0;return `<div class="item"><div class="ref">REF. ${x.ref}<div class="stock ${ok?'si':'no'}">${ok?'Disponible: '+s:'TEMPORALMENTE NO DISPONIBLE'}</div></div><div class="cantidad"><button type="button" onclick="cambiar('${x.ref}',-1)" ${!ok?'disabled':''}>−</button><span>${x.cantidad}</span><button type="button" onclick="cambiar('${x.ref}',1)" ${!ok||x.cantidad>=s?'disabled':''}>+</button></div><button class="eliminar" type="button" onclick="eliminar('${x.ref}')">×</button></div>`}).join('')};const unidades=seleccion.reduce((a,x)=>a+x.cantidad,0);$('unidades').textContent=unidades;$('total').textContent=dinero(unidades*PRECIO);btnPedido.disabled=!inventarioListo||!seleccion.length||seleccion.some(x=>stock(x.ref)<x.cantidad)}
-window.cambiar=function(ref,d){const x=seleccion.find(i=>i.ref===ref);if(!x)return;const s=stock(ref);x.cantidad=Math.max(1,Math.min(s,x.cantidad+d));render()};window.eliminar=function(ref){seleccion=seleccion.filter(x=>x.ref!==ref);render()};
+async function cargarInventario(){try{const r=await fetch('inventario.json?actualizacion='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error();const d=await r.json();if(!d||!d.productos||typeof d.productos!=='object')throw new Error();inventario=d.productos;inventarioListo=true;estado.className='estado ok';estado.textContent='';render()}catch(e){inventarioListo=false;estado.className='estado error-inv';estado.textContent='No pudimos consultar la disponibilidad en este momento. Intenta nuevamente más tarde.';bolitas.innerHTML='';btnPedido.disabled=true}}
+function agregarRef(valor){
+ error.textContent='';if(!inventarioListo)return;
+ const ref=normalizarRef(valor);if(!ref)return;
+ const s=restante(ref),ya=seleccion.find(x=>x.ref===ref);
+ if(s<=0||(ya&&ya.cantidad>=s)){error.textContent='No hay más unidades disponibles de la REF. '+ref+'.';return}
+ if(ya)ya.cantidad++;else seleccion.push({ref,cantidad:1});render();
+}
+function renderizarBolitas(){
+ const refEnFoco=bolitas.contains(document.activeElement)?document.activeElement.dataset.ref:null;
+ bolitas.innerHTML='';if(!inventarioListo)return;
+ for(let n=1;n<=113;n++){
+  const ref=normalizarRef(n),disponible=restante(ref);
+  if(disponible<=0)continue;
+  const seleccionada=seleccion.find(x=>x.ref===ref)?.cantidad||0;
+  const boton=document.createElement('button');boton.type='button';boton.className='bolita-ref'+(seleccionada?' seleccionada':'');boton.dataset.ref=ref;boton.textContent=ref;
+  boton.disabled=seleccionada>=disponible;
+  boton.title='Referencia '+ref;
+  boton.setAttribute('aria-label','Referencia '+ref+'. '+seleccionada+' seleccionadas; '+Math.max(0,disponible-seleccionada)+' unidades por agregar');
+  if(seleccionada){const cantidad=document.createElement('span');cantidad.className='bolita-cantidad';cantidad.textContent=seleccionada;cantidad.setAttribute('aria-hidden','true');boton.appendChild(cantidad)}
+  bolitas.appendChild(boton);
+  if(ref===refEnFoco&&!boton.disabled)boton.focus({preventScroll:true});
+ }
+ if(!bolitas.children.length){const vacio=document.createElement('p');vacio.className='referencias-vacias';vacio.textContent='No hay referencias disponibles para agregar en este momento.';bolitas.appendChild(vacio)}
+}
+function render(){renderizarBolitas();if(!seleccion.length){lista.innerHTML='<div class="vacia">Todavía no has seleccionado referencias 💕</div>'}else{lista.innerHTML=seleccion.map(x=>{const s=restante(x.ref),ok=s>0;return `<div class="item"><div class="ref">REF. ${x.ref}<div class="stock ${ok?'si':'no'}">${ok?'Disponible: '+s:'TEMPORALMENTE NO DISPONIBLE'}</div></div><div class="cantidad"><button type="button" onclick="cambiar('${x.ref}',-1)" ${x.cantidad<=1?'disabled':''}>−</button><span>${x.cantidad}</span><button type="button" onclick="cambiar('${x.ref}',1)" ${!ok||x.cantidad>=s?'disabled':''}>+</button></div><button class="eliminar" type="button" onclick="eliminar('${x.ref}')">×</button></div>`}).join('')};const unidades=seleccion.reduce((a,x)=>a+x.cantidad,0);$('unidades').textContent=unidades;$('total').textContent=dinero(unidades*PRECIO);btnPedido.disabled=!inventarioListo||!seleccion.length||seleccion.some(x=>restante(x.ref)<x.cantidad)}
+window.cambiar=function(ref,d){const x=seleccion.find(i=>i.ref===ref);if(!x)return;const s=restante(ref);const nueva=x.cantidad+d;if(nueva<1||nueva>s&&d>0)return;x.cantidad=nueva;error.textContent='';render()};window.eliminar=function(ref){seleccion=seleccion.filter(x=>x.ref!==ref);render()};
 function carritoActual(){try{const c=JSON.parse(localStorage.getItem(CLAVE_CARRITO)||'[]');return Array.isArray(c)?c:[]}catch(e){return[]}}
-function guardarPedido(){if(!inventarioListo||!seleccion.length)return;let carrito=carritoActual();for(const x of seleccion){const s=stock(x.ref),p=encontrarProducto(x.ref);if(!p||s<x.cantidad){error.textContent='Revisa la disponibilidad de la REF. '+x.ref+'.';render();return}const clave='chics-fashion-carta-'+x.ref;const existente=carrito.find(i=>i.clave===clave);const enCarrito=existente?Number(existente.cantidad)||0:0;if(enCarrito+x.cantidad>s){error.textContent='La REF. '+x.ref+' no tiene suficientes unidades para sumar esta cantidad al pedido.';return}if(existente)existente.cantidad=enCarrito+x.cantidad;else carrito.push({clave,nombre:"Esmalte Semipermanente Chic's Fashion",referencia:x.ref,precio:PRECIO,cantidad:x.cantidad,imagen:'imagenes/carta1-semi-chics.jpg',codigoOdoo:p.codigo_original_odoo||p.codigo||''})}localStorage.setItem(CLAVE_CARRITO,JSON.stringify(carrito));seleccion=[];render();toast('💗 Referencias agregadas a MI PEDIDO')}
-btnRef.addEventListener('click',agregarRef);input.addEventListener('keydown',e=>{if(e.key==='Enter')agregarRef()});btnPedido.addEventListener('click',guardarPedido);cargarInventario();
+function guardarPedido(){if(!inventarioListo||!seleccion.length)return;let carrito=carritoActual();for(const x of seleccion){const s=stock(x.ref),p=encontrarProducto(x.ref);if(!p||s<x.cantidad){error.textContent='Revisa la disponibilidad de la REF. '+x.ref+'.';render();return}const clave='chics-fashion-carta-'+x.ref;const existente=carrito.find(i=>i.clave===clave);const enCarrito=existente?Number(existente.cantidad)||0:0;if(enCarrito+x.cantidad>s){error.textContent='La REF. '+x.ref+' no tiene suficientes unidades para sumar esta cantidad al pedido.';return}if(existente)existente.cantidad=enCarrito+x.cantidad;else carrito.push({clave,nombre:"Esmalte Semipermanente Chic's Fashion",referencia:x.ref,precio:PRECIO,cantidad:x.cantidad,imagen:Number(x.ref)<=60?'imagenes/carta1-semi-chics.jpg':'imagenes/carta2-semi-chics.jpg',codigoOdoo:p.codigo_original_odoo||p.codigo||''})}localStorage.setItem(CLAVE_CARRITO,JSON.stringify(carrito));seleccion=[];render();toast('💗 Referencias agregadas a MI PEDIDO')}
+bolitas.addEventListener('click',e=>{const b=e.target.closest('button[data-ref]');if(b&&!b.disabled)agregarRef(b.dataset.ref)});btnPedido.addEventListener('click',guardarPedido);window.addEventListener('storage',e=>{if(e.key===CLAVE_CARRITO||e.key===null)render()});window.addEventListener('pageshow',()=>{if(inventarioListo)render()});cargarInventario();
 </script>
 
 <script id="bellaCarruselPistas">
