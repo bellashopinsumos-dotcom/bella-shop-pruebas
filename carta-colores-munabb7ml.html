@@ -972,43 +972,94 @@
       line-height: 1.55;
     }
 
-    .form-referencia {
+    .referencias-titulo {
+      font-size: 15px;
+      font-weight: 800;
+      color: #49373e;
+      margin-bottom: 6px;
+    }
+
+    .referencias-ayuda {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #735e66;
+      margin-bottom: 12px;
+    }
+
+    .referencias-bolitas {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 10px;
-      margin-bottom: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: 10px 6px;
+      margin: 0 0 12px;
+      justify-items: center;
     }
 
-    .campo-ref {
-      width: 100%;
-      min-height: 48px;
-      border: 1px solid #e8cbd5;
-      border-radius: 14px;
-      padding: 0 15px;
+    .bolita-ref {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid #ecc2d1;
+      border-radius: 50%;
+      background: #fff6f9;
+      color: #8e3656;
       font: inherit;
-      color: #3d3035;
-      outline: none;
-      background: #fff;
-    }
-
-    .campo-ref:focus {
-      border-color: #df7194;
-      box-shadow: 0 0 0 3px rgba(223,113,148,0.10);
-    }
-
-    .btn-agregar-ref {
-      min-height: 48px;
-      border: 0;
-      border-radius: 14px;
-      padding: 0 18px;
-      background: #de5b86;
-      color: white;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .15s, border-color .15s;
     }
 
-    .btn-agregar-ref:hover {
-      background: #cf4b77;
+    .bolita-ref:hover, .bolita-ref:focus-visible {
+      border-color: #d94a79;
+      outline: 2px solid #e8a2b9;
+      outline-offset: 2px;
+    }
+
+    .bolita-ref.seleccionada {
+      background: #d94a79;
+      border-color: #d94a79;
+      color: #fff;
+    }
+
+    .bolita-ref:disabled {
+      cursor: default;
+    }
+
+    .bolita-ref .ref-doble {
+      font-size: 11px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .bolita-cantidad {
+      position: absolute;
+      top: -5px;
+      right: -4px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 3px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: #783a52;
+      color: #fff;
+      font-size: 10px;
+    }
+
+    .referencias-vacias {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding: 14px;
+      border: 1px dashed #e8cbd5;
+      border-radius: 14px;
+      color: #735e66;
+      font-size: 13px;
+      text-align: center;
     }
 
     .mensaje-error {
@@ -1149,8 +1200,8 @@
     }
 
     @media (max-width: 520px) {
-      .form-referencia {
-        grid-template-columns: 1fr;
+      .referencias-bolitas {
+        gap: 10px 6px;
       }
 
       .btn-agregar-ref {
@@ -1412,24 +1463,12 @@
         </p>
 
         <p class="descripcion-producto">
-          Mira la carta, identifica el número de la referencia que deseas
-          y agrégala a tu selección. Puedes escoger varias referencias
-          y una cantidad diferente para cada una.
+          Elige tus tonos favoritos de la carta y toca su número para agregarlos a tu pedido.
         </p>
 
 
-        <div class="como-comprar">
-
-          <strong>¿Cómo comprar?</strong>
-
-          <p>
-            1. Revisa la carta de colores.<br>
-            2. Escribe el número de la referencia.<br>
-            3. Agrégala y selecciona cuántas unidades necesitas.<br>
-            4. Repite el proceso si quieres más colores.
-          </p>
-
-        </div>
+        <h2 class="referencias-titulo">Referencias disponibles</h2>
+        <p class="referencias-ayuda">Toca una bolita para agregar una unidad. Puedes tocarla nuevamente o ajustar la cantidad abajo. Los tonos 04 y 08 son el mismo producto.</p>
 
 
 
@@ -1437,27 +1476,7 @@
           Consultando inventario actualizado...
         </div>
 
-        <div class="form-referencia">
-
-          <input
-            id="referenciaInput"
-            class="campo-ref"
-            type="text"
-            inputmode="numeric"
-            autocomplete="off"
-            placeholder="Ej: 15"
-            aria-label="Referencia del esmalte"
-          >
-
-          <button
-            id="agregarReferencia"
-            class="btn-agregar-ref"
-            type="button"
-          >
-            AGREGAR
-          </button>
-
-        </div>
+        <div id="referenciasBolitas" class="referencias-bolitas" role="group" aria-label="Referencias disponibles"></div>
 
         <div
           id="mensajeError"
@@ -1667,8 +1686,7 @@
     let inventarioProductos = {};
     let inventarioListo = false;
 
-    const input = document.getElementById("referenciaInput");
-    const btnAgregar = document.getElementById("agregarReferencia");
+    const bolitas = document.getElementById("referenciasBolitas");
     const lista = document.getElementById("listaReferencias");
     const mensajeError = document.getElementById("mensajeError");
     const totalReferencias = document.getElementById("totalReferencias");
@@ -1757,7 +1775,7 @@
     async function cargarInventario() {
       estadoInventario.className = "estado-inventario cargando";
       estadoInventario.textContent = "Consultando inventario actualizado...";
-      btnAgregar.disabled = true;
+      bolitas.innerHTML = "";
       btnPedido.disabled = true;
 
       try {
@@ -1778,8 +1796,7 @@
         estadoInventario.className = "estado-inventario ok";
         estadoInventario.textContent = "";
         estadoInventario.style.display = "none";
-        btnAgregar.disabled = false;
-        btnPedido.disabled = false;
+        renderizarReferencias();
       } catch (error) {
         console.error("Error cargando inventario:", error);
         inventarioListo = false;
@@ -1790,12 +1807,12 @@
         estadoInventario.textContent =
           "No pudimos consultar el inventario en este momento. Intenta recargar la página.";
 
-        btnAgregar.disabled = true;
+        bolitas.innerHTML = "";
         btnPedido.disabled = true;
       }
     }
 
-    function agregarReferencia() {
+    function agregarReferencia(valor) {
       mensajeError.textContent = "";
       mensajeError.style.color = "";
 
@@ -1804,23 +1821,16 @@
         return;
       }
 
-      const ref = normalizarReferencia(input.value);
-
-      if (ref === "04" && Number(input.value.trim()) === 8) {
-        mensajeError.textContent = "💗 La REF. 08 corresponde al mismo tono/producto que la REF. 04.";
-        mensajeError.style.color = "#a64d79";
-      }
+      const ref = normalizarReferencia(valor);
 
       if (!referenciaValida(ref)) {
         mensajeError.textContent = "Esa referencia no aparece en la carta Muna BB 7 ml.";
-        input.focus();
         return;
       }
 
       const codigoInventario = codigoOdoo(ref);
       if (!inventarioProductos[codigoInventario]) {
         mensajeError.textContent = "CÓDIGO NO ENCONTRADO";
-        input.select();
         return;
       }
 
@@ -1829,7 +1839,6 @@
       if (stock <= 0) {
         mensajeError.textContent =
           "REF " + String(Number(ref)).padStart(2, "0") + " está TEMPORALMENTE NO DISPONIBLE.";
-        input.select();
         return;
       }
 
@@ -1841,7 +1850,6 @@
         mensajeError.textContent =
           "Ya tienes en tu pedido todas las unidades disponibles de la REF " +
           String(Number(ref)).padStart(2, "0") + ".";
-        input.select();
         return;
       }
 
@@ -1850,13 +1858,10 @@
           "Solo quedan " + stock + " unidad" + (stock === 1 ? "" : "es") +
           " disponible" + (stock === 1 ? "" : "s") +
           " de la REF " + String(Number(ref)).padStart(2, "0") + ".";
-        input.select();
         return;
       }
 
       referenciasSeleccionadas.set(ref, seleccionada + 1);
-      input.value = "";
-      input.focus();
       renderizarReferencias();
     }
 
@@ -1895,7 +1900,51 @@
       renderizarReferencias();
     }
 
+    function renderizarBolitas() {
+      const refEnFoco = bolitas.contains(document.activeElement) ? document.activeElement.dataset.ref : null;
+      bolitas.innerHTML = "";
+      if (!inventarioListo) return;
+      for (const ref of REFERENCIAS_VALIDAS) {
+        const stock = stockDisponible(ref);
+        const disponible = stock - cantidadEnCarrito(ref);
+        if (disponible <= 0) continue;
+        const seleccionada = referenciasSeleccionadas.get(ref) || 0;
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.className = "bolita-ref" + (seleccionada ? " seleccionada" : "");
+        boton.dataset.ref = ref;
+        const etiqueta = ref === "04" ? "04 y 08 (mismo tono)" : ref;
+        boton.setAttribute("aria-label", "Referencia " + etiqueta + ". " + seleccionada + " seleccionadas; " + Math.max(0, disponible - seleccionada) + " unidades por agregar");
+        boton.title = "Referencia " + etiqueta;
+        boton.disabled = seleccionada >= disponible;
+        if (ref === "04") {
+          const doble = document.createElement("span");
+          doble.className = "ref-doble";
+          doble.textContent = "04/08";
+          boton.appendChild(doble);
+        } else {
+          boton.textContent = ref;
+        }
+        if (seleccionada) {
+          const cantidad = document.createElement("span");
+          cantidad.className = "bolita-cantidad";
+          cantidad.textContent = seleccionada;
+          cantidad.setAttribute("aria-hidden", "true");
+          boton.appendChild(cantidad);
+        }
+        bolitas.appendChild(boton);
+        if (ref === refEnFoco && !boton.disabled) boton.focus({preventScroll: true});
+      }
+      if (!bolitas.children.length) {
+        const vacio = document.createElement("p");
+        vacio.className = "referencias-vacias";
+        vacio.textContent = "No hay referencias disponibles para agregar en este momento.";
+        bolitas.appendChild(vacio);
+      }
+    }
+
     function renderizarReferencias() {
+      renderizarBolitas();
       lista.innerHTML = "";
 
       if (referenciasSeleccionadas.size === 0) {
@@ -1914,7 +1963,7 @@
 
             item.innerHTML = `
               <div class="ref-nombre">
-                Referencia ${String(Number(ref)).padStart(2, "0")}
+                Referencia ${ref === "04" ? "04 / 08" : ref}
                 <div class="stock-ref disponible">
                   🟢 ${stock} disponible${stock === 1 ? "" : "s"}
                 </div>
@@ -1944,15 +1993,19 @@
 
       totalUnidades.textContent = unidades;
       subtotalPedido.textContent = formatoPesos(unidades * PRECIO_UNITARIO);
+      btnPedido.disabled = !inventarioListo || unidades === 0;
     }
 
-    btnAgregar.addEventListener("click", agregarReferencia);
+    bolitas.addEventListener("click", (event) => {
+      const boton = event.target.closest("button[data-ref]");
+      if (boton && !boton.disabled) agregarReferencia(boton.dataset.ref);
+    });
 
-    input.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        agregarReferencia();
-      }
+    window.addEventListener("storage", (event) => {
+      if (event.key === "bellaShopCarrito" || event.key === null) renderizarReferencias();
+    });
+    window.addEventListener("pageshow", () => {
+      if (inventarioListo) renderizarReferencias();
     });
 
     lista.addEventListener("click", (event) => {
