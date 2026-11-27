@@ -672,6 +672,109 @@ footer small{
   .grid{ grid-template-columns:1fr; }
 }
 
+    .referencias-titulo {
+      font-size: 15px;
+      font-weight: 800;
+      color: #49373e;
+      margin-bottom: 6px;
+    }
+
+    .referencias-ayuda {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #735e66;
+      margin-bottom: 12px;
+    }
+
+    .referencias-bolitas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: 10px 6px;
+      margin: 0 0 12px;
+      justify-items: center;
+    }
+
+    .bolita-ref {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid #ecc2d1;
+      border-radius: 50%;
+      background: #fff6f9;
+      color: #8e3656;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .15s, border-color .15s;
+    }
+
+    .bolita-ref:hover, .bolita-ref:focus-visible {
+      border-color: #d94a79;
+      outline: 2px solid #e8a2b9;
+      outline-offset: 2px;
+    }
+
+    .bolita-ref.seleccionada {
+      background: #d94a79;
+      border-color: #d94a79;
+      color: #fff;
+    }
+
+    .bolita-ref:disabled {
+      cursor: default;
+    }
+
+    .bolita-ref .ref-doble {
+      font-size: 11px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .bolita-cantidad {
+      position: absolute;
+      top: -5px;
+      right: -4px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 3px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      background: #783a52;
+      color: #fff;
+      font-size: 10px;
+    }
+
+    .referencias-vacias {
+      grid-column: 1 / -1;
+      width: 100%;
+      padding: 14px;
+      border: 1px dashed #e8cbd5;
+      border-radius: 14px;
+      color: #735e66;
+      font-size: 13px;
+      text-align: center;
+    }
+
+
+.referencias-bolitas{grid-template-columns:repeat(auto-fill,minmax(52px,1fr))}
+.bolita-ref{width:50px;height:50px;font-size:12px}
+.seleccion-latin{display:grid;gap:8px;margin:12px 0}
+.fila-latin{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:10px;border:1px solid #f0dce3;border-radius:14px}
+.fila-latin strong{font-size:13px;color:#49373e}
+.fila-latin small{display:block;font-size:11px;color:#36794f;margin-top:4px}
+.ajuste-latin{display:flex;align-items:center;gap:7px;background:#fff4f7;padding:3px;border-radius:40px;font-weight:800;font-size:13px}
+.ajuste-latin button,.quitar-latin{width:34px;height:34px;border:0;border-radius:50%;background:#fff;color:#d94a79;font-size:18px;cursor:pointer}
+.ajuste-latin button:disabled{opacity:.4;cursor:default}
+.quitar-latin{background:transparent}
+.consulta:empty{display:none}
+@media(max-width:420px){.fila-latin{gap:5px;padding:7px}.ajuste-latin{gap:4px}.ajuste-latin button,.quitar-latin{width:30px;height:30px}}
 </style>
 </head>
 
@@ -749,8 +852,7 @@ footer small{
 
     <p>
       Explora las Cartas de Colores Latin Nails en 8 ml y 15 ml. 💕
-      Escoge la carta, busca tu tono favorito y escribe la referencia
-      exactamente como aparece para agregarla a tu pedido. ✨
+      Escoge la presentación y toca las referencias disponibles para agregar tus tonos favoritos al pedido. ✨
     </p>
 
   </div>
@@ -785,27 +887,14 @@ footer small{
       <div class="precio">$17.800</div>
       <div class="unidad">Precio por unidad</div>
 
-      <label class="referencia-label" for="refLatin8">
-        ESCRIBE LA REFERENCIA QUE ESCOGISTE
-      </label>
-      <input id="refLatin8"
-             class="referencia-input"
-             type="text"
-             placeholder="Ej: F483"
-             autocomplete="off">
-
-      <div class="consulta">Escribe una referencia para consultar disponibilidad.</div>
-
-      <div class="cantidad-titulo">CANTIDAD</div>
-      <div class="cantidad">
-        <button type="button" class="menos" disabled>−</button>
-        <input type="number" class="cantidad-input" value="1" min="1" disabled>
-        <button type="button" class="mas" disabled>+</button>
-      </div>
-
+      <h4 class="referencias-titulo">Referencias disponibles · 8 ml</h4>
+      <p class="referencias-ayuda">Toca una bolita para agregar una unidad. Puedes escoger varios tonos.</p>
+      <div class="consulta" role="status" aria-live="polite">Consultando disponibilidad...</div>
+      <div class="referencias-bolitas" role="group" aria-label="Referencias disponibles de 8 ml"></div>
+      <div class="seleccion-latin" aria-label="Referencias seleccionadas"></div>
       <div class="total">
-        <span>Total</span>
-        <strong>$17.800</strong>
+        <span>Unidades: <b class="unidades">0</b> · Total</span>
+        <strong>$0</strong>
       </div>
 
       <button type="button" class="agregar" disabled>AGREGAR AL PEDIDO</button>
@@ -826,27 +915,14 @@ footer small{
       <div class="precio">$28.500</div>
       <div class="unidad">Precio por unidad</div>
 
-      <label class="referencia-label" for="refLatin15">
-        ESCRIBE LA REFERENCIA QUE ESCOGISTE
-      </label>
-      <input id="refLatin15"
-             class="referencia-input"
-             type="text"
-             placeholder="Ej: 452"
-             autocomplete="off">
-
-      <div class="consulta">Escribe una referencia para consultar disponibilidad.</div>
-
-      <div class="cantidad-titulo">CANTIDAD</div>
-      <div class="cantidad">
-        <button type="button" class="menos" disabled>−</button>
-        <input type="number" class="cantidad-input" value="1" min="1" disabled>
-        <button type="button" class="mas" disabled>+</button>
-      </div>
-
+      <h4 class="referencias-titulo">Referencias disponibles · 15 ml</h4>
+      <p class="referencias-ayuda">Toca una bolita para agregar una unidad. Puedes escoger varios tonos.</p>
+      <div class="consulta" role="status" aria-live="polite">Consultando disponibilidad...</div>
+      <div class="referencias-bolitas" role="group" aria-label="Referencias disponibles de 15 ml"></div>
+      <div class="seleccion-latin" aria-label="Referencias seleccionadas"></div>
       <div class="total">
-        <span>Total</span>
-        <strong>$28.500</strong>
+        <span>Unidades: <b class="unidades">0</b> · Total</span>
+        <strong>$0</strong>
       </div>
 
       <button type="button" class="agregar" disabled>AGREGAR AL PEDIDO</button>
@@ -978,276 +1054,97 @@ footer small{
 </div>
 
 <script>
-const CLAVE_CARRITO = "bellaShopCarrito";
-let productosInventario = {};
-
-function dinero(valor){
-  return "$" + Number(valor).toLocaleString("es-CO");
+const CLAVE_CARRITO="bellaShopCarrito";
+let inventarioListo=false;
+const catalogo=new Map([["8",new Map()],["15",new Map()]]);
+const controladores=[];
+function dinero(v){return "$"+Number(v).toLocaleString("es-CO")}
+function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/[^A-Z0-9]+/g," ").trim()}
+function construirCatalogo(productos){
+ for(const mapa of catalogo.values())mapa.clear();
+ for(const [codigo,p] of Object.entries(productos)){
+  if(!p)continue;
+  const nombre=normalizar(p.nombre);
+  if(!/\bLATIN\b/.test(nombre)||!/(SEMIPERMANENTE|SEMI PERMANENTE|ESMALTE SEM)/.test(nombre))continue;
+  const medida=nombre.match(/\b(8|15)\s*ML\b/);
+  const referencia=nombre.match(/\bREF(?:ERENCIA)?\s+([A-Z0-9]+)\b/);
+  if(!medida||!referencia||!/\d/.test(referencia[1]))continue;
+  const ml=medida[1],ref=referencia[1],mapa=catalogo.get(ml);
+  const prioridad=nombre.includes("LATIN NAIL")?3:0;
+  const anterior=mapa.get(ref);
+  if(!anterior||prioridad>anterior.prioridad)mapa.set(ref,{...p,codigo:p.codigo||p.codigo_original_odoo||codigo,prioridad});
+ }
 }
-
-function normalizar(valor){
-  return String(valor || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .toUpperCase()
-    .replace(/[’'´`]/g,"")
-    .replace(/[^A-Z0-9]+/g," ")
-    .trim();
-}
-
-function referenciaExactaEnNombre(nombre, ref){
-  const limpio = normalizar(nombre);
-  const r = normalizar(ref).replace(/\s+/g,"");
-  if(!r) return false;
-
-  const tokens = limpio.split(/\s+/);
-  if(tokens.includes(r)) return true;
-
-  // Prioriza el patrón de Odoo:
-  // ESMALTE SEMIPERMANENTE REF # [REFERENCIA] 8/15ML LATIN NAIL
-  const patronRef = new RegExp("\\bREF\\s*#?\\s*" +
-    r.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b");
-  return patronRef.test(limpio);
-}
-
-function buscarLatin(ref, ml){
-  const candidatos = Object.values(productosInventario || {}).filter(producto => {
-    const nombre = normalizar(producto.nombre);
-    const compacto = nombre.replace(/\s+/g,"");
-
-    const latin = nombre.includes("LATIN");
-    const semi =
-      nombre.includes("SEMIPERMANENTE") ||
-      nombre.includes("SEMI PERMANENTE") ||
-      nombre.includes("ESMALTE SEM");
-
-    const medida = compacto.includes(String(ml) + "ML");
-
-    return latin && semi && medida && referenciaExactaEnNombre(producto.nombre, ref);
-  });
-
-  if(!candidatos.length) return null;
-
-  const r = normalizar(ref).replace(/\s+/g,"");
-  candidatos.sort((a,b) => {
-    function puntaje(p){
-      const n = normalizar(p.nombre);
-      let s = 0;
-      if(n.includes("REF " + r) || n.includes("REF # " + r)) s += 5;
-      if(n.includes("LATIN NAIL")) s += 3;
-      if(n.replace(/\s+/g,"").includes(String(ml) + "ML")) s += 2;
-      return s;
-    }
-    return puntaje(b) - puntaje(a);
-  });
-
-  return candidatos[0];
-}
-
-function stockDe(producto){
-  if(!producto) return 0;
-  return Math.max(
-    0,
-    Math.floor(Number(
-      producto.disponible ??
-      producto.a_la_mano ??
-      producto.stock ??
-      0
-    ) || 0)
-  );
-}
-
-function obtenerCarrito(){
-  try{
-    const guardado = localStorage.getItem(CLAVE_CARRITO);
-    const carrito = guardado ? JSON.parse(guardado) : [];
-    return Array.isArray(carrito) ? carrito : [];
-  }catch(e){
-    return [];
-  }
-}
-
+function stockDe(p){const n=Number(p?.disponible??p?.a_la_mano??p?.stock??0);return Number.isFinite(n)?Math.max(0,Math.floor(n)):0}
+function obtenerCarrito(){try{const c=JSON.parse(localStorage.getItem(CLAVE_CARRITO)||"[]");return Array.isArray(c)?c:[]}catch(e){return []}}
+function claveDe(ml,ref){return "latin-"+ml+"ml-ref-"+ref}
+function restante(ml,ref,carrito=obtenerCarrito()){return Math.max(0,stockDe(catalogo.get(ml).get(ref))-carrito.filter(x=>x.clave===claveDe(ml,ref)).reduce((n,x)=>n+(Number(x.cantidad)||0),0))}
 let temporizadorToast;
-function mostrarToast(mensaje){
-  const toast = document.getElementById("toast");
-  toast.textContent = mensaje;
-  toast.classList.add("mostrar");
-  clearTimeout(temporizadorToast);
-  temporizadorToast = setTimeout(
-    () => toast.classList.remove("mostrar"),
-    2200
-  );
-}
-
+function mostrarToast(mensaje){const t=document.getElementById("toast");t.textContent=mensaje;t.classList.add("mostrar");clearTimeout(temporizadorToast);temporizadorToast=setTimeout(()=>t.classList.remove("mostrar"),2200)}
 function prepararCarta(tarjeta){
-  const ml = String(tarjeta.dataset.ml);
-  const precio = Number(tarjeta.dataset.precio);
-  const refInput = tarjeta.querySelector(".referencia-input");
-  const consulta = tarjeta.querySelector(".consulta");
-  const menos = tarjeta.querySelector(".menos");
-  const mas = tarjeta.querySelector(".mas");
-  const cantidadInput = tarjeta.querySelector(".cantidad-input");
-  const total = tarjeta.querySelector(".total strong");
-  const agregar = tarjeta.querySelector(".agregar");
-
-  let productoSeleccionado = null;
-  let stockActual = 0;
-
-  function bloquear(){
-    menos.disabled = true;
-    mas.disabled = true;
-    cantidadInput.disabled = true;
-    agregar.disabled = true;
-    cantidadInput.value = "1";
-    total.textContent = dinero(precio);
+ const ml=String(tarjeta.dataset.ml),precio=Number(tarjeta.dataset.precio);
+ const bolitas=tarjeta.querySelector(".referencias-bolitas"),consulta=tarjeta.querySelector(".consulta"),lista=tarjeta.querySelector(".seleccion-latin"),total=tarjeta.querySelector(".total strong"),unidades=tarjeta.querySelector(".unidades"),agregar=tarjeta.querySelector(".agregar");
+ const seleccion=new Map();
+ function mensaje(texto){consulta.textContent=texto;consulta.className="consulta agotado"}
+ function limpiar(){consulta.textContent="";consulta.className="consulta"}
+ function render(){
+  const refFoco=bolitas.contains(document.activeElement)?document.activeElement.dataset.ref:null;
+  bolitas.innerHTML="";lista.innerHTML="";
+  if(!inventarioListo){agregar.disabled=true;return}
+  const carrito=obtenerCarrito();
+  const refs=[...catalogo.get(ml).keys()].sort((a,b)=>a.localeCompare(b,"es",{numeric:true}));
+  for(const ref of refs){
+   const disponible=restante(ml,ref,carrito);if(disponible<=0)continue;
+   const n=seleccion.get(ref)||0;
+   const b=document.createElement("button");b.type="button";b.className="bolita-ref"+(n?" seleccionada":"");b.dataset.ref=ref;b.textContent=ref;b.disabled=n>=disponible;
+   b.setAttribute("aria-label","Referencia "+ref+". "+n+" seleccionadas; "+Math.max(0,disponible-n)+" unidades por agregar");
+   if(n){const contador=document.createElement("span");contador.className="bolita-cantidad";contador.textContent=n;contador.setAttribute("aria-hidden","true");b.appendChild(contador)}
+   bolitas.appendChild(b);if(ref===refFoco&&!b.disabled)b.focus({preventScroll:true});
   }
-
-  function habilitar(stock){
-    cantidadInput.max = String(stock);
-    cantidadInput.value = "1";
-    cantidadInput.disabled = false;
-    menos.disabled = false;
-    mas.disabled = false;
-    agregar.disabled = false;
-    total.textContent = dinero(precio);
+  if(!bolitas.children.length){const p=document.createElement("p");p.className="referencias-vacias";p.textContent="No hay referencias disponibles para agregar en este momento.";bolitas.appendChild(p)}
+  if(!seleccion.size){const p=document.createElement("p");p.className="referencias-vacias";p.textContent="Todavía no has seleccionado referencias.";lista.appendChild(p)}
+  for(const [ref,n] of seleccion){
+   const disponible=restante(ml,ref,carrito);
+   const fila=document.createElement("div");fila.className="fila-latin";
+   fila.innerHTML='<strong>REF. '+ref+'<small>'+disponible+' disponible(s)</small></strong><div class="ajuste-latin"><button type="button" data-accion="menos" data-ref="'+ref+'" aria-label="Restar '+ref+'">−</button><span>'+n+'</span><button type="button" data-accion="mas" data-ref="'+ref+'" aria-label="Sumar '+ref+'" '+(n>=disponible?'disabled':'')+'>+</button></div><button type="button" class="quitar-latin" data-accion="quitar" data-ref="'+ref+'" aria-label="Eliminar '+ref+'">×</button>';
+   lista.appendChild(fila);
   }
-
-  function consultarReferencia(){
-    const ref = refInput.value.trim().toUpperCase();
-    productoSeleccionado = null;
-    stockActual = 0;
-    consulta.className = "consulta";
-    bloquear();
-
-    if(!ref){
-      consulta.textContent = "Escribe una referencia para consultar disponibilidad.";
-      return;
-    }
-
-    const producto = buscarLatin(ref, ml);
-
-    if(!producto){
-      consulta.classList.add("agotado");
-      consulta.textContent = "CÓDIGO NO ENCONTRADO";
-      return;
-    }
-
-    const stock = stockDe(producto);
-
-    if(stock <= 0){
-      consulta.classList.add("agotado");
-      consulta.textContent = "REF. " + ref + " · TEMPORALMENTE NO DISPONIBLE";
-      return;
-    }
-
-    productoSeleccionado = producto;
-    stockActual = stock;
-    consulta.classList.add("disponible");
-    consulta.textContent = "REF. " + ref + " · Disponibles: " + stock;
-    habilitar(stock);
+  const n=[...seleccion.values()].reduce((a,b)=>a+b,0);unidades.textContent=n;total.textContent=dinero(n*precio);
+  agregar.disabled=!n||[...seleccion].some(([ref,q])=>q>restante(ml,ref,carrito));
+ }
+ function cambiar(ref,d){
+  if(!inventarioListo||!catalogo.get(ml).has(ref))return;
+  const n=(seleccion.get(ref)||0)+d;
+  if(d>0&&n>restante(ml,ref)){mensaje("No hay más unidades disponibles de la REF. "+ref+".");return}
+  limpiar();if(n<=0)seleccion.delete(ref);else seleccion.set(ref,n);render();
+ }
+ function guardar(){
+  if(!inventarioListo||!seleccion.size)return;
+  const carrito=obtenerCarrito();
+  for(const [ref,n] of seleccion){if(n>restante(ml,ref,carrito)){mensaje("Revisa la disponibilidad de la REF. "+ref+".");render();return}}
+  for(const [ref,n] of seleccion){
+   const producto=catalogo.get(ml).get(ref),clave=claveDe(ml,ref),existente=carrito.find(item=>item.clave===clave);
+   if(existente)existente.cantidad=(Number(existente.cantidad)||0)+n;
+   else carrito.push({clave,codigo:producto.codigo,nombre:"Esmalte Semipermanente REF #"+ref+" "+ml+"ML Latin Nail",referencia:ref,precio,cantidad:n,imagen:"imagenes/carta-latin"+ml+"ml.jpeg"});
   }
-
-  function actualizarTotal(){
-    let cantidad = parseInt(cantidadInput.value) || 1;
-    cantidad = Math.max(1, cantidad);
-    if(stockActual > 0) cantidad = Math.min(cantidad, stockActual);
-    cantidadInput.value = cantidad;
-    total.textContent = dinero(cantidad * precio);
-  }
-
-  refInput.addEventListener("input", consultarReferencia);
-
-  menos.addEventListener("click", () => {
-    let cantidad = parseInt(cantidadInput.value) || 1;
-    if(cantidad > 1) cantidadInput.value = cantidad - 1;
-    actualizarTotal();
-  });
-
-  mas.addEventListener("click", () => {
-    let cantidad = parseInt(cantidadInput.value) || 1;
-    if(cantidad < stockActual) cantidadInput.value = cantidad + 1;
-    actualizarTotal();
-  });
-
-  cantidadInput.addEventListener("input", actualizarTotal);
-  cantidadInput.addEventListener("change", actualizarTotal);
-
-  agregar.addEventListener("click", () => {
-    consultarReferencia();
-    if(!productoSeleccionado || stockActual <= 0) return;
-
-    const ref = refInput.value.trim().toUpperCase();
-    let cantidad = parseInt(cantidadInput.value) || 1;
-    cantidad = Math.max(1, Math.min(cantidad, stockActual));
-
-    const carrito = obtenerCarrito();
-    const clave = "latin-" + ml + "ml-ref-" + ref;
-    const existente = carrito.find(item => item.clave === clave);
-    const actual = existente ? Number(existente.cantidad) || 0 : 0;
-    const disponibleParaAgregar = stockActual - actual;
-
-    if(disponibleParaAgregar <= 0){
-      mostrarToast("Ya tienes en tu pedido todas las unidades disponibles. 💕");
-      return;
-    }
-
-    cantidad = Math.min(cantidad, disponibleParaAgregar);
-
-    if(existente){
-      existente.cantidad = actual + cantidad;
-    }else{
-      carrito.push({
-        clave: clave,
-        codigo:
-          productoSeleccionado.codigo ||
-          productoSeleccionado.codigo_original_odoo ||
-          "",
-        nombre:
-          "Esmalte Semipermanente REF #" + ref +
-          " " + ml + "ML Latin Nail",
-        referencia: ref,
-        precio: precio,
-        cantidad: cantidad,
-        imagen:
-          "imagenes/carta-colores-latin" + ml + "ml.png"
-      });
-    }
-
-    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-    cantidadInput.value = "1";
-    total.textContent = dinero(precio);
-    mostrarToast(
-      "Latin Nails " + ml + " ml · REF. " + ref +
-      " agregada a tu pedido 💕"
-    );
-  });
-
-  bloquear();
+  localStorage.setItem(CLAVE_CARRITO,JSON.stringify(carrito));seleccion.clear();limpiar();controladores.forEach(x=>x.render());mostrarToast("Latin Nails "+ml+" ml · Referencias agregadas a tu pedido 💕");
+ }
+ bolitas.addEventListener("click",e=>{const b=e.target.closest("button[data-ref]");if(b&&!b.disabled)cambiar(b.dataset.ref,1)});
+ lista.addEventListener("click",e=>{const b=e.target.closest("button[data-accion]");if(!b||b.disabled)return;if(b.dataset.accion==="quitar"){seleccion.delete(b.dataset.ref);limpiar();render()}else cambiar(b.dataset.ref,b.dataset.accion==="mas"?1:-1)});
+ agregar.addEventListener("click",guardar);
+ return {render,limpiar,mensaje,cambiar,guardar,seleccion};
 }
-
 async function cargarInventario(){
-  try{
-    const respuesta = await fetch(
-      "inventario.json?actualizacion=" + Date.now(),
-      { cache:"no-store" }
-    );
-
-    if(!respuesta.ok){
-      throw new Error("No fue posible cargar inventario.");
-    }
-
-    const datos = await respuesta.json();
-    productosInventario = datos.productos || {};
-  }catch(error){
-    console.error(error);
-    document.querySelectorAll(".consulta").forEach(el => {
-      el.classList.add("agotado");
-      el.textContent = "No pudimos consultar la disponibilidad.";
-    });
-  }
+ try{
+  const r=await fetch("inventario.json?actualizacion="+Date.now(),{cache:"no-store"});
+  if(!r.ok)throw new Error("No fue posible cargar inventario.");
+  const datos=await r.json();if(!datos||!datos.productos||typeof datos.productos!=="object")throw new Error("Inventario inválido");
+  construirCatalogo(datos.productos);inventarioListo=true;controladores.forEach(x=>{x.limpiar();x.render()});
+ }catch(error){console.error(error);inventarioListo=false;controladores.forEach(x=>{x.mensaje("No pudimos consultar la disponibilidad.");x.render()})}
 }
-
-document.querySelectorAll(".producto.carta").forEach(prepararCarta);
+document.querySelectorAll(".producto.carta").forEach(t=>controladores.push(prepararCarta(t)));
+window.addEventListener("storage",e=>{if(e.key===CLAVE_CARRITO||e.key===null)controladores.forEach(x=>x.render())});
+window.addEventListener("pageshow",()=>{if(inventarioListo)controladores.forEach(x=>x.render())});
 cargarInventario();
 </script>
 
