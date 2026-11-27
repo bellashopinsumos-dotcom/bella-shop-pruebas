@@ -1691,12 +1691,13 @@
     function normalizarReferencia(valor) {
       const limpio = valor.trim().replace(/\D/g, "");
       if (!limpio) return "";
-      return String(Number(limpio)).padStart(2, "0");
+      const ref = String(Number(limpio)).padStart(2, "0");
+      return ref === "08" ? "04" : ref;
     }
 
-    const REFERENCIAS_VALIDAS = ["02","03","08","09","10","11","12","15","17","18","19","20","21","22","23","24","25","26","27","34","35","36","37","38","39","40","41","42","43","45","46","47","50","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77"];
+    const REFERENCIAS_VALIDAS = ["02","03","04","09","10","11","12","15","17","18","19","20","21","22","23","24","25","26","27","34","35","36","37","38","39","40","41","42","43","45","46","47","50","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77"];
     function codigoOdoo(ref) {
-      const numero = String(Number(ref));
+      const numero = String(Number(normalizarReferencia(ref)));
       const numero2 = numero.padStart(2, "0");
       const numero3 = numero.padStart(3, "0");
 
@@ -1726,7 +1727,7 @@
     }
 
     function referenciaValida(ref) {
-      return REFERENCIAS_VALIDAS.includes(ref);
+      return REFERENCIAS_VALIDAS.includes(normalizarReferencia(ref));
     }
 
     function stockDisponible(ref) {
@@ -1736,12 +1737,18 @@
       return Number.isFinite(cantidad) ? Math.max(0, cantidad) : 0;
     }
 
+    function esProductoCarta(item, ref) {
+      const prefijo = "Carta de Colores Muna BB 7 ml - Ref. ";
+      return typeof item.clave === "string" && item.clave.startsWith(prefijo) &&
+        normalizarReferencia(item.clave.slice(prefijo.length)) === normalizarReferencia(ref);
+    }
+
     function cantidadEnCarrito(ref) {
       try {
         const carrito = JSON.parse(localStorage.getItem("bellaShopCarrito")) || [];
-        const clave = "Carta de Colores Muna BB 7 ml - Ref. " + normalizarReferencia(ref);
-        const producto = carrito.find(item => item.clave === clave);
-        return producto ? Number(producto.cantidad || 0) : 0;
+        const referencia = normalizarReferencia(ref);
+        return carrito.filter(item => esProductoCarta(item, referencia))
+          .reduce((total, item) => total + Number(item.cantidad || 0), 0);
       } catch (error) {
         return 0;
       }
@@ -1799,7 +1806,7 @@
 
       const ref = normalizarReferencia(input.value);
 
-      if (ref === "08") {
+      if (ref === "04" && Number(input.value.trim()) === 8) {
         mensajeError.textContent = "💗 La REF. 08 corresponde al mismo tono/producto que la REF. 04.";
         mensajeError.style.color = "#a64d79";
       }
@@ -1980,9 +1987,8 @@
 
       for (const [ref, cantidad] of referenciasSeleccionadas.entries()) {
         const stock = stockDisponible(ref);
-        const claveProducto = "Carta de Colores Muna BB 7 ml - Ref. " + ref;
-        const existente = carrito.find(producto => producto.clave === claveProducto);
-        const cantidadActual = existente ? Number(existente.cantidad || 0) : 0;
+        const cantidadActual = carrito.filter(producto => esProductoCarta(producto, ref))
+          .reduce((total, producto) => total + Number(producto.cantidad || 0), 0);
 
         if (stock <= 0 || cantidadActual + cantidad > stock) {
           mensajeError.textContent =
@@ -1994,10 +2000,14 @@
 
       referenciasSeleccionadas.forEach((cantidad, ref) => {
         const claveProducto = "Carta de Colores Muna BB 7 ml - Ref. " + ref;
-        const existente = carrito.find(producto => producto.clave === claveProducto);
+        const coincidencias = carrito.filter(producto => esProductoCarta(producto, ref));
+        const existente = coincidencias[0];
 
         if (existente) {
-          existente.cantidad += cantidad;
+          existente.cantidad = coincidencias.reduce((total, producto) => total + Number(producto.cantidad || 0), 0) + cantidad;
+          existente.clave = claveProducto;
+          existente.referencia = ref;
+          carrito = carrito.filter(producto => producto === existente || !coincidencias.includes(producto));
         } else {
           carrito.push({
             clave: claveProducto,
